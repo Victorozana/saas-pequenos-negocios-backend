@@ -1,6 +1,6 @@
 # Plano de execução — identidade-acesso-inicial
 
-> gerado por `onp-spec plano` em 2026-08-01 18:48 — NÃO edite à mão;
+> gerado por `onp-spec plano` em 2026-08-01 20:04 — NÃO edite à mão;
 > mudou tasks.md ou a config? Regenere: `onp-spec plano identidade-acesso-inicial`
 
 ## Resumo — o que vai acontecer

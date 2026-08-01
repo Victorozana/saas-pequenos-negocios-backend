@@ -75,8 +75,8 @@ Como administrador com e-mail confirmado, quero fazer login, para receber um con
 
 | ID | Suposição | Status | Resolução |
 |---|---|---|---|
-| ASM-002 | A sessão inicial será um JWT bearer de curta duração, sem refresh token. | aberta | Recomendação técnica aguardando confirmação. |
-| ASM-003 | Senhas terão no mínimo 12 caracteres e o token de e-mail será de uso único, válido por 24 horas. | aberta | Recomendação de segurança aguardando confirmação. |
+| ASM-002 | A sessão inicial será um JWT bearer de curta duração, sem refresh token. | confirmada | Confirmada pelo usuário em 2026-08-01. |
+| ASM-003 | Senhas terão no mínimo 12 caracteres e o token de e-mail será de uso único, válido por 24 horas. | confirmada | Confirmada pelo usuário em 2026-08-01. |
 
 ## Perguntas em aberto
 
