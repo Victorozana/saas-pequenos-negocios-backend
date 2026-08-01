@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# executar-tarefas.sh — gerado por `onp-spec plano fundacao-api-testes` em 2026-08-01 19:17
+# executar-tarefas.sh — gerado por `onp-spec plano fundacao-api-testes` em 2026-08-01 19:21
 # NÃO edite à mão: mudou tasks.md ou a config, regenere o plano.
 #
 # uso:
@@ -14,7 +14,7 @@
 set -u
 set -o pipefail
 
-RUN_ID='agendamento-fundacao-api-testes-msar79cz'
+RUN_ID='agendamento-fundacao-api-testes-msarbip6'
 FEATURE='fundacao-api-testes'
 BASE_BRANCH='spec/fundacao-api-testes'
 ENGINE='.agents/skills/onp-spec-driven/scripts/onp-spec.mjs'
