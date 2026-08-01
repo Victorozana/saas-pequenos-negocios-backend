@@ -9,8 +9,7 @@
 - Modelo: gpt-5.6-terra
 - Esforço: medio
 
-## T-002 — Criar host e prova HTTP reutilizável [pendente]
-
+## T-002 — Criar host e prova HTTP reutilizável [concluida]
 - Refs: US-001, US-002, AC-002, AC-003
 - Arquivos: tests/Agendamento.IntegrationTests/Infrastructure/AgendamentoApiFactory.cs, tests/Agendamento.IntegrationTests/Health/HealthEndpointTests.cs
 - Notas: O título do teste de saúde deve conter `@spec:AC-002`.

@@ -1,13 +1,23 @@
 {
   "feature": "fundacao-api-testes",
-  "timestamp": "2026-08-01T19:40:42.525Z",
-  "gitRev": "e299e31",
+  "timestamp": "2026-08-01T19:43:20.997Z",
+  "gitRev": "413d34c",
   "command": "dotnet test Agendamento.sln --configuration Release",
   "reporter": "exitcode",
   "exitCode": 0,
   "testsParsed": 0,
   "results": {
     "AC-001": {
+      "status": "pass",
+      "testName": null,
+      "method": "exitcode"
+    },
+    "AC-002": {
+      "status": "pass",
+      "testName": null,
+      "method": "exitcode"
+    },
+    "AC-003": {
       "status": "pass",
       "testName": null,
       "method": "exitcode"
