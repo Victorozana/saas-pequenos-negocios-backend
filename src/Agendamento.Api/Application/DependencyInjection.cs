@@ -1,10 +1,14 @@
+using Agendamento.Application.Identity.CreateSession;
+using Agendamento.Application.Identity.VerifyEmail;
+
 namespace Agendamento.Application;
 
 public static class DependencyInjection
 {
     public static IServiceCollection AddApplication(this IServiceCollection services)
     {
-        // Registre aqui casos de uso, validadores e handlers de eventos de domínio.
+        services.AddTransient<VerifyEmailHandler>();
+        services.AddTransient<CreateSessionHandler>();
         return services;
     }
 }
