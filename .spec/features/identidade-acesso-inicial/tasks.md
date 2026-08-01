@@ -2,7 +2,7 @@
 
 > feature: identidade-acesso-inicial
 
-## T-005 — Modelar usuário e credenciais [concluida]
+## T-005 — Modelar usuário e credenciais [pendente]
 - Refs: US-004, AC-007, AC-008
 - Arquivos: src/Agendamento.Api/Domain/Identity/User.cs, src/Agendamento.Api/Domain/Identity/UserStatus.cs, src/Agendamento.Api/Infrastructure/Persistence/Configurations/UserConfiguration.cs, tests/Agendamento.UnitTests/Identity/UserTests.cs, tests/Agendamento.IntegrationTests/Identity/UserPersistenceTests.cs
 - Notas: CPF e e-mail normalizados possuem unicidade global; usar o password hasher da stack escolhida.
