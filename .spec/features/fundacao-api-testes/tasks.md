@@ -2,7 +2,7 @@
 
 > feature: fundacao-api-testes
 
-## T-001 — Organizar projetos e dependências .NET [concluida]
+## T-001 — Organizar projetos e dependências .NET [pendente]
 - Refs: US-001, AC-001
 - Arquivos: Agendamento.sln, Directory.Packages.props, src/Agendamento.Api/Agendamento.Api.csproj, src/Agendamento.Api/Application/DependencyInjection.cs, tests/Agendamento.UnitTests/Agendamento.UnitTests.csproj, tests/Agendamento.IntegrationTests/Agendamento.IntegrationTests.csproj, tests/Agendamento.ArchitectureTests/Agendamento.ArchitectureTests.csproj
 - Notas: Fixar versões compatíveis com .NET 10 e manter `TreatWarningsAsErrors`.
