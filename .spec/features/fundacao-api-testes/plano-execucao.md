@@ -1,6 +1,6 @@
 # Plano de execução — fundacao-api-testes
 
-> gerado por `onp-spec plano` em 2026-08-01 18:49 — NÃO edite à mão;
+> gerado por `onp-spec plano` em 2026-08-01 19:34 — NÃO edite à mão;
 > mudou tasks.md ou a config? Regenere: `onp-spec plano fundacao-api-testes`
 
 ## Resumo — o que vai acontecer
@@ -30,7 +30,7 @@
 
 | tarefa | título | modelo | esforço | arquivos |
 |---|---|---|---|---|
-| T-003 | Criar infraestrutura PostgreSQL isolada | `gpt-5.6-terra` | medium | `tests/Agendamento.IntegrationTests/Infrastructure/PostgreSqlFixture.cs`, `tests/Agendamento.IntegrationTests/Infrastructure/PostgreSqlCollection.cs`, `tests/Agendamento.IntegrationTests/Persistence/PostgreSqlFixtureTests.cs` |
+| T-003 | Criar infraestrutura PostgreSQL isolada | `gpt-5.6-sol` | high | `tests/Agendamento.IntegrationTests/Infrastructure/PostgreSqlFixture.cs`, `tests/Agendamento.IntegrationTests/Infrastructure/PostgreSqlCollection.cs`, `tests/Agendamento.IntegrationTests/Persistence/PostgreSqlFixtureTests.cs` |
 
 ### Onda 2 — faixa-4
 
