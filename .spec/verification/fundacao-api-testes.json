@@ -1,7 +1,7 @@
 {
   "feature": "fundacao-api-testes",
-  "timestamp": "2026-08-01T19:03:25.812Z",
-  "gitRev": "f6ada49",
+  "timestamp": "2026-08-01T19:19:33.971Z",
+  "gitRev": "da2befb",
   "command": "dotnet test Agendamento.sln --configuration Release",
   "reporter": "exitcode",
   "exitCode": 0,
