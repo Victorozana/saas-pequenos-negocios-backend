@@ -23,8 +23,7 @@
 - Modelo: gpt-5.6-sol
 - Esforço: alto
 
-## T-004 — Externalizar e validar configuração [pendente]
-
+## T-004 — Externalizar e validar configuração [concluida]
 - Refs: US-003, AC-005, AC-006
 - Arquivos: src/Agendamento.Api/appsettings.json, src/Agendamento.Api/appsettings.Development.json, src/Agendamento.Api/Infrastructure/DependencyInjection.cs, tests/Agendamento.ArchitectureTests/Configuration/SecretConfigurationTests.cs, tests/Agendamento.IntegrationTests/Configuration/DatabaseConfigurationTests.cs, onpspec.config.json
 - Notas: Ajustar o motor ONP para executar `dotnet test Agendamento.sln`; mensagens de erro não podem ecoar strings de conexão.
