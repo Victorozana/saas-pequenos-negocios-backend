@@ -1,6 +1,6 @@
 # Plano de execução — fundacao-api-testes
 
-> gerado por `onp-spec plano` em 2026-08-01 19:21 — NÃO edite à mão;
+> gerado por `onp-spec plano` em 2026-08-01 19:27 — NÃO edite à mão;
 > mudou tasks.md ou a config? Regenere: `onp-spec plano fundacao-api-testes`
 
 ## Resumo — o que vai acontecer
