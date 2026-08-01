@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# executar-tarefas.sh — gerado por `onp-spec plano fundacao-api-testes` em 2026-08-01 18:49
+# executar-tarefas.sh — gerado por `onp-spec plano fundacao-api-testes` em 2026-08-01 19:01
 # NÃO edite à mão: mudou tasks.md ou a config, regenere o plano.
 #
 # uso:
@@ -14,7 +14,7 @@
 set -u
 set -o pipefail
 
-RUN_ID='agendamento-fundacao-api-testes-msaq6n0h'
+RUN_ID='agendamento-fundacao-api-testes-msaqma5r'
 FEATURE='fundacao-api-testes'
 BASE_BRANCH='spec/fundacao-api-testes'
 ENGINE='.agents/skills/onp-spec-driven/scripts/onp-spec.mjs'
@@ -250,7 +250,7 @@ Regras inegociáveis:
 - NUNCA enfraqueça, pule (skip/todo) ou apague um teste para passar — teste pulado não é prova e o audit acusa.
 - Rode os testes localmente com `dotnet test Agendamento.sln --configuration Release` até passarem.
 - NÃO edite tasks.md, NÃO rode onp-spec verify/audit e NÃO toque em outras tarefas — o orquestrador cuida disso.
-- Ao final de CADA tarefa: `git add` só no que você tocou e um commit próprio.' 'gpt-5.6-terra' medium
+- Ao final de CADA tarefa: `git add` só no que você tocou e um commit próprio.' 'gpt-5.6-sol' high
   ) >> "$LOG_DIR/faixa-3.log" 2>&1
   local st=$?
   mesclar_faixa 'faixa-3' 'spec/fundacao-api-testes-faixa-3' "$WT" "$st" || return 1

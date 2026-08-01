@@ -1,12 +1,12 @@
 {
-  "runId": "agendamento-fundacao-api-testes-msaq6n0h",
+  "runId": "agendamento-fundacao-api-testes-msaqma5r",
   "feature": "fundacao-api-testes",
   "agent": "codex",
   "modo": "paralelo",
   "paralelizar": null,
   "modeloForcado": null,
   "esforcoForcado": null,
-  "geradoEm": "2026-08-01 18:49",
+  "geradoEm": "2026-08-01 19:01",
   "branchTrabalho": "spec/fundacao-api-testes",
   "baseDir": ".spec/features/fundacao-api-testes",
   "specDir": ".spec",
@@ -80,8 +80,8 @@
         {
           "id": "T-003",
           "titulo": "Criar infraestrutura PostgreSQL isolada",
-          "modelo": "gpt-5.6-terra",
-          "esforco": "medium",
+          "modelo": "gpt-5.6-sol",
+          "esforco": "high",
           "arquivos": [
             "tests/Agendamento.IntegrationTests/Infrastructure/PostgreSqlFixture.cs",
             "tests/Agendamento.IntegrationTests/Infrastructure/PostgreSqlCollection.cs",
