@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# executar-tarefas.sh — gerado por `onp-spec plano fundacao-api-testes` em 2026-08-01 19:34
+# executar-tarefas.sh — gerado por `onp-spec plano fundacao-api-testes` em 2026-08-01 19:35
 # NÃO edite à mão: mudou tasks.md ou a config, regenere o plano.
 #
 # uso:
@@ -14,11 +14,11 @@
 set -u
 set -o pipefail
 
-RUN_ID='agendamento-fundacao-api-testes-msars9w2'
+RUN_ID='agendamento-fundacao-api-testes-msartxm2'
 FEATURE='fundacao-api-testes'
 BASE_BRANCH='spec/fundacao-api-testes'
 ENGINE='.agents/skills/onp-spec-driven/scripts/onp-spec.mjs'
-CODEX_FLAGS=(--sandbox 'workspace-write')
+CODEX_FLAGS=(--sandbox 'danger-full-access')
 STREAM_FLAGS=(--json)
 FALHAS=""
 COM_GATE=1
@@ -65,9 +65,8 @@ preparar_ambiente() {
     info "branch de trabalho: $BASE_BRANCH (a partir de $ATUAL)"
   fi
   git worktree prune
-  # Mantém worktrees e logs dentro do workspace autorizado pelo sandbox.
-  LOG_DIR="$TOPLEVEL/.onp-worktrees/agendamento-fundacao-api-testes-logs"
-  WT_BASE="$TOPLEVEL/.onp-worktrees/agendamento-fundacao-api-testes"
+  LOG_DIR="$(dirname "$TOPLEVEL")/onp-worktrees/agendamento-fundacao-api-testes-logs"
+  WT_BASE="$(dirname "$TOPLEVEL")/onp-worktrees/agendamento-fundacao-api-testes"
   STREAMS_DIR="${ONP_SPEC_HOME:-$HOME/.onp-spec}/painel/streams/$RUN_ID"
   mkdir -p "$LOG_DIR" "$STREAMS_DIR"
 }
