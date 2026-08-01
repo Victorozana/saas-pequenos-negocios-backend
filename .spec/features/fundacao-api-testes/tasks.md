@@ -16,8 +16,7 @@
 - Modelo: gpt-5.6-terra
 - Esforço: medio
 
-## T-003 — Criar infraestrutura PostgreSQL isolada [pendente]
-
+## T-003 — Criar infraestrutura PostgreSQL isolada [concluida]
 - Refs: US-002, AC-004
 - Arquivos: tests/Agendamento.IntegrationTests/Infrastructure/PostgreSqlFixture.cs, tests/Agendamento.IntegrationTests/Infrastructure/PostgreSqlCollection.cs, tests/Agendamento.IntegrationTests/Persistence/PostgreSqlFixtureTests.cs
 - Notas: Provisionar PostgreSQL por Testcontainers, aplicar migrations e limpar recursos ao final.
