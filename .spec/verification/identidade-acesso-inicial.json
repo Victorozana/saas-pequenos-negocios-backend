@@ -1,0 +1,11 @@
+{
+  "feature": "identidade-acesso-inicial",
+  "timestamp": "2026-08-01T20:09:29.733Z",
+  "gitRev": "507ecc4",
+  "command": "dotnet test Agendamento.sln --configuration Release",
+  "reporter": "exitcode",
+  "exitCode": 0,
+  "testsParsed": 0,
+  "results": {},
+  "principles": {}
+}
