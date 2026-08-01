@@ -1,0 +1,127 @@
+{
+  "runId": "agendamento-fundacao-api-testes-msaq6n0h",
+  "feature": "fundacao-api-testes",
+  "agent": "codex",
+  "modo": "paralelo",
+  "paralelizar": null,
+  "modeloForcado": null,
+  "esforcoForcado": null,
+  "geradoEm": "2026-08-01 18:49",
+  "branchTrabalho": "spec/fundacao-api-testes",
+  "baseDir": ".spec/features/fundacao-api-testes",
+  "specDir": ".spec",
+  "repoName": "agendamento",
+  "logsDir": "../onp-worktrees/agendamento-fundacao-api-testes-logs",
+  "ondas": [
+    [
+      "faixa-1",
+      "faixa-2",
+      "faixa-3"
+    ],
+    [
+      "faixa-4"
+    ]
+  ],
+  "faixas": [
+    {
+      "id": "faixa-1",
+      "branch": "spec/fundacao-api-testes-faixa-1",
+      "worktree": "../onp-worktrees/agendamento-fundacao-api-testes-faixa-1",
+      "tarefas": [
+        {
+          "id": "T-001",
+          "titulo": "Organizar projetos e dependências .NET",
+          "modelo": "gpt-5.6-terra",
+          "esforco": "medium",
+          "arquivos": [
+            "Agendamento.sln",
+            "Directory.Packages.props",
+            "src/Agendamento.Api/Agendamento.Api.csproj",
+            "src/Agendamento.Api/Application/DependencyInjection.cs",
+            "tests/Agendamento.UnitTests/Agendamento.UnitTests.csproj",
+            "tests/Agendamento.IntegrationTests/Agendamento.IntegrationTests.csproj",
+            "tests/Agendamento.ArchitectureTests/Agendamento.ArchitectureTests.csproj"
+          ],
+          "refs": [
+            "US-001",
+            "AC-001"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "faixa-2",
+      "branch": "spec/fundacao-api-testes-faixa-2",
+      "worktree": "../onp-worktrees/agendamento-fundacao-api-testes-faixa-2",
+      "tarefas": [
+        {
+          "id": "T-002",
+          "titulo": "Criar host e prova HTTP reutilizável",
+          "modelo": "gpt-5.6-terra",
+          "esforco": "medium",
+          "arquivos": [
+            "tests/Agendamento.IntegrationTests/Infrastructure/AgendamentoApiFactory.cs",
+            "tests/Agendamento.IntegrationTests/Health/HealthEndpointTests.cs"
+          ],
+          "refs": [
+            "US-001",
+            "US-002",
+            "AC-002",
+            "AC-003"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "faixa-3",
+      "branch": "spec/fundacao-api-testes-faixa-3",
+      "worktree": "../onp-worktrees/agendamento-fundacao-api-testes-faixa-3",
+      "tarefas": [
+        {
+          "id": "T-003",
+          "titulo": "Criar infraestrutura PostgreSQL isolada",
+          "modelo": "gpt-5.6-terra",
+          "esforco": "medium",
+          "arquivos": [
+            "tests/Agendamento.IntegrationTests/Infrastructure/PostgreSqlFixture.cs",
+            "tests/Agendamento.IntegrationTests/Infrastructure/PostgreSqlCollection.cs",
+            "tests/Agendamento.IntegrationTests/Persistence/PostgreSqlFixtureTests.cs"
+          ],
+          "refs": [
+            "US-002",
+            "AC-004"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "faixa-4",
+      "branch": "spec/fundacao-api-testes-faixa-4",
+      "worktree": "../onp-worktrees/agendamento-fundacao-api-testes-faixa-4",
+      "tarefas": [
+        {
+          "id": "T-004",
+          "titulo": "Externalizar e validar configuração",
+          "modelo": "gpt-5.6-terra",
+          "esforco": "medium",
+          "arquivos": [
+            "src/Agendamento.Api/appsettings.json",
+            "src/Agendamento.Api/appsettings.Development.json",
+            "src/Agendamento.Api/Infrastructure/DependencyInjection.cs",
+            "tests/Agendamento.ArchitectureTests/Configuration/SecretConfigurationTests.cs",
+            "tests/Agendamento.IntegrationTests/Configuration/DatabaseConfigurationTests.cs",
+            "onpspec.config.json"
+          ],
+          "refs": [
+            "US-003",
+            "AC-005",
+            "AC-006"
+          ]
+        }
+      ]
+    }
+  ],
+  "sequenciais": [],
+  "concluidas": [],
+  "avisos": []
+}

@@ -1,0 +1,236 @@
+{
+  "runId": "agendamento-cadastro-tenants-msaq52gm",
+  "feature": "cadastro-tenants",
+  "agent": "codex",
+  "modo": "paralelo",
+  "paralelizar": null,
+  "modeloForcado": null,
+  "esforcoForcado": null,
+  "geradoEm": "2026-08-01 18:48",
+  "branchTrabalho": "spec/cadastro-tenants",
+  "baseDir": ".spec/features/cadastro-tenants",
+  "specDir": ".spec",
+  "repoName": "agendamento",
+  "logsDir": "../onp-worktrees/agendamento-cadastro-tenants-logs",
+  "ondas": [
+    [
+      "faixa-1",
+      "faixa-2",
+      "faixa-3"
+    ],
+    [
+      "faixa-4",
+      "faixa-5",
+      "faixa-6"
+    ],
+    [
+      "faixa-7"
+    ]
+  ],
+  "faixas": [
+    {
+      "id": "faixa-1",
+      "branch": "spec/cadastro-tenants-faixa-1",
+      "worktree": "../onp-worktrees/agendamento-cadastro-tenants-faixa-1",
+      "tarefas": [
+        {
+          "id": "T-010",
+          "titulo": "Modelar tenant, endereço e perfil fiscal",
+          "modelo": "gpt-5.6-terra",
+          "esforco": "medium",
+          "arquivos": [
+            "src/Agendamento.Api/Domain/Tenants/Tenant.cs",
+            "src/Agendamento.Api/Domain/Tenants/TenantAddress.cs",
+            "src/Agendamento.Api/Domain/Tenants/TenantFiscalProfile.cs",
+            "src/Agendamento.Api/Domain/Tenants/TaxRegime.cs",
+            "src/Agendamento.Api/Domain/Tenants/BusinessCategory.cs",
+            "tests/Agendamento.UnitTests/Tenants/TenantTests.cs",
+            "tests/Agendamento.UnitTests/Tenants/TenantFiscalProfileTests.cs"
+          ],
+          "refs": [
+            "US-008",
+            "AC-018",
+            "AC-019",
+            "AC-020"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "faixa-2",
+      "branch": "spec/cadastro-tenants-faixa-2",
+      "worktree": "../onp-worktrees/agendamento-cadastro-tenants-faixa-2",
+      "tarefas": [
+        {
+          "id": "T-011",
+          "titulo": "Implementar CNPJ legado e alfanumérico",
+          "modelo": "gpt-5.6-terra",
+          "esforco": "medium",
+          "arquivos": [
+            "src/Agendamento.Api/Domain/Tenants/Cnpj.cs",
+            "tests/Agendamento.UnitTests/Tenants/CnpjTests.cs"
+          ],
+          "refs": [
+            "US-007",
+            "AC-014",
+            "US-009",
+            "AC-022"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "faixa-3",
+      "branch": "spec/cadastro-tenants-faixa-3",
+      "worktree": "../onp-worktrees/agendamento-cadastro-tenants-faixa-3",
+      "tarefas": [
+        {
+          "id": "T-012",
+          "titulo": "Consultar elegibilidade cadastral",
+          "modelo": "gpt-5.6-terra",
+          "esforco": "medium",
+          "arquivos": [
+            "src/Agendamento.Api/Application/Tenants/CompanyRegistry/ICompanyRegistryGateway.cs",
+            "src/Agendamento.Api/Application/Tenants/CompanyRegistry/CompanyRegistryResult.cs",
+            "src/Agendamento.Api/Application/Tenants/CompanyRegistry/FoodCnaePolicy.cs",
+            "src/Agendamento.Api/Application/Tenants/LookupCompany/LookupCompanyQuery.cs",
+            "src/Agendamento.Api/Application/Tenants/LookupCompany/LookupCompanyHandler.cs",
+            "src/Agendamento.Api/Infrastructure/CompanyRegistry/CompanyRegistryGateway.cs",
+            "tests/Agendamento.UnitTests/Tenants/FoodCnaePolicyTests.cs",
+            "tests/Agendamento.IntegrationTests/Tenants/CompanyRegistryContractTests.cs"
+          ],
+          "refs": [
+            "US-007",
+            "AC-015",
+            "AC-016",
+            "AC-017"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "faixa-4",
+      "branch": "spec/cadastro-tenants-faixa-4",
+      "worktree": "../onp-worktrees/agendamento-cadastro-tenants-faixa-4",
+      "tarefas": [
+        {
+          "id": "T-013",
+          "titulo": "Mapear persistência e migration do cadastro",
+          "modelo": "gpt-5.6-terra",
+          "esforco": "medium",
+          "arquivos": [
+            "src/Agendamento.Api/Infrastructure/Persistence/AgendamentoDbContext.cs",
+            "src/Agendamento.Api/Infrastructure/Persistence/Configurations/TenantConfiguration.cs",
+            "src/Agendamento.Api/Infrastructure/Persistence/Configurations/TenantFiscalProfileConfiguration.cs",
+            "src/Agendamento.Api/Infrastructure/Persistence/Configurations/TenantMembershipConfiguration.cs",
+            "src/Agendamento.Api/Infrastructure/Persistence/Migrations",
+            "tests/Agendamento.IntegrationTests/Tenants/TenantPersistenceTests.cs"
+          ],
+          "refs": [
+            "US-008",
+            "US-009",
+            "AC-019",
+            "AC-021",
+            "AC-022",
+            "AC-024"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "faixa-5",
+      "branch": "spec/cadastro-tenants-faixa-5",
+      "worktree": "../onp-worktrees/agendamento-cadastro-tenants-faixa-5",
+      "tarefas": [
+        {
+          "id": "T-014",
+          "titulo": "Orquestrar cadastro transacional e idempotente",
+          "modelo": "gpt-5.6-terra",
+          "esforco": "medium",
+          "arquivos": [
+            "src/Agendamento.Api/Application/Tenants/RegisterTenant/RegisterTenantCommand.cs",
+            "src/Agendamento.Api/Application/Tenants/RegisterTenant/RegisterTenantHandler.cs",
+            "src/Agendamento.Api/Application/Common/IUnitOfWork.cs",
+            "src/Agendamento.Api/Infrastructure/Persistence/IdempotencyRecord.cs",
+            "tests/Agendamento.UnitTests/Tenants/RegisterTenantHandlerTests.cs",
+            "tests/Agendamento.IntegrationTests/Tenants/RegisterTenantTransactionTests.cs"
+          ],
+          "refs": [
+            "US-009",
+            "AC-021",
+            "AC-022",
+            "AC-023",
+            "AC-024",
+            "US-005",
+            "AC-009"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "faixa-6",
+      "branch": "spec/cadastro-tenants-faixa-6",
+      "worktree": "../onp-worktrees/agendamento-cadastro-tenants-faixa-6",
+      "tarefas": [
+        {
+          "id": "T-015",
+          "titulo": "Expor consulta e cadastro públicos",
+          "modelo": "gpt-5.6-terra",
+          "esforco": "medium",
+          "arquivos": [
+            "src/Agendamento.Api/Features/Tenants/CompanyRegistryEndpoints.cs",
+            "src/Agendamento.Api/Features/Tenants/TenantRegistrationEndpoints.cs",
+            "src/Agendamento.Api/Features/Tenants/RegisterTenantRequest.cs",
+            "src/Agendamento.Api/Features/Tenants/RegisterTenantResponse.cs",
+            "src/Agendamento.Api/Features/Common/ProblemDetailsExtensions.cs",
+            "tests/Agendamento.IntegrationTests/Tenants/TenantRegistrationEndpointTests.cs"
+          ],
+          "refs": [
+            "US-007",
+            "US-008",
+            "US-009",
+            "US-011",
+            "AC-014",
+            "AC-015",
+            "AC-016",
+            "AC-017",
+            "AC-018",
+            "AC-020",
+            "AC-021",
+            "AC-023",
+            "AC-027"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "faixa-7",
+      "branch": "spec/cadastro-tenants-faixa-7",
+      "worktree": "../onp-worktrees/agendamento-cadastro-tenants-faixa-7",
+      "tarefas": [
+        {
+          "id": "T-016",
+          "titulo": "Expor perfis autenticados",
+          "modelo": "gpt-5.6-terra",
+          "esforco": "medium",
+          "arquivos": [
+            "src/Agendamento.Api/Application/Tenants/GetCurrentTenant/GetCurrentTenantQuery.cs",
+            "src/Agendamento.Api/Application/Identity/GetCurrentUser/GetCurrentUserQuery.cs",
+            "src/Agendamento.Api/Features/Tenants/CurrentTenantEndpoints.cs",
+            "src/Agendamento.Api/Features/Identity/CurrentUserEndpoints.cs",
+            "tests/Agendamento.IntegrationTests/Tenants/CurrentTenantEndpointTests.cs",
+            "tests/Agendamento.IntegrationTests/Identity/CurrentUserEndpointTests.cs"
+          ],
+          "refs": [
+            "US-010",
+            "AC-025",
+            "AC-026"
+          ]
+        }
+      ]
+    }
+  ],
+  "sequenciais": [],
+  "concluidas": [],
+  "avisos": []
+}

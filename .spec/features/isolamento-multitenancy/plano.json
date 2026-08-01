@@ -1,0 +1,153 @@
+{
+  "runId": "agendamento-isolamento-multitenancy-msaq54io",
+  "feature": "isolamento-multitenancy",
+  "agent": "codex",
+  "modo": "paralelo",
+  "paralelizar": null,
+  "modeloForcado": null,
+  "esforcoForcado": null,
+  "geradoEm": "2026-08-01 18:48",
+  "branchTrabalho": "spec/isolamento-multitenancy",
+  "baseDir": ".spec/features/isolamento-multitenancy",
+  "specDir": ".spec",
+  "repoName": "agendamento",
+  "logsDir": "../onp-worktrees/agendamento-isolamento-multitenancy-logs",
+  "ondas": [
+    [
+      "faixa-1",
+      "faixa-2",
+      "faixa-3"
+    ],
+    [
+      "faixa-4",
+      "faixa-5"
+    ]
+  ],
+  "faixas": [
+    {
+      "id": "faixa-1",
+      "branch": "spec/isolamento-multitenancy-faixa-1",
+      "worktree": "../onp-worktrees/agendamento-isolamento-multitenancy-faixa-1",
+      "tarefas": [
+        {
+          "id": "T-017",
+          "titulo": "Resolver contexto de tenant autenticado",
+          "modelo": "gpt-5.6-terra",
+          "esforco": "medium",
+          "arquivos": [
+            "src/Agendamento.Api/Application/Tenancy/ITenantContext.cs",
+            "src/Agendamento.Api/Infrastructure/Tenancy/HttpTenantContext.cs",
+            "src/Agendamento.Api/Infrastructure/Tenancy/TenantContextMiddleware.cs",
+            "tests/Agendamento.IntegrationTests/Tenancy/TenantContextTests.cs"
+          ],
+          "refs": [
+            "US-012",
+            "AC-028",
+            "AC-029"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "faixa-2",
+      "branch": "spec/isolamento-multitenancy-faixa-2",
+      "worktree": "../onp-worktrees/agendamento-isolamento-multitenancy-faixa-2",
+      "tarefas": [
+        {
+          "id": "T-018",
+          "titulo": "Aplicar filtros e guarda de gravação do EF Core",
+          "modelo": "gpt-5.6-terra",
+          "esforco": "medium",
+          "arquivos": [
+            "src/Agendamento.Api/Domain/Common/ITenantOwned.cs",
+            "src/Agendamento.Api/Infrastructure/Persistence/AgendamentoDbContext.cs",
+            "src/Agendamento.Api/Infrastructure/Persistence/TenantSaveChangesInterceptor.cs",
+            "tests/Agendamento.IntegrationTests/Tenancy/EfTenantIsolationTests.cs"
+          ],
+          "refs": [
+            "US-013",
+            "AC-030",
+            "AC-031",
+            "AC-032"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "faixa-3",
+      "branch": "spec/isolamento-multitenancy-faixa-3",
+      "worktree": "../onp-worktrees/agendamento-isolamento-multitenancy-faixa-3",
+      "tarefas": [
+        {
+          "id": "T-019",
+          "titulo": "Criar papel, contexto transacional e policies RLS",
+          "modelo": "gpt-5.6-terra",
+          "esforco": "medium",
+          "arquivos": [
+            "src/Agendamento.Api/Infrastructure/Persistence/Migrations",
+            "src/Agendamento.Api/Infrastructure/Persistence/TenantTransactionInterceptor.cs",
+            "src/Agendamento.Api/Infrastructure/Persistence/Sql/TenantRls.sql",
+            "tests/Agendamento.IntegrationTests/Tenancy/PostgreSqlRlsTests.cs"
+          ],
+          "refs": [
+            "US-014",
+            "AC-033",
+            "AC-034",
+            "AC-035"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "faixa-4",
+      "branch": "spec/isolamento-multitenancy-faixa-4",
+      "worktree": "../onp-worktrees/agendamento-isolamento-multitenancy-faixa-4",
+      "tarefas": [
+        {
+          "id": "T-020",
+          "titulo": "Provar isolamento completo entre dois tenants",
+          "modelo": "gpt-5.6-terra",
+          "esforco": "medium",
+          "arquivos": [
+            "tests/Agendamento.IntegrationTests/Tenancy/CrossTenantIsolationTests.cs"
+          ],
+          "refs": [
+            "US-012",
+            "US-013",
+            "US-014",
+            "AC-028",
+            "AC-029",
+            "AC-030",
+            "AC-031",
+            "AC-032",
+            "AC-033",
+            "AC-034"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "faixa-5",
+      "branch": "spec/isolamento-multitenancy-faixa-5",
+      "worktree": "../onp-worktrees/agendamento-isolamento-multitenancy-faixa-5",
+      "tarefas": [
+        {
+          "id": "T-021",
+          "titulo": "Impedir migration tenant-owned desprotegida",
+          "modelo": "gpt-5.6-terra",
+          "esforco": "medium",
+          "arquivos": [
+            "tests/Agendamento.ArchitectureTests/Tenancy/TenantOwnedMigrationTests.cs"
+          ],
+          "refs": [
+            "US-014",
+            "AC-035"
+          ]
+        }
+      ]
+    }
+  ],
+  "sequenciais": [],
+  "concluidas": [],
+  "avisos": []
+}

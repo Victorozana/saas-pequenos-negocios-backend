@@ -1,0 +1,33 @@
+{
+  "version": 2,
+  "skills": {
+    "create-rfc": {
+      "name": "create-rfc",
+      "source": "local",
+      "contentHash": "3f391b6c4397bb1590bbad511eca95c297dd0467e65385fa28b3724851c42ea8",
+      "installedAt": "2026-08-01T14:26:46.703Z",
+      "updatedAt": "2026-08-01T14:26:46.737Z",
+      "agents": [
+        "cursor",
+        "claude-code",
+        "windsurf"
+      ],
+      "method": "copy",
+      "global": false
+    },
+    "create-adr": {
+      "name": "create-adr",
+      "source": "local",
+      "contentHash": "47ec663c849e8c1620c6f33a7be0055acdcf838c27ab7c16f44260244b80195a",
+      "installedAt": "2026-08-01T18:06:05.537Z",
+      "updatedAt": "2026-08-01T18:06:05.566Z",
+      "agents": [
+        "cursor",
+        "claude-code",
+        "windsurf"
+      ],
+      "method": "copy",
+      "global": false
+    }
+  }
+}

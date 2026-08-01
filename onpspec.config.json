@@ -1,0 +1,20 @@
+{
+  "testCommand": "dotnet test Agendamento.sln --configuration Release",
+  "reporter": "exitcode",
+  "testGlobs": [
+    "tests/**/*.cs"
+  ],
+  "srcGlobs": [
+    "src/**/*.cs"
+  ],
+  "ignoreGlobs": [
+    "node_modules/**",
+    ".git/**",
+    "dist/**",
+    "build/**",
+    "coverage/**",
+    ".spec/**",
+    "**/bin/**",
+    "**/obj/**"
+  ]
+}

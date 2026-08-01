@@ -1,0 +1,154 @@
+{
+  "runId": "agendamento-identidade-acesso-inicial-msaq50oo",
+  "feature": "identidade-acesso-inicial",
+  "agent": "codex",
+  "modo": "paralelo",
+  "paralelizar": null,
+  "modeloForcado": null,
+  "esforcoForcado": null,
+  "geradoEm": "2026-08-01 18:48",
+  "branchTrabalho": "spec/identidade-acesso-inicial",
+  "baseDir": ".spec/features/identidade-acesso-inicial",
+  "specDir": ".spec",
+  "repoName": "agendamento",
+  "logsDir": "../onp-worktrees/agendamento-identidade-acesso-inicial-logs",
+  "ondas": [
+    [
+      "faixa-1",
+      "faixa-2",
+      "faixa-3"
+    ],
+    [
+      "faixa-4",
+      "faixa-5"
+    ]
+  ],
+  "faixas": [
+    {
+      "id": "faixa-1",
+      "branch": "spec/identidade-acesso-inicial-faixa-1",
+      "worktree": "../onp-worktrees/agendamento-identidade-acesso-inicial-faixa-1",
+      "tarefas": [
+        {
+          "id": "T-005",
+          "titulo": "Modelar usuário e credenciais",
+          "modelo": "gpt-5.6-terra",
+          "esforco": "medium",
+          "arquivos": [
+            "src/Agendamento.Api/Domain/Identity/User.cs",
+            "src/Agendamento.Api/Domain/Identity/UserStatus.cs",
+            "src/Agendamento.Api/Infrastructure/Persistence/Configurations/UserConfiguration.cs",
+            "tests/Agendamento.UnitTests/Identity/UserTests.cs",
+            "tests/Agendamento.IntegrationTests/Identity/UserPersistenceTests.cs"
+          ],
+          "refs": [
+            "US-004",
+            "AC-007",
+            "AC-008"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "faixa-2",
+      "branch": "spec/identidade-acesso-inicial-faixa-2",
+      "worktree": "../onp-worktrees/agendamento-identidade-acesso-inicial-faixa-2",
+      "tarefas": [
+        {
+          "id": "T-006",
+          "titulo": "Persistir tokens de confirmação de e-mail",
+          "modelo": "gpt-5.6-terra",
+          "esforco": "medium",
+          "arquivos": [
+            "src/Agendamento.Api/Domain/Identity/EmailVerificationToken.cs",
+            "src/Agendamento.Api/Application/Identity/VerifyEmail/VerifyEmailCommand.cs",
+            "src/Agendamento.Api/Application/Identity/VerifyEmail/VerifyEmailHandler.cs",
+            "src/Agendamento.Api/Infrastructure/Persistence/Configurations/EmailVerificationTokenConfiguration.cs",
+            "tests/Agendamento.UnitTests/Identity/EmailVerificationTokenTests.cs"
+          ],
+          "refs": [
+            "US-005",
+            "AC-009",
+            "AC-010",
+            "AC-011"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "faixa-3",
+      "branch": "spec/identidade-acesso-inicial-faixa-3",
+      "worktree": "../onp-worktrees/agendamento-identidade-acesso-inicial-faixa-3",
+      "tarefas": [
+        {
+          "id": "T-007",
+          "titulo": "Criar porta de envio e caixa de saída de e-mail",
+          "modelo": "gpt-5.6-terra",
+          "esforco": "medium",
+          "arquivos": [
+            "src/Agendamento.Api/Application/Identity/IEmailVerificationSender.cs",
+            "src/Agendamento.Api/Infrastructure/Email/OutboxEmailVerificationSender.cs",
+            "src/Agendamento.Api/Infrastructure/Persistence/Entities/EmailOutboxMessage.cs",
+            "tests/Agendamento.IntegrationTests/Identity/EmailVerificationOutboxTests.cs"
+          ],
+          "refs": [
+            "US-005",
+            "AC-009"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "faixa-4",
+      "branch": "spec/identidade-acesso-inicial-faixa-4",
+      "worktree": "../onp-worktrees/agendamento-identidade-acesso-inicial-faixa-4",
+      "tarefas": [
+        {
+          "id": "T-008",
+          "titulo": "Expor confirmação de e-mail",
+          "modelo": "gpt-5.6-terra",
+          "esforco": "medium",
+          "arquivos": [
+            "src/Agendamento.Api/Features/Identity/EmailVerificationEndpoints.cs",
+            "src/Agendamento.Api/Features/Identity/VerifyEmailRequest.cs",
+            "tests/Agendamento.IntegrationTests/Identity/EmailVerificationEndpointTests.cs"
+          ],
+          "refs": [
+            "US-005",
+            "AC-010",
+            "AC-011"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "faixa-5",
+      "branch": "spec/identidade-acesso-inicial-faixa-5",
+      "worktree": "../onp-worktrees/agendamento-identidade-acesso-inicial-faixa-5",
+      "tarefas": [
+        {
+          "id": "T-009",
+          "titulo": "Autenticar e emitir sessão",
+          "modelo": "gpt-5.6-terra",
+          "esforco": "medium",
+          "arquivos": [
+            "src/Agendamento.Api/Application/Identity/CreateSession/CreateSessionCommand.cs",
+            "src/Agendamento.Api/Application/Identity/CreateSession/CreateSessionHandler.cs",
+            "src/Agendamento.Api/Application/Identity/ISessionIssuer.cs",
+            "src/Agendamento.Api/Infrastructure/Identity/JwtSessionIssuer.cs",
+            "src/Agendamento.Api/Features/Identity/SessionEndpoints.cs",
+            "tests/Agendamento.IntegrationTests/Identity/SessionEndpointTests.cs"
+          ],
+          "refs": [
+            "US-006",
+            "AC-012",
+            "AC-013"
+          ]
+        }
+      ]
+    }
+  ],
+  "sequenciais": [],
+  "concluidas": [],
+  "avisos": []
+}
