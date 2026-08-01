@@ -16,8 +16,5 @@
     ".spec/**",
     "**/bin/**",
     "**/obj/**"
-  ],
-  "paralelo": {
-    "sandbox": "danger-full-access"
-  }
+  ]
 }
