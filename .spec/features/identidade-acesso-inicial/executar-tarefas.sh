@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# executar-tarefas.sh — gerado por `onp-spec plano identidade-acesso-inicial` em 2026-08-01 18:48
+# executar-tarefas.sh — gerado por `onp-spec plano identidade-acesso-inicial` em 2026-08-01 20:04
 # NÃO edite à mão: mudou tasks.md ou a config, regenere o plano.
 #
 # uso:
@@ -14,7 +14,7 @@
 set -u
 set -o pipefail
 
-RUN_ID='agendamento-identidade-acesso-inicial-msaq50oo'
+RUN_ID='agendamento-identidade-acesso-inicial-msasvn53'
 FEATURE='identidade-acesso-inicial'
 BASE_BRANCH='spec/identidade-acesso-inicial'
 ENGINE='.agents/skills/onp-spec-driven/scripts/onp-spec.mjs'

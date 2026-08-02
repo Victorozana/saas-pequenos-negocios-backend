@@ -1,3 +1,10 @@
+using System.Security.Cryptography;
+using Agendamento.Application.Identity;
+using Agendamento.Application.Identity.CreateSession;
+using Agendamento.Application.Identity.VerifyEmail;
+using Agendamento.Infrastructure.Email;
+using Agendamento.Infrastructure.Identity;
+
 namespace Agendamento.Infrastructure;
 
 public static class DependencyInjection
@@ -6,8 +13,23 @@ public static class DependencyInjection
         this IServiceCollection services,
         IConfiguration configuration)
     {
-        // Registre aqui EF Core/Npgsql, Redis, mensageria e implementações de ports.
-        // As dependências serão adicionadas ao iniciar a implementação de cada módulo.
+        services.AddSingleton<InMemoryIdentityStore>();
+        services.AddSingleton<IIdentityAuthenticationStore>(provider => provider.GetRequiredService<InMemoryIdentityStore>());
+        services.AddSingleton<IEmailVerificationTokenRepository>(provider => provider.GetRequiredService<InMemoryIdentityStore>());
+        services.AddSingleton<IEmailVerificationUserRepository>(provider => provider.GetRequiredService<InMemoryIdentityStore>());
+        services.AddSingleton<IEmailOutbox>(provider => provider.GetRequiredService<InMemoryIdentityStore>());
+        services.AddSingleton<IPasswordService, AspNetPasswordService>();
+        services.AddSingleton<IClock, SystemClock>();
+        services.AddSingleton<IEmailVerificationSender, OutboxEmailVerificationSender>();
+
+        var signingKey = configuration["Authentication:SigningKey"];
+        if (string.IsNullOrWhiteSpace(signingKey))
+        {
+            signingKey = Convert.ToBase64String(RandomNumberGenerator.GetBytes(32));
+        }
+
+        services.AddSingleton<ISessionIssuer>(new JwtSessionIssuer(JwtSessionIssuerOptions.Create(signingKey)));
+
         if (configuration.GetValue<bool>("Database:RequirePostgreSql"))
         {
             var connectionString = configuration.GetConnectionString("PostgreSql");
