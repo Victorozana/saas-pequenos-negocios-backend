@@ -1,0 +1,6 @@
+· T-011 — codex exec (gpt-5.6-terra · medium) · stream: faixa-2--T-011
+(node:21860) Warning: Accessing non-existent property 'lineno' of module exports inside circular dependency
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:21860) Warning: Accessing non-existent property 'filename' of module exports inside circular dependency
+(node:21860) Warning: Accessing non-existent property 'lineno' of module exports inside circular dependency
+(node:21860) Warning: Accessing non-existent property 'filename' of module exports inside circular dependency

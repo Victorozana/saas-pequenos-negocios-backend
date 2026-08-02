@@ -1,0 +1,8 @@
+verify fundacao-api-testes: 6/6 critério(s) de aceite com prova PASS · 0 teste(s) lidos · exit 0
+  ✔ AC-001 
+  ✔ AC-002 
+  ✔ AC-003 
+  ✔ AC-004 
+  ✔ AC-005 
+  ✔ AC-006 
+prova gravada em .spec/verification/fundacao-api-testes.json — rode `onp-spec audit`

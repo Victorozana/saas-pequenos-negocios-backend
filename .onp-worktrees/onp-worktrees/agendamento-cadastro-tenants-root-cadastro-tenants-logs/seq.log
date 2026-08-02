@@ -1,0 +1,30 @@
+· T-012 — codex exec (gpt-5.6-terra · medium) · stream: seq--T-012
+(node:4996) Warning: Accessing non-existent property 'lineno' of module exports inside circular dependency
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:4996) Warning: Accessing non-existent property 'filename' of module exports inside circular dependency
+(node:4996) Warning: Accessing non-existent property 'lineno' of module exports inside circular dependency
+(node:4996) Warning: Accessing non-existent property 'filename' of module exports inside circular dependency
+· T-013 — codex exec (gpt-5.6-sol · high) · stream: seq--T-013
+(node:10844) Warning: Accessing non-existent property 'lineno' of module exports inside circular dependency
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:10844) Warning: Accessing non-existent property 'filename' of module exports inside circular dependency
+(node:10844) Warning: Accessing non-existent property 'lineno' of module exports inside circular dependency
+(node:10844) Warning: Accessing non-existent property 'filename' of module exports inside circular dependency
+· T-014 — codex exec (gpt-5.6-sol · high) · stream: seq--T-014
+(node:21612) Warning: Accessing non-existent property 'lineno' of module exports inside circular dependency
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:21612) Warning: Accessing non-existent property 'filename' of module exports inside circular dependency
+(node:21612) Warning: Accessing non-existent property 'lineno' of module exports inside circular dependency
+(node:21612) Warning: Accessing non-existent property 'filename' of module exports inside circular dependency
+· T-015 — codex exec (gpt-5.6-terra · medium) · stream: seq--T-015
+(node:7900) Warning: Accessing non-existent property 'lineno' of module exports inside circular dependency
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:7900) Warning: Accessing non-existent property 'filename' of module exports inside circular dependency
+(node:7900) Warning: Accessing non-existent property 'lineno' of module exports inside circular dependency
+(node:7900) Warning: Accessing non-existent property 'filename' of module exports inside circular dependency
+· T-016 — codex exec (gpt-5.6-terra · medium) · stream: seq--T-016
+(node:2548) Warning: Accessing non-existent property 'lineno' of module exports inside circular dependency
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:2548) Warning: Accessing non-existent property 'filename' of module exports inside circular dependency
+(node:2548) Warning: Accessing non-existent property 'lineno' of module exports inside circular dependency
+(node:2548) Warning: Accessing non-existent property 'filename' of module exports inside circular dependency

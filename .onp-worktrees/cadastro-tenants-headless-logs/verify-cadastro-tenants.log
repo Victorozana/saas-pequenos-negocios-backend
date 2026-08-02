@@ -1,0 +1,14 @@
+verify cadastro-tenants: 12/12 critério(s) de aceite com prova PASS · 0 teste(s) lidos · exit 0
+  ✔ AC-014 
+  ✔ AC-015 
+  ✔ AC-016 
+  ✔ AC-017 
+  ✔ AC-018 
+  ✔ AC-019 
+  ✔ AC-020 
+  ✔ AC-021 
+  ✔ AC-022 
+  ✔ AC-023 
+  ✔ AC-024 
+  ✔ AC-025 
+prova gravada em .spec/verification/cadastro-tenants.json — rode `onp-spec audit`

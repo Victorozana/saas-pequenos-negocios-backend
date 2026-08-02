@@ -1,0 +1,9 @@
+verify identidade-acesso-inicial: 7/7 critério(s) de aceite com prova PASS · 0 teste(s) lidos · exit 0
+  ✔ AC-007 
+  ✔ AC-008 
+  ✔ AC-009 
+  ✔ AC-010 
+  ✔ AC-011 
+  ✔ AC-012 
+  ✔ AC-013 
+prova gravada em .spec/verification/identidade-acesso-inicial.json — rode `onp-spec audit`
