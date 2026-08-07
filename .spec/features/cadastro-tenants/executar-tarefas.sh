@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# executar-tarefas.sh — gerado por `onp-spec plano cadastro-tenants` em 2026-08-01 18:48
+# executar-tarefas.sh — gerado por `onp-spec plano cadastro-tenants` em 2026-08-06 23:18
 # NÃO edite à mão: mudou tasks.md ou a config, regenere o plano.
 #
 # uso:
@@ -14,7 +14,7 @@
 set -u
 set -o pipefail
 
-RUN_ID='agendamento-cadastro-tenants-msaq52gm'
+RUN_ID='agendamento-cadastro-tenants-msi4zm94'
 FEATURE='cadastro-tenants'
 BASE_BRANCH='spec/cadastro-tenants'
 ENGINE='.agents/skills/onp-spec-driven/scripts/onp-spec.mjs'

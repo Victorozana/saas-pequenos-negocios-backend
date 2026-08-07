@@ -1,6 +1,6 @@
 # Plano de execução — cadastro-tenants
 
-> gerado por `onp-spec plano` em 2026-08-01 18:48 — NÃO edite à mão;
+> gerado por `onp-spec plano` em 2026-08-06 23:18 — NÃO edite à mão;
 > mudou tasks.md ou a config? Regenere: `onp-spec plano cadastro-tenants`
 
 ## Resumo — o que vai acontecer

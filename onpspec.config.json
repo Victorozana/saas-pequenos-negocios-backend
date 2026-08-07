@@ -1,5 +1,5 @@
 {
-  "testCommand": "dotnet test Agendamento.sln --configuration Release",
+  "testCommand": "dotnet test tests/Agendamento.UnitTests/Agendamento.UnitTests.csproj --configuration Release && dotnet test tests/Agendamento.IntegrationTests/Agendamento.IntegrationTests.csproj --configuration Release --filter \"FullyQualifiedName~CompanyRegistryContractTests|FullyQualifiedName~RegisterTenantTransactionTests|FullyQualifiedName~TenantRegistrationEndpointTests|FullyQualifiedName~CurrentTenantEndpointTests|FullyQualifiedName~CurrentUserEndpointTests\"",
   "reporter": "exitcode",
   "testGlobs": [
     "tests/**/*.cs"
