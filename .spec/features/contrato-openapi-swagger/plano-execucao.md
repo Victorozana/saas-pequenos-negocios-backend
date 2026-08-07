@@ -1,6 +1,6 @@
 # Plano de execução — contrato-openapi-swagger
 
-> gerado por `onp-spec plano` em 2026-08-01 18:48 — NÃO edite à mão;
+> gerado por `onp-spec plano` em 2026-08-07 01:05 — NÃO edite à mão;
 > mudou tasks.md ou a config? Regenere: `onp-spec plano contrato-openapi-swagger`
 
 ## Resumo — o que vai acontecer

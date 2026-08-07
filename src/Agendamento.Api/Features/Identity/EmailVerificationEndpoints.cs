@@ -7,7 +7,9 @@ public static class EmailVerificationEndpoints
 {
     public static IEndpointRouteBuilder MapEmailVerificationEndpoints(this IEndpointRouteBuilder endpoints)
     {
-        endpoints.MapPost("/api/v1/auth/email-verifications", ConfirmAsync);
+        endpoints.MapPost("/api/v1/auth/email-verifications", ConfirmAsync)
+                 .WithName("VerifyEmail")
+                 .WithTags("Identity");
         return endpoints;
     }
 

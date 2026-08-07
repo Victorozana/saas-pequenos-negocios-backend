@@ -7,8 +7,11 @@ namespace Agendamento.Api.Infrastructure.Persistence;
 
 public class AgendamentoDbContext : DbContext
 {
-    public AgendamentoDbContext(DbContextOptions<AgendamentoDbContext> options) : base(options)
+    private readonly Agendamento.Api.Application.Tenancy.ITenantContext _tenantContext;
+
+    public AgendamentoDbContext(DbContextOptions<AgendamentoDbContext> options, Agendamento.Api.Application.Tenancy.ITenantContext tenantContext) : base(options)
     {
+        _tenantContext = tenantContext;
     }
 
     public DbSet<Tenant> Tenants { get; set; } = null!;
@@ -20,6 +23,24 @@ public class AgendamentoDbContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+
+        foreach (var entityType in modelBuilder.Model.GetEntityTypes())
+        {
+            if (typeof(Agendamento.Domain.Common.ITenantOwned).IsAssignableFrom(entityType.ClrType))
+            {
+                var method = typeof(AgendamentoDbContext)
+                    .GetMethod(nameof(ConfigureTenantFilter), BindingFlags.NonPublic | BindingFlags.Instance)
+                    ?.MakeGenericMethod(entityType.ClrType);
+
+                method?.Invoke(this, new object[] { modelBuilder });
+            }
+        }
+
         base.OnModelCreating(modelBuilder);
+    }
+
+    private void ConfigureTenantFilter<TEntity>(ModelBuilder modelBuilder) where TEntity : class, Agendamento.Domain.Common.ITenantOwned
+    {
+        modelBuilder.Entity<TEntity>().HasQueryFilter(e => _tenantContext.HasTenant && e.TenantId == _tenantContext.TenantId);
     }
 }

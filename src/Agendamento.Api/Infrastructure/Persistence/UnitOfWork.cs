@@ -1,6 +1,8 @@
 using System.Threading;
 using System.Threading.Tasks;
 using Agendamento.Api.Application.Common;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage;
 
 namespace Agendamento.Api.Infrastructure.Persistence;
@@ -23,6 +25,13 @@ public class UnitOfWork : IUnitOfWork
             return;
         }
         _transaction = await _db.Database.BeginTransactionAsync(cancellationToken);
+        
+        var tenantContext = _db.GetService<Agendamento.Api.Application.Tenancy.ITenantContext>();
+        if (tenantContext.HasTenant)
+        {
+            await _db.Database.ExecuteSqlRawAsync("SET LOCAL ROLE agendamento_app_user;", cancellationToken);
+            await _db.Database.ExecuteSqlRawAsync("SET LOCAL agendamento.current_tenant_id = '" + tenantContext.TenantId.ToString() + "';", cancellationToken);
+        }
     }
 
     public async Task CommitAsync(CancellationToken cancellationToken = default)

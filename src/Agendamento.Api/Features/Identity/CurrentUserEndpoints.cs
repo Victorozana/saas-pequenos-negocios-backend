@@ -15,6 +15,6 @@ public static class CurrentUserEndpoints
         group.MapGet("/me", () =>
         {
             return Results.Ok(new { message = "User Profile" });
-        });
+        }).WithName("GetCurrentUser");
     }
 }

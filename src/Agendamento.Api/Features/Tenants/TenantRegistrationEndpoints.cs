@@ -19,7 +19,7 @@ public static class TenantRegistrationEndpoints
         group.MapPost("/", async (
             [FromBody] RegisterTenantRequest request,
             [FromHeader(Name = "Idempotency-Key")] string idempotencyKey,
-            RegisterTenantHandler handler,
+            [FromServices] RegisterTenantHandler handler,
             CancellationToken cancellationToken) =>
         {
             if (string.IsNullOrWhiteSpace(idempotencyKey))
@@ -44,6 +44,6 @@ public static class TenantRegistrationEndpoints
             {
                 return Results.UnprocessableEntity(ProblemDetailsExtensions.Create("Erro no cadastro", ex.Message));
             }
-        });
+        }).WithName("RegisterTenant");
     }
 }

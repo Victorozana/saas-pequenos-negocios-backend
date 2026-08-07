@@ -1,0 +1,318 @@
+{
+  "openapi": "3.0.4",
+  "info": {
+    "title": "Agendamento API v1",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost/"
+    }
+  ],
+  "paths": {
+    "/api/v1/auth/email-verifications": {
+      "post": {
+        "tags": [
+          "Identity"
+        ],
+        "operationId": "VerifyEmail",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/VerifyEmailRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        }
+      }
+    },
+    "/api/v1/auth/sessions": {
+      "post": {
+        "tags": [
+          "Identity"
+        ],
+        "operationId": "CreateSession",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateSessionRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SessionResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/company-registry/{cnpj}": {
+      "get": {
+        "tags": [
+          "Company Registry"
+        ],
+        "operationId": "LookupCompanyRegistry",
+        "parameters": [
+          {
+            "name": "cnpj",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/v1/tenants": {
+      "post": {
+        "tags": [
+          "Tenants"
+        ],
+        "operationId": "RegisterTenant",
+        "parameters": [
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterTenantRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/v1/users/me": {
+      "get": {
+        "tags": [
+          "Identity"
+        ],
+        "operationId": "GetCurrentUser",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/v1/tenants/me": {
+      "get": {
+        "tags": [
+          "Tenants"
+        ],
+        "operationId": "GetCurrentTenant",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "CreateSessionRequest": {
+        "required": [
+          "email",
+          "password"
+        ],
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          }
+        }
+      },
+      "RegisterTenantRequest": {
+        "required": [
+          "cnpj",
+          "companyName",
+          "tradeName",
+          "legalNature",
+          "primaryCnae",
+          "categoryId",
+          "email",
+          "phone",
+          "addressStreet",
+          "addressNumber",
+          "addressComplement",
+          "addressNeighborhood",
+          "addressCity",
+          "addressState",
+          "addressZipCode",
+          "stateRegistration",
+          "municipalRegistration",
+          "isTaxExempt",
+          "taxRegime",
+          "fiscalEmail",
+          "adminName",
+          "adminCpf",
+          "adminEmail",
+          "isLegalRepresentative"
+        ],
+        "type": "object",
+        "properties": {
+          "cnpj": {
+            "type": "string"
+          },
+          "companyName": {
+            "type": "string"
+          },
+          "tradeName": {
+            "type": "string"
+          },
+          "legalNature": {
+            "type": "string"
+          },
+          "primaryCnae": {
+            "type": "string"
+          },
+          "categoryId": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "format": "int32"
+          },
+          "email": {
+            "type": "string"
+          },
+          "phone": {
+            "type": "string"
+          },
+          "addressStreet": {
+            "type": "string"
+          },
+          "addressNumber": {
+            "type": "string"
+          },
+          "addressComplement": {
+            "type": "string"
+          },
+          "addressNeighborhood": {
+            "type": "string"
+          },
+          "addressCity": {
+            "type": "string"
+          },
+          "addressState": {
+            "type": "string"
+          },
+          "addressZipCode": {
+            "type": "string"
+          },
+          "stateRegistration": {
+            "type": "string"
+          },
+          "municipalRegistration": {
+            "type": "string"
+          },
+          "isTaxExempt": {
+            "type": "boolean"
+          },
+          "taxRegime": {
+            "type": "string"
+          },
+          "fiscalEmail": {
+            "type": "string"
+          },
+          "adminName": {
+            "type": "string"
+          },
+          "adminCpf": {
+            "type": "string"
+          },
+          "adminEmail": {
+            "type": "string"
+          },
+          "isLegalRepresentative": {
+            "type": "boolean"
+          }
+        }
+      },
+      "SessionResponse": {
+        "required": [
+          "accessToken",
+          "expiresAt"
+        ],
+        "type": "object",
+        "properties": {
+          "accessToken": {
+            "type": "string"
+          },
+          "expiresAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "VerifyEmailRequest": {
+        "required": [
+          "token"
+        ],
+        "type": "object",
+        "properties": {
+          "token": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "Bearer": {
+        "type": "http",
+        "description": "JWT Authorization header using the Bearer scheme. Example: \u0022Authorization: Bearer {token}\u0022",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Identity"
+    },
+    {
+      "name": "Company Registry"
+    },
+    {
+      "name": "Tenants"
+    }
+  ]
+}

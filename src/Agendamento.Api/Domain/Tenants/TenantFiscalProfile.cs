@@ -1,12 +1,14 @@
+using Agendamento.Domain.Common;
+
 namespace Agendamento.Domain.Tenants;
 
-public sealed class TenantFiscalProfile
+public sealed class TenantFiscalProfile : ITenantOwned
 {
     private TenantFiscalProfile()
     {
     }
 
-    public Guid TenantId { get; private set; }
+    public Guid TenantId { get; set; }
     public string StateRegistration { get; private set; } = null!;
     public string MunicipalRegistration { get; private set; } = null!;
     public bool IsTaxExempt { get; private set; }

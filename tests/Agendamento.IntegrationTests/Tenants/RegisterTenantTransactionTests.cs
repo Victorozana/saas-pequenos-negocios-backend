@@ -11,12 +11,18 @@ namespace Agendamento.IntegrationTests.Tenants;
 
 public class RegisterTenantTransactionTests
 {
+    private class DummyTenantContext : Agendamento.Api.Application.Tenancy.ITenantContext
+    {
+        public Guid TenantId => Guid.Empty;
+        public bool HasTenant => false;
+    }
+
     private AgendamentoDbContext GetDbContext()
     {
         var options = new DbContextOptionsBuilder<AgendamentoDbContext>()
             .UseInMemoryDatabase(Guid.NewGuid().ToString())
             .Options;
-        var context = new AgendamentoDbContext(options);
+        var context = new AgendamentoDbContext(options, new DummyTenantContext());
         context.Database.EnsureCreated();
         return context;
     }

@@ -34,6 +34,9 @@
         },
         "warningProperties": {
           "allWarningsAsErrors": true,
+          "noWarn": [
+            "NU1903"
+          ],
           "warnAsError": [
             "NU1605"
           ]
@@ -50,6 +53,16 @@
           "framework": "net10.0",
           "targetAlias": "net10.0",
           "dependencies": {
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[10.0.10, )",
+              "versionCentrallyManaged": true
+            },
+            "Microsoft.AspNetCore.OpenApi": {
+              "target": "Package",
+              "version": "[10.0.10, )",
+              "versionCentrallyManaged": true
+            },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[9.0.0, )",
@@ -62,19 +75,33 @@
               "version": "[9.0.0, )",
               "versionCentrallyManaged": true
             },
+            "Microsoft.OpenApi": {
+              "target": "Package",
+              "version": "[2.0.0, )",
+              "versionCentrallyManaged": true
+            },
             "Npgsql.EntityFrameworkCore.PostgreSQL": {
               "target": "Package",
               "version": "[9.0.0, )",
               "versionCentrallyManaged": true
+            },
+            "Swashbuckle.AspNetCore.SwaggerUI": {
+              "target": "Package",
+              "version": "[10.2.3, )",
+              "versionCentrallyManaged": true
             }
           },
           "centralPackageVersions": {
+            "Microsoft.AspNetCore.Authentication.JwtBearer": "10.0.10",
             "Microsoft.AspNetCore.Mvc.Testing": "10.0.10",
+            "Microsoft.AspNetCore.OpenApi": "10.0.10",
             "Microsoft.EntityFrameworkCore": "9.0.0",
             "Microsoft.EntityFrameworkCore.Design": "9.0.0",
             "Microsoft.EntityFrameworkCore.InMemory": "9.0.0",
             "Microsoft.NET.Test.Sdk": "18.6.0",
+            "Microsoft.OpenApi": "2.0.0",
             "Npgsql.EntityFrameworkCore.PostgreSQL": "9.0.0",
+            "Swashbuckle.AspNetCore.SwaggerUI": "10.2.3",
             "Testcontainers.PostgreSql": "4.8.1",
             "xunit": "2.9.3",
             "xunit.runner.visualstudio": "3.1.5"

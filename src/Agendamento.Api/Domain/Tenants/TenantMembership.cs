@@ -1,13 +1,15 @@
 using System;
 
+using Agendamento.Domain.Common;
+
 namespace Agendamento.Domain.Tenants;
 
-public class TenantMembership
+public class TenantMembership : ITenantOwned
 {
     private TenantMembership() { }
 
     public Guid Id { get; private set; }
-    public Guid TenantId { get; private set; }
+    public Guid TenantId { get; set; }
     public Guid UserId { get; private set; }
     public string Role { get; private set; } = null!;
     public bool IsLegalRepresentative { get; private set; }

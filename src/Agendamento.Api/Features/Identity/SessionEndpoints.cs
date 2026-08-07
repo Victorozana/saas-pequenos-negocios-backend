@@ -7,7 +7,9 @@ public static class SessionEndpoints
 {
     public static IEndpointRouteBuilder MapSessionEndpoints(this IEndpointRouteBuilder endpoints)
     {
-        endpoints.MapPost("/api/v1/auth/sessions", CreateAsync);
+        endpoints.MapPost("/api/v1/auth/sessions", CreateAsync)
+                 .WithName("CreateSession")
+                 .WithTags("Identity");
         return endpoints;
     }
 

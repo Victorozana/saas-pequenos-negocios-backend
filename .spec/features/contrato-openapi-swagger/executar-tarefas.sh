@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# executar-tarefas.sh — gerado por `onp-spec plano contrato-openapi-swagger` em 2026-08-01 18:48
+# executar-tarefas.sh — gerado por `onp-spec plano contrato-openapi-swagger` em 2026-08-07 01:05
 # NÃO edite à mão: mudou tasks.md ou a config, regenere o plano.
 #
 # uso:
@@ -14,7 +14,7 @@
 set -u
 set -o pipefail
 
-RUN_ID='agendamento-contrato-openapi-swagger-msaq58rm'
+RUN_ID='agendamento-contrato-openapi-swagger-msi8tsto'
 FEATURE='contrato-openapi-swagger'
 BASE_BRANCH='spec/contrato-openapi-swagger'
 ENGINE='.agents/skills/onp-spec-driven/scripts/onp-spec.mjs'
@@ -188,7 +188,7 @@ T-022 — "Registrar OpenAPI e Swagger UI"
 Regras inegociáveis:
 - Todo critério de aceite referenciado vira teste com @spec:AC-xxx no título.
 - NUNCA enfraqueça, pule (skip/todo) ou apague um teste para passar — teste pulado não é prova e o audit acusa.
-- Rode os testes localmente com `dotnet test Agendamento.sln --configuration Release` até passarem.
+- Rode os testes localmente com `dotnet test tests/Agendamento.UnitTests/Agendamento.UnitTests.csproj --configuration Release && dotnet test tests/Agendamento.IntegrationTests/Agendamento.IntegrationTests.csproj --configuration Release --filter "FullyQualifiedName~CompanyRegistryContractTests|FullyQualifiedName~RegisterTenantTransactionTests|FullyQualifiedName~TenantRegistrationEndpointTests|FullyQualifiedName~CurrentTenantEndpointTests|FullyQualifiedName~CurrentUserEndpointTests"` até passarem.
 - NÃO edite tasks.md, NÃO rode onp-spec verify/audit e NÃO toque em outras tarefas — o orquestrador cuida disso.
 - Ao final de CADA tarefa: `git add` só no que você tocou e um commit próprio.' 'gpt-5.6-terra' medium
   ) >> "$LOG_DIR/faixa-1.log" 2>&1
@@ -218,7 +218,7 @@ T-023 — "Documentar endpoints, segurança e erros"
 Regras inegociáveis:
 - Todo critério de aceite referenciado vira teste com @spec:AC-xxx no título.
 - NUNCA enfraqueça, pule (skip/todo) ou apague um teste para passar — teste pulado não é prova e o audit acusa.
-- Rode os testes localmente com `dotnet test Agendamento.sln --configuration Release` até passarem.
+- Rode os testes localmente com `dotnet test tests/Agendamento.UnitTests/Agendamento.UnitTests.csproj --configuration Release && dotnet test tests/Agendamento.IntegrationTests/Agendamento.IntegrationTests.csproj --configuration Release --filter "FullyQualifiedName~CompanyRegistryContractTests|FullyQualifiedName~RegisterTenantTransactionTests|FullyQualifiedName~TenantRegistrationEndpointTests|FullyQualifiedName~CurrentTenantEndpointTests|FullyQualifiedName~CurrentUserEndpointTests"` até passarem.
 - NÃO edite tasks.md, NÃO rode onp-spec verify/audit e NÃO toque em outras tarefas — o orquestrador cuida disso.
 - Ao final de CADA tarefa: `git add` só no que você tocou e um commit próprio.' 'gpt-5.6-terra' medium
   ) >> "$LOG_DIR/faixa-2.log" 2>&1
@@ -248,7 +248,7 @@ T-024 — "Gerar contrato canônico versionado"
 Regras inegociáveis:
 - Todo critério de aceite referenciado vira teste com @spec:AC-xxx no título.
 - NUNCA enfraqueça, pule (skip/todo) ou apague um teste para passar — teste pulado não é prova e o audit acusa.
-- Rode os testes localmente com `dotnet test Agendamento.sln --configuration Release` até passarem.
+- Rode os testes localmente com `dotnet test tests/Agendamento.UnitTests/Agendamento.UnitTests.csproj --configuration Release && dotnet test tests/Agendamento.IntegrationTests/Agendamento.IntegrationTests.csproj --configuration Release --filter "FullyQualifiedName~CompanyRegistryContractTests|FullyQualifiedName~RegisterTenantTransactionTests|FullyQualifiedName~TenantRegistrationEndpointTests|FullyQualifiedName~CurrentTenantEndpointTests|FullyQualifiedName~CurrentUserEndpointTests"` até passarem.
 - NÃO edite tasks.md, NÃO rode onp-spec verify/audit e NÃO toque em outras tarefas — o orquestrador cuida disso.
 - Ao final de CADA tarefa: `git add` só no que você tocou e um commit próprio.' 'gpt-5.6-terra' medium
   ) >> "$LOG_DIR/faixa-3.log" 2>&1
@@ -278,7 +278,7 @@ T-025 — "Validar completude e minimização dos schemas"
 Regras inegociáveis:
 - Todo critério de aceite referenciado vira teste com @spec:AC-xxx no título.
 - NUNCA enfraqueça, pule (skip/todo) ou apague um teste para passar — teste pulado não é prova e o audit acusa.
-- Rode os testes localmente com `dotnet test Agendamento.sln --configuration Release` até passarem.
+- Rode os testes localmente com `dotnet test tests/Agendamento.UnitTests/Agendamento.UnitTests.csproj --configuration Release && dotnet test tests/Agendamento.IntegrationTests/Agendamento.IntegrationTests.csproj --configuration Release --filter "FullyQualifiedName~CompanyRegistryContractTests|FullyQualifiedName~RegisterTenantTransactionTests|FullyQualifiedName~TenantRegistrationEndpointTests|FullyQualifiedName~CurrentTenantEndpointTests|FullyQualifiedName~CurrentUserEndpointTests"` até passarem.
 - NÃO edite tasks.md, NÃO rode onp-spec verify/audit e NÃO toque em outras tarefas — o orquestrador cuida disso.
 - Ao final de CADA tarefa: `git add` só no que você tocou e um commit próprio.' 'gpt-5.6-terra' medium
   ) >> "$LOG_DIR/faixa-4.log" 2>&1

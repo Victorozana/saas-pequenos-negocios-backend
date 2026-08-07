@@ -19,7 +19,7 @@ public static class CompanyRegistryEndpoints
 
         group.MapGet("/{cnpj}", async (
             string cnpj,
-            LookupCompanyHandler handler,
+            [FromServices] LookupCompanyHandler handler,
             CancellationToken cancellationToken) =>
         {
             try
@@ -40,6 +40,6 @@ public static class CompanyRegistryEndpoints
             {
                 return Results.Problem(title: "Erro interno", detail: ex.Message, statusCode: 500);
             }
-        });
+        }).WithName("LookupCompanyRegistry");
     }
 }

@@ -12,9 +12,9 @@ public static class CurrentTenantEndpoints
             .WithTags("Tenants")
             .RequireAuthorization();
 
-        group.MapGet("/me", () =>
+        group.MapGet("/me", ([Microsoft.AspNetCore.Mvc.FromServices] Agendamento.Api.Application.Tenancy.ITenantContext tenantContext) =>
         {
-            return Results.Ok(new { message = "Tenant Profile" });
-        });
+            return Results.Ok(new { message = "Tenant Profile", tenantId = tenantContext.TenantId });
+        }).WithName("GetCurrentTenant");
     }
 }

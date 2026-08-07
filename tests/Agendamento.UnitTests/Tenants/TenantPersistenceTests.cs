@@ -10,13 +10,24 @@ namespace Agendamento.UnitTests.Tenants;
 
 public class TenantPersistenceTests
 {
+    private class DummyTenantContext : Agendamento.Api.Application.Tenancy.ITenantContext
+    {
+        public Guid TenantId { get; set; }
+        public Guid? UserId { get; set; }
+        public string Role { get; set; } = string.Empty;
+        public bool IsAuthenticated { get; set; }
+        public bool HasTenant => TenantId != Guid.Empty;
+    }
+
+    private DummyTenantContext _tenantContext = new DummyTenantContext();
+
     private AgendamentoDbContext GetDbContext()
     {
         var options = new DbContextOptionsBuilder<AgendamentoDbContext>()
             .UseInMemoryDatabase(Guid.NewGuid().ToString())
             .Options;
 
-        var context = new AgendamentoDbContext(options);
+        var context = new AgendamentoDbContext(options, _tenantContext);
         context.Database.EnsureCreated();
         return context;
     }
@@ -31,6 +42,8 @@ public class TenantPersistenceTests
         
         var profile = TenantFiscalProfile.Create(tenant.Id, "123", "456", false, TaxRegime.SimplesNacional, "fiscal@test.com");
         
+        _tenantContext.TenantId = tenant.Id;
+
         db.Tenants.Add(tenant);
         db.TenantFiscalProfiles.Add(profile);
         await db.SaveChangesAsync();
@@ -49,6 +62,8 @@ public class TenantPersistenceTests
         var tenant = Tenant.Create(cnpj, "Corp", "Trade", "LTDA", "5611201", BusinessCategory.Restaurante, "test@test.com", "11999999999", address);
         
         var membership = TenantMembership.Create(tenant.Id, Guid.NewGuid(), "owner_admin", true);
+
+        _tenantContext.TenantId = tenant.Id;
 
         db.Tenants.Add(tenant);
         db.TenantMemberships.Add(membership);

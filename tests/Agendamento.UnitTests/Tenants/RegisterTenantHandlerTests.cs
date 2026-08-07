@@ -17,7 +17,7 @@ public class RegisterTenantHandlerTests
         var options = new DbContextOptionsBuilder<AgendamentoDbContext>()
             .UseInMemoryDatabase(Guid.NewGuid().ToString())
             .Options;
-        var context = new AgendamentoDbContext(options);
+        var context = new AgendamentoDbContext(options, null!);
         context.Database.EnsureCreated();
         return context;
     }

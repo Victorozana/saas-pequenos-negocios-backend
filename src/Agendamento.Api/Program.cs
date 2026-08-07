@@ -5,12 +5,14 @@ using Agendamento.Infrastructure;
 using System.Threading.RateLimiting;
 using Microsoft.AspNetCore.Http;
 using Agendamento.Api.Features.Tenants;
+using Agendamento.Api.OpenApi;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services
     .AddApplication()
-    .AddInfrastructure(builder.Configuration);
+    .AddInfrastructure(builder.Configuration)
+    .AddOpenApiDocumentation();
 
 builder.Services.AddHealthChecks();
 builder.Services.AddRateLimiter(options =>
@@ -28,8 +30,15 @@ builder.Services.AddRateLimiter(options =>
 var app = builder.Build();
 
 app.UseRateLimiter();
+app.UseAuthentication();
+app.UseAuthorization();
+app.UseMiddleware<Agendamento.Api.Infrastructure.Tenancy.TenantContextMiddleware>();
+app.UseOpenApiDocumentation();
 
-app.MapHealthChecks("/health");
+app.MapHealthChecks("/health")
+   .ExcludeFromDescription()
+   .WithName("HealthCheck")
+   .WithTags("Health");
 app.MapEmailVerificationEndpoints();
 app.MapSessionEndpoints();
 app.MapCompanyRegistryEndpoints();
