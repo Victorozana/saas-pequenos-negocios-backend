@@ -38,7 +38,7 @@ public class TenantPersistenceTests
         var db = GetDbContext();
         var cnpj = Cnpj.Create("00000000000191");
         var address = TenantAddress.Create("Rua", "1", "", "Bairro", "Cidade", "SP", "01000000");
-        var tenant = Tenant.Create(cnpj, "Corp", "Trade", "LTDA", "5611201", BusinessCategory.Restaurante, "test@test.com", "11999999999", address);
+        var tenant = Tenant.Create(cnpj, "Corp", "Trade", "LTDA", "5611201", BusinessCategory.Marmoraria, "test@test.com", "11999999999", address);
         
         var profile = TenantFiscalProfile.Create(tenant.Id, "123", "456", false, TaxRegime.SimplesNacional, "fiscal@test.com");
         
@@ -59,7 +59,7 @@ public class TenantPersistenceTests
         var db = GetDbContext();
         var cnpj = Cnpj.Create("00000000000191");
         var address = TenantAddress.Create("Rua", "1", "", "Bairro", "Cidade", "SP", "01000000");
-        var tenant = Tenant.Create(cnpj, "Corp", "Trade", "LTDA", "5611201", BusinessCategory.Restaurante, "test@test.com", "11999999999", address);
+        var tenant = Tenant.Create(cnpj, "Corp", "Trade", "LTDA", "5611201", BusinessCategory.Marmoraria, "test@test.com", "11999999999", address);
         
         var membership = TenantMembership.Create(tenant.Id, Guid.NewGuid(), "owner_admin", true);
 

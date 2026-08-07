@@ -17,7 +17,7 @@ public sealed class TenantTests
             "Fantasia",
             "LTDA",
             "12345",
-            BusinessCategory.Restaurante,
+            BusinessCategory.Marmoraria,
             "contato@empresa.com",
             "11999999999",
             address));
@@ -28,7 +28,7 @@ public sealed class TenantTests
             "Fantasia",
             "LTDA",
             "12345",
-            BusinessCategory.Restaurante,
+            BusinessCategory.Marmoraria,
             "contato@empresa.com",
             "11999999999",
             null!)); // Missing Address
@@ -59,7 +59,7 @@ public sealed class TenantTests
             "Teste Fantasia",
             "Limitada",
             "5620101",
-            BusinessCategory.Restaurante,
+            BusinessCategory.Marmoraria,
             "contato@empresa.com",
             "11999999999",
             address

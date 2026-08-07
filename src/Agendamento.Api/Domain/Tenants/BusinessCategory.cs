@@ -2,10 +2,11 @@ namespace Agendamento.Domain.Tenants;
 
 public enum BusinessCategory
 {
-    Restaurante = 1,
-    Padaria = 2,
-    Lanchonete = 3,
-    Pizzaria = 4,
-    Confeitaria = 5,
+    Marmoraria = 10,
+    ConstrucaoCivil = 11,
+    MarcenariaCarpintaria = 12,
+    Serralheria = 13,
+    PrestadorServicoAutonomo = 14,
+    VendasEComercio = 15,
     Outro = 99
 }

@@ -5,6 +5,7 @@ using Agendamento.Infrastructure;
 using System.Threading.RateLimiting;
 using Microsoft.AspNetCore.Http;
 using Agendamento.Api.Features.Tenants;
+using Agendamento.Api.Features.Customers;
 using Agendamento.Api.OpenApi;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -45,6 +46,7 @@ app.MapCompanyRegistryEndpoints();
 app.MapTenantRegistrationEndpoints();
 app.MapCurrentUserEndpoints();
 app.MapCurrentTenantEndpoints();
+app.MapCustomerEndpoints();
 
 app.Run();
 

@@ -19,6 +19,7 @@ public class AgendamentoDbContext : DbContext
     public DbSet<TenantMembership> TenantMemberships { get; set; } = null!;
     public DbSet<User> Users { get; set; } = null!;
     public DbSet<IdempotencyRecord> IdempotencyRecords { get; set; } = null!;
+    public DbSet<Agendamento.Api.Domain.Customers.Customer> Customers { get; set; } = null!;
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
