@@ -18,7 +18,21 @@ public static class DependencyInjection
         services.AddTransient<Agendamento.Api.Application.Customers.UpdateCustomer.UpdateCustomerHandler>();
         services.AddTransient<Agendamento.Api.Application.Customers.GetCustomers.GetCustomersHandler>();
         services.AddTransient<Agendamento.Api.Application.Customers.GetCustomers.GetCustomerByIdHandler>();
+        // Services
+        services.AddTransient<Agendamento.Api.Application.Services.CreateService.CreateServiceHandler>();
+        services.AddTransient<Agendamento.Api.Application.Services.GetServices.GetServicesHandler>();
+        services.AddTransient<Agendamento.Api.Application.Services.GetServices.GetServiceByIdHandler>();
+        services.AddTransient<Agendamento.Api.Application.Services.UpdateService.UpdateServiceHandler>();
+
+        // Quotations
+        services.AddTransient<Agendamento.Api.Application.Quotations.CreateQuotation.CreateQuotationHandler>();
+        services.AddTransient<Agendamento.Api.Application.Quotations.GetQuotations.GetQuotationsHandler>();
+        services.AddTransient<Agendamento.Api.Application.Quotations.GetQuotations.GetQuotationByIdHandler>();
+        services.AddTransient<Agendamento.Api.Application.Quotations.UpdateQuotationStatus.UpdateQuotationStatusHandler>();
         
+        // PDF Generator
+        services.AddTransient<Agendamento.Api.Application.Quotations.ExportPdf.IQuotationPdfGenerator, Agendamento.Api.Infrastructure.Pdf.QuestPdfQuotationGenerator>();
+
         return services;
     }
 }

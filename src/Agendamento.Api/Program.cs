@@ -6,9 +6,13 @@ using System.Threading.RateLimiting;
 using Microsoft.AspNetCore.Http;
 using Agendamento.Api.Features.Tenants;
 using Agendamento.Api.Features.Customers;
+using Agendamento.Api.Features.Services;
+using Agendamento.Api.Features.Quotations;
 using Agendamento.Api.OpenApi;
 
 var builder = WebApplication.CreateBuilder(args);
+
+QuestPDF.Settings.License = QuestPDF.Infrastructure.LicenseType.Community;
 
 builder.Services
     .AddApplication()
@@ -47,6 +51,8 @@ app.MapTenantRegistrationEndpoints();
 app.MapCurrentUserEndpoints();
 app.MapCurrentTenantEndpoints();
 app.MapCustomerEndpoints();
+app.MapServiceEndpoints();
+app.MapQuotationEndpoints();
 
 app.Run();
 

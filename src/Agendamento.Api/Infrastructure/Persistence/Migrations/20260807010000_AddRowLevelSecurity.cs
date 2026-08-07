@@ -22,6 +22,10 @@ GRANT ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA public TO agendamento_app_user;
 
 ALTER TABLE tenant_fiscal_profiles ENABLE ROW LEVEL SECURITY;
 ALTER TABLE tenant_memberships ENABLE ROW LEVEL SECURITY;
+ALTER TABLE Customers ENABLE ROW LEVEL SECURITY;
+ALTER TABLE ServiceItems ENABLE ROW LEVEL SECURITY;
+ALTER TABLE Quotations ENABLE ROW LEVEL SECURITY;
+ALTER TABLE QuotationItems ENABLE ROW LEVEL SECURITY;
 
 CREATE POLICY tenant_isolation_policy_fiscal ON tenant_fiscal_profiles
     AS PERMISSIVE FOR ALL
@@ -33,9 +37,33 @@ CREATE POLICY tenant_isolation_policy_memberships ON tenant_memberships
     TO agendamento_app_user
     USING (""TenantId""::text = current_setting('agendamento.current_tenant_id', true));
 
+CREATE POLICY tenant_isolation_policy_customers ON Customers
+    AS PERMISSIVE FOR ALL
+    TO agendamento_app_user
+    USING (""TenantId""::text = current_setting('agendamento.current_tenant_id', true));
+
+CREATE POLICY tenant_isolation_policy_services ON ServiceItems
+    AS PERMISSIVE FOR ALL
+    TO agendamento_app_user
+    USING (""TenantId""::text = current_setting('agendamento.current_tenant_id', true));
+
+CREATE POLICY tenant_isolation_policy_quotations ON Quotations
+    AS PERMISSIVE FOR ALL
+    TO agendamento_app_user
+    USING (""TenantId""::text = current_setting('agendamento.current_tenant_id', true));
+
+CREATE POLICY tenant_isolation_policy_quotation_items ON QuotationItems
+    AS PERMISSIVE FOR ALL
+    TO agendamento_app_user
+    USING (""TenantId""::text = current_setting('agendamento.current_tenant_id', true));
+
 -- Force RLS even for table owners if they assume the role (just in case)
 ALTER TABLE tenant_fiscal_profiles FORCE ROW LEVEL SECURITY;
 ALTER TABLE tenant_memberships FORCE ROW LEVEL SECURITY;
+ALTER TABLE Customers FORCE ROW LEVEL SECURITY;
+ALTER TABLE ServiceItems FORCE ROW LEVEL SECURITY;
+ALTER TABLE Quotations FORCE ROW LEVEL SECURITY;
+ALTER TABLE QuotationItems FORCE ROW LEVEL SECURITY;
             ");
         }
 
@@ -44,9 +72,17 @@ ALTER TABLE tenant_memberships FORCE ROW LEVEL SECURITY;
             migrationBuilder.Sql(@"
 DROP POLICY IF EXISTS tenant_isolation_policy_fiscal ON tenant_fiscal_profiles;
 DROP POLICY IF EXISTS tenant_isolation_policy_memberships ON tenant_memberships;
+DROP POLICY IF EXISTS tenant_isolation_policy_customers ON Customers;
+DROP POLICY IF EXISTS tenant_isolation_policy_services ON ServiceItems;
+DROP POLICY IF EXISTS tenant_isolation_policy_quotations ON Quotations;
+DROP POLICY IF EXISTS tenant_isolation_policy_quotation_items ON QuotationItems;
 
 ALTER TABLE tenant_fiscal_profiles DISABLE ROW LEVEL SECURITY;
 ALTER TABLE tenant_memberships DISABLE ROW LEVEL SECURITY;
+ALTER TABLE Customers DISABLE ROW LEVEL SECURITY;
+ALTER TABLE ServiceItems DISABLE ROW LEVEL SECURITY;
+ALTER TABLE Quotations DISABLE ROW LEVEL SECURITY;
+ALTER TABLE QuotationItems DISABLE ROW LEVEL SECURITY;
             ");
         }
     }

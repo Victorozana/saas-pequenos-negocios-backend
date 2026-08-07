@@ -20,7 +20,8 @@ public class AgendamentoDbContext : DbContext
     public DbSet<User> Users { get; set; } = null!;
     public DbSet<IdempotencyRecord> IdempotencyRecords { get; set; } = null!;
     public DbSet<Agendamento.Api.Domain.Customers.Customer> Customers { get; set; } = null!;
-
+    public DbSet<Agendamento.Api.Domain.Services.ServiceItem> ServiceItems { get; set; } = null!;
+    public DbSet<Agendamento.Api.Domain.Quotations.Quotation> Quotations { get; set; } = null!;
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
