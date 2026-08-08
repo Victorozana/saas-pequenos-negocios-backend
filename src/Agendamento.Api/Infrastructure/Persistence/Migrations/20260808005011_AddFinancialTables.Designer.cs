@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Agendamento.Api.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -12,9 +13,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Agendamento.Api.Infrastructure.Persistence.Migrations
 {
     [DbContext(typeof(AgendamentoDbContext))]
-    partial class AgendamentoDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260808005011_AddFinancialTables")]
+    partial class AddFinancialTables
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

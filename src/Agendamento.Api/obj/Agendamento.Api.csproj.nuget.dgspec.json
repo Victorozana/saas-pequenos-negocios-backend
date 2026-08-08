@@ -1,22 +1,22 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Users\\victo\\OneDrive\\Documentos\\projetos\\agendamento\\src\\Agendamento.Api\\Agendamento.Api.csproj": {}
+    "C:\\Users\\victo\\OneDrive\\Documentos\\projetos\\agendamento\\src\\Agendamento.Api\\Agendamento.Api.csproj": {}
   },
   "projects": {
-    "c:\\Users\\victo\\OneDrive\\Documentos\\projetos\\agendamento\\src\\Agendamento.Api\\Agendamento.Api.csproj": {
+    "C:\\Users\\victo\\OneDrive\\Documentos\\projetos\\agendamento\\src\\Agendamento.Api\\Agendamento.Api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\victo\\OneDrive\\Documentos\\projetos\\agendamento\\src\\Agendamento.Api\\Agendamento.Api.csproj",
+        "projectUniqueName": "C:\\Users\\victo\\OneDrive\\Documentos\\projetos\\agendamento\\src\\Agendamento.Api\\Agendamento.Api.csproj",
         "projectName": "Agendamento.Api",
-        "projectPath": "c:\\Users\\victo\\OneDrive\\Documentos\\projetos\\agendamento\\src\\Agendamento.Api\\Agendamento.Api.csproj",
+        "projectPath": "C:\\Users\\victo\\OneDrive\\Documentos\\projetos\\agendamento\\src\\Agendamento.Api\\Agendamento.Api.csproj",
         "packagesPath": "C:\\Users\\victo\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\victo\\OneDrive\\Documentos\\projetos\\agendamento\\src\\Agendamento.Api\\obj\\",
+        "outputPath": "C:\\Users\\victo\\OneDrive\\Documentos\\projetos\\agendamento\\src\\Agendamento.Api\\obj\\",
         "projectStyle": "PackageReference",
         "centralPackageVersionsManagementEnabled": true,
         "CentralPackageTransitivePinningEnabled": true,
         "configFilePaths": [
-          "c:\\Users\\victo\\OneDrive\\Documentos\\projetos\\agendamento\\NuGet.Config",
+          "C:\\Users\\victo\\OneDrive\\Documentos\\projetos\\agendamento\\NuGet.Config",
           "C:\\Users\\victo\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [

@@ -43,6 +43,13 @@ public static class DependencyInjection
         services.AddTransient<Agendamento.Api.Application.Appointments.GetAppointments.GetAppointmentsHandler>();
         services.AddTransient<Agendamento.Api.Application.Appointments.UpdateAppointment.UpdateAppointmentHandler>();
 
+        // Financial
+        services.AddTransient<Agendamento.Api.Application.Financial.GenerateReceivablesFromQuotation.GenerateReceivablesFromQuotationHandler>();
+        services.AddTransient<Agendamento.Api.Application.Financial.RegisterPayment.RegisterReceivablePaymentHandler>();
+        services.AddTransient<Agendamento.Api.Application.Financial.RegisterPayment.RegisterPayablePaymentHandler>();
+        services.AddTransient<Agendamento.Api.Application.Financial.CreatePayable.CreatePayableHandler>();
+        services.AddTransient<Agendamento.Api.Application.Financial.GetFinancialStatement.GetFinancialStatementHandler>();
+
         return services;
     }
 }

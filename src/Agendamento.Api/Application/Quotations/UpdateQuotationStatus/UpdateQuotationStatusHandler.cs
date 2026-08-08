@@ -9,10 +9,14 @@ public record UpdateQuotationStatusCommand(QuotationStatus NewStatus);
 public class UpdateQuotationStatusHandler
 {
     private readonly AgendamentoDbContext _dbContext;
+    private readonly Agendamento.Api.Application.Financial.GenerateReceivablesFromQuotation.GenerateReceivablesFromQuotationHandler _generateReceivablesHandler;
 
-    public UpdateQuotationStatusHandler(AgendamentoDbContext dbContext)
+    public UpdateQuotationStatusHandler(
+        AgendamentoDbContext dbContext,
+        Agendamento.Api.Application.Financial.GenerateReceivablesFromQuotation.GenerateReceivablesFromQuotationHandler generateReceivablesHandler)
     {
         _dbContext = dbContext;
+        _generateReceivablesHandler = generateReceivablesHandler;
     }
 
     public async Task<bool> HandleAsync(Guid id, UpdateQuotationStatusCommand command, CancellationToken cancellationToken = default)
@@ -45,6 +49,12 @@ public class UpdateQuotationStatusHandler
         }
 
         await _dbContext.SaveChangesAsync(cancellationToken);
+
+        if (command.NewStatus == QuotationStatus.Approved)
+        {
+            await _generateReceivablesHandler.HandleAsync(quotation, cancellationToken);
+        }
+
         return true;
     }
 }
