@@ -19,9 +19,12 @@ public class AgendamentoDbContext : DbContext
     public DbSet<TenantMembership> TenantMemberships { get; set; } = null!;
     public DbSet<User> Users { get; set; } = null!;
     public DbSet<IdempotencyRecord> IdempotencyRecords { get; set; } = null!;
-    public DbSet<Agendamento.Api.Domain.Customers.Customer> Customers { get; set; } = null!;
-    public DbSet<Agendamento.Api.Domain.Services.ServiceItem> ServiceItems { get; set; } = null!;
-    public DbSet<Agendamento.Api.Domain.Quotations.Quotation> Quotations { get; set; } = null!;
+    public DbSet<Agendamento.Api.Domain.Customers.Customer> Customers => Set<Agendamento.Api.Domain.Customers.Customer>();
+    public DbSet<Agendamento.Api.Domain.Services.ServiceItem> ServiceItems => Set<Agendamento.Api.Domain.Services.ServiceItem>();
+    public DbSet<Agendamento.Api.Domain.Quotations.Quotation> Quotations => Set<Agendamento.Api.Domain.Quotations.Quotation>();
+    public DbSet<Agendamento.Api.Domain.WorkOrders.WorkOrder> WorkOrders => Set<Agendamento.Api.Domain.WorkOrders.WorkOrder>();
+    public DbSet<Agendamento.Api.Domain.Appointments.Appointment> Appointments => Set<Agendamento.Api.Domain.Appointments.Appointment>();
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
@@ -30,10 +33,7 @@ public class AgendamentoDbContext : DbContext
         {
             if (typeof(Agendamento.Domain.Common.ITenantOwned).IsAssignableFrom(entityType.ClrType))
             {
-                var method = typeof(AgendamentoDbContext)
-                    .GetMethod(nameof(ConfigureTenantFilter), BindingFlags.NonPublic | BindingFlags.Instance)
-                    ?.MakeGenericMethod(entityType.ClrType);
-
+                var method = typeof(AgendamentoDbContext).GetMethod(nameof(ConfigureTenantFilter), BindingFlags.NonPublic | BindingFlags.Instance)?.MakeGenericMethod(entityType.ClrType);
                 method?.Invoke(this, new object[] { modelBuilder });
             }
         }
