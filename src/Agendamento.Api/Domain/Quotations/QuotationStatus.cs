@@ -7,5 +7,6 @@ public enum QuotationStatus
     Approved = 3,
     Rejected = 4,
     Expired = 5,
-    Canceled = 6
+    Canceled = 6,
+    Converted = 7
 }

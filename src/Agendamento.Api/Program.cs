@@ -8,6 +8,8 @@ using Agendamento.Api.Features.Tenants;
 using Agendamento.Api.Features.Customers;
 using Agendamento.Api.Features.Services;
 using Agendamento.Api.Features.Quotations;
+using Agendamento.Api.Features.WorkOrders;
+using Agendamento.Api.Features.Appointments;
 using Agendamento.Api.OpenApi;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -53,6 +55,8 @@ app.MapCurrentTenantEndpoints();
 app.MapCustomerEndpoints();
 app.MapServiceEndpoints();
 app.MapQuotationEndpoints();
+app.MapWorkOrderEndpoints();
+app.MapAppointmentEndpoints();
 
 app.Run();
 

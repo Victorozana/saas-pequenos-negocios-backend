@@ -41,6 +41,7 @@ public class ConvertQuotationToWorkOrderHandler
 
         // Domain method validates and creates the work order
         var workOrder = WorkOrder.CreateFromQuotation(quotation);
+        quotation.MarkAsConverted();
 
         _dbContext.WorkOrders.Add(workOrder);
         await _unitOfWork.CommitAsync(cancellationToken);

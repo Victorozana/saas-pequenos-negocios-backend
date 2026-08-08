@@ -33,6 +33,16 @@ public static class DependencyInjection
         // PDF Generator
         services.AddTransient<Agendamento.Api.Application.Quotations.ExportPdf.IQuotationPdfGenerator, Agendamento.Api.Infrastructure.Pdf.QuestPdfQuotationGenerator>();
 
+        // WorkOrders
+        services.AddTransient<Agendamento.Api.Application.WorkOrders.ConvertQuotationToWorkOrder.ConvertQuotationToWorkOrderHandler>();
+        services.AddTransient<Agendamento.Api.Application.WorkOrders.GetWorkOrderById.GetWorkOrderByIdHandler>();
+        services.AddTransient<Agendamento.Api.Application.WorkOrders.UpdateWorkOrderStatus.UpdateWorkOrderStatusHandler>();
+
+        // Appointments
+        services.AddTransient<Agendamento.Api.Application.Appointments.CreateAppointment.CreateAppointmentHandler>();
+        services.AddTransient<Agendamento.Api.Application.Appointments.GetAppointments.GetAppointmentsHandler>();
+        services.AddTransient<Agendamento.Api.Application.Appointments.UpdateAppointment.UpdateAppointmentHandler>();
+
         return services;
     }
 }

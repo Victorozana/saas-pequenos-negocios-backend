@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "mxz7k3XxISU=",
+  "dgSpecHash": "m9/ENEABoDA=",
   "success": true,
-  "projectFilePath": "C:\\Users\\victo\\OneDrive\\Documentos\\projetos\\agendamento\\src\\Agendamento.Api\\Agendamento.Api.csproj",
+  "projectFilePath": "c:\\Users\\victo\\OneDrive\\Documentos\\projetos\\agendamento\\src\\Agendamento.Api\\Agendamento.Api.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\victo\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\victo\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\10.0.10\\microsoft.aspnetcore.authentication.jwtbearer.10.0.10.nupkg.sha512",

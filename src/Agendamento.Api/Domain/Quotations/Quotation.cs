@@ -138,10 +138,18 @@ public class Quotation : ITenantOwned
 
     public void Cancel()
     {
-        if (Status == QuotationStatus.Approved || Status == QuotationStatus.Rejected)
+        if (Status == QuotationStatus.Approved || Status == QuotationStatus.Rejected || Status == QuotationStatus.Converted)
             throw new InvalidOperationException("Cannot cancel an already decided quotation.");
 
         Status = QuotationStatus.Canceled;
+    }
+
+    public void MarkAsConverted()
+    {
+        if (Status != QuotationStatus.Approved)
+            throw new InvalidOperationException("Can only convert approved quotations.");
+
+        Status = QuotationStatus.Converted;
     }
 
     public void CheckExpiration()
