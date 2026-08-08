@@ -1,9 +1,9 @@
 using System;
+using System.Linq;
 using Agendamento.Api.Domain.Appointments;
 using Agendamento.Api.Domain.Customers;
 using Agendamento.Api.Domain.Quotations;
 using Agendamento.Api.Domain.WorkOrders;
-using FluentAssertions;
 using Xunit;
 
 namespace Agendamento.UnitTests.WorkOrders;
@@ -25,14 +25,14 @@ public class WorkOrderDomainTests
         var workOrder = WorkOrder.CreateFromQuotation(quotation);
 
         // Assert
-        workOrder.Should().NotBeNull();
-        workOrder.TenantId.Should().Be(tenantId);
-        workOrder.CustomerId.Should().Be(customerId);
-        workOrder.QuotationId.Should().Be(quotation.Id);
-        workOrder.Code.Should().Be("OS-Q-123");
-        workOrder.Status.Should().Be(WorkOrderStatus.Scheduled);
-        workOrder.Items.Should().HaveCount(1);
-        workOrder.Items.First().ServiceName.Should().Be("Service 1");
+        Assert.NotNull(workOrder);
+        Assert.Equal(tenantId, workOrder.TenantId);
+        Assert.Equal(customerId, workOrder.CustomerId);
+        Assert.Equal(quotation.Id, workOrder.QuotationId);
+        Assert.Equal("OS-Q-123", workOrder.Code);
+        Assert.Equal(WorkOrderStatus.Scheduled, workOrder.Status);
+        Assert.Single(workOrder.Items);
+        Assert.Equal("Service 1", workOrder.Items.First().ServiceName);
     }
 
     [Fact]
@@ -43,17 +43,15 @@ public class WorkOrderDomainTests
         var quotation = Quotation.Create(tenantId, "Q-123", Guid.NewGuid(), DateTime.UtcNow, null, null, null);
 
         // Act & Assert
-        Action act = () => WorkOrder.CreateFromQuotation(quotation);
-        act.Should().Throw<InvalidOperationException>()
-            .WithMessage("Can only create a work order from an approved quotation.");
+        var ex = Assert.Throws<InvalidOperationException>(() => WorkOrder.CreateFromQuotation(quotation));
+        Assert.Equal("Can only create a work order from an approved quotation.", ex.Message);
     }
     
     [Fact]
     public void Appointment_Should_ThrowException_When_EndTimeIsBeforeStartTime()
     {
         // Act & Assert
-        Action act = () => Appointment.Create(Guid.NewGuid(), null, AppointmentType.TechnicalVisit, DateTime.UtcNow.AddHours(2), DateTime.UtcNow.AddHours(1), null, null, null);
-        act.Should().Throw<ArgumentException>()
-            .WithMessage("End time must be after start time. (Parameter 'endTime')");
+        var ex = Assert.Throws<ArgumentException>(() => Appointment.Create(Guid.NewGuid(), null, AppointmentType.TechnicalVisit, DateTime.UtcNow.AddHours(2), DateTime.UtcNow.AddHours(1), null, null, null));
+        Assert.Equal("End time must be after start time. (Parameter 'endTime')", ex.Message);
     }
 }

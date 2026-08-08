@@ -21,8 +21,7 @@ public static class AppointmentEndpoints
             var id = await handler.HandleAsync(command, cancellationToken);
             return Results.Created($"/api/v1/appointments/{id}", new { Id = id });
         })
-        .WithName("CreateAppointment")
-        .WithOpenApi();
+        .WithName("CreateAppointment");
 
         group.MapGet("/", async (
             [FromQuery] DateTime? startDate,
@@ -42,8 +41,7 @@ public static class AppointmentEndpoints
             var result = await handler.HandleAsync(query, cancellationToken);
             return Results.Ok(result);
         })
-        .WithName("GetAppointments")
-        .WithOpenApi();
+        .WithName("GetAppointments");
 
         group.MapPut("/{id:guid}", async (
             Guid id,
@@ -62,8 +60,7 @@ public static class AppointmentEndpoints
             await handler.HandleAsync(command, cancellationToken);
             return Results.NoContent();
         })
-        .WithName("UpdateAppointment")
-        .WithOpenApi();
+        .WithName("UpdateAppointment");
     }
 }
 

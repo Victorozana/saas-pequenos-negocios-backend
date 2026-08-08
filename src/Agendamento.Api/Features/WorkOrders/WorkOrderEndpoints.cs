@@ -23,8 +23,7 @@ public static class WorkOrderEndpoints
             var id = await handler.HandleAsync(command, cancellationToken);
             return Results.Created($"/api/v1/work-orders/{id}", new { Id = id });
         })
-        .WithName("ConvertQuotationToWorkOrder")
-        .WithOpenApi();
+        .WithName("ConvertQuotationToWorkOrder");
 
         group.MapGet("/{id:guid}", async (
             Guid id,
@@ -39,8 +38,7 @@ public static class WorkOrderEndpoints
                 
             return Results.Ok(result);
         })
-        .WithName("GetWorkOrderById")
-        .WithOpenApi();
+        .WithName("GetWorkOrderById");
 
         group.MapPatch("/{id:guid}/status", async (
             Guid id,
@@ -58,8 +56,7 @@ public static class WorkOrderEndpoints
             await handler.HandleAsync(command, cancellationToken);
             return Results.NoContent();
         })
-        .WithName("UpdateWorkOrderStatus")
-        .WithOpenApi();
+        .WithName("UpdateWorkOrderStatus");
     }
 }
 

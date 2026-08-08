@@ -5,7 +5,7 @@ namespace Agendamento.Api.Application.WorkOrders.GetWorkOrderById;
 public class WorkOrderItemResponse
 {
     public Guid Id { get; set; }
-    public Guid ServiceItemId { get; set; }
+    public Guid? ServiceItemId { get; set; }
     public string ServiceName { get; set; } = string.Empty;
     public string Unit { get; set; } = string.Empty;
     public decimal Quantity { get; set; }
@@ -24,7 +24,7 @@ public class WorkOrderItemResponse
             Quantity = item.Quantity,
             UnitPrice = item.UnitPrice,
             DiscountAmount = item.DiscountAmount,
-            TotalAmount = item.TotalAmount
+            TotalAmount = (item.Quantity * item.UnitPrice) - item.DiscountAmount
         };
     }
 }
