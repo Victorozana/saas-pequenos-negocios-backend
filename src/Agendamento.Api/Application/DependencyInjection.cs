@@ -54,6 +54,12 @@ public static class DependencyInjection
         services.AddTransient<Agendamento.Api.Application.Notifications.ScheduleAppointmentReminder.ScheduleAppointmentReminderHandler>();
         services.AddTransient<Agendamento.Api.Application.Notifications.SendQuotationNotification.SendQuotationNotificationHandler>();
 
+        // Dashboard & Reports
+        services.AddTransient<Agendamento.Api.Infrastructure.Reports.ICsvPerformanceReportGenerator, Agendamento.Api.Infrastructure.Reports.CsvPerformanceReportGenerator>();
+        services.AddTransient<Agendamento.Api.Application.Dashboard.GetDashboardSummary.GetDashboardSummaryHandler>();
+        services.AddTransient<Agendamento.Api.Application.Dashboard.GetUpcomingSchedule.GetUpcomingScheduleHandler>();
+        services.AddTransient<Agendamento.Api.Application.Dashboard.ExportPerformanceReport.ExportPerformanceReportHandler>();
+
         return services;
     }
 }

@@ -1,4 +1,5 @@
 using Agendamento.Api.Domain.Notifications;
+using Xunit;
 
 namespace Agendamento.UnitTests.Notifications;
 
