@@ -26,6 +26,7 @@ public class AgendamentoDbContext : DbContext
     public DbSet<Agendamento.Api.Domain.Appointments.Appointment> Appointments => Set<Agendamento.Api.Domain.Appointments.Appointment>();
     public DbSet<Agendamento.Api.Domain.Financial.ReceivableTitle> ReceivableTitles => Set<Agendamento.Api.Domain.Financial.ReceivableTitle>();
     public DbSet<Agendamento.Api.Domain.Financial.PayableTitle> PayableTitles => Set<Agendamento.Api.Domain.Financial.PayableTitle>();
+    public DbSet<Agendamento.Api.Domain.Notifications.NotificationMessage> NotificationMessages => Set<Agendamento.Api.Domain.Notifications.NotificationMessage>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

@@ -11,6 +11,7 @@ using Agendamento.Api.Features.Quotations;
 using Agendamento.Api.Features.WorkOrders;
 using Agendamento.Api.Features.Appointments;
 using Agendamento.Api.Features.Financial;
+using Agendamento.Api.Features.Notifications;
 using Agendamento.Api.OpenApi;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -59,6 +60,7 @@ app.MapQuotationEndpoints();
 app.MapWorkOrderEndpoints();
 app.MapAppointmentEndpoints();
 app.MapFinancialEndpoints();
+app.MapNotificationEndpoints();
 
 app.Run();
 

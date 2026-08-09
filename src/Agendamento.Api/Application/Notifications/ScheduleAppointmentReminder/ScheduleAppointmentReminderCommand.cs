@@ -1,0 +1,3 @@
+namespace Agendamento.Api.Application.Notifications.ScheduleAppointmentReminder;
+
+public record ScheduleAppointmentReminderCommand(Guid AppointmentId);

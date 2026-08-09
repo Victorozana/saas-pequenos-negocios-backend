@@ -50,6 +50,10 @@ public static class DependencyInjection
         services.AddTransient<Agendamento.Api.Application.Financial.CreatePayable.CreatePayableHandler>();
         services.AddTransient<Agendamento.Api.Application.Financial.GetFinancialStatement.GetFinancialStatementHandler>();
 
+        // Notifications
+        services.AddTransient<Agendamento.Api.Application.Notifications.ScheduleAppointmentReminder.ScheduleAppointmentReminderHandler>();
+        services.AddTransient<Agendamento.Api.Application.Notifications.SendQuotationNotification.SendQuotationNotificationHandler>();
+
         return services;
     }
 }
