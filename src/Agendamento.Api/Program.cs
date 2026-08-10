@@ -63,6 +63,7 @@ app.MapAppointmentEndpoints();
 app.MapFinancialEndpoints();
 app.MapNotificationEndpoints();
 app.MapDashboardEndpoints();
+Agendamento.Api.Features.Subscriptions.SubscriptionEndpoints.MapSubscriptionEndpoints(app);
 
 app.Run();
 

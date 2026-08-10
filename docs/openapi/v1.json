@@ -1191,12 +1191,89 @@
           }
         }
       }
+    },
+    "/api/v1/subscriptions/current": {
+      "get": {
+        "tags": [
+          "Agendamento.Api"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/v1/subscriptions/plans": {
+      "get": {
+        "tags": [
+          "Agendamento.Api"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/v1/subscriptions/change-plan": {
+      "post": {
+        "tags": [
+          "Agendamento.Api"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ChangePlanCommand"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/v1/webhooks/billing": {
+      "post": {
+        "tags": [
+          "Agendamento.Api"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WebhookPayload"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
     }
   },
   "components": {
     "schemas": {
       "AppointmentType": {
         "type": "integer"
+      },
+      "ChangePlanCommand": {
+        "type": "object",
+        "properties": {
+          "newPlanId": {
+            "type": "string",
+            "format": "uuid"
+          }
+        }
       },
       "ConversionMetricsDto": {
         "type": "object",
@@ -2194,6 +2271,43 @@
           }
         }
       },
+      "WebhookData": {
+        "type": "object",
+        "properties": {
+          "object": {
+            "$ref": "#/components/schemas/WebhookObject"
+          }
+        }
+      },
+      "WebhookObject": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "currentPeriodStart": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "currentPeriodEnd": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          }
+        }
+      },
+      "WebhookPayload": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "data": {
+            "$ref": "#/components/schemas/WebhookData"
+          }
+        }
+      },
       "WorkOrderStatus": {
         "type": "integer"
       }
@@ -2240,6 +2354,9 @@
     },
     {
       "name": "Dashboard"
+    },
+    {
+      "name": "Agendamento.Api"
     }
   ]
 }

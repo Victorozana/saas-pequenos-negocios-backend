@@ -29,6 +29,8 @@ public static class DependencyInjection
         services.AddScoped<Agendamento.Api.Infrastructure.Notifications.ICommunicationGateway, Agendamento.Api.Infrastructure.Notifications.MockCommunicationGateway>();
         services.AddHostedService<Agendamento.Api.Infrastructure.Notifications.NotificationOutboxProcessor>();
 
+        services.AddScoped<Agendamento.Api.Application.Subscriptions.Services.IPlanLimitsChecker, Agendamento.Api.Infrastructure.Subscriptions.PlanLimitsChecker>();
+
         var signingKey = configuration["Authentication:SigningKey"];
         if (string.IsNullOrWhiteSpace(signingKey))
         {

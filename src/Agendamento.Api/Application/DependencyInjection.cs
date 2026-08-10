@@ -60,6 +60,11 @@ public static class DependencyInjection
         services.AddTransient<Agendamento.Api.Application.Dashboard.GetUpcomingSchedule.GetUpcomingScheduleHandler>();
         services.AddTransient<Agendamento.Api.Application.Dashboard.ExportPerformanceReport.ExportPerformanceReportHandler>();
 
+        // Subscriptions
+        services.AddTransient<Agendamento.Api.Application.Subscriptions.GetTenantSubscription.GetTenantSubscriptionHandler>();
+        services.AddTransient<Agendamento.Api.Application.Subscriptions.ChangePlan.ChangePlanHandler>();
+        services.AddTransient<Agendamento.Api.Application.Subscriptions.ProcessSubscriptionWebhook.ProcessSubscriptionWebhookHandler>();
+
         return services;
     }
 }
