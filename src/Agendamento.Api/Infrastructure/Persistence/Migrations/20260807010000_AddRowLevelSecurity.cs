@@ -26,6 +26,12 @@ ALTER TABLE Customers ENABLE ROW LEVEL SECURITY;
 ALTER TABLE ServiceItems ENABLE ROW LEVEL SECURITY;
 ALTER TABLE Quotations ENABLE ROW LEVEL SECURITY;
 ALTER TABLE QuotationItems ENABLE ROW LEVEL SECURITY;
+ALTER TABLE WorkOrders ENABLE ROW LEVEL SECURITY;
+ALTER TABLE Appointments ENABLE ROW LEVEL SECURITY;
+ALTER TABLE ReceivableTitles ENABLE ROW LEVEL SECURITY;
+ALTER TABLE PayableTitles ENABLE ROW LEVEL SECURITY;
+ALTER TABLE NotificationMessages ENABLE ROW LEVEL SECURITY;
+ALTER TABLE TenantSubscriptions ENABLE ROW LEVEL SECURITY;
 
 CREATE POLICY tenant_isolation_policy_fiscal ON tenant_fiscal_profiles
     AS PERMISSIVE FOR ALL
@@ -57,6 +63,16 @@ CREATE POLICY tenant_isolation_policy_quotation_items ON QuotationItems
     TO agendamento_app_user
     USING (""TenantId""::text = current_setting('agendamento.current_tenant_id', true));
 
+CREATE POLICY tenant_isolation_policy_work_orders ON WorkOrders
+    AS PERMISSIVE FOR ALL
+    TO agendamento_app_user
+    USING (""TenantId""::text = current_setting('agendamento.current_tenant_id', true));
+
+CREATE POLICY tenant_isolation_policy_appointments ON Appointments
+    AS PERMISSIVE FOR ALL
+    TO agendamento_app_user
+    USING (""TenantId""::text = current_setting('agendamento.current_tenant_id', true));
+
 -- Force RLS even for table owners if they assume the role (just in case)
 ALTER TABLE tenant_fiscal_profiles FORCE ROW LEVEL SECURITY;
 ALTER TABLE tenant_memberships FORCE ROW LEVEL SECURITY;
@@ -64,6 +80,8 @@ ALTER TABLE Customers FORCE ROW LEVEL SECURITY;
 ALTER TABLE ServiceItems FORCE ROW LEVEL SECURITY;
 ALTER TABLE Quotations FORCE ROW LEVEL SECURITY;
 ALTER TABLE QuotationItems FORCE ROW LEVEL SECURITY;
+ALTER TABLE WorkOrders FORCE ROW LEVEL SECURITY;
+ALTER TABLE Appointments FORCE ROW LEVEL SECURITY;
             ");
         }
 

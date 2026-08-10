@@ -10,7 +10,7 @@ namespace Agendamento.UnitTests.WorkOrders;
 
 public class WorkOrderDomainTests
 {
-    [Fact]
+    [Fact(DisplayName = "CreateFromQuotation copia os dados do orçamento quando está aprovado @spec:AC-051 @spec:AC-052")]
     public void CreateFromQuotation_Should_CopyData_When_QuotationIsApproved()
     {
         // Arrange
@@ -35,7 +35,7 @@ public class WorkOrderDomainTests
         Assert.Equal("Service 1", workOrder.Items.First().ServiceName);
     }
 
-    [Fact]
+    [Fact(DisplayName = "CreateFromQuotation lança exceção quando o orçamento não está aprovado @spec:AC-051")]
     public void CreateFromQuotation_Should_ThrowException_When_QuotationIsNotApproved()
     {
         // Arrange
@@ -47,7 +47,7 @@ public class WorkOrderDomainTests
         Assert.Equal("Can only create a work order from an approved quotation.", ex.Message);
     }
     
-    [Fact]
+    [Fact(DisplayName = "Appointment lança exceção quando EndTime é anterior a StartTime @spec:AC-050 @spec:AC-053")]
     public void Appointment_Should_ThrowException_When_EndTimeIsBeforeStartTime()
     {
         // Act & Assert

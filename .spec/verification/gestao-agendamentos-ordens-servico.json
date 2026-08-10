@@ -1,0 +1,11 @@
+{
+  "feature": "gestao-agendamentos-ordens-servico",
+  "timestamp": "2026-08-10T23:01:49.101Z",
+  "gitRev": "f326f63",
+  "command": "dotnet test tests/Agendamento.UnitTests/Agendamento.UnitTests.csproj --configuration Release && dotnet test tests/Agendamento.IntegrationTests/Agendamento.IntegrationTests.csproj --configuration Release --filter \"FullyQualifiedName~CompanyRegistryContractTests|FullyQualifiedName~RegisterTenantTransactionTests|FullyQualifiedName~TenantRegistrationEndpointTests|FullyQualifiedName~CurrentTenantEndpointTests|FullyQualifiedName~CurrentUserEndpointTests|FullyQualifiedName~QuotationApiTests\"",
+  "reporter": "exitcode",
+  "exitCode": 1,
+  "testsParsed": 0,
+  "results": {},
+  "principles": {}
+}

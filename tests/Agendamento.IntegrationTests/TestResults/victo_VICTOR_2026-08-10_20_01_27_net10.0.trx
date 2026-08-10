@@ -1,0 +1,1067 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TestRun id="4ddd6715-bcea-4545-b70d-e3fe6e4fd3d3" name="victo@VICTOR 2026-08-10 20:01:27" runUser="VICTOR\victo" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <Times creation="2026-08-10T20:01:27.0820315-03:00" queuing="2026-08-10T20:01:27.0820322-03:00" start="2026-08-10T20:01:23.4893844-03:00" finish="2026-08-10T20:01:29.5613407-03:00" />
+  <TestSettings name="default" id="cb937c1a-b905-4572-8aec-0a2197c86d98">
+    <Deployment runDeploymentRoot="victo_VICTOR_2026-08-10_20_01_27" />
+  </TestSettings>
+  <Results>
+    <UnitTestResult executionId="c9241e5a-be67-4ed5-be43-94d0b1340c78" testId="9d03f99b-ebe7-88a5-2606-27c65a7f703a" testName="Handler returns company data when eligible @spec:AC-017" computerName="VICTOR" duration="00:00:00.0041605" startTime="2026-08-10T20:01:28.6249756-03:00" endTime="2026-08-10T20:01:28.6291533-03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="c9241e5a-be67-4ed5-be43-94d0b1340c78" />
+    <UnitTestResult executionId="ceb6a496-a7bb-497d-bc9f-b389e0cecaa2" testId="73448910-65c0-3c49-e961-69db197cdfb7" testName="Endpoint GET /users/me retorna perfil do usuario logado @spec:AC-025" computerName="VICTOR" duration="00:00:00.0007829" startTime="2026-08-10T20:01:28.7137653-03:00" endTime="2026-08-10T20:01:28.7146553-03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="ceb6a496-a7bb-497d-bc9f-b389e0cecaa2" />
+    <UnitTestResult executionId="42e8659e-741c-49e4-ae61-df3699089786" testId="29e7b588-09c5-043e-5a25-589da153ebcb" testName="Agendamento.IntegrationTests.Dashboard.DashboardApiTests.GetDashboardSummary_WithoutAuth_ShouldReturnUnauthorized" computerName="VICTOR" duration="00:00:00.1534469" startTime="2026-08-10T20:01:28.3836397-03:00" endTime="2026-08-10T20:01:28.5754246-03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="42e8659e-741c-49e4-ae61-df3699089786">
+      <Output>
+        <ErrorInfo>
+          <Message>Assert.Equal() Failure: Values differ&#xD;
+Expected: Unauthorized&#xD;
+Actual:   InternalServerError</Message>
+          <StackTrace>   at Agendamento.IntegrationTests.Dashboard.DashboardApiTests.GetDashboardSummary_WithoutAuth_ShouldReturnUnauthorized() in C:\Users\victo\OneDrive\Documentos\projetos\agendamento\tests\Agendamento.IntegrationTests\Dashboard\DashboardApiTests.cs:line 26&#xD;
+--- End of stack trace from previous location ---</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="988891db-8fbd-43ce-b559-4f59047af6da" testId="161f1ad8-4098-3ed0-006f-76b9350eed9a" testName="Falha parcial desfaz toda a criação @spec:AC-024" computerName="VICTOR" duration="00:00:02.7813874" startTime="2026-08-10T20:01:24.9170871-03:00" endTime="2026-08-10T20:01:27.6986684-03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="988891db-8fbd-43ce-b559-4f59047af6da" />
+    <UnitTestResult executionId="e14f5bce-d51e-4013-969d-41b46db5968f" testId="bf760f89-b71b-edf3-f120-f79079213d6f" testName="Agendamento.IntegrationTests.Tenancy.EfTenantIsolationTests.SaveChangesInterceptor_PopulatesTenantId_WhenAdded" computerName="VICTOR" duration="00:00:00.0615629" startTime="2026-08-10T20:01:27.9109744-03:00" endTime="2026-08-10T20:01:27.9724511-03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="e14f5bce-d51e-4013-969d-41b46db5968f" />
+    <UnitTestResult executionId="05241ace-7c89-4016-bb1e-3f903f334811" testId="27b329e1-64f0-44b2-948c-a6d870e15281" testName="Itens do catálogo de serviços e orçamentos pertencem obrigatoriamente ao TenantId @spec:AC-045" computerName="VICTOR" duration="00:00:00.3342705" startTime="2026-08-10T20:01:28.6339531-03:00" endTime="2026-08-10T20:01:28.9673750-03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="05241ace-7c89-4016-bb1e-3f903f334811" />
+    <UnitTestResult executionId="6b69afd8-7043-47a5-bfa3-93176622545f" testId="3e98abb6-48ab-211b-1976-76411b103332" testName="@spec:AC-010 endpoint confirms a valid email-verification token once" computerName="VICTOR" duration="00:00:03.2042959" startTime="2026-08-10T20:01:24.8619581-03:00" endTime="2026-08-10T20:01:28.1769540-03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="6b69afd8-7043-47a5-bfa3-93176622545f" />
+    <UnitTestResult executionId="4baaea91-b2c8-4f07-b97c-a86149dccbc2" testId="94552611-ab29-e49e-1210-b763c990df3d" testName="Endpoint GET /company-registry aplica limite de requisições @spec:AC-027" computerName="VICTOR" duration="00:00:00.0003857" startTime="2026-08-10T20:01:27.8948126-03:00" endTime="2026-08-10T20:01:27.8949060-03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="4baaea91-b2c8-4f07-b97c-a86149dccbc2" />
+    <UnitTestResult executionId="5863f3b1-cd0b-4d93-a6d8-69e24d953759" testId="8fd24c80-3b66-db6c-d71e-65143d5967df" testName="Cadastro registra solicitação de verificação na caixa de saída sem token bruto @spec:AC-009 @principle:P-005" computerName="VICTOR" duration="00:00:00.1341165" startTime="2026-08-10T20:01:28.5792490-03:00" endTime="2026-08-10T20:01:28.7134529-03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="5863f3b1-cd0b-4d93-a6d8-69e24d953759" />
+    <UnitTestResult executionId="3c890741-dec8-4bb6-a1f6-09dc22324044" testId="9d854d4d-c190-f041-6caa-8bd569c33225" testName="Agendamento.IntegrationTests.Tenancy.TenantContextTests.GetTenantProfile_WithoutToken_ReturnsUnauthorized" computerName="VICTOR" duration="00:00:03.1919585" startTime="2026-08-10T20:01:24.8674114-03:00" endTime="2026-08-10T20:01:28.1398275-03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="3c890741-dec8-4bb6-a1f6-09dc22324044" />
+    <UnitTestResult executionId="d9458694-df55-4270-a899-f33309d88843" testId="8dc214cd-c434-d1f3-328b-25a006b41081" testName="Endpoint POST /work-orders/from-quotation/{id} cria OS a partir de orçamento aprovado copiando itens @spec:AC-051 @spec:AC-052" computerName="VICTOR" duration="00:00:00.0078820" startTime="2026-08-10T20:01:27.2089629-03:00" endTime="2026-08-10T20:01:27.2155190-03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="d9458694-df55-4270-a899-f33309d88843">
+      <Output>
+        <ErrorInfo>
+          <Message>System.InvalidOperationException : Can only approve Pending quotations.</Message>
+          <StackTrace>   at Agendamento.Api.Domain.Quotations.Quotation.Approve() in C:\Users\victo\OneDrive\Documentos\projetos\agendamento\src\Agendamento.Api\Domain\Quotations\Quotation.cs:line 123&#xD;
+   at Agendamento.IntegrationTests.WorkOrders.WorkOrderApiTests.ConvertQuotationToWorkOrder_ShouldCopyItems_WhenApproved() in C:\Users\victo\OneDrive\Documentos\projetos\agendamento\tests\Agendamento.IntegrationTests\WorkOrders\WorkOrderApiTests.cs:line 113&#xD;
+--- End of stack trace from previous location ---</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="b6b6db9d-f13a-48a3-a097-04af33a3ed3c" testId="2d9c7b30-8789-c820-c0ca-a1e1ab683cde" testName="Handler throws when CNPJ is invalid @spec:AC-014" computerName="VICTOR" duration="00:00:00.0187676" startTime="2026-08-10T20:01:28.6056983-03:00" endTime="2026-08-10T20:01:28.6246773-03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="b6b6db9d-f13a-48a3-a097-04af33a3ed3c" />
+    <UnitTestResult executionId="10dd5b83-92d3-437f-9c28-d6186e40f649" testId="d39241d4-44d8-1b0d-453a-b0ef5bac2ca2" testName="Tentativa de buscar ou alterar cliente de outro tenant retorna null/vazio @spec:AC-044" computerName="VICTOR" duration="00:00:02.3672463" startTime="2026-08-10T20:01:24.8936407-03:00" endTime="2026-08-10T20:01:27.2620478-03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="10dd5b83-92d3-437f-9c28-d6186e40f649" />
+    <UnitTestResult executionId="3f3e5c5c-00a6-4a69-9672-72c0c60a6870" testId="daa9bb70-8521-a8e7-7127-9478dd1153ad" testName="Execuções de persistência não compartilham dados @spec:AC-004" computerName="VICTOR" duration="00:00:00.0010000" startTime="2026-08-10T20:01:29.3305540-03:00" endTime="2026-08-10T20:01:29.3305937-03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="3f3e5c5c-00a6-4a69-9672-72c0c60a6870">
+      <Output>
+        <ErrorInfo>
+          <Message>DotNet.Testcontainers.Builders.DockerUnavailableException : Docker is either not running or misconfigured. Please ensure that Docker is running and that the endpoint is properly configured.&#xD;
+You can customize your configuration using either the environment variables or the ~/.testcontainers.properties file.&#xD;
+For more information, visit: https://dotnet.testcontainers.org/custom_configuration/.&#xD;
+  Details: &#xD;
+    Failed to connect to Docker endpoint at 'npipe://./pipe/docker_engine'.&#xD;
+---- System.AggregateException : One or more errors occurred. (Failed to connect to Docker endpoint at 'npipe://./pipe/docker_engine'.)&#xD;
+-------- DotNet.Testcontainers.Builders.DockerUnavailableException : Failed to connect to Docker endpoint at 'npipe://./pipe/docker_engine'.&#xD;
+------------ System.TimeoutException : The operation has timed out.</Message>
+          <StackTrace>   at DotNet.Testcontainers.Guard.ThrowIf[TType](ArgumentInfo`1&amp; argument, Func`2 condition, Func`2 ifClause) in /_/src/Testcontainers/Guard.Null.cs:line 62&#xD;
+   at DotNet.Testcontainers.Builders.AbstractBuilder`4.Validate() in /_/src/Testcontainers/Builders/AbstractBuilder`4.cs:line 146&#xD;
+   at DotNet.Testcontainers.Builders.ContainerBuilder`3.Validate() in /_/src/Testcontainers/Builders/ContainerBuilder`3.cs:line 408&#xD;
+   at Testcontainers.PostgreSql.PostgreSqlBuilder.Validate() in /_/src/Testcontainers.PostgreSql/PostgreSqlBuilder.cs:line 101&#xD;
+   at Testcontainers.PostgreSql.PostgreSqlBuilder.Build() in /_/src/Testcontainers.PostgreSql/PostgreSqlBuilder.cs:line 75&#xD;
+   at Agendamento.IntegrationTests.Infrastructure.PostgreSqlFixture..ctor() in C:\Users\victo\OneDrive\Documentos\projetos\agendamento\tests\Agendamento.IntegrationTests\Infrastructure\PostgreSqlFixture.cs:line 29&#xD;
+   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Constructor(Object obj, IntPtr* args)&#xD;
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)&#xD;
+----- Inner Stack Trace -----&#xD;
+&#xD;
+----- Inner Stack Trace -----&#xD;
+&#xD;
+----- Inner Stack Trace -----&#xD;
+   at System.IO.Pipes.NamedPipeClientStream.ConnectInternal(Int32 timeout, CancellationToken cancellationToken, Int32 startTime)&#xD;
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)&#xD;
+--- End of stack trace from previous location ---&#xD;
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)&#xD;
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task&amp; currentTaskSlot, Thread threadPoolThread)&#xD;
+--- End of stack trace from previous location ---&#xD;
+   at Docker.DotNet.DockerClient.&lt;&gt;c__DisplayClass5_0.&lt;&lt;-ctor&gt;b__0&gt;d.MoveNext() in /_/src/Docker.DotNet/DockerClient.cs:line 69&#xD;
+--- End of stack trace from previous location ---&#xD;
+   at Microsoft.Net.Http.Client.ManagedHandler.ProcessRequestAsync(HttpRequestMessage request, CancellationToken cancellationToken) in /_/src/Docker.DotNet/Microsoft.Net.Http.Client/ManagedHandler.cs:line 160&#xD;
+   at Microsoft.Net.Http.Client.ManagedHandler.SendAsync(HttpRequestMessage httpRequestMessage, CancellationToken cancellationToken) in /_/src/Docker.DotNet/Microsoft.Net.Http.Client/ManagedHandler.cs:line 77&#xD;
+   at System.Net.Http.HttpClient.&lt;SendAsync&gt;g__Core|83_0(HttpRequestMessage request, HttpCompletionOption completionOption, CancellationTokenSource cts, Boolean disposeCts, CancellationTokenSource pendingRequestsCts, CancellationToken originalCancellationToken)&#xD;
+   at Docker.DotNet.DockerClient.PrivateMakeRequestAsync(TimeSpan timeout, HttpCompletionOption completionOption, HttpMethod method, String path, IQueryString queryString, IDictionary`2 headers, IRequestContent data, CancellationToken cancellationToken) in /_/src/Docker.DotNet/DockerClient.cs:line 433&#xD;
+   at Docker.DotNet.DockerClient.MakeRequestAsync[T](IEnumerable`1 errorHandlers, HttpMethod method, String path, IQueryString queryString, IRequestContent body, IDictionary`2 headers, TimeSpan timeout, CancellationToken token) in /_/src/Docker.DotNet/DockerClient.cs:line 243&#xD;
+   at DotNet.Testcontainers.Builders.DockerEndpointAuthenticationProvider.&lt;&gt;c__DisplayClass5_0.&lt;&lt;IsAvailable&gt;b__0&gt;d.MoveNext() in /_/src/Testcontainers/Builders/DockerEndpointAuthenticationProvider.cs:line 48</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="0e73714d-7725-4a16-a307-b9b5281efead" testId="49290bd8-1698-c4a7-971a-f5f4fbb086df" testName="Exportação de orçamento em PDF gera bytes válidos em stream application/pdf @spec:AC-047" computerName="VICTOR" duration="00:00:00.4374756" startTime="2026-08-10T20:01:28.9691737-03:00" endTime="2026-08-10T20:01:29.4050323-03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="0e73714d-7725-4a16-a307-b9b5281efead" />
+    <UnitTestResult executionId="98c22eda-29fa-451b-b0e0-cbeeeeba6d34" testId="fb0f39f1-0175-ac9d-0d90-bbad2f32e040" testName="Swagger UI permite explorar a versão vigente em ambiente Test @spec:AC-040" computerName="VICTOR" duration="00:00:00.7418527" startTime="2026-08-10T20:01:27.8997053-03:00" endTime="2026-08-10T20:01:28.6516673-03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="98c22eda-29fa-451b-b0e0-cbeeeeba6d34" />
+    <UnitTestResult executionId="aa758612-37d8-4f94-a1de-e512dea86d24" testId="ed108b12-f881-7d7c-2143-a8b5b4139246" testName="Agendamento.IntegrationTests.Dashboard.DashboardApiTests.GetReport_WithoutAuth_ShouldReturnUnauthorized" computerName="VICTOR" duration="00:00:03.1158497" startTime="2026-08-10T20:01:24.9413277-03:00" endTime="2026-08-10T20:01:28.1364721-03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="aa758612-37d8-4f94-a1de-e512dea86d24">
+      <Output>
+        <ErrorInfo>
+          <Message>Assert.Equal() Failure: Values differ&#xD;
+Expected: Unauthorized&#xD;
+Actual:   InternalServerError</Message>
+          <StackTrace>   at Agendamento.IntegrationTests.Dashboard.DashboardApiTests.GetReport_WithoutAuth_ShouldReturnUnauthorized() in C:\Users\victo\OneDrive\Documentos\projetos\agendamento\tests\Agendamento.IntegrationTests\Dashboard\DashboardApiTests.cs:line 46&#xD;
+--- End of stack trace from previous location ---</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="72f8dd45-a7c0-499e-8c33-8facb7ed188f" testId="5596b5d1-75f3-c857-4d55-9c8b92a7546f" testName="Agendamento.IntegrationTests.Tenancy.TenantContextTests.GetTenantProfile_WithTenantInSession_IgnoresExternalTenantIdHeader" computerName="VICTOR" duration="00:00:00.3821820" startTime="2026-08-10T20:01:28.1431816-03:00" endTime="2026-08-10T20:01:28.5422247-03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="72f8dd45-a7c0-499e-8c33-8facb7ed188f" />
+    <UnitTestResult executionId="9c815621-deeb-4c85-9b44-1a1a6af89166" testId="f4d93fd2-7e3a-c498-38ed-988428585274" testName="Transições de status da OS devem ser permitidas e registrar histórico @spec:AC-054" computerName="VICTOR" duration="00:00:00.0033540" startTime="2026-08-10T20:01:27.2068651-03:00" endTime="2026-08-10T20:01:27.2071316-03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="9c815621-deeb-4c85-9b44-1a1a6af89166">
+      <Output>
+        <ErrorInfo>
+          <Message>System.InvalidOperationException : Can only approve Pending quotations.</Message>
+          <StackTrace>   at Agendamento.Api.Domain.Quotations.Quotation.Approve() in C:\Users\victo\OneDrive\Documentos\projetos\agendamento\src\Agendamento.Api\Domain\Quotations\Quotation.cs:line 123&#xD;
+   at Agendamento.IntegrationTests.WorkOrders.WorkOrderApiTests.UpdateWorkOrderStatus_ShouldUpdateStatusAndNotes() in C:\Users\victo\OneDrive\Documentos\projetos\agendamento\tests\Agendamento.IntegrationTests\WorkOrders\WorkOrderApiTests.cs:line 142&#xD;
+--- End of stack trace from previous location ---</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="6428b8ac-fe09-4e3b-b077-5879e1a62463" testId="06ce1156-d152-7b29-4e23-9b5bc5a3e11e" testName="Endpoint GET /tenants/me retorna perfil do tenant logado sem parametro na rota @spec:AC-026" computerName="VICTOR" duration="00:00:00.0006584" startTime="2026-08-10T20:01:28.5783630-03:00" endTime="2026-08-10T20:01:28.5789821-03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="6428b8ac-fe09-4e3b-b077-5879e1a62463" />
+    <UnitTestResult executionId="c01beda4-1bad-4d99-bf8c-768400146a5b" testId="ebb0440a-1083-3ccb-61d3-35c8b94599ca" testName="Consultas e Comandos de Clientes respeitam isolamento @spec:AC-041" computerName="VICTOR" duration="00:00:00.0327581" startTime="2026-08-10T20:01:27.2642878-03:00" endTime="2026-08-10T20:01:27.2940075-03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="c01beda4-1bad-4d99-bf8c-768400146a5b" />
+    <UnitTestResult executionId="a3ff0c1a-aaf1-4a44-8652-6c8fbffff394" testId="03ec324f-8453-4716-7d73-9db2ea10f8dc" testName="Criação de orçamento calcula subtotais, descontos, total e sinal @spec:AC-046" computerName="VICTOR" duration="00:00:00.0047777" startTime="2026-08-10T20:01:29.4237874-03:00" endTime="2026-08-10T20:01:29.4238742-03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="a3ff0c1a-aaf1-4a44-8652-6c8fbffff394" />
+    <UnitTestResult executionId="8e460dc0-4442-4c91-b9d1-7c167c910b87" testId="acc276a2-43b9-4126-1b90-1db9140e7431" testName="CPF e e-mail normalizados têm unicidade global na persistência @spec:AC-007" computerName="VICTOR" duration="00:00:00.0010000" startTime="2026-08-10T20:01:29.3216997-03:00" endTime="2026-08-10T20:01:29.3241608-03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="8e460dc0-4442-4c91-b9d1-7c167c910b87">
+      <Output>
+        <ErrorInfo>
+          <Message>DotNet.Testcontainers.Builders.DockerUnavailableException : Docker is either not running or misconfigured. Please ensure that Docker is running and that the endpoint is properly configured.&#xD;
+You can customize your configuration using either the environment variables or the ~/.testcontainers.properties file.&#xD;
+For more information, visit: https://dotnet.testcontainers.org/custom_configuration/.&#xD;
+  Details: &#xD;
+    Failed to connect to Docker endpoint at 'npipe://./pipe/docker_engine'.&#xD;
+---- System.AggregateException : One or more errors occurred. (Failed to connect to Docker endpoint at 'npipe://./pipe/docker_engine'.)&#xD;
+-------- DotNet.Testcontainers.Builders.DockerUnavailableException : Failed to connect to Docker endpoint at 'npipe://./pipe/docker_engine'.&#xD;
+------------ System.TimeoutException : The operation has timed out.</Message>
+          <StackTrace>   at DotNet.Testcontainers.Guard.ThrowIf[TType](ArgumentInfo`1&amp; argument, Func`2 condition, Func`2 ifClause) in /_/src/Testcontainers/Guard.Null.cs:line 62&#xD;
+   at DotNet.Testcontainers.Builders.AbstractBuilder`4.Validate() in /_/src/Testcontainers/Builders/AbstractBuilder`4.cs:line 146&#xD;
+   at DotNet.Testcontainers.Builders.ContainerBuilder`3.Validate() in /_/src/Testcontainers/Builders/ContainerBuilder`3.cs:line 408&#xD;
+   at Testcontainers.PostgreSql.PostgreSqlBuilder.Validate() in /_/src/Testcontainers.PostgreSql/PostgreSqlBuilder.cs:line 101&#xD;
+   at Testcontainers.PostgreSql.PostgreSqlBuilder.Build() in /_/src/Testcontainers.PostgreSql/PostgreSqlBuilder.cs:line 75&#xD;
+   at Agendamento.IntegrationTests.Infrastructure.PostgreSqlFixture..ctor() in C:\Users\victo\OneDrive\Documentos\projetos\agendamento\tests\Agendamento.IntegrationTests\Infrastructure\PostgreSqlFixture.cs:line 29&#xD;
+   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Constructor(Object obj, IntPtr* args)&#xD;
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)&#xD;
+----- Inner Stack Trace -----&#xD;
+&#xD;
+----- Inner Stack Trace -----&#xD;
+&#xD;
+----- Inner Stack Trace -----&#xD;
+   at System.IO.Pipes.NamedPipeClientStream.ConnectInternal(Int32 timeout, CancellationToken cancellationToken, Int32 startTime)&#xD;
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)&#xD;
+--- End of stack trace from previous location ---&#xD;
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)&#xD;
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task&amp; currentTaskSlot, Thread threadPoolThread)&#xD;
+--- End of stack trace from previous location ---&#xD;
+   at Docker.DotNet.DockerClient.&lt;&gt;c__DisplayClass5_0.&lt;&lt;-ctor&gt;b__0&gt;d.MoveNext() in /_/src/Docker.DotNet/DockerClient.cs:line 69&#xD;
+--- End of stack trace from previous location ---&#xD;
+   at Microsoft.Net.Http.Client.ManagedHandler.ProcessRequestAsync(HttpRequestMessage request, CancellationToken cancellationToken) in /_/src/Docker.DotNet/Microsoft.Net.Http.Client/ManagedHandler.cs:line 160&#xD;
+   at Microsoft.Net.Http.Client.ManagedHandler.SendAsync(HttpRequestMessage httpRequestMessage, CancellationToken cancellationToken) in /_/src/Docker.DotNet/Microsoft.Net.Http.Client/ManagedHandler.cs:line 77&#xD;
+   at System.Net.Http.HttpClient.&lt;SendAsync&gt;g__Core|83_0(HttpRequestMessage request, HttpCompletionOption completionOption, CancellationTokenSource cts, Boolean disposeCts, CancellationTokenSource pendingRequestsCts, CancellationToken originalCancellationToken)&#xD;
+   at Docker.DotNet.DockerClient.PrivateMakeRequestAsync(TimeSpan timeout, HttpCompletionOption completionOption, HttpMethod method, String path, IQueryString queryString, IDictionary`2 headers, IRequestContent data, CancellationToken cancellationToken) in /_/src/Docker.DotNet/DockerClient.cs:line 433&#xD;
+   at Docker.DotNet.DockerClient.MakeRequestAsync[T](IEnumerable`1 errorHandlers, HttpMethod method, String path, IQueryString queryString, IRequestContent body, IDictionary`2 headers, TimeSpan timeout, CancellationToken token) in /_/src/Docker.DotNet/DockerClient.cs:line 243&#xD;
+   at DotNet.Testcontainers.Builders.DockerEndpointAuthenticationProvider.&lt;&gt;c__DisplayClass5_0.&lt;&lt;IsAvailable&gt;b__0&gt;d.MoveNext() in /_/src/Testcontainers/Builders/DockerEndpointAuthenticationProvider.cs:line 48</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="354dba41-3218-42f5-84e0-21aa16dd9e93" testId="1958b640-d0b0-1be9-54f7-363640d04ea0" testName="GET /health responde que a aplicação está saudável @spec:AC-002" computerName="VICTOR" duration="00:00:00.2416154" startTime="2026-08-10T20:01:28.3660841-03:00" endTime="2026-08-10T20:01:28.6345733-03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="354dba41-3218-42f5-84e0-21aa16dd9e93" />
+    <UnitTestResult executionId="669fe6fa-8196-41b1-b763-7ca0cf1eabb1" testId="ffcafc37-a3b2-0224-51ee-9ed201632082" testName="Isolamento multi-tenant impede que um tenant acesse orçamento ou serviço de outro tenant @spec:AC-049 @principle:P-004" computerName="VICTOR" duration="00:00:00.0090084" startTime="2026-08-10T20:01:29.4055578-03:00" endTime="2026-08-10T20:01:29.4141317-03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="669fe6fa-8196-41b1-b763-7ca0cf1eabb1" />
+    <UnitTestResult executionId="094970a1-f245-418c-9f9c-bfcf767170dc" testId="0c1e6f16-f6c7-15b4-c3ec-4248735ea9d1" testName="Contrato OpenAPI deve ser exportado e canônico @spec:AC-039" computerName="VICTOR" duration="00:00:00.6147756" startTime="2026-08-10T20:01:28.6650882-03:00" endTime="2026-08-10T20:01:29.2833693-03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="094970a1-f245-418c-9f9c-bfcf767170dc" />
+    <UnitTestResult executionId="4620e5ea-3c9e-4b7e-8018-3ac8b9db3455" testId="f2c90c03-49d6-1db8-a9ca-994eb203f80c" testName="Nenhuma tabela ITenantOwned deve existir sem RLS habilitado na migration" computerName="VICTOR" duration="00:00:00.0134530" startTime="2026-08-10T20:01:27.8957683-03:00" endTime="2026-08-10T20:01:27.9079829-03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="4620e5ea-3c9e-4b7e-8018-3ac8b9db3455">
+      <Output>
+        <ErrorInfo>
+          <Message>Assert.Contains() Failure: Sub-string not found&#xD;
+String:    "using Microsoft.EntityFrameworkCore.Migra"···&#xD;
+Not found: "ALTER TABLE Appointment ENABLE ROW LEVEL "···</Message>
+          <StackTrace>   at Agendamento.IntegrationTests.Tenancy.MigrationSafetyTests.ITenantOwned_Entities_MustHave_RowLevelSecurity_Enabled() in C:\Users\victo\OneDrive\Documentos\projetos\agendamento\tests\Agendamento.IntegrationTests\Tenancy\MigrationSafetyTests.cs:line 52&#xD;
+   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)&#xD;
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="5246356c-283f-4aa6-ba54-462a60bb7e6d" testId="08eaa485-67e3-336c-e109-7dadca172054" testName="Endpoint POST /appointments valida conflito de agenda do técnico @spec:AC-053" computerName="VICTOR" duration="00:00:00.3236736" startTime="2026-08-10T20:01:27.0226473-03:00" endTime="2026-08-10T20:01:27.2042062-03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="5246356c-283f-4aa6-ba54-462a60bb7e6d" />
+    <UnitTestResult executionId="e14ff8b9-2d59-4441-bfc5-bfc6b94abde5" testId="3184bf78-fdb8-7c9e-7662-f697679fa300" testName="Validação de transições de status do orçamento @spec:AC-048" computerName="VICTOR" duration="00:00:00.0477763" startTime="2026-08-10T20:01:29.4240988-03:00" endTime="2026-08-10T20:01:29.4671088-03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="e14ff8b9-2d59-4441-bfc5-bfc6b94abde5" />
+    <UnitTestResult executionId="d11b7859-d572-4dbb-81bc-ca4ed5c8144b" testId="2a7e4789-8367-2e62-6290-b577e711799a" testName="Agendamento.IntegrationTests.Dashboard.DashboardApiTests.GetUpcomingSchedule_WithoutAuth_ShouldReturnUnauthorized" computerName="VICTOR" duration="00:00:00.1912601" startTime="2026-08-10T20:01:28.1430902-03:00" endTime="2026-08-10T20:01:28.3827094-03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="d11b7859-d572-4dbb-81bc-ca4ed5c8144b">
+      <Output>
+        <ErrorInfo>
+          <Message>Assert.Equal() Failure: Values differ&#xD;
+Expected: Unauthorized&#xD;
+Actual:   InternalServerError</Message>
+          <StackTrace>   at Agendamento.IntegrationTests.Dashboard.DashboardApiTests.GetUpcomingSchedule_WithoutAuth_ShouldReturnUnauthorized() in C:\Users\victo\OneDrive\Documentos\projetos\agendamento\tests\Agendamento.IntegrationTests\Dashboard\DashboardApiTests.cs:line 36&#xD;
+--- End of stack trace from previous location ---</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="accdca3c-bad9-4a6d-bfe4-a571beef187e" testId="eadda95d-4e37-e86c-3442-7c8fe3b9e058" testName="Endpoint POST /tenants valida Idempotency-Key @spec:AC-023" computerName="VICTOR" duration="00:00:00.0005731" startTime="2026-08-10T20:01:27.8919363-03:00" endTime="2026-08-10T20:01:27.8925871-03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="accdca3c-bad9-4a6d-bfe4-a571beef187e" />
+    <UnitTestResult executionId="88b7822c-0544-4f26-b60f-a2b374614b66" testId="e24c2cb7-d92c-1dff-3a86-119ddfa961d2" testName="Handler throws when company is inactive @spec:AC-015" computerName="VICTOR" duration="00:00:00.0013986" startTime="2026-08-10T20:01:28.6316111-03:00" endTime="2026-08-10T20:01:28.6326972-03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="88b7822c-0544-4f26-b60f-a2b374614b66" />
+    <UnitTestResult executionId="9c88f1d2-495f-4752-9b11-a1112bec130f" testId="eec73f5e-9d24-5b6f-3a39-e433d26156e5" testName="@spec:AC-012 endpoint blocks a session for an unverified email" computerName="VICTOR" duration="00:00:00.4128009" startTime="2026-08-10T20:01:28.3601101-03:00" endTime="2026-08-10T20:01:28.7737713-03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="9c88f1d2-495f-4752-9b11-a1112bec130f" />
+    <UnitTestResult executionId="ebceb039-4b6e-43bf-a6e0-66b12e810d07" testId="e5de0fac-74e4-88f4-d483-3c710b4a3446" testName="@spec:AC-011 endpoint rejects invalid email-verification token without personal data" computerName="VICTOR" duration="00:00:00.5374347" startTime="2026-08-10T20:01:28.1773441-03:00" endTime="2026-08-10T20:01:28.7307547-03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="ebceb039-4b6e-43bf-a6e0-66b12e810d07" />
+    <UnitTestResult executionId="f8f84d5f-a8e0-43b7-8ce0-a62e87ca9639" testId="c7052e72-a198-9320-5ac1-6eb300d274aa" testName="Documento canônico em /openapi/v1.json é exposto @spec:AC-036" computerName="VICTOR" duration="00:00:00.5945167" startTime="2026-08-10T20:01:28.6519760-03:00" endTime="2026-08-10T20:01:29.2511767-03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="f8f84d5f-a8e0-43b7-8ce0-a62e87ca9639" />
+    <UnitTestResult executionId="e2007ae1-d3ac-415d-b1b1-37ddd42fe8ac" testId="4763d7c3-2f4e-15e4-5c56-ebc5f6137cfb" testName="Handler throws when company has no food CNAE @spec:AC-016" computerName="VICTOR" duration="00:00:00.0019458" startTime="2026-08-10T20:01:28.6295189-03:00" endTime="2026-08-10T20:01:28.6312083-03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="e2007ae1-d3ac-415d-b1b1-37ddd42fe8ac" />
+    <UnitTestResult executionId="cb1b73e7-3fc1-4ebe-9498-a2fd76bb62b9" testId="8501217e-5ad7-9b5f-359e-24d2b87d28e0" testName="@spec:AC-013 @principle:P-003 @principle:P-005 valid login emits only user_tenant_and_role" computerName="VICTOR" duration="00:00:00.3002829" startTime="2026-08-10T20:01:28.7744698-03:00" endTime="2026-08-10T20:01:29.0772044-03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="cb1b73e7-3fc1-4ebe-9498-a2fd76bb62b9" />
+    <UnitTestResult executionId="5095eacb-5170-494c-a3cb-87a57bfd860d" testId="b4e61141-9063-081f-1b1d-7f0a3fe53992" testName="Agendamento.IntegrationTests.Tenancy.RowLevelSecurityTests.Rls_EnforcesCompleteIsolation_BetweenTenants" computerName="VICTOR" duration="00:00:00.0010000" startTime="2026-08-10T20:01:29.3217557-03:00" endTime="2026-08-10T20:01:29.3266957-03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="5095eacb-5170-494c-a3cb-87a57bfd860d">
+      <Output>
+        <ErrorInfo>
+          <Message>Class fixture type 'Agendamento.IntegrationTests.Infrastructure.PostgreSqlFixture' threw in its constructor&#xD;
+---- DotNet.Testcontainers.Builders.DockerUnavailableException : Docker is either not running or misconfigured. Please ensure that Docker is running and that the endpoint is properly configured.&#xD;
+You can customize your configuration using either the environment variables or the ~/.testcontainers.properties file.&#xD;
+For more information, visit: https://dotnet.testcontainers.org/custom_configuration/.&#xD;
+  Details: &#xD;
+    Failed to connect to Docker endpoint at 'npipe://./pipe/docker_engine'.&#xD;
+-------- System.AggregateException : One or more errors occurred. (Failed to connect to Docker endpoint at 'npipe://./pipe/docker_engine'.)&#xD;
+------------ DotNet.Testcontainers.Builders.DockerUnavailableException : Failed to connect to Docker endpoint at 'npipe://./pipe/docker_engine'.&#xD;
+---------------- System.TimeoutException : The operation has timed out.</Message>
+          <StackTrace>&#xD;
+----- Inner Stack Trace -----&#xD;
+   at DotNet.Testcontainers.Guard.ThrowIf[TType](ArgumentInfo`1&amp; argument, Func`2 condition, Func`2 ifClause) in /_/src/Testcontainers/Guard.Null.cs:line 62&#xD;
+   at DotNet.Testcontainers.Builders.AbstractBuilder`4.Validate() in /_/src/Testcontainers/Builders/AbstractBuilder`4.cs:line 146&#xD;
+   at DotNet.Testcontainers.Builders.ContainerBuilder`3.Validate() in /_/src/Testcontainers/Builders/ContainerBuilder`3.cs:line 408&#xD;
+   at Testcontainers.PostgreSql.PostgreSqlBuilder.Validate() in /_/src/Testcontainers.PostgreSql/PostgreSqlBuilder.cs:line 101&#xD;
+   at Testcontainers.PostgreSql.PostgreSqlBuilder.Build() in /_/src/Testcontainers.PostgreSql/PostgreSqlBuilder.cs:line 75&#xD;
+   at Agendamento.IntegrationTests.Infrastructure.PostgreSqlFixture..ctor() in C:\Users\victo\OneDrive\Documentos\projetos\agendamento\tests\Agendamento.IntegrationTests\Infrastructure\PostgreSqlFixture.cs:line 29&#xD;
+   at InvokeStub_PostgreSqlFixture..ctor(Object, Object, IntPtr*)&#xD;
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)&#xD;
+----- Inner Stack Trace -----&#xD;
+&#xD;
+----- Inner Stack Trace -----&#xD;
+&#xD;
+----- Inner Stack Trace -----&#xD;
+   at System.IO.Pipes.NamedPipeClientStream.ConnectInternal(Int32 timeout, CancellationToken cancellationToken, Int32 startTime)&#xD;
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)&#xD;
+--- End of stack trace from previous location ---&#xD;
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)&#xD;
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task&amp; currentTaskSlot, Thread threadPoolThread)&#xD;
+--- End of stack trace from previous location ---&#xD;
+   at Docker.DotNet.DockerClient.&lt;&gt;c__DisplayClass5_0.&lt;&lt;-ctor&gt;b__0&gt;d.MoveNext() in /_/src/Docker.DotNet/DockerClient.cs:line 69&#xD;
+--- End of stack trace from previous location ---&#xD;
+   at Microsoft.Net.Http.Client.ManagedHandler.ProcessRequestAsync(HttpRequestMessage request, CancellationToken cancellationToken) in /_/src/Docker.DotNet/Microsoft.Net.Http.Client/ManagedHandler.cs:line 160&#xD;
+   at Microsoft.Net.Http.Client.ManagedHandler.SendAsync(HttpRequestMessage httpRequestMessage, CancellationToken cancellationToken) in /_/src/Docker.DotNet/Microsoft.Net.Http.Client/ManagedHandler.cs:line 77&#xD;
+   at System.Net.Http.HttpClient.&lt;SendAsync&gt;g__Core|83_0(HttpRequestMessage request, HttpCompletionOption completionOption, CancellationTokenSource cts, Boolean disposeCts, CancellationTokenSource pendingRequestsCts, CancellationToken originalCancellationToken)&#xD;
+   at Docker.DotNet.DockerClient.PrivateMakeRequestAsync(TimeSpan timeout, HttpCompletionOption completionOption, HttpMethod method, String path, IQueryString queryString, IDictionary`2 headers, IRequestContent data, CancellationToken cancellationToken) in /_/src/Docker.DotNet/DockerClient.cs:line 433&#xD;
+   at Docker.DotNet.DockerClient.MakeRequestAsync[T](IEnumerable`1 errorHandlers, HttpMethod method, String path, IQueryString queryString, IRequestContent body, IDictionary`2 headers, TimeSpan timeout, CancellationToken token) in /_/src/Docker.DotNet/DockerClient.cs:line 243&#xD;
+   at DotNet.Testcontainers.Builders.DockerEndpointAuthenticationProvider.&lt;&gt;c__DisplayClass5_0.&lt;&lt;IsAvailable&gt;b__0&gt;d.MoveNext() in /_/src/Testcontainers/Builders/DockerEndpointAuthenticationProvider.cs:line 48</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="a8cb1e4b-f040-40c9-b65f-d509b09ad512" testId="1e370d9f-e8ee-dd04-ee0b-c0744cda0f8a" testName="Isolamento RLS: WorkOrders e Appointments são restritos ao Tenant autenticado @spec:AC-050" computerName="VICTOR" duration="00:00:01.9069942" startTime="2026-08-10T20:01:24.9343663-03:00" endTime="2026-08-10T20:01:26.8793853-03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="a8cb1e4b-f040-40c9-b65f-d509b09ad512">
+      <Output>
+        <ErrorInfo>
+          <Message>System.InvalidOperationException : Can only approve Pending quotations.</Message>
+          <StackTrace>   at Agendamento.Api.Domain.Quotations.Quotation.Approve() in C:\Users\victo\OneDrive\Documentos\projetos\agendamento\src\Agendamento.Api\Domain\Quotations\Quotation.cs:line 123&#xD;
+   at Agendamento.IntegrationTests.WorkOrders.WorkOrderApiTests.TenantIsolation_WorkOrdersAndAppointments_MustBelongToTenant() in C:\Users\victo\OneDrive\Documentos\projetos\agendamento\tests\Agendamento.IntegrationTests\WorkOrders\WorkOrderApiTests.cs:line 57&#xD;
+--- End of stack trace from previous location ---</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="9ff29168-0910-49c9-bafd-c5933af6f08e" testId="88d88057-9d67-7aa0-2158-1e3d0ac378b9" testName="PostgreSQL obrigatório falha sem expor credenciais @spec:AC-006" computerName="VICTOR" duration="00:00:00.0037331" startTime="2026-08-10T20:01:28.5765705-03:00" endTime="2026-08-10T20:01:28.5780538-03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="9ff29168-0910-49c9-bafd-c5933af6f08e" />
+    <UnitTestResult executionId="d4b7d850-bdd9-4dcd-aecd-cd68338e2b30" testId="e587b696-1c8d-16b5-7b7b-40c50d2be1a4" testName="Agendamento.IntegrationTests.Financial.FinancialApiTests.Can_Create_Payable_And_Register_Payment" computerName="VICTOR" duration="00:00:00.8947022" startTime="2026-08-10T20:01:27.3322018-03:00" endTime="2026-08-10T20:01:28.2685846-03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="d4b7d850-bdd9-4dcd-aecd-cd68338e2b30">
+      <Output>
+        <ErrorInfo>
+          <Message>System.Net.Http.HttpRequestException : Response status code does not indicate success: 401 (Unauthorized).</Message>
+          <StackTrace>   at System.Net.Http.HttpResponseMessage.EnsureSuccessStatusCode()&#xD;
+   at Agendamento.IntegrationTests.Financial.FinancialApiTests.Can_Create_Payable_And_Register_Payment() in C:\Users\victo\OneDrive\Documentos\projetos\agendamento\tests\Agendamento.IntegrationTests\Financial\FinancialApiTests.cs:line 32&#xD;
+--- End of stack trace from previous location ---</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="df2a51dd-5f82-4747-8d67-703ebf59debf" testId="53fc7cd6-8ab8-6a7c-49d9-b31e0d18a8b5" testName="Agendamento.IntegrationTests.Tenancy.EfTenantIsolationTests.DbContext_AppliesGlobalQueryFilter_ForTenantOwnedEntities" computerName="VICTOR" duration="00:00:00.0023061" startTime="2026-08-10T20:01:27.9093226-03:00" endTime="2026-08-10T20:01:27.9106216-03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="df2a51dd-5f82-4747-8d67-703ebf59debf" />
+    <UnitTestResult executionId="26698630-8724-42e5-9131-57a4a67dbc5d" testId="9c2b5052-3bdf-92ac-4bfa-fc6217e11f12" testName="O comando oficial descobre a prova HTTP de integração @spec:AC-003" computerName="VICTOR" duration="00:00:00.3892722" startTime="2026-08-10T20:01:27.9765165-03:00" endTime="2026-08-10T20:01:28.3658109-03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="26698630-8724-42e5-9131-57a4a67dbc5d" />
+    <UnitTestResult executionId="6b10f7f9-db07-4ac9-ae34-648678191ab5" testId="f78d0f0e-535f-ad22-4a41-45f5925cc2d2" testName="PostgreSQL real aplica a migration da fixture @spec:AC-004" computerName="VICTOR" duration="00:00:00.0010000" startTime="2026-08-10T20:01:29.3285850-03:00" endTime="2026-08-10T20:01:29.3286281-03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="6b10f7f9-db07-4ac9-ae34-648678191ab5">
+      <Output>
+        <ErrorInfo>
+          <Message>DotNet.Testcontainers.Builders.DockerUnavailableException : Docker is either not running or misconfigured. Please ensure that Docker is running and that the endpoint is properly configured.&#xD;
+You can customize your configuration using either the environment variables or the ~/.testcontainers.properties file.&#xD;
+For more information, visit: https://dotnet.testcontainers.org/custom_configuration/.&#xD;
+  Details: &#xD;
+    Failed to connect to Docker endpoint at 'npipe://./pipe/docker_engine'.&#xD;
+---- System.AggregateException : One or more errors occurred. (Failed to connect to Docker endpoint at 'npipe://./pipe/docker_engine'.)&#xD;
+-------- DotNet.Testcontainers.Builders.DockerUnavailableException : Failed to connect to Docker endpoint at 'npipe://./pipe/docker_engine'.&#xD;
+------------ System.TimeoutException : The operation has timed out.</Message>
+          <StackTrace>   at DotNet.Testcontainers.Guard.ThrowIf[TType](ArgumentInfo`1&amp; argument, Func`2 condition, Func`2 ifClause) in /_/src/Testcontainers/Guard.Null.cs:line 62&#xD;
+   at DotNet.Testcontainers.Builders.AbstractBuilder`4.Validate() in /_/src/Testcontainers/Builders/AbstractBuilder`4.cs:line 146&#xD;
+   at DotNet.Testcontainers.Builders.ContainerBuilder`3.Validate() in /_/src/Testcontainers/Builders/ContainerBuilder`3.cs:line 408&#xD;
+   at Testcontainers.PostgreSql.PostgreSqlBuilder.Validate() in /_/src/Testcontainers.PostgreSql/PostgreSqlBuilder.cs:line 101&#xD;
+   at Testcontainers.PostgreSql.PostgreSqlBuilder.Build() in /_/src/Testcontainers.PostgreSql/PostgreSqlBuilder.cs:line 75&#xD;
+   at Agendamento.IntegrationTests.Infrastructure.PostgreSqlFixture..ctor() in C:\Users\victo\OneDrive\Documentos\projetos\agendamento\tests\Agendamento.IntegrationTests\Infrastructure\PostgreSqlFixture.cs:line 29&#xD;
+   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Constructor(Object obj, IntPtr* args)&#xD;
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)&#xD;
+----- Inner Stack Trace -----&#xD;
+&#xD;
+----- Inner Stack Trace -----&#xD;
+&#xD;
+----- Inner Stack Trace -----&#xD;
+   at System.IO.Pipes.NamedPipeClientStream.ConnectInternal(Int32 timeout, CancellationToken cancellationToken, Int32 startTime)&#xD;
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)&#xD;
+--- End of stack trace from previous location ---&#xD;
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)&#xD;
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task&amp; currentTaskSlot, Thread threadPoolThread)&#xD;
+--- End of stack trace from previous location ---&#xD;
+   at Docker.DotNet.DockerClient.&lt;&gt;c__DisplayClass5_0.&lt;&lt;-ctor&gt;b__0&gt;d.MoveNext() in /_/src/Docker.DotNet/DockerClient.cs:line 69&#xD;
+--- End of stack trace from previous location ---&#xD;
+   at Microsoft.Net.Http.Client.ManagedHandler.ProcessRequestAsync(HttpRequestMessage request, CancellationToken cancellationToken) in /_/src/Docker.DotNet/Microsoft.Net.Http.Client/ManagedHandler.cs:line 160&#xD;
+   at Microsoft.Net.Http.Client.ManagedHandler.SendAsync(HttpRequestMessage httpRequestMessage, CancellationToken cancellationToken) in /_/src/Docker.DotNet/Microsoft.Net.Http.Client/ManagedHandler.cs:line 77&#xD;
+   at System.Net.Http.HttpClient.&lt;SendAsync&gt;g__Core|83_0(HttpRequestMessage request, HttpCompletionOption completionOption, CancellationTokenSource cts, Boolean disposeCts, CancellationTokenSource pendingRequestsCts, CancellationToken originalCancellationToken)&#xD;
+   at Docker.DotNet.DockerClient.PrivateMakeRequestAsync(TimeSpan timeout, HttpCompletionOption completionOption, HttpMethod method, String path, IQueryString queryString, IDictionary`2 headers, IRequestContent data, CancellationToken cancellationToken) in /_/src/Docker.DotNet/DockerClient.cs:line 433&#xD;
+   at Docker.DotNet.DockerClient.MakeRequestAsync[T](IEnumerable`1 errorHandlers, HttpMethod method, String path, IQueryString queryString, IRequestContent body, IDictionary`2 headers, TimeSpan timeout, CancellationToken token) in /_/src/Docker.DotNet/DockerClient.cs:line 243&#xD;
+   at DotNet.Testcontainers.Builders.DockerEndpointAuthenticationProvider.&lt;&gt;c__DisplayClass5_0.&lt;&lt;IsAvailable&gt;b__0&gt;d.MoveNext() in /_/src/Testcontainers/Builders/DockerEndpointAuthenticationProvider.cs:line 48</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="f3847fc9-3b30-4a0d-8cbe-a8b97a566547" testId="fa94bf8e-c85f-f234-c718-94ed1a8c0413" testName="Agendamento.IntegrationTests.Subscriptions.SubscriptionApiTests.Webhook_InvoicePaid_ShouldReturnOk" computerName="VICTOR" duration="00:00:00.3325058" startTime="2026-08-10T20:01:27.8833494-03:00" endTime="2026-08-10T20:01:28.5927918-03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="f3847fc9-3b30-4a0d-8cbe-a8b97a566547" />
+  </Results>
+  <TestDefinitions>
+    <UnitTest name="Agendamento.IntegrationTests.Dashboard.DashboardApiTests.GetDashboardSummary_WithoutAuth_ShouldReturnUnauthorized" storage="c:\users\victo\onedrive\documentos\projetos\agendamento\tests\agendamento.integrationtests\bin\debug\net10.0\agendamento.integrationtests.dll" id="29e7b588-09c5-043e-5a25-589da153ebcb">
+      <Execution id="42e8659e-741c-49e4-ae61-df3699089786" />
+      <TestMethod codeBase="C:\Users\victo\OneDrive\Documentos\projetos\agendamento\tests\Agendamento.IntegrationTests\bin\Debug\net10.0\Agendamento.IntegrationTests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Agendamento.IntegrationTests.Dashboard.DashboardApiTests" name="GetDashboardSummary_WithoutAuth_ShouldReturnUnauthorized" />
+    </UnitTest>
+    <UnitTest name="Isolamento RLS: WorkOrders e Appointments são restritos ao Tenant autenticado @spec:AC-050" storage="c:\users\victo\onedrive\documentos\projetos\agendamento\tests\agendamento.integrationtests\bin\debug\net10.0\agendamento.integrationtests.dll" id="1e370d9f-e8ee-dd04-ee0b-c0744cda0f8a">
+      <Execution id="a8cb1e4b-f040-40c9-b65f-d509b09ad512" />
+      <TestMethod codeBase="C:\Users\victo\OneDrive\Documentos\projetos\agendamento\tests\Agendamento.IntegrationTests\bin\Debug\net10.0\Agendamento.IntegrationTests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Agendamento.IntegrationTests.WorkOrders.WorkOrderApiTests" name="TenantIsolation_WorkOrdersAndAppointments_MustBelongToTenant" />
+    </UnitTest>
+    <UnitTest name="Tentativa de buscar ou alterar cliente de outro tenant retorna null/vazio @spec:AC-044" storage="c:\users\victo\onedrive\documentos\projetos\agendamento\tests\agendamento.integrationtests\bin\debug\net10.0\agendamento.integrationtests.dll" id="d39241d4-44d8-1b0d-453a-b0ef5bac2ca2">
+      <Execution id="10dd5b83-92d3-437f-9c28-d6186e40f649" />
+      <TestMethod codeBase="C:\Users\victo\OneDrive\Documentos\projetos\agendamento\tests\Agendamento.IntegrationTests\bin\Debug\net10.0\Agendamento.IntegrationTests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Agendamento.IntegrationTests.Customers.CustomerIsolationTests" name="Update_Or_Get_OtherTenantCustomer_ShouldBeIsolated" />
+    </UnitTest>
+    <UnitTest name="Endpoint POST /tenants valida Idempotency-Key @spec:AC-023" storage="c:\users\victo\onedrive\documentos\projetos\agendamento\tests\agendamento.integrationtests\bin\debug\net10.0\agendamento.integrationtests.dll" id="eadda95d-4e37-e86c-3442-7c8fe3b9e058">
+      <Execution id="accdca3c-bad9-4a6d-bfe4-a571beef187e" />
+      <TestMethod codeBase="C:\Users\victo\OneDrive\Documentos\projetos\agendamento\tests\Agendamento.IntegrationTests\bin\Debug\net10.0\Agendamento.IntegrationTests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Agendamento.IntegrationTests.Tenants.TenantRegistrationEndpointTests" name="Post_Tenants_Requires_IdempotencyKey" />
+    </UnitTest>
+    <UnitTest name="Exportação de orçamento em PDF gera bytes válidos em stream application/pdf @spec:AC-047" storage="c:\users\victo\onedrive\documentos\projetos\agendamento\tests\agendamento.integrationtests\bin\debug\net10.0\agendamento.integrationtests.dll" id="49290bd8-1698-c4a7-971a-f5f4fbb086df">
+      <Execution id="0e73714d-7725-4a16-a307-b9b5281efead" />
+      <TestMethod codeBase="C:\Users\victo\OneDrive\Documentos\projetos\agendamento\tests\Agendamento.IntegrationTests\bin\Debug\net10.0\Agendamento.IntegrationTests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Agendamento.IntegrationTests.Quotations.QuotationApiTests" name="Get_QuotationPdf_ReturnsApplicationPdfStream" />
+    </UnitTest>
+    <UnitTest name="Handler throws when company has no food CNAE @spec:AC-016" storage="c:\users\victo\onedrive\documentos\projetos\agendamento\tests\agendamento.integrationtests\bin\debug\net10.0\agendamento.integrationtests.dll" id="4763d7c3-2f4e-15e4-5c56-ebc5f6137cfb">
+      <Execution id="e2007ae1-d3ac-415d-b1b1-37ddd42fe8ac" />
+      <TestMethod codeBase="C:\Users\victo\OneDrive\Documentos\projetos\agendamento\tests\Agendamento.IntegrationTests\bin\Debug\net10.0\Agendamento.IntegrationTests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Agendamento.IntegrationTests.Tenants.CompanyRegistryContractTests" name="Handler_ShouldThrowInvalidOperationException_WhenCompanyHasNoFoodCnae" />
+    </UnitTest>
+    <UnitTest name="Consultas e Comandos de Clientes respeitam isolamento @spec:AC-041" storage="c:\users\victo\onedrive\documentos\projetos\agendamento\tests\agendamento.integrationtests\bin\debug\net10.0\agendamento.integrationtests.dll" id="ebb0440a-1083-3ccb-61d3-35c8b94599ca">
+      <Execution id="c01beda4-1bad-4d99-bf8c-768400146a5b" />
+      <TestMethod codeBase="C:\Users\victo\OneDrive\Documentos\projetos\agendamento\tests\Agendamento.IntegrationTests\bin\Debug\net10.0\Agendamento.IntegrationTests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Agendamento.IntegrationTests.Customers.CustomerIsolationTests" name="Customers_ShouldBeIsolated_ByTenant" />
+    </UnitTest>
+    <UnitTest name="@spec:AC-013 @principle:P-003 @principle:P-005 valid login emits only user_tenant_and_role" storage="c:\users\victo\onedrive\documentos\projetos\agendamento\tests\agendamento.integrationtests\bin\debug\net10.0\agendamento.integrationtests.dll" id="8501217e-5ad7-9b5f-359e-24d2b87d28e0">
+      <Execution id="cb1b73e7-3fc1-4ebe-9498-a2fd76bb62b9" />
+      <TestMethod codeBase="C:\Users\victo\OneDrive\Documentos\projetos\agendamento\tests\Agendamento.IntegrationTests\bin\Debug\net10.0\Agendamento.IntegrationTests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Agendamento.IntegrationTests.Identity.SessionEndpointTests" name="Valid_login_emits_a_minimized_session_without_request_tenant_selection" />
+    </UnitTest>
+    <UnitTest name="Agendamento.IntegrationTests.Tenancy.TenantContextTests.GetTenantProfile_WithoutToken_ReturnsUnauthorized" storage="c:\users\victo\onedrive\documentos\projetos\agendamento\tests\agendamento.integrationtests\bin\debug\net10.0\agendamento.integrationtests.dll" id="9d854d4d-c190-f041-6caa-8bd569c33225">
+      <Execution id="3c890741-dec8-4bb6-a1f6-09dc22324044" />
+      <TestMethod codeBase="C:\Users\victo\OneDrive\Documentos\projetos\agendamento\tests\Agendamento.IntegrationTests\bin\Debug\net10.0\Agendamento.IntegrationTests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Agendamento.IntegrationTests.Tenancy.TenantContextTests" name="GetTenantProfile_WithoutToken_ReturnsUnauthorized" />
+    </UnitTest>
+    <UnitTest name="Contrato OpenAPI deve ser exportado e canônico @spec:AC-039" storage="c:\users\victo\onedrive\documentos\projetos\agendamento\tests\agendamento.integrationtests\bin\debug\net10.0\agendamento.integrationtests.dll" id="0c1e6f16-f6c7-15b4-c3ec-4248735ea9d1">
+      <Execution id="094970a1-f245-418c-9f9c-bfcf767170dc" />
+      <TestMethod codeBase="C:\Users\victo\OneDrive\Documentos\projetos\agendamento\tests\Agendamento.IntegrationTests\bin\Debug\net10.0\Agendamento.IntegrationTests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Agendamento.IntegrationTests.OpenApi.OpenApiSnapshotTests" name="OpenApiDocument_Should_Match_Snapshot" />
+    </UnitTest>
+    <UnitTest name="Cadastro registra solicitação de verificação na caixa de saída sem token bruto @spec:AC-009 @principle:P-005" storage="c:\users\victo\onedrive\documentos\projetos\agendamento\tests\agendamento.integrationtests\bin\debug\net10.0\agendamento.integrationtests.dll" id="8fd24c80-3b66-db6c-d71e-65143d5967df">
+      <Execution id="5863f3b1-cd0b-4d93-a6d8-69e24d953759" />
+      <TestMethod codeBase="C:\Users\victo\OneDrive\Documentos\projetos\agendamento\tests\Agendamento.IntegrationTests\bin\Debug\net10.0\Agendamento.IntegrationTests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Agendamento.IntegrationTests.Identity.EmailVerificationOutboxTests" name="Request_enqueues_a_verification_delivery_without_raw_token" />
+    </UnitTest>
+    <UnitTest name="GET /health responde que a aplicação está saudável @spec:AC-002" storage="c:\users\victo\onedrive\documentos\projetos\agendamento\tests\agendamento.integrationtests\bin\debug\net10.0\agendamento.integrationtests.dll" id="1958b640-d0b0-1be9-54f7-363640d04ea0">
+      <Execution id="354dba41-3218-42f5-84e0-21aa16dd9e93" />
+      <TestMethod codeBase="C:\Users\victo\OneDrive\Documentos\projetos\agendamento\tests\Agendamento.IntegrationTests\bin\Debug\net10.0\Agendamento.IntegrationTests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Agendamento.IntegrationTests.Health.HealthEndpointTests" name="GetHealthReturnsOk" />
+    </UnitTest>
+    <UnitTest name="@spec:AC-010 endpoint confirms a valid email-verification token once" storage="c:\users\victo\onedrive\documentos\projetos\agendamento\tests\agendamento.integrationtests\bin\debug\net10.0\agendamento.integrationtests.dll" id="3e98abb6-48ab-211b-1976-76411b103332">
+      <Execution id="6b69afd8-7043-47a5-bfa3-93176622545f" />
+      <TestMethod codeBase="C:\Users\victo\OneDrive\Documentos\projetos\agendamento\tests\Agendamento.IntegrationTests\bin\Debug\net10.0\Agendamento.IntegrationTests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Agendamento.IntegrationTests.Identity.EmailVerificationEndpointTests" name="Valid_token_confirms_the_email_once" />
+    </UnitTest>
+    <UnitTest name="PostgreSQL obrigatório falha sem expor credenciais @spec:AC-006" storage="c:\users\victo\onedrive\documentos\projetos\agendamento\tests\agendamento.integrationtests\bin\debug\net10.0\agendamento.integrationtests.dll" id="88d88057-9d67-7aa0-2158-1e3d0ac378b9">
+      <Execution id="9ff29168-0910-49c9-bafd-c5933af6f08e" />
+      <TestMethod codeBase="C:\Users\victo\OneDrive\Documentos\projetos\agendamento\tests\Agendamento.IntegrationTests\bin\Debug\net10.0\Agendamento.IntegrationTests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Agendamento.IntegrationTests.Configuration.DatabaseConfigurationTests" name="Required_PostgreSql_without_valid_connection_string_fails_without_echoing_credentials__spec_AC_006" />
+    </UnitTest>
+    <UnitTest name="Endpoint GET /users/me retorna perfil do usuario logado @spec:AC-025" storage="c:\users\victo\onedrive\documentos\projetos\agendamento\tests\agendamento.integrationtests\bin\debug\net10.0\agendamento.integrationtests.dll" id="73448910-65c0-3c49-e961-69db197cdfb7">
+      <Execution id="ceb6a496-a7bb-497d-bc9f-b389e0cecaa2" />
+      <TestMethod codeBase="C:\Users\victo\OneDrive\Documentos\projetos\agendamento\tests\Agendamento.IntegrationTests\bin\Debug\net10.0\Agendamento.IntegrationTests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Agendamento.IntegrationTests.Identity.CurrentUserEndpointTests" name="Get_CurrentUser_ReturnsProfile" />
+    </UnitTest>
+    <UnitTest name="Agendamento.IntegrationTests.Subscriptions.SubscriptionApiTests.Webhook_InvoicePaid_ShouldReturnOk" storage="c:\users\victo\onedrive\documentos\projetos\agendamento\tests\agendamento.integrationtests\bin\debug\net10.0\agendamento.integrationtests.dll" id="fa94bf8e-c85f-f234-c718-94ed1a8c0413">
+      <Execution id="f3847fc9-3b30-4a0d-8cbe-a8b97a566547" />
+      <TestMethod codeBase="C:\Users\victo\OneDrive\Documentos\projetos\agendamento\tests\Agendamento.IntegrationTests\bin\Debug\net10.0\Agendamento.IntegrationTests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Agendamento.IntegrationTests.Subscriptions.SubscriptionApiTests" name="Webhook_InvoicePaid_ShouldReturnOk" />
+    </UnitTest>
+    <UnitTest name="Agendamento.IntegrationTests.Tenancy.EfTenantIsolationTests.DbContext_AppliesGlobalQueryFilter_ForTenantOwnedEntities" storage="c:\users\victo\onedrive\documentos\projetos\agendamento\tests\agendamento.integrationtests\bin\debug\net10.0\agendamento.integrationtests.dll" id="53fc7cd6-8ab8-6a7c-49d9-b31e0d18a8b5">
+      <Execution id="df2a51dd-5f82-4747-8d67-703ebf59debf" />
+      <TestMethod codeBase="C:\Users\victo\OneDrive\Documentos\projetos\agendamento\tests\Agendamento.IntegrationTests\bin\Debug\net10.0\Agendamento.IntegrationTests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Agendamento.IntegrationTests.Tenancy.EfTenantIsolationTests" name="DbContext_AppliesGlobalQueryFilter_ForTenantOwnedEntities" />
+    </UnitTest>
+    <UnitTest name="Validação de transições de status do orçamento @spec:AC-048" storage="c:\users\victo\onedrive\documentos\projetos\agendamento\tests\agendamento.integrationtests\bin\debug\net10.0\agendamento.integrationtests.dll" id="3184bf78-fdb8-7c9e-7662-f697679fa300">
+      <Execution id="e14ff8b9-2d59-4441-bfc5-bfc6b94abde5" />
+      <TestMethod codeBase="C:\Users\victo\OneDrive\Documentos\projetos\agendamento\tests\Agendamento.IntegrationTests\bin\Debug\net10.0\Agendamento.IntegrationTests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Agendamento.IntegrationTests.Quotations.QuotationApiTests" name="Quotation_StatusTransitions_ShouldWorkCorrectly" />
+    </UnitTest>
+    <UnitTest name="Handler throws when company is inactive @spec:AC-015" storage="c:\users\victo\onedrive\documentos\projetos\agendamento\tests\agendamento.integrationtests\bin\debug\net10.0\agendamento.integrationtests.dll" id="e24c2cb7-d92c-1dff-3a86-119ddfa961d2">
+      <Execution id="88b7822c-0544-4f26-b60f-a2b374614b66" />
+      <TestMethod codeBase="C:\Users\victo\OneDrive\Documentos\projetos\agendamento\tests\Agendamento.IntegrationTests\bin\Debug\net10.0\Agendamento.IntegrationTests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Agendamento.IntegrationTests.Tenants.CompanyRegistryContractTests" name="Handler_ShouldThrowInvalidOperationException_WhenCompanyIsInactive" />
+    </UnitTest>
+    <UnitTest name="Falha parcial desfaz toda a criação @spec:AC-024" storage="c:\users\victo\onedrive\documentos\projetos\agendamento\tests\agendamento.integrationtests\bin\debug\net10.0\agendamento.integrationtests.dll" id="161f1ad8-4098-3ed0-006f-76b9350eed9a">
+      <Execution id="988891db-8fbd-43ce-b559-4f59047af6da" />
+      <TestMethod codeBase="C:\Users\victo\OneDrive\Documentos\projetos\agendamento\tests\Agendamento.IntegrationTests\bin\Debug\net10.0\Agendamento.IntegrationTests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Agendamento.IntegrationTests.Tenants.RegisterTenantTransactionTests" name="Handler_ShouldRollback_OnFailure" />
+    </UnitTest>
+    <UnitTest name="Criação de orçamento calcula subtotais, descontos, total e sinal @spec:AC-046" storage="c:\users\victo\onedrive\documentos\projetos\agendamento\tests\agendamento.integrationtests\bin\debug\net10.0\agendamento.integrationtests.dll" id="03ec324f-8453-4716-7d73-9db2ea10f8dc">
+      <Execution id="a3ff0c1a-aaf1-4a44-8652-6c8fbffff394" />
+      <TestMethod codeBase="C:\Users\victo\OneDrive\Documentos\projetos\agendamento\tests\Agendamento.IntegrationTests\bin\Debug\net10.0\Agendamento.IntegrationTests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Agendamento.IntegrationTests.Quotations.QuotationApiTests" name="Post_Quotations_CreatesQuotationAndCalculatesDeposit" />
+    </UnitTest>
+    <UnitTest name="Agendamento.IntegrationTests.Tenancy.RowLevelSecurityTests.Rls_EnforcesCompleteIsolation_BetweenTenants" storage="c:\users\victo\onedrive\documentos\projetos\agendamento\tests\agendamento.integrationtests\bin\debug\net10.0\agendamento.integrationtests.dll" id="b4e61141-9063-081f-1b1d-7f0a3fe53992">
+      <Execution id="5095eacb-5170-494c-a3cb-87a57bfd860d" />
+      <TestMethod codeBase="C:\Users\victo\OneDrive\Documentos\projetos\agendamento\tests\Agendamento.IntegrationTests\bin\Debug\net10.0\Agendamento.IntegrationTests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Agendamento.IntegrationTests.Tenancy.RowLevelSecurityTests" name="Rls_EnforcesCompleteIsolation_BetweenTenants" />
+    </UnitTest>
+    <UnitTest name="Execuções de persistência não compartilham dados @spec:AC-004" storage="c:\users\victo\onedrive\documentos\projetos\agendamento\tests\agendamento.integrationtests\bin\debug\net10.0\agendamento.integrationtests.dll" id="daa9bb70-8521-a8e7-7127-9478dd1153ad">
+      <Execution id="3f3e5c5c-00a6-4a69-9672-72c0c60a6870" />
+      <TestMethod codeBase="C:\Users\victo\OneDrive\Documentos\projetos\agendamento\tests\Agendamento.IntegrationTests\bin\Debug\net10.0\Agendamento.IntegrationTests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Agendamento.IntegrationTests.Persistence.PostgreSqlFixtureTests" name="PersistenceRunsDoNotShareData" />
+    </UnitTest>
+    <UnitTest name="Handler throws when CNPJ is invalid @spec:AC-014" storage="c:\users\victo\onedrive\documentos\projetos\agendamento\tests\agendamento.integrationtests\bin\debug\net10.0\agendamento.integrationtests.dll" id="2d9c7b30-8789-c820-c0ca-a1e1ab683cde">
+      <Execution id="b6b6db9d-f13a-48a3-a097-04af33a3ed3c" />
+      <TestMethod codeBase="C:\Users\victo\OneDrive\Documentos\projetos\agendamento\tests\Agendamento.IntegrationTests\bin\Debug\net10.0\Agendamento.IntegrationTests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Agendamento.IntegrationTests.Tenants.CompanyRegistryContractTests" name="Handler_ShouldThrowInvalidOperationException_WhenCnpjIsInvalid" />
+    </UnitTest>
+    <UnitTest name="PostgreSQL real aplica a migration da fixture @spec:AC-004" storage="c:\users\victo\onedrive\documentos\projetos\agendamento\tests\agendamento.integrationtests\bin\debug\net10.0\agendamento.integrationtests.dll" id="f78d0f0e-535f-ad22-4a41-45f5925cc2d2">
+      <Execution id="6b10f7f9-db07-4ac9-ae34-648678191ab5" />
+      <TestMethod codeBase="C:\Users\victo\OneDrive\Documentos\projetos\agendamento\tests\Agendamento.IntegrationTests\bin\Debug\net10.0\Agendamento.IntegrationTests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Agendamento.IntegrationTests.Persistence.PostgreSqlFixtureTests" name="RealPostgreSqlAppliesTheFixtureMigration" />
+    </UnitTest>
+    <UnitTest name="CPF e e-mail normalizados têm unicidade global na persistência @spec:AC-007" storage="c:\users\victo\onedrive\documentos\projetos\agendamento\tests\agendamento.integrationtests\bin\debug\net10.0\agendamento.integrationtests.dll" id="acc276a2-43b9-4126-1b90-1db9140e7431">
+      <Execution id="8e460dc0-4442-4c91-b9d1-7c167c910b87" />
+      <TestMethod codeBase="C:\Users\victo\OneDrive\Documentos\projetos\agendamento\tests\Agendamento.IntegrationTests\bin\Debug\net10.0\Agendamento.IntegrationTests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Agendamento.IntegrationTests.Identity.UserPersistenceTests" name="PersistingUsers_WithDuplicateNormalizedCpfOrEmail_ConflictsWithoutCreatingAnotherIdentity" />
+    </UnitTest>
+    <UnitTest name="Agendamento.IntegrationTests.Tenancy.EfTenantIsolationTests.SaveChangesInterceptor_PopulatesTenantId_WhenAdded" storage="c:\users\victo\onedrive\documentos\projetos\agendamento\tests\agendamento.integrationtests\bin\debug\net10.0\agendamento.integrationtests.dll" id="bf760f89-b71b-edf3-f120-f79079213d6f">
+      <Execution id="e14f5bce-d51e-4013-969d-41b46db5968f" />
+      <TestMethod codeBase="C:\Users\victo\OneDrive\Documentos\projetos\agendamento\tests\Agendamento.IntegrationTests\bin\Debug\net10.0\Agendamento.IntegrationTests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Agendamento.IntegrationTests.Tenancy.EfTenantIsolationTests" name="SaveChangesInterceptor_PopulatesTenantId_WhenAdded" />
+    </UnitTest>
+    <UnitTest name="Handler returns company data when eligible @spec:AC-017" storage="c:\users\victo\onedrive\documentos\projetos\agendamento\tests\agendamento.integrationtests\bin\debug\net10.0\agendamento.integrationtests.dll" id="9d03f99b-ebe7-88a5-2606-27c65a7f703a">
+      <Execution id="c9241e5a-be67-4ed5-be43-94d0b1340c78" />
+      <TestMethod codeBase="C:\Users\victo\OneDrive\Documentos\projetos\agendamento\tests\Agendamento.IntegrationTests\bin\Debug\net10.0\Agendamento.IntegrationTests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Agendamento.IntegrationTests.Tenants.CompanyRegistryContractTests" name="Handler_ShouldReturnCompanyData_WhenEligible" />
+    </UnitTest>
+    <UnitTest name="Endpoint POST /appointments valida conflito de agenda do técnico @spec:AC-053" storage="c:\users\victo\onedrive\documentos\projetos\agendamento\tests\agendamento.integrationtests\bin\debug\net10.0\agendamento.integrationtests.dll" id="08eaa485-67e3-336c-e109-7dadca172054">
+      <Execution id="5246356c-283f-4aa6-ba54-462a60bb7e6d" />
+      <TestMethod codeBase="C:\Users\victo\OneDrive\Documentos\projetos\agendamento\tests\Agendamento.IntegrationTests\bin\Debug\net10.0\Agendamento.IntegrationTests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Agendamento.IntegrationTests.WorkOrders.WorkOrderApiTests" name="CreateAppointment_ShouldThrowConflict_WhenUserIsDoubleBooked" />
+    </UnitTest>
+    <UnitTest name="Agendamento.IntegrationTests.Financial.FinancialApiTests.Can_Create_Payable_And_Register_Payment" storage="c:\users\victo\onedrive\documentos\projetos\agendamento\tests\agendamento.integrationtests\bin\debug\net10.0\agendamento.integrationtests.dll" id="e587b696-1c8d-16b5-7b7b-40c50d2be1a4">
+      <Execution id="d4b7d850-bdd9-4dcd-aecd-cd68338e2b30" />
+      <TestMethod codeBase="C:\Users\victo\OneDrive\Documentos\projetos\agendamento\tests\Agendamento.IntegrationTests\bin\Debug\net10.0\Agendamento.IntegrationTests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Agendamento.IntegrationTests.Financial.FinancialApiTests" name="Can_Create_Payable_And_Register_Payment" />
+    </UnitTest>
+    <UnitTest name="Agendamento.IntegrationTests.Dashboard.DashboardApiTests.GetUpcomingSchedule_WithoutAuth_ShouldReturnUnauthorized" storage="c:\users\victo\onedrive\documentos\projetos\agendamento\tests\agendamento.integrationtests\bin\debug\net10.0\agendamento.integrationtests.dll" id="2a7e4789-8367-2e62-6290-b577e711799a">
+      <Execution id="d11b7859-d572-4dbb-81bc-ca4ed5c8144b" />
+      <TestMethod codeBase="C:\Users\victo\OneDrive\Documentos\projetos\agendamento\tests\Agendamento.IntegrationTests\bin\Debug\net10.0\Agendamento.IntegrationTests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Agendamento.IntegrationTests.Dashboard.DashboardApiTests" name="GetUpcomingSchedule_WithoutAuth_ShouldReturnUnauthorized" />
+    </UnitTest>
+    <UnitTest name="O comando oficial descobre a prova HTTP de integração @spec:AC-003" storage="c:\users\victo\onedrive\documentos\projetos\agendamento\tests\agendamento.integrationtests\bin\debug\net10.0\agendamento.integrationtests.dll" id="9c2b5052-3bdf-92ac-4bfa-fc6217e11f12">
+      <Execution id="26698630-8724-42e5-9131-57a4a67dbc5d" />
+      <TestMethod codeBase="C:\Users\victo\OneDrive\Documentos\projetos\agendamento\tests\Agendamento.IntegrationTests\bin\Debug\net10.0\Agendamento.IntegrationTests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Agendamento.IntegrationTests.Health.HealthEndpointTests" name="OfficialTestCommandDiscoversTheHttpIntegrationProof" />
+    </UnitTest>
+    <UnitTest name="Endpoint GET /company-registry aplica limite de requisições @spec:AC-027" storage="c:\users\victo\onedrive\documentos\projetos\agendamento\tests\agendamento.integrationtests\bin\debug\net10.0\agendamento.integrationtests.dll" id="94552611-ab29-e49e-1210-b763c990df3d">
+      <Execution id="4baaea91-b2c8-4f07-b97c-a86149dccbc2" />
+      <TestMethod codeBase="C:\Users\victo\OneDrive\Documentos\projetos\agendamento\tests\Agendamento.IntegrationTests\bin\Debug\net10.0\Agendamento.IntegrationTests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Agendamento.IntegrationTests.Tenants.TenantRegistrationEndpointTests" name="Get_CompanyRegistry_Applies_RateLimit" />
+    </UnitTest>
+    <UnitTest name="Swagger UI permite explorar a versão vigente em ambiente Test @spec:AC-040" storage="c:\users\victo\onedrive\documentos\projetos\agendamento\tests\agendamento.integrationtests\bin\debug\net10.0\agendamento.integrationtests.dll" id="fb0f39f1-0175-ac9d-0d90-bbad2f32e040">
+      <Execution id="98c22eda-29fa-451b-b0e0-cbeeeeba6d34" />
+      <TestMethod codeBase="C:\Users\victo\OneDrive\Documentos\projetos\agendamento\tests\Agendamento.IntegrationTests\bin\Debug\net10.0\Agendamento.IntegrationTests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Agendamento.IntegrationTests.OpenApi.SwaggerUiTests" name="Given_TestEnvironment_When_SwaggerUiIsAccessed_Then_ReturnsOk" />
+    </UnitTest>
+    <UnitTest name="Agendamento.IntegrationTests.Tenancy.TenantContextTests.GetTenantProfile_WithTenantInSession_IgnoresExternalTenantIdHeader" storage="c:\users\victo\onedrive\documentos\projetos\agendamento\tests\agendamento.integrationtests\bin\debug\net10.0\agendamento.integrationtests.dll" id="5596b5d1-75f3-c857-4d55-9c8b92a7546f">
+      <Execution id="72f8dd45-a7c0-499e-8c33-8facb7ed188f" />
+      <TestMethod codeBase="C:\Users\victo\OneDrive\Documentos\projetos\agendamento\tests\Agendamento.IntegrationTests\bin\Debug\net10.0\Agendamento.IntegrationTests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Agendamento.IntegrationTests.Tenancy.TenantContextTests" name="GetTenantProfile_WithTenantInSession_IgnoresExternalTenantIdHeader" />
+    </UnitTest>
+    <UnitTest name="Isolamento multi-tenant impede que um tenant acesse orçamento ou serviço de outro tenant @spec:AC-049 @principle:P-004" storage="c:\users\victo\onedrive\documentos\projetos\agendamento\tests\agendamento.integrationtests\bin\debug\net10.0\agendamento.integrationtests.dll" id="ffcafc37-a3b2-0224-51ee-9ed201632082">
+      <Execution id="669fe6fa-8196-41b1-b763-7ca0cf1eabb1" />
+      <TestMethod codeBase="C:\Users\victo\OneDrive\Documentos\projetos\agendamento\tests\Agendamento.IntegrationTests\bin\Debug\net10.0\Agendamento.IntegrationTests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Agendamento.IntegrationTests.Quotations.QuotationApiTests" name="MultiTenant_Isolation_ReturnsNotFound_ForOtherTenant" />
+    </UnitTest>
+    <UnitTest name="@spec:AC-012 endpoint blocks a session for an unverified email" storage="c:\users\victo\onedrive\documentos\projetos\agendamento\tests\agendamento.integrationtests\bin\debug\net10.0\agendamento.integrationtests.dll" id="eec73f5e-9d24-5b6f-3a39-e433d26156e5">
+      <Execution id="9c88f1d2-495f-4752-9b11-a1112bec130f" />
+      <TestMethod codeBase="C:\Users\victo\OneDrive\Documentos\projetos\agendamento\tests\Agendamento.IntegrationTests\bin\Debug\net10.0\Agendamento.IntegrationTests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Agendamento.IntegrationTests.Identity.SessionEndpointTests" name="Unverified_email_cannot_create_a_session" />
+    </UnitTest>
+    <UnitTest name="Transições de status da OS devem ser permitidas e registrar histórico @spec:AC-054" storage="c:\users\victo\onedrive\documentos\projetos\agendamento\tests\agendamento.integrationtests\bin\debug\net10.0\agendamento.integrationtests.dll" id="f4d93fd2-7e3a-c498-38ed-988428585274">
+      <Execution id="9c815621-deeb-4c85-9b44-1a1a6af89166" />
+      <TestMethod codeBase="C:\Users\victo\OneDrive\Documentos\projetos\agendamento\tests\Agendamento.IntegrationTests\bin\Debug\net10.0\Agendamento.IntegrationTests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Agendamento.IntegrationTests.WorkOrders.WorkOrderApiTests" name="UpdateWorkOrderStatus_ShouldUpdateStatusAndNotes" />
+    </UnitTest>
+    <UnitTest name="@spec:AC-011 endpoint rejects invalid email-verification token without personal data" storage="c:\users\victo\onedrive\documentos\projetos\agendamento\tests\agendamento.integrationtests\bin\debug\net10.0\agendamento.integrationtests.dll" id="e5de0fac-74e4-88f4-d483-3c710b4a3446">
+      <Execution id="ebceb039-4b6e-43bf-a6e0-66b12e810d07" />
+      <TestMethod codeBase="C:\Users\victo\OneDrive\Documentos\projetos\agendamento\tests\Agendamento.IntegrationTests\bin\Debug\net10.0\Agendamento.IntegrationTests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Agendamento.IntegrationTests.Identity.EmailVerificationEndpointTests" name="Invalid_token_does_not_confirm_the_email" />
+    </UnitTest>
+    <UnitTest name="Documento canônico em /openapi/v1.json é exposto @spec:AC-036" storage="c:\users\victo\onedrive\documentos\projetos\agendamento\tests\agendamento.integrationtests\bin\debug\net10.0\agendamento.integrationtests.dll" id="c7052e72-a198-9320-5ac1-6eb300d274aa">
+      <Execution id="f8f84d5f-a8e0-43b7-8ce0-a62e87ca9639" />
+      <TestMethod codeBase="C:\Users\victo\OneDrive\Documentos\projetos\agendamento\tests\Agendamento.IntegrationTests\bin\Debug\net10.0\Agendamento.IntegrationTests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Agendamento.IntegrationTests.OpenApi.SwaggerUiTests" name="Given_TestEnvironment_When_OpenApiDocumentIsAccessed_Then_ReturnsOk" />
+    </UnitTest>
+    <UnitTest name="Nenhuma tabela ITenantOwned deve existir sem RLS habilitado na migration" storage="c:\users\victo\onedrive\documentos\projetos\agendamento\tests\agendamento.integrationtests\bin\debug\net10.0\agendamento.integrationtests.dll" id="f2c90c03-49d6-1db8-a9ca-994eb203f80c">
+      <Execution id="4620e5ea-3c9e-4b7e-8018-3ac8b9db3455" />
+      <TestMethod codeBase="C:\Users\victo\OneDrive\Documentos\projetos\agendamento\tests\Agendamento.IntegrationTests\bin\Debug\net10.0\Agendamento.IntegrationTests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Agendamento.IntegrationTests.Tenancy.MigrationSafetyTests" name="ITenantOwned_Entities_MustHave_RowLevelSecurity_Enabled" />
+    </UnitTest>
+    <UnitTest name="Itens do catálogo de serviços e orçamentos pertencem obrigatoriamente ao TenantId @spec:AC-045" storage="c:\users\victo\onedrive\documentos\projetos\agendamento\tests\agendamento.integrationtests\bin\debug\net10.0\agendamento.integrationtests.dll" id="27b329e1-64f0-44b2-948c-a6d870e15281">
+      <Execution id="05241ace-7c89-4016-bb1e-3f903f334811" />
+      <TestMethod codeBase="C:\Users\victo\OneDrive\Documentos\projetos\agendamento\tests\Agendamento.IntegrationTests\bin\Debug\net10.0\Agendamento.IntegrationTests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Agendamento.IntegrationTests.Quotations.QuotationApiTests" name="ServiceItems_And_Quotations_MustBelongToTenant" />
+    </UnitTest>
+    <UnitTest name="Agendamento.IntegrationTests.Dashboard.DashboardApiTests.GetReport_WithoutAuth_ShouldReturnUnauthorized" storage="c:\users\victo\onedrive\documentos\projetos\agendamento\tests\agendamento.integrationtests\bin\debug\net10.0\agendamento.integrationtests.dll" id="ed108b12-f881-7d7c-2143-a8b5b4139246">
+      <Execution id="aa758612-37d8-4f94-a1de-e512dea86d24" />
+      <TestMethod codeBase="C:\Users\victo\OneDrive\Documentos\projetos\agendamento\tests\Agendamento.IntegrationTests\bin\Debug\net10.0\Agendamento.IntegrationTests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Agendamento.IntegrationTests.Dashboard.DashboardApiTests" name="GetReport_WithoutAuth_ShouldReturnUnauthorized" />
+    </UnitTest>
+    <UnitTest name="Endpoint POST /work-orders/from-quotation/{id} cria OS a partir de orçamento aprovado copiando itens @spec:AC-051 @spec:AC-052" storage="c:\users\victo\onedrive\documentos\projetos\agendamento\tests\agendamento.integrationtests\bin\debug\net10.0\agendamento.integrationtests.dll" id="8dc214cd-c434-d1f3-328b-25a006b41081">
+      <Execution id="d9458694-df55-4270-a899-f33309d88843" />
+      <TestMethod codeBase="C:\Users\victo\OneDrive\Documentos\projetos\agendamento\tests\Agendamento.IntegrationTests\bin\Debug\net10.0\Agendamento.IntegrationTests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Agendamento.IntegrationTests.WorkOrders.WorkOrderApiTests" name="ConvertQuotationToWorkOrder_ShouldCopyItems_WhenApproved" />
+    </UnitTest>
+    <UnitTest name="Endpoint GET /tenants/me retorna perfil do tenant logado sem parametro na rota @spec:AC-026" storage="c:\users\victo\onedrive\documentos\projetos\agendamento\tests\agendamento.integrationtests\bin\debug\net10.0\agendamento.integrationtests.dll" id="06ce1156-d152-7b29-4e23-9b5bc5a3e11e">
+      <Execution id="6428b8ac-fe09-4e3b-b077-5879e1a62463" />
+      <TestMethod codeBase="C:\Users\victo\OneDrive\Documentos\projetos\agendamento\tests\Agendamento.IntegrationTests\bin\Debug\net10.0\Agendamento.IntegrationTests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Agendamento.IntegrationTests.Tenants.CurrentTenantEndpointTests" name="Get_CurrentTenant_ReturnsProfile" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestEntries>
+    <TestEntry testId="9d03f99b-ebe7-88a5-2606-27c65a7f703a" executionId="c9241e5a-be67-4ed5-be43-94d0b1340c78" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="73448910-65c0-3c49-e961-69db197cdfb7" executionId="ceb6a496-a7bb-497d-bc9f-b389e0cecaa2" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="29e7b588-09c5-043e-5a25-589da153ebcb" executionId="42e8659e-741c-49e4-ae61-df3699089786" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="161f1ad8-4098-3ed0-006f-76b9350eed9a" executionId="988891db-8fbd-43ce-b559-4f59047af6da" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="bf760f89-b71b-edf3-f120-f79079213d6f" executionId="e14f5bce-d51e-4013-969d-41b46db5968f" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="27b329e1-64f0-44b2-948c-a6d870e15281" executionId="05241ace-7c89-4016-bb1e-3f903f334811" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="3e98abb6-48ab-211b-1976-76411b103332" executionId="6b69afd8-7043-47a5-bfa3-93176622545f" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="94552611-ab29-e49e-1210-b763c990df3d" executionId="4baaea91-b2c8-4f07-b97c-a86149dccbc2" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="8fd24c80-3b66-db6c-d71e-65143d5967df" executionId="5863f3b1-cd0b-4d93-a6d8-69e24d953759" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="9d854d4d-c190-f041-6caa-8bd569c33225" executionId="3c890741-dec8-4bb6-a1f6-09dc22324044" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="8dc214cd-c434-d1f3-328b-25a006b41081" executionId="d9458694-df55-4270-a899-f33309d88843" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="2d9c7b30-8789-c820-c0ca-a1e1ab683cde" executionId="b6b6db9d-f13a-48a3-a097-04af33a3ed3c" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="d39241d4-44d8-1b0d-453a-b0ef5bac2ca2" executionId="10dd5b83-92d3-437f-9c28-d6186e40f649" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="daa9bb70-8521-a8e7-7127-9478dd1153ad" executionId="3f3e5c5c-00a6-4a69-9672-72c0c60a6870" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="49290bd8-1698-c4a7-971a-f5f4fbb086df" executionId="0e73714d-7725-4a16-a307-b9b5281efead" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="fb0f39f1-0175-ac9d-0d90-bbad2f32e040" executionId="98c22eda-29fa-451b-b0e0-cbeeeeba6d34" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="ed108b12-f881-7d7c-2143-a8b5b4139246" executionId="aa758612-37d8-4f94-a1de-e512dea86d24" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="5596b5d1-75f3-c857-4d55-9c8b92a7546f" executionId="72f8dd45-a7c0-499e-8c33-8facb7ed188f" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="f4d93fd2-7e3a-c498-38ed-988428585274" executionId="9c815621-deeb-4c85-9b44-1a1a6af89166" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="06ce1156-d152-7b29-4e23-9b5bc5a3e11e" executionId="6428b8ac-fe09-4e3b-b077-5879e1a62463" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="ebb0440a-1083-3ccb-61d3-35c8b94599ca" executionId="c01beda4-1bad-4d99-bf8c-768400146a5b" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="03ec324f-8453-4716-7d73-9db2ea10f8dc" executionId="a3ff0c1a-aaf1-4a44-8652-6c8fbffff394" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="acc276a2-43b9-4126-1b90-1db9140e7431" executionId="8e460dc0-4442-4c91-b9d1-7c167c910b87" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="1958b640-d0b0-1be9-54f7-363640d04ea0" executionId="354dba41-3218-42f5-84e0-21aa16dd9e93" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="ffcafc37-a3b2-0224-51ee-9ed201632082" executionId="669fe6fa-8196-41b1-b763-7ca0cf1eabb1" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="0c1e6f16-f6c7-15b4-c3ec-4248735ea9d1" executionId="094970a1-f245-418c-9f9c-bfcf767170dc" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="f2c90c03-49d6-1db8-a9ca-994eb203f80c" executionId="4620e5ea-3c9e-4b7e-8018-3ac8b9db3455" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="08eaa485-67e3-336c-e109-7dadca172054" executionId="5246356c-283f-4aa6-ba54-462a60bb7e6d" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="3184bf78-fdb8-7c9e-7662-f697679fa300" executionId="e14ff8b9-2d59-4441-bfc5-bfc6b94abde5" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="2a7e4789-8367-2e62-6290-b577e711799a" executionId="d11b7859-d572-4dbb-81bc-ca4ed5c8144b" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="eadda95d-4e37-e86c-3442-7c8fe3b9e058" executionId="accdca3c-bad9-4a6d-bfe4-a571beef187e" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="e24c2cb7-d92c-1dff-3a86-119ddfa961d2" executionId="88b7822c-0544-4f26-b60f-a2b374614b66" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="eec73f5e-9d24-5b6f-3a39-e433d26156e5" executionId="9c88f1d2-495f-4752-9b11-a1112bec130f" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="e5de0fac-74e4-88f4-d483-3c710b4a3446" executionId="ebceb039-4b6e-43bf-a6e0-66b12e810d07" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="c7052e72-a198-9320-5ac1-6eb300d274aa" executionId="f8f84d5f-a8e0-43b7-8ce0-a62e87ca9639" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="4763d7c3-2f4e-15e4-5c56-ebc5f6137cfb" executionId="e2007ae1-d3ac-415d-b1b1-37ddd42fe8ac" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="8501217e-5ad7-9b5f-359e-24d2b87d28e0" executionId="cb1b73e7-3fc1-4ebe-9498-a2fd76bb62b9" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="b4e61141-9063-081f-1b1d-7f0a3fe53992" executionId="5095eacb-5170-494c-a3cb-87a57bfd860d" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="1e370d9f-e8ee-dd04-ee0b-c0744cda0f8a" executionId="a8cb1e4b-f040-40c9-b65f-d509b09ad512" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="88d88057-9d67-7aa0-2158-1e3d0ac378b9" executionId="9ff29168-0910-49c9-bafd-c5933af6f08e" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="e587b696-1c8d-16b5-7b7b-40c50d2be1a4" executionId="d4b7d850-bdd9-4dcd-aecd-cd68338e2b30" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="53fc7cd6-8ab8-6a7c-49d9-b31e0d18a8b5" executionId="df2a51dd-5f82-4747-8d67-703ebf59debf" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="9c2b5052-3bdf-92ac-4bfa-fc6217e11f12" executionId="26698630-8724-42e5-9131-57a4a67dbc5d" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="f78d0f0e-535f-ad22-4a41-45f5925cc2d2" executionId="6b10f7f9-db07-4ac9-ae34-648678191ab5" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="fa94bf8e-c85f-f234-c718-94ed1a8c0413" executionId="f3847fc9-3b30-4a0d-8cbe-a8b97a566547" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <TestLists>
+    <TestList name="Results Not in a List" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="All Loaded Results" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <ResultSummary outcome="Failed">
+    <Counters total="45" executed="45" passed="33" failed="12" error="0" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
+    <Output>
+      <StdOut>[xUnit.net 00:00:00.00] xUnit.net VSTest Adapter v3.1.5+1b188a7b0a (64-bit .NET 10.0.10)&#xD;
+[xUnit.net 00:00:00.20]   Discovering: Agendamento.IntegrationTests&#xD;
+[xUnit.net 00:00:00.34]   Discovered:  Agendamento.IntegrationTests&#xD;
+[xUnit.net 00:00:00.51]   Starting:    Agendamento.IntegrationTests&#xD;
+info: Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager[63]&#xD;
+      User profile is available. Using 'C:\Users\victo\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.&#xD;
+info: Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager[63]&#xD;
+      User profile is available. Using 'C:\Users\victo\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.&#xD;
+info: Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager[63]&#xD;
+      User profile is available. Using 'C:\Users\victo\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.&#xD;
+info: Microsoft.Hosting.Lifetime[0]&#xD;
+      Application started. Press Ctrl+C to shut down.&#xD;
+info: Microsoft.Hosting.Lifetime[0]&#xD;
+      Hosting environment: Development&#xD;
+info: Microsoft.Hosting.Lifetime[0]&#xD;
+      Content root path: C:\Users\victo\OneDrive\Documentos\projetos\agendamento\src\Agendamento.Api&#xD;
+info: Microsoft.Hosting.Lifetime[0]&#xD;
+      Application started. Press Ctrl+C to shut down.&#xD;
+info: Microsoft.Hosting.Lifetime[0]&#xD;
+      Hosting environment: Development&#xD;
+info: Microsoft.Hosting.Lifetime[0]&#xD;
+      Content root path: C:\Users\victo\OneDrive\Documentos\projetos\agendamento\src\Agendamento.Api&#xD;
+info: Microsoft.Hosting.Lifetime[0]&#xD;
+      Application started. Press Ctrl+C to shut down.&#xD;
+info: Microsoft.Hosting.Lifetime[0]&#xD;
+      Hosting environment: Development&#xD;
+info: Microsoft.Hosting.Lifetime[0]&#xD;
+      Content root path: C:\Users\victo\OneDrive\Documentos\projetos\agendamento\src\Agendamento.Api&#xD;
+[xUnit.net 00:00:02.57]       System.InvalidOperationException : Can only approve Pending quotations.&#xD;
+[xUnit.net 00:00:02.57]       Stack Trace:&#xD;
+[xUnit.net 00:00:02.57]         C:\Users\victo\OneDrive\Documentos\projetos\agendamento\src\Agendamento.Api\Domain\Quotations\Quotation.cs(123,0): at Agendamento.Api.Domain.Quotations.Quotation.Approve()&#xD;
+[xUnit.net 00:00:02.57]         C:\Users\victo\OneDrive\Documentos\projetos\agendamento\tests\Agendamento.IntegrationTests\WorkOrders\WorkOrderApiTests.cs(57,0): at Agendamento.IntegrationTests.WorkOrders.WorkOrderApiTests.TenantIsolation_WorkOrdersAndAppointments_MustBelongToTenant()&#xD;
+[xUnit.net 00:00:02.57]         --- End of stack trace from previous location ---&#xD;
+[xUnit.net 00:00:02.89]       System.InvalidOperationException : Can only approve Pending quotations.&#xD;
+[xUnit.net 00:00:02.89]       Stack Trace:&#xD;
+[xUnit.net 00:00:02.89]         C:\Users\victo\OneDrive\Documentos\projetos\agendamento\src\Agendamento.Api\Domain\Quotations\Quotation.cs(123,0): at Agendamento.Api.Domain.Quotations.Quotation.Approve()&#xD;
+[xUnit.net 00:00:02.89]         C:\Users\victo\OneDrive\Documentos\projetos\agendamento\tests\Agendamento.IntegrationTests\WorkOrders\WorkOrderApiTests.cs(142,0): at Agendamento.IntegrationTests.WorkOrders.WorkOrderApiTests.UpdateWorkOrderStatus_ShouldUpdateStatusAndNotes()&#xD;
+[xUnit.net 00:00:02.89]         --- End of stack trace from previous location ---&#xD;
+[xUnit.net 00:00:02.90]       System.InvalidOperationException : Can only approve Pending quotations.&#xD;
+[xUnit.net 00:00:02.90]       Stack Trace:&#xD;
+[xUnit.net 00:00:02.90]         C:\Users\victo\OneDrive\Documentos\projetos\agendamento\src\Agendamento.Api\Domain\Quotations\Quotation.cs(123,0): at Agendamento.Api.Domain.Quotations.Quotation.Approve()&#xD;
+[xUnit.net 00:00:02.90]         C:\Users\victo\OneDrive\Documentos\projetos\agendamento\tests\Agendamento.IntegrationTests\WorkOrders\WorkOrderApiTests.cs(113,0): at Agendamento.IntegrationTests.WorkOrders.WorkOrderApiTests.ConvertQuotationToWorkOrder_ShouldCopyItems_WhenApproved()&#xD;
+[xUnit.net 00:00:02.90]         --- End of stack trace from previous location ---&#xD;
+info: Agendamento.Api.Infrastructure.Notifications.NotificationOutboxProcessor[0]&#xD;
+      Notification Outbox Processor is starting.&#xD;
+info: Agendamento.Api.Infrastructure.Notifications.NotificationOutboxProcessor[0]&#xD;
+      Notification Outbox Processor is starting.&#xD;
+info: Agendamento.Api.Infrastructure.Notifications.NotificationOutboxProcessor[0]&#xD;
+      Notification Outbox Processor is starting.&#xD;
+info: Microsoft.AspNetCore.Hosting.Diagnostics[1]&#xD;
+      Request starting HTTP/1.1 POST http://localhost/api/v1/auth/email-verifications - application/json;+charset=utf-8 23&#xD;
+info: Microsoft.AspNetCore.Hosting.Diagnostics[1]&#xD;
+      Request starting HTTP/1.1 GET http://localhost/api/v1/tenants/me - - -&#xD;
+info: Microsoft.AspNetCore.Hosting.Diagnostics[1]&#xD;
+      Request starting HTTP/1.1 GET http://localhost/api/v1/dashboard/report - - -&#xD;
+info: Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager[63]&#xD;
+      User profile is available. Using 'C:\Users\victo\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.&#xD;
+info: Agendamento.Api.Infrastructure.Notifications.NotificationOutboxProcessor[0]&#xD;
+      Notification Outbox Processor is starting.&#xD;
+fail: Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware[1]&#xD;
+      An unhandled exception has occurred while executing the request.&#xD;
+      System.InvalidOperationException: The AuthorizationPolicy named: 'TenantPolicy' was not found.&#xD;
+         at Microsoft.AspNetCore.Authorization.AuthorizationPolicy.CombineAsync(IAuthorizationPolicyProvider policyProvider, IEnumerable`1 authorizeData, IEnumerable`1 policies)&#xD;
+         at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)&#xD;
+         at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)&#xD;
+         at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)&#xD;
+info: Microsoft.AspNetCore.Authorization.DefaultAuthorizationService[2]&#xD;
+      Authorization failed. These requirements were not met:&#xD;
+      DenyAnonymousAuthorizationRequirement: Requires an authenticated user.&#xD;
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]&#xD;
+      Executing endpoint 'HTTP: POST /api/v1/auth/email-verifications =&gt; ConfirmAsync'&#xD;
+info: Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerHandler[12]&#xD;
+      AuthenticationScheme: Bearer was challenged.&#xD;
+info: Microsoft.Hosting.Lifetime[0]&#xD;
+      Application started. Press Ctrl+C to shut down.&#xD;
+info: Microsoft.Hosting.Lifetime[0]&#xD;
+      Hosting environment: Development&#xD;
+info: Microsoft.Hosting.Lifetime[0]&#xD;
+      Content root path: C:\Users\victo\OneDrive\Documentos\projetos\agendamento\src\Agendamento.Api&#xD;
+info: Microsoft.AspNetCore.Http.Result.NoContentResult[1]&#xD;
+      Setting HTTP status code 204.&#xD;
+info: Microsoft.AspNetCore.Hosting.Diagnostics[2]&#xD;
+      Request finished HTTP/1.1 GET http://localhost/api/v1/dashboard/report - 500 - text/plain;+charset=utf-8 479.9676ms&#xD;
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]&#xD;
+      Executed endpoint 'HTTP: POST /api/v1/auth/email-verifications =&gt; ConfirmAsync'&#xD;
+info: Microsoft.AspNetCore.Hosting.Diagnostics[1]&#xD;
+      Request starting HTTP/1.1 POST http://localhost/api/v1/financial/payables - application/json;+charset=utf-8 114&#xD;
+info: Microsoft.AspNetCore.Hosting.Diagnostics[2]&#xD;
+      Request finished HTTP/1.1 GET http://localhost/api/v1/tenants/me - 401 - - 481.0228ms&#xD;
+[xUnit.net 00:00:03.59]       Assert.Contains() Failure: Sub-string not found&#xD;
+[xUnit.net 00:00:03.59]       String:    "using Microsoft.EntityFrameworkCore.Migra"···&#xD;
+[xUnit.net 00:00:03.59]       Not found: "ALTER TABLE Appointment ENABLE ROW LEVEL "···&#xD;
+[xUnit.net 00:00:03.59]       Stack Trace:&#xD;
+[xUnit.net 00:00:03.59]         C:\Users\victo\OneDrive\Documentos\projetos\agendamento\tests\Agendamento.IntegrationTests\Tenancy\MigrationSafetyTests.cs(52,0): at Agendamento.IntegrationTests.Tenancy.MigrationSafetyTests.ITenantOwned_Entities_MustHave_RowLevelSecurity_Enabled()&#xD;
+[xUnit.net 00:00:03.59]            at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)&#xD;
+[xUnit.net 00:00:03.59]            at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)&#xD;
+info: Microsoft.AspNetCore.Hosting.Diagnostics[2]&#xD;
+      Request finished HTTP/1.1 POST http://localhost/api/v1/auth/email-verifications - 204 - - 510.3868ms&#xD;
+info: Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager[63]&#xD;
+      User profile is available. Using 'C:\Users\victo\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.&#xD;
+info: Agendamento.Api.Infrastructure.Notifications.NotificationOutboxProcessor[0]&#xD;
+      Notification Outbox Processor is starting.&#xD;
+info: Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager[63]&#xD;
+      User profile is available. Using 'C:\Users\victo\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.&#xD;
+info: Agendamento.Api.Infrastructure.Notifications.NotificationOutboxProcessor[0]&#xD;
+      Notification Outbox Processor is starting.&#xD;
+info: Microsoft.AspNetCore.Hosting.Diagnostics[1]&#xD;
+      Request starting HTTP/1.1 POST http://localhost/api/v1/auth/email-verifications - application/json;+charset=utf-8 23&#xD;
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]&#xD;
+      Executing endpoint 'HTTP: POST /api/v1/auth/email-verifications =&gt; ConfirmAsync'&#xD;
+info: Microsoft.AspNetCore.Http.HttpResults.ProblemHttpResult[1]&#xD;
+      Setting HTTP status code 400.&#xD;
+info: Microsoft.AspNetCore.Http.HttpResults.ProblemHttpResult[3]&#xD;
+      Writing value of type 'ProblemDetails' as Json.&#xD;
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]&#xD;
+      Executed endpoint 'HTTP: POST /api/v1/auth/email-verifications =&gt; ConfirmAsync'&#xD;
+info: Microsoft.AspNetCore.Hosting.Diagnostics[2]&#xD;
+      Request finished HTTP/1.1 POST http://localhost/api/v1/auth/email-verifications - 400 - application/problem+json 28.1562ms&#xD;
+info: Microsoft.AspNetCore.Authorization.DefaultAuthorizationService[2]&#xD;
+      Authorization failed. These requirements were not met:&#xD;
+      DenyAnonymousAuthorizationRequirement: Requires an authenticated user.&#xD;
+info: Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerHandler[12]&#xD;
+      AuthenticationScheme: Bearer was challenged.&#xD;
+info: Microsoft.AspNetCore.Hosting.Diagnostics[2]&#xD;
+      Request finished HTTP/1.1 POST http://localhost/api/v1/financial/payables - 401 - - 190.9567ms&#xD;
+[xUnit.net 00:00:03.82]       Assert.Equal() Failure: Values differ&#xD;
+[xUnit.net 00:00:03.82]       Expected: Unauthorized&#xD;
+[xUnit.net 00:00:03.82]       Actual:   InternalServerError&#xD;
+[xUnit.net 00:00:03.82]       Stack Trace:&#xD;
+[xUnit.net 00:00:03.82]         C:\Users\victo\OneDrive\Documentos\projetos\agendamento\tests\Agendamento.IntegrationTests\Dashboard\DashboardApiTests.cs(46,0): at Agendamento.IntegrationTests.Dashboard.DashboardApiTests.GetReport_WithoutAuth_ShouldReturnUnauthorized()&#xD;
+[xUnit.net 00:00:03.82]         --- End of stack trace from previous location ---&#xD;
+info: Microsoft.AspNetCore.Hosting.Diagnostics[1]&#xD;
+      Request starting HTTP/1.1 GET http://localhost/api/v1/dashboard/schedule - - -&#xD;
+fail: Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware[1]&#xD;
+      An unhandled exception has occurred while executing the request.&#xD;
+      System.InvalidOperationException: The AuthorizationPolicy named: 'TenantPolicy' was not found.&#xD;
+         at Microsoft.AspNetCore.Authorization.AuthorizationPolicy.CombineAsync(IAuthorizationPolicyProvider policyProvider, IEnumerable`1 authorizeData, IEnumerable`1 policies)&#xD;
+         at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)&#xD;
+         at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)&#xD;
+         at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)&#xD;
+info: Microsoft.Hosting.Lifetime[0]&#xD;
+      Application started. Press Ctrl+C to shut down.&#xD;
+info: Microsoft.Hosting.Lifetime[0]&#xD;
+      Hosting environment: Development&#xD;
+info: Microsoft.Hosting.Lifetime[0]&#xD;
+      Content root path: C:\Users\victo\OneDrive\Documentos\projetos\agendamento\src\Agendamento.Api&#xD;
+info: Microsoft.AspNetCore.Hosting.Diagnostics[1]&#xD;
+      Request starting HTTP/1.1 GET http://localhost/api/v1/tenants/me - - -&#xD;
+info: Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager[63]&#xD;
+      User profile is available. Using 'C:\Users\victo\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.&#xD;
+info: Microsoft.AspNetCore.Hosting.Diagnostics[2]&#xD;
+      Request finished HTTP/1.1 GET http://localhost/api/v1/dashboard/schedule - 500 - text/plain;+charset=utf-8 41.0869ms&#xD;
+info: Agendamento.Api.Infrastructure.Notifications.NotificationOutboxProcessor[0]&#xD;
+      Notification Outbox Processor is starting.&#xD;
+info: Microsoft.AspNetCore.Hosting.Diagnostics[1]&#xD;
+      Request starting HTTP/1.1 POST http://localhost/api/v1/webhooks/billing - application/json;+charset=utf-8 177&#xD;
+info: Microsoft.Hosting.Lifetime[0]&#xD;
+      Application started. Press Ctrl+C to shut down.&#xD;
+info: Microsoft.Hosting.Lifetime[0]&#xD;
+      Hosting environment: Test&#xD;
+info: Microsoft.Hosting.Lifetime[0]&#xD;
+      Content root path: C:\Users\victo\OneDrive\Documentos\projetos\agendamento\src\Agendamento.Api&#xD;
+info: Microsoft.AspNetCore.Hosting.Diagnostics[1]&#xD;
+      Request starting HTTP/1.1 GET http://localhost/swagger/index.html - - -&#xD;
+[xUnit.net 00:00:03.95]       System.Net.Http.HttpRequestException : Response status code does not indicate success: 401 (Unauthorized).&#xD;
+[xUnit.net 00:00:03.95]       Stack Trace:&#xD;
+[xUnit.net 00:00:03.95]            at System.Net.Http.HttpResponseMessage.EnsureSuccessStatusCode()&#xD;
+[xUnit.net 00:00:03.95]         C:\Users\victo\OneDrive\Documentos\projetos\agendamento\tests\Agendamento.IntegrationTests\Financial\FinancialApiTests.cs(32,0): at Agendamento.IntegrationTests.Financial.FinancialApiTests.Can_Create_Payable_And_Register_Payment()&#xD;
+[xUnit.net 00:00:03.95]         --- End of stack trace from previous location ---&#xD;
+info: Microsoft.Hosting.Lifetime[0]&#xD;
+      Application is shutting down...&#xD;
+info: Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager[63]&#xD;
+      User profile is available. Using 'C:\Users\victo\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.&#xD;
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]&#xD;
+      Executing endpoint 'HTTP: GET /api/v1/tenants/me'&#xD;
+info: Agendamento.Api.Infrastructure.Notifications.NotificationOutboxProcessor[0]&#xD;
+      Notification Outbox Processor is starting.&#xD;
+info: Microsoft.AspNetCore.Http.Result.OkObjectResult[1]&#xD;
+      Setting HTTP status code 200.&#xD;
+info: Microsoft.AspNetCore.Http.Result.OkObjectResult[3]&#xD;
+      Writing value of type '&lt;&gt;f__AnonymousType6`2' as Json.&#xD;
+info: Microsoft.Hosting.Lifetime[0]&#xD;
+      Application started. Press Ctrl+C to shut down.&#xD;
+info: Microsoft.Hosting.Lifetime[0]&#xD;
+      Hosting environment: Development&#xD;
+info: Microsoft.Hosting.Lifetime[0]&#xD;
+      Content root path: C:\Users\victo\OneDrive\Documentos\projetos\agendamento\src\Agendamento.Api&#xD;
+info: Microsoft.AspNetCore.Hosting.Diagnostics[1]&#xD;
+      Request starting HTTP/1.1 GET http://localhost/health - - -&#xD;
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]&#xD;
+      Executed endpoint 'HTTP: GET /api/v1/tenants/me'&#xD;
+info: Microsoft.AspNetCore.Hosting.Diagnostics[2]&#xD;
+      Request finished HTTP/1.1 GET http://localhost/api/v1/tenants/me - 200 - application/json;+charset=utf-8 213.5670ms&#xD;
+[xUnit.net 00:00:04.06]       Assert.Equal() Failure: Values differ&#xD;
+[xUnit.net 00:00:04.06]       Expected: Unauthorized&#xD;
+[xUnit.net 00:00:04.06]       Actual:   InternalServerError&#xD;
+[xUnit.net 00:00:04.06]       Stack Trace:&#xD;
+[xUnit.net 00:00:04.06]         C:\Users\victo\OneDrive\Documentos\projetos\agendamento\tests\Agendamento.IntegrationTests\Dashboard\DashboardApiTests.cs(36,0): at Agendamento.IntegrationTests.Dashboard.DashboardApiTests.GetUpcomingSchedule_WithoutAuth_ShouldReturnUnauthorized()&#xD;
+[xUnit.net 00:00:04.06]         --- End of stack trace from previous location ---&#xD;
+info: Microsoft.AspNetCore.Hosting.Diagnostics[1]&#xD;
+      Request starting HTTP/1.1 GET http://localhost/api/v1/dashboard/summary - - -&#xD;
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]&#xD;
+      Executing endpoint 'HTTP: POST /api/v1/webhooks/billing'&#xD;
+fail: Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware[1]&#xD;
+      An unhandled exception has occurred while executing the request.&#xD;
+      System.InvalidOperationException: The AuthorizationPolicy named: 'TenantPolicy' was not found.&#xD;
+         at Microsoft.AspNetCore.Authorization.AuthorizationPolicy.CombineAsync(IAuthorizationPolicyProvider policyProvider, IEnumerable`1 authorizeData, IEnumerable`1 policies)&#xD;
+         at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)&#xD;
+         at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)&#xD;
+         at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)&#xD;
+info: Microsoft.AspNetCore.Http.Result.OkObjectResult[1]&#xD;
+      Setting HTTP status code 200.&#xD;
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]&#xD;
+      Executed endpoint 'HTTP: POST /api/v1/webhooks/billing'&#xD;
+info: Microsoft.AspNetCore.Hosting.Diagnostics[2]&#xD;
+      Request finished HTTP/1.1 GET http://localhost/api/v1/dashboard/summary - 500 - text/plain;+charset=utf-8 63.3262ms&#xD;
+info: Microsoft.AspNetCore.Hosting.Diagnostics[2]&#xD;
+      Request finished HTTP/1.1 POST http://localhost/api/v1/webhooks/billing - 200 - - 256.2850ms&#xD;
+info: Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager[63]&#xD;
+      User profile is available. Using 'C:\Users\victo\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.&#xD;
+info: Agendamento.Api.Infrastructure.Notifications.NotificationOutboxProcessor[0]&#xD;
+      Notification Outbox Processor is starting.&#xD;
+info: Microsoft.Hosting.Lifetime[0]&#xD;
+      Application started. Press Ctrl+C to shut down.&#xD;
+info: Microsoft.Hosting.Lifetime[0]&#xD;
+      Hosting environment: Development&#xD;
+info: Microsoft.Hosting.Lifetime[0]&#xD;
+      Content root path: C:\Users\victo\OneDrive\Documentos\projetos\agendamento\src\Agendamento.Api&#xD;
+info: Microsoft.AspNetCore.Hosting.Diagnostics[1]&#xD;
+      Request starting HTTP/1.1 POST http://localhost/api/v1/auth/email-verifications - application/json;+charset=utf-8 22&#xD;
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]&#xD;
+      Executing endpoint 'Health checks'&#xD;
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]&#xD;
+      Executed endpoint 'Health checks'&#xD;
+info: Microsoft.AspNetCore.Hosting.Diagnostics[2]&#xD;
+      Request finished HTTP/1.1 GET http://localhost/health - 200 - text/plain 171.7278ms&#xD;
+info: Microsoft.Hosting.Lifetime[0]&#xD;
+      Application is shutting down...&#xD;
+info: Microsoft.Hosting.Lifetime[0]&#xD;
+      Application is shutting down...&#xD;
+[xUnit.net 00:00:04.26]       Assert.Equal() Failure: Values differ&#xD;
+[xUnit.net 00:00:04.26]       Expected: Unauthorized&#xD;
+[xUnit.net 00:00:04.26]       Actual:   InternalServerError&#xD;
+[xUnit.net 00:00:04.26]       Stack Trace:&#xD;
+[xUnit.net 00:00:04.26]         C:\Users\victo\OneDrive\Documentos\projetos\agendamento\tests\Agendamento.IntegrationTests\Dashboard\DashboardApiTests.cs(26,0): at Agendamento.IntegrationTests.Dashboard.DashboardApiTests.GetDashboardSummary_WithoutAuth_ShouldReturnUnauthorized()&#xD;
+[xUnit.net 00:00:04.26]         --- End of stack trace from previous location ---&#xD;
+info: Microsoft.Hosting.Lifetime[0]&#xD;
+      Application is shutting down...&#xD;
+info: Microsoft.AspNetCore.Hosting.Diagnostics[2]&#xD;
+      Request finished HTTP/1.1 GET http://localhost/swagger/index.html - 200 - text/html;charset=utf-8 340.8388ms&#xD;
+info: Microsoft.Hosting.Lifetime[0]&#xD;
+      Application started. Press Ctrl+C to shut down.&#xD;
+info: Microsoft.Hosting.Lifetime[0]&#xD;
+      Hosting environment: Development&#xD;
+info: Microsoft.Hosting.Lifetime[0]&#xD;
+      Content root path: C:\Users\victo\OneDrive\Documentos\projetos\agendamento\src\Agendamento.Api&#xD;
+info: Microsoft.AspNetCore.Hosting.Diagnostics[1]&#xD;
+      Request starting HTTP/1.1 POST http://localhost/api/v1/auth/sessions - application/json;+charset=utf-8 58&#xD;
+info: Microsoft.Hosting.Lifetime[0]&#xD;
+      Application is shutting down...&#xD;
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]&#xD;
+      Executing endpoint 'HTTP: POST /api/v1/auth/email-verifications =&gt; ConfirmAsync'&#xD;
+info: Microsoft.AspNetCore.Http.HttpResults.ProblemHttpResult[1]&#xD;
+      Setting HTTP status code 400.&#xD;
+info: Microsoft.AspNetCore.Http.HttpResults.ProblemHttpResult[3]&#xD;
+      Writing value of type 'ProblemDetails' as Json.&#xD;
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]&#xD;
+      Executed endpoint 'HTTP: POST /api/v1/auth/email-verifications =&gt; ConfirmAsync'&#xD;
+info: Microsoft.AspNetCore.Hosting.Diagnostics[2]&#xD;
+      Request finished HTTP/1.1 POST http://localhost/api/v1/auth/email-verifications - 400 - application/problem+json 147.8115ms&#xD;
+info: Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager[63]&#xD;
+      User profile is available. Using 'C:\Users\victo\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.&#xD;
+info: Agendamento.Api.Infrastructure.Notifications.NotificationOutboxProcessor[0]&#xD;
+      Notification Outbox Processor is starting.&#xD;
+info: Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager[63]&#xD;
+      User profile is available. Using 'C:\Users\victo\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.&#xD;
+info: Agendamento.Api.Infrastructure.Notifications.NotificationOutboxProcessor[0]&#xD;
+      Notification Outbox Processor is starting.&#xD;
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]&#xD;
+      Executing endpoint 'HTTP: POST /api/v1/auth/sessions =&gt; CreateAsync'&#xD;
+info: Microsoft.AspNetCore.Http.HttpResults.ProblemHttpResult[1]&#xD;
+      Setting HTTP status code 403.&#xD;
+info: Microsoft.AspNetCore.Http.HttpResults.ProblemHttpResult[3]&#xD;
+      Writing value of type 'ProblemDetails' as Json.&#xD;
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]&#xD;
+      Executed endpoint 'HTTP: POST /api/v1/auth/sessions =&gt; CreateAsync'&#xD;
+info: Microsoft.AspNetCore.Hosting.Diagnostics[2]&#xD;
+      Request finished HTTP/1.1 POST http://localhost/api/v1/auth/sessions - 403 - application/problem+json 135.3628ms&#xD;
+info: Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager[63]&#xD;
+      User profile is available. Using 'C:\Users\victo\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.&#xD;
+info: Agendamento.Api.Infrastructure.Notifications.NotificationOutboxProcessor[0]&#xD;
+      Notification Outbox Processor is starting.&#xD;
+info: Microsoft.Hosting.Lifetime[0]&#xD;
+      Application started. Press Ctrl+C to shut down.&#xD;
+info: Microsoft.Hosting.Lifetime[0]&#xD;
+      Hosting environment: Development&#xD;
+info: Microsoft.Hosting.Lifetime[0]&#xD;
+      Content root path: C:\Users\victo\OneDrive\Documentos\projetos\agendamento\src\Agendamento.Api&#xD;
+info: Microsoft.AspNetCore.Hosting.Diagnostics[1]&#xD;
+      Request starting HTTP/1.1 GET http://localhost/openapi/v1.json - - -&#xD;
+info: Microsoft.Hosting.Lifetime[0]&#xD;
+      Application started. Press Ctrl+C to shut down.&#xD;
+info: Microsoft.Hosting.Lifetime[0]&#xD;
+      Hosting environment: Development&#xD;
+info: Microsoft.Hosting.Lifetime[0]&#xD;
+      Content root path: C:\Users\victo\OneDrive\Documentos\projetos\agendamento\src\Agendamento.Api&#xD;
+info: Microsoft.AspNetCore.Hosting.Diagnostics[1]&#xD;
+      Request starting HTTP/1.1 GET http://localhost/openapi/v1.json - - -&#xD;
+info: Microsoft.Hosting.Lifetime[0]&#xD;
+      Application started. Press Ctrl+C to shut down.&#xD;
+info: Microsoft.Hosting.Lifetime[0]&#xD;
+      Hosting environment: Development&#xD;
+info: Microsoft.Hosting.Lifetime[0]&#xD;
+      Content root path: C:\Users\victo\OneDrive\Documentos\projetos\agendamento\src\Agendamento.Api&#xD;
+info: Microsoft.AspNetCore.Hosting.Diagnostics[1]&#xD;
+      Request starting HTTP/1.1 POST http://localhost/api/v1/auth/sessions - application/json;+charset=utf-8 108&#xD;
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]&#xD;
+      Executing endpoint 'HTTP: GET /openapi/{documentName}.json'&#xD;
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]&#xD;
+      Executing endpoint 'HTTP: GET /openapi/{documentName}.json'&#xD;
+info: Microsoft.AspNetCore.Mvc.Infrastructure.DefaultActionDescriptorCollectionProvider[1]&#xD;
+      No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts&#xD;
+info: Microsoft.AspNetCore.Mvc.Infrastructure.DefaultActionDescriptorCollectionProvider[1]&#xD;
+      No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts&#xD;
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]&#xD;
+      Executing endpoint 'HTTP: POST /api/v1/auth/sessions =&gt; CreateAsync'&#xD;
+info: Microsoft.AspNetCore.Http.Result.OkObjectResult[1]&#xD;
+      Setting HTTP status code 200.&#xD;
+info: Microsoft.AspNetCore.Http.Result.OkObjectResult[3]&#xD;
+      Writing value of type 'SessionResponse' as Json.&#xD;
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]&#xD;
+      Executed endpoint 'HTTP: POST /api/v1/auth/sessions =&gt; CreateAsync'&#xD;
+info: Microsoft.AspNetCore.Hosting.Diagnostics[2]&#xD;
+      Request finished HTTP/1.1 POST http://localhost/api/v1/auth/sessions - 200 - application/json;+charset=utf-8 137.2867ms&#xD;
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]&#xD;
+      Executed endpoint 'HTTP: GET /openapi/{documentName}.json'&#xD;
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]&#xD;
+      Executed endpoint 'HTTP: GET /openapi/{documentName}.json'&#xD;
+info: Microsoft.AspNetCore.Hosting.Diagnostics[2]&#xD;
+      Request finished HTTP/1.1 GET http://localhost/openapi/v1.json - 200 - application/json;charset=utf-8 401.1935ms&#xD;
+info: Microsoft.AspNetCore.Hosting.Diagnostics[2]&#xD;
+      Request finished HTTP/1.1 GET http://localhost/openapi/v1.json - 200 - application/json;charset=utf-8 391.2257ms&#xD;
+info: Microsoft.Hosting.Lifetime[0]&#xD;
+      Application is shutting down...&#xD;
+info: Microsoft.Hosting.Lifetime[0]&#xD;
+      Application is shutting down...&#xD;
+info: Microsoft.Hosting.Lifetime[0]&#xD;
+      Application is shutting down...&#xD;
+[xUnit.net 00:00:05.01]       DotNet.Testcontainers.Builders.DockerUnavailableException : Docker is either not running or misconfigured. Please ensure that Docker is running and that the endpoint is properly configured.&#xD;
+[xUnit.net 00:00:05.01]       You can customize your configuration using either the environment variables or the ~/.testcontainers.properties file.&#xD;
+[xUnit.net 00:00:05.01]       For more information, visit: https://dotnet.testcontainers.org/custom_configuration/.&#xD;
+[xUnit.net 00:00:05.01]         Details: &#xD;
+[xUnit.net 00:00:05.01]           Failed to connect to Docker endpoint at 'npipe://./pipe/docker_engine'.&#xD;
+[xUnit.net 00:00:05.01]       ---- System.AggregateException : One or more errors occurred. (Failed to connect to Docker endpoint at 'npipe://./pipe/docker_engine'.)&#xD;
+[xUnit.net 00:00:05.01]       -------- DotNet.Testcontainers.Builders.DockerUnavailableException : Failed to connect to Docker endpoint at 'npipe://./pipe/docker_engine'.&#xD;
+[xUnit.net 00:00:05.01]       ------------ System.TimeoutException : The operation has timed out.&#xD;
+[xUnit.net 00:00:05.01]       Stack Trace:&#xD;
+[xUnit.net 00:00:05.01]         /_/src/Testcontainers/Guard.Null.cs(62,0): at DotNet.Testcontainers.Guard.ThrowIf[TType](ArgumentInfo`1&amp; argument, Func`2 condition, Func`2 ifClause)&#xD;
+[xUnit.net 00:00:05.01]         /_/src/Testcontainers/Builders/AbstractBuilder`4.cs(146,0): at DotNet.Testcontainers.Builders.AbstractBuilder`4.Validate()&#xD;
+[xUnit.net 00:00:05.01]         /_/src/Testcontainers/Builders/ContainerBuilder`3.cs(408,0): at DotNet.Testcontainers.Builders.ContainerBuilder`3.Validate()&#xD;
+[xUnit.net 00:00:05.01]         /_/src/Testcontainers.PostgreSql/PostgreSqlBuilder.cs(101,0): at Testcontainers.PostgreSql.PostgreSqlBuilder.Validate()&#xD;
+[xUnit.net 00:00:05.01]         /_/src/Testcontainers.PostgreSql/PostgreSqlBuilder.cs(75,0): at Testcontainers.PostgreSql.PostgreSqlBuilder.Build()&#xD;
+[xUnit.net 00:00:05.01]         C:\Users\victo\OneDrive\Documentos\projetos\agendamento\tests\Agendamento.IntegrationTests\Infrastructure\PostgreSqlFixture.cs(29,0): at Agendamento.IntegrationTests.Infrastructure.PostgreSqlFixture..ctor()&#xD;
+[xUnit.net 00:00:05.01]            at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Constructor(Object obj, IntPtr* args)&#xD;
+[xUnit.net 00:00:05.01]            at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)&#xD;
+[xUnit.net 00:00:05.01]         ----- Inner Stack Trace -----&#xD;
+[xUnit.net 00:00:05.01]         &#xD;
+[xUnit.net 00:00:05.01]         ----- Inner Stack Trace -----&#xD;
+[xUnit.net 00:00:05.01]         &#xD;
+[xUnit.net 00:00:05.01]         ----- Inner Stack Trace -----&#xD;
+[xUnit.net 00:00:05.01]            at System.IO.Pipes.NamedPipeClientStream.ConnectInternal(Int32 timeout, CancellationToken cancellationToken, Int32 startTime)&#xD;
+[xUnit.net 00:00:05.01]            at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)&#xD;
+[xUnit.net 00:00:05.01]         --- End of stack trace from previous location ---&#xD;
+[xUnit.net 00:00:05.01]            at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)&#xD;
+[xUnit.net 00:00:05.01]            at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task&amp; currentTaskSlot, Thread threadPoolThread)&#xD;
+[xUnit.net 00:00:05.01]         --- End of stack trace from previous location ---&#xD;
+[xUnit.net 00:00:05.01]         /_/src/Docker.DotNet/DockerClient.cs(69,0): at Docker.DotNet.DockerClient.&lt;&gt;c__DisplayClass5_0.&lt;&lt;-ctor&gt;b__0&gt;d.MoveNext()&#xD;
+[xUnit.net 00:00:05.01]         --- End of stack trace from previous location ---&#xD;
+[xUnit.net 00:00:05.01]         /_/src/Docker.DotNet/Microsoft.Net.Http.Client/ManagedHandler.cs(160,0): at Microsoft.Net.Http.Client.ManagedHandler.ProcessRequestAsync(HttpRequestMessage request, CancellationToken cancellationToken)&#xD;
+[xUnit.net 00:00:05.01]         /_/src/Docker.DotNet/Microsoft.Net.Http.Client/ManagedHandler.cs(77,0): at Microsoft.Net.Http.Client.ManagedHandler.SendAsync(HttpRequestMessage httpRequestMessage, CancellationToken cancellationToken)&#xD;
+[xUnit.net 00:00:05.01]            at System.Net.Http.HttpClient.&lt;SendAsync&gt;g__Core|83_0(HttpRequestMessage request, HttpCompletionOption completionOption, CancellationTokenSource cts, Boolean disposeCts, CancellationTokenSource pendingRequestsCts, CancellationToken originalCancellationToken)&#xD;
+[xUnit.net 00:00:05.01]         /_/src/Docker.DotNet/DockerClient.cs(433,0): at Docker.DotNet.DockerClient.PrivateMakeRequestAsync(TimeSpan timeout, HttpCompletionOption completionOption, HttpMethod method, String path, IQueryString queryString, IDictionary`2 headers, IRequestContent data, CancellationToken cancellationToken)&#xD;
+[xUnit.net 00:00:05.01]         /_/src/Docker.DotNet/DockerClient.cs(243,0): at Docker.DotNet.DockerClient.MakeRequestAsync[T](IEnumerable`1 errorHandlers, HttpMethod method, String path, IQueryString queryString, IRequestContent body, IDictionary`2 headers, TimeSpan timeout, CancellationToken token)&#xD;
+[xUnit.net 00:00:05.01]         /_/src/Testcontainers/Builders/DockerEndpointAuthenticationProvider.cs(48,0): at DotNet.Testcontainers.Builders.DockerEndpointAuthenticationProvider.&lt;&gt;c__DisplayClass5_0.&lt;&lt;IsAvailable&gt;b__0&gt;d.MoveNext()&#xD;
+[xUnit.net 00:00:05.01]       Class fixture type 'Agendamento.IntegrationTests.Infrastructure.PostgreSqlFixture' threw in its constructor&#xD;
+[xUnit.net 00:00:05.01]       ---- DotNet.Testcontainers.Builders.DockerUnavailableException : Docker is either not running or misconfigured. Please ensure that Docker is running and that the endpoint is properly configured.&#xD;
+[xUnit.net 00:00:05.01]       You can customize your configuration using either the environment variables or the ~/.testcontainers.properties file.&#xD;
+[xUnit.net 00:00:05.01]       For more information, visit: https://dotnet.testcontainers.org/custom_configuration/.&#xD;
+[xUnit.net 00:00:05.01]         Details: &#xD;
+[xUnit.net 00:00:05.01]           Failed to connect to Docker endpoint at 'npipe://./pipe/docker_engine'.&#xD;
+[xUnit.net 00:00:05.01]       -------- System.AggregateException : One or more errors occurred. (Failed to connect to Docker endpoint at 'npipe://./pipe/docker_engine'.)&#xD;
+[xUnit.net 00:00:05.01]       ------------ DotNet.Testcontainers.Builders.DockerUnavailableException : Failed to connect to Docker endpoint at 'npipe://./pipe/docker_engine'.&#xD;
+[xUnit.net 00:00:05.01]       ---------------- System.TimeoutException : The operation has timed out.&#xD;
+[xUnit.net 00:00:05.01]       Stack Trace:&#xD;
+[xUnit.net 00:00:05.01]         &#xD;
+[xUnit.net 00:00:05.01]         ----- Inner Stack Trace -----&#xD;
+[xUnit.net 00:00:05.01]         /_/src/Testcontainers/Guard.Null.cs(62,0): at DotNet.Testcontainers.Guard.ThrowIf[TType](ArgumentInfo`1&amp; argument, Func`2 condition, Func`2 ifClause)&#xD;
+[xUnit.net 00:00:05.01]         /_/src/Testcontainers/Builders/AbstractBuilder`4.cs(146,0): at DotNet.Testcontainers.Builders.AbstractBuilder`4.Validate()&#xD;
+[xUnit.net 00:00:05.01]         /_/src/Testcontainers/Builders/ContainerBuilder`3.cs(408,0): at DotNet.Testcontainers.Builders.ContainerBuilder`3.Validate()&#xD;
+[xUnit.net 00:00:05.01]         /_/src/Testcontainers.PostgreSql/PostgreSqlBuilder.cs(101,0): at Testcontainers.PostgreSql.PostgreSqlBuilder.Validate()&#xD;
+[xUnit.net 00:00:05.01]         /_/src/Testcontainers.PostgreSql/PostgreSqlBuilder.cs(75,0): at Testcontainers.PostgreSql.PostgreSqlBuilder.Build()&#xD;
+[xUnit.net 00:00:05.01]         C:\Users\victo\OneDrive\Documentos\projetos\agendamento\tests\Agendamento.IntegrationTests\Infrastructure\PostgreSqlFixture.cs(29,0): at Agendamento.IntegrationTests.Infrastructure.PostgreSqlFixture..ctor()&#xD;
+[xUnit.net 00:00:05.01]            at InvokeStub_PostgreSqlFixture..ctor(Object, Object, IntPtr*)&#xD;
+[xUnit.net 00:00:05.01]            at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)&#xD;
+[xUnit.net 00:00:05.01]         ----- Inner Stack Trace -----&#xD;
+[xUnit.net 00:00:05.01]         &#xD;
+[xUnit.net 00:00:05.01]         ----- Inner Stack Trace -----&#xD;
+[xUnit.net 00:00:05.01]         &#xD;
+[xUnit.net 00:00:05.01]         ----- Inner Stack Trace -----&#xD;
+[xUnit.net 00:00:05.01]            at System.IO.Pipes.NamedPipeClientStream.ConnectInternal(Int32 timeout, CancellationToken cancellationToken, Int32 startTime)&#xD;
+[xUnit.net 00:00:05.01]            at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)&#xD;
+[xUnit.net 00:00:05.01]         --- End of stack trace from previous location ---&#xD;
+[xUnit.net 00:00:05.01]            at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)&#xD;
+[xUnit.net 00:00:05.01]            at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task&amp; currentTaskSlot, Thread threadPoolThread)&#xD;
+[xUnit.net 00:00:05.01]         --- End of stack trace from previous location ---&#xD;
+[xUnit.net 00:00:05.01]         /_/src/Docker.DotNet/DockerClient.cs(69,0): at Docker.DotNet.DockerClient.&lt;&gt;c__DisplayClass5_0.&lt;&lt;-ctor&gt;b__0&gt;d.MoveNext()&#xD;
+[xUnit.net 00:00:05.01]         --- End of stack trace from previous location ---&#xD;
+[xUnit.net 00:00:05.01]         /_/src/Docker.DotNet/Microsoft.Net.Http.Client/ManagedHandler.cs(160,0): at Microsoft.Net.Http.Client.ManagedHandler.ProcessRequestAsync(HttpRequestMessage request, CancellationToken cancellationToken)&#xD;
+[xUnit.net 00:00:05.01]         /_/src/Docker.DotNet/Microsoft.Net.Http.Client/ManagedHandler.cs(77,0): at Microsoft.Net.Http.Client.ManagedHandler.SendAsync(HttpRequestMessage httpRequestMessage, CancellationToken cancellationToken)&#xD;
+[xUnit.net 00:00:05.01]            at System.Net.Http.HttpClient.&lt;SendAsync&gt;g__Core|83_0(HttpRequestMessage request, HttpCompletionOption completionOption, CancellationTokenSource cts, Boolean disposeCts, CancellationTokenSource pendingRequestsCts, CancellationToken originalCancellationToken)&#xD;
+[xUnit.net 00:00:05.01]         /_/src/Docker.DotNet/DockerClient.cs(433,0): at Docker.DotNet.DockerClient.PrivateMakeRequestAsync(TimeSpan timeout, HttpCompletionOption completionOption, HttpMethod method, String path, IQueryString queryString, IDictionary`2 headers, IRequestContent data, CancellationToken cancellationToken)&#xD;
+[xUnit.net 00:00:05.01]         /_/src/Docker.DotNet/DockerClient.cs(243,0): at Docker.DotNet.DockerClient.MakeRequestAsync[T](IEnumerable`1 errorHandlers, HttpMethod method, String path, IQueryString queryString, IRequestContent body, IDictionary`2 headers, TimeSpan timeout, CancellationToken token)&#xD;
+[xUnit.net 00:00:05.01]         /_/src/Testcontainers/Builders/DockerEndpointAuthenticationProvider.cs(48,0): at DotNet.Testcontainers.Builders.DockerEndpointAuthenticationProvider.&lt;&gt;c__DisplayClass5_0.&lt;&lt;IsAvailable&gt;b__0&gt;d.MoveNext()&#xD;
+[xUnit.net 00:00:05.01]       DotNet.Testcontainers.Builders.DockerUnavailableException : Docker is either not running or misconfigured. Please ensure that Docker is running and that the endpoint is properly configured.&#xD;
+[xUnit.net 00:00:05.01]       You can customize your configuration using either the environment variables or the ~/.testcontainers.properties file.&#xD;
+[xUnit.net 00:00:05.01]       For more information, visit: https://dotnet.testcontainers.org/custom_configuration/.&#xD;
+[xUnit.net 00:00:05.01]         Details: &#xD;
+[xUnit.net 00:00:05.01]           Failed to connect to Docker endpoint at 'npipe://./pipe/docker_engine'.&#xD;
+[xUnit.net 00:00:05.01]       ---- System.AggregateException : One or more errors occurred. (Failed to connect to Docker endpoint at 'npipe://./pipe/docker_engine'.)&#xD;
+[xUnit.net 00:00:05.01]       -------- DotNet.Testcontainers.Builders.DockerUnavailableException : Failed to connect to Docker endpoint at 'npipe://./pipe/docker_engine'.&#xD;
+[xUnit.net 00:00:05.01]       ------------ System.TimeoutException : The operation has timed out.&#xD;
+[xUnit.net 00:00:05.01]       Stack Trace:&#xD;
+[xUnit.net 00:00:05.01]         /_/src/Testcontainers/Guard.Null.cs(62,0): at DotNet.Testcontainers.Guard.ThrowIf[TType](ArgumentInfo`1&amp; argument, Func`2 condition, Func`2 ifClause)&#xD;
+[xUnit.net 00:00:05.01]         /_/src/Testcontainers/Builders/AbstractBuilder`4.cs(146,0): at DotNet.Testcontainers.Builders.AbstractBuilder`4.Validate()&#xD;
+[xUnit.net 00:00:05.01]         /_/src/Testcontainers/Builders/ContainerBuilder`3.cs(408,0): at DotNet.Testcontainers.Builders.ContainerBuilder`3.Validate()&#xD;
+[xUnit.net 00:00:05.01]         /_/src/Testcontainers.PostgreSql/PostgreSqlBuilder.cs(101,0): at Testcontainers.PostgreSql.PostgreSqlBuilder.Validate()&#xD;
+[xUnit.net 00:00:05.01]         /_/src/Testcontainers.PostgreSql/PostgreSqlBuilder.cs(75,0): at Testcontainers.PostgreSql.PostgreSqlBuilder.Build()&#xD;
+[xUnit.net 00:00:05.01]         C:\Users\victo\OneDrive\Documentos\projetos\agendamento\tests\Agendamento.IntegrationTests\Infrastructure\PostgreSqlFixture.cs(29,0): at Agendamento.IntegrationTests.Infrastructure.PostgreSqlFixture..ctor()&#xD;
+[xUnit.net 00:00:05.01]            at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Constructor(Object obj, IntPtr* args)&#xD;
+[xUnit.net 00:00:05.01]            at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)&#xD;
+[xUnit.net 00:00:05.01]         ----- Inner Stack Trace -----&#xD;
+[xUnit.net 00:00:05.01]         &#xD;
+[xUnit.net 00:00:05.01]         ----- Inner Stack Trace -----&#xD;
+[xUnit.net 00:00:05.01]         &#xD;
+[xUnit.net 00:00:05.01]         ----- Inner Stack Trace -----&#xD;
+[xUnit.net 00:00:05.01]            at System.IO.Pipes.NamedPipeClientStream.ConnectInternal(Int32 timeout, CancellationToken cancellationToken, Int32 startTime)&#xD;
+[xUnit.net 00:00:05.01]            at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)&#xD;
+[xUnit.net 00:00:05.01]         --- End of stack trace from previous location ---&#xD;
+[xUnit.net 00:00:05.01]            at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)&#xD;
+[xUnit.net 00:00:05.01]            at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task&amp; currentTaskSlot, Thread threadPoolThread)&#xD;
+[xUnit.net 00:00:05.01]         --- End of stack trace from previous location ---&#xD;
+[xUnit.net 00:00:05.01]         /_/src/Docker.DotNet/DockerClient.cs(69,0): at Docker.DotNet.DockerClient.&lt;&gt;c__DisplayClass5_0.&lt;&lt;-ctor&gt;b__0&gt;d.MoveNext()&#xD;
+[xUnit.net 00:00:05.01]         --- End of stack trace from previous location ---&#xD;
+[xUnit.net 00:00:05.01]         /_/src/Docker.DotNet/Microsoft.Net.Http.Client/ManagedHandler.cs(160,0): at Microsoft.Net.Http.Client.ManagedHandler.ProcessRequestAsync(HttpRequestMessage request, CancellationToken cancellationToken)&#xD;
+[xUnit.net 00:00:05.01]         /_/src/Docker.DotNet/Microsoft.Net.Http.Client/ManagedHandler.cs(77,0): at Microsoft.Net.Http.Client.ManagedHandler.SendAsync(HttpRequestMessage httpRequestMessage, CancellationToken cancellationToken)&#xD;
+[xUnit.net 00:00:05.01]            at System.Net.Http.HttpClient.&lt;SendAsync&gt;g__Core|83_0(HttpRequestMessage request, HttpCompletionOption completionOption, CancellationTokenSource cts, Boolean disposeCts, CancellationTokenSource pendingRequestsCts, CancellationToken originalCancellationToken)&#xD;
+[xUnit.net 00:00:05.01]         /_/src/Docker.DotNet/DockerClient.cs(433,0): at Docker.DotNet.DockerClient.PrivateMakeRequestAsync(TimeSpan timeout, HttpCompletionOption completionOption, HttpMethod method, String path, IQueryString queryString, IDictionary`2 headers, IRequestContent data, CancellationToken cancellationToken)&#xD;
+[xUnit.net 00:00:05.01]         /_/src/Docker.DotNet/DockerClient.cs(243,0): at Docker.DotNet.DockerClient.MakeRequestAsync[T](IEnumerable`1 errorHandlers, HttpMethod method, String path, IQueryString queryString, IRequestContent body, IDictionary`2 headers, TimeSpan timeout, CancellationToken token)&#xD;
+[xUnit.net 00:00:05.01]         /_/src/Testcontainers/Builders/DockerEndpointAuthenticationProvider.cs(48,0): at DotNet.Testcontainers.Builders.DockerEndpointAuthenticationProvider.&lt;&gt;c__DisplayClass5_0.&lt;&lt;IsAvailable&gt;b__0&gt;d.MoveNext()&#xD;
+[xUnit.net 00:00:05.01]       DotNet.Testcontainers.Builders.DockerUnavailableException : Docker is either not running or misconfigured. Please ensure that Docker is running and that the endpoint is properly configured.&#xD;
+[xUnit.net 00:00:05.01]       You can customize your configuration using either the environment variables or the ~/.testcontainers.properties file.&#xD;
+[xUnit.net 00:00:05.01]       For more information, visit: https://dotnet.testcontainers.org/custom_configuration/.&#xD;
+[xUnit.net 00:00:05.01]         Details: &#xD;
+[xUnit.net 00:00:05.01]           Failed to connect to Docker endpoint at 'npipe://./pipe/docker_engine'.&#xD;
+[xUnit.net 00:00:05.01]       ---- System.AggregateException : One or more errors occurred. (Failed to connect to Docker endpoint at 'npipe://./pipe/docker_engine'.)&#xD;
+[xUnit.net 00:00:05.01]       -------- DotNet.Testcontainers.Builders.DockerUnavailableException : Failed to connect to Docker endpoint at 'npipe://./pipe/docker_engine'.&#xD;
+[xUnit.net 00:00:05.01]       ------------ System.TimeoutException : The operation has timed out.&#xD;
+[xUnit.net 00:00:05.01]       Stack Trace:&#xD;
+[xUnit.net 00:00:05.01]         /_/src/Testcontainers/Guard.Null.cs(62,0): at DotNet.Testcontainers.Guard.ThrowIf[TType](ArgumentInfo`1&amp; argument, Func`2 condition, Func`2 ifClause)&#xD;
+[xUnit.net 00:00:05.01]         /_/src/Testcontainers/Builders/AbstractBuilder`4.cs(146,0): at DotNet.Testcontainers.Builders.AbstractBuilder`4.Validate()&#xD;
+[xUnit.net 00:00:05.01]         /_/src/Testcontainers/Builders/ContainerBuilder`3.cs(408,0): at DotNet.Testcontainers.Builders.ContainerBuilder`3.Validate()&#xD;
+[xUnit.net 00:00:05.01]         /_/src/Testcontainers.PostgreSql/PostgreSqlBuilder.cs(101,0): at Testcontainers.PostgreSql.PostgreSqlBuilder.Validate()&#xD;
+[xUnit.net 00:00:05.01]         /_/src/Testcontainers.PostgreSql/PostgreSqlBuilder.cs(75,0): at Testcontainers.PostgreSql.PostgreSqlBuilder.Build()&#xD;
+[xUnit.net 00:00:05.01]         C:\Users\victo\OneDrive\Documentos\projetos\agendamento\tests\Agendamento.IntegrationTests\Infrastructure\PostgreSqlFixture.cs(29,0): at Agendamento.IntegrationTests.Infrastructure.PostgreSqlFixture..ctor()&#xD;
+[xUnit.net 00:00:05.01]            at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Constructor(Object obj, IntPtr* args)&#xD;
+[xUnit.net 00:00:05.01]            at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)&#xD;
+[xUnit.net 00:00:05.01]         ----- Inner Stack Trace -----&#xD;
+[xUnit.net 00:00:05.01]         &#xD;
+[xUnit.net 00:00:05.01]         ----- Inner Stack Trace -----&#xD;
+[xUnit.net 00:00:05.01]         &#xD;
+[xUnit.net 00:00:05.01]         ----- Inner Stack Trace -----&#xD;
+[xUnit.net 00:00:05.01]            at System.IO.Pipes.NamedPipeClientStream.ConnectInternal(Int32 timeout, CancellationToken cancellationToken, Int32 startTime)&#xD;
+[xUnit.net 00:00:05.01]            at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)&#xD;
+[xUnit.net 00:00:05.01]         --- End of stack trace from previous location ---&#xD;
+[xUnit.net 00:00:05.01]            at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)&#xD;
+[xUnit.net 00:00:05.01]            at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task&amp; currentTaskSlot, Thread threadPoolThread)&#xD;
+[xUnit.net 00:00:05.01]         --- End of stack trace from previous location ---&#xD;
+[xUnit.net 00:00:05.01]         /_/src/Docker.DotNet/DockerClient.cs(69,0): at Docker.DotNet.DockerClient.&lt;&gt;c__DisplayClass5_0.&lt;&lt;-ctor&gt;b__0&gt;d.MoveNext()&#xD;
+[xUnit.net 00:00:05.01]         --- End of stack trace from previous location ---&#xD;
+[xUnit.net 00:00:05.01]         /_/src/Docker.DotNet/Microsoft.Net.Http.Client/ManagedHandler.cs(160,0): at Microsoft.Net.Http.Client.ManagedHandler.ProcessRequestAsync(HttpRequestMessage request, CancellationToken cancellationToken)&#xD;
+[xUnit.net 00:00:05.01]         /_/src/Docker.DotNet/Microsoft.Net.Http.Client/ManagedHandler.cs(77,0): at Microsoft.Net.Http.Client.ManagedHandler.SendAsync(HttpRequestMessage httpRequestMessage, CancellationToken cancellationToken)&#xD;
+[xUnit.net 00:00:05.01]            at System.Net.Http.HttpClient.&lt;SendAsync&gt;g__Core|83_0(HttpRequestMessage request, HttpCompletionOption completionOption, CancellationTokenSource cts, Boolean disposeCts, CancellationTokenSource pendingRequestsCts, CancellationToken originalCancellationToken)&#xD;
+[xUnit.net 00:00:05.01]         /_/src/Docker.DotNet/DockerClient.cs(433,0): at Docker.DotNet.DockerClient.PrivateMakeRequestAsync(TimeSpan timeout, HttpCompletionOption completionOption, HttpMethod method, String path, IQueryString queryString, IDictionary`2 headers, IRequestContent data, CancellationToken cancellationToken)&#xD;
+[xUnit.net 00:00:05.01]         /_/src/Docker.DotNet/DockerClient.cs(243,0): at Docker.DotNet.DockerClient.MakeRequestAsync[T](IEnumerable`1 errorHandlers, HttpMethod method, String path, IQueryString queryString, IRequestContent body, IDictionary`2 headers, TimeSpan timeout, CancellationToken token)&#xD;
+[xUnit.net 00:00:05.01]         /_/src/Testcontainers/Builders/DockerEndpointAuthenticationProvider.cs(48,0): at DotNet.Testcontainers.Builders.DockerEndpointAuthenticationProvider.&lt;&gt;c__DisplayClass5_0.&lt;&lt;IsAvailable&gt;b__0&gt;d.MoveNext()&#xD;
+[xUnit.net 00:00:05.15]   Finished:    Agendamento.IntegrationTests&#xD;
+</StdOut>
+    </Output>
+    <RunInfos>
+      <RunInfo computerName="VICTOR" outcome="Error" timestamp="2026-08-10T20:01:26.8845009-03:00">
+        <Text>[xUnit.net 00:00:02.56]     Isolamento RLS: WorkOrders e Appointments são restritos ao Tenant autenticado @spec:AC-050 [FAIL]</Text>
+      </RunInfo>
+      <RunInfo computerName="VICTOR" outcome="Error" timestamp="2026-08-10T20:01:27.2078329-03:00">
+        <Text>[xUnit.net 00:00:02.89]     Transições de status da OS devem ser permitidas e registrar histórico @spec:AC-054 [FAIL]</Text>
+      </RunInfo>
+      <RunInfo computerName="VICTOR" outcome="Error" timestamp="2026-08-10T20:01:27.2162018-03:00">
+        <Text>[xUnit.net 00:00:02.90]     Endpoint POST /work-orders/from-quotation/{id} cria OS a partir de orçamento aprovado copiando itens @spec:AC-051 @spec:AC-052 [FAIL]</Text>
+      </RunInfo>
+      <RunInfo computerName="VICTOR" outcome="Error" timestamp="2026-08-10T20:01:28.0066006-03:00">
+        <Text>[xUnit.net 00:00:03.59]     Nenhuma tabela ITenantOwned deve existir sem RLS habilitado na migration [FAIL]</Text>
+      </RunInfo>
+      <RunInfo computerName="VICTOR" outcome="Error" timestamp="2026-08-10T20:01:28.1373525-03:00">
+        <Text>[xUnit.net 00:00:03.82]     Agendamento.IntegrationTests.Dashboard.DashboardApiTests.GetReport_WithoutAuth_ShouldReturnUnauthorized [FAIL]</Text>
+      </RunInfo>
+      <RunInfo computerName="VICTOR" outcome="Error" timestamp="2026-08-10T20:01:28.2692072-03:00">
+        <Text>[xUnit.net 00:00:03.95]     Agendamento.IntegrationTests.Financial.FinancialApiTests.Can_Create_Payable_And_Register_Payment [FAIL]</Text>
+      </RunInfo>
+      <RunInfo computerName="VICTOR" outcome="Error" timestamp="2026-08-10T20:01:28.3832046-03:00">
+        <Text>[xUnit.net 00:00:04.06]     Agendamento.IntegrationTests.Dashboard.DashboardApiTests.GetUpcomingSchedule_WithoutAuth_ShouldReturnUnauthorized [FAIL]</Text>
+      </RunInfo>
+      <RunInfo computerName="VICTOR" outcome="Error" timestamp="2026-08-10T20:01:28.5782176-03:00">
+        <Text>[xUnit.net 00:00:04.26]     Agendamento.IntegrationTests.Dashboard.DashboardApiTests.GetDashboardSummary_WithoutAuth_ShouldReturnUnauthorized [FAIL]</Text>
+      </RunInfo>
+      <RunInfo computerName="VICTOR" outcome="Error" timestamp="2026-08-10T20:01:29.3250847-03:00">
+        <Text>[xUnit.net 00:00:05.00]     CPF e e-mail normalizados têm unicidade global na persistência @spec:AC-007 [FAIL]</Text>
+      </RunInfo>
+      <RunInfo computerName="VICTOR" outcome="Error" timestamp="2026-08-10T20:01:29.3275462-03:00">
+        <Text>[xUnit.net 00:00:05.01]     Agendamento.IntegrationTests.Tenancy.RowLevelSecurityTests.Rls_EnforcesCompleteIsolation_BetweenTenants [FAIL]</Text>
+      </RunInfo>
+      <RunInfo computerName="VICTOR" outcome="Error" timestamp="2026-08-10T20:01:29.3292446-03:00">
+        <Text>[xUnit.net 00:00:05.01]     PostgreSQL real aplica a migration da fixture @spec:AC-004 [FAIL]</Text>
+      </RunInfo>
+      <RunInfo computerName="VICTOR" outcome="Error" timestamp="2026-08-10T20:01:29.3311368-03:00">
+        <Text>[xUnit.net 00:00:05.01]     Execuções de persistência não compartilham dados @spec:AC-004 [FAIL]</Text>
+      </RunInfo>
+    </RunInfos>
+  </ResultSummary>
+</TestRun>
