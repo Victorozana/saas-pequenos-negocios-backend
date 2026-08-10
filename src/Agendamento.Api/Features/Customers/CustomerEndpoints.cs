@@ -9,7 +9,7 @@ public static class CustomerEndpoints
 {
     public static void MapCustomerEndpoints(this IEndpointRouteBuilder builder)
     {
-        var group = builder.MapGroup("api/customers")
+        var group = builder.MapGroup("api/v1/customers")
             .RequireAuthorization()
             .WithTags("Customers");
 
@@ -19,7 +19,7 @@ public static class CustomerEndpoints
             CancellationToken cancellationToken) =>
         {
             var id = await handler.HandleAsync(command, cancellationToken);
-            return Results.Created($"/api/customers/{id}", new { Id = id });
+            return Results.Created($"/api/v1/customers/{id}", new { Id = id });
         })
         .WithName("CreateCustomer")
         .WithSummary("Creates a new customer for the current tenant");
@@ -44,10 +44,12 @@ public static class CustomerEndpoints
 
         group.MapGet("", async (
             [FromQuery] string? search,
+            [FromQuery] int? page,
+            [FromQuery] int? pageSize,
             [FromServices] GetCustomersHandler handler,
             CancellationToken cancellationToken) =>
         {
-            var results = await handler.HandleAsync(search, cancellationToken);
+            var results = await handler.HandleAsync(search, page ?? 1, pageSize ?? 20, cancellationToken);
             return Results.Ok(results);
         })
         .WithName("GetCustomers")

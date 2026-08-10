@@ -1,0 +1,144 @@
+{
+  "runId": "agendamento-gestao-clientes-msmonxbz",
+  "feature": "gestao-clientes",
+  "agent": "codex",
+  "modo": "paralelo",
+  "paralelizar": null,
+  "modeloForcado": null,
+  "esforcoForcado": null,
+  "geradoEm": "2026-08-10 03:39",
+  "branchTrabalho": "spec/gestao-clientes",
+  "baseDir": ".spec/features/gestao-clientes",
+  "specDir": ".spec",
+  "repoName": "agendamento",
+  "logsDir": "../onp-worktrees/agendamento-gestao-clientes-logs",
+  "ondas": [
+    [
+      "faixa-1",
+      "faixa-2",
+      "faixa-3"
+    ],
+    [
+      "faixa-4",
+      "faixa-5"
+    ]
+  ],
+  "faixas": [
+    {
+      "id": "faixa-1",
+      "branch": "spec/gestao-clientes-faixa-1",
+      "worktree": "../onp-worktrees/agendamento-gestao-clientes-faixa-1",
+      "tarefas": [
+        {
+          "id": "T-026",
+          "titulo": "Modelar entidade Cliente e Value Objects",
+          "modelo": "gpt-5.6-terra",
+          "esforco": "medium",
+          "arquivos": [
+            "src/Agendamento.Api/Domain/Customers/Customer.cs",
+            "src/Agendamento.Api/Domain/Customers/CustomerDocument.cs",
+            "src/Agendamento.Api/Domain/Customers/CustomerAddress.cs"
+          ],
+          "refs": [
+            "US-017",
+            "AC-041",
+            "AC-042"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "faixa-2",
+      "branch": "spec/gestao-clientes-faixa-2",
+      "worktree": "../onp-worktrees/agendamento-gestao-clientes-faixa-2",
+      "tarefas": [
+        {
+          "id": "T-027",
+          "titulo": "Mapear persistência e Migration de Clientes",
+          "modelo": "gpt-5.6-terra",
+          "esforco": "medium",
+          "arquivos": [
+            "src/Agendamento.Api/Infrastructure/Persistence/AgendamentoDbContext.cs",
+            "src/Agendamento.Api/Infrastructure/Persistence/Configurations/CustomerConfiguration.cs"
+          ],
+          "refs": [
+            "US-017",
+            "AC-041"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "faixa-3",
+      "branch": "spec/gestao-clientes-faixa-3",
+      "worktree": "../onp-worktrees/agendamento-gestao-clientes-faixa-3",
+      "tarefas": [
+        {
+          "id": "T-028",
+          "titulo": "Orquestrar Casos de Uso de Clientes (Handlers)",
+          "modelo": "gpt-5.6-terra",
+          "esforco": "medium",
+          "arquivos": [
+            "src/Agendamento.Api/Application/Customers/CreateCustomer/",
+            "src/Agendamento.Api/Application/Customers/GetCustomers/",
+            "src/Agendamento.Api/Application/Customers/UpdateCustomer/"
+          ],
+          "refs": [
+            "US-017",
+            "US-018",
+            "US-019",
+            "AC-041",
+            "AC-043"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "faixa-4",
+      "branch": "spec/gestao-clientes-faixa-4",
+      "worktree": "../onp-worktrees/agendamento-gestao-clientes-faixa-4",
+      "tarefas": [
+        {
+          "id": "T-029",
+          "titulo": "Expor Endpoints Minimal API de Clientes",
+          "modelo": "gpt-5.6-terra",
+          "esforco": "medium",
+          "arquivos": [
+            "src/Agendamento.Api/Features/Customers/CustomerEndpoints.cs",
+            "src/Agendamento.Api/Program.cs"
+          ],
+          "refs": [
+            "US-017",
+            "US-018",
+            "US-019",
+            "AC-043",
+            "AC-044"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "faixa-5",
+      "branch": "spec/gestao-clientes-faixa-5",
+      "worktree": "../onp-worktrees/agendamento-gestao-clientes-faixa-5",
+      "tarefas": [
+        {
+          "id": "T-030",
+          "titulo": "Testes de Integração e Isolamento de Clientes",
+          "modelo": "gpt-5.6-terra",
+          "esforco": "medium",
+          "arquivos": [
+            "tests/Agendamento.IntegrationTests/Customers/CustomerApiTests.cs"
+          ],
+          "refs": [
+            "AC-041",
+            "AC-044"
+          ]
+        }
+      ]
+    }
+  ],
+  "sequenciais": [],
+  "concluidas": [],
+  "avisos": []
+}

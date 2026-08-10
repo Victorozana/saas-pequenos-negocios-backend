@@ -145,7 +145,7 @@
         }
       }
     },
-    "/api/customers": {
+    "/api/v1/customers": {
       "post": {
         "tags": [
           "Customers"
@@ -181,6 +181,22 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "pattern": "^-?(?:0|[1-9]\\d*)$",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "schema": {
+              "pattern": "^-?(?:0|[1-9]\\d*)$",
+              "format": "int32"
+            }
           }
         ],
         "responses": {
@@ -190,7 +206,7 @@
         }
       }
     },
-    "/api/customers/{id}": {
+    "/api/v1/customers/{id}": {
       "put": {
         "tags": [
           "Customers"

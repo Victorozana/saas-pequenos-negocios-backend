@@ -1,0 +1,11 @@
+{
+  "feature": "gestao-clientes",
+  "timestamp": "2026-08-10T22:39:07.010Z",
+  "gitRev": "7d2edf1",
+  "command": "dotnet test tests/Agendamento.UnitTests/Agendamento.UnitTests.csproj --configuration Release && dotnet test tests/Agendamento.IntegrationTests/Agendamento.IntegrationTests.csproj --configuration Release --filter \"FullyQualifiedName~CompanyRegistryContractTests|FullyQualifiedName~RegisterTenantTransactionTests|FullyQualifiedName~TenantRegistrationEndpointTests|FullyQualifiedName~CurrentTenantEndpointTests|FullyQualifiedName~CurrentUserEndpointTests\"",
+  "reporter": "exitcode",
+  "exitCode": 0,
+  "testsParsed": 0,
+  "results": {},
+  "principles": {}
+}

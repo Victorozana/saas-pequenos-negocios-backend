@@ -20,6 +20,8 @@ public record CustomerResponse(
     string? ZipCode,
     bool IsActive);
 
+public record PaginatedResult<T>(List<T> Items, int TotalCount, int Page, int PageSize);
+
 public class GetCustomersHandler
 {
     private readonly AgendamentoDbContext _dbContext;
@@ -31,7 +33,7 @@ public class GetCustomersHandler
         _tenantContext = tenantContext;
     }
 
-    public async Task<List<CustomerResponse>> HandleAsync(string? search = null, CancellationToken cancellationToken = default)
+    public async Task<PaginatedResult<CustomerResponse>> HandleAsync(string? search = null, int page = 1, int pageSize = 20, CancellationToken cancellationToken = default)
     {
         if (!_tenantContext.HasTenant)
         {
@@ -49,12 +51,15 @@ public class GetCustomersHandler
                 (c.Document != null && c.Document.Value.Contains(search)));
         }
 
+        var totalCount = await query.CountAsync(cancellationToken);
+
         var customers = await query
             .OrderBy(c => c.Name)
-            .Take(100)
+            .Skip((page - 1) * pageSize)
+            .Take(pageSize)
             .ToListAsync(cancellationToken);
 
-        return customers.Select(c => new CustomerResponse(
+        var items = customers.Select(c => new CustomerResponse(
             c.Id,
             c.Name,
             c.Phone,
@@ -70,5 +75,7 @@ public class GetCustomersHandler
             c.Address?.ZipCode,
             c.IsActive
         )).ToList();
+
+        return new PaginatedResult<CustomerResponse>(items, totalCount, page, pageSize);
     }
 }
