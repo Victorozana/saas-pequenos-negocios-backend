@@ -14,14 +14,14 @@ public class GetUpcomingScheduleHandler
 
     public async Task<List<UpcomingScheduleDto>> HandleAsync(GetUpcomingScheduleQuery request, CancellationToken cancellationToken = default)
     {
-        var now = DateTime.UtcNow;
-        var limitDate = now.AddDays(request.DaysAhead);
+        var today = DateTime.UtcNow.Date;
+        var limitDate = today.AddDays(request.DaysAhead).AddDays(1).AddTicks(-1); // End of the limit day
 
         var appointments = await _dbContext.Appointments
             .Include(a => a.WorkOrder)
             .ThenInclude(w => w!.Customer)
             .AsNoTracking()
-            .Where(a => a.StartTime >= now && a.StartTime <= limitDate)
+            .Where(a => a.StartTime >= today && a.StartTime <= limitDate)
             .OrderBy(a => a.StartTime)
             .Select(a => new UpcomingScheduleDto
             {

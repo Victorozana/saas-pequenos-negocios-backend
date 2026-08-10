@@ -1106,6 +1106,54 @@
         }
       }
     },
+    "/api/v1/notifications/schedule-reminder": {
+      "post": {
+        "tags": [
+          "Notifications"
+        ],
+        "summary": "Enfileira um lembrete para agendamento",
+        "operationId": "ScheduleReminder",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ScheduleAppointmentReminderCommand"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/v1/notifications/send-quotation-notification": {
+      "post": {
+        "tags": [
+          "Notifications"
+        ],
+        "summary": "Enfileira uma notifica\u00E7\u00E3o de or\u00E7amento emitido",
+        "operationId": "SendQuotationNotification",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SendQuotationNotificationCommand"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/v1/dashboard/summary": {
       "get": {
         "tags": [
@@ -2031,6 +2079,18 @@
           }
         }
       },
+      "ScheduleAppointmentReminderCommand": {
+        "required": [
+          "appointmentId"
+        ],
+        "type": "object",
+        "properties": {
+          "appointmentId": {
+            "type": "string",
+            "format": "uuid"
+          }
+        }
+      },
       "SendManualNotificationRequest": {
         "required": [
           "recipient",
@@ -2047,6 +2107,18 @@
           },
           "content": {
             "type": "string"
+          }
+        }
+      },
+      "SendQuotationNotificationCommand": {
+        "required": [
+          "quotationId"
+        ],
+        "type": "object",
+        "properties": {
+          "quotationId": {
+            "type": "string",
+            "format": "uuid"
           }
         }
       },

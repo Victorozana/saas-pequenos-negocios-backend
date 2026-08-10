@@ -27,8 +27,13 @@ public class GetDashboardSummaryHandler
 
         var financialTitles = await receivablesQuery.ToListAsync(cancellationToken);
 
-        var totalReceivedAmount = financialTitles.Sum(r => r.PaidAmount);
-        var totalReceivableAmount = financialTitles.Where(r => r.Status == TransactionStatus.Pending || r.Status == TransactionStatus.Overdue || r.Status == TransactionStatus.PartiallyPaid).Sum(r => r.BalanceDue);
+        var totalReceivedAmount = financialTitles
+            .Where(r => r.Status == TransactionStatus.Paid || r.Status == TransactionStatus.PartiallyPaid)
+            .Sum(r => r.PaidAmount);
+            
+        var totalReceivableAmount = financialTitles
+            .Where(r => r.Status == TransactionStatus.Pending || r.Status == TransactionStatus.Overdue || r.Status == TransactionStatus.PartiallyPaid)
+            .Sum(r => r.BalanceDue);
 
         var pendingWorkOrdersQuery = _dbContext.WorkOrders.AsNoTracking()
             .Where(w => w.Status == WorkOrderStatus.Scheduled || w.Status == WorkOrderStatus.InProgress);
@@ -53,9 +58,16 @@ public class GetDashboardSummaryHandler
             .Select(q => new { q.Status })
             .ToListAsync(cancellationToken);
 
-        var totalQuotations = quotations.Count;
-        var approvedQuotations = quotations.Count(q => q.Status == QuotationStatus.Approved || q.Status == QuotationStatus.Converted);
-        var conversionRatePercentage = totalQuotations == 0 ? 0 : (decimal)approvedQuotations / totalQuotations * 100;
+        var finalizedQuotations = quotations
+            .Where(q => q.Status == QuotationStatus.Approved || 
+                        q.Status == QuotationStatus.Converted || 
+                        q.Status == QuotationStatus.Rejected || 
+                        q.Status == QuotationStatus.Expired)
+            .ToList();
+
+        var totalQuotations = finalizedQuotations.Count;
+        var approvedQuotations = finalizedQuotations.Count(q => q.Status == QuotationStatus.Approved || q.Status == QuotationStatus.Converted);
+        var conversionRatePercentage = totalQuotations == 0 ? 0 : (decimal)approvedQuotations / totalQuotations * 100m;
 
         return new DashboardSummaryDto
         {

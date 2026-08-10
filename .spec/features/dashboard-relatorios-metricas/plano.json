@@ -1,0 +1,171 @@
+{
+  "runId": "agendamento-dashboard-relatorios-metricas-msnv5smg",
+  "feature": "dashboard-relatorios-metricas",
+  "agent": "codex",
+  "modo": "paralelo",
+  "paralelizar": null,
+  "modeloForcado": null,
+  "esforcoForcado": null,
+  "geradoEm": "2026-08-10 23:29",
+  "branchTrabalho": "spec/dashboard-relatorios-metricas",
+  "baseDir": ".spec/features/dashboard-relatorios-metricas",
+  "specDir": ".spec",
+  "repoName": "agendamento",
+  "logsDir": "../onp-worktrees/agendamento-dashboard-relatorios-metricas-logs",
+  "ondas": [
+    [
+      "faixa-1",
+      "faixa-2",
+      "faixa-3"
+    ],
+    [
+      "faixa-4",
+      "faixa-5",
+      "faixa-6"
+    ]
+  ],
+  "faixas": [
+    {
+      "id": "faixa-1",
+      "branch": "spec/dashboard-relatorios-metricas-faixa-1",
+      "worktree": "../onp-worktrees/agendamento-dashboard-relatorios-metricas-faixa-1",
+      "tarefas": [
+        {
+          "id": "T-058",
+          "titulo": "Modelar DTOs e Consultas Agregadas de Métricas",
+          "modelo": "gpt-5.6-terra",
+          "esforco": "medium",
+          "arquivos": [
+            "src/Agendamento.Api/Application/Dashboard/GetDashboardSummary/DashboardSummaryDto.cs",
+            "src/Agendamento.Api/Application/Dashboard/GetDashboardSummary/ConversionMetricsDto.cs"
+          ],
+          "refs": [
+            "US-037",
+            "US-038",
+            "US-039",
+            "AC-065",
+            "AC-066",
+            "AC-068"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "faixa-2",
+      "branch": "spec/dashboard-relatorios-metricas-faixa-2",
+      "worktree": "../onp-worktrees/agendamento-dashboard-relatorios-metricas-faixa-2",
+      "tarefas": [
+        {
+          "id": "T-059",
+          "titulo": "Caso de Uso: Consulta Resumida do Dashboard Executivo",
+          "modelo": "gpt-5.6-terra",
+          "esforco": "medium",
+          "arquivos": [
+            "src/Agendamento.Api/Application/Dashboard/GetDashboardSummary/GetDashboardSummaryHandler.cs"
+          ],
+          "refs": [
+            "US-037",
+            "US-038",
+            "AC-065",
+            "AC-066",
+            "AC-067",
+            "AC-068"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "faixa-3",
+      "branch": "spec/dashboard-relatorios-metricas-faixa-3",
+      "worktree": "../onp-worktrees/agendamento-dashboard-relatorios-metricas-faixa-3",
+      "tarefas": [
+        {
+          "id": "T-060",
+          "titulo": "Caso de Uso: Agenda Sintetizada de Atendimentos",
+          "modelo": "gpt-5.6-terra",
+          "esforco": "medium",
+          "arquivos": [
+            "src/Agendamento.Api/Application/Dashboard/GetUpcomingSchedule/GetUpcomingScheduleHandler.cs"
+          ],
+          "refs": [
+            "US-039",
+            "AC-065",
+            "AC-067"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "faixa-4",
+      "branch": "spec/dashboard-relatorios-metricas-faixa-4",
+      "worktree": "../onp-worktrees/agendamento-dashboard-relatorios-metricas-faixa-4",
+      "tarefas": [
+        {
+          "id": "T-061",
+          "titulo": "Caso de Uso e Gerador de Relatórios Executivos Consolidado",
+          "modelo": "gpt-5.6-terra",
+          "esforco": "medium",
+          "arquivos": [
+            "src/Agendamento.Api/Application/Dashboard/ExportPerformanceReport/ExportPerformanceReportHandler.cs",
+            "src/Agendamento.Api/Infrastructure/Reports/CsvPerformanceReportGenerator.cs"
+          ],
+          "refs": [
+            "US-040",
+            "AC-069"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "faixa-5",
+      "branch": "spec/dashboard-relatorios-metricas-faixa-5",
+      "worktree": "../onp-worktrees/agendamento-dashboard-relatorios-metricas-faixa-5",
+      "tarefas": [
+        {
+          "id": "T-062",
+          "titulo": "Expor Endpoints Minimal API do Dashboard",
+          "modelo": "gpt-5.6-terra",
+          "esforco": "medium",
+          "arquivos": [
+            "src/Agendamento.Api/Features/Dashboard/DashboardEndpoints.cs",
+            "src/Agendamento.Api/Program.cs"
+          ],
+          "refs": [
+            "US-037",
+            "US-038",
+            "US-039",
+            "US-040",
+            "AC-065"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "faixa-6",
+      "branch": "spec/dashboard-relatorios-metricas-faixa-6",
+      "worktree": "../onp-worktrees/agendamento-dashboard-relatorios-metricas-faixa-6",
+      "tarefas": [
+        {
+          "id": "T-063",
+          "titulo": "Testes de Integração de Agregadores e Performance do Dashboard",
+          "modelo": "gpt-5.6-terra",
+          "esforco": "medium",
+          "arquivos": [
+            "tests/Agendamento.UnitTests/Dashboard/DashboardMetricTests.cs",
+            "tests/Agendamento.IntegrationTests/Dashboard/DashboardApiTests.cs"
+          ],
+          "refs": [
+            "AC-065",
+            "AC-066",
+            "AC-067",
+            "AC-068",
+            "AC-069"
+          ]
+        }
+      ]
+    }
+  ],
+  "sequenciais": [],
+  "concluidas": [],
+  "avisos": []
+}

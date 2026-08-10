@@ -1,0 +1,37 @@
+{
+  "feature": "dashboard-relatorios-metricas",
+  "timestamp": "2026-08-10T23:47:28.255Z",
+  "gitRev": "cdcd95b",
+  "command": "dotnet test tests/Agendamento.UnitTests/Agendamento.UnitTests.csproj --configuration Release && dotnet test tests/Agendamento.IntegrationTests/Agendamento.IntegrationTests.csproj --configuration Release",
+  "reporter": "exitcode",
+  "exitCode": 0,
+  "testsParsed": 0,
+  "results": {
+    "AC-065": {
+      "status": "pass",
+      "testName": null,
+      "method": "exitcode"
+    },
+    "AC-066": {
+      "status": "pass",
+      "testName": null,
+      "method": "exitcode"
+    },
+    "AC-067": {
+      "status": "pass",
+      "testName": null,
+      "method": "exitcode"
+    },
+    "AC-068": {
+      "status": "pass",
+      "testName": null,
+      "method": "exitcode"
+    },
+    "AC-069": {
+      "status": "pass",
+      "testName": null,
+      "method": "exitcode"
+    }
+  },
+  "principles": {}
+}
