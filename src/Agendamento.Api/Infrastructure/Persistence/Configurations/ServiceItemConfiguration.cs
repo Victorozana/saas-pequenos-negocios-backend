@@ -25,11 +25,8 @@ public class ServiceItemConfiguration : IEntityTypeConfiguration<ServiceItem>
         builder.Property(s => s.BasePrice)
             .HasPrecision(18, 2);
 
-        builder.Property(s => s.TenantId)
-            .IsRequired();
-
-        // Isolamento Multitenant (Global Query Filter)
-        builder.HasQueryFilter(s => EF.Property<Guid>(s, "TenantId") == s.TenantId);
+        // Isolamento Multi-Tenancy (Row Level Security / EF Query Filter configurado em AgendamentoDbContext)
+        builder.Property(s => s.TenantId).IsRequired();
         
         // Indices para performance em listagem de catálogo
         builder.HasIndex(s => new { s.TenantId, s.IsActive, s.Name });
