@@ -14,7 +14,7 @@ public static class DashboardEndpoints
     {
         var group = builder.MapGroup("api/v1/dashboard")
             .WithTags("Dashboard")
-            .RequireAuthorization("TenantPolicy");
+            .RequireAuthorization();
 
         group.MapGet("summary", async ([AsParameters] GetDashboardSummaryRequest request, [FromServices] GetDashboardSummaryHandler handler, CancellationToken cancellationToken) =>
         {

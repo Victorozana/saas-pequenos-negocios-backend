@@ -11,7 +11,7 @@ public static class NotificationEndpoints
     public static void MapNotificationEndpoints(this IEndpointRouteBuilder app)
     {
         var group = app.MapGroup("/api/v1/notifications")
-            .RequireAuthorization("TenantPolicy")
+            .RequireAuthorization()
             .WithTags("Notifications");
 
         group.MapGet("/", async ([FromServices] AgendamentoDbContext dbContext, [FromServices] ITenantContext tenantContext, CancellationToken cancellationToken) =>

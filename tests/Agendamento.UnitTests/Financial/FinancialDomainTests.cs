@@ -5,7 +5,20 @@ namespace Agendamento.UnitTests.Financial;
 
 public class FinancialDomainTests
 {
-    [Fact]
+    [Fact(DisplayName = "Entidades financeiras devem pertencer a um Tenant @spec:AC-055")]
+    public void FinancialEntities_ShouldImplement_ITenantOwned()
+    {
+        var tenantId = Guid.NewGuid();
+        var receivable = ReceivableTitle.Create(tenantId, "Test", 100m, DateTime.UtcNow.AddDays(1));
+        var payable = PayableTitle.Create(tenantId, "Supplier", "Test", 100m, DateTime.UtcNow.AddDays(1));
+
+        Assert.Equal(tenantId, receivable.TenantId);
+        Assert.Equal(tenantId, payable.TenantId);
+        Assert.IsAssignableFrom<Agendamento.Domain.Common.ITenantOwned>(receivable);
+        Assert.IsAssignableFrom<Agendamento.Domain.Common.ITenantOwned>(payable);
+    }
+
+    [Fact(DisplayName = "Pagamento parcial atualiza status para PartiallyPaid e abate o saldo @spec:AC-057")]
     public void RegisterPayment_ShouldUpdateStatusToPartiallyPaid_WhenPaymentIsLessThanBalance()
     {
         var title = ReceivableTitle.Create(Guid.NewGuid(), "Test", 100m, DateTime.UtcNow.AddDays(1));
@@ -17,7 +30,7 @@ public class FinancialDomainTests
         Assert.Equal(40m, title.PaidAmount);
     }
 
-    [Fact]
+    [Fact(DisplayName = "Pagamento integral atualiza status para Paid e zera o saldo @spec:AC-057")]
     public void RegisterPayment_ShouldUpdateStatusToPaid_WhenPaymentEqualsBalance()
     {
         var title = PayableTitle.Create(Guid.NewGuid(), "Supplier", "Test", 100m, DateTime.UtcNow.AddDays(1));
@@ -29,7 +42,7 @@ public class FinancialDomainTests
         Assert.Equal(100m, title.PaidAmount);
     }
 
-    [Fact]
+    [Fact(DisplayName = "Pagamento maior que o saldo lança exceção @spec:AC-057")]
     public void RegisterPayment_ShouldThrowException_WhenPaymentExceedsBalance()
     {
         var title = ReceivableTitle.Create(Guid.NewGuid(), "Test", 100m, DateTime.UtcNow.AddDays(1));
@@ -38,7 +51,7 @@ public class FinancialDomainTests
             title.RegisterPayment(150m, PaymentMethod.Cash, DateTime.UtcNow));
     }
 
-    [Fact]
+    [Fact(DisplayName = "Verificação de atraso marca título como Overdue se vencido @spec:AC-058")]
     public void CheckOverdue_ShouldUpdateStatusToOverdue_WhenDueDateIsPast()
     {
         var title = PayableTitle.Create(Guid.NewGuid(), "Supplier", "Test", 100m, DateTime.UtcNow.AddDays(-1));
@@ -48,7 +61,7 @@ public class FinancialDomainTests
         Assert.Equal(TransactionStatus.Overdue, title.Status);
     }
 
-    [Fact]
+    [Fact(DisplayName = "Verificação de atraso não altera status se estiver no prazo @spec:AC-058")]
     public void CheckOverdue_ShouldNotUpdateStatus_WhenDueDateIsFuture()
     {
         var title = ReceivableTitle.Create(Guid.NewGuid(), "Test", 100m, DateTime.UtcNow.AddDays(1));
