@@ -41,7 +41,10 @@ public class NotificationMessageConfiguration : IEntityTypeConfiguration<Notific
         builder.Property(n => n.CreatedAt)
             .IsRequired();
 
+        builder.Property(n => n.NextRetryAt);
+
         // Index to optimize the Outbox worker query
         builder.HasIndex(n => new { n.TenantId, n.Status });
+        builder.HasIndex(n => new { n.Status, n.NextRetryAt, n.CreatedAt });
     }
 }

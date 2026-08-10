@@ -26,8 +26,11 @@ public record NotificationTemplate
 
         foreach (var kvp in Variables)
         {
-            var placeholder = "{{" + kvp.Key + "}}";
-            result = result.Replace(placeholder, kvp.Value);
+            var placeholderDouble = "{{" + kvp.Key + "}}";
+            var placeholderSingle = "{" + kvp.Key + "}";
+            
+            result = result.Replace(placeholderDouble, kvp.Value);
+            result = result.Replace(placeholderSingle, kvp.Value);
         }
 
         return result;

@@ -18,6 +18,7 @@ public class NotificationMessage : ITenantOwned
     
     public DateTime CreatedAt { get; private set; }
     public DateTime? SentAt { get; private set; }
+    public DateTime? NextRetryAt { get; private set; }
 
     private NotificationMessage() { } // EF Core
 
@@ -57,6 +58,12 @@ public class NotificationMessage : ITenantOwned
         if (RetryCount >= 3)
         {
             Status = NotificationStatus.Failed;
+            NextRetryAt = null;
+        }
+        else
+        {
+            // Exponential backoff: 2^RetryCount minutes (e.g. 2m, 4m)
+            NextRetryAt = DateTime.UtcNow.AddMinutes(Math.Pow(2, RetryCount));
         }
     }
 

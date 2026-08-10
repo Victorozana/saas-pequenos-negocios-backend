@@ -5,7 +5,7 @@ namespace Agendamento.UnitTests.Notifications;
 
 public class NotificationDomainTests
 {
-    [Fact]
+    [Fact(DisplayName = "NotificationTemplate deve substituir variáveis no formato {Var} e {{Var}} @spec:AC-062")]
     public void NotificationTemplate_Should_Render_Correctly_With_Variables()
     {
         // Arrange
@@ -24,7 +24,7 @@ public class NotificationDomainTests
         Assert.Equal("Olá Victor, seu agendamento para 10/10/2026 está confirmado.", result);
     }
 
-    [Fact]
+    [Fact(DisplayName = "NotificationMessage ao ser criada deve pertencer ao Tenant e iniciar como Pending @spec:AC-060 @spec:AC-061")]
     public void NotificationMessage_Create_Should_Start_With_Pending_Status()
     {
         // Arrange
@@ -38,7 +38,7 @@ public class NotificationDomainTests
         Assert.Equal(0, notification.RetryCount);
     }
 
-    [Fact]
+    [Fact(DisplayName = "NotificationMessage em falha deve incrementar retry e agendar backoff @spec:AC-063")]
     public void NotificationMessage_MarkAsFailed_Should_Increase_RetryCount_And_Fail_After_3()
     {
         // Arrange

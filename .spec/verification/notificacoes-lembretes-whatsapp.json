@@ -1,6 +1,6 @@
 {
-  "feature": "gestao-clientes",
-  "timestamp": "2026-08-10T23:24:15.014Z",
+  "feature": "notificacoes-lembretes-whatsapp",
+  "timestamp": "2026-08-10T23:22:55.015Z",
   "gitRev": "9012638",
   "command": "dotnet test tests/Agendamento.UnitTests/Agendamento.UnitTests.csproj --configuration Release && dotnet test tests/Agendamento.IntegrationTests/Agendamento.IntegrationTests.csproj --configuration Release",
   "reporter": "exitcode",

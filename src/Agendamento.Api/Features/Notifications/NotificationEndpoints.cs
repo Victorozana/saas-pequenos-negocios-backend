@@ -55,6 +55,34 @@ public static class NotificationEndpoints
         })
         .WithName("SendManualNotification")
         .WithSummary("Enfileira uma notificação manual avulsa");
+
+        group.MapPost("/schedule-reminder", async (
+            [FromBody] Agendamento.Api.Application.Notifications.ScheduleAppointmentReminder.ScheduleAppointmentReminderCommand request,
+            [FromServices] Agendamento.Api.Application.Notifications.ScheduleAppointmentReminder.ScheduleAppointmentReminderHandler handler,
+            CancellationToken cancellationToken) =>
+        {
+            var success = await handler.HandleAsync(request, cancellationToken);
+            if (!success)
+                return Results.BadRequest(new { Message = "Não foi possível agendar o lembrete. Verifique se o agendamento existe e se o cliente possui um telefone válido." });
+
+            return Results.Ok(new { Message = "Lembrete enfileirado com sucesso" });
+        })
+        .WithName("ScheduleReminder")
+        .WithSummary("Enfileira um lembrete para agendamento");
+
+        group.MapPost("/send-quotation-notification", async (
+            [FromBody] Agendamento.Api.Application.Notifications.SendQuotationNotification.SendQuotationNotificationCommand request,
+            [FromServices] Agendamento.Api.Application.Notifications.SendQuotationNotification.SendQuotationNotificationHandler handler,
+            CancellationToken cancellationToken) =>
+        {
+            var success = await handler.HandleAsync(request, cancellationToken);
+            if (!success)
+                return Results.BadRequest(new { Message = "Não foi possível enviar a notificação do orçamento. Verifique se o orçamento existe e se o cliente possui um telefone ou e-mail válido." });
+
+            return Results.Ok(new { Message = "Notificação de orçamento enfileirada com sucesso" });
+        })
+        .WithName("SendQuotationNotification")
+        .WithSummary("Enfileira uma notificação de orçamento emitido");
     }
 }
 

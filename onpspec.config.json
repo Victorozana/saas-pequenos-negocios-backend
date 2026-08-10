@@ -15,6 +15,7 @@
     "coverage/**",
     ".spec/**",
     "**/bin/**",
-    "**/obj/**"
+    "**/obj/**",
+    "**/Migrations/**"
   ]
 }

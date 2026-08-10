@@ -51,7 +51,7 @@ public class NotificationOutboxProcessor : BackgroundService
         // Disable query filters here since we want to process outbox for all tenants at once in the background
         var pendingMessages = await dbContext.NotificationMessages
             .IgnoreQueryFilters()
-            .Where(m => m.Status == NotificationStatus.Pending)
+            .Where(m => m.Status == NotificationStatus.Pending && (m.NextRetryAt == null || m.NextRetryAt <= DateTime.UtcNow))
             .OrderBy(m => m.CreatedAt)
             .Take(50) // Process in batches
             .ToListAsync(stoppingToken);
