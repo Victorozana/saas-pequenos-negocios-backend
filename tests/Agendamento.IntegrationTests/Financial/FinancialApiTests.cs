@@ -40,7 +40,7 @@ public class FinancialApiTests
         return context;
     }
 
-    [Fact(Skip = "Failing on quotation approve", DisplayName = "Orçamento aprovado com sinal gera títulos a receber correspondentes @spec:AC-056")]
+    [Fact(DisplayName = "Orçamento aprovado com sinal gera títulos a receber correspondentes @spec:AC-056")]
     public async Task GenerateReceivablesFromQuotation_ShouldCreateDepositAndRemainingTitles()
     {
         var tenantId = Guid.NewGuid();
@@ -51,11 +51,13 @@ public class FinancialApiTests
         var quotation = Quotation.Create(tenantId, "Q1", customer.Id, DateTime.UtcNow, null, null, null);
         quotation.AddItem(QuotationItem.Create(Guid.NewGuid(), "Service", "un", 500m, 1, 0));
         quotation.SetDeposit(DepositType.FixedAmount, 200m, "Sinal fixo");
+        quotation.MarkAsPending();
         quotation.Approve();
 
         db.Customers.Add(customer);
         db.Quotations.Add(quotation);
         await db.SaveChangesAsync();
+        db.ChangeTracker.Clear();
 
         var handler = new GenerateReceivablesFromQuotationHandler(db);
         await handler.HandleAsync(quotation, CancellationToken.None);
@@ -71,7 +73,7 @@ public class FinancialApiTests
         Assert.Equal(300m, remainingTitle.OriginalAmount);
     }
 
-    [Fact(Skip = "DbUpdateConcurrencyException on InMemory", DisplayName = "Permite criar Contas a Pagar e Registrar Pagamento @spec:AC-057")]
+    [Fact(DisplayName = "Permite criar Contas a Pagar e Registrar Pagamento @spec:AC-057")]
     public async Task Can_Create_Payable_And_Register_Payment()
     {
         var tenantId = Guid.NewGuid();
@@ -83,19 +85,21 @@ public class FinancialApiTests
         var command = new CreatePayableCommand("Supplier A", "Energy Bill", 150.50m, DateTime.UtcNow.AddDays(10));
         var payableId = await createHandler.HandleAsync(command, CancellationToken.None);
 
-        var payHandler = new RegisterPayablePaymentHandler(db);
-        var payCommand = new RegisterPaymentCommand(150.50m, PaymentMethod.Pix, DateTime.UtcNow, "Paid");
+        var dbAct = GetDbContext(tenantId, dbName);
+        var payHandler = new Agendamento.Api.Application.Financial.RegisterPayment.RegisterPayablePaymentHandler(dbAct);
+        var payCommand = new Agendamento.Api.Application.Financial.RegisterPayment.RegisterPaymentCommand(150.50m, PaymentMethod.Pix, DateTime.UtcNow, "Paid");
         var result = await payHandler.HandleAsync(payableId, payCommand, CancellationToken.None);
 
         Assert.True(result);
 
-        var title = await db.PayableTitles.FindAsync(payableId);
+        var dbAssert = GetDbContext(tenantId, dbName);
+        var title = await dbAssert.PayableTitles.FindAsync(payableId);
         Assert.NotNull(title);
         Assert.Equal(TransactionStatus.Paid, title.Status);
         Assert.Equal(0, title.BalanceDue);
     }
 
-    [Fact(Skip = "DbUpdateConcurrencyException on InMemory", DisplayName = "Consulta de extrato retorna somatórios corretos do período @spec:AC-059")]
+    [Fact(DisplayName = "Consulta de extrato retorna somatórios corretos do período @spec:AC-059")]
     public async Task GetFinancialStatement_ShouldReturnCorrectSums()
     {
         var tenantId = Guid.NewGuid();
@@ -111,12 +115,21 @@ public class FinancialApiTests
         db.ReceivableTitles.AddRange(rec1, rec2);
         db.PayableTitles.AddRange(pay1, pay2);
         await db.SaveChangesAsync();
+        db.ChangeTracker.Clear();
 
-        rec1.RegisterPayment(1000m, PaymentMethod.Pix, DateTime.UtcNow);
-        pay1.RegisterPayment(300m, PaymentMethod.BankTransfer, DateTime.UtcNow);
-        await db.SaveChangesAsync();
+        var db2 = GetDbContext(tenantId, dbName);
+        var rec1Db = await db2.ReceivableTitles.FindAsync(rec1.Id);
+        rec1Db!.RegisterPayment(1000m, PaymentMethod.Pix, DateTime.UtcNow);
+        db2.Entry(rec1Db).Collection(t => t.Payments).FindEntry(rec1Db.Payments.Last())!.State = EntityState.Added;
 
-        var handler = new GetFinancialStatementHandler(db);
+        var pay1Db = await db2.PayableTitles.FindAsync(pay1.Id);
+        pay1Db!.RegisterPayment(300m, PaymentMethod.BankTransfer, DateTime.UtcNow);
+        db2.Entry(pay1Db).Collection(t => t.Payments).FindEntry(pay1Db.Payments.Last())!.State = EntityState.Added;
+        
+        await db2.SaveChangesAsync();
+
+        var db3 = GetDbContext(tenantId, dbName);
+        var handler = new GetFinancialStatementHandler(db3);
         var statement = await handler.HandleAsync(DateTime.UtcNow.AddDays(-1), DateTime.UtcNow.AddDays(1), CancellationToken.None);
 
         Assert.Equal(1500m, statement.TotalReceivables);

@@ -26,6 +26,9 @@ public class RegisterReceivablePaymentHandler
 
         title.RegisterPayment(command.Amount, command.Method, command.PaymentDate, command.Notes);
         
+        var newPayment = title.Payments.Last();
+        _dbContext.Entry(title).Collection(t => t.Payments).FindEntry(newPayment)!.State = EntityState.Added;
+
         await _dbContext.SaveChangesAsync(cancellationToken);
         return true;
     }
@@ -51,6 +54,9 @@ public class RegisterPayablePaymentHandler
 
         title.RegisterPayment(command.Amount, command.Method, command.PaymentDate, command.Notes);
         
+        var newPayment = title.Payments.Last();
+        _dbContext.Entry(title).Collection(t => t.Payments).FindEntry(newPayment)!.State = EntityState.Added;
+
         await _dbContext.SaveChangesAsync(cancellationToken);
         return true;
     }
