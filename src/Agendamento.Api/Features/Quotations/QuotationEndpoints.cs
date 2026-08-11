@@ -2,6 +2,7 @@ using Agendamento.Api.Application.Quotations.CreateQuotation;
 using Agendamento.Api.Application.Quotations.ExportPdf;
 using Agendamento.Api.Application.Quotations.GetQuotations;
 using Agendamento.Api.Application.Quotations.UpdateQuotationStatus;
+using Agendamento.Api.Application.WorkOrders.ConvertQuotationToWorkOrder;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Agendamento.Api.Features.Quotations;
@@ -66,6 +67,26 @@ public static class QuotationEndpoints
         .ProducesProblem(StatusCodes.Status404NotFound)
         .ProducesProblem(StatusCodes.Status401Unauthorized)
         .ProducesProblem(StatusCodes.Status400BadRequest);
+
+        group.MapPost("/{id:guid}/convert", async (
+            Guid id,
+            [FromServices] ConvertQuotationToWorkOrderHandler handler,
+            CancellationToken ct) =>
+        {
+            try
+            {
+                var workOrderId = await handler.HandleAsync(new ConvertQuotationToWorkOrderCommand { QuotationId = id }, ct);
+                return Results.Ok(new { WorkOrderId = workOrderId });
+            }
+            catch (InvalidOperationException ex)
+            {
+                return Results.BadRequest(new { error = ex.Message });
+            }
+        })
+        .WithName("ConvertQuotationToWorkOrderInQuotation")
+        .Produces(StatusCodes.Status200OK)
+        .ProducesProblem(StatusCodes.Status400BadRequest)
+        .ProducesProblem(StatusCodes.Status401Unauthorized);
 
         group.MapGet("/{id:guid}/pdf", async (
             Guid id,

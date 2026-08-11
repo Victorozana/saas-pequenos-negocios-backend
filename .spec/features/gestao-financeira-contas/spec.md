@@ -1,34 +1,32 @@
-# Feature Spec: Gestão Financeira e Contas a Receber / Pagar
+# Feature Spec: Gestão Financeira e Contas
 
 ## Visão Geral
-Esta feature permite o controle financeiro completo do prestador de serviço e pequeno negócio. Contempla o lançamento automático de Contas a Receber originadas dos Orçamentos (Sinal/Entrada e saldo restante), registro de receitas avulsas, controle de Contas a Pagar (despesas operacionais) e liquidação/baixa de lançamentos com suporte a múltiplos métodos de pagamento (Pix, Cartão, Dinheiro, Transferência).
+Esta feature permite o controle financeiro básico do tenant (prestador de serviço), incluindo contas a pagar/receber vinculadas aos serviços/O.S. executados.
 
 ## User Stories (US)
 
-### US-029: Lançamento Automático de Contas a Receber por Orçamento / OS
-Como prestador de serviço autenticado,  
-Quero que a aprovação de um Orçamento com Sinal/Entrada gere automaticamente o título de Conta a Receber da entrada e os títulos das parcelas do saldo restante,  
-Para evitar erros manuais de digitação e garantir controle financeiro rigoroso.
+### US-048: Lançar Conta a Receber
+Como prestador de serviços,
+Quero gerar um registro de conta a receber a partir de uma O.S. finalizada,
+Para acompanhar o que o cliente me deve.
 
-### US-030: Registrar e Liquidador Pagamentos (Baixa de Títulos)
-Como prestador de serviço autenticado,  
-Quero registrar o recebimento total ou parcial de um título informando data de liquidação, valor pago e meio de pagamento (Pix, Dinheiro, Cartão),  
-Para atualizar o status financeiro do cliente e quitar o débito.
+### US-049: Lançar Conta a Pagar
+Como prestador de serviços,
+Quero registrar despesas e contas a pagar do meu negócio,
+Para gerir o fluxo de caixa.
 
-### US-031: Cadastrar e Gerenciar Contas a Pagar (Despesas Operacionais)
-Como prestador de serviço autenticado,  
-Quero cadastrar despesas da minha empresa (compra de insumo/matéria-prima, ferramentas, transporte, aluguel) com data de vencimento e fornecedor,  
-Para acompanhar as obrigações financeiras da empresa.
-
-### US-032: Visualizar Extrato Financeiro e Fluxo de Caixa do Tenant
-Como prestador de serviço autenticado,  
-Quero consultar o extrato de movimentações (Entradas x Saídas) por período, filtrando por status (Pendente, Pago, Atrasado),  
-Para entender a saúde financeira e previsão de caixa do meu negócio.
+### US-050: Baixar Pagamento (Conciliação)
+Como prestador de serviços,
+Quero registrar o pagamento parcial ou total de uma conta (pagar/receber),
+Para atualizar meu saldo e status financeiro.
 
 ## Critérios de Aceite (AC)
 
-- **AC-055**: Todos os títulos de Contas a Receber, Contas a Pagar e movimentações de caixa pertencem obrigatoriamente ao `TenantId` autenticado (`ITenantOwned`).
-- **AC-056**: Na criação do Sinal/Entrada do Orçamento, deve ser gerado o título a receber do Sinal no valor exato configurado, com vencimento imediato ou estipulado.
-- **AC-057**: Um título pago parcialmente deve ter seu status atualizado para `PartiallyPaid`, acumulando o histórico de pagamentos até a quitação integral (`Paid`).
-- **AC-058**: Títulos com data de vencimento menor que a data atual e status `Pending` ou `PartiallyPaid` devem ser sinalizados/retornados como `Overdue` (Atrasado).
-- **AC-059**: Consultas de extrato financeiro devem retornar os somatórios consolidados de total a receber, total a pagar e saldo líquido do período pesquisado.
+- **AC-094**: Ao criar uma conta a receber derivada de uma O.S., o valor da conta deve ser igual ao valor da O.S., e o status deve ser `Pendente`.
+- **AC-095**: A baixa de pagamento deve abater do saldo devedor. Se o saldo chegar a zero, a conta muda para `Pago`.
+- **AC-096**: Registros financeiros devem ser isolados por tenant e vinculados ao cliente (quando aplicável).
+
+## Suposições e Perguntas
+
+- **ASM-011**: As contas podem ter baixa parcial. (Confirmado pela AC-095).
+- **Q-011**: Vamos integrar com algum gateway de pagamento real nesta feature ou é apenas fluxo de caixa manual? (aberta)

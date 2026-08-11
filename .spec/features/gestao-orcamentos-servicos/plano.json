@@ -1,0 +1,139 @@
+{
+  "runId": "agendamento-gestao-orcamentos-servicos-msoz7ugd",
+  "feature": "gestao-orcamentos-servicos",
+  "agent": "codex",
+  "modo": "paralelo",
+  "paralelizar": null,
+  "modeloForcado": null,
+  "esforcoForcado": null,
+  "geradoEm": "2026-08-11 18:10",
+  "branchTrabalho": "spec/gestao-orcamentos-servicos",
+  "baseDir": ".spec/features/gestao-orcamentos-servicos",
+  "specDir": ".spec",
+  "repoName": "agendamento",
+  "logsDir": "../onp-worktrees/agendamento-gestao-orcamentos-servicos-logs",
+  "ondas": [
+    [
+      "faixa-1",
+      "faixa-2",
+      "faixa-3"
+    ],
+    [
+      "faixa-4"
+    ]
+  ],
+  "faixas": [
+    {
+      "id": "faixa-1",
+      "branch": "spec/gestao-orcamentos-servicos-faixa-1",
+      "worktree": "../onp-worktrees/agendamento-gestao-orcamentos-servicos-faixa-1",
+      "tarefas": [
+        {
+          "id": "T-088",
+          "titulo": "Entidades de Domínio para Orçamentos e Serviços",
+          "modelo": "gpt-5.6-terra",
+          "esforco": "medium",
+          "arquivos": [
+            "src/Agendamento.Api/Domain/Quotations/Quotation.cs",
+            "src/Agendamento.Api/Domain/Quotations/QuotationStatus.cs",
+            "src/Agendamento.Api/Domain/Quotations/QuotationItem.cs"
+          ],
+          "refs": [
+            "US-045",
+            "US-046",
+            "AC-075",
+            "AC-077"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "faixa-2",
+      "branch": "spec/gestao-orcamentos-servicos-faixa-2",
+      "worktree": "../onp-worktrees/agendamento-gestao-orcamentos-servicos-faixa-2",
+      "tarefas": [
+        {
+          "id": "T-089",
+          "titulo": "Mapeamento EF Core para Orçamentos",
+          "modelo": "gpt-5.6-terra",
+          "esforco": "medium",
+          "arquivos": [
+            "src/Agendamento.Api/Infrastructure/Persistence/Configurations/QuotationConfiguration.cs",
+            "src/Agendamento.Api/Infrastructure/Persistence/Configurations/QuotationItemConfiguration.cs",
+            "src/Agendamento.Api/Infrastructure/Persistence/AgendamentoDbContext.cs"
+          ],
+          "refs": [
+            "US-045",
+            "AC-077"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "faixa-3",
+      "branch": "spec/gestao-orcamentos-servicos-faixa-3",
+      "worktree": "../onp-worktrees/agendamento-gestao-orcamentos-servicos-faixa-3",
+      "tarefas": [
+        {
+          "id": "T-090",
+          "titulo": "Endpoints de Gestão de Orçamentos",
+          "modelo": "gpt-5.6-terra",
+          "esforco": "medium",
+          "arquivos": [
+            "src/Agendamento.Api/Features/Quotations/QuotationEndpoints.cs",
+            "src/Agendamento.Api/Program.cs"
+          ],
+          "refs": [
+            "US-045",
+            "US-046",
+            "AC-075",
+            "AC-077",
+            "AC-078"
+          ]
+        },
+        {
+          "id": "T-091",
+          "titulo": "Caso de Uso: Transformar Orçamento em O.S.",
+          "modelo": "gpt-5.6-terra",
+          "esforco": "medium",
+          "arquivos": [
+            "src/Agendamento.Api/Application/WorkOrders/ConvertQuotationToWorkOrder/ConvertQuotationToWorkOrderHandler.cs",
+            "src/Agendamento.Api/Application/WorkOrders/ConvertQuotationToWorkOrder/ConvertQuotationToWorkOrderCommand.cs",
+            "src/Agendamento.Api/Features/Quotations/QuotationEndpoints.cs"
+          ],
+          "refs": [
+            "US-047",
+            "AC-076",
+            "AC-078"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "faixa-4",
+      "branch": "spec/gestao-orcamentos-servicos-faixa-4",
+      "worktree": "../onp-worktrees/agendamento-gestao-orcamentos-servicos-faixa-4",
+      "tarefas": [
+        {
+          "id": "T-092",
+          "titulo": "Testes de Integração para Orçamentos",
+          "modelo": "gpt-5.6-terra",
+          "esforco": "medium",
+          "arquivos": [
+            "tests/Agendamento.IntegrationTests/Features/QuotationTests.cs",
+            "tests/Agendamento.UnitTests/Quotations/QuotationDomainTests.cs"
+          ],
+          "refs": [
+            "AC-075",
+            "AC-076",
+            "AC-077",
+            "AC-078"
+          ]
+        }
+      ]
+    }
+  ],
+  "sequenciais": [],
+  "concluidas": [],
+  "avisos": []
+}

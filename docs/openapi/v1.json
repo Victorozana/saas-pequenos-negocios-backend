@@ -63,6 +63,29 @@
         }
       }
     },
+    "/api/v1/team-members/invitations/accept": {
+      "post": {
+        "tags": [
+          "Agendamento.Api"
+        ],
+        "operationId": "AcceptTeamInvitation",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AcceptInvitationRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/v1/company-registry/{cnpj}": {
       "get": {
         "tags": [
@@ -127,7 +150,14 @@
         "operationId": "GetCurrentUser",
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserProfileResponse"
+                }
+              }
+            }
           }
         }
       }
@@ -681,6 +711,50 @@
           },
           "400": {
             "description": "Bad Request",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/quotations/{id}/convert": {
+      "post": {
+        "tags": [
+          "Quotations"
+        ],
+        "operationId": "ConvertQuotationToWorkOrderInQuotation",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
             "content": {
               "application/problem\u002Bjson": {
                 "schema": {
@@ -1256,6 +1330,76 @@
         }
       }
     },
+    "/api/v1/team-members": {
+      "get": {
+        "tags": [
+          "Team"
+        ],
+        "operationId": "GetTeamMembers",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/v1/team-members/{userId}": {
+      "put": {
+        "tags": [
+          "Team"
+        ],
+        "operationId": "UpdateTeamMember",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateTeamMemberRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/v1/team-members/invitations": {
+      "post": {
+        "tags": [
+          "Team"
+        ],
+        "operationId": "SendTeamInvitation",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SendInvitationRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/v1/subscriptions/current": {
       "get": {
         "tags": [
@@ -1327,6 +1471,26 @@
   },
   "components": {
     "schemas": {
+      "AcceptInvitationRequest": {
+        "required": [
+          "token",
+          "password",
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "token": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
       "AppointmentType": {
         "type": "integer"
       },
@@ -2091,6 +2255,29 @@
           }
         }
       },
+      "SendInvitationRequest": {
+        "required": [
+          "email",
+          "role",
+          "permissions"
+        ],
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string"
+          },
+          "role": {
+            "type": "string"
+          },
+          "permissions": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          }
+        }
+      },
       "SendManualNotificationRequest": {
         "required": [
           "recipient",
@@ -2336,6 +2523,25 @@
           }
         }
       },
+      "UpdateTeamMemberRequest": {
+        "required": [
+          "role",
+          "permissions"
+        ],
+        "type": "object",
+        "properties": {
+          "role": {
+            "type": "string"
+          },
+          "permissions": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          }
+        }
+      },
       "UpdateWorkOrderStatusRequest": {
         "type": "object",
         "properties": {
@@ -2345,6 +2551,46 @@
           "notes": {
             "type": "string",
             "nullable": true
+          }
+        }
+      },
+      "UserProfileResponse": {
+        "required": [
+          "id",
+          "name",
+          "email",
+          "role",
+          "tenantId",
+          "permissions",
+          "status"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "role": {
+            "type": "string"
+          },
+          "tenantId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "permissions": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "status": {
+            "type": "string"
           }
         }
       },
@@ -2388,6 +2634,9 @@
       "WebhookPayload": {
         "type": "object",
         "properties": {
+          "id": {
+            "type": "string"
+          },
           "type": {
             "type": "string"
           },
@@ -2412,6 +2661,9 @@
   "tags": [
     {
       "name": "Identity"
+    },
+    {
+      "name": "Agendamento.Api"
     },
     {
       "name": "Company Registry"
@@ -2444,7 +2696,7 @@
       "name": "Dashboard"
     },
     {
-      "name": "Agendamento.Api"
+      "name": "Team"
     }
   ]
 }

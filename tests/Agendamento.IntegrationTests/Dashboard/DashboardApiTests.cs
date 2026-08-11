@@ -10,6 +10,7 @@ using Agendamento.Api.Domain.Financial;
 using System;
 using System.Net.Http.Headers;
 using System.Text.Json;
+using Microsoft.EntityFrameworkCore;
 
 namespace Agendamento.IntegrationTests.Dashboard;
 
@@ -45,6 +46,17 @@ public class DashboardApiTests : IClassFixture<AgendamentoApiFactory>
         Assert.Equal(System.Net.HttpStatusCode.Unauthorized, response.StatusCode);
     }
     
+    private class TestTenantContext : Agendamento.Api.Application.Tenancy.ITenantContext
+    {
+        public TestTenantContext(Guid tenantId)
+        {
+            TenantId = tenantId;
+            HasTenant = true;
+        }
+        public Guid TenantId { get; }
+        public bool HasTenant { get; }
+    }
+
     [Fact(DisplayName = "Isolamento estrito de dados por tenant no dashboard @spec:AC-065")]
     public async Task DashboardEndpoints_ShouldReturnOnlyTenantData_AC065()
     {
@@ -53,18 +65,24 @@ public class DashboardApiTests : IClassFixture<AgendamentoApiFactory>
         var tenantB = Guid.NewGuid();
         var userId = Guid.NewGuid();
 
-        using (var scope = _factory.Services.CreateScope())
+        var options = new Microsoft.EntityFrameworkCore.DbContextOptionsBuilder<AgendamentoDbContext>()
+            .UseInMemoryDatabase("IntegrationTestDb")
+            .Options;
+
+        using (var dbA = new AgendamentoDbContext(options, new TestTenantContext(tenantA)))
         {
-            var db = scope.ServiceProvider.GetRequiredService<AgendamentoDbContext>();
             var titleA = ReceivableTitle.Create(tenantA, "Tenant A", 100m, DateTime.UtcNow);
             titleA.RegisterPayment(100m, PaymentMethod.Pix, DateTime.UtcNow);
-            
+            dbA.ReceivableTitles.Add(titleA);
+            await dbA.SaveChangesAsync();
+        }
+
+        using (var dbB = new AgendamentoDbContext(options, new TestTenantContext(tenantB)))
+        {
             var titleB = ReceivableTitle.Create(tenantB, "Tenant B", 200m, DateTime.UtcNow);
             titleB.RegisterPayment(200m, PaymentMethod.Pix, DateTime.UtcNow);
-            
-            db.ReceivableTitles.Add(titleA);
-            db.ReceivableTitles.Add(titleB);
-            await db.SaveChangesAsync();
+            dbB.ReceivableTitles.Add(titleB);
+            await dbB.SaveChangesAsync();
         }
 
         var issuer = _factory.Services.GetRequiredService<Agendamento.Application.Identity.ISessionIssuer>();

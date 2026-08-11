@@ -177,16 +177,17 @@ public class QuotationApiTests
             null
         ));
 
-        var updateStatusHandler = new UpdateQuotationStatusHandler(db, null!);
-        
-        // Transição Draft -> Pending
-        var pendingSuccess = await updateStatusHandler.HandleAsync(quotationId, new UpdateQuotationStatusCommand(QuotationStatus.Pending));
-        Assert.True(pendingSuccess);
+        var receivablesHandler = new Agendamento.Api.Application.Financial.GenerateReceivablesFromQuotation.GenerateReceivablesFromQuotationHandler(db);
+        var updateStatusHandler = new UpdateQuotationStatusHandler(db, receivablesHandler);
+
+        // Transição Pending -> Approved
+        var approvedSuccess = await updateStatusHandler.HandleAsync(quotationId, new UpdateQuotationStatusCommand(QuotationStatus.Approved));
+        Assert.True(approvedSuccess);
 
         var getQuotationHandler = new GetQuotationByIdHandler(db);
-        var qPending = await getQuotationHandler.HandleAsync(quotationId);
-        Assert.NotNull(qPending);
-        Assert.Equal(QuotationStatus.Pending, qPending.Status);
+        var qApproved = await getQuotationHandler.HandleAsync(quotationId);
+        Assert.NotNull(qApproved);
+        Assert.Equal(QuotationStatus.Approved, qApproved.Status);
     }
 
     [Fact(DisplayName = "Isolamento multi-tenant impede que um tenant acesse orçamento ou serviço de outro tenant @spec:AC-049 @principle:P-004")]

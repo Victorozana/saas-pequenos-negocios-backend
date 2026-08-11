@@ -55,6 +55,8 @@ public class CreateQuotationHandler
             quotation.SetDeposit(command.Deposit.Type, command.Deposit.Value, command.Deposit.PaymentNotes);
         }
 
+        quotation.MarkAsPending();
+
         _dbContext.Quotations.Add(quotation);
         await _dbContext.SaveChangesAsync(cancellationToken);
 

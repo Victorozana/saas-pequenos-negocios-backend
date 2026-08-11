@@ -1,10 +1,10 @@
 {
   "feature": "gestao-orcamentos-servicos",
-  "timestamp": "2026-08-10T22:50:50.583Z",
-  "gitRev": "5e607bd",
-  "command": "dotnet test tests/Agendamento.UnitTests/Agendamento.UnitTests.csproj --configuration Release && dotnet test tests/Agendamento.IntegrationTests/Agendamento.IntegrationTests.csproj --configuration Release --filter \"FullyQualifiedName~CompanyRegistryContractTests|FullyQualifiedName~RegisterTenantTransactionTests|FullyQualifiedName~TenantRegistrationEndpointTests|FullyQualifiedName~CurrentTenantEndpointTests|FullyQualifiedName~CurrentUserEndpointTests|FullyQualifiedName~QuotationApiTests\"",
+  "timestamp": "2026-08-11T19:03:36.913Z",
+  "gitRev": "bea0769",
+  "command": "dotnet test tests/Agendamento.UnitTests/Agendamento.UnitTests.csproj --configuration Release && dotnet test tests/Agendamento.IntegrationTests/Agendamento.IntegrationTests.csproj --configuration Release",
   "reporter": "exitcode",
-  "exitCode": 1,
+  "exitCode": 0,
   "testsParsed": 0,
   "results": {},
   "principles": {}

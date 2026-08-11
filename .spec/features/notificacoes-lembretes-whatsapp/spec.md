@@ -1,34 +1,27 @@
-# Feature Spec: Notificações, Lembretes e Integração WhatsApp
+# Feature Spec: Notificações e Lembretes WhatsApp
 
 ## Visão Geral
-Esta feature permite o envio de comunicações operacionais e comerciais automatizadas do prestador de serviço para seus clientes finais. O módulo disponibiliza suporte a outbox de notificações, envio de lembretes prévios de visitas técnicas/instalações e notificações de aviso de orçamento emitido/pendente ou recibo de entrada via integração estruturada para WhatsApp / E-mail.
+Esta feature provê um mecanismo genérico e extensível para enviar notificações de sistema (e futuramente WhatsApp/Email) aos clientes, como lembretes de agendamentos e faturas atrasadas.
 
 ## User Stories (US)
 
-### US-033: Enviar Lembrete Automático de Agendamento ao Cliente
-Como prestador de serviço autenticado,  
-Quero que o sistema programe o envio automático de lembretes (ex: 24h ou 2h antes) para o cliente sobre a visita técnica ou instalação agendada,  
-Para reduzir a taxa de ausência/imprevistos no local de atendimento.
+### US-051: Lembrete de Agendamento
+Como prestador de serviços,
+Quero que o sistema gere notificações automáticas para meus clientes sobre agendamentos próximos,
+Para reduzir a taxa de não-comparecimento (no-show).
 
-### US-034: Notificar Cliente sobre Emissão / Expiração de Orçamento
-Como prestador de serviço autenticado,  
-Quero disparar uma mensagem direta para o WhatsApp do cliente contendo o resumo da proposta comercial e aviso de vencimento,  
-Para agilizar a tomada de decisão e aprovação do orçamento.
-
-### US-035: Registrar Fila de Notificações (Outbox Pattern)
-Como arquiteto do sistema,  
-Quero que todos os eventos de notificação sejam armazenados em uma tabela de Outbox antes do envio externo,  
-Para garantir resiliência, retry automático e evitar perda de mensagens em instabilidade do provedor de comunicação.
-
-### US-036: Consultar Histórico e Status de Envios por Cliente / Tenant
-Como prestador de serviço autenticado,  
-Quero visualizar o histórico de mensagens e lembretes enviados a um cliente específico e o status de entrega (Pendente, Enviado, Falha),  
-Para ter registro de todas as interações e mensagens transmitidas.
+### US-052: Aviso de Fatura Vencida
+Como prestador de serviços,
+Quero que o sistema notifique clientes com contas atrasadas,
+Para melhorar o meu recebimento financeiro.
 
 ## Critérios de Aceite (AC)
 
-- **AC-060**: Todas as notificações e mensagens registradas pertencem obrigatoriamente ao `TenantId` autenticado (`ITenantOwned`).
-- **AC-061**: Mensagens disparadas pelo sistema devem ser processadas via padrão Outbox (tabela `NotificationOutbox`) em background sem bloquear as requisições HTTP da API.
-- **AC-062**: O envio de mensagens deve suportar parâmetros configuráveis por tenant (templates de mensagens com variáveis como `{ClienteNome}`, `{DataAgendamento}`, `{CodigoOrcamento}`).
-- **AC-063**: Em caso de falha de comunicação com o gateway/provedor externo, o sistema deve registrar a tentativa, incrementar a contagem de retries e agendar a nova tentativa com backoff exponencial.
-- **AC-064**: O payload da mensagem enviada nunca deve expor tokens de acesso ou dados sensíveis internos do tenant.
+- **AC-097**: O sistema deve possuir um serviço centralizado de notificações (`INotificationService`) que abstraia o provedor de envio (Console/Email/WhatsApp).
+- **AC-098**: O histórico de notificações enviadas deve ser registrado por tenant e vinculado ao cliente para auditoria.
+- **AC-099**: Ao agendar um serviço para uma data futura, o sistema deve enfileirar/registrar a intenção de notificar o cliente.
+
+## Suposições e Perguntas
+
+- **ASM-012**: Inicialmente, a notificação será apenas gravada no banco (simulando envio) sem integração real com API do WhatsApp (ex: Twilio), para não gerar custos durante o desenvolvimento.
+- **Q-012**: O prestador de serviço poderá desligar notificações automáticas para determinados clientes? (aberta)
