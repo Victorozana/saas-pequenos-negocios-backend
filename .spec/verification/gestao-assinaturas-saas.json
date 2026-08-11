@@ -1,0 +1,11 @@
+{
+  "feature": "gestao-assinaturas-saas",
+  "timestamp": "2026-08-11T00:01:39.921Z",
+  "gitRev": "dff2a6d",
+  "command": "dotnet test tests/Agendamento.UnitTests/Agendamento.UnitTests.csproj --configuration Release && dotnet test tests/Agendamento.IntegrationTests/Agendamento.IntegrationTests.csproj --configuration Release",
+  "reporter": "exitcode",
+  "exitCode": 1,
+  "testsParsed": 0,
+  "results": {},
+  "principles": {}
+}

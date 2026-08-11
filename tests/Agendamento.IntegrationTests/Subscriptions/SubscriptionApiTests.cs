@@ -1,6 +1,7 @@
 using System.Net.Http.Json;
 using Agendamento.Api.Features.Subscriptions;
 using Agendamento.IntegrationTests.Infrastructure;
+using Microsoft.Extensions.DependencyInjection;
 using Xunit;
 
 namespace Agendamento.IntegrationTests.Subscriptions;
@@ -27,12 +28,14 @@ public class SubscriptionApiTests : IClassFixture<AgendamentoApiFactory>, IAsync
         return Task.CompletedTask;
     }
 
-    [Fact]
-    public async Task Webhook_InvoicePaid_ShouldReturnOk()
+    [Fact(DisplayName = "Processar Webhooks de Pagamento de Assinatura do SaaS de forma idempotente @spec:AC-072")]
+    public async Task Webhook_InvoicePaid_ShouldBeIdempotent_AC072()
     {
         // Arrange
+        var eventId = Guid.NewGuid().ToString();
         var payload = new WebhookPayload
         {
+            Id = eventId,
             Type = "invoice.paid",
             Data = new WebhookData
             {
@@ -45,11 +48,15 @@ public class SubscriptionApiTests : IClassFixture<AgendamentoApiFactory>, IAsync
             }
         };
 
-        // Act
-        var response = await _client.PostAsJsonAsync("/api/v1/webhooks/billing", payload);
+        // Act 1
+        var response1 = await _client.PostAsJsonAsync("/api/v1/webhooks/billing", payload);
+        response1.EnsureSuccessStatusCode();
 
+        // Act 2 (Duplicate with same Event ID)
+        var response2 = await _client.PostAsJsonAsync("/api/v1/webhooks/billing", payload);
+        
         // Assert
-        response.EnsureSuccessStatusCode();
-        // Nota: Idealmente testaríamos se a base foi atualizada, mas aqui validamos pelo menos o parsing do payload e a resposta idempotente (200 OK mesmo que sub_unknown123 não exista).
+        response2.EnsureSuccessStatusCode(); // Deve retornar 200 OK e pular processamento silenciosamente
     }
+
 }

@@ -65,4 +65,27 @@ public sealed class TenantSubscription : ITenantOwned
         Status = SubscriptionStatus.Canceled;
         UpdatedAtUtc = DateTimeOffset.UtcNow;
     }
+
+    public bool IsTrialExpired(DateTimeOffset now)
+    {
+        return Status == SubscriptionStatus.Trialing && TrialEndDate.HasValue && now > TrialEndDate.Value;
+    }
+
+    public bool IsWriteAccessBlocked(DateTimeOffset now, int graceDays = 3)
+    {
+        if (Status == SubscriptionStatus.Canceled)
+            return true;
+
+        if (IsTrialExpired(now))
+            return true;
+
+        if (Status == SubscriptionStatus.PastDue)
+        {
+            var gracePeriodEnd = CurrentPeriodEnd.AddDays(graceDays);
+            if (now > gracePeriodEnd)
+                return true;
+        }
+
+        return false;
+    }
 }

@@ -16,6 +16,17 @@ public class ProcessSubscriptionWebhookHandler
 
     public async Task HandleAsync(ProcessSubscriptionWebhookCommand request, CancellationToken cancellationToken)
     {
+        if (!string.IsNullOrWhiteSpace(request.EventId))
+        {
+            var alreadyProcessed = await _dbContext.IdempotencyRecords
+                .AnyAsync(r => r.Key == request.EventId, cancellationToken);
+                
+            if (alreadyProcessed)
+                return;
+
+            _dbContext.IdempotencyRecords.Add(new IdempotencyRecord { Key = request.EventId, CreatedAt = DateTime.UtcNow });
+        }
+
         var subscription = await _dbContext.TenantSubscriptions
             .IgnoreQueryFilters()
             .FirstOrDefaultAsync(s => s.ExternalSubscriptionId == request.ExternalSubscriptionId, cancellationToken);

@@ -37,6 +37,7 @@ public static class SubscriptionEndpoints
         {
             var command = new ProcessSubscriptionWebhookCommand
             {
+                EventId = payload.Id,
                 Type = payload.Type,
                 ExternalSubscriptionId = payload.Data.Object.Id,
                 PeriodStart = payload.Data.Object.CurrentPeriodStart,
@@ -51,6 +52,7 @@ public static class SubscriptionEndpoints
 
 public class WebhookPayload
 {
+    public string Id { get; set; } = null!; // EventId
     public string Type { get; set; } = null!;
     public WebhookData Data { get; set; } = null!;
 }

@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Agendamento.Api.Infrastructure.Subscriptions;
 
-internal sealed class PlanLimitsChecker : IPlanLimitsChecker
+public sealed class PlanLimitsChecker : IPlanLimitsChecker
 {
     private readonly AgendamentoDbContext _dbContext;
     private readonly ITenantContext _tenantContext;
@@ -52,6 +52,18 @@ internal sealed class PlanLimitsChecker : IPlanLimitsChecker
             .CountAsync(q => q.TenantId == _tenantContext.TenantId && q.IssueDate >= startOfMonth.UtcDateTime, cancellationToken);
 
         return currentMonthQuotationsCount < limits.MaxQuotationsPerMonth;
+    }
+
+    public async Task<bool> IsSubscriptionWriteAllowedAsync(CancellationToken cancellationToken = default)
+    {
+        var subscription = await _dbContext.TenantSubscriptions
+            .IgnoreQueryFilters()
+            .FirstOrDefaultAsync(ts => ts.TenantId == _tenantContext.TenantId, cancellationToken);
+
+        if (subscription == null)
+            return true; // Se não tem assinatura registrada, consideramos como permitida (comportamento padrão atual).
+        
+        return !subscription.IsWriteAccessBlocked(DateTimeOffset.UtcNow);
     }
 
     private async Task<Agendamento.Domain.Subscriptions.PlanLimits?> GetCurrentPlanLimitsAsync(CancellationToken cancellationToken)
