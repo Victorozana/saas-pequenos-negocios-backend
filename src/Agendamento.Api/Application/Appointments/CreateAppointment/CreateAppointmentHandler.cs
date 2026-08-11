@@ -53,6 +53,40 @@ public class CreateAppointmentHandler
         );
 
         _dbContext.Appointments.Add(appointment);
+
+        if (command.WorkOrderId.HasValue)
+        {
+            var customerId = await _dbContext.WorkOrders
+                .Where(w => w.Id == command.WorkOrderId.Value)
+                .Select(w => w.CustomerId)
+                .FirstOrDefaultAsync(cancellationToken);
+
+            Console.WriteLine($"[DEBUG] WorkOrderId: {command.WorkOrderId.Value}, CustomerId from db: {customerId}");
+
+            if (customerId != Guid.Empty)
+            {
+                var customerPhone = await _dbContext.Customers
+                    .Where(c => c.Id == customerId)
+                    .Select(c => c.Phone)
+                    .FirstOrDefaultAsync(cancellationToken);
+                
+                Console.WriteLine($"[DEBUG] CustomerPhone from db: {customerPhone ?? "NULL"}");
+
+                if (!string.IsNullOrWhiteSpace(customerPhone))
+                {
+                    var notification = Agendamento.Api.Domain.Notifications.NotificationMessage.Create(
+                        _tenantContext.TenantId,
+                        customerPhone,
+                        Agendamento.Api.Domain.Notifications.NotificationChannel.WhatsApp,
+                        $"Seu agendamento foi confirmado para {appointment.StartTime.ToLocalTime():dd/MM/yyyy HH:mm}. O endereço é {appointment.Address}."
+                    );
+                    _dbContext.NotificationMessages.Add(notification);
+                    Console.WriteLine($"[DEBUG] Notification Added!");
+                }
+            }
+        }
+
+        await _dbContext.SaveChangesAsync(cancellationToken);
         await _unitOfWork.CommitAsync(cancellationToken);
 
         return appointment.Id;

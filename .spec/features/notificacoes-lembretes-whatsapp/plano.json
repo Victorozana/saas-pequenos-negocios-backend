@@ -1,0 +1,115 @@
+{
+  "runId": "agendamento-notificacoes-lembretes-whatsapp-msp1yzgc",
+  "feature": "notificacoes-lembretes-whatsapp",
+  "agent": "codex",
+  "modo": "paralelo",
+  "paralelizar": null,
+  "modeloForcado": null,
+  "esforcoForcado": null,
+  "geradoEm": "2026-08-11 19:28",
+  "branchTrabalho": "spec/notificacoes-lembretes-whatsapp",
+  "baseDir": ".spec/features/notificacoes-lembretes-whatsapp",
+  "specDir": ".spec",
+  "repoName": "agendamento",
+  "logsDir": "../onp-worktrees/agendamento-notificacoes-lembretes-whatsapp-logs",
+  "ondas": [
+    [
+      "faixa-1",
+      "faixa-2",
+      "faixa-3"
+    ],
+    [
+      "faixa-4"
+    ]
+  ],
+  "faixas": [
+    {
+      "id": "faixa-1",
+      "branch": "spec/notificacoes-lembretes-whatsapp-faixa-1",
+      "worktree": "../onp-worktrees/agendamento-notificacoes-lembretes-whatsapp-faixa-1",
+      "tarefas": [
+        {
+          "id": "T-097",
+          "titulo": "Serviço Abstrato e Entidades de Notificação",
+          "modelo": "gpt-5.6-terra",
+          "esforco": "medium",
+          "arquivos": [
+            "src/Agendamento.Api/Application/Notifications/INotificationService.cs",
+            "src/Agendamento.Api/Domain/Notifications/NotificationRecord.cs",
+            "src/Agendamento.Api/Infrastructure/Notifications/ConsoleNotificationService.cs"
+          ],
+          "refs": [
+            "US-051",
+            "US-052",
+            "AC-097",
+            "AC-098"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "faixa-2",
+      "branch": "spec/notificacoes-lembretes-whatsapp-faixa-2",
+      "worktree": "../onp-worktrees/agendamento-notificacoes-lembretes-whatsapp-faixa-2",
+      "tarefas": [
+        {
+          "id": "T-098",
+          "titulo": "Mapeamento EF Core de Notificações",
+          "modelo": "gpt-5.6-terra",
+          "esforco": "medium",
+          "arquivos": [
+            "src/Agendamento.Api/Infrastructure/Persistence/Configurations/NotificationRecordConfiguration.cs",
+            "src/Agendamento.Api/Infrastructure/Persistence/AgendamentoDbContext.cs"
+          ],
+          "refs": [
+            "AC-098"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "faixa-3",
+      "branch": "spec/notificacoes-lembretes-whatsapp-faixa-3",
+      "worktree": "../onp-worktrees/agendamento-notificacoes-lembretes-whatsapp-faixa-3",
+      "tarefas": [
+        {
+          "id": "T-099",
+          "titulo": "Integração de Notificação no Agendamento",
+          "modelo": "gpt-5.6-terra",
+          "esforco": "medium",
+          "arquivos": [
+            "src/Agendamento.Api/Application/Appointments/CreateAppointment/CreateAppointmentHandler.cs"
+          ],
+          "refs": [
+            "US-051",
+            "AC-099"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "faixa-4",
+      "branch": "spec/notificacoes-lembretes-whatsapp-faixa-4",
+      "worktree": "../onp-worktrees/agendamento-notificacoes-lembretes-whatsapp-faixa-4",
+      "tarefas": [
+        {
+          "id": "T-100",
+          "titulo": "Testes de Integração de Notificação",
+          "modelo": "gpt-5.6-terra",
+          "esforco": "medium",
+          "arquivos": [
+            "tests/Agendamento.IntegrationTests/Features/NotificationTests.cs"
+          ],
+          "refs": [
+            "AC-097",
+            "AC-098",
+            "AC-099"
+          ]
+        }
+      ]
+    }
+  ],
+  "sequenciais": [],
+  "concluidas": [],
+  "avisos": []
+}
