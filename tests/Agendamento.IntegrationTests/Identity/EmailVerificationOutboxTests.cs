@@ -14,7 +14,7 @@ public sealed class EmailVerificationOutboxTests
         var sender = new OutboxEmailVerificationSender(outbox);
         var requestedAt = new DateTimeOffset(2026, 8, 1, 12, 0, 0, TimeSpan.Zero);
         var passwords = new AspNetPasswordService();
-        var user = User.Create("123.456.789-09", "admin@example.com", passwords.Hash("uma-senha-segura"));
+        var user = User.Create("Admin", "123.456.789-09", "admin@example.com", passwords.Hash("uma-senha-segura"));
         var token = EmailVerificationToken.Create(user.Id, "token-bruto-que-nao-vai-para-outbox", requestedAt);
 
         await sender.RequestAsync(user.Id, user.Email, token.Id, requestedAt);

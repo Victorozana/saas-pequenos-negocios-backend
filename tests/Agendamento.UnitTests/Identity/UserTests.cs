@@ -11,6 +11,7 @@ public sealed class UserTests
     {
         var passwords = new AspNetPasswordService();
         var user = User.Create(
+            "Test Admin",
             "123.456.789-09",
             "  ADMIN@Example.COM  ",
             passwords.Hash("uma-senha-segura"));
@@ -26,7 +27,7 @@ public sealed class UserTests
         const string password = "uma-senha-segura";
         var passwords = new AspNetPasswordService();
 
-        var user = User.Create("123.456.789-09", "admin@example.com", passwords.Hash(password));
+        var user = User.Create("Admin User", "123.456.789-09", "admin@example.com", passwords.Hash(password));
 
         Assert.NotEqual(password, user.PasswordHash);
         Assert.True(passwords.Verify(user.PasswordHash, password));

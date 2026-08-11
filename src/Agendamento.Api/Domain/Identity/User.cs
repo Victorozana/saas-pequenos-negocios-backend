@@ -10,7 +10,9 @@ public sealed class User
 
     public Guid Id { get; private set; }
 
-    public string Cpf { get; private set; } = null!;
+    public string Name { get; private set; } = null!;
+
+    public string? Cpf { get; private set; }
 
     public string Email { get; private set; } = null!;
 
@@ -23,18 +25,21 @@ public sealed class User
     public DateTimeOffset? EmailVerifiedAtUtc { get; private set; }
 
     public static User Create(
-        string cpf,
+        string name,
+        string? cpf,
         string email,
         string passwordHash)
     {
-        ArgumentException.ThrowIfNullOrWhiteSpace(cpf);
+        ArgumentException.ThrowIfNullOrWhiteSpace(name);
+        if (cpf is not null) ArgumentException.ThrowIfNullOrWhiteSpace(cpf);
         ArgumentException.ThrowIfNullOrWhiteSpace(email);
         ArgumentException.ThrowIfNullOrWhiteSpace(passwordHash);
 
         var user = new User
         {
             Id = Guid.NewGuid(),
-            Cpf = NormalizeCpf(cpf),
+            Name = name.Trim(),
+            Cpf = cpf is not null ? NormalizeCpf(cpf) : null,
             Email = NormalizeEmail(email),
             PasswordHash = passwordHash,
             Status = UserStatus.PendingEmailVerification,

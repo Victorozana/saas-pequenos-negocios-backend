@@ -1,6 +1,7 @@
 using Agendamento.Api.Application.Customers.CreateCustomer;
 using Agendamento.Api.Application.Customers.GetCustomers;
 using Agendamento.Api.Application.Customers.UpdateCustomer;
+using Agendamento.Api.Infrastructure.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Agendamento.Api.Features.Customers;
@@ -22,7 +23,8 @@ public static class CustomerEndpoints
             return Results.Created($"/api/v1/customers/{id}", new { Id = id });
         })
         .WithName("CreateCustomer")
-        .WithSummary("Creates a new customer for the current tenant");
+        .WithSummary("Creates a new customer for the current tenant")
+        .RequirePermission("customers.write");
 
         group.MapPut("{id:guid}", async (
             [FromRoute] Guid id,
@@ -40,7 +42,8 @@ public static class CustomerEndpoints
             return Results.NoContent();
         })
         .WithName("UpdateCustomer")
-        .WithSummary("Updates an existing customer");
+        .WithSummary("Updates an existing customer")
+        .RequirePermission("customers.write");
 
         group.MapGet("", async (
             [FromQuery] string? search,
@@ -53,7 +56,8 @@ public static class CustomerEndpoints
             return Results.Ok(results);
         })
         .WithName("GetCustomers")
-        .WithSummary("Lists all active customers for the current tenant");
+        .WithSummary("Lists all active customers for the current tenant")
+        .RequirePermission("customers.read");
 
         group.MapGet("{id:guid}", async (
             [FromRoute] Guid id,
@@ -64,6 +68,7 @@ public static class CustomerEndpoints
             return customer != null ? Results.Ok(customer) : Results.NotFound();
         })
         .WithName("GetCustomerById")
-        .WithSummary("Gets a specific customer by ID");
+        .WithSummary("Gets a specific customer by ID")
+        .RequirePermission("customers.read");
     }
 }

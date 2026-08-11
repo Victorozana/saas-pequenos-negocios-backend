@@ -67,7 +67,7 @@ public class RegisterTenantHandler
                 taxRegime,
                 command.FiscalEmail);
 
-            var user = User.Create(command.AdminCpf, command.AdminEmail, Guid.NewGuid().ToString());
+            var user = User.Create(command.AdminName, command.AdminCpf, command.AdminEmail, Guid.NewGuid().ToString());
             
             var membership = TenantMembership.Create(tenant.Id, user.Id, "owner_admin", command.IsLegalRepresentative);
 

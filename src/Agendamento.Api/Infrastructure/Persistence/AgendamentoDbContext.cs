@@ -29,6 +29,7 @@ public class AgendamentoDbContext : DbContext
     public DbSet<Agendamento.Api.Domain.Notifications.NotificationMessage> NotificationMessages => Set<Agendamento.Api.Domain.Notifications.NotificationMessage>();
     public DbSet<Agendamento.Domain.Subscriptions.SaasPlan> SaasPlans => Set<Agendamento.Domain.Subscriptions.SaasPlan>();
     public DbSet<Agendamento.Domain.Subscriptions.TenantSubscription> TenantSubscriptions => Set<Agendamento.Domain.Subscriptions.TenantSubscription>();
+    public DbSet<TeamInvitation> TeamInvitations => Set<TeamInvitation>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

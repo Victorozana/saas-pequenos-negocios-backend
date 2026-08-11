@@ -5,7 +5,8 @@ public static class UserConfiguration
     public const string CreateTableSql = """
         CREATE TABLE IF NOT EXISTS "Users" (
             "Id" uuid PRIMARY KEY,
-            "Cpf" varchar(11) NOT NULL,
+            "Name" varchar(200) NOT NULL,
+            "Cpf" varchar(11) NULL,
             "Email" varchar(320) NOT NULL,
             "PasswordHash" text NOT NULL,
             "Status" integer NOT NULL,

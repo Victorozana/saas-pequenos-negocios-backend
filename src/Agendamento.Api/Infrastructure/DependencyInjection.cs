@@ -52,6 +52,8 @@ public static class DependencyInjection
             });
         services.AddAuthorization();
 
+        services.AddScoped<Agendamento.Api.Infrastructure.Persistence.TenantSaveChangesInterceptor>();
+
         if (configuration.GetValue<bool>("Database:RequirePostgreSql"))
         {
             var connectionString = configuration.GetConnectionString("PostgreSql");
@@ -61,8 +63,6 @@ public static class DependencyInjection
                 throw new InvalidOperationException(
                     "PostgreSQL configuration is required. Set ConnectionStrings__PostgreSql.");
             }
-
-            services.AddScoped<Agendamento.Api.Infrastructure.Persistence.TenantSaveChangesInterceptor>();
 
             services.AddDbContext<Agendamento.Api.Infrastructure.Persistence.AgendamentoDbContext>((sp, options) =>
             {
@@ -90,6 +90,16 @@ public static class DependencyInjection
                     "PostgreSQL configuration is invalid. Check ConnectionStrings__PostgreSql.",
                     exception);
             }
+        }
+        else
+        {
+            services.AddDbContext<Agendamento.Api.Infrastructure.Persistence.AgendamentoDbContext>((sp, options) =>
+            {
+                var interceptor = sp.GetRequiredService<Agendamento.Api.Infrastructure.Persistence.TenantSaveChangesInterceptor>();
+                options.UseInMemoryDatabase("AgendamentoDb").AddInterceptors(interceptor);
+            });
+
+            services.AddScoped<Agendamento.Api.Application.Common.IUnitOfWork, Agendamento.Api.Infrastructure.Persistence.UnitOfWork>();
         }
 
         return services;

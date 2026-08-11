@@ -13,6 +13,7 @@ using Agendamento.Api.Features.Appointments;
 using Agendamento.Api.Features.Financial;
 using Agendamento.Api.Features.Notifications;
 using Agendamento.Api.Features.Dashboard;
+using Agendamento.Api.Features.Team;
 using Agendamento.Api.OpenApi;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -63,6 +64,7 @@ app.MapAppointmentEndpoints();
 app.MapFinancialEndpoints();
 app.MapNotificationEndpoints();
 app.MapDashboardEndpoints();
+app.MapTeamMemberEndpoints();
 Agendamento.Api.Features.Subscriptions.SubscriptionEndpoints.MapSubscriptionEndpoints(app);
 
 app.Run();
