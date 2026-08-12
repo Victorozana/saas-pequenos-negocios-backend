@@ -2164,6 +2164,7 @@
           "adminName",
           "adminCpf",
           "adminEmail",
+          "adminPassword",
           "isLegalRepresentative"
         ],
         "type": "object",
@@ -2236,6 +2237,9 @@
             "type": "string"
           },
           "adminEmail": {
+            "type": "string"
+          },
+          "adminPassword": {
             "type": "string"
           },
           "isLegalRepresentative": {

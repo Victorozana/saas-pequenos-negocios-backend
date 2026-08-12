@@ -18,6 +18,7 @@ public class AgendamentoDbContext : DbContext
     public DbSet<TenantFiscalProfile> TenantFiscalProfiles { get; set; } = null!;
     public DbSet<TenantMembership> TenantMemberships { get; set; } = null!;
     public DbSet<User> Users { get; set; } = null!;
+    public DbSet<EmailVerificationToken> EmailVerificationTokens { get; set; } = null!;
     public DbSet<IdempotencyRecord> IdempotencyRecords { get; set; } = null!;
     public DbSet<Agendamento.Api.Domain.Customers.Customer> Customers => Set<Agendamento.Api.Domain.Customers.Customer>();
     public DbSet<Agendamento.Api.Domain.Services.ServiceItem> ServiceItems => Set<Agendamento.Api.Domain.Services.ServiceItem>();

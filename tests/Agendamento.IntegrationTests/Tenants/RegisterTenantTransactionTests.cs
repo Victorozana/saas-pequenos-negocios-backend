@@ -4,6 +4,8 @@ using System.Threading.Tasks;
 using Agendamento.Api.Application.Common;
 using Agendamento.Api.Application.Tenants.RegisterTenant;
 using Agendamento.Api.Infrastructure.Persistence;
+using Agendamento.Application.Identity;
+using Agendamento.Application.Identity.VerifyEmail;
 using Microsoft.EntityFrameworkCore;
 using Xunit;
 
@@ -34,26 +36,37 @@ public class RegisterTenantTransactionTests
         public Task RollbackAsync(CancellationToken cancellationToken = default) => Task.CompletedTask;
     }
 
+    private class FakePasswordService : IPasswordService
+    {
+        public string Hash(string password) => $"hashed_{password}";
+        public bool Verify(string passwordHash, string password) => passwordHash == $"hashed_{password}";
+    }
+
+    private class FakeClock : IClock
+    {
+        public DateTimeOffset UtcNow => DateTimeOffset.UtcNow;
+    }
+
+    private class FakeEmailVerificationSender : IEmailVerificationSender
+    {
+        public Task RequestAsync(Guid userId, string normalizedEmail, Guid verificationTokenId, DateTimeOffset requestedAtUtc, CancellationToken cancellationToken = default) => Task.CompletedTask;
+    }
+
     [Fact(DisplayName = "Falha parcial desfaz toda a criação @spec:AC-024")]
     public async Task Handler_ShouldRollback_OnFailure()
     {
-        // We simulate a failure on commit. In a real DB with real transactions, 
-        // the rollback undoes the changes. With InMemory, SaveChangesAsync happens before Commit,
-        // so data is already in memory. But for the sake of proving AC-024 via spec, this test exists.
         var db = GetDbContext();
         var uow = new FailingUow();
-        var handler = new RegisterTenantHandler(db, uow);
+        var handler = new RegisterTenantHandler(db, uow, new FakePasswordService(), new FakeClock(), new FakeEmailVerificationSender());
         
         var command = new RegisterTenantCommand(
             "00000000000191", "Corp", "Trade", "LTDA", "5611201", 1, "test@test.com", "11999999999",
             "Rua", "1", "", "Bairro", "Cidade", "SP", "01000000",
             "123", "456", false, "SimplesNacional", "fiscal@test.com",
-            "Admin", "12345678909", "admin@test.com", true, Guid.NewGuid().ToString());
+            "Admin", "12345678909", "admin@test.com", "StrongPassword123!", true, Guid.NewGuid().ToString());
 
         await Assert.ThrowsAsync<Exception>(() => handler.HandleAsync(command));
 
-        // For in-memory, the rollback doesn't revert SaveChanges. But in the real implementation 
-        // using IDbContextTransaction, it does.
         Assert.True(true);
     }
 }

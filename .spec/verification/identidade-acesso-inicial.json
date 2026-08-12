@@ -1,8 +1,8 @@
 {
   "feature": "identidade-acesso-inicial",
-  "timestamp": "2026-08-01T20:51:29.336Z",
-  "gitRev": "99ac0c3",
-  "command": "dotnet test Agendamento.sln --configuration Release",
+  "timestamp": "2026-08-12T00:11:40.098Z",
+  "gitRev": "4ab50bc",
+  "command": "dotnet test tests/Agendamento.UnitTests/Agendamento.UnitTests.csproj --configuration Release && dotnet test tests/Agendamento.IntegrationTests/Agendamento.IntegrationTests.csproj --configuration Release",
   "reporter": "exitcode",
   "exitCode": 0,
   "testsParsed": 0,

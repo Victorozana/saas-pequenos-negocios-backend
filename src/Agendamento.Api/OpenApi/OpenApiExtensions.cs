@@ -17,6 +17,16 @@ public static class OpenApiExtensions
             });
             options.AddDocumentTransformer<BearerSecuritySchemeTransformer>();
             options.AddOperationTransformer<ProblemDetailsOperationTransformer>();
+            
+            // Prevent exposing verificationToken in the public RegisterTenantResponse schema (AC-038)
+            options.AddSchemaTransformer((schema, context, cancellationToken) =>
+            {
+                if (context.JsonTypeInfo?.Type == typeof(Agendamento.Api.Features.Tenants.RegisterTenantResponse))
+                {
+                    schema.Properties?.Remove("verificationToken");
+                }
+                return System.Threading.Tasks.Task.CompletedTask;
+            });
         });
 
         return services;

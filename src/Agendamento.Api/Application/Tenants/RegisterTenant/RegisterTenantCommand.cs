@@ -24,6 +24,7 @@ public record RegisterTenantCommand(
     string AdminName,
     string AdminCpf,
     string AdminEmail,
+    string AdminPassword,
     bool IsLegalRepresentative,
     string IdempotencyKey
 );

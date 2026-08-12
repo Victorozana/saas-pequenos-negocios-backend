@@ -15,10 +15,11 @@ public static class DependencyInjection
         IConfiguration configuration)
     {
         services.AddSingleton<InMemoryIdentityStore>();
-        services.AddSingleton<IIdentityAuthenticationStore>(provider => provider.GetRequiredService<InMemoryIdentityStore>());
-        services.AddSingleton<IEmailVerificationTokenRepository>(provider => provider.GetRequiredService<InMemoryIdentityStore>());
-        services.AddSingleton<IEmailVerificationUserRepository>(provider => provider.GetRequiredService<InMemoryIdentityStore>());
         services.AddSingleton<IEmailOutbox>(provider => provider.GetRequiredService<InMemoryIdentityStore>());
+        services.AddScoped<EfIdentityStore>();
+        services.AddScoped<IIdentityAuthenticationStore>(provider => provider.GetRequiredService<EfIdentityStore>());
+        services.AddScoped<IEmailVerificationTokenRepository>(provider => provider.GetRequiredService<EfIdentityStore>());
+        services.AddScoped<IEmailVerificationUserRepository>(provider => provider.GetRequiredService<EfIdentityStore>());
         services.AddSingleton<IPasswordService, AspNetPasswordService>();
         services.AddSingleton<IClock, SystemClock>();
         services.AddSingleton<IEmailVerificationSender, OutboxEmailVerificationSender>();

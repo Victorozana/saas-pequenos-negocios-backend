@@ -19,12 +19,12 @@
 
 ## T-013 — Mapear persistência e migration do cadastro [concluida]
 - Refs: US-008, US-009, AC-019, AC-021, AC-022, AC-024
-- Arquivos: src/Agendamento.Api/Infrastructure/Persistence/AgendamentoDbContext.cs, src/Agendamento.Api/Infrastructure/Persistence/Configurations/TenantConfiguration.cs, src/Agendamento.Api/Infrastructure/Persistence/Configurations/TenantFiscalProfileConfiguration.cs, src/Agendamento.Api/Infrastructure/Persistence/Configurations/TenantMembershipConfiguration.cs, src/Agendamento.Api/Infrastructure/Persistence/Migrations, tests/Agendamento.IntegrationTests/Tenants/TenantPersistenceTests.cs
+- Arquivos: src/Agendamento.Api/Infrastructure/Persistence/AgendamentoDbContext.cs, src/Agendamento.Api/Infrastructure/Persistence/Configurations/TenantConfiguration.cs, src/Agendamento.Api/Infrastructure/Persistence/Configurations/TenantFiscalProfileConfiguration.cs, src/Agendamento.Api/Infrastructure/Persistence/Configurations/TenantMembershipConfiguration.cs, src/Agendamento.Api/Infrastructure/Persistence/Migrations, tests/Agendamento.UnitTests/Tenants/TenantPersistenceTests.cs
 - Notas: UUIDs, auditoria e unicidades são constraints do banco; membership usa FK explícita para usuário e tenant.
 
 ## T-014 — Orquestrar cadastro transacional e idempotente [concluida]
 - Refs: US-009, AC-021, AC-022, AC-023, AC-024, US-005, AC-009
-- Arquivos: src/Agendamento.Api/Application/Tenants/RegisterTenant/RegisterTenantCommand.cs, src/Agendamento.Api/Application/Tenants/RegisterTenant/RegisterTenantHandler.cs, src/Agendamento.Api/Application/Common/IUnitOfWork.cs, src/Agendamento.Api/Infrastructure/Persistence/IdempotencyRecord.cs, tests/Agendamento.UnitTests/Tenants/RegisterTenantHandlerTests.cs, tests/Agendamento.IntegrationTests/Tenants/RegisterTenantTransactionTests.cs
+- Arquivos: src/Agendamento.Api/Application/Tenants/RegisterTenant/RegisterTenantCommand.cs, src/Agendamento.Api/Application/Tenants/RegisterTenant/RegisterTenantHandler.cs, src/Agendamento.Api/Application/Common/IUnitOfWork.cs, src/Agendamento.Api/Infrastructure/Persistence/IdempotencyRecord.cs, tests/Agendamento.UnitTests/Tenants/RegisterTenantHandlerTests.cs, tests/Agendamento.IntegrationTests/Tenants/RegisterTenantTransactionTests.cs, tests/Agendamento.IntegrationTests/Tenants/TenantOnboardingFlowTests.cs
 - Notas: Uma transação inclui tenant, fiscal, usuário, membership, token e outbox de e-mail.
 
 ## T-015 — Expor consulta e cadastro públicos [concluida]

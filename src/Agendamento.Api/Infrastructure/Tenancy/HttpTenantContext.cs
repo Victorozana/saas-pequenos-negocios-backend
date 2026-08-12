@@ -11,18 +11,7 @@ public class HttpTenantContext : ITenantContext
         _httpContextAccessor = httpContextAccessor;
     }
 
-    public Guid TenantId
-    {
-        get
-        {
-            var tenantId = GetTenantIdFromClaims();
-            if (tenantId == null)
-            {
-                throw new InvalidOperationException("Nenhum tenant autenticado no contexto atual.");
-            }
-            return tenantId.Value;
-        }
-    }
+    public Guid TenantId => GetTenantIdFromClaims() ?? Guid.Empty;
 
     public bool HasTenant => GetTenantIdFromClaims() != null;
 
