@@ -104,5 +104,15 @@ public sealed class TenantOnboardingFlowTests
         var session = await loginResponse.Content.ReadFromJsonAsync<SessionResponse>();
         Assert.NotNull(session);
         Assert.NotNull(session.AccessToken);
+
+        client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", session.AccessToken);
+
+        var meResponse = await client.GetAsync("/api/v1/users/me");
+        Assert.Equal(HttpStatusCode.OK, meResponse.StatusCode);
+
+        var userProfile = await meResponse.Content.ReadFromJsonAsync<Agendamento.Api.Application.Identity.GetUserProfile.UserProfileResponse>();
+        Assert.NotNull(userProfile);
+        Assert.Equal(email, userProfile.Email);
+        Assert.Equal("Administrador da Silva", userProfile.Name);
     }
 }

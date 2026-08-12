@@ -54,6 +54,10 @@ public static class TenantRegistrationEndpoints
             {
                 return Results.UnprocessableEntity(ProblemDetailsExtensions.Create("Erro no cadastro", ex.Message));
             }
-        }).WithName("RegisterTenant");
+        })
+        .WithName("RegisterTenant")
+        .Produces<RegisterTenantResponse>(StatusCodes.Status201Created)
+        .ProducesProblem(StatusCodes.Status400BadRequest)
+        .ProducesProblem(StatusCodes.Status422UnprocessableEntity);
     }
 }

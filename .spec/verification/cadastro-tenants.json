@@ -1,7 +1,7 @@
 {
   "feature": "cadastro-tenants",
-  "timestamp": "2026-08-12T00:11:26.242Z",
-  "gitRev": "4ab50bc",
+  "timestamp": "2026-08-12T00:21:22.647Z",
+  "gitRev": "be49804",
   "command": "dotnet test tests/Agendamento.UnitTests/Agendamento.UnitTests.csproj --configuration Release && dotnet test tests/Agendamento.IntegrationTests/Agendamento.IntegrationTests.csproj --configuration Release",
   "reporter": "exitcode",
   "exitCode": 0,
