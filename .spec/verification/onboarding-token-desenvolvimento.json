@@ -1,0 +1,17 @@
+{
+  "feature": "onboarding-token-desenvolvimento",
+  "timestamp": "2026-08-12T00:32:49.708Z",
+  "gitRev": "af5764e",
+  "command": "dotnet test tests/Agendamento.UnitTests/Agendamento.UnitTests.csproj --configuration Release && dotnet test tests/Agendamento.IntegrationTests/Agendamento.IntegrationTests.csproj --configuration Release",
+  "reporter": "exitcode",
+  "exitCode": 0,
+  "testsParsed": 0,
+  "results": {
+    "AC-100": {
+      "status": "pass",
+      "testName": null,
+      "method": "exitcode"
+    }
+  },
+  "principles": {}
+}
