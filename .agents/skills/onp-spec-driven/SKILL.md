@@ -1,6 +1,6 @@
 ---
 name: onp-spec-driven
-description: Desenvolvimento spec-anchored nativo para Codex — a especificação continua verdadeira porque é auditada mecanicamente contra o código. Use ao planejar features, implementar com verificação, ou auditar uma implementação contra a spec. Gatilhos "especificar feature", "nova feature", "implementar", "auditar spec", "verificar", "plano de execução", "executar em paralelo", "o que não tem teste", "lições aprendidas". Fluxo Especificar → Projetar → Tarefas → Plano → Executar → Auditar → Aprender, com rastreabilidade história→critério de aceite→tarefa→teste, definição de pronto executável (cada critério de aceite vira teste anotado), suposições e perguntas como cidadãs de primeira classe, constituição verificável (preset LGPD/educação), lições aprendidas com lastro mecânico e plano de execução com PARALELISMO OPCIONAL: o agente apresenta o plano recomendado e SEMPRE pergunta QUAIS tarefas o usuário quer paralelizar (faixas com git worktrees + sessões headless `codex exec` via --paralelizar, ou uma tarefa após a outra via --sequencial) e SEMPRE confirma os MODELOS e ESFORÇOS por tarefa antes de executar — os tokens e a licença são do usuário; ele trava o custo com --modelo/--esforco no plano ou por tarefa via `onp-spec tarefa`. Avisa que a execução roda em background e, durante ela, posta no chat a cada 1 minuto a tabela de andamento (o que está rodando e o que não está) + resumo geral — com resumo completo ao final. Integração com os recursos nativos do Codex (plano visível, /plan, /goal, /review, invocação explícita com $onp-spec-driven). Motor mecânico EMBARCADO na skill (zero instalação — roda com o node do ambiente).
+description: 'Desenvolvimento spec-anchored para planejar, implementar, verificar e auditar features no Codex. Use com pedidos como "especificar feature", "nova feature", "implementar", "verificar", "auditar spec", "plano de execução", "executar em paralelo", "o que não tem teste" e "lições aprendidas". Mantém rastreabilidade entre histórias, critérios, tarefas e testes; exige definição de pronto executável e auditável; registra suposições e perguntas; gera planos sequenciais ou paralelos com worktrees; confirma modelos, esforço e paralelismo com o usuário; acompanha execução em background; e fecha somente quando o motor embarcado de verify/audit retorna sucesso.'
 license: MIT
 metadata:
   author: Vitor Manoel — O Novo Programador
@@ -80,6 +80,17 @@ interativo, sem virar burocracia:
   vá direto ao ponto. A tradução encurta; o rigor (verify + audit) nunca.
 
 ## O motor embarcado (zero instalação)
+
+## Integração autorizada com o frontend
+
+Ao especificar, implementar ou auditar uma entrega que atravesse API e UI:
+
+- Consultar também `C:\Users\victo\OneDrive\Documentos\projetos\front-agendamento` e ler o `AGENTS.md` de ambos os repositórios.
+- Inspecionar, iniciar, testar e alterar localmente backend e frontend quando isso for necessário para fechar o contrato e a entrega ativa, sem pedir nova permissão para operações locais seguras.
+- Tratar a implementação e o OpenAPI do backend como fonte do contrato; corrigir e testar o backend primeiro, regenerar o schema tipado do frontend e só então integrar a UI.
+- Preservar mudanças preexistentes e manter secrets, tokens, dados pessoais e connection strings fora de URLs, logs, relatórios e conversa.
+- Não fazer push, deploy, acesso a produção, operação destrutiva de banco ou Git, nem apagar trabalho do usuário sem autorização explícita.
+- Informar ao usuário ao trocar de repositório, iniciar ou parar serviços, mudar contratos, aplicar migrations ou encontrar bloqueios.
 
 O motor mecânico mora DENTRO desta skill, em `scripts/onp-spec.mjs` — resolvido
 **relativo ao diretório desta SKILL.md** (o Codex informa o diretório da skill
