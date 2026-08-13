@@ -13,9 +13,17 @@ public class CompanyRegistryContractTests
     private class FakeGateway : ICompanyRegistryGateway
     {
         public Func<string, CompanyRegistryResult?>? GetCompanyAsyncMock { get; set; }
+        public Exception? Exception { get; set; }
+        public int CallCount { get; private set; }
 
         public Task<CompanyRegistryResult?> GetCompanyAsync(string cnpj, CancellationToken cancellationToken = default)
         {
+            CallCount++;
+            if (Exception != null)
+            {
+                throw Exception;
+            }
+
             if (GetCompanyAsyncMock != null)
             {
                 return Task.FromResult(GetCompanyAsyncMock(cnpj));
@@ -24,16 +32,17 @@ public class CompanyRegistryContractTests
         }
     }
 
-    [Fact(DisplayName = "Handler throws when CNPJ is invalid @spec:AC-014")]
-    public async Task Handler_ShouldThrowInvalidOperationException_WhenCnpjIsInvalid()
+    [Fact(DisplayName = "CNPJ inválido não consulta o provedor @spec:AC-014")]
+    public async Task Handler_ShouldRejectInvalidCnpjWithoutCallingGateway()
     {
         // @spec: AC-014
         var gateway = new FakeGateway();
         var handler = new LookupCompanyHandler(gateway);
         var query = new LookupCompanyQuery("invalid-cnpj");
 
-        var ex = await Assert.ThrowsAsync<InvalidOperationException>(() => handler.HandleAsync(query));
+        var ex = await Assert.ThrowsAsync<ArgumentException>(() => handler.HandleAsync(query));
         Assert.Contains("CNPJ inválido", ex.Message);
+        Assert.Equal(0, gateway.CallCount);
     }
 
     [Fact(DisplayName = "Handler throws when company is inactive @spec:AC-015")]
@@ -55,12 +64,12 @@ public class CompanyRegistryContractTests
         var handler = new LookupCompanyHandler(gateway);
         var query = new LookupCompanyQuery("00000000000191"); 
 
-        var ex = await Assert.ThrowsAsync<InvalidOperationException>(() => handler.HandleAsync(query));
+        var ex = await Assert.ThrowsAsync<CompanyRegistryInactiveException>(() => handler.HandleAsync(query));
         Assert.Contains("não está ativa", ex.Message);
     }
 
-    [Fact(DisplayName = "Handler throws when company has no food CNAE @spec:AC-016")]
-    public async Task Handler_ShouldThrowInvalidOperationException_WhenCompanyHasNoFoodCnae()
+    [Fact(DisplayName = "Empresa ativa com CNAE não alimentício é aceita @spec:AC-016")]
+    public async Task Handler_ShouldReturnActiveCompanyRegardlessOfCnae()
     {
         // @spec: AC-016
         var gateway = new FakeGateway
@@ -78,8 +87,10 @@ public class CompanyRegistryContractTests
         var handler = new LookupCompanyHandler(gateway);
         var query = new LookupCompanyQuery("00000000000191");
 
-        var ex = await Assert.ThrowsAsync<InvalidOperationException>(() => handler.HandleAsync(query));
-        Assert.Contains("elegível", ex.Message);
+        var result = await handler.HandleAsync(query);
+
+        Assert.Equal("Tech Corp", result.CorporateName);
+        Assert.Equal("6204000", Assert.Single(result.Cnaes));
     }
 
     [Fact(DisplayName = "Handler returns company data when eligible @spec:AC-017")]
@@ -106,5 +117,29 @@ public class CompanyRegistryContractTests
         Assert.NotNull(result);
         Assert.Equal("Food Corp", result.CorporateName);
         Assert.Equal("ATIVA", result.Status);
+    }
+
+    [Fact(DisplayName = "Empresa ausente é distinguida de CNPJ inválido @spec:AC-017")]
+    public async Task Handler_ShouldThrowNotFound_WhenGatewayHasNoCompany()
+    {
+        var handler = new LookupCompanyHandler(new FakeGateway());
+
+        var ex = await Assert.ThrowsAsync<CompanyRegistryNotFoundException>(() =>
+            handler.HandleAsync(new LookupCompanyQuery("00000000000191")));
+
+        Assert.Equal("Empresa não encontrada.", ex.Message);
+    }
+
+    [Fact(DisplayName = "Falha do provedor é indisponibilidade segura @spec:AC-017")]
+    public async Task Handler_ShouldTranslateProviderFailureToUnavailable()
+    {
+        var gateway = new FakeGateway { Exception = new TimeoutException("provider host leaked") };
+        var handler = new LookupCompanyHandler(gateway);
+
+        var ex = await Assert.ThrowsAsync<CompanyRegistryUnavailableException>(() =>
+            handler.HandleAsync(new LookupCompanyQuery("00000000000191")));
+
+        Assert.Equal("Não foi possível consultar o CNPJ agora.", ex.Message);
+        Assert.DoesNotContain("provider", ex.Message, StringComparison.OrdinalIgnoreCase);
     }
 }

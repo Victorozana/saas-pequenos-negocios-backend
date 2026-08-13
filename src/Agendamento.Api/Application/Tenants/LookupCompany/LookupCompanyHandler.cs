@@ -24,23 +24,31 @@ public class LookupCompanyHandler
         }
         catch (ArgumentException ex)
         {
-            throw new InvalidOperationException("CNPJ inválido.", ex);
+            throw new ArgumentException("CNPJ inválido.", nameof(query.Cnpj), ex);
         }
 
-        var result = await _gateway.GetCompanyAsync(validCnpj.Value, cancellationToken);
+        CompanyRegistryResult? result;
+        try
+        {
+            result = await _gateway.GetCompanyAsync(validCnpj.Value, cancellationToken);
+        }
+        catch (CompanyRegistryUnavailableException)
+        {
+            throw;
+        }
+        catch (Exception ex) when (!cancellationToken.IsCancellationRequested)
+        {
+            throw new CompanyRegistryUnavailableException(ex);
+        }
+
         if (result == null)
         {
-            throw new InvalidOperationException("Empresa não encontrada.");
+            throw new CompanyRegistryNotFoundException();
         }
 
         if (!string.Equals(result.Status, "ATIVA", StringComparison.OrdinalIgnoreCase))
         {
-            throw new InvalidOperationException("A empresa não está ativa.");
-        }
-
-        if (!FoodCnaePolicy.IsEligible(result.Cnaes))
-        {
-            throw new InvalidOperationException("A atividade não é elegível.");
+            throw new CompanyRegistryInactiveException();
         }
 
         return result;

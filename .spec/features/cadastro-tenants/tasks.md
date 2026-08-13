@@ -36,3 +36,8 @@
 - Refs: US-010, AC-025, AC-026
 - Arquivos: src/Agendamento.Api/Application/Tenants/GetCurrentTenant/GetCurrentTenantQuery.cs, src/Agendamento.Api/Application/Identity/GetCurrentUser/GetCurrentUserQuery.cs, src/Agendamento.Api/Features/Tenants/CurrentTenantEndpoints.cs, src/Agendamento.Api/Features/Identity/CurrentUserEndpoints.cs, tests/Agendamento.IntegrationTests/Tenants/CurrentTenantEndpointTests.cs, tests/Agendamento.IntegrationTests/Identity/CurrentUserEndpointTests.cs
 - Notas: Implementar `GET /api/v1/tenants/me` e `GET /api/v1/users/me` sem aceitar tenant no request.
+
+## T-017 — Corrigir semântica da consulta cadastral [concluida]
+- Refs: US-007, AC-014, AC-015, AC-016, AC-017
+- Arquivos: src/Agendamento.Api/Application/Tenants/LookupCompany/CompanyRegistryExceptions.cs, src/Agendamento.Api/Application/Tenants/LookupCompany/LookupCompanyHandler.cs, src/Agendamento.Api/Features/Tenants/CompanyRegistryEndpoints.cs, tests/Agendamento.IntegrationTests/Tenants/CompanyRegistryContractTests.cs
+- Notas: CNPJ inválido não chama o gateway; empresa ativa não é filtrada por CNAE; ausência, inatividade e indisponibilidade são categorias distintas e seguras.

@@ -5,7 +5,7 @@
 
 ## Contexto
 
-O cliente primário é uma pessoa jurídica do ramo alimentício identificada por CNPJ. O cadastro público precisa consultar e validar a empresa, capturar dados negociais, endereço e perfil fiscal, criar uma pessoa física como primeiro administrador e vincular todos os registros de forma atômica. Dados bancários, documentos e KYC serão coletados somente em um onboarding financeiro futuro.
+O cliente primário é uma pessoa jurídica de uma das categorias de negócio suportadas pelo produto, identificada por CNPJ. O cadastro público precisa consultar e validar a empresa, capturar dados negociais, endereço e perfil fiscal, criar uma pessoa física como primeiro administrador e vincular todos os registros de forma atômica. Dados bancários, documentos e KYC serão coletados somente em um onboarding financeiro futuro.
 
 ## Histórias
 
@@ -25,15 +25,15 @@ Como pessoa responsável, quero consultar meu CNPJ antes de preencher o restante
 - **Quando** seus dados são buscados
 - **Então** o cadastro é bloqueado e a resposta informa que a empresa não está ativa
 
-#### AC-016 — Empresa sem CNAE alimentício não pode continuar
+#### AC-016 — Empresa ativa não é bloqueada pelo CNAE
 
-- **Dado** um CNPJ ativo sem CNAE principal ou secundário aceito pela política do ramo alimentício
+- **Dado** um CNPJ ativo com qualquer CNAE retornado pela fonte cadastral
 - **Quando** seus dados são buscados
-- **Então** o cadastro é bloqueado e a resposta informa que a atividade não é elegível
+- **Então** a consulta continua e devolve os dados da empresa sem aplicar a antiga política alimentar
 
 #### AC-017 — Consulta elegível preenche dados da empresa
 
-- **Dado** um CNPJ válido, ativo e com ao menos um CNAE alimentício aceito
+- **Dado** um CNPJ válido e ativo
 - **Quando** seus dados são buscados
 - **Então** a resposta contém CNPJ normalizado, razão social, nome fantasia, natureza jurídica, CNAEs, situação e endereço disponíveis na fonte
 
@@ -133,5 +133,5 @@ Como pessoa responsável, quero avançar pelo cadastro em etapas previsíveis, p
 
 | ID | Pergunta | Status | Resposta |
 |---|---|---|---|
-| Q-003 | Qual provedor de consulta cadastral implementará `ICompanyRegistryGateway` em produção? | aberta | Recomenda-se selecionar um provedor com SLA e suporte ao CNPJ alfanumérico; os testes usarão um contrato independente do fornecedor. |
-| Q-004 | A ADR 002 deve ser corrigida para aceitar CNPJ alfanumérico em vez de “somente dígitos”? | aberta | Recomendação: sim; aceitar 14 posições, com letras maiúsculas nas 12 primeiras e dígitos verificadores nas duas últimas, preservando CNPJs numéricos existentes. |
+| Q-003 | Qual provedor de consulta cadastral implementará `ICompanyRegistryGateway`? | respondida | BrasilAPI será o provedor inicial configurável; o gateway mantém o contrato independente do fornecedor. |
+| Q-004 | O cadastro aceita CNPJ alfanumérico? | respondida | Sim; aceita 14 posições, com letras nas 12 primeiras e dígitos verificadores nas duas últimas, preservando CNPJs numéricos existentes. |

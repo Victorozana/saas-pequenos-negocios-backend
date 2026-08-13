@@ -30,15 +30,21 @@ public static class CompanyRegistryEndpoints
             }
             catch (ArgumentException ex)
             {
-                return Results.BadRequest(ProblemDetailsExtensions.Create("Bad Request", ex.Message));
+                return Results.BadRequest(ProblemDetailsExtensions.Create("CNPJ inválido.", ex.Message));
             }
-            catch (InvalidOperationException ex)
+            catch (CompanyRegistryNotFoundException ex)
             {
-                return Results.UnprocessableEntity(ProblemDetailsExtensions.Create("Elegibilidade Recusada", ex.Message));
+                return Results.NotFound(ProblemDetailsExtensions.Create(ex.Message, ex.Message));
             }
-            catch (Exception ex)
+            catch (CompanyRegistryInactiveException ex)
             {
-                return Results.Problem(title: "Erro interno", detail: ex.Message, statusCode: 500);
+                return Results.UnprocessableEntity(ProblemDetailsExtensions.Create(ex.Message, ex.Message));
+            }
+            catch (CompanyRegistryUnavailableException ex)
+            {
+                return Results.Json(
+                    ProblemDetailsExtensions.Create(ex.Message, ex.Message),
+                    statusCode: StatusCodes.Status503ServiceUnavailable);
             }
         }).WithName("LookupCompanyRegistry");
     }

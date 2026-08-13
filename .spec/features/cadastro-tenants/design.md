@@ -25,7 +25,7 @@ O valor canônico tem 14 posições, sem pontuação e em caixa alta. Formatos n
 
 ## Elegibilidade
 
-`ICompanyRegistryGateway` isola o fornecedor externo. A aplicação decide elegibilidade: situação exatamente ativa e ao menos um CNAE principal/secundário presente no catálogo alimentício versionado. Indisponibilidade externa não é tratada como inelegibilidade.
+`ICompanyRegistryGateway` isola o fornecedor externo. A aplicação exige situação exatamente ativa e não restringe as categorias suportadas por CNAE. Indisponibilidade externa não é tratada como CNPJ inválido, empresa ausente ou inelegibilidade.
 
 ## Transação
 
