@@ -32,6 +32,15 @@ public static class DependencyInjection
 
         services.AddScoped<Agendamento.Api.Application.Subscriptions.Services.IPlanLimitsChecker, Agendamento.Api.Infrastructure.Subscriptions.PlanLimitsChecker>();
 
+        services.AddHttpClient<
+            Agendamento.Api.Application.Tenants.CompanyRegistry.ICompanyRegistryGateway,
+            Agendamento.Api.Infrastructure.CompanyRegistry.CompanyRegistryGateway>(client =>
+        {
+            var baseUrl = configuration["CompanyRegistry:BaseUrl"] ?? "https://brasilapi.com.br/";
+            client.BaseAddress = new Uri(baseUrl, UriKind.Absolute);
+            client.Timeout = TimeSpan.FromSeconds(configuration.GetValue("CompanyRegistry:TimeoutSeconds", 10));
+        });
+
         var signingKey = configuration["Authentication:SigningKey"];
         if (string.IsNullOrWhiteSpace(signingKey))
         {

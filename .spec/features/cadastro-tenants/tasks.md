@@ -41,3 +41,8 @@
 - Refs: US-007, AC-014, AC-015, AC-016, AC-017
 - Arquivos: src/Agendamento.Api/Application/Tenants/LookupCompany/CompanyRegistryExceptions.cs, src/Agendamento.Api/Application/Tenants/LookupCompany/LookupCompanyHandler.cs, src/Agendamento.Api/Features/Tenants/CompanyRegistryEndpoints.cs, tests/Agendamento.IntegrationTests/Tenants/CompanyRegistryContractTests.cs
 - Notas: CNPJ inválido não chama o gateway; empresa ativa não é filtrada por CNAE; ausência, inatividade e indisponibilidade são categorias distintas e seguras.
+
+## T-018 — Integrar provedor cadastral configurável [concluida]
+- Refs: US-007, AC-014, AC-015, AC-016, AC-017
+- Arquivos: src/Agendamento.Api/Application/DependencyInjection.cs, src/Agendamento.Api/Infrastructure/DependencyInjection.cs, src/Agendamento.Api/Infrastructure/CompanyRegistry/CompanyRegistryGateway.cs, src/Agendamento.Api/appsettings.json, tests/Agendamento.IntegrationTests/Tenants/CompanyRegistryGatewayTests.cs
+- Notas: BrasilAPI é o provedor inicial; URL e timeout são configuráveis; URL exata, mapeamento completo, 404, timeout, status externos e payload inválido têm testes.

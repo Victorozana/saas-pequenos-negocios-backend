@@ -12,6 +12,7 @@ public static class DependencyInjection
 
         // Tenants
         services.AddTransient<Agendamento.Api.Application.Tenants.RegisterTenant.RegisterTenantHandler>();
+        services.AddTransient<Agendamento.Api.Application.Tenants.LookupCompany.LookupCompanyHandler>();
 
         // Customers
         services.AddTransient<Agendamento.Api.Application.Customers.CreateCustomer.CreateCustomerHandler>();
