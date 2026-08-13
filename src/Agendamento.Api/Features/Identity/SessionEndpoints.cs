@@ -9,7 +9,12 @@ public static class SessionEndpoints
     {
         endpoints.MapPost("/api/v1/auth/sessions", CreateAsync)
                  .WithName("CreateSession")
-                 .WithTags("Identity");
+                 .WithTags("Identity")
+                 .Produces<SessionResponse>(StatusCodes.Status200OK)
+                 .ProducesProblem(StatusCodes.Status400BadRequest)
+                 .ProducesProblem(StatusCodes.Status401Unauthorized)
+                 .ProducesProblem(StatusCodes.Status403Forbidden)
+                 .ProducesProblem(StatusCodes.Status503ServiceUnavailable);
         return endpoints;
     }
 

@@ -78,4 +78,20 @@ public class EndpointMetadataTests : IClassFixture<WebApplicationFactory<Program
 
         Assert.False(responseProperties.TryGetProperty("verificationToken", out _));
     }
+
+    [Fact(DisplayName = "Contrato de autenticação documenta falhas seguras e perfil protegido @spec:AC-013")]
+    public async Task Authentication_contract_documents_failure_responses()
+    {
+        var client = _factory.CreateClient();
+        var response = await client.GetAsync("/openapi/v1.json");
+        response.EnsureSuccessStatusCode();
+
+        using var document = JsonDocument.Parse(await response.Content.ReadAsStringAsync());
+        var paths = document.RootElement.GetProperty("paths");
+        var sessionResponses = paths.GetProperty("/api/v1/auth/sessions").GetProperty("post").GetProperty("responses");
+        var profileResponses = paths.GetProperty("/api/v1/users/me").GetProperty("get").GetProperty("responses");
+
+        Assert.All(new[] { "200", "400", "401", "403", "503" }, status => Assert.True(sessionResponses.TryGetProperty(status, out _), $"Session response {status} is missing."));
+        Assert.All(new[] { "200", "401", "403", "404" }, status => Assert.True(profileResponses.TryGetProperty(status, out _), $"Profile response {status} is missing."));
+    }
 }

@@ -40,6 +40,9 @@ public static class CurrentUserEndpoints
 
             return Results.Ok(response);
         }).WithName("GetCurrentUser")
-        .Produces<Agendamento.Api.Application.Identity.GetUserProfile.UserProfileResponse>(StatusCodes.Status200OK);
+        .Produces<Agendamento.Api.Application.Identity.GetUserProfile.UserProfileResponse>(StatusCodes.Status200OK)
+        .ProducesProblem(StatusCodes.Status401Unauthorized)
+        .ProducesProblem(StatusCodes.Status403Forbidden)
+        .ProducesProblem(StatusCodes.Status404NotFound);
     }
 }

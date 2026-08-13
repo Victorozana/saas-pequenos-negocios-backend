@@ -5,6 +5,7 @@ using System.Net.Http.Json;
 using System.Threading.Tasks;
 using Agendamento.Api.Features.Tenants;
 using Agendamento.Api.Features.Identity;
+using Agendamento.Domain.Identity;
 using Agendamento.IntegrationTests.Infrastructure;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
@@ -112,7 +113,12 @@ public sealed class TenantOnboardingFlowTests
 
         var userProfile = await meResponse.Content.ReadFromJsonAsync<Agendamento.Api.Application.Identity.GetUserProfile.UserProfileResponse>();
         Assert.NotNull(userProfile);
+        Assert.NotEqual(Guid.Empty, userProfile.Id);
         Assert.Equal(email, userProfile.Email);
         Assert.Equal("Administrador da Silva", userProfile.Name);
+        Assert.Equal("owner_admin", userProfile.Role);
+        Assert.NotEqual(Guid.Empty, userProfile.TenantId);
+        Assert.Equal(Permissions.All.Order(), userProfile.Permissions.Order());
+        Assert.Equal(UserStatus.Active.ToString(), userProfile.Status);
     }
 }
