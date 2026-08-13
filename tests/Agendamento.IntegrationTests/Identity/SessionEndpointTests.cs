@@ -17,7 +17,7 @@ public sealed class SessionEndpointTests
     [Fact(DisplayName = "@spec:AC-012 endpoint blocks a session for an unverified email")]
     public async Task Unverified_email_cannot_create_a_session()
     {
-        using var client = CreateClient(isEmailVerified: false);
+        using var client = CreateClient(isEmailVerified: false, isActive: false);
 
         var outcome = await client.PostAsJsonAsync("/api/v1/auth/sessions", new { email = "admin@example.com", password = "senha-segura-12" });
 
@@ -28,7 +28,7 @@ public sealed class SessionEndpointTests
     [Fact(DisplayName = "@spec:AC-013 @principle:P-003 @principle:P-005 valid login emits only user_tenant_and_role")]
     public async Task Valid_login_emits_a_minimized_session_without_request_tenant_selection()
     {
-        using var client = CreateClient(isEmailVerified: true);
+        using var client = CreateClient(isEmailVerified: true, isActive: true);
 
         var response = await client.PostAsJsonAsync("/api/v1/auth/sessions", new
         {
@@ -49,14 +49,14 @@ public sealed class SessionEndpointTests
         Assert.DoesNotContain("password", payload, StringComparison.OrdinalIgnoreCase);
     }
 
-    private static HttpClient CreateClient(bool isEmailVerified)
+    private static HttpClient CreateClient(bool isEmailVerified, bool isActive)
     {
         var membership = new ActiveTenantMembership(Guid.Parse("d179ed2b-ca14-4507-8099-43d8183795a9"), "administrator");
         var identity = new AuthenticationIdentity(
             Guid.Parse("b5578db1-1d94-4255-a4af-a9d2a60ce61b"),
             "password-hash",
             isEmailVerified,
-            true,
+            isActive,
             membership);
         return new AgendamentoApiFactory().WithWebHostBuilder(builder => builder.ConfigureTestServices(services =>
         {

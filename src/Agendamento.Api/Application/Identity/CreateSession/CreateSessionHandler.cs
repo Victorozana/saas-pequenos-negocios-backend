@@ -23,7 +23,7 @@ public sealed class CreateSessionHandler(
         }
         var identity = await identities.FindByNormalizedEmailAsync(normalizedEmail, cancellationToken);
 
-        if (identity is null || !passwords.Verify(identity.PasswordHash, command.Password) || !identity.IsActive)
+        if (identity is null || !passwords.Verify(identity.PasswordHash, command.Password))
         {
             return CreateSessionOutcome.InvalidCredentials;
         }
@@ -31,6 +31,11 @@ public sealed class CreateSessionHandler(
         if (!identity.IsEmailVerified)
         {
             return CreateSessionOutcome.EmailVerificationRequired;
+        }
+
+        if (!identity.IsActive)
+        {
+            return CreateSessionOutcome.InvalidCredentials;
         }
 
         if (identity.ActiveMembership is null)
