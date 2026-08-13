@@ -72,6 +72,8 @@ public class TenantPersistenceTests
         var savedMembership = await db.TenantMemberships.FirstOrDefaultAsync(m => m.TenantId == tenant.Id);
         Assert.NotNull(savedMembership);
         Assert.Equal("owner_admin", savedMembership.Role);
+        Assert.Equal(Permissions.All.Order(), savedMembership.Permissions.Order());
+        Assert.All(Permissions.All, permission => Assert.True(savedMembership.HasPermission(permission)));
     }
 
     [Fact(DisplayName = "CNPJ é único globalmente @spec:AC-022")]

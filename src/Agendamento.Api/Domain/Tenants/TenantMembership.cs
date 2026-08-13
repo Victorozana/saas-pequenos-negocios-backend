@@ -28,7 +28,7 @@ public class TenantMembership : ITenantOwned
             IsLegalRepresentative = isLegalRepresentative
         };
 
-        if (role.Equals("Admin", StringComparison.OrdinalIgnoreCase))
+        if (IsAdministrativeRole(role))
         {
             membership.Permissions = Agendamento.Domain.Identity.Permissions.All.ToList();
         }
@@ -45,7 +45,7 @@ public class TenantMembership : ITenantOwned
         ArgumentException.ThrowIfNullOrWhiteSpace(role);
         Role = role;
         
-        if (role.Equals("Admin", StringComparison.OrdinalIgnoreCase))
+        if (IsAdministrativeRole(role))
         {
             Permissions = Agendamento.Domain.Identity.Permissions.All.ToList();
         }
@@ -57,7 +57,11 @@ public class TenantMembership : ITenantOwned
 
     public bool HasPermission(string permission)
     {
-        if (Role.Equals("Admin", StringComparison.OrdinalIgnoreCase)) return true;
+        if (IsAdministrativeRole(Role)) return true;
         return Permissions.Contains(permission, StringComparer.OrdinalIgnoreCase);
     }
+
+    private static bool IsAdministrativeRole(string role) =>
+        role.Equals("Admin", StringComparison.OrdinalIgnoreCase) ||
+        role.Equals("owner_admin", StringComparison.OrdinalIgnoreCase);
 }
