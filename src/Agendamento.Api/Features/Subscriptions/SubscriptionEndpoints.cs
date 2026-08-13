@@ -11,27 +11,33 @@ public static class SubscriptionEndpoints
 {
     public static void MapSubscriptionEndpoints(this IEndpointRouteBuilder app)
     {
-        var group = app.MapGroup("/api/v1/subscriptions").RequireAuthorization();
+        var group = app.MapGroup("/api/v1/subscriptions")
+            .WithTags("Subscriptions")
+            .RequireAuthorization();
 
         group.MapGet("/current", async ([FromServices] GetTenantSubscriptionHandler handler, CancellationToken cancellationToken) =>
         {
             var result = await handler.HandleAsync(new GetTenantSubscriptionQuery(), cancellationToken);
             return Results.Ok(result);
-        });
+        }).WithName("GetCurrentSubscription");
 
         group.MapGet("/plans", async (AgendamentoDbContext dbContext) =>
         {
             var plans = await dbContext.SaasPlans.ToListAsync();
             return Results.Ok(plans);
-        }).AllowAnonymous(); // Permite consultar planos sem estar logado, ideal para página de preços
+        })
+        .AllowAnonymous()
+        .WithName("GetSubscriptionPlans"); // Permite consultar planos sem estar logado, ideal para página de preços
 
         group.MapPost("/change-plan", async ([FromBody] ChangePlanCommand command, [FromServices] ChangePlanHandler handler, CancellationToken cancellationToken) =>
         {
             await handler.HandleAsync(command, cancellationToken);
             return Results.NoContent();
-        });
+        }).WithName("ChangeSubscriptionPlan");
 
-        var webhooksGroup = app.MapGroup("/api/v1/webhooks").AllowAnonymous();
+        var webhooksGroup = app.MapGroup("/api/v1/webhooks")
+            .WithTags("Webhooks")
+            .AllowAnonymous();
 
         webhooksGroup.MapPost("/billing", async ([FromBody] WebhookPayload payload, [FromServices] ProcessSubscriptionWebhookHandler handler, CancellationToken cancellationToken) =>
         {
@@ -46,7 +52,7 @@ public static class SubscriptionEndpoints
 
             await handler.HandleAsync(command, cancellationToken);
             return Results.Ok();
-        });
+        }).WithName("ProcessBillingWebhook");
     }
 }
 

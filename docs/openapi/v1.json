@@ -106,7 +106,7 @@
     "/api/v1/team-members/invitations/accept": {
       "post": {
         "tags": [
-          "Agendamento.Api"
+          "Team"
         ],
         "operationId": "AcceptTeamInvitation",
         "requestBody": {
@@ -1565,8 +1565,9 @@
     "/api/v1/subscriptions/current": {
       "get": {
         "tags": [
-          "Agendamento.Api"
+          "Subscriptions"
         ],
+        "operationId": "GetCurrentSubscription",
         "responses": {
           "200": {
             "description": "OK"
@@ -1577,8 +1578,9 @@
     "/api/v1/subscriptions/plans": {
       "get": {
         "tags": [
-          "Agendamento.Api"
+          "Subscriptions"
         ],
+        "operationId": "GetSubscriptionPlans",
         "responses": {
           "200": {
             "description": "OK"
@@ -1589,8 +1591,9 @@
     "/api/v1/subscriptions/change-plan": {
       "post": {
         "tags": [
-          "Agendamento.Api"
+          "Subscriptions"
         ],
+        "operationId": "ChangeSubscriptionPlan",
         "requestBody": {
           "content": {
             "application/json": {
@@ -1611,8 +1614,9 @@
     "/api/v1/webhooks/billing": {
       "post": {
         "tags": [
-          "Agendamento.Api"
+          "Webhooks"
         ],
+        "operationId": "ProcessBillingWebhook",
         "requestBody": {
           "content": {
             "application/json": {
@@ -2913,7 +2917,7 @@
       "name": "Identity"
     },
     {
-      "name": "Agendamento.Api"
+      "name": "Team"
     },
     {
       "name": "Company Registry"
@@ -2946,7 +2950,10 @@
       "name": "Dashboard"
     },
     {
-      "name": "Team"
+      "name": "Subscriptions"
+    },
+    {
+      "name": "Webhooks"
     }
   ]
 }

@@ -208,6 +208,7 @@ public static class TeamMemberEndpoints
             return Results.Ok(new { Message = "Convite aceito com sucesso." });
         })
         .AllowAnonymous()
+        .WithTags("Team")
         .WithName("AcceptTeamInvitation");
     }
 }
