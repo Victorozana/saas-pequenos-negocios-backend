@@ -10,24 +10,43 @@ public sealed class SolutionBuildTests
     public async Task Solution_compiles_in_release_without_warnings()
     {
         var solutionDirectory = FindSolutionDirectory();
-        var startInfo = new ProcessStartInfo("dotnet", "build Agendamento.sln --configuration Release --nologo")
+        var artifactsDirectory = Path.Combine(Path.GetTempPath(), $"agendamento-build-{Guid.NewGuid():N}");
+        var startInfo = new ProcessStartInfo("dotnet")
         {
             WorkingDirectory = solutionDirectory,
             RedirectStandardOutput = true,
             RedirectStandardError = true,
             UseShellExecute = false
         };
+        startInfo.ArgumentList.Add("build");
+        startInfo.ArgumentList.Add("Agendamento.sln");
+        startInfo.ArgumentList.Add("--configuration");
+        startInfo.ArgumentList.Add("Release");
+        startInfo.ArgumentList.Add("--no-restore");
+        startInfo.ArgumentList.Add("--nologo");
+        startInfo.ArgumentList.Add("--disable-build-servers");
+        startInfo.ArgumentList.Add($"-p:OutDir={artifactsDirectory}{Path.DirectorySeparatorChar}");
 
-        using var process = Assert.IsType<Process>(Process.Start(startInfo));
+        try
+        {
+            using var process = Assert.IsType<Process>(Process.Start(startInfo));
 
-        var standardOutput = await process.StandardOutput.ReadToEndAsync();
-        var standardError = await process.StandardError.ReadToEndAsync();
-        await process.WaitForExitAsync();
+            var standardOutput = process.StandardOutput.ReadToEndAsync();
+            var standardError = process.StandardError.ReadToEndAsync();
+            await process.WaitForExitAsync();
 
-        var output = standardOutput + standardError;
-        Assert.True(process.ExitCode == 0, output);
-        Assert.Matches(@"(?im)^\s*0 Warning\(s\)\s*$", output);
-        Assert.DoesNotMatch(@"(?im):\s*warning\s+\w+", output);
+            var output = (await standardOutput) + (await standardError);
+            Assert.True(process.ExitCode == 0, output);
+            Assert.Matches(@"(?im)^\s*0 Warning\(s\)\s*$", output);
+            Assert.DoesNotMatch(@"(?im):\s*warning\s+\w+", output);
+        }
+        finally
+        {
+            if (Directory.Exists(artifactsDirectory))
+            {
+                Directory.Delete(artifactsDirectory, recursive: true);
+            }
+        }
     }
 
     private static string FindSolutionDirectory()
