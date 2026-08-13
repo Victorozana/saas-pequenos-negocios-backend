@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.AspNetCore.Mvc;
 using Agendamento.Api.Application.Tenants.LookupCompany;
+using Agendamento.Api.Application.Tenants.CompanyRegistry;
 using Agendamento.Api.Features.Common;
 using System;
 using System.Threading;
@@ -46,6 +47,13 @@ public static class CompanyRegistryEndpoints
                     ProblemDetailsExtensions.Create(ex.Message, ex.Message),
                     statusCode: StatusCodes.Status503ServiceUnavailable);
             }
-        }).WithName("LookupCompanyRegistry");
+        })
+        .WithName("LookupCompanyRegistry")
+        .Produces<CompanyRegistryResult>(StatusCodes.Status200OK)
+        .ProducesProblem(StatusCodes.Status400BadRequest)
+        .ProducesProblem(StatusCodes.Status404NotFound)
+        .ProducesProblem(StatusCodes.Status422UnprocessableEntity)
+        .ProducesProblem(StatusCodes.Status429TooManyRequests)
+        .ProducesProblem(StatusCodes.Status503ServiceUnavailable);
     }
 }

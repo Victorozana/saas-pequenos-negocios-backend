@@ -94,4 +94,39 @@ public class EndpointMetadataTests : IClassFixture<WebApplicationFactory<Program
         Assert.All(new[] { "200", "400", "401", "403", "503" }, status => Assert.True(sessionResponses.TryGetProperty(status, out _), $"Session response {status} is missing."));
         Assert.All(new[] { "200", "401", "403", "404" }, status => Assert.True(profileResponses.TryGetProperty(status, out _), $"Profile response {status} is missing."));
     }
+
+    [Fact(DisplayName = "Contrato cadastral tipa sucesso e falhas seguras @spec:AC-017")]
+    public async Task Company_registry_contract_documents_typed_responses()
+    {
+        var client = _factory.CreateClient();
+        var response = await client.GetAsync("/openapi/v1.json");
+        response.EnsureSuccessStatusCode();
+
+        using var document = JsonDocument.Parse(await response.Content.ReadAsStringAsync());
+        var operation = document.RootElement
+            .GetProperty("paths")
+            .GetProperty("/api/v1/company-registry/{cnpj}")
+            .GetProperty("get");
+        var responses = operation.GetProperty("responses");
+
+        Assert.All(new[] { "200", "400", "404", "422", "429", "503" }, status =>
+            Assert.True(responses.TryGetProperty(status, out _), $"Company registry response {status} is missing."));
+
+        var successSchemaReference = responses
+            .GetProperty("200")
+            .GetProperty("content")
+            .GetProperty("application/json")
+            .GetProperty("schema")
+            .GetProperty("$ref")
+            .GetString();
+        Assert.Equal("#/components/schemas/CompanyRegistryResult", successSchemaReference);
+
+        var properties = document.RootElement
+            .GetProperty("components")
+            .GetProperty("schemas")
+            .GetProperty("CompanyRegistryResult")
+            .GetProperty("properties");
+        Assert.All(new[] { "cnpj", "corporateName", "tradeName", "legalNature", "cnaes", "status", "address" }, property =>
+            Assert.True(properties.TryGetProperty(property, out _), $"Company registry property {property} is missing."));
+    }
 }

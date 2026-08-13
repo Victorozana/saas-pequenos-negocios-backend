@@ -46,3 +46,8 @@
 - Refs: US-007, AC-014, AC-015, AC-016, AC-017
 - Arquivos: src/Agendamento.Api/Application/DependencyInjection.cs, src/Agendamento.Api/Infrastructure/DependencyInjection.cs, src/Agendamento.Api/Infrastructure/CompanyRegistry/CompanyRegistryGateway.cs, src/Agendamento.Api/appsettings.json, tests/Agendamento.IntegrationTests/Tenants/CompanyRegistryGatewayTests.cs
 - Notas: BrasilAPI é o provedor inicial; URL e timeout são configuráveis; URL exata, mapeamento completo, 404, timeout, status externos e payload inválido têm testes.
+
+## T-019 — Publicar contrato tipado da consulta cadastral [concluida]
+- Refs: US-007, AC-014, AC-015, AC-016, AC-017
+- Arquivos: src/Agendamento.Api/Features/Tenants/CompanyRegistryEndpoints.cs, tests/Agendamento.ArchitectureTests/OpenApi/EndpointMetadataTests.cs, docs/openapi/v1.json
+- Notas: O OpenAPI declara `CompanyRegistryResult` e respostas 400, 404, 422, 429 e 503 com ProblemDetails.
