@@ -19,8 +19,15 @@ public static class CustomerEndpoints
             [FromServices] CreateCustomerHandler handler,
             CancellationToken cancellationToken) =>
         {
-            var id = await handler.HandleAsync(command, cancellationToken);
-            return Results.Created($"/api/v1/customers/{id}", new { Id = id });
+            try
+            {
+                var id = await handler.HandleAsync(command, cancellationToken);
+                return Results.Created($"/api/v1/customers/{id}", new { Id = id });
+            }
+            catch (ArgumentException ex)
+            {
+                return Results.BadRequest(new { Title = ex.Message });
+            }
         })
         .WithName("CreateCustomer")
         .WithSummary("Creates a new customer for the current tenant")
@@ -35,11 +42,18 @@ public static class CustomerEndpoints
             if (id != command.CustomerId)
                 return Results.BadRequest("ID mismatch");
 
-            var success = await handler.HandleAsync(command, cancellationToken);
-            if (!success)
-                return Results.NotFound();
+            try
+            {
+                var success = await handler.HandleAsync(command, cancellationToken);
+                if (!success)
+                    return Results.NotFound();
 
-            return Results.NoContent();
+                return Results.NoContent();
+            }
+            catch (ArgumentException ex)
+            {
+                return Results.BadRequest(new { Title = ex.Message });
+            }
         })
         .WithName("UpdateCustomer")
         .WithSummary("Updates an existing customer")

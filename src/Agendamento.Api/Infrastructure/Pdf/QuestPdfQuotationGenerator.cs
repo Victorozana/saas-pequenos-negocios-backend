@@ -9,6 +9,11 @@ namespace Agendamento.Api.Infrastructure.Pdf;
 
 public class QuestPdfQuotationGenerator : IQuotationPdfGenerator
 {
+    static QuestPdfQuotationGenerator()
+    {
+        QuestPDF.Settings.License = LicenseType.Community;
+    }
+
     public Task<byte[]> GeneratePdfAsync(QuotationDetailDto quotation, CancellationToken cancellationToken = default)
     {
         var document = Document.Create(container =>
