@@ -67,6 +67,8 @@ app.MapDashboardEndpoints();
 app.MapTeamMemberEndpoints();
 Agendamento.Api.Features.Subscriptions.SubscriptionEndpoints.MapSubscriptionEndpoints(app);
 
+await Agendamento.Api.Infrastructure.Persistence.DbSeeder.SeedDefaultUserAsync(app.Services);
+
 app.Run();
 
 public partial class Program;
