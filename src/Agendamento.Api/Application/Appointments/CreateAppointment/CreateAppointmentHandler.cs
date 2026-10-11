@@ -30,6 +30,18 @@ public class CreateAppointmentHandler
         if (command.EndTime <= command.StartTime)
             throw new ArgumentException("End time must be after start time.");
 
+        Guid? customerId = null;
+        if (command.WorkOrderId.HasValue)
+        {
+            customerId = await _dbContext.WorkOrders
+                .Where(w => w.Id == command.WorkOrderId.Value && w.TenantId == _tenantContext.TenantId)
+                .Select(w => (Guid?)w.CustomerId)
+                .FirstOrDefaultAsync(cancellationToken);
+
+            if (!customerId.HasValue)
+                throw new ArgumentException("A ordem de serviço informada não foi encontrada.");
+        }
+
         if (command.AssignedToUserId.HasValue)
         {
             bool hasConflict = await _dbContext.Appointments.AnyAsync(a =>
@@ -54,35 +66,22 @@ public class CreateAppointmentHandler
 
         _dbContext.Appointments.Add(appointment);
 
-        if (command.WorkOrderId.HasValue)
+        if (customerId.HasValue)
         {
-            var customerId = await _dbContext.WorkOrders
-                .Where(w => w.Id == command.WorkOrderId.Value)
-                .Select(w => w.CustomerId)
+            var customerPhone = await _dbContext.Customers
+                .Where(c => c.Id == customerId.Value)
+                .Select(c => c.Phone)
                 .FirstOrDefaultAsync(cancellationToken);
 
-            Console.WriteLine($"[DEBUG] WorkOrderId: {command.WorkOrderId.Value}, CustomerId from db: {customerId}");
-
-            if (customerId != Guid.Empty)
+            if (!string.IsNullOrWhiteSpace(customerPhone))
             {
-                var customerPhone = await _dbContext.Customers
-                    .Where(c => c.Id == customerId)
-                    .Select(c => c.Phone)
-                    .FirstOrDefaultAsync(cancellationToken);
-                
-                Console.WriteLine($"[DEBUG] CustomerPhone from db: {customerPhone ?? "NULL"}");
-
-                if (!string.IsNullOrWhiteSpace(customerPhone))
-                {
-                    var notification = Agendamento.Api.Domain.Notifications.NotificationMessage.Create(
-                        _tenantContext.TenantId,
-                        customerPhone,
-                        Agendamento.Api.Domain.Notifications.NotificationChannel.WhatsApp,
-                        $"Seu agendamento foi confirmado para {appointment.StartTime.ToLocalTime():dd/MM/yyyy HH:mm}. O endereço é {appointment.Address}."
-                    );
-                    _dbContext.NotificationMessages.Add(notification);
-                    Console.WriteLine($"[DEBUG] Notification Added!");
-                }
+                var notification = Agendamento.Api.Domain.Notifications.NotificationMessage.Create(
+                    _tenantContext.TenantId,
+                    customerPhone,
+                    Agendamento.Api.Domain.Notifications.NotificationChannel.WhatsApp,
+                    $"Seu agendamento foi confirmado para {appointment.StartTime.ToLocalTime():dd/MM/yyyy HH:mm}. O endereço é {appointment.Address}."
+                );
+                _dbContext.NotificationMessages.Add(notification);
             }
         }
 

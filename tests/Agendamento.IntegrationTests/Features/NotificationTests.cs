@@ -16,6 +16,64 @@ namespace Agendamento.IntegrationTests.Features;
 
 public class NotificationTests
 {
+    [Theory]
+    [InlineData(true)]
+    [InlineData(false)]
+    public async Task CreateAppointment_WithForeignOrMissingWorkOrder_ShouldRejectWithoutWrites(bool seedForeignOrder)
+    {
+        var tenantId = Guid.NewGuid();
+        var dbName = Guid.NewGuid().ToString();
+        var workOrderId = Guid.NewGuid();
+        if (seedForeignOrder)
+        {
+            var foreignTenant = Guid.NewGuid();
+            await using var seed = GetDbContext(foreignTenant, dbName);
+            var quotation = Quotation.Create(foreignTenant, "OTHER", Guid.NewGuid(), DateTime.UtcNow, null, null, null);
+            quotation.AddItem(QuotationItem.Create(null, "Serviço", "Unidade", 100m, 1m, 0m));
+            quotation.MarkAsPending();
+            quotation.Approve();
+            var order = WorkOrder.CreateFromQuotation(quotation);
+            workOrderId = order.Id;
+            seed.Quotations.Add(quotation);
+            seed.WorkOrders.Add(order);
+            await seed.SaveChangesAsync();
+        }
+
+        await using var db = GetDbContext(tenantId, dbName);
+        var handler = new CreateAppointmentHandler(db, new DummyTenantContext(tenantId), new UnitOfWork(db));
+        var command = new CreateAppointmentCommand
+        {
+            WorkOrderId = workOrderId,
+            Type = AppointmentType.Installation,
+            StartTime = DateTime.UtcNow.AddDays(1),
+            EndTime = DateTime.UtcNow.AddDays(1).AddHours(1),
+            Address = "Test"
+        };
+
+        var error = await Assert.ThrowsAsync<ArgumentException>(() => handler.HandleAsync(command));
+        Assert.Equal("A ordem de serviço informada não foi encontrada.", error.Message);
+        Assert.Empty(db.ChangeTracker.Entries<Appointment>());
+        Assert.False(await db.Appointments.IgnoreQueryFilters().AnyAsync());
+        Assert.False(await db.NotificationMessages.IgnoreQueryFilters().AnyAsync());
+    }
+
+    [Fact]
+    public async Task CreateAppointment_WithoutWorkOrder_ShouldSucceed()
+    {
+        var tenantId = Guid.NewGuid();
+        await using var db = GetDbContext(tenantId, Guid.NewGuid().ToString());
+        var handler = new CreateAppointmentHandler(db, new DummyTenantContext(tenantId), new UnitOfWork(db));
+        var id = await handler.HandleAsync(new CreateAppointmentCommand
+        {
+            Type = AppointmentType.Installation,
+            StartTime = DateTime.UtcNow.AddDays(1),
+            EndTime = DateTime.UtcNow.AddDays(1).AddHours(1),
+            Address = "Test"
+        });
+        Assert.Equal(id, (await db.Appointments.SingleAsync()).Id);
+        Assert.False(await db.NotificationMessages.AnyAsync());
+    }
+
     private class DummyTenantContext : ITenantContext
     {
         public DummyTenantContext(Guid tenantId)

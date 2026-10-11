@@ -18,10 +18,19 @@ public static class AppointmentEndpoints
             [FromServices] CreateAppointmentHandler handler,
             CancellationToken cancellationToken) =>
         {
-            var id = await handler.HandleAsync(command, cancellationToken);
-            return Results.Created($"/api/v1/appointments/{id}", new { Id = id });
+            try
+            {
+                var id = await handler.HandleAsync(command, cancellationToken);
+                return Results.Created($"/api/v1/appointments/{id}", new { Id = id });
+            }
+            catch (ArgumentException ex)
+            {
+                return Results.Problem(statusCode: StatusCodes.Status400BadRequest, title: ex.Message);
+            }
         })
-        .WithName("CreateAppointment");
+        .WithName("CreateAppointment")
+        .Produces(StatusCodes.Status201Created)
+        .ProducesProblem(StatusCodes.Status400BadRequest);
 
         group.MapGet("/", async (
             [FromQuery] DateTime? startDate,
