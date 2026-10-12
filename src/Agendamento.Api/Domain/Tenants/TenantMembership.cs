@@ -14,6 +14,8 @@ public class TenantMembership : ITenantOwned
     public string Role { get; private set; } = null!;
     public bool IsLegalRepresentative { get; private set; }
     public List<string> Permissions { get; private set; } = new();
+    public bool IsActive { get; private set; } = true;
+    public void SetActive(bool active) => IsActive = active;
 
     public static TenantMembership Create(Guid tenantId, Guid userId, string role, bool isLegalRepresentative, List<string>? permissions = null)
     {
@@ -57,11 +59,12 @@ public class TenantMembership : ITenantOwned
 
     public bool HasPermission(string permission)
     {
+        if (!IsActive) return false;
         if (IsAdministrativeRole(Role)) return true;
         return Permissions.Contains(permission, StringComparer.OrdinalIgnoreCase);
     }
 
-    private static bool IsAdministrativeRole(string role) =>
+    public static bool IsAdministrativeRole(string role) =>
         role.Equals("Admin", StringComparison.OrdinalIgnoreCase) ||
         role.Equals("owner_admin", StringComparison.OrdinalIgnoreCase);
 }

@@ -1,32 +1,58 @@
-# Feature Spec: Gestão Financeira e Contas
+# Spec: Gestão financeira e contas
 
-## Visão Geral
-Esta feature permite o controle financeiro básico do tenant (prestador de serviço), incluindo contas a pagar/receber vinculadas aos serviços/O.S. executados.
+> feature: gestao-financeira-contas
+> status: em-implementacao
 
-## User Stories (US)
+## Contexto
 
-### US-048: Lançar Conta a Receber
-Como prestador de serviços,
-Quero gerar um registro de conta a receber a partir de uma O.S. finalizada,
-Para acompanhar o que o cliente me deve.
+O tenant precisa controlar suas despesas e valores a receber, registrando pagamentos e consultando o saldo. Os recebíveis são gerados na aprovação do orçamento, com entrada e saldo. Os pagamentos são registrados manualmente nesta etapa.
 
-### US-049: Lançar Conta a Pagar
-Como prestador de serviços,
-Quero registrar despesas e contas a pagar do meu negócio,
-Para gerir o fluxo de caixa.
+## Histórias
 
-### US-050: Baixar Pagamento (Conciliação)
-Como prestador de serviços,
-Quero registrar o pagamento parcial ou total de uma conta (pagar/receber),
-Para atualizar meu saldo e status financeiro.
+### US-048 — Lançar conta a receber
 
-## Critérios de Aceite (AC)
+Como administrador, quero gerar contas a receber vinculadas à venda e ao cliente, para acompanhar o saldo devedor.
 
-- **AC-094**: Ao criar uma conta a receber derivada de uma O.S., o valor da conta deve ser igual ao valor da O.S., e o status deve ser `Pendente`.
-- **AC-095**: A baixa de pagamento deve abater do saldo devedor. Se o saldo chegar a zero, a conta muda para `Pago`.
-- **AC-096**: Registros financeiros devem ser isolados por tenant e vinculados ao cliente (quando aplicável).
+#### AC-094 — Geração de recebíveis vinculados
 
-## Suposições e Perguntas
+- **Dado** uma venda válida do tenant com valor total e eventual entrada
+- **Quando** o orçamento for aprovado
+- **Então** os títulos pendentes são persistidos no mesmo tenant, vinculados à origem e ao cliente, e sua soma corresponde ao total da venda; a repetição do evento não duplica títulos.
 
-- **ASM-011**: As contas podem ter baixa parcial. (Confirmado pela AC-095).
-- **Q-011**: Vamos integrar com algum gateway de pagamento real nesta feature ou é apenas fluxo de caixa manual? (aberta)
+### US-049 — Lançar conta a pagar
+
+Como administrador, quero registrar despesas, para acompanhar as obrigações do negócio.
+
+#### AC-096 — Isolamento e acesso financeiro
+
+- **Dado** dois tenants com registros financeiros próprios e usuários com permissões diferentes
+- **Quando** consultam contas e extratos ou registram despesas e pagamentos
+- **Então** cada usuário acessa somente seu tenant; consultas exigem financial.read e alterações exigem financial.write, retornando 403 quando a permissão falta e 404 para um registro de outro tenant.
+
+### US-050 — Registrar pagamento
+
+Como administrador, quero registrar pagamentos parciais ou totais, para manter os saldos corretos.
+
+#### AC-095 — Baixa parcial ou total
+
+- **Dado** uma conta a pagar ou receber pendente
+- **Quando** um pagamento positivo e não superior ao saldo é registrado
+- **Então** o saldo diminui, o pagamento é persistido e a conta fica paga ao atingir zero; valores inválidos são rejeitados sem alterar o saldo.
+
+## Fora de escopo
+
+- Telas do frontend nesta etapa.
+- Integração bancária e gateway de pagamento (etapa futura).
+
+## Suposições
+
+| ID | Suposição | Status | Resolução |
+|---|---|---|---|
+| ASM-011 | As contas aceitam pagamentos parciais. | confirmada | Regra original mantida em AC-095. |
+
+## Perguntas em aberto
+
+| ID | Pergunta | Status | Resposta |
+|---|---|---|---|
+| Q-011 | O financeiro será manual ou terá gateway nesta etapa? | respondida | Usuário confirmou pagamentos manuais, sem gateway nesta etapa. |
+| Q-012 | Recebíveis são gerados ao aprovar orçamento ou concluir OS? | respondida | Usuário confirmou aprovação do orçamento, com entrada e saldo. |

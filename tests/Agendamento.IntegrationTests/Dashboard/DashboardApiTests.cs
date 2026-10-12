@@ -63,7 +63,7 @@ public class DashboardApiTests : IClassFixture<AgendamentoApiFactory>
         // Arrange
         var tenantA = Guid.NewGuid();
         var tenantB = Guid.NewGuid();
-        var userId = Guid.NewGuid();
+        var userId = await _factory.CreateActiveMemberAsync(tenantA);
 
         var options = new Microsoft.EntityFrameworkCore.DbContextOptionsBuilder<AgendamentoDbContext>()
             .UseInMemoryDatabase("IntegrationTestDb")

@@ -1,3 +1,4 @@
+using Microsoft.Extensions.Configuration;
 using System.Linq;
 using System.Text.Json;
 using Microsoft.AspNetCore.Mvc.Testing;
@@ -19,7 +20,7 @@ public class EndpointMetadataTests : IClassFixture<WebApplicationFactory<Program
         _factory = factory.WithWebHostBuilder(builder => 
         {
             builder.UseSetting("Environment", "Test");
-            builder.UseSetting("ConnectionStrings:PostgreSql", "Host=localhost;Database=dummy;Username=dummy;Password=dummy");
+            builder.ConfigureAppConfiguration((_, config) => config.AddInMemoryCollection(new Dictionary<string,string?> { ["Database:RequirePostgreSql"] = "false" }));
         });
     }
 

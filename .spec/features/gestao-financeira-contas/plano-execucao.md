@@ -1,52 +1,32 @@
 # Plano de execução — gestao-financeira-contas
 
-> gerado por `onp-spec plano` em 2026-08-11 19:05 — NÃO edite à mão;
-> mudou tasks.md ou a config? Regenere: `onp-spec plano gestao-financeira-contas`
+> gerado por `onp-spec plano` em 2026-10-12 00:26 — NÃO edite à mão;
+> mudou tasks.md ou a config? Regenere: `onp-spec plano gestao-financeira-contas --sequencial`
 
 ## Resumo — o que vai acontecer
 
-- **4 tarefa(s) pendente(s)**: 4 em 4 faixa(s) paralela(s) + 0 sequencial(is)
-- **1 faixa = 1 worktree + 1 branch + 1 janela de contexto limpa** — faixas não compartilham nenhum arquivo entre si
-- prefere outra seleção ou uma após a outra? Regenere com `onp-spec plano gestao-financeira-contas --paralelizar T-xxx,T-yyy` ou `--sequencial`
+- **modo SEQUENCIAL (escolha do usuário)**: 4 tarefa(s) pendente(s), UMA APÓS A OUTRA, na árvore principal
+- sem worktrees e sem paralelismo — cada tarefa roda numa janela de contexto limpa, na ordem do tasks.md
 - tudo acontece na branch de trabalho `spec/gestao-financeira-contas`; levar para a main é decisão sua
 
-## Faixas e ondas
+### Avisos
 
-### Onda 1 — faixa-1 ∥ faixa-2 ∥ faixa-3
+- ⚠ T-095 está [em-andamento] — entrou no plano; se já houver trabalho local, commite antes de executar
 
-#### faixa-1 — branch `spec/gestao-financeira-contas-faixa-1` — worktree `../onp-worktrees/agendamento-gestao-financeira-contas-faixa-1`
+## Ordem de execução (uma tarefa após a outra)
 
-| tarefa | título | modelo | esforço | arquivos |
-|---|---|---|---|---|
-| T-093 | Entidades de Domínio para Financeiro | `gpt-5.6-terra` | medium | `src/Agendamento.Api/Domain/Financial/Transaction.cs`, `src/Agendamento.Api/Domain/Financial/TransactionType.cs`, `src/Agendamento.Api/Domain/Financial/TransactionStatus.cs` |
-
-#### faixa-2 — branch `spec/gestao-financeira-contas-faixa-2` — worktree `../onp-worktrees/agendamento-gestao-financeira-contas-faixa-2`
-
-| tarefa | título | modelo | esforço | arquivos |
-|---|---|---|---|---|
-| T-094 | Mapeamento EF Core para Financeiro | `gpt-5.6-terra` | medium | `src/Agendamento.Api/Infrastructure/Persistence/Configurations/TransactionConfiguration.cs`, `src/Agendamento.Api/Infrastructure/Persistence/AgendamentoDbContext.cs` |
-
-#### faixa-3 — branch `spec/gestao-financeira-contas-faixa-3` — worktree `../onp-worktrees/agendamento-gestao-financeira-contas-faixa-3`
-
-| tarefa | título | modelo | esforço | arquivos |
-|---|---|---|---|---|
-| T-095 | Caso de Uso e Endpoints de Financeiro | `gpt-5.6-terra` | medium | `src/Agendamento.Api/Features/Financial/FinancialEndpoints.cs`, `src/Agendamento.Api/Program.cs`, `src/Agendamento.Api/Application/Financial/PayTransaction/PayTransactionHandler.cs`, `src/Agendamento.Api/Application/Financial/CreateTransaction/CreateTransactionHandler.cs` |
-
-### Onda 2 — faixa-4
-
-#### faixa-4 — branch `spec/gestao-financeira-contas-faixa-4` — worktree `../onp-worktrees/agendamento-gestao-financeira-contas-faixa-4`
-
-| tarefa | título | modelo | esforço | arquivos |
-|---|---|---|---|---|
-| T-096 | Testes de Integração para Financeiro | `gpt-5.6-terra` | medium | `tests/Agendamento.IntegrationTests/Features/FinancialTests.cs`, `tests/Agendamento.UnitTests/Financial/FinancialDomainTests.cs` |
+| tarefa | título | modelo | esforço |
+|---|---|---|---|
+| T-093 | Entidades de Domínio para Financeiro | `gpt-5.6-terra` | medium |
+| T-094 | Mapeamento EF Core para Financeiro | `gpt-5.6-terra` | medium |
+| T-095 | Caso de Uso e Endpoints de Financeiro | `gpt-5.6-terra` | medium |
+| T-096 | Testes de Integração para Financeiro | `gpt-5.6-terra` | medium |
 
 ## Gestão de branches e commits
 
 1. branch de trabalho `spec/gestao-financeira-contas` criada do ponto atual (se ainda não existir)
-2. cada faixa nasce dela como branch própria e roda no seu worktree — **1 tarefa = 1 commit** (`T-xxx feature: título`)
-3. terminou a onda → merge `--no-ff` de cada faixa de volta, na ordem; conflito interrompe a faixa e pede resolução humana
-4. faixa mesclada → worktree removido, branch apagada, tarefa marcada `[concluida]` no tasks.md
-5. gate final na branch de trabalho: `onp-spec verify gestao-financeira-contas` + `onp-spec audit --ci` — **exit 0 ou não está pronto**
+2. as tarefas rodam nela mesma, na ordem — **1 tarefa = 1 commit** (`T-xxx feature: título`), marcada `[concluida]` só com trabalho feito
+3. gate final na branch de trabalho: `onp-spec verify gestao-financeira-contas` + `onp-spec audit --ci` — **exit 0 ou não está pronto**
 
 ## Como executar
 
@@ -56,10 +36,10 @@
 bash .spec/features/gestao-financeira-contas/executar-tarefas.sh
 ```
 
-Cada faixa roda `codex exec` com **janela de contexto limpa**, no seu worktree, com
-`--model` e `model_reasoning_effort` já definidos por tarefa e sandbox `workspace-write`. Os prompts exatos estão
-embutidos no script — quer rodar uma faixa na mão, é só copiá-los de lá.
-Logs: `../onp-worktrees/agendamento-gestao-financeira-contas-logs/`.
+Cada tarefa roda `codex exec` com **janela de contexto limpa**, na árvore principal,
+uma após a outra, com `--model` e `model_reasoning_effort` já definidos por tarefa e sandbox `workspace-write`.
+Os prompts exatos estão embutidos no script.
+Logs: `../onp-worktrees/saas-pequenos-negocios-backend-gestao-financeira-contas-logs/`.
 
 **Confirmação de custos — antes de executar**: os modelos e esforços por
 tarefa estão nas tabelas acima; o agente CONFIRMA com o usuário se estão

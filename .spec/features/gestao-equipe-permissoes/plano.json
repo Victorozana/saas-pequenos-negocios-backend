@@ -1,0 +1,140 @@
+{
+  "runId": "saas-pequenos-negocios-backend-gestao-equipe-permissoes-mv4ihb3h",
+  "feature": "gestao-equipe-permissoes",
+  "agent": "codex",
+  "modo": "sequencial",
+  "paralelizar": null,
+  "modeloForcado": null,
+  "esforcoForcado": null,
+  "geradoEm": "2026-10-12 00:26",
+  "branchTrabalho": "spec/gestao-equipe-permissoes",
+  "baseDir": ".spec/features/gestao-equipe-permissoes",
+  "specDir": ".spec",
+  "repoName": "saas-pequenos-negocios-backend",
+  "logsDir": "../onp-worktrees/saas-pequenos-negocios-backend-gestao-equipe-permissoes-logs",
+  "ondas": [],
+  "faixas": [],
+  "sequenciais": [
+    {
+      "id": "T-080",
+      "titulo": "Atualizar entidade User com nome e DTO Profile",
+      "modelo": "gpt-5.6-terra",
+      "esforco": "medium",
+      "arquivos": [
+        "src/Agendamento.Api/Domain/Identity/User.cs",
+        "src/Agendamento.Api/Application/Tenants/RegisterTenant/RegisterTenantHandler.cs",
+        "src/Agendamento.Api/Features/Identity/CurrentUserEndpoints.cs",
+        "src/Agendamento.Api/Application/Identity/GetUserProfile/UserProfileResponse.cs"
+      ],
+      "refs": [
+        "AC-070"
+      ]
+    },
+    {
+      "id": "T-081",
+      "titulo": "Definir Permissions e autorização em TenantMembership",
+      "modelo": "gpt-5.6-terra",
+      "esforco": "medium",
+      "arquivos": [
+        "src/Agendamento.Api/Domain/Identity/Permissions.cs",
+        "src/Agendamento.Api/Domain/Tenants/TenantMembership.cs",
+        "src/Agendamento.Api/Infrastructure/Persistence/Configurations/TenantMembershipConfiguration.cs"
+      ],
+      "refs": [
+        "AC-070",
+        "AC-071"
+      ]
+    },
+    {
+      "id": "T-082",
+      "titulo": "Middleware/Handler de Permissões",
+      "modelo": "gpt-5.6-terra",
+      "esforco": "medium",
+      "arquivos": [
+        "src/Agendamento.Api/Infrastructure/Authorization/PermissionAuthorizationExtensions.cs",
+        "src/Agendamento.Api/Infrastructure/DependencyInjection.cs",
+        "src/Agendamento.Api/Infrastructure/Identity/EfIdentityStore.cs"
+      ],
+      "refs": [
+        "AC-071"
+      ]
+    },
+    {
+      "id": "T-083",
+      "titulo": "Aplicar RequirePermission nos endpoints",
+      "modelo": "gpt-5.6-terra",
+      "esforco": "medium",
+      "arquivos": [
+        "src/Agendamento.Api/Features/Customers/CustomerEndpoints.cs",
+        "src/Agendamento.Api/Features/Services/ServiceEndpoints.cs",
+        "src/Agendamento.Api/Features/Quotations/QuotationEndpoints.cs",
+        "src/Agendamento.Api/Features/Appointments/AppointmentEndpoints.cs",
+        "src/Agendamento.Api/Features/Dashboard/DashboardEndpoints.cs",
+        "src/Agendamento.Api/Features/Financial/FinancialEndpoints.cs"
+      ],
+      "refs": [
+        "AC-071"
+      ]
+    },
+    {
+      "id": "T-084",
+      "titulo": "Endpoints de gestão de equipe listar/status",
+      "modelo": "gpt-5.6-terra",
+      "esforco": "medium",
+      "arquivos": [
+        "src/Agendamento.Api/Features/Team/TeamMemberEndpoints.cs",
+        "src/Agendamento.Api/Program.cs"
+      ],
+      "refs": [
+        "AC-072",
+        "AC-073"
+      ]
+    },
+    {
+      "id": "T-085",
+      "titulo": "Envio de convite e aceite",
+      "modelo": "gpt-5.6-terra",
+      "esforco": "medium",
+      "arquivos": [
+        "src/Agendamento.Api/Features/Team/TeamMemberEndpoints.cs",
+        "src/Agendamento.Api/Domain/Tenants/TeamInvitation.cs",
+        "src/Agendamento.Api/Infrastructure/Persistence/Configurations/TeamInvitationConfiguration.cs",
+        "src/Agendamento.Api/Infrastructure/Tenancy/HttpTenantContext.cs",
+        "src/Agendamento.Api/Infrastructure/Notifications/MockCommunicationGateway.cs"
+      ],
+      "refs": [
+        "AC-074",
+        "AC-075"
+      ]
+    },
+    {
+      "id": "T-086",
+      "titulo": "Serialização de Enums e CORS",
+      "modelo": "gpt-5.6-terra",
+      "esforco": "medium",
+      "arquivos": [
+        "src/Agendamento.Api/Program.cs",
+        "src/Agendamento.Api/Infrastructure/DependencyInjection.cs"
+      ],
+      "refs": [
+        "AC-070"
+      ]
+    },
+    {
+      "id": "T-087",
+      "titulo": "Configuração e validação de testes OpenAPI",
+      "modelo": "gpt-5.6-terra",
+      "esforco": "medium",
+      "arquivos": [
+        "tests/Agendamento.IntegrationTests/Features/TeamMemberTests.cs",
+        "tests/Agendamento.IntegrationTests/Features/TeamFinancialHttpTests.cs",
+        "tests/Agendamento.IntegrationTests/Infrastructure/AgendamentoApiFactory.cs"
+      ],
+      "refs": [
+        "AC-070"
+      ]
+    }
+  ],
+  "concluidas": [],
+  "avisos": []
+}

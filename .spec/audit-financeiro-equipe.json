@@ -1,0 +1,2285 @@
+{
+  "ok": false,
+  "stats": {
+    "features": 15,
+    "stories": 28,
+    "acs": 56,
+    "acsWithTest": 46,
+    "acsProven": 43,
+    "assumptionsOpen": 0,
+    "questionsOpen": 0,
+    "principles": 5,
+    "errors": 264,
+    "warnings": 40
+  },
+  "findings": [
+    {
+      "code": "ID_DUPLICADO",
+      "severity": "erro",
+      "message": "ASM-008 definido em .spec\\features\\contrato-openapi-swagger\\spec.md e em .spec\\features\\dashboard-relatorios-metricas\\spec.md",
+      "feature": "dashboard-relatorios-metricas",
+      "file": ".spec\\features\\dashboard-relatorios-metricas\\spec.md",
+      "line": 66
+    },
+    {
+      "code": "PROVA_FRACA",
+      "severity": "aviso",
+      "message": "AC-014 provado apenas pelo exit code global (reporter \"exitcode\") — sem granularidade por teste; prefira tap/vitest-json/jest-json",
+      "feature": "cadastro-tenants",
+      "file": "tests/Agendamento.IntegrationTests/Tenants/CompanyRegistryContractTests.cs",
+      "line": 35
+    },
+    {
+      "code": "PROVA_FRACA",
+      "severity": "aviso",
+      "message": "AC-015 provado apenas pelo exit code global (reporter \"exitcode\") — sem granularidade por teste; prefira tap/vitest-json/jest-json",
+      "feature": "cadastro-tenants",
+      "file": "tests/Agendamento.IntegrationTests/Tenants/CompanyRegistryContractTests.cs",
+      "line": 48
+    },
+    {
+      "code": "PROVA_FRACA",
+      "severity": "aviso",
+      "message": "AC-016 provado apenas pelo exit code global (reporter \"exitcode\") — sem granularidade por teste; prefira tap/vitest-json/jest-json",
+      "feature": "cadastro-tenants",
+      "file": "tests/Agendamento.IntegrationTests/Tenants/CompanyRegistryContractTests.cs",
+      "line": 71
+    },
+    {
+      "code": "PROVA_FRACA",
+      "severity": "aviso",
+      "message": "AC-017 provado apenas pelo exit code global (reporter \"exitcode\") — sem granularidade por teste; prefira tap/vitest-json/jest-json",
+      "feature": "cadastro-tenants",
+      "file": "tests/Agendamento.ArchitectureTests/OpenApi/EndpointMetadataTests.cs",
+      "line": 99
+    },
+    {
+      "code": "PROVA_FRACA",
+      "severity": "aviso",
+      "message": "AC-018 provado apenas pelo exit code global (reporter \"exitcode\") — sem granularidade por teste; prefira tap/vitest-json/jest-json",
+      "feature": "cadastro-tenants",
+      "file": "tests/Agendamento.UnitTests/Tenants/TenantTests.cs",
+      "line": 8
+    },
+    {
+      "code": "PROVA_FRACA",
+      "severity": "aviso",
+      "message": "AC-019 provado apenas pelo exit code global (reporter \"exitcode\") — sem granularidade por teste; prefira tap/vitest-json/jest-json",
+      "feature": "cadastro-tenants",
+      "file": "tests/Agendamento.UnitTests/Tenants/TenantFiscalProfileTests.cs",
+      "line": 8
+    },
+    {
+      "code": "PROVA_FRACA",
+      "severity": "aviso",
+      "message": "AC-020 provado apenas pelo exit code global (reporter \"exitcode\") — sem granularidade por teste; prefira tap/vitest-json/jest-json",
+      "feature": "cadastro-tenants",
+      "file": "tests/Agendamento.UnitTests/Tenants/TenantTests.cs",
+      "line": 37
+    },
+    {
+      "code": "PROVA_FRACA",
+      "severity": "aviso",
+      "message": "AC-021 provado apenas pelo exit code global (reporter \"exitcode\") — sem granularidade por teste; prefira tap/vitest-json/jest-json",
+      "feature": "cadastro-tenants",
+      "file": "tests/Agendamento.IntegrationTests/Tenants/TenantOnboardingFlowTests.cs",
+      "line": 21
+    },
+    {
+      "code": "PROVA_FRACA",
+      "severity": "aviso",
+      "message": "AC-022 provado apenas pelo exit code global (reporter \"exitcode\") — sem granularidade por teste; prefira tap/vitest-json/jest-json",
+      "feature": "cadastro-tenants",
+      "file": "tests/Agendamento.UnitTests/Tenants/CnpjTests.cs",
+      "line": 38
+    },
+    {
+      "code": "PROVA_FRACA",
+      "severity": "aviso",
+      "message": "AC-023 provado apenas pelo exit code global (reporter \"exitcode\") — sem granularidade por teste; prefira tap/vitest-json/jest-json",
+      "feature": "cadastro-tenants",
+      "file": "tests/Agendamento.IntegrationTests/Tenants/TenantRegistrationEndpointTests.cs",
+      "line": 13
+    },
+    {
+      "code": "PROVA_FRACA",
+      "severity": "aviso",
+      "message": "AC-024 provado apenas pelo exit code global (reporter \"exitcode\") — sem granularidade por teste; prefira tap/vitest-json/jest-json",
+      "feature": "cadastro-tenants",
+      "file": "tests/Agendamento.IntegrationTests/Tenants/RegisterTenantTransactionTests.cs",
+      "line": 55
+    },
+    {
+      "code": "PROVA_FRACA",
+      "severity": "aviso",
+      "message": "AC-025 provado apenas pelo exit code global (reporter \"exitcode\") — sem granularidade por teste; prefira tap/vitest-json/jest-json",
+      "feature": "cadastro-tenants",
+      "file": "tests/Agendamento.IntegrationTests/Identity/CurrentUserEndpointTests.cs",
+      "line": 8
+    },
+    {
+      "code": "PROVA_FRACA",
+      "severity": "aviso",
+      "message": "AC-026 provado apenas pelo exit code global (reporter \"exitcode\") — sem granularidade por teste; prefira tap/vitest-json/jest-json",
+      "feature": "cadastro-tenants",
+      "file": "tests/Agendamento.IntegrationTests/Tenants/CurrentTenantEndpointTests.cs",
+      "line": 8
+    },
+    {
+      "code": "PROVA_FRACA",
+      "severity": "aviso",
+      "message": "AC-027 provado apenas pelo exit code global (reporter \"exitcode\") — sem granularidade por teste; prefira tap/vitest-json/jest-json",
+      "feature": "cadastro-tenants",
+      "file": "tests/Agendamento.IntegrationTests/Tenants/TenantRegistrationEndpointTests.cs",
+      "line": 21
+    },
+    {
+      "code": "VERIFY_OBSOLETO",
+      "severity": "erro",
+      "message": "código/testes mudaram depois do último verify de cadastro-tenants — rode `onp-spec verify cadastro-tenants` de novo",
+      "feature": "cadastro-tenants"
+    },
+    {
+      "code": "TASK_CONCLUIDA_SEM_PROVA",
+      "severity": "erro",
+      "message": "a tarefa T-022 está [concluida] mas o critério AC-036 não tem prova PASS do verify",
+      "feature": "contrato-openapi-swagger",
+      "file": ".spec\\features\\contrato-openapi-swagger\\tasks.md",
+      "line": 5
+    },
+    {
+      "code": "TASK_CONCLUIDA_SEM_PROVA",
+      "severity": "erro",
+      "message": "a tarefa T-022 está [concluida] mas o critério AC-040 não tem prova PASS do verify",
+      "feature": "contrato-openapi-swagger",
+      "file": ".spec\\features\\contrato-openapi-swagger\\tasks.md",
+      "line": 5
+    },
+    {
+      "code": "ARQUIVO_INEXISTENTE",
+      "severity": "erro",
+      "message": "a tarefa T-023 mapeia src/Agendamento.Api/Features/Health, que não existe (tarefa concluída!)",
+      "feature": "contrato-openapi-swagger",
+      "file": ".spec\\features\\contrato-openapi-swagger\\tasks.md",
+      "line": 11
+    },
+    {
+      "code": "TASK_CONCLUIDA_SEM_PROVA",
+      "severity": "erro",
+      "message": "a tarefa T-023 está [concluida] mas o critério AC-036 não tem prova PASS do verify",
+      "feature": "contrato-openapi-swagger",
+      "file": ".spec\\features\\contrato-openapi-swagger\\tasks.md",
+      "line": 11
+    },
+    {
+      "code": "TASK_CONCLUIDA_SEM_PROVA",
+      "severity": "erro",
+      "message": "a tarefa T-023 está [concluida] mas o critério AC-037 não tem prova PASS do verify",
+      "feature": "contrato-openapi-swagger",
+      "file": ".spec\\features\\contrato-openapi-swagger\\tasks.md",
+      "line": 11
+    },
+    {
+      "code": "TASK_CONCLUIDA_SEM_PROVA",
+      "severity": "erro",
+      "message": "a tarefa T-023 está [concluida] mas o critério AC-038 não tem prova PASS do verify",
+      "feature": "contrato-openapi-swagger",
+      "file": ".spec\\features\\contrato-openapi-swagger\\tasks.md",
+      "line": 11
+    },
+    {
+      "code": "TASK_CONCLUIDA_SEM_PROVA",
+      "severity": "erro",
+      "message": "a tarefa T-024 está [concluida] mas o critério AC-039 não tem prova PASS do verify",
+      "feature": "contrato-openapi-swagger",
+      "file": ".spec\\features\\contrato-openapi-swagger\\tasks.md",
+      "line": 17
+    },
+    {
+      "code": "TASK_CONCLUIDA_SEM_PROVA",
+      "severity": "erro",
+      "message": "a tarefa T-025 está [concluida] mas o critério AC-036 não tem prova PASS do verify",
+      "feature": "contrato-openapi-swagger",
+      "file": ".spec\\features\\contrato-openapi-swagger\\tasks.md",
+      "line": 23
+    },
+    {
+      "code": "TASK_CONCLUIDA_SEM_PROVA",
+      "severity": "erro",
+      "message": "a tarefa T-025 está [concluida] mas o critério AC-037 não tem prova PASS do verify",
+      "feature": "contrato-openapi-swagger",
+      "file": ".spec\\features\\contrato-openapi-swagger\\tasks.md",
+      "line": 23
+    },
+    {
+      "code": "TASK_CONCLUIDA_SEM_PROVA",
+      "severity": "erro",
+      "message": "a tarefa T-025 está [concluida] mas o critério AC-038 não tem prova PASS do verify",
+      "feature": "contrato-openapi-swagger",
+      "file": ".spec\\features\\contrato-openapi-swagger\\tasks.md",
+      "line": 23
+    },
+    {
+      "code": "TASK_CONCLUIDA_SEM_PROVA",
+      "severity": "erro",
+      "message": "a tarefa T-025 está [concluida] mas o critério AC-039 não tem prova PASS do verify",
+      "feature": "contrato-openapi-swagger",
+      "file": ".spec\\features\\contrato-openapi-swagger\\tasks.md",
+      "line": 23
+    },
+    {
+      "code": "AC_SEM_PROVA",
+      "severity": "erro",
+      "message": "AC-036 tem teste (tests/Agendamento.IntegrationTests/OpenApi/SwaggerUiTests.cs:37) mas nunca foi provado — rode `onp-spec verify contrato-openapi-swagger`",
+      "feature": "contrato-openapi-swagger",
+      "file": "tests/Agendamento.IntegrationTests/OpenApi/SwaggerUiTests.cs",
+      "line": 37
+    },
+    {
+      "code": "AC_SEM_PROVA",
+      "severity": "erro",
+      "message": "AC-037 tem teste (tests/Agendamento.ArchitectureTests/OpenApi/EndpointMetadataTests.cs:27) mas nunca foi provado — rode `onp-spec verify contrato-openapi-swagger`",
+      "feature": "contrato-openapi-swagger",
+      "file": "tests/Agendamento.ArchitectureTests/OpenApi/EndpointMetadataTests.cs",
+      "line": 27
+    },
+    {
+      "code": "AC_SEM_TESTE",
+      "severity": "erro",
+      "message": "AC-038 (Schemas não expõem dados secretos) não tem nenhum teste anotado com @spec:AC-038",
+      "feature": "contrato-openapi-swagger",
+      "file": ".spec\\features\\contrato-openapi-swagger\\spec.md",
+      "line": 28
+    },
+    {
+      "code": "AC_SEM_PROVA",
+      "severity": "erro",
+      "message": "AC-039 tem teste (tests/Agendamento.IntegrationTests/OpenApi/OpenApiSnapshotTests.cs:21) mas nunca foi provado — rode `onp-spec verify contrato-openapi-swagger`",
+      "feature": "contrato-openapi-swagger",
+      "file": "tests/Agendamento.IntegrationTests/OpenApi/OpenApiSnapshotTests.cs",
+      "line": 21
+    },
+    {
+      "code": "AC_SEM_PROVA",
+      "severity": "erro",
+      "message": "AC-040 tem teste (tests/Agendamento.IntegrationTests/OpenApi/SwaggerUiTests.cs:18) mas nunca foi provado — rode `onp-spec verify contrato-openapi-swagger`",
+      "feature": "contrato-openapi-swagger",
+      "file": "tests/Agendamento.IntegrationTests/OpenApi/SwaggerUiTests.cs",
+      "line": 18
+    },
+    {
+      "code": "US_SEM_AC",
+      "severity": "erro",
+      "message": "US-039 (Visualizar Agenda do Dia / Semana Sintetizada) sem critério de aceite",
+      "feature": "dashboard-relatorios-metricas",
+      "file": ".spec\\features\\dashboard-relatorios-metricas\\spec.md",
+      "line": 45
+    },
+    {
+      "code": "ARQUIVO_INEXISTENTE",
+      "severity": "erro",
+      "message": "a tarefa T-058 mapeia src/Agendamento.Api/Application/Dashboard/GetDashboardSummary/ConversionMetricsDto.cs, que não existe (tarefa concluída!)",
+      "feature": "dashboard-relatorios-metricas",
+      "file": ".spec\\features\\dashboard-relatorios-metricas\\tasks.md",
+      "line": 3
+    },
+    {
+      "code": "PROVA_FRACA",
+      "severity": "aviso",
+      "message": "AC-065 provado apenas pelo exit code global (reporter \"exitcode\") — sem granularidade por teste; prefira tap/vitest-json/jest-json",
+      "feature": "dashboard-relatorios-metricas",
+      "file": "tests/Agendamento.IntegrationTests/Dashboard/DashboardApiTests.cs",
+      "line": 60
+    },
+    {
+      "code": "PROVA_FRACA",
+      "severity": "aviso",
+      "message": "AC-066 provado apenas pelo exit code global (reporter \"exitcode\") — sem granularidade por teste; prefira tap/vitest-json/jest-json",
+      "feature": "dashboard-relatorios-metricas",
+      "file": "tests/Agendamento.UnitTests/Dashboard/DashboardMetricTests.cs",
+      "line": 46
+    },
+    {
+      "code": "PROVA_FRACA",
+      "severity": "aviso",
+      "message": "AC-067 provado apenas pelo exit code global (reporter \"exitcode\") — sem granularidade por teste; prefira tap/vitest-json/jest-json",
+      "feature": "dashboard-relatorios-metricas",
+      "file": "tests/Agendamento.UnitTests/Dashboard/DashboardMetricTests.cs",
+      "line": 138
+    },
+    {
+      "code": "PROVA_FRACA",
+      "severity": "aviso",
+      "message": "AC-068 provado apenas pelo exit code global (reporter \"exitcode\") — sem granularidade por teste; prefira tap/vitest-json/jest-json",
+      "feature": "dashboard-relatorios-metricas",
+      "file": "tests/Agendamento.UnitTests/Dashboard/DashboardMetricTests.cs",
+      "line": 70
+    },
+    {
+      "code": "PROVA_FRACA",
+      "severity": "aviso",
+      "message": "AC-069 provado apenas pelo exit code global (reporter \"exitcode\") — sem granularidade por teste; prefira tap/vitest-json/jest-json",
+      "feature": "dashboard-relatorios-metricas",
+      "file": "tests/Agendamento.UnitTests/Dashboard/DashboardMetricTests.cs",
+      "line": 103
+    },
+    {
+      "code": "VERIFY_OBSOLETO",
+      "severity": "erro",
+      "message": "código/testes mudaram depois do último verify de dashboard-relatorios-metricas — rode `onp-spec verify dashboard-relatorios-metricas` de novo",
+      "feature": "dashboard-relatorios-metricas"
+    },
+    {
+      "code": "PROVA_FRACA",
+      "severity": "aviso",
+      "message": "AC-102 provado apenas pelo exit code global (reporter \"exitcode\") — sem granularidade por teste; prefira tap/vitest-json/jest-json",
+      "feature": "documentacao-readme-backend",
+      "file": "tests/Agendamento.ArchitectureTests/Documentation/ReadmeDocumentationTests.cs",
+      "line": 7
+    },
+    {
+      "code": "VERIFY_OBSOLETO",
+      "severity": "erro",
+      "message": "código/testes mudaram depois do último verify de documentacao-readme-backend — rode `onp-spec verify documentacao-readme-backend` de novo",
+      "feature": "documentacao-readme-backend"
+    },
+    {
+      "code": "PROVA_FRACA",
+      "severity": "aviso",
+      "message": "AC-001 provado apenas pelo exit code global (reporter \"exitcode\") — sem granularidade por teste; prefira tap/vitest-json/jest-json",
+      "feature": "fundacao-api-testes",
+      "file": "tests/Agendamento.ArchitectureTests/Build/SolutionBuildTests.cs",
+      "line": 9
+    },
+    {
+      "code": "PROVA_FRACA",
+      "severity": "aviso",
+      "message": "AC-002 provado apenas pelo exit code global (reporter \"exitcode\") — sem granularidade por teste; prefira tap/vitest-json/jest-json",
+      "feature": "fundacao-api-testes",
+      "file": "tests/Agendamento.IntegrationTests/Health/HealthEndpointTests.cs",
+      "line": 9
+    },
+    {
+      "code": "PROVA_FRACA",
+      "severity": "aviso",
+      "message": "AC-003 provado apenas pelo exit code global (reporter \"exitcode\") — sem granularidade por teste; prefira tap/vitest-json/jest-json",
+      "feature": "fundacao-api-testes",
+      "file": "tests/Agendamento.IntegrationTests/Health/HealthEndpointTests.cs",
+      "line": 19
+    },
+    {
+      "code": "AC_SEM_TESTE",
+      "severity": "erro",
+      "message": "AC-004 (Integrações usam PostgreSQL real e isolado) não tem nenhum teste anotado com @spec:AC-004",
+      "feature": "fundacao-api-testes",
+      "file": ".spec\\features\\fundacao-api-testes\\spec.md",
+      "line": 38
+    },
+    {
+      "code": "PROVA_FRACA",
+      "severity": "aviso",
+      "message": "AC-005 provado apenas pelo exit code global (reporter \"exitcode\") — sem granularidade por teste; prefira tap/vitest-json/jest-json",
+      "feature": "fundacao-api-testes",
+      "file": "tests/Agendamento.ArchitectureTests/Configuration/SecretConfigurationTests.cs",
+      "line": 8
+    },
+    {
+      "code": "PROVA_FRACA",
+      "severity": "aviso",
+      "message": "AC-006 provado apenas pelo exit code global (reporter \"exitcode\") — sem granularidade por teste; prefira tap/vitest-json/jest-json",
+      "feature": "fundacao-api-testes",
+      "file": "tests/Agendamento.IntegrationTests/Configuration/DatabaseConfigurationTests.cs",
+      "line": 10
+    },
+    {
+      "code": "VERIFY_OBSOLETO",
+      "severity": "erro",
+      "message": "código/testes mudaram depois do último verify de fundacao-api-testes — rode `onp-spec verify fundacao-api-testes` de novo",
+      "feature": "fundacao-api-testes"
+    },
+    {
+      "code": "SPEC_SEM_US",
+      "severity": "erro",
+      "message": "especificação sem nenhuma história de usuário (US-xxx)",
+      "feature": "gestao-agendamentos-ordens-servico",
+      "file": ".spec\\features\\gestao-agendamentos-ordens-servico\\spec.md"
+    },
+    {
+      "code": "SECAO_AUSENTE",
+      "severity": "aviso",
+      "message": "especificação sem seção \"## Suposições\" — registre as suposições ou escreva \"Nenhuma.\" explicitamente",
+      "feature": "gestao-agendamentos-ordens-servico",
+      "file": ".spec\\features\\gestao-agendamentos-ordens-servico\\spec.md"
+    },
+    {
+      "code": "SECAO_AUSENTE",
+      "severity": "aviso",
+      "message": "especificação sem seção \"## Perguntas em aberto\" — registre as perguntas ou escreva \"Nenhuma.\" explicitamente",
+      "feature": "gestao-agendamentos-ordens-servico",
+      "file": ".spec\\features\\gestao-agendamentos-ordens-servico\\spec.md"
+    },
+    {
+      "code": "TASK_STATUS_INVALIDO",
+      "severity": "erro",
+      "message": "T-038: status \"[concluído]\" não é um de: pendente, em-andamento, concluida",
+      "feature": "gestao-agendamentos-ordens-servico",
+      "file": ".spec\\features\\gestao-agendamentos-ordens-servico\\tasks.md",
+      "line": 3
+    },
+    {
+      "code": "TASK_STATUS_INVALIDO",
+      "severity": "erro",
+      "message": "T-039: status \"[concluído]\" não é um de: pendente, em-andamento, concluida",
+      "feature": "gestao-agendamentos-ordens-servico",
+      "file": ".spec\\features\\gestao-agendamentos-ordens-servico\\tasks.md",
+      "line": 9
+    },
+    {
+      "code": "TASK_STATUS_INVALIDO",
+      "severity": "erro",
+      "message": "T-040: status \"[concluído]\" não é um de: pendente, em-andamento, concluida",
+      "feature": "gestao-agendamentos-ordens-servico",
+      "file": ".spec\\features\\gestao-agendamentos-ordens-servico\\tasks.md",
+      "line": 15
+    },
+    {
+      "code": "TASK_STATUS_INVALIDO",
+      "severity": "erro",
+      "message": "T-041: status \"[concluído]\" não é um de: pendente, em-andamento, concluida",
+      "feature": "gestao-agendamentos-ordens-servico",
+      "file": ".spec\\features\\gestao-agendamentos-ordens-servico\\tasks.md",
+      "line": 21
+    },
+    {
+      "code": "TASK_STATUS_INVALIDO",
+      "severity": "erro",
+      "message": "T-042: status \"[concluído]\" não é um de: pendente, em-andamento, concluida",
+      "feature": "gestao-agendamentos-ordens-servico",
+      "file": ".spec\\features\\gestao-agendamentos-ordens-servico\\tasks.md",
+      "line": 27
+    },
+    {
+      "code": "TASK_STATUS_INVALIDO",
+      "severity": "erro",
+      "message": "T-043: status \"[concluído]\" não é um de: pendente, em-andamento, concluida",
+      "feature": "gestao-agendamentos-ordens-servico",
+      "file": ".spec\\features\\gestao-agendamentos-ordens-servico\\tasks.md",
+      "line": 33
+    },
+    {
+      "code": "TASK_STATUS_INVALIDO",
+      "severity": "erro",
+      "message": "T-044: status \"[concluído]\" não é um de: pendente, em-andamento, concluida",
+      "feature": "gestao-agendamentos-ordens-servico",
+      "file": ".spec\\features\\gestao-agendamentos-ordens-servico\\tasks.md",
+      "line": 39
+    },
+    {
+      "code": "REF_QUEBRADA",
+      "severity": "erro",
+      "message": "a tarefa T-038 referencia US-025, que não existe em nenhuma especificação",
+      "feature": "gestao-agendamentos-ordens-servico",
+      "file": ".spec\\features\\gestao-agendamentos-ordens-servico\\tasks.md",
+      "line": 3
+    },
+    {
+      "code": "REF_QUEBRADA",
+      "severity": "erro",
+      "message": "a tarefa T-038 referencia US-026, que não existe em nenhuma especificação",
+      "feature": "gestao-agendamentos-ordens-servico",
+      "file": ".spec\\features\\gestao-agendamentos-ordens-servico\\tasks.md",
+      "line": 3
+    },
+    {
+      "code": "REF_QUEBRADA",
+      "severity": "erro",
+      "message": "a tarefa T-038 referencia US-027, que não existe em nenhuma especificação",
+      "feature": "gestao-agendamentos-ordens-servico",
+      "file": ".spec\\features\\gestao-agendamentos-ordens-servico\\tasks.md",
+      "line": 3
+    },
+    {
+      "code": "REF_QUEBRADA",
+      "severity": "erro",
+      "message": "a tarefa T-038 referencia US-028, que não existe em nenhuma especificação",
+      "feature": "gestao-agendamentos-ordens-servico",
+      "file": ".spec\\features\\gestao-agendamentos-ordens-servico\\tasks.md",
+      "line": 3
+    },
+    {
+      "code": "REF_QUEBRADA",
+      "severity": "erro",
+      "message": "a tarefa T-038 referencia AC-050, que não existe em nenhuma especificação",
+      "feature": "gestao-agendamentos-ordens-servico",
+      "file": ".spec\\features\\gestao-agendamentos-ordens-servico\\tasks.md",
+      "line": 3
+    },
+    {
+      "code": "REF_QUEBRADA",
+      "severity": "erro",
+      "message": "a tarefa T-038 referencia AC-051, que não existe em nenhuma especificação",
+      "feature": "gestao-agendamentos-ordens-servico",
+      "file": ".spec\\features\\gestao-agendamentos-ordens-servico\\tasks.md",
+      "line": 3
+    },
+    {
+      "code": "REF_QUEBRADA",
+      "severity": "erro",
+      "message": "a tarefa T-038 referencia AC-052, que não existe em nenhuma especificação",
+      "feature": "gestao-agendamentos-ordens-servico",
+      "file": ".spec\\features\\gestao-agendamentos-ordens-servico\\tasks.md",
+      "line": 3
+    },
+    {
+      "code": "REF_QUEBRADA",
+      "severity": "erro",
+      "message": "a tarefa T-039 referencia US-025, que não existe em nenhuma especificação",
+      "feature": "gestao-agendamentos-ordens-servico",
+      "file": ".spec\\features\\gestao-agendamentos-ordens-servico\\tasks.md",
+      "line": 9
+    },
+    {
+      "code": "REF_QUEBRADA",
+      "severity": "erro",
+      "message": "a tarefa T-039 referencia US-026, que não existe em nenhuma especificação",
+      "feature": "gestao-agendamentos-ordens-servico",
+      "file": ".spec\\features\\gestao-agendamentos-ordens-servico\\tasks.md",
+      "line": 9
+    },
+    {
+      "code": "REF_QUEBRADA",
+      "severity": "erro",
+      "message": "a tarefa T-039 referencia AC-050, que não existe em nenhuma especificação",
+      "feature": "gestao-agendamentos-ordens-servico",
+      "file": ".spec\\features\\gestao-agendamentos-ordens-servico\\tasks.md",
+      "line": 9
+    },
+    {
+      "code": "REF_QUEBRADA",
+      "severity": "erro",
+      "message": "a tarefa T-040 referencia US-025, que não existe em nenhuma especificação",
+      "feature": "gestao-agendamentos-ordens-servico",
+      "file": ".spec\\features\\gestao-agendamentos-ordens-servico\\tasks.md",
+      "line": 15
+    },
+    {
+      "code": "REF_QUEBRADA",
+      "severity": "erro",
+      "message": "a tarefa T-040 referencia AC-051, que não existe em nenhuma especificação",
+      "feature": "gestao-agendamentos-ordens-servico",
+      "file": ".spec\\features\\gestao-agendamentos-ordens-servico\\tasks.md",
+      "line": 15
+    },
+    {
+      "code": "REF_QUEBRADA",
+      "severity": "erro",
+      "message": "a tarefa T-040 referencia AC-052, que não existe em nenhuma especificação",
+      "feature": "gestao-agendamentos-ordens-servico",
+      "file": ".spec\\features\\gestao-agendamentos-ordens-servico\\tasks.md",
+      "line": 15
+    },
+    {
+      "code": "REF_QUEBRADA",
+      "severity": "erro",
+      "message": "a tarefa T-041 referencia US-026, que não existe em nenhuma especificação",
+      "feature": "gestao-agendamentos-ordens-servico",
+      "file": ".spec\\features\\gestao-agendamentos-ordens-servico\\tasks.md",
+      "line": 21
+    },
+    {
+      "code": "REF_QUEBRADA",
+      "severity": "erro",
+      "message": "a tarefa T-041 referencia US-028, que não existe em nenhuma especificação",
+      "feature": "gestao-agendamentos-ordens-servico",
+      "file": ".spec\\features\\gestao-agendamentos-ordens-servico\\tasks.md",
+      "line": 21
+    },
+    {
+      "code": "REF_QUEBRADA",
+      "severity": "erro",
+      "message": "a tarefa T-041 referencia AC-053, que não existe em nenhuma especificação",
+      "feature": "gestao-agendamentos-ordens-servico",
+      "file": ".spec\\features\\gestao-agendamentos-ordens-servico\\tasks.md",
+      "line": 21
+    },
+    {
+      "code": "REF_QUEBRADA",
+      "severity": "erro",
+      "message": "a tarefa T-042 referencia US-027, que não existe em nenhuma especificação",
+      "feature": "gestao-agendamentos-ordens-servico",
+      "file": ".spec\\features\\gestao-agendamentos-ordens-servico\\tasks.md",
+      "line": 27
+    },
+    {
+      "code": "REF_QUEBRADA",
+      "severity": "erro",
+      "message": "a tarefa T-042 referencia AC-054, que não existe em nenhuma especificação",
+      "feature": "gestao-agendamentos-ordens-servico",
+      "file": ".spec\\features\\gestao-agendamentos-ordens-servico\\tasks.md",
+      "line": 27
+    },
+    {
+      "code": "REF_QUEBRADA",
+      "severity": "erro",
+      "message": "a tarefa T-043 referencia US-025, que não existe em nenhuma especificação",
+      "feature": "gestao-agendamentos-ordens-servico",
+      "file": ".spec\\features\\gestao-agendamentos-ordens-servico\\tasks.md",
+      "line": 33
+    },
+    {
+      "code": "REF_QUEBRADA",
+      "severity": "erro",
+      "message": "a tarefa T-043 referencia US-026, que não existe em nenhuma especificação",
+      "feature": "gestao-agendamentos-ordens-servico",
+      "file": ".spec\\features\\gestao-agendamentos-ordens-servico\\tasks.md",
+      "line": 33
+    },
+    {
+      "code": "REF_QUEBRADA",
+      "severity": "erro",
+      "message": "a tarefa T-043 referencia US-027, que não existe em nenhuma especificação",
+      "feature": "gestao-agendamentos-ordens-servico",
+      "file": ".spec\\features\\gestao-agendamentos-ordens-servico\\tasks.md",
+      "line": 33
+    },
+    {
+      "code": "REF_QUEBRADA",
+      "severity": "erro",
+      "message": "a tarefa T-043 referencia US-028, que não existe em nenhuma especificação",
+      "feature": "gestao-agendamentos-ordens-servico",
+      "file": ".spec\\features\\gestao-agendamentos-ordens-servico\\tasks.md",
+      "line": 33
+    },
+    {
+      "code": "REF_QUEBRADA",
+      "severity": "erro",
+      "message": "a tarefa T-043 referencia AC-050, que não existe em nenhuma especificação",
+      "feature": "gestao-agendamentos-ordens-servico",
+      "file": ".spec\\features\\gestao-agendamentos-ordens-servico\\tasks.md",
+      "line": 33
+    },
+    {
+      "code": "REF_QUEBRADA",
+      "severity": "erro",
+      "message": "a tarefa T-044 referencia AC-050, que não existe em nenhuma especificação",
+      "feature": "gestao-agendamentos-ordens-servico",
+      "file": ".spec\\features\\gestao-agendamentos-ordens-servico\\tasks.md",
+      "line": 39
+    },
+    {
+      "code": "REF_QUEBRADA",
+      "severity": "erro",
+      "message": "a tarefa T-044 referencia AC-051, que não existe em nenhuma especificação",
+      "feature": "gestao-agendamentos-ordens-servico",
+      "file": ".spec\\features\\gestao-agendamentos-ordens-servico\\tasks.md",
+      "line": 39
+    },
+    {
+      "code": "REF_QUEBRADA",
+      "severity": "erro",
+      "message": "a tarefa T-044 referencia AC-053, que não existe em nenhuma especificação",
+      "feature": "gestao-agendamentos-ordens-servico",
+      "file": ".spec\\features\\gestao-agendamentos-ordens-servico\\tasks.md",
+      "line": 39
+    },
+    {
+      "code": "REF_QUEBRADA",
+      "severity": "erro",
+      "message": "a tarefa T-044 referencia AC-054, que não existe em nenhuma especificação",
+      "feature": "gestao-agendamentos-ordens-servico",
+      "file": ".spec\\features\\gestao-agendamentos-ordens-servico\\tasks.md",
+      "line": 39
+    },
+    {
+      "code": "VERIFY_OBSOLETO",
+      "severity": "erro",
+      "message": "código/testes mudaram depois do último verify de gestao-agendamentos-ordens-servico — rode `onp-spec verify gestao-agendamentos-ordens-servico` de novo",
+      "feature": "gestao-agendamentos-ordens-servico"
+    },
+    {
+      "code": "SPEC_SEM_US",
+      "severity": "erro",
+      "message": "especificação sem nenhuma história de usuário (US-xxx)",
+      "feature": "gestao-assinaturas-saas",
+      "file": ".spec\\features\\gestao-assinaturas-saas\\spec.md"
+    },
+    {
+      "code": "SECAO_AUSENTE",
+      "severity": "aviso",
+      "message": "especificação sem seção \"## Suposições\" — registre as suposições ou escreva \"Nenhuma.\" explicitamente",
+      "feature": "gestao-assinaturas-saas",
+      "file": ".spec\\features\\gestao-assinaturas-saas\\spec.md"
+    },
+    {
+      "code": "SECAO_AUSENTE",
+      "severity": "aviso",
+      "message": "especificação sem seção \"## Perguntas em aberto\" — registre as perguntas ou escreva \"Nenhuma.\" explicitamente",
+      "feature": "gestao-assinaturas-saas",
+      "file": ".spec\\features\\gestao-assinaturas-saas\\spec.md"
+    },
+    {
+      "code": "REF_QUEBRADA",
+      "severity": "erro",
+      "message": "a tarefa T-064 referencia US-201, que não existe em nenhuma especificação",
+      "feature": "gestao-assinaturas-saas",
+      "file": ".spec\\features\\gestao-assinaturas-saas\\tasks.md",
+      "line": 3
+    },
+    {
+      "code": "REF_QUEBRADA",
+      "severity": "erro",
+      "message": "a tarefa T-064 referencia US-202, que não existe em nenhuma especificação",
+      "feature": "gestao-assinaturas-saas",
+      "file": ".spec\\features\\gestao-assinaturas-saas\\tasks.md",
+      "line": 3
+    },
+    {
+      "code": "REF_QUEBRADA",
+      "severity": "erro",
+      "message": "a tarefa T-064 referencia US-203, que não existe em nenhuma especificação",
+      "feature": "gestao-assinaturas-saas",
+      "file": ".spec\\features\\gestao-assinaturas-saas\\tasks.md",
+      "line": 3
+    },
+    {
+      "code": "REF_QUEBRADA",
+      "severity": "erro",
+      "message": "a tarefa T-064 referencia AC-201, que não existe em nenhuma especificação",
+      "feature": "gestao-assinaturas-saas",
+      "file": ".spec\\features\\gestao-assinaturas-saas\\tasks.md",
+      "line": 3
+    },
+    {
+      "code": "REF_QUEBRADA",
+      "severity": "erro",
+      "message": "a tarefa T-064 referencia AC-205, que não existe em nenhuma especificação",
+      "feature": "gestao-assinaturas-saas",
+      "file": ".spec\\features\\gestao-assinaturas-saas\\tasks.md",
+      "line": 3
+    },
+    {
+      "code": "REF_QUEBRADA",
+      "severity": "erro",
+      "message": "a tarefa T-065 referencia US-201, que não existe em nenhuma especificação",
+      "feature": "gestao-assinaturas-saas",
+      "file": ".spec\\features\\gestao-assinaturas-saas\\tasks.md",
+      "line": 9
+    },
+    {
+      "code": "REF_QUEBRADA",
+      "severity": "erro",
+      "message": "a tarefa T-065 referencia US-202, que não existe em nenhuma especificação",
+      "feature": "gestao-assinaturas-saas",
+      "file": ".spec\\features\\gestao-assinaturas-saas\\tasks.md",
+      "line": 9
+    },
+    {
+      "code": "REF_QUEBRADA",
+      "severity": "erro",
+      "message": "a tarefa T-065 referencia AC-201, que não existe em nenhuma especificação",
+      "feature": "gestao-assinaturas-saas",
+      "file": ".spec\\features\\gestao-assinaturas-saas\\tasks.md",
+      "line": 9
+    },
+    {
+      "code": "REF_QUEBRADA",
+      "severity": "erro",
+      "message": "a tarefa T-066 referencia US-203, que não existe em nenhuma especificação",
+      "feature": "gestao-assinaturas-saas",
+      "file": ".spec\\features\\gestao-assinaturas-saas\\tasks.md",
+      "line": 15
+    },
+    {
+      "code": "REF_QUEBRADA",
+      "severity": "erro",
+      "message": "a tarefa T-066 referencia AC-202, que não existe em nenhuma especificação",
+      "feature": "gestao-assinaturas-saas",
+      "file": ".spec\\features\\gestao-assinaturas-saas\\tasks.md",
+      "line": 15
+    },
+    {
+      "code": "REF_QUEBRADA",
+      "severity": "erro",
+      "message": "a tarefa T-067 referencia US-204, que não existe em nenhuma especificação",
+      "feature": "gestao-assinaturas-saas",
+      "file": ".spec\\features\\gestao-assinaturas-saas\\tasks.md",
+      "line": 21
+    },
+    {
+      "code": "REF_QUEBRADA",
+      "severity": "erro",
+      "message": "a tarefa T-067 referencia AC-203, que não existe em nenhuma especificação",
+      "feature": "gestao-assinaturas-saas",
+      "file": ".spec\\features\\gestao-assinaturas-saas\\tasks.md",
+      "line": 21
+    },
+    {
+      "code": "REF_QUEBRADA",
+      "severity": "erro",
+      "message": "a tarefa T-067 referencia AC-204, que não existe em nenhuma especificação",
+      "feature": "gestao-assinaturas-saas",
+      "file": ".spec\\features\\gestao-assinaturas-saas\\tasks.md",
+      "line": 21
+    },
+    {
+      "code": "REF_QUEBRADA",
+      "severity": "erro",
+      "message": "a tarefa T-068 referencia US-202, que não existe em nenhuma especificação",
+      "feature": "gestao-assinaturas-saas",
+      "file": ".spec\\features\\gestao-assinaturas-saas\\tasks.md",
+      "line": 27
+    },
+    {
+      "code": "REF_QUEBRADA",
+      "severity": "erro",
+      "message": "a tarefa T-068 referencia AC-201, que não existe em nenhuma especificação",
+      "feature": "gestao-assinaturas-saas",
+      "file": ".spec\\features\\gestao-assinaturas-saas\\tasks.md",
+      "line": 27
+    },
+    {
+      "code": "REF_QUEBRADA",
+      "severity": "erro",
+      "message": "a tarefa T-068 referencia AC-205, que não existe em nenhuma especificação",
+      "feature": "gestao-assinaturas-saas",
+      "file": ".spec\\features\\gestao-assinaturas-saas\\tasks.md",
+      "line": 27
+    },
+    {
+      "code": "REF_QUEBRADA",
+      "severity": "erro",
+      "message": "a tarefa T-069 referencia US-201, que não existe em nenhuma especificação",
+      "feature": "gestao-assinaturas-saas",
+      "file": ".spec\\features\\gestao-assinaturas-saas\\tasks.md",
+      "line": 33
+    },
+    {
+      "code": "REF_QUEBRADA",
+      "severity": "erro",
+      "message": "a tarefa T-069 referencia US-202, que não existe em nenhuma especificação",
+      "feature": "gestao-assinaturas-saas",
+      "file": ".spec\\features\\gestao-assinaturas-saas\\tasks.md",
+      "line": 33
+    },
+    {
+      "code": "REF_QUEBRADA",
+      "severity": "erro",
+      "message": "a tarefa T-069 referencia US-204, que não existe em nenhuma especificação",
+      "feature": "gestao-assinaturas-saas",
+      "file": ".spec\\features\\gestao-assinaturas-saas\\tasks.md",
+      "line": 33
+    },
+    {
+      "code": "REF_QUEBRADA",
+      "severity": "erro",
+      "message": "a tarefa T-069 referencia AC-201, que não existe em nenhuma especificação",
+      "feature": "gestao-assinaturas-saas",
+      "file": ".spec\\features\\gestao-assinaturas-saas\\tasks.md",
+      "line": 33
+    },
+    {
+      "code": "REF_QUEBRADA",
+      "severity": "erro",
+      "message": "a tarefa T-069 referencia AC-203, que não existe em nenhuma especificação",
+      "feature": "gestao-assinaturas-saas",
+      "file": ".spec\\features\\gestao-assinaturas-saas\\tasks.md",
+      "line": 33
+    },
+    {
+      "code": "REF_QUEBRADA",
+      "severity": "erro",
+      "message": "a tarefa T-070 referencia AC-201, que não existe em nenhuma especificação",
+      "feature": "gestao-assinaturas-saas",
+      "file": ".spec\\features\\gestao-assinaturas-saas\\tasks.md",
+      "line": 39
+    },
+    {
+      "code": "REF_QUEBRADA",
+      "severity": "erro",
+      "message": "a tarefa T-070 referencia AC-202, que não existe em nenhuma especificação",
+      "feature": "gestao-assinaturas-saas",
+      "file": ".spec\\features\\gestao-assinaturas-saas\\tasks.md",
+      "line": 39
+    },
+    {
+      "code": "REF_QUEBRADA",
+      "severity": "erro",
+      "message": "a tarefa T-070 referencia AC-203, que não existe em nenhuma especificação",
+      "feature": "gestao-assinaturas-saas",
+      "file": ".spec\\features\\gestao-assinaturas-saas\\tasks.md",
+      "line": 39
+    },
+    {
+      "code": "REF_QUEBRADA",
+      "severity": "erro",
+      "message": "a tarefa T-070 referencia AC-204, que não existe em nenhuma especificação",
+      "feature": "gestao-assinaturas-saas",
+      "file": ".spec\\features\\gestao-assinaturas-saas\\tasks.md",
+      "line": 39
+    },
+    {
+      "code": "REF_QUEBRADA",
+      "severity": "erro",
+      "message": "a tarefa T-070 referencia AC-205, que não existe em nenhuma especificação",
+      "feature": "gestao-assinaturas-saas",
+      "file": ".spec\\features\\gestao-assinaturas-saas\\tasks.md",
+      "line": 39
+    },
+    {
+      "code": "VERIFY_OBSOLETO",
+      "severity": "erro",
+      "message": "código/testes mudaram depois do último verify de gestao-assinaturas-saas — rode `onp-spec verify gestao-assinaturas-saas` de novo",
+      "feature": "gestao-assinaturas-saas"
+    },
+    {
+      "code": "AC_FORA_DE_US",
+      "severity": "erro",
+      "message": "AC-041 definido fora de uma história de usuário (US)",
+      "feature": "gestao-clientes",
+      "file": ".spec\\features\\gestao-clientes\\spec.md",
+      "line": 16
+    },
+    {
+      "code": "AC_FORA_DE_US",
+      "severity": "erro",
+      "message": "AC-042 definido fora de uma história de usuário (US)",
+      "feature": "gestao-clientes",
+      "file": ".spec\\features\\gestao-clientes\\spec.md",
+      "line": 21
+    },
+    {
+      "code": "AC_FORA_DE_US",
+      "severity": "erro",
+      "message": "AC-043 definido fora de uma história de usuário (US)",
+      "feature": "gestao-clientes",
+      "file": ".spec\\features\\gestao-clientes\\spec.md",
+      "line": 31
+    },
+    {
+      "code": "AC_FORA_DE_US",
+      "severity": "erro",
+      "message": "AC-044 definido fora de uma história de usuário (US)",
+      "feature": "gestao-clientes",
+      "file": ".spec\\features\\gestao-clientes\\spec.md",
+      "line": 41
+    },
+    {
+      "code": "SPEC_SEM_US",
+      "severity": "erro",
+      "message": "especificação sem nenhuma história de usuário (US-xxx)",
+      "feature": "gestao-clientes",
+      "file": ".spec\\features\\gestao-clientes\\spec.md"
+    },
+    {
+      "code": "SECAO_AUSENTE",
+      "severity": "erro",
+      "message": "especificação sem seção \"## Suposições\" — registre as suposições ou escreva \"Nenhuma.\" explicitamente",
+      "feature": "gestao-clientes",
+      "file": ".spec\\features\\gestao-clientes\\spec.md"
+    },
+    {
+      "code": "SECAO_AUSENTE",
+      "severity": "erro",
+      "message": "especificação sem seção \"## Perguntas em aberto\" — registre as perguntas ou escreva \"Nenhuma.\" explicitamente",
+      "feature": "gestao-clientes",
+      "file": ".spec\\features\\gestao-clientes\\spec.md"
+    },
+    {
+      "code": "REF_QUEBRADA",
+      "severity": "erro",
+      "message": "a tarefa T-026 referencia US-017, que não existe em nenhuma especificação",
+      "feature": "gestao-clientes",
+      "file": ".spec\\features\\gestao-clientes\\tasks.md",
+      "line": 3
+    },
+    {
+      "code": "REF_QUEBRADA",
+      "severity": "erro",
+      "message": "a tarefa T-026 referencia AC-041, que não existe em nenhuma especificação",
+      "feature": "gestao-clientes",
+      "file": ".spec\\features\\gestao-clientes\\tasks.md",
+      "line": 3
+    },
+    {
+      "code": "REF_QUEBRADA",
+      "severity": "erro",
+      "message": "a tarefa T-026 referencia AC-042, que não existe em nenhuma especificação",
+      "feature": "gestao-clientes",
+      "file": ".spec\\features\\gestao-clientes\\tasks.md",
+      "line": 3
+    },
+    {
+      "code": "REF_QUEBRADA",
+      "severity": "erro",
+      "message": "a tarefa T-027 referencia US-017, que não existe em nenhuma especificação",
+      "feature": "gestao-clientes",
+      "file": ".spec\\features\\gestao-clientes\\tasks.md",
+      "line": 9
+    },
+    {
+      "code": "REF_QUEBRADA",
+      "severity": "erro",
+      "message": "a tarefa T-027 referencia AC-041, que não existe em nenhuma especificação",
+      "feature": "gestao-clientes",
+      "file": ".spec\\features\\gestao-clientes\\tasks.md",
+      "line": 9
+    },
+    {
+      "code": "REF_QUEBRADA",
+      "severity": "erro",
+      "message": "a tarefa T-028 referencia US-017, que não existe em nenhuma especificação",
+      "feature": "gestao-clientes",
+      "file": ".spec\\features\\gestao-clientes\\tasks.md",
+      "line": 15
+    },
+    {
+      "code": "REF_QUEBRADA",
+      "severity": "erro",
+      "message": "a tarefa T-028 referencia US-018, que não existe em nenhuma especificação",
+      "feature": "gestao-clientes",
+      "file": ".spec\\features\\gestao-clientes\\tasks.md",
+      "line": 15
+    },
+    {
+      "code": "REF_QUEBRADA",
+      "severity": "erro",
+      "message": "a tarefa T-028 referencia US-019, que não existe em nenhuma especificação",
+      "feature": "gestao-clientes",
+      "file": ".spec\\features\\gestao-clientes\\tasks.md",
+      "line": 15
+    },
+    {
+      "code": "REF_QUEBRADA",
+      "severity": "erro",
+      "message": "a tarefa T-028 referencia AC-041, que não existe em nenhuma especificação",
+      "feature": "gestao-clientes",
+      "file": ".spec\\features\\gestao-clientes\\tasks.md",
+      "line": 15
+    },
+    {
+      "code": "REF_QUEBRADA",
+      "severity": "erro",
+      "message": "a tarefa T-028 referencia AC-043, que não existe em nenhuma especificação",
+      "feature": "gestao-clientes",
+      "file": ".spec\\features\\gestao-clientes\\tasks.md",
+      "line": 15
+    },
+    {
+      "code": "REF_QUEBRADA",
+      "severity": "erro",
+      "message": "a tarefa T-029 referencia US-017, que não existe em nenhuma especificação",
+      "feature": "gestao-clientes",
+      "file": ".spec\\features\\gestao-clientes\\tasks.md",
+      "line": 21
+    },
+    {
+      "code": "REF_QUEBRADA",
+      "severity": "erro",
+      "message": "a tarefa T-029 referencia US-018, que não existe em nenhuma especificação",
+      "feature": "gestao-clientes",
+      "file": ".spec\\features\\gestao-clientes\\tasks.md",
+      "line": 21
+    },
+    {
+      "code": "REF_QUEBRADA",
+      "severity": "erro",
+      "message": "a tarefa T-029 referencia US-019, que não existe em nenhuma especificação",
+      "feature": "gestao-clientes",
+      "file": ".spec\\features\\gestao-clientes\\tasks.md",
+      "line": 21
+    },
+    {
+      "code": "REF_QUEBRADA",
+      "severity": "erro",
+      "message": "a tarefa T-029 referencia AC-043, que não existe em nenhuma especificação",
+      "feature": "gestao-clientes",
+      "file": ".spec\\features\\gestao-clientes\\tasks.md",
+      "line": 21
+    },
+    {
+      "code": "REF_QUEBRADA",
+      "severity": "erro",
+      "message": "a tarefa T-029 referencia AC-044, que não existe em nenhuma especificação",
+      "feature": "gestao-clientes",
+      "file": ".spec\\features\\gestao-clientes\\tasks.md",
+      "line": 21
+    },
+    {
+      "code": "REF_QUEBRADA",
+      "severity": "erro",
+      "message": "a tarefa T-030 referencia AC-041, que não existe em nenhuma especificação",
+      "feature": "gestao-clientes",
+      "file": ".spec\\features\\gestao-clientes\\tasks.md",
+      "line": 27
+    },
+    {
+      "code": "REF_QUEBRADA",
+      "severity": "erro",
+      "message": "a tarefa T-030 referencia AC-044, que não existe em nenhuma especificação",
+      "feature": "gestao-clientes",
+      "file": ".spec\\features\\gestao-clientes\\tasks.md",
+      "line": 27
+    },
+    {
+      "code": "ARQUIVO_INEXISTENTE",
+      "severity": "erro",
+      "message": "a tarefa T-030 mapeia tests/Agendamento.IntegrationTests/Customers/CustomerApiTests.cs, que não existe (tarefa concluída!)",
+      "feature": "gestao-clientes",
+      "file": ".spec\\features\\gestao-clientes\\tasks.md",
+      "line": 27
+    },
+    {
+      "code": "VERIFY_OBSOLETO",
+      "severity": "erro",
+      "message": "código/testes mudaram depois do último verify de gestao-clientes — rode `onp-spec verify gestao-clientes` de novo",
+      "feature": "gestao-clientes"
+    },
+    {
+      "code": "SPEC_SEM_US",
+      "severity": "erro",
+      "message": "especificação sem nenhuma história de usuário (US-xxx)",
+      "feature": "gestao-orcamentos-servicos",
+      "file": ".spec\\features\\gestao-orcamentos-servicos\\spec.md"
+    },
+    {
+      "code": "SECAO_AUSENTE",
+      "severity": "aviso",
+      "message": "especificação sem seção \"## Perguntas em aberto\" — registre as perguntas ou escreva \"Nenhuma.\" explicitamente",
+      "feature": "gestao-orcamentos-servicos",
+      "file": ".spec\\features\\gestao-orcamentos-servicos\\spec.md"
+    },
+    {
+      "code": "REF_QUEBRADA",
+      "severity": "erro",
+      "message": "a tarefa T-088 referencia US-045, que não existe em nenhuma especificação",
+      "feature": "gestao-orcamentos-servicos",
+      "file": ".spec\\features\\gestao-orcamentos-servicos\\tasks.md",
+      "line": 3
+    },
+    {
+      "code": "REF_QUEBRADA",
+      "severity": "erro",
+      "message": "a tarefa T-088 referencia US-046, que não existe em nenhuma especificação",
+      "feature": "gestao-orcamentos-servicos",
+      "file": ".spec\\features\\gestao-orcamentos-servicos\\tasks.md",
+      "line": 3
+    },
+    {
+      "code": "REF_QUEBRADA",
+      "severity": "erro",
+      "message": "a tarefa T-088 referencia AC-090, que não existe em nenhuma especificação",
+      "feature": "gestao-orcamentos-servicos",
+      "file": ".spec\\features\\gestao-orcamentos-servicos\\tasks.md",
+      "line": 3
+    },
+    {
+      "code": "REF_QUEBRADA",
+      "severity": "erro",
+      "message": "a tarefa T-088 referencia AC-092, que não existe em nenhuma especificação",
+      "feature": "gestao-orcamentos-servicos",
+      "file": ".spec\\features\\gestao-orcamentos-servicos\\tasks.md",
+      "line": 3
+    },
+    {
+      "code": "REF_QUEBRADA",
+      "severity": "erro",
+      "message": "a tarefa T-089 referencia US-045, que não existe em nenhuma especificação",
+      "feature": "gestao-orcamentos-servicos",
+      "file": ".spec\\features\\gestao-orcamentos-servicos\\tasks.md",
+      "line": 9
+    },
+    {
+      "code": "REF_QUEBRADA",
+      "severity": "erro",
+      "message": "a tarefa T-089 referencia AC-092, que não existe em nenhuma especificação",
+      "feature": "gestao-orcamentos-servicos",
+      "file": ".spec\\features\\gestao-orcamentos-servicos\\tasks.md",
+      "line": 9
+    },
+    {
+      "code": "ARQUIVO_INEXISTENTE",
+      "severity": "aviso",
+      "message": "a tarefa T-089 mapeia src/Agendamento.Api/Infrastructure/Persistence/Configurations/QuotationItemConfiguration.cs, que não existe",
+      "feature": "gestao-orcamentos-servicos",
+      "file": ".spec\\features\\gestao-orcamentos-servicos\\tasks.md",
+      "line": 9
+    },
+    {
+      "code": "REF_QUEBRADA",
+      "severity": "erro",
+      "message": "a tarefa T-090 referencia US-045, que não existe em nenhuma especificação",
+      "feature": "gestao-orcamentos-servicos",
+      "file": ".spec\\features\\gestao-orcamentos-servicos\\tasks.md",
+      "line": 15
+    },
+    {
+      "code": "REF_QUEBRADA",
+      "severity": "erro",
+      "message": "a tarefa T-090 referencia US-046, que não existe em nenhuma especificação",
+      "feature": "gestao-orcamentos-servicos",
+      "file": ".spec\\features\\gestao-orcamentos-servicos\\tasks.md",
+      "line": 15
+    },
+    {
+      "code": "REF_QUEBRADA",
+      "severity": "erro",
+      "message": "a tarefa T-090 referencia AC-090, que não existe em nenhuma especificação",
+      "feature": "gestao-orcamentos-servicos",
+      "file": ".spec\\features\\gestao-orcamentos-servicos\\tasks.md",
+      "line": 15
+    },
+    {
+      "code": "REF_QUEBRADA",
+      "severity": "erro",
+      "message": "a tarefa T-090 referencia AC-092, que não existe em nenhuma especificação",
+      "feature": "gestao-orcamentos-servicos",
+      "file": ".spec\\features\\gestao-orcamentos-servicos\\tasks.md",
+      "line": 15
+    },
+    {
+      "code": "REF_QUEBRADA",
+      "severity": "erro",
+      "message": "a tarefa T-090 referencia AC-093, que não existe em nenhuma especificação",
+      "feature": "gestao-orcamentos-servicos",
+      "file": ".spec\\features\\gestao-orcamentos-servicos\\tasks.md",
+      "line": 15
+    },
+    {
+      "code": "REF_QUEBRADA",
+      "severity": "erro",
+      "message": "a tarefa T-091 referencia US-047, que não existe em nenhuma especificação",
+      "feature": "gestao-orcamentos-servicos",
+      "file": ".spec\\features\\gestao-orcamentos-servicos\\tasks.md",
+      "line": 21
+    },
+    {
+      "code": "REF_QUEBRADA",
+      "severity": "erro",
+      "message": "a tarefa T-091 referencia AC-091, que não existe em nenhuma especificação",
+      "feature": "gestao-orcamentos-servicos",
+      "file": ".spec\\features\\gestao-orcamentos-servicos\\tasks.md",
+      "line": 21
+    },
+    {
+      "code": "REF_QUEBRADA",
+      "severity": "erro",
+      "message": "a tarefa T-091 referencia AC-093, que não existe em nenhuma especificação",
+      "feature": "gestao-orcamentos-servicos",
+      "file": ".spec\\features\\gestao-orcamentos-servicos\\tasks.md",
+      "line": 21
+    },
+    {
+      "code": "REF_QUEBRADA",
+      "severity": "erro",
+      "message": "a tarefa T-092 referencia AC-090, que não existe em nenhuma especificação",
+      "feature": "gestao-orcamentos-servicos",
+      "file": ".spec\\features\\gestao-orcamentos-servicos\\tasks.md",
+      "line": 27
+    },
+    {
+      "code": "REF_QUEBRADA",
+      "severity": "erro",
+      "message": "a tarefa T-092 referencia AC-091, que não existe em nenhuma especificação",
+      "feature": "gestao-orcamentos-servicos",
+      "file": ".spec\\features\\gestao-orcamentos-servicos\\tasks.md",
+      "line": 27
+    },
+    {
+      "code": "REF_QUEBRADA",
+      "severity": "erro",
+      "message": "a tarefa T-092 referencia AC-092, que não existe em nenhuma especificação",
+      "feature": "gestao-orcamentos-servicos",
+      "file": ".spec\\features\\gestao-orcamentos-servicos\\tasks.md",
+      "line": 27
+    },
+    {
+      "code": "REF_QUEBRADA",
+      "severity": "erro",
+      "message": "a tarefa T-092 referencia AC-093, que não existe em nenhuma especificação",
+      "feature": "gestao-orcamentos-servicos",
+      "file": ".spec\\features\\gestao-orcamentos-servicos\\tasks.md",
+      "line": 27
+    },
+    {
+      "code": "VERIFY_OBSOLETO",
+      "severity": "erro",
+      "message": "código/testes mudaram depois do último verify de gestao-orcamentos-servicos — rode `onp-spec verify gestao-orcamentos-servicos` de novo",
+      "feature": "gestao-orcamentos-servicos"
+    },
+    {
+      "code": "PROVA_FRACA",
+      "severity": "aviso",
+      "message": "AC-007 provado apenas pelo exit code global (reporter \"exitcode\") — sem granularidade por teste; prefira tap/vitest-json/jest-json",
+      "feature": "identidade-acesso-inicial",
+      "file": "tests/Agendamento.UnitTests/Identity/UserTests.cs",
+      "line": 9
+    },
+    {
+      "code": "PROVA_FRACA",
+      "severity": "aviso",
+      "message": "AC-008 provado apenas pelo exit code global (reporter \"exitcode\") — sem granularidade por teste; prefira tap/vitest-json/jest-json",
+      "feature": "identidade-acesso-inicial",
+      "file": "tests/Agendamento.UnitTests/Identity/UserTests.cs",
+      "line": 24
+    },
+    {
+      "code": "PROVA_FRACA",
+      "severity": "aviso",
+      "message": "AC-009 provado apenas pelo exit code global (reporter \"exitcode\") — sem granularidade por teste; prefira tap/vitest-json/jest-json",
+      "feature": "identidade-acesso-inicial",
+      "file": "tests/Agendamento.IntegrationTests/Identity/EmailVerificationOutboxTests.cs",
+      "line": 10
+    },
+    {
+      "code": "PROVA_FRACA",
+      "severity": "aviso",
+      "message": "AC-010 provado apenas pelo exit code global (reporter \"exitcode\") — sem granularidade por teste; prefira tap/vitest-json/jest-json",
+      "feature": "identidade-acesso-inicial",
+      "file": "tests/Agendamento.IntegrationTests/Identity/EmailVerificationEndpointTests.cs",
+      "line": 14
+    },
+    {
+      "code": "PROVA_FRACA",
+      "severity": "aviso",
+      "message": "AC-011 provado apenas pelo exit code global (reporter \"exitcode\") — sem granularidade por teste; prefira tap/vitest-json/jest-json",
+      "feature": "identidade-acesso-inicial",
+      "file": "tests/Agendamento.IntegrationTests/Identity/EmailVerificationEndpointTests.cs",
+      "line": 29
+    },
+    {
+      "code": "PROVA_FRACA",
+      "severity": "aviso",
+      "message": "AC-012 provado apenas pelo exit code global (reporter \"exitcode\") — sem granularidade por teste; prefira tap/vitest-json/jest-json",
+      "feature": "identidade-acesso-inicial",
+      "file": "tests/Agendamento.IntegrationTests/Identity/SessionEndpointTests.cs",
+      "line": 17
+    },
+    {
+      "code": "PROVA_FRACA",
+      "severity": "aviso",
+      "message": "AC-013 provado apenas pelo exit code global (reporter \"exitcode\") — sem granularidade por teste; prefira tap/vitest-json/jest-json",
+      "feature": "identidade-acesso-inicial",
+      "file": "tests/Agendamento.ArchitectureTests/OpenApi/EndpointMetadataTests.cs",
+      "line": 83
+    },
+    {
+      "code": "VERIFY_OBSOLETO",
+      "severity": "erro",
+      "message": "código/testes mudaram depois do último verify de identidade-acesso-inicial — rode `onp-spec verify identidade-acesso-inicial` de novo",
+      "feature": "identidade-acesso-inicial"
+    },
+    {
+      "code": "TASK_CONCLUIDA_SEM_PROVA",
+      "severity": "erro",
+      "message": "a tarefa T-017 está [concluida] mas o critério AC-028 não tem prova PASS do verify",
+      "feature": "isolamento-multitenancy",
+      "file": ".spec\\features\\isolamento-multitenancy\\tasks.md",
+      "line": 5
+    },
+    {
+      "code": "TASK_CONCLUIDA_SEM_PROVA",
+      "severity": "erro",
+      "message": "a tarefa T-017 está [concluida] mas o critério AC-029 não tem prova PASS do verify",
+      "feature": "isolamento-multitenancy",
+      "file": ".spec\\features\\isolamento-multitenancy\\tasks.md",
+      "line": 5
+    },
+    {
+      "code": "TASK_CONCLUIDA_SEM_PROVA",
+      "severity": "erro",
+      "message": "a tarefa T-018 está [concluida] mas o critério AC-030 não tem prova PASS do verify",
+      "feature": "isolamento-multitenancy",
+      "file": ".spec\\features\\isolamento-multitenancy\\tasks.md",
+      "line": 11
+    },
+    {
+      "code": "TASK_CONCLUIDA_SEM_PROVA",
+      "severity": "erro",
+      "message": "a tarefa T-018 está [concluida] mas o critério AC-031 não tem prova PASS do verify",
+      "feature": "isolamento-multitenancy",
+      "file": ".spec\\features\\isolamento-multitenancy\\tasks.md",
+      "line": 11
+    },
+    {
+      "code": "TASK_CONCLUIDA_SEM_PROVA",
+      "severity": "erro",
+      "message": "a tarefa T-018 está [concluida] mas o critério AC-032 não tem prova PASS do verify",
+      "feature": "isolamento-multitenancy",
+      "file": ".spec\\features\\isolamento-multitenancy\\tasks.md",
+      "line": 11
+    },
+    {
+      "code": "ARQUIVO_INEXISTENTE",
+      "severity": "erro",
+      "message": "a tarefa T-019 mapeia src/Agendamento.Api/Infrastructure/Persistence/TenantTransactionInterceptor.cs, que não existe (tarefa concluída!)",
+      "feature": "isolamento-multitenancy",
+      "file": ".spec\\features\\isolamento-multitenancy\\tasks.md",
+      "line": 17
+    },
+    {
+      "code": "ARQUIVO_INEXISTENTE",
+      "severity": "erro",
+      "message": "a tarefa T-019 mapeia src/Agendamento.Api/Infrastructure/Persistence/Sql/TenantRls.sql, que não existe (tarefa concluída!)",
+      "feature": "isolamento-multitenancy",
+      "file": ".spec\\features\\isolamento-multitenancy\\tasks.md",
+      "line": 17
+    },
+    {
+      "code": "ARQUIVO_INEXISTENTE",
+      "severity": "erro",
+      "message": "a tarefa T-019 mapeia tests/Agendamento.IntegrationTests/Tenancy/PostgreSqlRlsTests.cs, que não existe (tarefa concluída!)",
+      "feature": "isolamento-multitenancy",
+      "file": ".spec\\features\\isolamento-multitenancy\\tasks.md",
+      "line": 17
+    },
+    {
+      "code": "TASK_CONCLUIDA_SEM_PROVA",
+      "severity": "erro",
+      "message": "a tarefa T-019 está [concluida] mas o critério AC-033 não tem prova PASS do verify",
+      "feature": "isolamento-multitenancy",
+      "file": ".spec\\features\\isolamento-multitenancy\\tasks.md",
+      "line": 17
+    },
+    {
+      "code": "TASK_CONCLUIDA_SEM_PROVA",
+      "severity": "erro",
+      "message": "a tarefa T-019 está [concluida] mas o critério AC-034 não tem prova PASS do verify",
+      "feature": "isolamento-multitenancy",
+      "file": ".spec\\features\\isolamento-multitenancy\\tasks.md",
+      "line": 17
+    },
+    {
+      "code": "TASK_CONCLUIDA_SEM_PROVA",
+      "severity": "erro",
+      "message": "a tarefa T-019 está [concluida] mas o critério AC-035 não tem prova PASS do verify",
+      "feature": "isolamento-multitenancy",
+      "file": ".spec\\features\\isolamento-multitenancy\\tasks.md",
+      "line": 17
+    },
+    {
+      "code": "ARQUIVO_INEXISTENTE",
+      "severity": "erro",
+      "message": "a tarefa T-020 mapeia tests/Agendamento.IntegrationTests/Tenancy/CrossTenantIsolationTests.cs, que não existe (tarefa concluída!)",
+      "feature": "isolamento-multitenancy",
+      "file": ".spec\\features\\isolamento-multitenancy\\tasks.md",
+      "line": 23
+    },
+    {
+      "code": "TASK_CONCLUIDA_SEM_PROVA",
+      "severity": "erro",
+      "message": "a tarefa T-020 está [concluida] mas o critério AC-028 não tem prova PASS do verify",
+      "feature": "isolamento-multitenancy",
+      "file": ".spec\\features\\isolamento-multitenancy\\tasks.md",
+      "line": 23
+    },
+    {
+      "code": "TASK_CONCLUIDA_SEM_PROVA",
+      "severity": "erro",
+      "message": "a tarefa T-020 está [concluida] mas o critério AC-029 não tem prova PASS do verify",
+      "feature": "isolamento-multitenancy",
+      "file": ".spec\\features\\isolamento-multitenancy\\tasks.md",
+      "line": 23
+    },
+    {
+      "code": "TASK_CONCLUIDA_SEM_PROVA",
+      "severity": "erro",
+      "message": "a tarefa T-020 está [concluida] mas o critério AC-030 não tem prova PASS do verify",
+      "feature": "isolamento-multitenancy",
+      "file": ".spec\\features\\isolamento-multitenancy\\tasks.md",
+      "line": 23
+    },
+    {
+      "code": "TASK_CONCLUIDA_SEM_PROVA",
+      "severity": "erro",
+      "message": "a tarefa T-020 está [concluida] mas o critério AC-031 não tem prova PASS do verify",
+      "feature": "isolamento-multitenancy",
+      "file": ".spec\\features\\isolamento-multitenancy\\tasks.md",
+      "line": 23
+    },
+    {
+      "code": "TASK_CONCLUIDA_SEM_PROVA",
+      "severity": "erro",
+      "message": "a tarefa T-020 está [concluida] mas o critério AC-032 não tem prova PASS do verify",
+      "feature": "isolamento-multitenancy",
+      "file": ".spec\\features\\isolamento-multitenancy\\tasks.md",
+      "line": 23
+    },
+    {
+      "code": "TASK_CONCLUIDA_SEM_PROVA",
+      "severity": "erro",
+      "message": "a tarefa T-020 está [concluida] mas o critério AC-033 não tem prova PASS do verify",
+      "feature": "isolamento-multitenancy",
+      "file": ".spec\\features\\isolamento-multitenancy\\tasks.md",
+      "line": 23
+    },
+    {
+      "code": "TASK_CONCLUIDA_SEM_PROVA",
+      "severity": "erro",
+      "message": "a tarefa T-020 está [concluida] mas o critério AC-034 não tem prova PASS do verify",
+      "feature": "isolamento-multitenancy",
+      "file": ".spec\\features\\isolamento-multitenancy\\tasks.md",
+      "line": 23
+    },
+    {
+      "code": "ARQUIVO_INEXISTENTE",
+      "severity": "erro",
+      "message": "a tarefa T-021 mapeia tests/Agendamento.ArchitectureTests/Tenancy/TenantOwnedMigrationTests.cs, que não existe (tarefa concluída!)",
+      "feature": "isolamento-multitenancy",
+      "file": ".spec\\features\\isolamento-multitenancy\\tasks.md",
+      "line": 29
+    },
+    {
+      "code": "TASK_CONCLUIDA_SEM_PROVA",
+      "severity": "erro",
+      "message": "a tarefa T-021 está [concluida] mas o critério AC-035 não tem prova PASS do verify",
+      "feature": "isolamento-multitenancy",
+      "file": ".spec\\features\\isolamento-multitenancy\\tasks.md",
+      "line": 29
+    },
+    {
+      "code": "AC_SEM_TESTE",
+      "severity": "erro",
+      "message": "AC-028 (Requisição sem tenant autenticado não acessa dados privados) não tem nenhum teste anotado com @spec:AC-028",
+      "feature": "isolamento-multitenancy",
+      "file": ".spec\\features\\isolamento-multitenancy\\spec.md",
+      "line": 16
+    },
+    {
+      "code": "AC_SEM_TESTE",
+      "severity": "erro",
+      "message": "AC-029 (Request não escolhe tenant) não tem nenhum teste anotado com @spec:AC-029",
+      "feature": "isolamento-multitenancy",
+      "file": ".spec\\features\\isolamento-multitenancy\\spec.md",
+      "line": 22
+    },
+    {
+      "code": "AC_SEM_TESTE",
+      "severity": "erro",
+      "message": "AC-030 (Tenant A não lê dados do tenant B) não tem nenhum teste anotado com @spec:AC-030",
+      "feature": "isolamento-multitenancy",
+      "file": ".spec\\features\\isolamento-multitenancy\\spec.md",
+      "line": 32
+    },
+    {
+      "code": "AC_SEM_TESTE",
+      "severity": "erro",
+      "message": "AC-031 (Tenant A não altera nem remove dados do tenant B) não tem nenhum teste anotado com @spec:AC-031",
+      "feature": "isolamento-multitenancy",
+      "file": ".spec\\features\\isolamento-multitenancy\\spec.md",
+      "line": 38
+    },
+    {
+      "code": "AC_SEM_TESTE",
+      "severity": "erro",
+      "message": "AC-032 (Divergência é rejeitada antes do commit) não tem nenhum teste anotado com @spec:AC-032",
+      "feature": "isolamento-multitenancy",
+      "file": ".spec\\features\\isolamento-multitenancy\\spec.md",
+      "line": 44
+    },
+    {
+      "code": "AC_SEM_TESTE",
+      "severity": "erro",
+      "message": "AC-033 (Papel da aplicação não contorna RLS) não tem nenhum teste anotado com @spec:AC-033",
+      "feature": "isolamento-multitenancy",
+      "file": ".spec\\features\\isolamento-multitenancy\\spec.md",
+      "line": 54
+    },
+    {
+      "code": "AC_SEM_TESTE",
+      "severity": "erro",
+      "message": "AC-034 (Contexto não vaza pelo pool de conexões) não tem nenhum teste anotado com @spec:AC-034",
+      "feature": "isolamento-multitenancy",
+      "file": ".spec\\features\\isolamento-multitenancy\\spec.md",
+      "line": 60
+    },
+    {
+      "code": "AC_SEM_TESTE",
+      "severity": "erro",
+      "message": "AC-035 (Toda tabela tenant-owned nasce protegida) não tem nenhum teste anotado com @spec:AC-035",
+      "feature": "isolamento-multitenancy",
+      "file": ".spec\\features\\isolamento-multitenancy\\spec.md",
+      "line": 66
+    },
+    {
+      "code": "SPEC_SEM_US",
+      "severity": "erro",
+      "message": "especificação sem nenhuma história de usuário (US-xxx)",
+      "feature": "notificacoes-lembretes-whatsapp",
+      "file": ".spec\\features\\notificacoes-lembretes-whatsapp\\spec.md"
+    },
+    {
+      "code": "SECAO_AUSENTE",
+      "severity": "aviso",
+      "message": "especificação sem seção \"## Perguntas em aberto\" — registre as perguntas ou escreva \"Nenhuma.\" explicitamente",
+      "feature": "notificacoes-lembretes-whatsapp",
+      "file": ".spec\\features\\notificacoes-lembretes-whatsapp\\spec.md"
+    },
+    {
+      "code": "REF_QUEBRADA",
+      "severity": "erro",
+      "message": "a tarefa T-097 referencia US-051, que não existe em nenhuma especificação",
+      "feature": "notificacoes-lembretes-whatsapp",
+      "file": ".spec\\features\\notificacoes-lembretes-whatsapp\\tasks.md",
+      "line": 3
+    },
+    {
+      "code": "REF_QUEBRADA",
+      "severity": "erro",
+      "message": "a tarefa T-097 referencia US-052, que não existe em nenhuma especificação",
+      "feature": "notificacoes-lembretes-whatsapp",
+      "file": ".spec\\features\\notificacoes-lembretes-whatsapp\\tasks.md",
+      "line": 3
+    },
+    {
+      "code": "REF_QUEBRADA",
+      "severity": "erro",
+      "message": "a tarefa T-097 referencia AC-097, que não existe em nenhuma especificação",
+      "feature": "notificacoes-lembretes-whatsapp",
+      "file": ".spec\\features\\notificacoes-lembretes-whatsapp\\tasks.md",
+      "line": 3
+    },
+    {
+      "code": "REF_QUEBRADA",
+      "severity": "erro",
+      "message": "a tarefa T-097 referencia AC-098, que não existe em nenhuma especificação",
+      "feature": "notificacoes-lembretes-whatsapp",
+      "file": ".spec\\features\\notificacoes-lembretes-whatsapp\\tasks.md",
+      "line": 3
+    },
+    {
+      "code": "REF_QUEBRADA",
+      "severity": "erro",
+      "message": "a tarefa T-098 referencia AC-098, que não existe em nenhuma especificação",
+      "feature": "notificacoes-lembretes-whatsapp",
+      "file": ".spec\\features\\notificacoes-lembretes-whatsapp\\tasks.md",
+      "line": 9
+    },
+    {
+      "code": "REF_QUEBRADA",
+      "severity": "erro",
+      "message": "a tarefa T-099 referencia US-051, que não existe em nenhuma especificação",
+      "feature": "notificacoes-lembretes-whatsapp",
+      "file": ".spec\\features\\notificacoes-lembretes-whatsapp\\tasks.md",
+      "line": 15
+    },
+    {
+      "code": "REF_QUEBRADA",
+      "severity": "erro",
+      "message": "a tarefa T-099 referencia AC-099, que não existe em nenhuma especificação",
+      "feature": "notificacoes-lembretes-whatsapp",
+      "file": ".spec\\features\\notificacoes-lembretes-whatsapp\\tasks.md",
+      "line": 15
+    },
+    {
+      "code": "REF_QUEBRADA",
+      "severity": "erro",
+      "message": "a tarefa T-100 referencia AC-097, que não existe em nenhuma especificação",
+      "feature": "notificacoes-lembretes-whatsapp",
+      "file": ".spec\\features\\notificacoes-lembretes-whatsapp\\tasks.md",
+      "line": 21
+    },
+    {
+      "code": "REF_QUEBRADA",
+      "severity": "erro",
+      "message": "a tarefa T-100 referencia AC-098, que não existe em nenhuma especificação",
+      "feature": "notificacoes-lembretes-whatsapp",
+      "file": ".spec\\features\\notificacoes-lembretes-whatsapp\\tasks.md",
+      "line": 21
+    },
+    {
+      "code": "REF_QUEBRADA",
+      "severity": "erro",
+      "message": "a tarefa T-100 referencia AC-099, que não existe em nenhuma especificação",
+      "feature": "notificacoes-lembretes-whatsapp",
+      "file": ".spec\\features\\notificacoes-lembretes-whatsapp\\tasks.md",
+      "line": 21
+    },
+    {
+      "code": "VERIFY_OBSOLETO",
+      "severity": "erro",
+      "message": "código/testes mudaram depois do último verify de notificacoes-lembretes-whatsapp — rode `onp-spec verify notificacoes-lembretes-whatsapp` de novo",
+      "feature": "notificacoes-lembretes-whatsapp"
+    },
+    {
+      "code": "PROVA_FRACA",
+      "severity": "aviso",
+      "message": "AC-100 provado apenas pelo exit code global (reporter \"exitcode\") — sem granularidade por teste; prefira tap/vitest-json/jest-json",
+      "feature": "onboarding-token-desenvolvimento",
+      "file": "tests/Agendamento.ArchitectureTests/OpenApi/EndpointMetadataTests.cs",
+      "line": 52
+    },
+    {
+      "code": "VERIFY_OBSOLETO",
+      "severity": "erro",
+      "message": "código/testes mudaram depois do último verify de onboarding-token-desenvolvimento — rode `onp-spec verify onboarding-token-desenvolvimento` de novo",
+      "feature": "onboarding-token-desenvolvimento"
+    },
+    {
+      "code": "TESTE_ORFAO",
+      "severity": "erro",
+      "message": "teste anotado com @spec:AC-041, mas esse critério de aceite não existe em nenhuma especificação (a especificação mudou e o teste ficou pra trás?)",
+      "file": "tests/Agendamento.IntegrationTests/Customers/CustomerIsolationTests.cs",
+      "line": 36
+    },
+    {
+      "code": "TESTE_ORFAO",
+      "severity": "erro",
+      "message": "teste anotado com @spec:AC-044, mas esse critério de aceite não existe em nenhuma especificação (a especificação mudou e o teste ficou pra trás?)",
+      "file": "tests/Agendamento.IntegrationTests/Customers/CustomerIsolationTests.cs",
+      "line": 58
+    },
+    {
+      "code": "TESTE_ORFAO",
+      "severity": "erro",
+      "message": "teste anotado com @spec:AC-099, mas esse critério de aceite não existe em nenhuma especificação (a especificação mudou e o teste ficou pra trás?)",
+      "file": "tests/Agendamento.IntegrationTests/Features/NotificationTests.cs",
+      "line": 99
+    },
+    {
+      "code": "TESTE_ORFAO",
+      "severity": "erro",
+      "message": "teste anotado com @spec:AC-090, mas esse critério de aceite não existe em nenhuma especificação (a especificação mudou e o teste ficou pra trás?)",
+      "file": "tests/Agendamento.IntegrationTests/Features/QuotationTests.cs",
+      "line": 68
+    },
+    {
+      "code": "TESTE_ORFAO",
+      "severity": "erro",
+      "message": "teste anotado com @spec:AC-091, mas esse critério de aceite não existe em nenhuma especificação (a especificação mudou e o teste ficou pra trás?)",
+      "file": "tests/Agendamento.IntegrationTests/Features/QuotationTests.cs",
+      "line": 98
+    },
+    {
+      "code": "TESTE_ORFAO",
+      "severity": "erro",
+      "message": "teste anotado com @spec:AC-092, mas esse critério de aceite não existe em nenhuma especificação (a especificação mudou e o teste ficou pra trás?)",
+      "file": "tests/Agendamento.IntegrationTests/Features/QuotationTests.cs",
+      "line": 133
+    },
+    {
+      "code": "TESTE_ORFAO",
+      "severity": "erro",
+      "message": "teste anotado com @spec:AC-093, mas esse critério de aceite não existe em nenhuma especificação (a especificação mudou e o teste ficou pra trás?)",
+      "file": "tests/Agendamento.IntegrationTests/Features/QuotationTests.cs",
+      "line": 158
+    },
+    {
+      "code": "TESTE_ORFAO",
+      "severity": "erro",
+      "message": "teste anotado com @spec:AC-056, mas esse critério de aceite não existe em nenhuma especificação (a especificação mudou e o teste ficou pra trás?)",
+      "file": "tests/Agendamento.IntegrationTests/Financial/FinancialApiTests.cs",
+      "line": 43
+    },
+    {
+      "code": "TESTE_ORFAO",
+      "severity": "erro",
+      "message": "teste anotado com @spec:AC-057, mas esse critério de aceite não existe em nenhuma especificação (a especificação mudou e o teste ficou pra trás?)",
+      "file": "tests/Agendamento.IntegrationTests/Financial/FinancialApiTests.cs",
+      "line": 76
+    },
+    {
+      "code": "TESTE_ORFAO",
+      "severity": "erro",
+      "message": "teste anotado com @spec:AC-059, mas esse critério de aceite não existe em nenhuma especificação (a especificação mudou e o teste ficou pra trás?)",
+      "file": "tests/Agendamento.IntegrationTests/Financial/FinancialApiTests.cs",
+      "line": 102
+    },
+    {
+      "code": "TESTE_ORFAO",
+      "severity": "erro",
+      "message": "teste anotado com @spec:AC-055, mas esse critério de aceite não existe em nenhuma especificação (a especificação mudou e o teste ficou pra trás?)",
+      "file": "tests/Agendamento.IntegrationTests/Financial/FinancialIsolationTests.cs",
+      "line": 36
+    },
+    {
+      "code": "TESTE_ORFAO",
+      "severity": "erro",
+      "message": "teste anotado com @spec:AC-060, mas esse critério de aceite não existe em nenhuma especificação (a especificação mudou e o teste ficou pra trás?)",
+      "file": "tests/Agendamento.IntegrationTests/Notifications/NotificationApiTests.cs",
+      "line": 40
+    },
+    {
+      "code": "TESTE_ORFAO",
+      "severity": "erro",
+      "message": "teste anotado com @spec:AC-061, mas esse critério de aceite não existe em nenhuma especificação (a especificação mudou e o teste ficou pra trás?)",
+      "file": "tests/Agendamento.IntegrationTests/Notifications/NotificationApiTests.cs",
+      "line": 68
+    },
+    {
+      "code": "TESTE_ORFAO",
+      "severity": "erro",
+      "message": "teste anotado com @spec:AC-064, mas esse critério de aceite não existe em nenhuma especificação (a especificação mudou e o teste ficou pra trás?)",
+      "file": "tests/Agendamento.IntegrationTests/Notifications/NotificationApiTests.cs",
+      "line": 102
+    },
+    {
+      "code": "TESTE_ORFAO",
+      "severity": "erro",
+      "message": "teste anotado com @spec:AC-045, mas esse critério de aceite não existe em nenhuma especificação (a especificação mudou e o teste ficou pra trás?)",
+      "file": "tests/Agendamento.IntegrationTests/Quotations/QuotationApiTests.cs",
+      "line": 44
+    },
+    {
+      "code": "TESTE_ORFAO",
+      "severity": "erro",
+      "message": "teste anotado com @spec:AC-046, mas esse critério de aceite não existe em nenhuma especificação (a especificação mudou e o teste ficou pra trás?)",
+      "file": "tests/Agendamento.IntegrationTests/Quotations/QuotationApiTests.cs",
+      "line": 80
+    },
+    {
+      "code": "TESTE_ORFAO",
+      "severity": "erro",
+      "message": "teste anotado com @spec:AC-047, mas esse critério de aceite não existe em nenhuma especificação (a especificação mudou e o teste ficou pra trás?)",
+      "file": "tests/Agendamento.IntegrationTests/Quotations/QuotationApiTests.cs",
+      "line": 120
+    },
+    {
+      "code": "TESTE_ORFAO",
+      "severity": "erro",
+      "message": "teste anotado com @spec:AC-048, mas esse critério de aceite não existe em nenhuma especificação (a especificação mudou e o teste ficou pra trás?)",
+      "file": "tests/Agendamento.IntegrationTests/Quotations/QuotationApiTests.cs",
+      "line": 157
+    },
+    {
+      "code": "TESTE_ORFAO",
+      "severity": "erro",
+      "message": "teste anotado com @spec:AC-049, mas esse critério de aceite não existe em nenhuma especificação (a especificação mudou e o teste ficou pra trás?)",
+      "file": "tests/Agendamento.IntegrationTests/Quotations/QuotationApiTests.cs",
+      "line": 193
+    },
+    {
+      "code": "TESTE_ORFAO",
+      "severity": "erro",
+      "message": "teste anotado com @spec:AC-203, mas esse critério de aceite não existe em nenhuma especificação (a especificação mudou e o teste ficou pra trás?)",
+      "file": "tests/Agendamento.IntegrationTests/Subscriptions/SubscriptionApiTests.cs",
+      "line": 31
+    },
+    {
+      "code": "TESTE_ORFAO",
+      "severity": "erro",
+      "message": "teste anotado com @spec:AC-050, mas esse critério de aceite não existe em nenhuma especificação (a especificação mudou e o teste ficou pra trás?)",
+      "file": "tests/Agendamento.IntegrationTests/WorkOrders/WorkOrderApiTests.cs",
+      "line": 46
+    },
+    {
+      "code": "TESTE_ORFAO",
+      "severity": "erro",
+      "message": "teste anotado com @spec:AC-051, mas esse critério de aceite não existe em nenhuma especificação (a especificação mudou e o teste ficou pra trás?)",
+      "file": "tests/Agendamento.IntegrationTests/WorkOrders/WorkOrderApiTests.cs",
+      "line": 106
+    },
+    {
+      "code": "TESTE_ORFAO",
+      "severity": "erro",
+      "message": "teste anotado com @spec:AC-052, mas esse critério de aceite não existe em nenhuma especificação (a especificação mudou e o teste ficou pra trás?)",
+      "file": "tests/Agendamento.IntegrationTests/WorkOrders/WorkOrderApiTests.cs",
+      "line": 106
+    },
+    {
+      "code": "TESTE_ORFAO",
+      "severity": "erro",
+      "message": "teste anotado com @spec:AC-054, mas esse critério de aceite não existe em nenhuma especificação (a especificação mudou e o teste ficou pra trás?)",
+      "file": "tests/Agendamento.IntegrationTests/WorkOrders/WorkOrderApiTests.cs",
+      "line": 137
+    },
+    {
+      "code": "TESTE_ORFAO",
+      "severity": "erro",
+      "message": "teste anotado com @spec:AC-053, mas esse critério de aceite não existe em nenhuma especificação (a especificação mudou e o teste ficou pra trás?)",
+      "file": "tests/Agendamento.IntegrationTests/WorkOrders/WorkOrderApiTests.cs",
+      "line": 172
+    },
+    {
+      "code": "TESTE_ORFAO",
+      "severity": "erro",
+      "message": "teste anotado com @spec:AC-042, mas esse critério de aceite não existe em nenhuma especificação (a especificação mudou e o teste ficou pra trás?)",
+      "file": "tests/Agendamento.UnitTests/Customers/CustomerHandlerTests.cs",
+      "line": 67
+    },
+    {
+      "code": "TESTE_ORFAO",
+      "severity": "erro",
+      "message": "teste anotado com @spec:AC-043, mas esse critério de aceite não existe em nenhuma especificação (a especificação mudou e o teste ficou pra trás?)",
+      "file": "tests/Agendamento.UnitTests/Customers/CustomerHandlerTests.cs",
+      "line": 80
+    },
+    {
+      "code": "TESTE_ORFAO",
+      "severity": "erro",
+      "message": "teste anotado com @spec:AC-055, mas esse critério de aceite não existe em nenhuma especificação (a especificação mudou e o teste ficou pra trás?)",
+      "file": "tests/Agendamento.UnitTests/Financial/FinancialDomainTests.cs",
+      "line": 8
+    },
+    {
+      "code": "TESTE_ORFAO",
+      "severity": "erro",
+      "message": "teste anotado com @spec:AC-057, mas esse critério de aceite não existe em nenhuma especificação (a especificação mudou e o teste ficou pra trás?)",
+      "file": "tests/Agendamento.UnitTests/Financial/FinancialDomainTests.cs",
+      "line": 21
+    },
+    {
+      "code": "TESTE_ORFAO",
+      "severity": "erro",
+      "message": "teste anotado com @spec:AC-058, mas esse critério de aceite não existe em nenhuma especificação (a especificação mudou e o teste ficou pra trás?)",
+      "file": "tests/Agendamento.UnitTests/Financial/FinancialDomainTests.cs",
+      "line": 54
+    },
+    {
+      "code": "TESTE_ORFAO",
+      "severity": "erro",
+      "message": "teste anotado com @spec:AC-062, mas esse critério de aceite não existe em nenhuma especificação (a especificação mudou e o teste ficou pra trás?)",
+      "file": "tests/Agendamento.UnitTests/Notifications/NotificationDomainTests.cs",
+      "line": 8
+    },
+    {
+      "code": "TESTE_ORFAO",
+      "severity": "erro",
+      "message": "teste anotado com @spec:AC-060, mas esse critério de aceite não existe em nenhuma especificação (a especificação mudou e o teste ficou pra trás?)",
+      "file": "tests/Agendamento.UnitTests/Notifications/NotificationDomainTests.cs",
+      "line": 27
+    },
+    {
+      "code": "TESTE_ORFAO",
+      "severity": "erro",
+      "message": "teste anotado com @spec:AC-061, mas esse critério de aceite não existe em nenhuma especificação (a especificação mudou e o teste ficou pra trás?)",
+      "file": "tests/Agendamento.UnitTests/Notifications/NotificationDomainTests.cs",
+      "line": 27
+    },
+    {
+      "code": "TESTE_ORFAO",
+      "severity": "erro",
+      "message": "teste anotado com @spec:AC-063, mas esse critério de aceite não existe em nenhuma especificação (a especificação mudou e o teste ficou pra trás?)",
+      "file": "tests/Agendamento.UnitTests/Notifications/NotificationDomainTests.cs",
+      "line": 41
+    },
+    {
+      "code": "TESTE_ORFAO",
+      "severity": "erro",
+      "message": "teste anotado com @spec:AC-045, mas esse critério de aceite não existe em nenhuma especificação (a especificação mudou e o teste ficou pra trás?)",
+      "file": "tests/Agendamento.UnitTests/Quotations/QuotationDomainTests.cs",
+      "line": 9
+    },
+    {
+      "code": "TESTE_ORFAO",
+      "severity": "erro",
+      "message": "teste anotado com @spec:AC-046, mas esse critério de aceite não existe em nenhuma especificação (a especificação mudou e o teste ficou pra trás?)",
+      "file": "tests/Agendamento.UnitTests/Quotations/QuotationDomainTests.cs",
+      "line": 22
+    },
+    {
+      "code": "TESTE_ORFAO",
+      "severity": "erro",
+      "message": "teste anotado com @spec:AC-048, mas esse critério de aceite não existe em nenhuma especificação (a especificação mudou e o teste ficou pra trás?)",
+      "file": "tests/Agendamento.UnitTests/Quotations/QuotationDomainTests.cs",
+      "line": 76
+    },
+    {
+      "code": "TESTE_ORFAO",
+      "severity": "erro",
+      "message": "teste anotado com @spec:AC-201, mas esse critério de aceite não existe em nenhuma especificação (a especificação mudou e o teste ficou pra trás?)",
+      "file": "tests/Agendamento.UnitTests/Subscriptions/SubscriptionDomainTests.cs",
+      "line": 15
+    },
+    {
+      "code": "TESTE_ORFAO",
+      "severity": "erro",
+      "message": "teste anotado com @spec:AC-204, mas esse critério de aceite não existe em nenhuma especificação (a especificação mudou e o teste ficou pra trás?)",
+      "file": "tests/Agendamento.UnitTests/Subscriptions/SubscriptionDomainTests.cs",
+      "line": 25
+    },
+    {
+      "code": "TESTE_ORFAO",
+      "severity": "erro",
+      "message": "teste anotado com @spec:AC-205, mas esse critério de aceite não existe em nenhuma especificação (a especificação mudou e o teste ficou pra trás?)",
+      "file": "tests/Agendamento.UnitTests/Subscriptions/SubscriptionDomainTests.cs",
+      "line": 57
+    },
+    {
+      "code": "TESTE_ORFAO",
+      "severity": "erro",
+      "message": "teste anotado com @spec:AC-202, mas esse critério de aceite não existe em nenhuma especificação (a especificação mudou e o teste ficou pra trás?)",
+      "file": "tests/Agendamento.UnitTests/Subscriptions/SubscriptionDomainTests.cs",
+      "line": 103
+    },
+    {
+      "code": "TESTE_ORFAO",
+      "severity": "erro",
+      "message": "teste anotado com @spec:AC-051, mas esse critério de aceite não existe em nenhuma especificação (a especificação mudou e o teste ficou pra trás?)",
+      "file": "tests/Agendamento.UnitTests/WorkOrders/WorkOrderDomainTests.cs",
+      "line": 13
+    },
+    {
+      "code": "TESTE_ORFAO",
+      "severity": "erro",
+      "message": "teste anotado com @spec:AC-052, mas esse critério de aceite não existe em nenhuma especificação (a especificação mudou e o teste ficou pra trás?)",
+      "file": "tests/Agendamento.UnitTests/WorkOrders/WorkOrderDomainTests.cs",
+      "line": 13
+    },
+    {
+      "code": "TESTE_ORFAO",
+      "severity": "erro",
+      "message": "teste anotado com @spec:AC-050, mas esse critério de aceite não existe em nenhuma especificação (a especificação mudou e o teste ficou pra trás?)",
+      "file": "tests/Agendamento.UnitTests/WorkOrders/WorkOrderDomainTests.cs",
+      "line": 50
+    },
+    {
+      "code": "TESTE_ORFAO",
+      "severity": "erro",
+      "message": "teste anotado com @spec:AC-053, mas esse critério de aceite não existe em nenhuma especificação (a especificação mudou e o teste ficou pra trás?)",
+      "file": "tests/Agendamento.UnitTests/WorkOrders/WorkOrderDomainTests.cs",
+      "line": 50
+    },
+    {
+      "code": "ARQUIVO_ORFAO",
+      "severity": "erro",
+      "message": "src/Agendamento.Api/Application/Appointments/CreateAppointment/CreateAppointmentCommand.cs não é mapeado por nenhuma tarefa — que requisito esse código atende?",
+      "file": "src/Agendamento.Api/Application/Appointments/CreateAppointment/CreateAppointmentCommand.cs"
+    },
+    {
+      "code": "ARQUIVO_ORFAO",
+      "severity": "erro",
+      "message": "src/Agendamento.Api/Application/Appointments/GetAppointments/AppointmentResponse.cs não é mapeado por nenhuma tarefa — que requisito esse código atende?",
+      "file": "src/Agendamento.Api/Application/Appointments/GetAppointments/AppointmentResponse.cs"
+    },
+    {
+      "code": "ARQUIVO_ORFAO",
+      "severity": "erro",
+      "message": "src/Agendamento.Api/Application/Appointments/GetAppointments/GetAppointmentsHandler.cs não é mapeado por nenhuma tarefa — que requisito esse código atende?",
+      "file": "src/Agendamento.Api/Application/Appointments/GetAppointments/GetAppointmentsHandler.cs"
+    },
+    {
+      "code": "ARQUIVO_ORFAO",
+      "severity": "erro",
+      "message": "src/Agendamento.Api/Application/Appointments/GetAppointments/GetAppointmentsQuery.cs não é mapeado por nenhuma tarefa — que requisito esse código atende?",
+      "file": "src/Agendamento.Api/Application/Appointments/GetAppointments/GetAppointmentsQuery.cs"
+    },
+    {
+      "code": "ARQUIVO_ORFAO",
+      "severity": "erro",
+      "message": "src/Agendamento.Api/Application/Appointments/UpdateAppointment/UpdateAppointmentCommand.cs não é mapeado por nenhuma tarefa — que requisito esse código atende?",
+      "file": "src/Agendamento.Api/Application/Appointments/UpdateAppointment/UpdateAppointmentCommand.cs"
+    },
+    {
+      "code": "ARQUIVO_ORFAO",
+      "severity": "erro",
+      "message": "src/Agendamento.Api/Application/Appointments/UpdateAppointment/UpdateAppointmentHandler.cs não é mapeado por nenhuma tarefa — que requisito esse código atende?",
+      "file": "src/Agendamento.Api/Application/Appointments/UpdateAppointment/UpdateAppointmentHandler.cs"
+    },
+    {
+      "code": "ARQUIVO_ORFAO",
+      "severity": "erro",
+      "message": "src/Agendamento.Api/Application/Customers/CreateCustomer/CreateCustomerCommand.cs não é mapeado por nenhuma tarefa — que requisito esse código atende?",
+      "file": "src/Agendamento.Api/Application/Customers/CreateCustomer/CreateCustomerCommand.cs"
+    },
+    {
+      "code": "ARQUIVO_ORFAO",
+      "severity": "erro",
+      "message": "src/Agendamento.Api/Application/Customers/CreateCustomer/CreateCustomerHandler.cs não é mapeado por nenhuma tarefa — que requisito esse código atende?",
+      "file": "src/Agendamento.Api/Application/Customers/CreateCustomer/CreateCustomerHandler.cs"
+    },
+    {
+      "code": "ARQUIVO_ORFAO",
+      "severity": "erro",
+      "message": "src/Agendamento.Api/Application/Customers/GetCustomers/GetCustomerByIdHandler.cs não é mapeado por nenhuma tarefa — que requisito esse código atende?",
+      "file": "src/Agendamento.Api/Application/Customers/GetCustomers/GetCustomerByIdHandler.cs"
+    },
+    {
+      "code": "ARQUIVO_ORFAO",
+      "severity": "erro",
+      "message": "src/Agendamento.Api/Application/Customers/GetCustomers/GetCustomersHandler.cs não é mapeado por nenhuma tarefa — que requisito esse código atende?",
+      "file": "src/Agendamento.Api/Application/Customers/GetCustomers/GetCustomersHandler.cs"
+    },
+    {
+      "code": "ARQUIVO_ORFAO",
+      "severity": "erro",
+      "message": "src/Agendamento.Api/Application/Customers/UpdateCustomer/UpdateCustomerCommand.cs não é mapeado por nenhuma tarefa — que requisito esse código atende?",
+      "file": "src/Agendamento.Api/Application/Customers/UpdateCustomer/UpdateCustomerCommand.cs"
+    },
+    {
+      "code": "ARQUIVO_ORFAO",
+      "severity": "erro",
+      "message": "src/Agendamento.Api/Application/Customers/UpdateCustomer/UpdateCustomerHandler.cs não é mapeado por nenhuma tarefa — que requisito esse código atende?",
+      "file": "src/Agendamento.Api/Application/Customers/UpdateCustomer/UpdateCustomerHandler.cs"
+    },
+    {
+      "code": "ARQUIVO_ORFAO",
+      "severity": "erro",
+      "message": "src/Agendamento.Api/Application/Dashboard/ExportPerformanceReport/ExportPerformanceReportQuery.cs não é mapeado por nenhuma tarefa — que requisito esse código atende?",
+      "file": "src/Agendamento.Api/Application/Dashboard/ExportPerformanceReport/ExportPerformanceReportQuery.cs"
+    },
+    {
+      "code": "ARQUIVO_ORFAO",
+      "severity": "erro",
+      "message": "src/Agendamento.Api/Application/Dashboard/GetDashboardSummary/GetDashboardSummaryQuery.cs não é mapeado por nenhuma tarefa — que requisito esse código atende?",
+      "file": "src/Agendamento.Api/Application/Dashboard/GetDashboardSummary/GetDashboardSummaryQuery.cs"
+    },
+    {
+      "code": "ARQUIVO_ORFAO",
+      "severity": "erro",
+      "message": "src/Agendamento.Api/Application/Dashboard/GetUpcomingSchedule/GetUpcomingScheduleQuery.cs não é mapeado por nenhuma tarefa — que requisito esse código atende?",
+      "file": "src/Agendamento.Api/Application/Dashboard/GetUpcomingSchedule/GetUpcomingScheduleQuery.cs"
+    },
+    {
+      "code": "ARQUIVO_ORFAO",
+      "severity": "erro",
+      "message": "src/Agendamento.Api/Application/Dashboard/GetUpcomingSchedule/UpcomingScheduleDto.cs não é mapeado por nenhuma tarefa — que requisito esse código atende?",
+      "file": "src/Agendamento.Api/Application/Dashboard/GetUpcomingSchedule/UpcomingScheduleDto.cs"
+    },
+    {
+      "code": "ARQUIVO_ORFAO",
+      "severity": "erro",
+      "message": "src/Agendamento.Api/Application/Notifications/ScheduleAppointmentReminder/ScheduleAppointmentReminderCommand.cs não é mapeado por nenhuma tarefa — que requisito esse código atende?",
+      "file": "src/Agendamento.Api/Application/Notifications/ScheduleAppointmentReminder/ScheduleAppointmentReminderCommand.cs"
+    },
+    {
+      "code": "ARQUIVO_ORFAO",
+      "severity": "erro",
+      "message": "src/Agendamento.Api/Application/Notifications/ScheduleAppointmentReminder/ScheduleAppointmentReminderHandler.cs não é mapeado por nenhuma tarefa — que requisito esse código atende?",
+      "file": "src/Agendamento.Api/Application/Notifications/ScheduleAppointmentReminder/ScheduleAppointmentReminderHandler.cs"
+    },
+    {
+      "code": "ARQUIVO_ORFAO",
+      "severity": "erro",
+      "message": "src/Agendamento.Api/Application/Notifications/SendQuotationNotification/SendQuotationNotificationCommand.cs não é mapeado por nenhuma tarefa — que requisito esse código atende?",
+      "file": "src/Agendamento.Api/Application/Notifications/SendQuotationNotification/SendQuotationNotificationCommand.cs"
+    },
+    {
+      "code": "ARQUIVO_ORFAO",
+      "severity": "erro",
+      "message": "src/Agendamento.Api/Application/Notifications/SendQuotationNotification/SendQuotationNotificationHandler.cs não é mapeado por nenhuma tarefa — que requisito esse código atende?",
+      "file": "src/Agendamento.Api/Application/Notifications/SendQuotationNotification/SendQuotationNotificationHandler.cs"
+    },
+    {
+      "code": "ARQUIVO_ORFAO",
+      "severity": "erro",
+      "message": "src/Agendamento.Api/Application/Quotations/CreateQuotation/CreateQuotationCommand.cs não é mapeado por nenhuma tarefa — que requisito esse código atende?",
+      "file": "src/Agendamento.Api/Application/Quotations/CreateQuotation/CreateQuotationCommand.cs"
+    },
+    {
+      "code": "ARQUIVO_ORFAO",
+      "severity": "erro",
+      "message": "src/Agendamento.Api/Application/Quotations/CreateQuotation/CreateQuotationHandler.cs não é mapeado por nenhuma tarefa — que requisito esse código atende?",
+      "file": "src/Agendamento.Api/Application/Quotations/CreateQuotation/CreateQuotationHandler.cs"
+    },
+    {
+      "code": "ARQUIVO_ORFAO",
+      "severity": "erro",
+      "message": "src/Agendamento.Api/Application/Quotations/ExportPdf/IQuotationPdfGenerator.cs não é mapeado por nenhuma tarefa — que requisito esse código atende?",
+      "file": "src/Agendamento.Api/Application/Quotations/ExportPdf/IQuotationPdfGenerator.cs"
+    },
+    {
+      "code": "ARQUIVO_ORFAO",
+      "severity": "erro",
+      "message": "src/Agendamento.Api/Application/Services/CreateService/CreateServiceCommand.cs não é mapeado por nenhuma tarefa — que requisito esse código atende?",
+      "file": "src/Agendamento.Api/Application/Services/CreateService/CreateServiceCommand.cs"
+    },
+    {
+      "code": "ARQUIVO_ORFAO",
+      "severity": "erro",
+      "message": "src/Agendamento.Api/Application/Services/CreateService/CreateServiceHandler.cs não é mapeado por nenhuma tarefa — que requisito esse código atende?",
+      "file": "src/Agendamento.Api/Application/Services/CreateService/CreateServiceHandler.cs"
+    },
+    {
+      "code": "ARQUIVO_ORFAO",
+      "severity": "erro",
+      "message": "src/Agendamento.Api/Application/Services/GetServices/GetServiceByIdHandler.cs não é mapeado por nenhuma tarefa — que requisito esse código atende?",
+      "file": "src/Agendamento.Api/Application/Services/GetServices/GetServiceByIdHandler.cs"
+    },
+    {
+      "code": "ARQUIVO_ORFAO",
+      "severity": "erro",
+      "message": "src/Agendamento.Api/Application/Services/GetServices/GetServicesHandler.cs não é mapeado por nenhuma tarefa — que requisito esse código atende?",
+      "file": "src/Agendamento.Api/Application/Services/GetServices/GetServicesHandler.cs"
+    },
+    {
+      "code": "ARQUIVO_ORFAO",
+      "severity": "erro",
+      "message": "src/Agendamento.Api/Application/Services/GetServices/GetServicesQuery.cs não é mapeado por nenhuma tarefa — que requisito esse código atende?",
+      "file": "src/Agendamento.Api/Application/Services/GetServices/GetServicesQuery.cs"
+    },
+    {
+      "code": "ARQUIVO_ORFAO",
+      "severity": "erro",
+      "message": "src/Agendamento.Api/Application/Services/UpdateService/UpdateServiceCommand.cs não é mapeado por nenhuma tarefa — que requisito esse código atende?",
+      "file": "src/Agendamento.Api/Application/Services/UpdateService/UpdateServiceCommand.cs"
+    },
+    {
+      "code": "ARQUIVO_ORFAO",
+      "severity": "erro",
+      "message": "src/Agendamento.Api/Application/Services/UpdateService/UpdateServiceHandler.cs não é mapeado por nenhuma tarefa — que requisito esse código atende?",
+      "file": "src/Agendamento.Api/Application/Services/UpdateService/UpdateServiceHandler.cs"
+    },
+    {
+      "code": "ARQUIVO_ORFAO",
+      "severity": "erro",
+      "message": "src/Agendamento.Api/Application/WorkOrders/GetWorkOrderById/GetWorkOrderByIdHandler.cs não é mapeado por nenhuma tarefa — que requisito esse código atende?",
+      "file": "src/Agendamento.Api/Application/WorkOrders/GetWorkOrderById/GetWorkOrderByIdHandler.cs"
+    },
+    {
+      "code": "ARQUIVO_ORFAO",
+      "severity": "erro",
+      "message": "src/Agendamento.Api/Application/WorkOrders/GetWorkOrderById/GetWorkOrderByIdQuery.cs não é mapeado por nenhuma tarefa — que requisito esse código atende?",
+      "file": "src/Agendamento.Api/Application/WorkOrders/GetWorkOrderById/GetWorkOrderByIdQuery.cs"
+    },
+    {
+      "code": "ARQUIVO_ORFAO",
+      "severity": "erro",
+      "message": "src/Agendamento.Api/Application/WorkOrders/GetWorkOrderById/WorkOrderResponse.cs não é mapeado por nenhuma tarefa — que requisito esse código atende?",
+      "file": "src/Agendamento.Api/Application/WorkOrders/GetWorkOrderById/WorkOrderResponse.cs"
+    },
+    {
+      "code": "ARQUIVO_ORFAO",
+      "severity": "erro",
+      "message": "src/Agendamento.Api/Application/WorkOrders/UpdateWorkOrderStatus/UpdateWorkOrderStatusCommand.cs não é mapeado por nenhuma tarefa — que requisito esse código atende?",
+      "file": "src/Agendamento.Api/Application/WorkOrders/UpdateWorkOrderStatus/UpdateWorkOrderStatusCommand.cs"
+    },
+    {
+      "code": "ARQUIVO_ORFAO",
+      "severity": "erro",
+      "message": "src/Agendamento.Api/Domain/Services/ServiceItem.cs não é mapeado por nenhuma tarefa — que requisito esse código atende?",
+      "file": "src/Agendamento.Api/Domain/Services/ServiceItem.cs"
+    },
+    {
+      "code": "ARQUIVO_ORFAO",
+      "severity": "erro",
+      "message": "src/Agendamento.Api/Features/Notifications/NotificationEndpoints.cs não é mapeado por nenhuma tarefa — que requisito esse código atende?",
+      "file": "src/Agendamento.Api/Features/Notifications/NotificationEndpoints.cs"
+    },
+    {
+      "code": "ARQUIVO_ORFAO",
+      "severity": "erro",
+      "message": "src/Agendamento.Api/Infrastructure/Pdf/QuestPdfQuotationGenerator.cs não é mapeado por nenhuma tarefa — que requisito esse código atende?",
+      "file": "src/Agendamento.Api/Infrastructure/Pdf/QuestPdfQuotationGenerator.cs"
+    },
+    {
+      "code": "ARQUIVO_ORFAO",
+      "severity": "erro",
+      "message": "src/Agendamento.Api/Infrastructure/Persistence/AgendamentoDbContextFactory.cs não é mapeado por nenhuma tarefa — que requisito esse código atende?",
+      "file": "src/Agendamento.Api/Infrastructure/Persistence/AgendamentoDbContextFactory.cs"
+    },
+    {
+      "code": "ARQUIVO_ORFAO",
+      "severity": "erro",
+      "message": "src/Agendamento.Api/Infrastructure/Persistence/Configurations/ServiceItemConfiguration.cs não é mapeado por nenhuma tarefa — que requisito esse código atende?",
+      "file": "src/Agendamento.Api/Infrastructure/Persistence/Configurations/ServiceItemConfiguration.cs"
+    },
+    {
+      "code": "ARQUIVO_ORFAO",
+      "severity": "erro",
+      "message": "src/Agendamento.Api/Infrastructure/Persistence/DbSeeder.cs não é mapeado por nenhuma tarefa — que requisito esse código atende?",
+      "file": "src/Agendamento.Api/Infrastructure/Persistence/DbSeeder.cs"
+    },
+    {
+      "code": "ARQUIVO_ORFAO",
+      "severity": "erro",
+      "message": "src/Agendamento.Api/Infrastructure/Persistence/UnitOfWork.cs não é mapeado por nenhuma tarefa — que requisito esse código atende?",
+      "file": "src/Agendamento.Api/Infrastructure/Persistence/UnitOfWork.cs"
+    },
+    {
+      "code": "ARQUIVO_ORFAO",
+      "severity": "erro",
+      "message": "src/Agendamento.Api/Infrastructure/Reports/ICsvPerformanceReportGenerator.cs não é mapeado por nenhuma tarefa — que requisito esse código atende?",
+      "file": "src/Agendamento.Api/Infrastructure/Reports/ICsvPerformanceReportGenerator.cs"
+    }
+  ]
+}

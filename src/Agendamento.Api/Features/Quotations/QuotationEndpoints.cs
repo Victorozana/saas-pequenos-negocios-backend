@@ -1,3 +1,4 @@
+using Agendamento.Api.Infrastructure.Authorization;
 using Agendamento.Api.Application.Quotations.CreateQuotation;
 using Agendamento.Api.Application.Quotations.ExportPdf;
 using Agendamento.Api.Application.Quotations.GetQuotations;
@@ -24,6 +25,7 @@ public static class QuotationEndpoints
             return Results.Created($"/api/v1/quotations/{id}", new { id });
         })
         .WithName("CreateQuotation")
+        .RequirePermission("sales.write")
         .Produces(StatusCodes.Status201Created)
         .ProducesProblem(StatusCodes.Status400BadRequest)
         .ProducesProblem(StatusCodes.Status401Unauthorized);
@@ -37,6 +39,7 @@ public static class QuotationEndpoints
             return Results.Ok(result);
         })
         .WithName("GetQuotations")
+        .RequirePermission("sales.read")
         .Produces<PagedResult<QuotationListDto>>(StatusCodes.Status200OK)
         .ProducesProblem(StatusCodes.Status401Unauthorized);
 
@@ -49,6 +52,7 @@ public static class QuotationEndpoints
             return result != null ? Results.Ok(result) : Results.NotFound();
         })
         .WithName("GetQuotationById")
+        .RequirePermission("sales.read")
         .Produces<QuotationDetailDto>(StatusCodes.Status200OK)
         .ProducesProblem(StatusCodes.Status404NotFound)
         .ProducesProblem(StatusCodes.Status401Unauthorized);
@@ -63,6 +67,7 @@ public static class QuotationEndpoints
             return success ? Results.NoContent() : Results.NotFound();
         })
         .WithName("UpdateQuotationStatus")
+        .RequirePermission("sales.write")
         .Produces(StatusCodes.Status204NoContent)
         .ProducesProblem(StatusCodes.Status404NotFound)
         .ProducesProblem(StatusCodes.Status401Unauthorized)
@@ -84,6 +89,7 @@ public static class QuotationEndpoints
             }
         })
         .WithName("ConvertQuotationToWorkOrderInQuotation")
+        .RequirePermission("sales.write")
         .Produces(StatusCodes.Status200OK)
         .ProducesProblem(StatusCodes.Status400BadRequest)
         .ProducesProblem(StatusCodes.Status401Unauthorized);
@@ -104,6 +110,7 @@ public static class QuotationEndpoints
             return Results.File(pdfBytes, "application/pdf", $"Orcamento-{quotation.Code}.pdf");
         })
         .WithName("ExportQuotationPdf")
+        .RequirePermission("sales.read")
         .Produces(StatusCodes.Status200OK, contentType: "application/pdf")
         .ProducesProblem(StatusCodes.Status404NotFound)
         .ProducesProblem(StatusCodes.Status401Unauthorized);

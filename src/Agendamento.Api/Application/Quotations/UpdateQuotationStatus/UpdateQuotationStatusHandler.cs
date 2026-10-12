@@ -21,12 +21,21 @@ public class UpdateQuotationStatusHandler
 
     public async Task<bool> HandleAsync(Guid id, UpdateQuotationStatusCommand command, CancellationToken cancellationToken = default)
     {
+        await using var transaction = _dbContext.Database.IsRelational()
+            ? await _dbContext.Database.BeginTransactionAsync(cancellationToken)
+            : null;
+        if (transaction != null)
+            await _dbContext.Database.ExecuteSqlInterpolatedAsync($"SELECT 1 FROM \"Quotations\" WHERE \"Id\" = {id} FOR UPDATE", cancellationToken);
         var quotation = await _dbContext.Quotations
             .Include(q => q.Items)
             .FirstOrDefaultAsync(q => q.Id == id, cancellationToken);
 
         if (quotation == null)
             return false;
+
+        if (command.NewStatus == QuotationStatus.Approved &&
+            (quotation.Status == QuotationStatus.Approved || quotation.Status == QuotationStatus.Converted))
+            return true;
 
         quotation.CheckExpiration();
 
@@ -48,12 +57,13 @@ public class UpdateQuotationStatusHandler
                 throw new InvalidOperationException($"Cannot transition to status {command.NewStatus} directly.");
         }
 
-        await _dbContext.SaveChangesAsync(cancellationToken);
-
         if (command.NewStatus == QuotationStatus.Approved)
         {
             await _generateReceivablesHandler.HandleAsync(quotation, cancellationToken);
         }
+
+        await _dbContext.SaveChangesAsync(cancellationToken);
+        if (transaction != null) await transaction.CommitAsync(cancellationToken);
 
         return true;
     }

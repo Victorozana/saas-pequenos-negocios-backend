@@ -22,11 +22,12 @@ public static class CurrentUserEndpoints
 
             var userEntity = await db.Users.FindAsync(new object[] { userId }, cancellationToken);
             if (userEntity is null) return Results.NotFound();
+            if (userEntity.Status != Agendamento.Domain.Identity.UserStatus.Active) return Results.Forbid();
 
             var membership = await Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.FirstOrDefaultAsync(
                 db.TenantMemberships, m => m.UserId == userId, cancellationToken);
             
-            if (membership is null) return Results.Forbid();
+            if (membership is null || !membership.IsActive) return Results.Forbid();
 
             var response = new Agendamento.Api.Application.Identity.GetUserProfile.UserProfileResponse(
                 userEntity.Id,

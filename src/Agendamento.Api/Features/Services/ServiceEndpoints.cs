@@ -1,3 +1,4 @@
+using Agendamento.Api.Infrastructure.Authorization;
 using Agendamento.Api.Application.Services.CreateService;
 using Agendamento.Api.Application.Services.GetServices;
 using Agendamento.Api.Application.Services.UpdateService;
@@ -22,6 +23,7 @@ public static class ServiceEndpoints
             return Results.Created($"/api/v1/services/{id}", new { id });
         })
         .WithName("CreateService")
+        .RequirePermission("services.write")
         .Produces(StatusCodes.Status201Created)
         .ProducesProblem(StatusCodes.Status400BadRequest)
         .ProducesProblem(StatusCodes.Status401Unauthorized);
@@ -35,6 +37,7 @@ public static class ServiceEndpoints
             return Results.Ok(result);
         })
         .WithName("GetServices")
+        .RequirePermission("services.read")
         .Produces<PagedResult<ServiceItemDto>>(StatusCodes.Status200OK)
         .ProducesProblem(StatusCodes.Status401Unauthorized);
 
@@ -47,6 +50,7 @@ public static class ServiceEndpoints
             return result != null ? Results.Ok(result) : Results.NotFound();
         })
         .WithName("GetServiceById")
+        .RequirePermission("services.read")
         .Produces<ServiceItemDto>(StatusCodes.Status200OK)
         .ProducesProblem(StatusCodes.Status404NotFound)
         .ProducesProblem(StatusCodes.Status401Unauthorized);
@@ -61,6 +65,7 @@ public static class ServiceEndpoints
             return success ? Results.NoContent() : Results.NotFound();
         })
         .WithName("UpdateService")
+        .RequirePermission("services.write")
         .Produces(StatusCodes.Status204NoContent)
         .ProducesProblem(StatusCodes.Status404NotFound)
         .ProducesProblem(StatusCodes.Status401Unauthorized);

@@ -1,3 +1,4 @@
+using Agendamento.Api.Infrastructure.Authorization;
 using Agendamento.Api.Application.WorkOrders.ConvertQuotationToWorkOrder;
 using Agendamento.Api.Application.WorkOrders.GetWorkOrderById;
 using Agendamento.Api.Application.WorkOrders.UpdateWorkOrderStatus;
@@ -23,7 +24,8 @@ public static class WorkOrderEndpoints
             var id = await handler.HandleAsync(command, cancellationToken);
             return Results.Created($"/api/v1/work-orders/{id}", new { Id = id });
         })
-        .WithName("ConvertQuotationToWorkOrder");
+        .WithName("ConvertQuotationToWorkOrder")
+        .RequirePermission("sales.write");
 
         group.MapGet("/{id:guid}", async (
             Guid id,
@@ -38,7 +40,8 @@ public static class WorkOrderEndpoints
                 
             return Results.Ok(result);
         })
-        .WithName("GetWorkOrderById");
+        .WithName("GetWorkOrderById")
+        .RequirePermission("sales.read");
 
         group.MapPatch("/{id:guid}/status", async (
             Guid id,
@@ -56,7 +59,8 @@ public static class WorkOrderEndpoints
             await handler.HandleAsync(command, cancellationToken);
             return Results.NoContent();
         })
-        .WithName("UpdateWorkOrderStatus");
+        .WithName("UpdateWorkOrderStatus")
+        .RequirePermission("sales.write");
     }
 }
 

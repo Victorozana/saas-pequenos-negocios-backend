@@ -2,3 +2,9 @@
 .onp-tools/
 [Bb]in/
 [Oo]bj/
+
+.local-build-check/
+.local-test-check/
+.local-verification/
+
+.spec/verification/raw/

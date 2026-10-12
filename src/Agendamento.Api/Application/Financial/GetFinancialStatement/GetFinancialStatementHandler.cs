@@ -25,10 +25,12 @@ public class GetFinancialStatementHandler
     public async Task<FinancialStatementResult> HandleAsync(DateTime startDate, DateTime endDate, CancellationToken cancellationToken = default)
     {
         var receivables = await _dbContext.ReceivableTitles
+            .Include(r => r.Payments)
             .Where(r => r.DueDate >= startDate && r.DueDate <= endDate && r.Status != TransactionStatus.Canceled)
             .ToListAsync(cancellationToken);
 
         var payables = await _dbContext.PayableTitles
+            .Include(p => p.Payments)
             .Where(p => p.DueDate >= startDate && p.DueDate <= endDate && p.Status != TransactionStatus.Canceled)
             .ToListAsync(cancellationToken);
 

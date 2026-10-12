@@ -15,11 +15,7 @@ public class MockCommunicationGateway : ICommunicationGateway
     public Task<bool> SendAsync(NotificationMessage message, CancellationToken cancellationToken = default)
     {
         // Simulating the actual sending process via external API (e.g., Twilio, SendGrid, etc.)
-        _logger.LogInformation("--- SENDING NOTIFICATION ---");
-        _logger.LogInformation($"To: {message.Recipient}");
-        _logger.LogInformation($"Channel: {message.Channel}");
-        _logger.LogInformation($"Content:\n{message.Content}");
-        _logger.LogInformation("----------------------------");
+        _logger.LogInformation("Notificação {NotificationId} simulada pelo canal {Channel}", message.Id, message.Channel);
 
         // Simulate success
         return Task.FromResult(true);

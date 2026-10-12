@@ -36,7 +36,7 @@ public class TenantContextTests : IClassFixture<AgendamentoApiFactory>
         // Arrange
         var tenantA = Guid.NewGuid();
         var tenantB = Guid.NewGuid();
-        var userId = Guid.NewGuid();
+        var userId = await _factory.CreateActiveMemberAsync(tenantA);
 
         var issuer = _factory.Services.GetRequiredService<Agendamento.Application.Identity.ISessionIssuer>();
         var principal = new Agendamento.Application.Identity.CreateSession.SessionPrincipal(userId, tenantA, "Admin");

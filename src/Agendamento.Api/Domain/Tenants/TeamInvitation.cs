@@ -38,7 +38,7 @@ public class TeamInvitation : ITenantOwned
             Email = email.Trim().ToLowerInvariant(),
             Role = role,
             Permissions = permissions ?? new List<string>(),
-            Token = Guid.NewGuid().ToString("N"),
+            Token = Convert.ToHexString(System.Security.Cryptography.RandomNumberGenerator.GetBytes(32)),
             CreatedAtUtc = now,
             ExpiresAtUtc = now.AddDays(expirationDays),
             Status = TeamInvitationStatus.Pending

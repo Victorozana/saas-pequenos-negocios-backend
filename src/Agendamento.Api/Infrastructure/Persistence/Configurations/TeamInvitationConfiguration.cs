@@ -17,6 +17,7 @@ public class TeamInvitationConfiguration : IEntityTypeConfiguration<TeamInvitati
         builder.Property(t => t.Role).HasMaxLength(50).IsRequired();
         builder.Property(t => t.Token).HasMaxLength(100).IsRequired();
         builder.HasIndex(t => t.Token).IsUnique();
+        builder.Property(t => t.Status).IsConcurrencyToken();
 
         builder.Property(t => t.Permissions)
             .HasConversion(

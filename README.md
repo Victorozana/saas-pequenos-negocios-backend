@@ -69,3 +69,13 @@ OpenAPI. Para uma execução mais rápida da verificação de documentação:
 ```powershell
 dotnet test tests/Agendamento.ArchitectureTests --filter FullyQualifiedName~ReadmeDocumentationTests
 ```
+
+## Financeiro e equipe no desenvolvimento local
+
+A aprovação do orçamento gera títulos a receber de entrada e saldo. Repetir a aprovação não duplica os títulos. Pagamentos são manuais nesta etapa; não há integração com gateway. Contas e extrato exigem `financial.read`; despesas e pagamentos exigem `financial.write`.
+
+A equipe permite listar membros, atualizar papel/permissões e ativar ou desativar o vínculo pelo endpoint `PATCH /api/v1/team-members/{userId}/status`, com `{ "isActive": false }`. Desativar um vínculo revoga o acesso de sessões anteriores somente naquele tenant. O último administrador ativo, inclusive `owner_admin`, é protegido.
+
+Convites expiram em sete dias e são aceitos sem sessão. O token é entregue pela outbox, não pela resposta HTTP; o gateway de comunicação atual é simulado e não envia e-mails reais. Seus logs não exibem destinatário ou conteúdo. Novos usuários definem uma senha com pelo menos 12 caracteres.
+
+Para provas individuais da spec, execute `node .agents/skills/onp-spec-driven/scripts/onp-spec.mjs verify gestao-financeira-contas` e o equivalente para `gestao-equipe-permissoes`. O script `scripts/verify-spec.ps1` roda as três suítes e converte seus resultados TRX para o formato JSON consumido pelo motor. O teste PostgreSQL utiliza os segredos locais ou a configuração de ambiente, cria um banco temporário exclusivo e o remove ao final; nunca usa o banco de trabalho para os cenários de teste. Testes antigos pulados não são provas de seus requisitos.

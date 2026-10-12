@@ -1,6 +1,7 @@
 using Agendamento.Api.Domain.Financial;
 using Agendamento.Api.Domain.Quotations;
 using Agendamento.Api.Infrastructure.Persistence;
+using Microsoft.EntityFrameworkCore;
 
 namespace Agendamento.Api.Application.Financial.GenerateReceivablesFromQuotation;
 
@@ -15,6 +16,8 @@ public class GenerateReceivablesFromQuotationHandler
 
     public async Task HandleAsync(Quotation quotation, CancellationToken cancellationToken = default)
     {
+        if (await _dbContext.ReceivableTitles.AnyAsync(t => t.QuotationId == quotation.Id && t.TenantId == quotation.TenantId, cancellationToken))
+            return;
         // 1. Check if deposit is required
         decimal depositAmount = 0;
         if (quotation.DepositInfo != null && quotation.DepositInfo.Value > 0)
@@ -27,6 +30,9 @@ public class GenerateReceivablesFromQuotationHandler
             {
                 depositAmount = quotation.TotalAmount * (quotation.DepositInfo.Value / 100m);
             }
+
+            if (depositAmount > quotation.TotalAmount)
+                throw new ArgumentException("A entrada não pode superar o valor do orçamento.");
 
             if (depositAmount > 0)
             {

@@ -1,3 +1,4 @@
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Linq;
 using System.Text.Json;
@@ -17,7 +18,7 @@ public class OpenApiSensitiveDataTests : IClassFixture<WebApplicationFactory<Pro
         _factory = factory.WithWebHostBuilder(builder => 
         {
             builder.UseSetting("Environment", "Test");
-            builder.UseSetting("ConnectionStrings:PostgreSql", "Host=localhost;Database=dummy;Username=dummy;Password=dummy");
+            builder.ConfigureAppConfiguration((_, config) => config.AddInMemoryCollection(new Dictionary<string,string?> { ["Database:RequirePostgreSql"] = "false" }));
         });
     }
 

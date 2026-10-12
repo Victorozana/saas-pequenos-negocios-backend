@@ -1,3 +1,4 @@
+using Agendamento.Api.Infrastructure.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
@@ -23,6 +24,7 @@ public static class DashboardEndpoints
             return Results.Ok(result);
         })
         .WithName("GetDashboardSummary")
+        .RequirePermission("sales.read")
         .Produces<DashboardSummaryDto>(StatusCodes.Status200OK);
 
         group.MapGet("schedule", async ([AsParameters] GetUpcomingScheduleRequest request, [FromServices] GetUpcomingScheduleHandler handler, CancellationToken cancellationToken) =>
@@ -32,6 +34,7 @@ public static class DashboardEndpoints
             return Results.Ok(result);
         })
         .WithName("GetUpcomingSchedule")
+        .RequirePermission("appointments.read")
         .Produces<List<UpcomingScheduleDto>>(StatusCodes.Status200OK);
 
         group.MapGet("report", async ([AsParameters] ExportPerformanceReportRequest request, [FromServices] ExportPerformanceReportHandler handler, CancellationToken cancellationToken) =>
@@ -42,6 +45,7 @@ public static class DashboardEndpoints
             return Results.File(fileBytes, "text/csv", fileName);
         })
         .WithName("ExportPerformanceReport")
+        .RequirePermission("sales.read")
         .Produces(StatusCodes.Status200OK, contentType: "text/csv");
     }
 }

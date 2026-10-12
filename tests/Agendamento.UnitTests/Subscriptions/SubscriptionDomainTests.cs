@@ -12,7 +12,7 @@ namespace Agendamento.UnitTests.Subscriptions;
 
 public class SubscriptionDomainTests
 {
-    [Fact(DisplayName = "Assinatura isolada por tenant @spec:AC-070")]
+    [Fact(DisplayName = "Assinatura isolada por tenant @spec:AC-201")]
     public void Subscription_Should_BelongToTenant_AC070()
     {
         var tenantId = Guid.NewGuid();
@@ -22,7 +22,7 @@ public class SubscriptionDomainTests
         Assert.Equal(tenantId, subscription.TenantId);
     }
 
-    [Fact(DisplayName = "Acesso de escrita bloqueado se PastDue e expirou carência @spec:AC-073")]
+    [Fact(DisplayName = "Acesso de escrita bloqueado se PastDue e expirou carência @spec:AC-204")]
     public void IsWriteAccessBlocked_Should_ReturnTrue_IfPastDueAndGraceExpired_AC073()
     {
         var subscription = TenantSubscription.CreateTrial(Guid.NewGuid(), Guid.NewGuid());
@@ -38,7 +38,7 @@ public class SubscriptionDomainTests
         Assert.True(isBlocked);
     }
 
-    [Fact(DisplayName = "Acesso de escrita não bloqueado se PastDue dentro da carência @spec:AC-073")]
+    [Fact(DisplayName = "Acesso de escrita não bloqueado se PastDue dentro da carência @spec:AC-204")]
     public void IsWriteAccessBlocked_Should_ReturnFalse_IfPastDueAndInsideGrace_AC073()
     {
         var subscription = TenantSubscription.CreateTrial(Guid.NewGuid(), Guid.NewGuid());
@@ -54,7 +54,7 @@ public class SubscriptionDomainTests
         Assert.False(isBlocked);
     }
 
-    [Fact(DisplayName = "Trial expira após 14 dias @spec:AC-074")]
+    [Fact(DisplayName = "Trial expira após 14 dias @spec:AC-205")]
     public void IsTrialExpired_Should_ReturnTrue_After14Days_AC074()
     {
         // Arrange
@@ -100,7 +100,7 @@ public class SubscriptionDomainTests
         public bool HasTenant { get; }
     }
 
-    [Fact(DisplayName = "Validação de limites (PlanLimitsChecker) @spec:AC-071")]
+    [Fact(DisplayName = "Validação de limites (PlanLimitsChecker) @spec:AC-202")]
     public async Task PlanLimitsChecker_ShouldEnforceLimits_AC071()
     {
         var dbName = Guid.NewGuid().ToString();

@@ -40,7 +40,8 @@ public static class PermissionAuthorizationExtensions
             var membership = await dbContext.TenantMemberships
                 .FirstOrDefaultAsync(m => m.TenantId == tenantContext.TenantId && m.UserId == userId);
 
-            if (membership == null || !membership.HasPermission(permission))
+            var activeUser = await dbContext.Users.AnyAsync(u => u.Id == userId && u.Status == Agendamento.Domain.Identity.UserStatus.Active);
+            if (membership == null || !membership.HasPermission(permission) || !activeUser)
             {
                 return Results.Problem(
                     statusCode: 403,
@@ -50,6 +51,6 @@ public static class PermissionAuthorizationExtensions
             }
 
             return await next(context);
-        });
+        }).ProducesProblem(StatusCodes.Status401Unauthorized).ProducesProblem(StatusCodes.Status403Forbidden);
     }
 }

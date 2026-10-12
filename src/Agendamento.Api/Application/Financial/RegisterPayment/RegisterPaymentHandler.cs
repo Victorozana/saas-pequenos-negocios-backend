@@ -17,6 +17,9 @@ public class RegisterReceivablePaymentHandler
 
     public async Task<bool> HandleAsync(Guid receivableId, RegisterPaymentCommand command, CancellationToken cancellationToken = default)
     {
+        await using var transaction = _dbContext.Database.IsRelational() ? await _dbContext.Database.BeginTransactionAsync(cancellationToken) : null;
+        if (transaction != null)
+            await _dbContext.Database.ExecuteSqlInterpolatedAsync($"SELECT 1 FROM \"ReceivableTitles\" WHERE \"Id\" = {receivableId} FOR UPDATE", cancellationToken);
         var title = await _dbContext.ReceivableTitles
             .Include(t => t.Payments)
             .FirstOrDefaultAsync(t => t.Id == receivableId, cancellationToken);
@@ -30,6 +33,7 @@ public class RegisterReceivablePaymentHandler
         _dbContext.Entry(title).Collection(t => t.Payments).FindEntry(newPayment)!.State = EntityState.Added;
 
         await _dbContext.SaveChangesAsync(cancellationToken);
+        if (transaction != null) await transaction.CommitAsync(cancellationToken);
         return true;
     }
 }
@@ -45,6 +49,9 @@ public class RegisterPayablePaymentHandler
 
     public async Task<bool> HandleAsync(Guid payableId, RegisterPaymentCommand command, CancellationToken cancellationToken = default)
     {
+        await using var transaction = _dbContext.Database.IsRelational() ? await _dbContext.Database.BeginTransactionAsync(cancellationToken) : null;
+        if (transaction != null)
+            await _dbContext.Database.ExecuteSqlInterpolatedAsync($"SELECT 1 FROM \"PayableTitles\" WHERE \"Id\" = {payableId} FOR UPDATE", cancellationToken);
         var title = await _dbContext.PayableTitles
             .Include(t => t.Payments)
             .FirstOrDefaultAsync(t => t.Id == payableId, cancellationToken);
@@ -58,6 +65,7 @@ public class RegisterPayablePaymentHandler
         _dbContext.Entry(title).Collection(t => t.Payments).FindEntry(newPayment)!.State = EntityState.Added;
 
         await _dbContext.SaveChangesAsync(cancellationToken);
+        if (transaction != null) await transaction.CommitAsync(cancellationToken);
         return true;
     }
 }

@@ -28,7 +28,7 @@ public class SubscriptionApiTests : IClassFixture<AgendamentoApiFactory>, IAsync
         return Task.CompletedTask;
     }
 
-    [Fact(DisplayName = "Processar Webhooks de Pagamento de Assinatura do SaaS de forma idempotente @spec:AC-072")]
+    [Fact(DisplayName = "Processar Webhooks de Pagamento de Assinatura do SaaS de forma idempotente @spec:AC-203")]
     public async Task Webhook_InvoicePaid_ShouldBeIdempotent_AC072()
     {
         // Arrange

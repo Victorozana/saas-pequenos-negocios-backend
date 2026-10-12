@@ -28,9 +28,14 @@ public class ConvertQuotationToWorkOrderHandler
         if (!_tenantContext.HasTenant)
             throw new InvalidOperationException("Unauthenticated tenant context.");
 
+        var existingOrder = await _dbContext.WorkOrders
+            .FirstOrDefaultAsync(w => w.QuotationId == command.QuotationId && w.TenantId == _tenantContext.TenantId, cancellationToken);
+        if (existingOrder != null)
+            return existingOrder.Id;
+
         var quotation = await _dbContext.Quotations
             .Include(q => q.Items)
-            .FirstOrDefaultAsync(q => q.Id == command.QuotationId, cancellationToken);
+            .FirstOrDefaultAsync(q => q.Id == command.QuotationId && q.TenantId == _tenantContext.TenantId, cancellationToken);
 
         if (quotation == null)
             throw new InvalidOperationException("Quotation not found.");
@@ -44,6 +49,7 @@ public class ConvertQuotationToWorkOrderHandler
         quotation.MarkAsConverted();
 
         _dbContext.WorkOrders.Add(workOrder);
+        await _dbContext.SaveChangesAsync(cancellationToken);
         await _unitOfWork.CommitAsync(cancellationToken);
 
         return workOrder.Id;

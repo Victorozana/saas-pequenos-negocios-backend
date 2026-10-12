@@ -25,7 +25,8 @@ public static class DependencyInjection
         services.AddSingleton<IEmailVerificationSender, OutboxEmailVerificationSender>();
 
         services.AddHttpContextAccessor();
-        services.AddScoped<Agendamento.Api.Application.Tenancy.ITenantContext, Agendamento.Api.Infrastructure.Tenancy.HttpTenantContext>();
+        services.AddScoped<Agendamento.Api.Infrastructure.Tenancy.HttpTenantContext>();
+        services.AddScoped<Agendamento.Api.Application.Tenancy.ITenantContext>(provider => provider.GetRequiredService<Agendamento.Api.Infrastructure.Tenancy.HttpTenantContext>());
 
         services.AddScoped<Agendamento.Api.Infrastructure.Notifications.ICommunicationGateway, Agendamento.Api.Infrastructure.Notifications.MockCommunicationGateway>();
         services.AddHostedService<Agendamento.Api.Infrastructure.Notifications.NotificationOutboxProcessor>();
@@ -52,6 +53,25 @@ public static class DependencyInjection
         services.AddAuthentication(Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerDefaults.AuthenticationScheme)
             .AddJwtBearer(options =>
             {
+                options.Events = new Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerEvents
+                {
+                    OnTokenValidated = async context =>
+                    {
+                        var userClaim = context.Principal?.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
+                        var tenantClaim = context.Principal?.FindFirst("tenant_id")?.Value;
+                        if (!Guid.TryParse(userClaim, out var userId) || !Guid.TryParse(tenantClaim, out var tenantId))
+                        {
+                            context.Fail("Sessão inválida.");
+                            return;
+                        }
+                        var db = context.HttpContext.RequestServices.GetRequiredService<Agendamento.Api.Infrastructure.Persistence.AgendamentoDbContext>();
+                        var active = await db.TenantMemberships.IgnoreQueryFilters()
+                            .Where(m => m.TenantId == tenantId && m.UserId == userId && m.IsActive)
+                            .Join(db.Users.Where(u => u.Status == Agendamento.Domain.Identity.UserStatus.Active), m => m.UserId, u => u.Id, (m, u) => m.Id)
+                            .AnyAsync(context.HttpContext.RequestAborted);
+                        if (!active) context.Fail("Acesso revogado.");
+                    }
+                };
                 options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
                 {
                     ValidateIssuerSigningKey = true,

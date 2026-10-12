@@ -1,3 +1,4 @@
+using Agendamento.Api.Infrastructure.Authorization;
 using Agendamento.Api.Application.Appointments.CreateAppointment;
 using Agendamento.Api.Application.Appointments.GetAppointments;
 using Agendamento.Api.Application.Appointments.UpdateAppointment;
@@ -29,6 +30,7 @@ public static class AppointmentEndpoints
             }
         })
         .WithName("CreateAppointment")
+        .RequirePermission("appointments.write")
         .Produces(StatusCodes.Status201Created)
         .ProducesProblem(StatusCodes.Status400BadRequest);
 
@@ -50,7 +52,8 @@ public static class AppointmentEndpoints
             var result = await handler.HandleAsync(query, cancellationToken);
             return Results.Ok(result);
         })
-        .WithName("GetAppointments");
+        .WithName("GetAppointments")
+        .RequirePermission("appointments.read");
 
         group.MapPut("/{id:guid}", async (
             Guid id,
@@ -69,7 +72,8 @@ public static class AppointmentEndpoints
             await handler.HandleAsync(command, cancellationToken);
             return Results.NoContent();
         })
-        .WithName("UpdateAppointment");
+        .WithName("UpdateAppointment")
+        .RequirePermission("appointments.write");
     }
 }
 

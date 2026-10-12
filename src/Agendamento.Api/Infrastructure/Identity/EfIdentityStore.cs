@@ -29,7 +29,7 @@ public sealed class EfIdentityStore(AgendamentoDbContext db) :
 
         var membership = await db.TenantMemberships
             .IgnoreQueryFilters()
-            .FirstOrDefaultAsync(m => m.UserId == user.Id, cancellationToken);
+            .FirstOrDefaultAsync(m => m.UserId == user.Id && m.IsActive, cancellationToken);
 
         var activeMembership = membership is not null 
             ? new ActiveTenantMembership(membership.TenantId, membership.Role)

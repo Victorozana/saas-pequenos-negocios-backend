@@ -1,7 +1,7 @@
 # Spec: Gestão de equipe e permissões
 
 > feature: gestao-equipe-permissoes
-> status: em-andamento
+> status: em-implementacao
 
 ## Contexto
 
@@ -23,7 +23,7 @@ Como administrador do sistema, quero que as APIs de usuário e as rotas exijam e
 
 - **Dado** um funcionário autenticado, mas sem a permissão `customers.write`
 - **Quando** ele tenta criar ou atualizar um cliente
-- **Então** o acesso é negado com HTTP 403 Forbidden e ProblemDetails.
+- **Então** o acesso é negado com HTTP 403 Forbidden e ProblemDetails. Um vínculo desativado perde acesso imediatamente, inclusive usando um JWT emitido antes da desativação; os módulos de serviços, vendas, agenda e financeiro também exigem suas permissões específicas.
 
 ### US-042 — Gestão e Isolamento de Membros da Equipe
 
@@ -39,7 +39,7 @@ Como administrador, quero listar, atualizar e desativar membros da minha equipe 
 
 - **Dado** um tenant contendo apenas 1 membro ativo com papel administrador
 - **Quando** esse administrador tenta desativar a própria conta ou alterar seu próprio papel
-- **Então** a operação é impedida, retornando HTTP 409 Conflict, alertando que o tenant não pode ficar sem nenhum administrador ativo.
+- **Então** a operação é impedida, retornando HTTP 409 Conflict, alertando que o tenant não pode ficar sem nenhum administrador ativo. Os papéis Admin e owner_admin são administrativos. A desativação pertence ao vínculo do tenant e não altera vínculos em outras empresas.
 
 ### US-043 — Convites Seguros de Funcionários
 
@@ -49,13 +49,13 @@ Como administrador, quero enviar convites para funcionários entrarem no sistema
 
 - **Dado** o e-mail de um novo funcionário e suas permissões selecionadas
 - **Quando** um convite é criado via `/api/v1/team-members/invitations`
-- **Então** um token seguro é emitido, e-mail de notificação entra na outbox, e a conta fica pendente aguardando ativação.
+- **Então** um token seguro é emitido, e-mail de notificação entra na outbox, e o convite fica pendente aguardando aceite. O token bruto não aparece na resposta HTTP nem nos logs.
 
 #### AC-075 — Aceite de convite e definição de senha
 
 - **Dado** um token válido de um funcionário recém-convidado
 - **Quando** o funcionário usa o token para aceitar o convite e define sua senha
-- **Então** o token é consumido, a conta é ativada e a senha gravada como hash.
+- **Então** o token é consumido uma única vez e o vínculo é criado no tenant do convite. Para novo usuário, a conta é ativada e a senha gravada como hash. O aceite funciona sem sessão; não permite substituir a senha de um usuário já existente. Convites inválidos, expirados ou já consumidos são rejeitados.
 
 ## Fora de escopo
 

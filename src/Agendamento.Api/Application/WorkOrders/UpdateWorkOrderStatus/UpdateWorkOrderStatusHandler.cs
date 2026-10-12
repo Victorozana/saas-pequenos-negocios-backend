@@ -34,6 +34,7 @@ public class UpdateWorkOrderStatusHandler
 
         workOrder.UpdateStatus(command.Status, command.Notes);
 
+        await _dbContext.SaveChangesAsync(cancellationToken);
         await _unitOfWork.CommitAsync(cancellationToken);
     }
 }

@@ -30,6 +30,7 @@ public class TenantMembershipConfiguration : IEntityTypeConfiguration<TenantMemb
 
         builder.Property(t => t.Role).HasMaxLength(50).IsRequired();
         builder.Property(t => t.IsLegalRepresentative).IsRequired();
+        builder.Property(t => t.IsActive).HasDefaultValue(true).IsRequired();
 
         builder.Property(t => t.Permissions)
             .HasConversion(

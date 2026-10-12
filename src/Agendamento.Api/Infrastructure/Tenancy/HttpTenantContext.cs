@@ -4,6 +4,7 @@ namespace Agendamento.Api.Infrastructure.Tenancy;
 
 public class HttpTenantContext : ITenantContext
 {
+    private Guid? _invitationTenantId;
     private readonly IHttpContextAccessor _httpContextAccessor;
 
     public HttpTenantContext(IHttpContextAccessor httpContextAccessor)
@@ -11,9 +12,24 @@ public class HttpTenantContext : ITenantContext
         _httpContextAccessor = httpContextAccessor;
     }
 
-    public Guid TenantId => GetTenantIdFromClaims() ?? Guid.Empty;
+    public Guid TenantId => _invitationTenantId ?? GetTenantIdFromClaims() ?? Guid.Empty;
 
-    public bool HasTenant => GetTenantIdFromClaims() != null;
+    public bool HasTenant => _invitationTenantId != null || GetTenantIdFromClaims() != null;
+
+    // Only the server-side invitation flow can establish this scope. No request TenantId is accepted.
+    internal IDisposable UseValidatedInvitation(Agendamento.Domain.Tenants.TeamInvitation invitation)
+    {
+        if (invitation.Status != Agendamento.Domain.Tenants.TeamInvitationStatus.Pending || invitation.ExpiresAtUtc <= DateTimeOffset.UtcNow)
+            throw new InvalidOperationException("Convite inválido.");
+        var previous = _invitationTenantId;
+        _invitationTenantId = invitation.TenantId;
+        return new InvitationScope(() => _invitationTenantId = previous);
+    }
+
+    private sealed class InvitationScope(Action restore) : IDisposable
+    {
+        public void Dispose() => restore();
+    }
 
     private Guid? GetTenantIdFromClaims()
     {

@@ -14,6 +14,8 @@ public class PaymentEntry
     {
         if (amount <= 0)
             throw new ArgumentException("Payment amount must be greater than zero.", nameof(amount));
+        if (!Enum.IsDefined(method))
+            throw new ArgumentException("Forma de pagamento inválida.", nameof(method));
 
         return new PaymentEntry
         {

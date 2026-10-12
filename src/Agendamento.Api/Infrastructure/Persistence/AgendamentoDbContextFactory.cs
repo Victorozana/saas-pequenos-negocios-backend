@@ -8,7 +8,13 @@ public class AgendamentoDbContextFactory : IDesignTimeDbContextFactory<Agendamen
     public AgendamentoDbContext CreateDbContext(string[] args)
     {
         var optionsBuilder = new DbContextOptionsBuilder<AgendamentoDbContext>();
-        optionsBuilder.UseNpgsql("Host=localhost;Database=agendamento;Username=postgres;Password=postgres");
+        var configuration = new ConfigurationBuilder()
+            .AddUserSecrets<AgendamentoDbContextFactory>()
+            .AddEnvironmentVariables()
+            .Build();
+        var connectionString = configuration.GetConnectionString("PostgreSql")
+            ?? throw new InvalidOperationException("Configure ConnectionStrings:PostgreSql nos segredos locais antes de aplicar migrations.");
+        optionsBuilder.UseNpgsql(connectionString);
 
         return new AgendamentoDbContext(optionsBuilder.Options, new DummyTenantContext());
     }
