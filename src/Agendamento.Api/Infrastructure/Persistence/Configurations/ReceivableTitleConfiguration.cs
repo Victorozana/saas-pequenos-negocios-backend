@@ -27,6 +27,9 @@ public class ReceivableTitleConfiguration : IEntityTypeConfiguration<ReceivableT
         {
             pb.ToTable("ReceivablePayments");
             pb.HasKey(p => p.Id);
+            pb.Property<Guid>("TenantId").HasColumnName("tenant_id").IsRequired();
+            pb.HasIndex("TenantId");
+            pb.HasOne<Agendamento.Domain.Tenants.Tenant>().WithMany().HasForeignKey("TenantId").OnDelete(DeleteBehavior.Restrict);
             pb.Property(p => p.Amount).HasColumnType("decimal(18,2)").IsRequired();
             pb.Property(p => p.PaymentDate).IsRequired();
             pb.Property(p => p.Method).HasConversion<string>().IsRequired();

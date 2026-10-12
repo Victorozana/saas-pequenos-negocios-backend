@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# executar-tarefas.sh — gerado por `onp-spec plano isolamento-multitenancy` em 2026-08-01 18:48
+# executar-tarefas.sh — gerado por `onp-spec plano isolamento-multitenancy` em 2026-10-12 03:55
 # NÃO edite à mão: mudou tasks.md ou a config, regenere o plano.
 #
 # uso:
@@ -14,7 +14,7 @@
 set -u
 set -o pipefail
 
-RUN_ID='agendamento-isolamento-multitenancy-msaq54io'
+RUN_ID='saas-pequenos-negocios-backend-isolamento-multitenancy-mv4pyv20'
 FEATURE='isolamento-multitenancy'
 BASE_BRANCH='spec/isolamento-multitenancy'
 ENGINE='.agents/skills/onp-spec-driven/scripts/onp-spec.mjs'
@@ -65,8 +65,8 @@ preparar_ambiente() {
     info "branch de trabalho: $BASE_BRANCH (a partir de $ATUAL)"
   fi
   git worktree prune
-  LOG_DIR="$(dirname "$TOPLEVEL")/onp-worktrees/agendamento-isolamento-multitenancy-logs"
-  WT_BASE="$(dirname "$TOPLEVEL")/onp-worktrees/agendamento-isolamento-multitenancy"
+  LOG_DIR="$(dirname "$TOPLEVEL")/onp-worktrees/saas-pequenos-negocios-backend-isolamento-multitenancy-logs"
+  WT_BASE="$(dirname "$TOPLEVEL")/onp-worktrees/saas-pequenos-negocios-backend-isolamento-multitenancy"
   STREAMS_DIR="${ONP_SPEC_HOME:-$HOME/.onp-spec}/painel/streams/$RUN_ID"
   mkdir -p "$LOG_DIR" "$STREAMS_DIR"
 }
@@ -168,105 +168,42 @@ iniciar_resumos() {
   trap 'parar_resumos; node "$ENGINE" resumo "$FEATURE" --gravar >/dev/null 2>&1 || true' EXIT
 }
 
-# ── faixa-1: T-017 ──
-executar_faixa_1() {
-  local WT="$WT_BASE-faixa-1"
-  preparar_worktree 'faixa-1' 'spec/isolamento-multitenancy-faixa-1' "$WT" || return 1
-  evento --tipo faixa --faixa 'faixa-1' --estado executando --tentativa "$(tentativa 'faixa-1')"
-  : > "$LOG_DIR/faixa-1.log"
-  (
-    cd "$WT" || exit 9
-    rodar_tarefa 'faixa-1' 'T-017' 'Você executa UMA tarefa da feature "isolamento-multitenancy" (fluxo onp-spec, spec-anchored).
-Leia primeiro: .spec/features/isolamento-multitenancy/spec.md, .spec/features/isolamento-multitenancy/tasks.md e .spec/constituicao.md.
-
-Sua tarefa (somente ela):
-T-017 — "Resolver contexto de tenant autenticado"
-  critérios/refs: AC-028 (Requisição sem tenant autenticado não acessa dados privados), AC-029 (Request não escolhe tenant)
-  arquivos permitidos (e seus testes): src/Agendamento.Api/Application/Tenancy/ITenantContext.cs, src/Agendamento.Api/Infrastructure/Tenancy/HttpTenantContext.cs, src/Agendamento.Api/Infrastructure/Tenancy/TenantContextMiddleware.cs, tests/Agendamento.IntegrationTests/Tenancy/TenantContextTests.cs
-  mensagem de commit: "T-017 isolamento-multitenancy: Resolver contexto de tenant autenticado"
-
-Regras inegociáveis:
-- Todo critério de aceite referenciado vira teste com @spec:AC-xxx no título.
-- NUNCA enfraqueça, pule (skip/todo) ou apague um teste para passar — teste pulado não é prova e o audit acusa.
-- Rode os testes localmente com `dotnet test Agendamento.sln --configuration Release` até passarem.
-- NÃO edite tasks.md, NÃO rode onp-spec verify/audit e NÃO toque em outras tarefas — o orquestrador cuida disso.
-- Ao final de CADA tarefa: `git add` só no que você tocou e um commit próprio.' 'gpt-5.6-terra' medium
-  ) >> "$LOG_DIR/faixa-1.log" 2>&1
-  local st=$?
-  mesclar_faixa 'faixa-1' 'spec/isolamento-multitenancy-faixa-1' "$WT" "$st" || return 1
-  marcar_concluidas T-017
-  return 0
-}
-
-# ── faixa-2: T-018 ──
-executar_faixa_2() {
-  local WT="$WT_BASE-faixa-2"
-  preparar_worktree 'faixa-2' 'spec/isolamento-multitenancy-faixa-2' "$WT" || return 1
-  evento --tipo faixa --faixa 'faixa-2' --estado executando --tentativa "$(tentativa 'faixa-2')"
-  : > "$LOG_DIR/faixa-2.log"
-  (
-    cd "$WT" || exit 9
-    rodar_tarefa 'faixa-2' 'T-018' 'Você executa UMA tarefa da feature "isolamento-multitenancy" (fluxo onp-spec, spec-anchored).
-Leia primeiro: .spec/features/isolamento-multitenancy/spec.md, .spec/features/isolamento-multitenancy/tasks.md e .spec/constituicao.md.
-
-Sua tarefa (somente ela):
-T-018 — "Aplicar filtros e guarda de gravação do EF Core"
-  critérios/refs: AC-030 (Tenant A não lê dados do tenant B), AC-031 (Tenant A não altera nem remove dados do tenant B), AC-032 (Divergência é rejeitada antes do commit)
-  arquivos permitidos (e seus testes): src/Agendamento.Api/Domain/Common/ITenantOwned.cs, src/Agendamento.Api/Infrastructure/Persistence/AgendamentoDbContext.cs, src/Agendamento.Api/Infrastructure/Persistence/TenantSaveChangesInterceptor.cs, tests/Agendamento.IntegrationTests/Tenancy/EfTenantIsolationTests.cs
-  mensagem de commit: "T-018 isolamento-multitenancy: Aplicar filtros e guarda de gravação do EF Core"
-
-Regras inegociáveis:
-- Todo critério de aceite referenciado vira teste com @spec:AC-xxx no título.
-- NUNCA enfraqueça, pule (skip/todo) ou apague um teste para passar — teste pulado não é prova e o audit acusa.
-- Rode os testes localmente com `dotnet test Agendamento.sln --configuration Release` até passarem.
-- NÃO edite tasks.md, NÃO rode onp-spec verify/audit e NÃO toque em outras tarefas — o orquestrador cuida disso.
-- Ao final de CADA tarefa: `git add` só no que você tocou e um commit próprio.' 'gpt-5.6-terra' medium
-  ) >> "$LOG_DIR/faixa-2.log" 2>&1
-  local st=$?
-  mesclar_faixa 'faixa-2' 'spec/isolamento-multitenancy-faixa-2' "$WT" "$st" || return 1
-  marcar_concluidas T-018
-  return 0
-}
-
-# ── faixa-3: T-019 ──
-executar_faixa_3() {
-  local WT="$WT_BASE-faixa-3"
-  preparar_worktree 'faixa-3' 'spec/isolamento-multitenancy-faixa-3' "$WT" || return 1
-  evento --tipo faixa --faixa 'faixa-3' --estado executando --tentativa "$(tentativa 'faixa-3')"
-  : > "$LOG_DIR/faixa-3.log"
-  (
-    cd "$WT" || exit 9
-    rodar_tarefa 'faixa-3' 'T-019' 'Você executa UMA tarefa da feature "isolamento-multitenancy" (fluxo onp-spec, spec-anchored).
+# ── sequencial T-019 (ordem do tasks.md) ──
+executar_seq_T_019() {
+  info 'sequencial T-019 — Criar papel, contexto transacional e policies RLS'
+  if rodar_tarefa seq 'T-019' 'Você executa UMA tarefa da feature "isolamento-multitenancy" (fluxo onp-spec, spec-anchored).
 Leia primeiro: .spec/features/isolamento-multitenancy/spec.md, .spec/features/isolamento-multitenancy/tasks.md e .spec/constituicao.md.
 
 Sua tarefa (somente ela):
 T-019 — "Criar papel, contexto transacional e policies RLS"
   critérios/refs: AC-033 (Papel da aplicação não contorna RLS), AC-034 (Contexto não vaza pelo pool de conexões), AC-035 (Toda tabela tenant-owned nasce protegida)
-  arquivos permitidos (e seus testes): src/Agendamento.Api/Infrastructure/Persistence/Migrations, src/Agendamento.Api/Infrastructure/Persistence/TenantTransactionInterceptor.cs, src/Agendamento.Api/Infrastructure/Persistence/Sql/TenantRls.sql, tests/Agendamento.IntegrationTests/Tenancy/PostgreSqlRlsTests.cs
+  arquivos permitidos (e seus testes): src/Agendamento.Api/Infrastructure/Persistence/Migrations/20260807002238_InitialTenant.cs, src/Agendamento.Api/Infrastructure/Persistence/Migrations/20260807002238_InitialTenant.Designer.cs, src/Agendamento.Api/Infrastructure/Persistence/Migrations/20260807010000_AddRowLevelSecurity.cs, src/Agendamento.Api/Infrastructure/Persistence/Migrations/20260807225823_AddCustomerTable.cs, src/Agendamento.Api/Infrastructure/Persistence/Migrations/20260807225823_AddCustomerTable.Designer.cs, src/Agendamento.Api/Infrastructure/Persistence/Migrations/20260807231536_AddQuotationsAndServices.cs, src/Agendamento.Api/Infrastructure/Persistence/Migrations/20260807231536_AddQuotationsAndServices.Designer.cs, src/Agendamento.Api/Infrastructure/Persistence/Migrations/20260808001400_AddWorkOrdersAndAppointments.cs, src/Agendamento.Api/Infrastructure/Persistence/Migrations/20260808001400_AddWorkOrdersAndAppointments.Designer.cs, src/Agendamento.Api/Infrastructure/Persistence/Migrations/20260808005011_AddFinancialTables.cs, src/Agendamento.Api/Infrastructure/Persistence/Migrations/20260808005011_AddFinancialTables.Designer.cs, src/Agendamento.Api/Infrastructure/Persistence/Migrations/20260809234023_AddNotificationModule.cs, src/Agendamento.Api/Infrastructure/Persistence/Migrations/20260809234023_AddNotificationModule.Designer.cs, src/Agendamento.Api/Infrastructure/Persistence/Migrations/20260810001025_AddBillingAndSubscriptions.cs, src/Agendamento.Api/Infrastructure/Persistence/Migrations/20260810001025_AddBillingAndSubscriptions.Designer.cs, src/Agendamento.Api/Infrastructure/Persistence/Migrations/20260810231913_UpdateNotificationsBackoff.cs, src/Agendamento.Api/Infrastructure/Persistence/Migrations/20260810231913_UpdateNotificationsBackoff.Designer.cs, src/Agendamento.Api/Infrastructure/Persistence/Migrations/20260811235746_AddEmailVerificationTokens.cs, src/Agendamento.Api/Infrastructure/Persistence/Migrations/20260811235746_AddEmailVerificationTokens.Designer.cs, src/Agendamento.Api/Infrastructure/Persistence/Migrations/20261012002349_AddActiveTeamMembership.cs, src/Agendamento.Api/Infrastructure/Persistence/Migrations/20261012002349_AddActiveTeamMembership.Designer.cs, src/Agendamento.Api/Infrastructure/Persistence/Migrations/AgendamentoDbContextModelSnapshot.cs, src/Agendamento.Api/Infrastructure/Persistence/TenantTransactionInterceptor.cs, src/Agendamento.Api/Infrastructure/Persistence/Sql/TenantRls.sql, tests/Agendamento.IntegrationTests/Tenancy/PostgreSqlRlsTests.cs, src/Agendamento.Api/Infrastructure/Persistence/UnitOfWork.cs
   mensagem de commit: "T-019 isolamento-multitenancy: Criar papel, contexto transacional e policies RLS"
 
 Regras inegociáveis:
 - Todo critério de aceite referenciado vira teste com @spec:AC-xxx no título.
 - NUNCA enfraqueça, pule (skip/todo) ou apague um teste para passar — teste pulado não é prova e o audit acusa.
-- Rode os testes localmente com `dotnet test Agendamento.sln --configuration Release` até passarem.
+- Rode os testes localmente com `powershell -ExecutionPolicy Bypass -File scripts/verify-spec.ps1` até passarem.
 - NÃO edite tasks.md, NÃO rode onp-spec verify/audit e NÃO toque em outras tarefas — o orquestrador cuida disso.
-- Ao final de CADA tarefa: `git add` só no que você tocou e um commit próprio.' 'gpt-5.6-terra' medium
-  ) >> "$LOG_DIR/faixa-3.log" 2>&1
-  local st=$?
-  mesclar_faixa 'faixa-3' 'spec/isolamento-multitenancy-faixa-3' "$WT" "$st" || return 1
-  marcar_concluidas T-019
-  return 0
+- Ao final de CADA tarefa: `git add` só no que você tocou e um commit próprio.' 'gpt-5.6-terra' medium >> "$LOG_DIR/seq.log" 2>&1; then
+    # commit de segurança se o agente esqueceu (rastreabilidade > perfeição)
+    if [ -n "$(git status --porcelain)" ]; then
+      git add -A && git commit -q -m 'T-019 isolamento-multitenancy: Criar papel, contexto transacional e policies RLS (auto-commit do plano)'
+    fi
+    marcar_concluidas T-019
+    verde "✔ T-019 concluída"
+    return 0
+  fi
+  vermelho "✘ T-019 falhou (log: $LOG_DIR/seq.log)"
+  amarelo "  reexecute só ela: bash .spec/features/isolamento-multitenancy/executar-tarefas.sh --seq T-019"
+  FALHAS="$FALHAS T-019"
+  return 1
 }
 
-# ── faixa-4: T-020 ──
-executar_faixa_4() {
-  local WT="$WT_BASE-faixa-4"
-  preparar_worktree 'faixa-4' 'spec/isolamento-multitenancy-faixa-4' "$WT" || return 1
-  evento --tipo faixa --faixa 'faixa-4' --estado executando --tentativa "$(tentativa 'faixa-4')"
-  : > "$LOG_DIR/faixa-4.log"
-  (
-    cd "$WT" || exit 9
-    rodar_tarefa 'faixa-4' 'T-020' 'Você executa UMA tarefa da feature "isolamento-multitenancy" (fluxo onp-spec, spec-anchored).
+# ── sequencial T-020 (ordem do tasks.md) ──
+executar_seq_T_020() {
+  info 'sequencial T-020 — Provar isolamento completo entre dois tenants'
+  if rodar_tarefa seq 'T-020' 'Você executa UMA tarefa da feature "isolamento-multitenancy" (fluxo onp-spec, spec-anchored).
 Leia primeiro: .spec/features/isolamento-multitenancy/spec.md, .spec/features/isolamento-multitenancy/tasks.md e .spec/constituicao.md.
 
 Sua tarefa (somente ela):
@@ -278,25 +215,27 @@ T-020 — "Provar isolamento completo entre dois tenants"
 Regras inegociáveis:
 - Todo critério de aceite referenciado vira teste com @spec:AC-xxx no título.
 - NUNCA enfraqueça, pule (skip/todo) ou apague um teste para passar — teste pulado não é prova e o audit acusa.
-- Rode os testes localmente com `dotnet test Agendamento.sln --configuration Release` até passarem.
+- Rode os testes localmente com `powershell -ExecutionPolicy Bypass -File scripts/verify-spec.ps1` até passarem.
 - NÃO edite tasks.md, NÃO rode onp-spec verify/audit e NÃO toque em outras tarefas — o orquestrador cuida disso.
-- Ao final de CADA tarefa: `git add` só no que você tocou e um commit próprio.' 'gpt-5.6-terra' medium
-  ) >> "$LOG_DIR/faixa-4.log" 2>&1
-  local st=$?
-  mesclar_faixa 'faixa-4' 'spec/isolamento-multitenancy-faixa-4' "$WT" "$st" || return 1
-  marcar_concluidas T-020
-  return 0
+- Ao final de CADA tarefa: `git add` só no que você tocou e um commit próprio.' 'gpt-5.6-terra' medium >> "$LOG_DIR/seq.log" 2>&1; then
+    # commit de segurança se o agente esqueceu (rastreabilidade > perfeição)
+    if [ -n "$(git status --porcelain)" ]; then
+      git add -A && git commit -q -m 'T-020 isolamento-multitenancy: Provar isolamento completo entre dois tenants (auto-commit do plano)'
+    fi
+    marcar_concluidas T-020
+    verde "✔ T-020 concluída"
+    return 0
+  fi
+  vermelho "✘ T-020 falhou (log: $LOG_DIR/seq.log)"
+  amarelo "  reexecute só ela: bash .spec/features/isolamento-multitenancy/executar-tarefas.sh --seq T-020"
+  FALHAS="$FALHAS T-020"
+  return 1
 }
 
-# ── faixa-5: T-021 ──
-executar_faixa_5() {
-  local WT="$WT_BASE-faixa-5"
-  preparar_worktree 'faixa-5' 'spec/isolamento-multitenancy-faixa-5' "$WT" || return 1
-  evento --tipo faixa --faixa 'faixa-5' --estado executando --tentativa "$(tentativa 'faixa-5')"
-  : > "$LOG_DIR/faixa-5.log"
-  (
-    cd "$WT" || exit 9
-    rodar_tarefa 'faixa-5' 'T-021' 'Você executa UMA tarefa da feature "isolamento-multitenancy" (fluxo onp-spec, spec-anchored).
+# ── sequencial T-021 (ordem do tasks.md) ──
+executar_seq_T_021() {
+  info 'sequencial T-021 — Impedir migration tenant-owned desprotegida'
+  if rodar_tarefa seq 'T-021' 'Você executa UMA tarefa da feature "isolamento-multitenancy" (fluxo onp-spec, spec-anchored).
 Leia primeiro: .spec/features/isolamento-multitenancy/spec.md, .spec/features/isolamento-multitenancy/tasks.md e .spec/constituicao.md.
 
 Sua tarefa (somente ela):
@@ -308,14 +247,21 @@ T-021 — "Impedir migration tenant-owned desprotegida"
 Regras inegociáveis:
 - Todo critério de aceite referenciado vira teste com @spec:AC-xxx no título.
 - NUNCA enfraqueça, pule (skip/todo) ou apague um teste para passar — teste pulado não é prova e o audit acusa.
-- Rode os testes localmente com `dotnet test Agendamento.sln --configuration Release` até passarem.
+- Rode os testes localmente com `powershell -ExecutionPolicy Bypass -File scripts/verify-spec.ps1` até passarem.
 - NÃO edite tasks.md, NÃO rode onp-spec verify/audit e NÃO toque em outras tarefas — o orquestrador cuida disso.
-- Ao final de CADA tarefa: `git add` só no que você tocou e um commit próprio.' 'gpt-5.6-terra' medium
-  ) >> "$LOG_DIR/faixa-5.log" 2>&1
-  local st=$?
-  mesclar_faixa 'faixa-5' 'spec/isolamento-multitenancy-faixa-5' "$WT" "$st" || return 1
-  marcar_concluidas T-021
-  return 0
+- Ao final de CADA tarefa: `git add` só no que você tocou e um commit próprio.' 'gpt-5.6-terra' medium >> "$LOG_DIR/seq.log" 2>&1; then
+    # commit de segurança se o agente esqueceu (rastreabilidade > perfeição)
+    if [ -n "$(git status --porcelain)" ]; then
+      git add -A && git commit -q -m 'T-021 isolamento-multitenancy: Impedir migration tenant-owned desprotegida (auto-commit do plano)'
+    fi
+    marcar_concluidas T-021
+    verde "✔ T-021 concluída"
+    return 0
+  fi
+  vermelho "✘ T-021 falhou (log: $LOG_DIR/seq.log)"
+  amarelo "  reexecute só ela: bash .spec/features/isolamento-multitenancy/executar-tarefas.sh --seq T-021"
+  FALHAS="$FALHAS T-021"
+  return 1
 }
 
 # ── gate: quem decide é a máquina ────────────────────────────────────
@@ -371,30 +317,17 @@ executar_tudo() {
   iniciar_resumos
   info "logs em: $LOG_DIR"
   info "resumo geral de andamento: a cada 1 min aqui no terminal (e via: onp-spec resumo)"
-  # onda 1: faixa-1 ∥ faixa-2 ∥ faixa-3
-  info "onda 1: faixa-1 ∥ faixa-2 ∥ faixa-3 — janelas limpas em paralelo"
-  executar_faixa_1 & PID_FAIXA_1=$!
-  executar_faixa_2 & PID_FAIXA_2=$!
-  executar_faixa_3 & PID_FAIXA_3=$!
-  wait "$PID_FAIXA_1" || true
-  wait "$PID_FAIXA_2" || true
-  wait "$PID_FAIXA_3" || true
-  # onda 2: faixa-4 ∥ faixa-5
-  info "onda 2: faixa-4 ∥ faixa-5 — janelas limpas em paralelo"
-  executar_faixa_4 & PID_FAIXA_4=$!
-  executar_faixa_5 & PID_FAIXA_5=$!
-  wait "$PID_FAIXA_4" || true
-  wait "$PID_FAIXA_5" || true
+  executar_seq_T_019 || true
+  executar_seq_T_020 || true
+  executar_seq_T_021 || true
   encerrar tudo
 }
 
 listar() {
   echo "execução: $RUN_ID (feature $FEATURE, branch $BASE_BRANCH)"
-  echo "  faixa-1  onda 1  T-017"
-  echo "  faixa-2  onda 1  T-018"
-  echo "  faixa-3  onda 1  T-019"
-  echo "  faixa-4  onda 2  T-020"
-  echo "  faixa-5  onda 2  T-021"
+  echo "  seq       T-019 (sequencial)"
+  echo "  seq       T-020 (sequencial)"
+  echo "  seq       T-021 (sequencial)"
   echo
   echo "reexecutar uma faixa:    --faixa <id>"
   echo "reexecutar sequencial:   --seq <T-xxx>"
@@ -425,15 +358,13 @@ case "$MODO" in
   gate) COM_GATE=1; iniciar_resumos; encerrar gate ;;
   faixa)
     case "$ALVO" in
-      faixa-1) evento --tipo inicio --escopo "faixa:faixa-1"; iniciar_resumos; executar_faixa_1 || true; encerrar "faixa:faixa-1" ;;
-      faixa-2) evento --tipo inicio --escopo "faixa:faixa-2"; iniciar_resumos; executar_faixa_2 || true; encerrar "faixa:faixa-2" ;;
-      faixa-3) evento --tipo inicio --escopo "faixa:faixa-3"; iniciar_resumos; executar_faixa_3 || true; encerrar "faixa:faixa-3" ;;
-      faixa-4) evento --tipo inicio --escopo "faixa:faixa-4"; iniciar_resumos; executar_faixa_4 || true; encerrar "faixa:faixa-4" ;;
-      faixa-5) evento --tipo inicio --escopo "faixa:faixa-5"; iniciar_resumos; executar_faixa_5 || true; encerrar "faixa:faixa-5" ;;
       *) falhar "faixa desconhecida: '$ALVO' — veja as disponíveis com --listar" ;;
     esac ;;
   seq)
     case "$ALVO" in
+      T-019) evento --tipo inicio --escopo "seq:T-019"; iniciar_resumos; executar_seq_T_019 || true; encerrar "seq:T-019" ;;
+      T-020) evento --tipo inicio --escopo "seq:T-020"; iniciar_resumos; executar_seq_T_020 || true; encerrar "seq:T-020" ;;
+      T-021) evento --tipo inicio --escopo "seq:T-021"; iniciar_resumos; executar_seq_T_021 || true; encerrar "seq:T-021" ;;
       *) falhar "tarefa sequencial desconhecida: '$ALVO' — veja as disponíveis com --listar" ;;
     esac ;;
 esac

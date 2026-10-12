@@ -190,7 +190,7 @@ public class QuotationApiTests
         Assert.Equal(QuotationStatus.Approved, qApproved.Status);
     }
 
-    [Fact(DisplayName = "Isolamento multi-tenant impede que um tenant acesse orçamento ou serviço de outro tenant @spec:AC-049 @principle:P-004")]
+    [Fact(DisplayName = "Isolamento multi-tenant impede que um tenant acesse orçamento ou serviço de outro tenant @spec:AC-049")]
     public async Task MultiTenant_Isolation_ReturnsNotFound_ForOtherTenant()
     {
         var tenantA = Guid.NewGuid();

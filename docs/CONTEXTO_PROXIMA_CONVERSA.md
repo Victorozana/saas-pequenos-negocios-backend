@@ -1,5 +1,21 @@
 # Contexto para a próxima conversa — 12/10/2026
 
+## Continuidade da auditoria global — revisão adicional
+
+Ler também `.spec/revisao-auditoria-global.md` e o relatório final `audit-global-final.json` quando disponível. A baseline desta continuação reproduziu 264 erros e 40 avisos; a revisão intermediária chegou a 143 erros e 33 avisos. Nenhuma dessas auditorias foi aprovada.
+
+Foi corrigida uma falha reproduzida por testes: trocar o TenantId de uma entidade carregada de outra empresa permitia alterar/excluir o registro. O interceptor agora valida o TenantId original. Foram adicionadas provas de guarda de gravação, tenant externo em header/query/body e migrations PostgreSQL em duas bases temporárias isoladas. As asserções e os seis skips antigos foram preservados.
+
+Requisitos e tarefas perdidos foram recuperados do histórico de serviços/orçamentos, financeiro e notificações. Por isso os números de critérios aumentam; não comparar apenas a porcentagem antiga de cada feature. As tarefas históricas recuperadas permanecem pendentes até revisão de abrangência das provas.
+
+RLS continua sem certificação: AddRowLevelSecurity não aparece na lista de migrations descoberta pelo EF Core compilado. UnitOfWork configura contexto apenas em sua entrada de transação explícita e usa nome de configuração diferente do design. T-019/T-020/T-021 foram reabertas. A falsa atribuição de P-004 a um teste EF InMemory foi retirada, preservando o teste e suas asserções.
+
+Novas decisões explícitas do usuário: orçamento enviado pode ser editado enquanto pendente, bloqueando edição após aprovação/rejeição/conversão (AC-206, T-103 pendente); conversão cria OS aguardando início manual; prestador pode desligar lembretes por cliente (AC-207, T-104 pendente). Essas confirmações não equivalem a implementação.
+
+Planos das features com tarefas pendentes foram regenerados em modo sequencial. Os executores gerados não foram iniciados; os modelos históricos sugeridos pelo motor não foram adotados. A execução desta conversa permanece manual, com o modelo/esforço atuais.
+
+Esta revisão não alterou o frontend, não aplicou migrations ao banco de trabalho e não realizou deploy. Os commits indicados pelo usuário na retomada são d79b630 (backend) e 37cd243 (frontend). Alterações locais preexistentes de obj foram preservadas. O gate global precisa continuar reprovado enquanto houver requisitos sem prova.
+
 ## Projeto e repositórios
 
 SaaS de pequenos negócios, com empresas isoladas por tenant.
@@ -63,3 +79,36 @@ Detalhes: `.spec/revisao-financeiro-equipe.md`, `.spec/audit-financeiro-equipe.j
 6. Deixar gateway para depois. Distinguir cobrança da assinatura do SaaS de cobrança dos clientes de cada tenant; definir provedor/contas, tarifas, webhooks autenticados e idempotência antes de integrar.
 
 Nenhum deploy foi realizado. Commits/push deste ponto de continuidade foram pedidos pelo usuário; obter os hashes pelo git log ou pela mensagem final desta conversa.
+
+### Gate final executado
+
+- onp-spec audit --ci: exit 1; 10 erros e 5 avisos.
+- 86/94 critérios com prova granular; 15 features revalidadas.
+- Suítes: 163 aprovados, zero falhas e seis skips antigos (169 resultados).
+- Relatório completo: audit-global-final.json. Frontend limpo, commit 37cd243; alterações desta revisão permanecem locais no backend.
+- A terceira auditoria manteve lacunas de RLS e requisitos sem teste. A skill determina parar e apresentar achados quando o mesmo problema persiste por três auditorias; nenhuma entrega global foi encerrada.
+
+## Retomada RLS — 12/10/2026
+
+Implementação manual, sem agentes/execução headless ou troca de modelo/esforço. Migration nova `20261012041401_EnforceTenantRowLevelSecurity`, descoberta pelo EF e com snapshot correspondente; a antiga AddRowLevelSecurity não foi ativada fora de ordem.
+
+As 16 tabelas tenant-owned, incluindo itens de orçamento/OS e pagamentos, possuem tenant_id obrigatório, FK para tenants, índice iniciado pelo tenant e ENABLE/FORCE RLS. Policies permissivas e uma guarda restritiva usam app.tenant_id local com USING/WITH CHECK. Uma policy permissiva ampla adicional não remove a barreira. O backfill preserva registros antigos; FKs compostas rejeitam vínculos entre empresas.
+
+TenantTransactionInterceptor cobre comandos EF síncronos/assíncronos, consultas, gravações, SQL e transações explícitas/implícitas. TenantConnectionInterceptor seleciona credenciais separadas e rejeita superuser/BYPASSRLS, proprietário e membership de sistema no login normal. Cadastro, autenticação, validação de sessão, aceite de convite e outbox usam escopo administrativo explícito com papel restrito e grants/policies específicos; webhook billing anônimo não recebe privilégio administrativo.
+
+T-019/T-020/T-021 possuem implementação e provas. `verify isolamento-multitenancy`: 8/8 critérios PASS e P-004 com PostgreSQL real; 175 resultados, 169 aprovados, zero falhas e os seis skips antigos preservados. `has-pending-model-changes`: nenhuma diferença no modelo. As credenciais temporárias e bases exclusivas dos testes são removidas; segredos locais e cadastros de agendamento_local não foram alterados. Frontend permanece limpo em 37cd243; backend permanece no mesmo HEAD com alterações locais.
+
+**Operação local ainda não provisionada:** a migration não foi aplicada em agendamento_local. Para iniciar a API com esta versão é preciso migration e logins distintos para PostgreSql e PostgreSqlAdministrative; a credencial antiga proprietária/superuser é recusada. PostgreSqlMigration mantém a credencial de provisionamento separada, usada também pelos testes locais. Ver docs/POSTGRESQL_RLS.md. Não confundir prova temporária com rollout local.
+
+A auditoria global desta retomada fica em .spec/audit-rls.json; o relatório audit-global-final.json anterior foi preservado. As pendências seguintes continuam OpenAPI/minimização, notificações (serviço centralizado/vínculo de cliente/fatura vencida), edição de orçamento pendente e desativação de lembretes por cliente. Financeiro/equipe frontend e e-mail real aguardam essa continuidade. Nenhum fechamento global deve ser declarado enquanto o gate não sair 0.
+
+## Gate após a retomada RLS
+
+- Auditoria global: exit 1, **6 erros e 0 avisos**; 89/94 critérios com prova granular.
+- 15 features revalidadas depois da correção da fixture de concorrência. Cada execução final lê 175 resultados: 169 aprovados, zero falhas e seis skips antigos.
+- Isolamento: 8/8 critérios PASS; AC-033/AC-034/AC-035 e P-004 possuem prova PostgreSQL real. T-019/T-020/T-021 concluídas com essas provas; isso não fecha a auditoria global.
+- O teste financeiro agora exige duas consultas FOR UPDATE bloqueadas simultaneamente no PostgreSQL antes de liberar o orçamento. Pool de uma conexão apenas na prova específica de reutilização.
+- Uma execução intermediária de equipe retornou exit 1. A repetição diagnóstica executou as três suítes e retornou exit 0; a causa intermediária não foi reproduzida. Não foi descartado teste nem suprimido erro. Log da repetição em .local-verification/rls-refresh-concurrency/equipe-runner.raw.log; prova final em .spec/verification/gestao-equipe-permissoes.json.
+- Pendências do gate: AC-038 (minimização OpenAPI), AC-206 (edição pendente), US-052 (critério para fatura vencida), AC-097 (serviço centralizado), AC-098 (vínculo com cliente) e AC-207 (preferência de lembretes).
+- Relatório final desta retomada: .spec/audit-rls.json. Relatório intermediário: .spec/audit-rls-intermediaria.json. Os relatórios anteriores e o histórico de sinais foram preservados.
+- Sem aplicação em agendamento_local, sem alteração de cadastros ou segredos locais, sem commit/push. Frontend limpo. Antes de iniciar a API com esta versão, provisionar a migration e as duas credenciais restritas conforme docs/POSTGRESQL_RLS.md.

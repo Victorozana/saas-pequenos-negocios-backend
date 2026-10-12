@@ -9,10 +9,13 @@ public class AgendamentoDbContext : DbContext
 {
     private readonly Agendamento.Api.Application.Tenancy.ITenantContext _tenantContext;
 
-    public AgendamentoDbContext(DbContextOptions<AgendamentoDbContext> options, Agendamento.Api.Application.Tenancy.ITenantContext tenantContext) : base(options)
+    public AgendamentoDbContext(DbContextOptions<AgendamentoDbContext> options, Agendamento.Api.Application.Tenancy.ITenantContext tenantContext, AdministrativeDatabaseScope? administrative = null) : base(options)
     {
         _tenantContext = tenantContext;
+        Administrative = administrative ?? new();
     }
+
+    internal AdministrativeDatabaseScope Administrative { get; }
 
     public DbSet<Tenant> Tenants { get; set; } = null!;
     public DbSet<TenantFiscalProfile> TenantFiscalProfiles { get; set; } = null!;
@@ -36,6 +39,7 @@ public class AgendamentoDbContext : DbContext
     {
         modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
 
+        modelBuilder.Entity<Agendamento.Api.Domain.Quotations.QuotationItem>().Property<Guid>("TenantId").IsRequired();
         foreach (var entityType in modelBuilder.Model.GetEntityTypes())
         {
             if (typeof(Agendamento.Domain.Common.ITenantOwned).IsAssignableFrom(entityType.ClrType))
@@ -45,6 +49,14 @@ public class AgendamentoDbContext : DbContext
             }
         }
 
+        foreach (var entity in modelBuilder.Model.GetEntityTypes().Where(e => !e.IsOwned() && e.FindProperty("TenantId") != null).ToList())
+        {
+            var builder = modelBuilder.Entity(entity.Name);
+            builder.Property<Guid>("TenantId").IsRequired().HasColumnName("tenant_id");
+            builder.HasIndex("TenantId");
+            if (!entity.GetForeignKeys().Any(f => f.PrincipalEntityType.ClrType == typeof(Tenant)))
+                builder.HasOne(typeof(Tenant)).WithMany().HasForeignKey("TenantId").OnDelete(DeleteBehavior.Restrict);
+        }
         base.OnModelCreating(modelBuilder);
     }
 

@@ -38,80 +38,94 @@
 </style>
 <main>
   <h1>Plano de execução — notificacoes-lembretes-whatsapp</h1>
-  <p class="sub">gerado por <code>onp-spec plano</code> em 2026-08-11 19:28 · regenere após mudar tasks.md</p>
+  <p class="sub">gerado por <code>onp-spec plano</code> em 2026-10-12 03:55 · regenere após mudar tasks.md</p>
   <div class="resumo">
-    <div><b>4</b> tarefa(s) em paralelo</div>
-    <div><b>4</b> faixa(s) · <b>2</b> onda(s)</div>
-    <div><b>0</b> sequencial(is)</div>
+    <div><b>10</b> tarefa(s), uma após a outra</div>
+    <div>modo <b>sequencial</b> (escolha do usuário)</div>
     <div>branch <code>spec/notificacoes-lembretes-whatsapp</code></div>
   </div>
-  
+
   <div class="executor">
     <h2>Como executar — via agente</h2>
     <p>Peça ao agente (Codex) para executar o plano. Ele roda:</p>
     <div><code id="cmd">bash .spec/features/notificacoes-lembretes-whatsapp/executar-tarefas.sh</code></div>
-    <p class="nota">Este arquivo é só visualização. Cada faixa roda <code>codex exec</code> num worktree próprio, com contexto limpo, modelo e esforço já definidos.
+    <p class="nota">Este arquivo é só visualização. Cada tarefa roda <code>codex exec</code> na árvore principal, uma após a outra, com contexto limpo e modelo/esforço já definidos.
     O gate final (verify + audit) roda sozinho; a execução fica em background e, a cada
     1 minuto, o agente posta no chat a <b>tabela de andamento</b>
     (<code>onp-spec resumo notificacoes-lembretes-whatsapp --tabela</code>) e o
     <b>resumo geral de andamento</b> (<code>onp-spec resumo notificacoes-lembretes-whatsapp</code>).</p>
   </div>
-  
+
+
     <section class="onda">
-      <h3>Onda 1 <small>faixa-1 ∥ faixa-2 ∥ faixa-3 — em paralelo, janelas limpas</small></h3>
-      <div class="grade">
-      <div class="faixa">
-        <h4>faixa-1 <small>branch <code>spec/notificacoes-lembretes-whatsapp-faixa-1</code> · worktree <code>../onp-worktrees/agendamento-notificacoes-lembretes-whatsapp-faixa-1</code></small></h4>
-        
+      <h3>Ordem de execução <small>uma tarefa após a outra, na árvore principal</small></h3>
+      <div class="grade"><div class="faixa">
         <div class="tarefa">
           <span class="tid">T-097</span>
           <span class="ttitulo">Serviço Abstrato e Entidades de Notificação</span>
           <span class="meta"><code>gpt-5.6-terra</code> · esforço <b>medium</b></span>
-          <span class="arquivos"><code>src/Agendamento.Api/Application/Notifications/INotificationService.cs</code> <code>src/Agendamento.Api/Domain/Notifications/NotificationRecord.cs</code> <code>src/Agendamento.Api/Infrastructure/Notifications/ConsoleNotificationService.cs</code></span>
+          <span class="arquivos"><code>src/Agendamento.Api/Infrastructure/Notifications/ICommunicationGateway.cs</code> <code>src/Agendamento.Api/Domain/Notifications/NotificationMessage.cs</code> <code>src/Agendamento.Api/Domain/Notifications/NotificationChannel.cs</code> <code>src/Agendamento.Api/Domain/Notifications/NotificationStatus.cs</code> <code>src/Agendamento.Api/Domain/Notifications/NotificationTemplate.cs</code> <code>src/Agendamento.Api/Infrastructure/Notifications/MockCommunicationGateway.cs</code> <code>src/Agendamento.Api/Infrastructure/Notifications/NotificationOutboxProcessor.cs</code></span>
         </div>
-      </div>
-      <div class="faixa">
-        <h4>faixa-2 <small>branch <code>spec/notificacoes-lembretes-whatsapp-faixa-2</code> · worktree <code>../onp-worktrees/agendamento-notificacoes-lembretes-whatsapp-faixa-2</code></small></h4>
-        
         <div class="tarefa">
           <span class="tid">T-098</span>
           <span class="ttitulo">Mapeamento EF Core de Notificações</span>
           <span class="meta"><code>gpt-5.6-terra</code> · esforço <b>medium</b></span>
-          <span class="arquivos"><code>src/Agendamento.Api/Infrastructure/Persistence/Configurations/NotificationRecordConfiguration.cs</code> <code>src/Agendamento.Api/Infrastructure/Persistence/AgendamentoDbContext.cs</code></span>
+          <span class="arquivos"><code>src/Agendamento.Api/Infrastructure/Persistence/Configurations/NotificationMessageConfiguration.cs</code> <code>src/Agendamento.Api/Infrastructure/Persistence/AgendamentoDbContext.cs</code></span>
         </div>
-      </div>
-      <div class="faixa">
-        <h4>faixa-3 <small>branch <code>spec/notificacoes-lembretes-whatsapp-faixa-3</code> · worktree <code>../onp-worktrees/agendamento-notificacoes-lembretes-whatsapp-faixa-3</code></small></h4>
-        
-        <div class="tarefa">
-          <span class="tid">T-099</span>
-          <span class="ttitulo">Integração de Notificação no Agendamento</span>
-          <span class="meta"><code>gpt-5.6-terra</code> · esforço <b>medium</b></span>
-          <span class="arquivos"><code>src/Agendamento.Api/Application/Appointments/CreateAppointment/CreateAppointmentHandler.cs</code></span>
-        </div>
-      </div></div>
-    </section>
-    <section class="onda">
-      <h3>Onda 2 <small>faixa-4 — em paralelo, janelas limpas</small></h3>
-      <div class="grade">
-      <div class="faixa">
-        <h4>faixa-4 <small>branch <code>spec/notificacoes-lembretes-whatsapp-faixa-4</code> · worktree <code>../onp-worktrees/agendamento-notificacoes-lembretes-whatsapp-faixa-4</code></small></h4>
-        
         <div class="tarefa">
           <span class="tid">T-100</span>
           <span class="ttitulo">Testes de Integração de Notificação</span>
           <span class="meta"><code>gpt-5.6-terra</code> · esforço <b>medium</b></span>
           <span class="arquivos"><code>tests/Agendamento.IntegrationTests/Features/NotificationTests.cs</code></span>
         </div>
-      </div></div>
+        <div class="tarefa">
+          <span class="tid">T-052</span>
+          <span class="ttitulo">Modelar Entidades de Notificação e Outbox (NotificationMessage, OutboxMessage)</span>
+          <span class="meta"><code>gpt-5.6-terra</code> · esforço <b>medium</b></span>
+          <span class="arquivos"><code>src/Agendamento.Api/Domain/Notifications/NotificationMessage.cs</code> <code>src/Agendamento.Api/Domain/Notifications/NotificationStatus.cs</code> <code>src/Agendamento.Api/Domain/Notifications/NotificationChannel.cs</code> <code>src/Agendamento.Api/Domain/Notifications/NotificationTemplate.cs</code></span>
+        </div>
+        <div class="tarefa">
+          <span class="tid">T-053</span>
+          <span class="ttitulo">Mapear Persistência EF Core e Outbox Pattern</span>
+          <span class="meta"><code>gpt-5.6-terra</code> · esforço <b>medium</b></span>
+          <span class="arquivos"><code>src/Agendamento.Api/Infrastructure/Persistence/AgendamentoDbContext.cs</code> <code>src/Agendamento.Api/Infrastructure/Persistence/Configurations/NotificationMessageConfiguration.cs</code></span>
+        </div>
+        <div class="tarefa">
+          <span class="tid">T-054</span>
+          <span class="ttitulo">Implementar Provedor de Envio de Mensagens e Dispatcher Background</span>
+          <span class="meta"><code>gpt-5.6-terra</code> · esforço <b>medium</b></span>
+          <span class="arquivos"><code>src/Agendamento.Api/Infrastructure/Notifications/ICommunicationGateway.cs</code> <code>src/Agendamento.Api/Infrastructure/Notifications/NotificationOutboxProcessor.cs</code></span>
+        </div>
+        <div class="tarefa">
+          <span class="tid">T-055</span>
+          <span class="ttitulo">Casos de Uso: Agendamento de Lembretes e Notificação de Orçamento</span>
+          <span class="meta"><code>gpt-5.6-terra</code> · esforço <b>medium</b></span>
+          <span class="arquivos"><code>src/Agendamento.Api/Application/Notifications/ScheduleAppointmentReminder/ScheduleAppointmentReminderCommand.cs</code> <code>src/Agendamento.Api/Application/Notifications/ScheduleAppointmentReminder/ScheduleAppointmentReminderHandler.cs</code> <code>src/Agendamento.Api/Application/Notifications/SendQuotationNotification/SendQuotationNotificationCommand.cs</code> <code>src/Agendamento.Api/Application/Notifications/SendQuotationNotification/SendQuotationNotificationHandler.cs</code></span>
+        </div>
+        <div class="tarefa">
+          <span class="tid">T-056</span>
+          <span class="ttitulo">Expor Endpoints Minimal API de Notificações e Histórico</span>
+          <span class="meta"><code>gpt-5.6-terra</code> · esforço <b>medium</b></span>
+          <span class="arquivos"><code>src/Agendamento.Api/Features/Notifications/NotificationEndpoints.cs</code> <code>src/Agendamento.Api/Program.cs</code></span>
+        </div>
+        <div class="tarefa">
+          <span class="tid">T-057</span>
+          <span class="ttitulo">Testes de Integração do Outbox Processor e Formatação de Mensagens</span>
+          <span class="meta"><code>gpt-5.6-terra</code> · esforço <b>medium</b></span>
+          <span class="arquivos"><code>tests/Agendamento.UnitTests/Notifications/NotificationDomainTests.cs</code> <code>tests/Agendamento.IntegrationTests/Notifications/NotificationApiTests.cs</code> <code>src/Agendamento.Api/Infrastructure/Notifications/MockCommunicationGateway.cs</code></span>
+        </div>
+        <div class="tarefa">
+          <span class="tid">T-104</span>
+          <span class="ttitulo">Implementar preferência de lembretes por cliente</span>
+          <span class="meta"><code>gpt-5.6-terra</code> · esforço <b>medium</b></span>
+          <span class="arquivos"><code>src/Agendamento.Api/Domain/Customers/Customer.cs</code> <code>src/Agendamento.Api/Features/Customers/CustomerEndpoints.cs</code> <code>src/Agendamento.Api/Application/Appointments/CreateAppointment/CreateAppointmentHandler.cs</code> <code>tests/Agendamento.IntegrationTests/Features/NotificationTests.cs</code></span>
+        </div></div></div>
     </section>
-  
   <section class="onda">
     <h3>Branches e commits</h3>
     <ol>
       <li>tudo parte da branch de trabalho <code>spec/notificacoes-lembretes-whatsapp</code></li>
-      <li>1 faixa = 1 branch + 1 worktree; 1 tarefa = 1 commit <code>T-xxx notificacoes-lembretes-whatsapp: título</code></li>
-      <li>merge <code>--no-ff</code> por faixa, na ordem; conflito interrompe e pede você</li>
+      <li>as tarefas rodam nela mesma, na ordem; 1 tarefa = 1 commit <code>T-xxx notificacoes-lembretes-whatsapp: título</code></li>
       <li>gate final: <code>onp-spec verify notificacoes-lembretes-whatsapp</code> + <code>onp-spec audit --ci</code> — exit 0 ou não está pronto</li>
     </ol>
   </section>

@@ -1,26 +1,25 @@
 # Plano de execução — gestao-financeira-contas
 
-> gerado por `onp-spec plano` em 2026-10-12 00:26 — NÃO edite à mão;
+> gerado por `onp-spec plano` em 2026-10-12 03:55 — NÃO edite à mão;
 > mudou tasks.md ou a config? Regenere: `onp-spec plano gestao-financeira-contas --sequencial`
 
 ## Resumo — o que vai acontecer
 
-- **modo SEQUENCIAL (escolha do usuário)**: 4 tarefa(s) pendente(s), UMA APÓS A OUTRA, na árvore principal
+- **modo SEQUENCIAL (escolha do usuário)**: 7 tarefa(s) pendente(s), UMA APÓS A OUTRA, na árvore principal (4 já concluída(s): T-093, T-094, T-095, T-096)
 - sem worktrees e sem paralelismo — cada tarefa roda numa janela de contexto limpa, na ordem do tasks.md
 - tudo acontece na branch de trabalho `spec/gestao-financeira-contas`; levar para a main é decisão sua
-
-### Avisos
-
-- ⚠ T-095 está [em-andamento] — entrou no plano; se já houver trabalho local, commite antes de executar
 
 ## Ordem de execução (uma tarefa após a outra)
 
 | tarefa | título | modelo | esforço |
 |---|---|---|---|
-| T-093 | Entidades de Domínio para Financeiro | `gpt-5.6-terra` | medium |
-| T-094 | Mapeamento EF Core para Financeiro | `gpt-5.6-terra` | medium |
-| T-095 | Caso de Uso e Endpoints de Financeiro | `gpt-5.6-terra` | medium |
-| T-096 | Testes de Integração para Financeiro | `gpt-5.6-terra` | medium |
+| T-045 | Modelar Entidades Financeiras (FinancialTransaction, Receivable, Payable) | `gpt-5.6-terra` | medium |
+| T-046 | Configurar Persistência EF Core e Migrations Financeiras | `gpt-5.6-terra` | medium |
+| T-047 | Caso de Uso: Lançamento Automático de Títulos via Orçamento/OS | `gpt-5.6-terra` | medium |
+| T-048 | Caso de Uso: Registro de Liquidação / Baixa de Títulos | `gpt-5.6-terra` | medium |
+| T-049 | Casos de Uso: Gestão de Contas a Pagar e Extrato Financeiro | `gpt-5.6-terra` | medium |
+| T-050 | Expor Endpoints Minimal API Financeiros | `gpt-5.6-terra` | medium |
+| T-051 | Testes de Integração Financeira, Baixas Parciais e Isolamento RLS | `gpt-5.6-terra` | medium |
 
 ## Gestão de branches e commits
 

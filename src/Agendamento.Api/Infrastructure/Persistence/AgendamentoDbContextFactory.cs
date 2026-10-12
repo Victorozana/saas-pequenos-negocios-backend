@@ -12,7 +12,8 @@ public class AgendamentoDbContextFactory : IDesignTimeDbContextFactory<Agendamen
             .AddUserSecrets<AgendamentoDbContextFactory>()
             .AddEnvironmentVariables()
             .Build();
-        var connectionString = configuration.GetConnectionString("PostgreSql")
+        var connectionString = configuration.GetConnectionString("PostgreSqlMigration")
+            ?? configuration.GetConnectionString("PostgreSql")
             ?? throw new InvalidOperationException("Configure ConnectionStrings:PostgreSql nos segredos locais antes de aplicar migrations.");
         optionsBuilder.UseNpgsql(connectionString);
 

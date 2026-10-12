@@ -148,7 +148,8 @@ public sealed class TeamFinancialTestFactory : WebApplicationFactory<Program>
 {
     private readonly string? _connection;
     public TeamFinancialTestFactory() { }
-    internal TeamFinancialTestFactory(string connection) => _connection = connection;
+    internal TeamFinancialTestFactory(string connection, string? administrativeConnection = null) { _connection = connection; _administrativeConnection = administrativeConnection; }
+    private readonly string? _administrativeConnection;
     private readonly string _database=Guid.NewGuid().ToString();
     private readonly InMemoryDatabaseRoot _root=new();
     protected override void ConfigureWebHost(IWebHostBuilder builder)
@@ -156,6 +157,8 @@ public sealed class TeamFinancialTestFactory : WebApplicationFactory<Program>
         builder.UseEnvironment("Testing");
         builder.ConfigureAppConfiguration((_,configuration)=>configuration.AddInMemoryCollection(new Dictionary<string,string?> {
             ["Database:RequirePostgreSql"]="false",
+            ["ConnectionStrings:PostgreSql"]=_connection,
+            ["ConnectionStrings:PostgreSqlAdministrative"]=_administrativeConnection,
             ["Authentication:SigningKey"]=Convert.ToBase64String(System.Security.Cryptography.RandomNumberGenerator.GetBytes(32))
         }));
         builder.ConfigureServices(services=> {
@@ -165,6 +168,7 @@ public sealed class TeamFinancialTestFactory : WebApplicationFactory<Program>
                 if (_connection == null) options.UseInMemoryDatabase(_database,_root);
                 else options.UseNpgsql(_connection);
                 options.AddInterceptors(sp.GetRequiredService<TenantSaveChangesInterceptor>());
+                if (_connection != null) options.AddInterceptors(sp.GetRequiredService<TenantTransactionInterceptor>(), sp.GetRequiredService<TenantConnectionInterceptor>());
             });
             services.RemoveAll<IHostedService>();
         });
@@ -174,7 +178,11 @@ public sealed class TeamFinancialTestFactory : WebApplicationFactory<Program>
     {
         var options = new DbContextOptionsBuilder<AgendamentoDbContext>();
         if (_connection == null) options.UseInMemoryDatabase(_database,_root);
-        else options.UseNpgsql(_connection);
+        else {
+            options.UseNpgsql(_connection);
+            var context = new Tenant(tenant);
+            options.AddInterceptors(new TenantTransactionInterceptor(context, new AdministrativeDatabaseScope()), new TenantSaveChangesInterceptor(context));
+        }
         return new(options.Options,new Tenant(tenant));
     }
     public async Task<(HttpClient Client,Guid User,Guid Tenant)> Member(string role,List<string> permissions,Guid? tenantId=null)

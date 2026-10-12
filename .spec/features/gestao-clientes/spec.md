@@ -8,7 +8,7 @@ Esta feature permite que os assinantes do SaaS (marmorarias, pedreiros, carpinte
 
 ## User Stories (US)
 
-### US-017: Cadastrar Cliente Final (Pessoa Física ou Jurídica)
+### US-017 — Cadastrar Cliente Final (Pessoa Física ou Jurídica)
 Como prestador de serviço/pequeno negócio autenticado,
 Quero cadastrar um novo cliente informando CPF/CNPJ, nome/razão social, telefone (WhatsApp), e-mail e endereço de entrega/execução do serviço,
 Para que eu possa associar orçamentos, contratos e vendas a este cliente.
@@ -23,7 +23,7 @@ Para que eu possa associar orçamentos, contratos e vendas a este cliente.
 - **Quando** a criação é validada
 - **Então** o formato do documento deve ser validado (11 dígitos para CPF e 14 para CNPJ).
 
-### US-018: Listar e Buscar Clientes
+### US-018 — Listar e Buscar Clientes
 Como prestador de serviço autenticado,
 Quero pesquisar meus clientes por nome, CPF/CNPJ ou telefone,
 Para localizar rapidamente o contato e histórico de atendimento.
@@ -33,7 +33,7 @@ Para localizar rapidamente o contato e histórico de atendimento.
 - **Quando** a busca é executada informando filtro por nome, documento ou telefone
 - **Então** o sistema deve retornar os resultados paginados e filtrados.
 
-### US-019: Atualizar e Inativar Clientes
+### US-019 — Atualizar e Inativar Clientes
 Como prestador de serviço autenticado,
 Quero atualizar dados de contato/endereço e inativar clientes antigos,
 Para manter a base de dados organizada e atualizada.
@@ -42,3 +42,11 @@ Para manter a base de dados organizada e atualizada.
 - **Dado** um cliente pertencente a outro tenant
 - **Quando** um tenant tenta buscar ou alterar este cliente
 - **Então** a operação deve negar o acesso ou retornar nulo/404.
+
+## Suposições
+
+Nenhuma nova suposição nesta normalização; os requisitos existentes foram preservados.
+
+## Perguntas em aberto
+
+Nenhuma decisão de produto nova nesta normalização.

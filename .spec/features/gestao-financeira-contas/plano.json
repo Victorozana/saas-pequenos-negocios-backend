@@ -1,12 +1,12 @@
 {
-  "runId": "saas-pequenos-negocios-backend-gestao-financeira-contas-mv4ihbfn",
+  "runId": "saas-pequenos-negocios-backend-gestao-financeira-contas-mv4pyu2g",
   "feature": "gestao-financeira-contas",
   "agent": "codex",
   "modo": "sequencial",
   "paralelizar": null,
   "modeloForcado": null,
   "esforcoForcado": null,
-  "geradoEm": "2026-10-12 00:26",
+  "geradoEm": "2026-10-12 03:55",
   "branchTrabalho": "spec/gestao-financeira-contas",
   "baseDir": ".spec/features/gestao-financeira-contas",
   "specDir": ".spec",
@@ -16,86 +16,126 @@
   "faixas": [],
   "sequenciais": [
     {
-      "id": "T-093",
-      "titulo": "Entidades de Domínio para Financeiro",
+      "id": "T-045",
+      "titulo": "Modelar Entidades Financeiras (FinancialTransaction, Receivable, Payable)",
       "modelo": "gpt-5.6-terra",
       "esforco": "medium",
       "arquivos": [
-        "src/Agendamento.Api/Domain/Financial/PayableTitle.cs",
         "src/Agendamento.Api/Domain/Financial/ReceivableTitle.cs",
+        "src/Agendamento.Api/Domain/Financial/PayableTitle.cs",
         "src/Agendamento.Api/Domain/Financial/PaymentEntry.cs",
-        "src/Agendamento.Api/Domain/Financial/PaymentMethod.cs",
-        "src/Agendamento.Api/Domain/Financial/TransactionStatus.cs"
+        "src/Agendamento.Api/Domain/Financial/TransactionStatus.cs",
+        "src/Agendamento.Api/Domain/Financial/PaymentMethod.cs"
       ],
       "refs": [
-        "US-048",
-        "US-049",
-        "AC-094",
-        "AC-095",
-        "AC-096"
+        "US-029",
+        "US-030",
+        "US-031",
+        "AC-055",
+        "AC-057",
+        "AC-058"
       ]
     },
     {
-      "id": "T-094",
-      "titulo": "Mapeamento EF Core para Financeiro",
+      "id": "T-046",
+      "titulo": "Configurar Persistência EF Core e Migrations Financeiras",
       "modelo": "gpt-5.6-terra",
       "esforco": "medium",
       "arquivos": [
-        "src/Agendamento.Api/Infrastructure/Persistence/Configurations/PayableTitleConfiguration.cs",
+        "src/Agendamento.Api/Infrastructure/Persistence/AgendamentoDbContext.cs",
         "src/Agendamento.Api/Infrastructure/Persistence/Configurations/ReceivableTitleConfiguration.cs",
-        "src/Agendamento.Api/Infrastructure/Persistence/AgendamentoDbContext.cs"
+        "src/Agendamento.Api/Infrastructure/Persistence/Configurations/PayableTitleConfiguration.cs"
       ],
       "refs": [
-        "US-048",
-        "AC-096"
+        "US-029",
+        "US-031",
+        "AC-055"
       ]
     },
     {
-      "id": "T-095",
-      "titulo": "Caso de Uso e Endpoints de Financeiro",
+      "id": "T-047",
+      "titulo": "Caso de Uso: Lançamento Automático de Títulos via Orçamento/OS",
+      "modelo": "gpt-5.6-terra",
+      "esforco": "medium",
+      "arquivos": [
+        "src/Agendamento.Api/Application/Financial/GenerateReceivablesFromQuotation/GenerateReceivablesFromQuotationHandler.cs"
+      ],
+      "refs": [
+        "US-029",
+        "AC-056"
+      ]
+    },
+    {
+      "id": "T-048",
+      "titulo": "Caso de Uso: Registro de Liquidação / Baixa de Títulos",
+      "modelo": "gpt-5.6-terra",
+      "esforco": "medium",
+      "arquivos": [
+        "src/Agendamento.Api/Application/Financial/RegisterPayment/RegisterPaymentHandler.cs"
+      ],
+      "refs": [
+        "US-030",
+        "AC-057"
+      ]
+    },
+    {
+      "id": "T-049",
+      "titulo": "Casos de Uso: Gestão de Contas a Pagar e Extrato Financeiro",
+      "modelo": "gpt-5.6-terra",
+      "esforco": "medium",
+      "arquivos": [
+        "src/Agendamento.Api/Application/Financial/CreatePayable/CreatePayableHandler.cs",
+        "src/Agendamento.Api/Application/Financial/GetFinancialStatement/GetFinancialStatementHandler.cs"
+      ],
+      "refs": [
+        "US-031",
+        "US-032",
+        "AC-058",
+        "AC-059"
+      ]
+    },
+    {
+      "id": "T-050",
+      "titulo": "Expor Endpoints Minimal API Financeiros",
       "modelo": "gpt-5.6-terra",
       "esforco": "medium",
       "arquivos": [
         "src/Agendamento.Api/Features/Financial/FinancialEndpoints.cs",
-        "src/Agendamento.Api/Program.cs",
-        "src/Agendamento.Api/Application/Quotations/UpdateQuotationStatus/UpdateQuotationStatusHandler.cs",
-        "src/Agendamento.Api/Application/WorkOrders/UpdateWorkOrderStatus/UpdateWorkOrderStatusHandler.cs",
-        "src/Agendamento.Api/Application/Financial/GetFinancialStatement/GetFinancialStatementHandler.cs",
-        "src/Agendamento.Api/Application/Financial/RegisterPayment/RegisterPaymentHandler.cs",
-        "src/Agendamento.Api/Application/Financial/GenerateReceivablesFromQuotation/GenerateReceivablesFromQuotationHandler.cs",
-        "src/Agendamento.Api/Application/Financial/CreatePayable/CreatePayableHandler.cs"
+        "src/Agendamento.Api/Program.cs"
       ],
       "refs": [
-        "US-048",
-        "US-049",
-        "US-050",
-        "AC-094",
-        "AC-095",
-        "AC-096"
+        "US-029",
+        "US-030",
+        "US-031",
+        "US-032",
+        "AC-055",
+        "AC-059"
       ]
     },
     {
-      "id": "T-096",
-      "titulo": "Testes de Integração para Financeiro",
+      "id": "T-051",
+      "titulo": "Testes de Integração Financeira, Baixas Parciais e Isolamento RLS",
       "modelo": "gpt-5.6-terra",
       "esforco": "medium",
       "arquivos": [
-        "tests/Agendamento.IntegrationTests/Financial/FinancialApiTests.cs",
-        "tests/Agendamento.IntegrationTests/Financial/FinancialIsolationTests.cs",
         "tests/Agendamento.UnitTests/Financial/FinancialDomainTests.cs",
-        "tests/Agendamento.IntegrationTests/Features/TeamFinancialHttpTests.cs",
-        "scripts/verify-spec.ps1",
-        "Directory.Packages.props"
+        "tests/Agendamento.IntegrationTests/Financial/FinancialApiTests.cs",
+        "tests/Agendamento.IntegrationTests/Financial/FinancialIsolationTests.cs"
       ],
       "refs": [
-        "AC-094",
-        "AC-095",
-        "AC-096"
+        "AC-055",
+        "AC-056",
+        "AC-057",
+        "AC-058",
+        "AC-059"
       ]
     }
   ],
-  "concluidas": [],
-  "avisos": [
-    "T-095 está [em-andamento] — entrou no plano; se já houver trabalho local, commite antes de executar"
-  ]
+  "concluidas": [
+    "T-093",
+    "T-094",
+    "T-095",
+    "T-096"
+  ],
+  "avisos": []
 }

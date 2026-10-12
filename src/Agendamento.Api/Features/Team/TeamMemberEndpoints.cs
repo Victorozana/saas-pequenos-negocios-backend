@@ -58,6 +58,7 @@ public static class TeamMemberEndpoints
         {
             if (string.IsNullOrWhiteSpace(request.Token) || string.IsNullOrWhiteSpace(request.Password) || request.Password.Length < 12)
                 return Results.Problem(statusCode:400,title:"Informe um convite válido e uma senha com pelo menos 12 caracteres.");
+        using var administrative = db.Administrative.Enter();
             var invitation = await db.TeamInvitations.IgnoreQueryFilters().FirstOrDefaultAsync(i=>i.Token == request.Token,ct);
             if (invitation == null || invitation.Status != TeamInvitationStatus.Pending || invitation.ExpiresAtUtc <= DateTimeOffset.UtcNow)
                 return Results.Problem(statusCode:400,title:"Convite inválido, expirado ou já utilizado.");

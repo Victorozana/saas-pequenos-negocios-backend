@@ -38,90 +38,52 @@
 </style>
 <main>
   <h1>Plano de execução — isolamento-multitenancy</h1>
-  <p class="sub">gerado por <code>onp-spec plano</code> em 2026-08-01 18:48 · regenere após mudar tasks.md</p>
+  <p class="sub">gerado por <code>onp-spec plano</code> em 2026-10-12 03:55 · regenere após mudar tasks.md</p>
   <div class="resumo">
-    <div><b>5</b> tarefa(s) em paralelo</div>
-    <div><b>5</b> faixa(s) · <b>2</b> onda(s)</div>
-    <div><b>0</b> sequencial(is)</div>
+    <div><b>3</b> tarefa(s), uma após a outra</div>
+    <div>modo <b>sequencial</b> (escolha do usuário)</div>
     <div>branch <code>spec/isolamento-multitenancy</code></div>
   </div>
-  
+
   <div class="executor">
     <h2>Como executar — via agente</h2>
     <p>Peça ao agente (Codex) para executar o plano. Ele roda:</p>
     <div><code id="cmd">bash .spec/features/isolamento-multitenancy/executar-tarefas.sh</code></div>
-    <p class="nota">Este arquivo é só visualização. Cada faixa roda <code>codex exec</code> num worktree próprio, com contexto limpo, modelo e esforço já definidos.
+    <p class="nota">Este arquivo é só visualização. Cada tarefa roda <code>codex exec</code> na árvore principal, uma após a outra, com contexto limpo e modelo/esforço já definidos.
     O gate final (verify + audit) roda sozinho; a execução fica em background e, a cada
     1 minuto, o agente posta no chat a <b>tabela de andamento</b>
     (<code>onp-spec resumo isolamento-multitenancy --tabela</code>) e o
     <b>resumo geral de andamento</b> (<code>onp-spec resumo isolamento-multitenancy</code>).</p>
   </div>
-  
+
+
     <section class="onda">
-      <h3>Onda 1 <small>faixa-1 ∥ faixa-2 ∥ faixa-3 — em paralelo, janelas limpas</small></h3>
-      <div class="grade">
-      <div class="faixa">
-        <h4>faixa-1 <small>branch <code>spec/isolamento-multitenancy-faixa-1</code> · worktree <code>../onp-worktrees/agendamento-isolamento-multitenancy-faixa-1</code></small></h4>
-        
-        <div class="tarefa">
-          <span class="tid">T-017</span>
-          <span class="ttitulo">Resolver contexto de tenant autenticado</span>
-          <span class="meta"><code>gpt-5.6-terra</code> · esforço <b>medium</b></span>
-          <span class="arquivos"><code>src/Agendamento.Api/Application/Tenancy/ITenantContext.cs</code> <code>src/Agendamento.Api/Infrastructure/Tenancy/HttpTenantContext.cs</code> <code>src/Agendamento.Api/Infrastructure/Tenancy/TenantContextMiddleware.cs</code> <code>tests/Agendamento.IntegrationTests/Tenancy/TenantContextTests.cs</code></span>
-        </div>
-      </div>
-      <div class="faixa">
-        <h4>faixa-2 <small>branch <code>spec/isolamento-multitenancy-faixa-2</code> · worktree <code>../onp-worktrees/agendamento-isolamento-multitenancy-faixa-2</code></small></h4>
-        
-        <div class="tarefa">
-          <span class="tid">T-018</span>
-          <span class="ttitulo">Aplicar filtros e guarda de gravação do EF Core</span>
-          <span class="meta"><code>gpt-5.6-terra</code> · esforço <b>medium</b></span>
-          <span class="arquivos"><code>src/Agendamento.Api/Domain/Common/ITenantOwned.cs</code> <code>src/Agendamento.Api/Infrastructure/Persistence/AgendamentoDbContext.cs</code> <code>src/Agendamento.Api/Infrastructure/Persistence/TenantSaveChangesInterceptor.cs</code> <code>tests/Agendamento.IntegrationTests/Tenancy/EfTenantIsolationTests.cs</code></span>
-        </div>
-      </div>
-      <div class="faixa">
-        <h4>faixa-3 <small>branch <code>spec/isolamento-multitenancy-faixa-3</code> · worktree <code>../onp-worktrees/agendamento-isolamento-multitenancy-faixa-3</code></small></h4>
-        
+      <h3>Ordem de execução <small>uma tarefa após a outra, na árvore principal</small></h3>
+      <div class="grade"><div class="faixa">
         <div class="tarefa">
           <span class="tid">T-019</span>
           <span class="ttitulo">Criar papel, contexto transacional e policies RLS</span>
           <span class="meta"><code>gpt-5.6-terra</code> · esforço <b>medium</b></span>
-          <span class="arquivos"><code>src/Agendamento.Api/Infrastructure/Persistence/Migrations</code> <code>src/Agendamento.Api/Infrastructure/Persistence/TenantTransactionInterceptor.cs</code> <code>src/Agendamento.Api/Infrastructure/Persistence/Sql/TenantRls.sql</code> <code>tests/Agendamento.IntegrationTests/Tenancy/PostgreSqlRlsTests.cs</code></span>
+          <span class="arquivos"><code>src/Agendamento.Api/Infrastructure/Persistence/Migrations/20260807002238_InitialTenant.cs</code> <code>src/Agendamento.Api/Infrastructure/Persistence/Migrations/20260807002238_InitialTenant.Designer.cs</code> <code>src/Agendamento.Api/Infrastructure/Persistence/Migrations/20260807010000_AddRowLevelSecurity.cs</code> <code>src/Agendamento.Api/Infrastructure/Persistence/Migrations/20260807225823_AddCustomerTable.cs</code> <code>src/Agendamento.Api/Infrastructure/Persistence/Migrations/20260807225823_AddCustomerTable.Designer.cs</code> <code>src/Agendamento.Api/Infrastructure/Persistence/Migrations/20260807231536_AddQuotationsAndServices.cs</code> <code>src/Agendamento.Api/Infrastructure/Persistence/Migrations/20260807231536_AddQuotationsAndServices.Designer.cs</code> <code>src/Agendamento.Api/Infrastructure/Persistence/Migrations/20260808001400_AddWorkOrdersAndAppointments.cs</code> <code>src/Agendamento.Api/Infrastructure/Persistence/Migrations/20260808001400_AddWorkOrdersAndAppointments.Designer.cs</code> <code>src/Agendamento.Api/Infrastructure/Persistence/Migrations/20260808005011_AddFinancialTables.cs</code> <code>src/Agendamento.Api/Infrastructure/Persistence/Migrations/20260808005011_AddFinancialTables.Designer.cs</code> <code>src/Agendamento.Api/Infrastructure/Persistence/Migrations/20260809234023_AddNotificationModule.cs</code> <code>src/Agendamento.Api/Infrastructure/Persistence/Migrations/20260809234023_AddNotificationModule.Designer.cs</code> <code>src/Agendamento.Api/Infrastructure/Persistence/Migrations/20260810001025_AddBillingAndSubscriptions.cs</code> <code>src/Agendamento.Api/Infrastructure/Persistence/Migrations/20260810001025_AddBillingAndSubscriptions.Designer.cs</code> <code>src/Agendamento.Api/Infrastructure/Persistence/Migrations/20260810231913_UpdateNotificationsBackoff.cs</code> <code>src/Agendamento.Api/Infrastructure/Persistence/Migrations/20260810231913_UpdateNotificationsBackoff.Designer.cs</code> <code>src/Agendamento.Api/Infrastructure/Persistence/Migrations/20260811235746_AddEmailVerificationTokens.cs</code> <code>src/Agendamento.Api/Infrastructure/Persistence/Migrations/20260811235746_AddEmailVerificationTokens.Designer.cs</code> <code>src/Agendamento.Api/Infrastructure/Persistence/Migrations/20261012002349_AddActiveTeamMembership.cs</code> <code>src/Agendamento.Api/Infrastructure/Persistence/Migrations/20261012002349_AddActiveTeamMembership.Designer.cs</code> <code>src/Agendamento.Api/Infrastructure/Persistence/Migrations/AgendamentoDbContextModelSnapshot.cs</code> <code>src/Agendamento.Api/Infrastructure/Persistence/TenantTransactionInterceptor.cs</code> <code>src/Agendamento.Api/Infrastructure/Persistence/Sql/TenantRls.sql</code> <code>tests/Agendamento.IntegrationTests/Tenancy/PostgreSqlRlsTests.cs</code> <code>src/Agendamento.Api/Infrastructure/Persistence/UnitOfWork.cs</code></span>
         </div>
-      </div></div>
-    </section>
-    <section class="onda">
-      <h3>Onda 2 <small>faixa-4 ∥ faixa-5 — em paralelo, janelas limpas</small></h3>
-      <div class="grade">
-      <div class="faixa">
-        <h4>faixa-4 <small>branch <code>spec/isolamento-multitenancy-faixa-4</code> · worktree <code>../onp-worktrees/agendamento-isolamento-multitenancy-faixa-4</code></small></h4>
-        
         <div class="tarefa">
           <span class="tid">T-020</span>
           <span class="ttitulo">Provar isolamento completo entre dois tenants</span>
           <span class="meta"><code>gpt-5.6-terra</code> · esforço <b>medium</b></span>
           <span class="arquivos"><code>tests/Agendamento.IntegrationTests/Tenancy/CrossTenantIsolationTests.cs</code></span>
         </div>
-      </div>
-      <div class="faixa">
-        <h4>faixa-5 <small>branch <code>spec/isolamento-multitenancy-faixa-5</code> · worktree <code>../onp-worktrees/agendamento-isolamento-multitenancy-faixa-5</code></small></h4>
-        
         <div class="tarefa">
           <span class="tid">T-021</span>
           <span class="ttitulo">Impedir migration tenant-owned desprotegida</span>
           <span class="meta"><code>gpt-5.6-terra</code> · esforço <b>medium</b></span>
           <span class="arquivos"><code>tests/Agendamento.ArchitectureTests/Tenancy/TenantOwnedMigrationTests.cs</code></span>
-        </div>
-      </div></div>
+        </div></div></div>
     </section>
-  
   <section class="onda">
     <h3>Branches e commits</h3>
     <ol>
       <li>tudo parte da branch de trabalho <code>spec/isolamento-multitenancy</code></li>
-      <li>1 faixa = 1 branch + 1 worktree; 1 tarefa = 1 commit <code>T-xxx isolamento-multitenancy: título</code></li>
-      <li>merge <code>--no-ff</code> por faixa, na ordem; conflito interrompe e pede você</li>
+      <li>as tarefas rodam nela mesma, na ordem; 1 tarefa = 1 commit <code>T-xxx isolamento-multitenancy: título</code></li>
       <li>gate final: <code>onp-spec verify isolamento-multitenancy</code> + <code>onp-spec audit --ci</code> — exit 0 ou não está pronto</li>
     </ol>
   </section>

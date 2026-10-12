@@ -37,6 +37,7 @@ public class RegisterTenantHandler
 
     public async Task<string> HandleAsync(RegisterTenantCommand command, CancellationToken cancellationToken = default)
     {
+        using var administrative = _db.Administrative.Enter();
         if (string.IsNullOrWhiteSpace(command.IdempotencyKey))
             throw new ArgumentException("Idempotency-Key é obrigatória.");
 

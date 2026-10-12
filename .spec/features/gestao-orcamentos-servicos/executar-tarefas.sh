@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# executar-tarefas.sh — gerado por `onp-spec plano gestao-orcamentos-servicos` em 2026-08-11 18:10
+# executar-tarefas.sh — gerado por `onp-spec plano gestao-orcamentos-servicos` em 2026-10-12 03:55
 # NÃO edite à mão: mudou tasks.md ou a config, regenere o plano.
 #
 # uso:
@@ -14,7 +14,7 @@
 set -u
 set -o pipefail
 
-RUN_ID='agendamento-gestao-orcamentos-servicos-msoz7ugd'
+RUN_ID='saas-pequenos-negocios-backend-gestao-orcamentos-servicos-mv4pyuoj'
 FEATURE='gestao-orcamentos-servicos'
 BASE_BRANCH='spec/gestao-orcamentos-servicos'
 ENGINE='.agents/skills/onp-spec-driven/scripts/onp-spec.mjs'
@@ -65,8 +65,8 @@ preparar_ambiente() {
     info "branch de trabalho: $BASE_BRANCH (a partir de $ATUAL)"
   fi
   git worktree prune
-  LOG_DIR="$(dirname "$TOPLEVEL")/onp-worktrees/agendamento-gestao-orcamentos-servicos-logs"
-  WT_BASE="$(dirname "$TOPLEVEL")/onp-worktrees/agendamento-gestao-orcamentos-servicos"
+  LOG_DIR="$(dirname "$TOPLEVEL")/onp-worktrees/saas-pequenos-negocios-backend-gestao-orcamentos-servicos-logs"
+  WT_BASE="$(dirname "$TOPLEVEL")/onp-worktrees/saas-pequenos-negocios-backend-gestao-orcamentos-servicos"
   STREAMS_DIR="${ONP_SPEC_HOME:-$HOME/.onp-spec}/painel/streams/$RUN_ID"
   mkdir -p "$LOG_DIR" "$STREAMS_DIR"
 }
@@ -168,139 +168,420 @@ iniciar_resumos() {
   trap 'parar_resumos; node "$ENGINE" resumo "$FEATURE" --gravar >/dev/null 2>&1 || true' EXIT
 }
 
-# ── faixa-1: T-088 ──
-executar_faixa_1() {
-  local WT="$WT_BASE-faixa-1"
-  preparar_worktree 'faixa-1' 'spec/gestao-orcamentos-servicos-faixa-1' "$WT" || return 1
-  evento --tipo faixa --faixa 'faixa-1' --estado executando --tentativa "$(tentativa 'faixa-1')"
-  : > "$LOG_DIR/faixa-1.log"
-  (
-    cd "$WT" || exit 9
-    rodar_tarefa 'faixa-1' 'T-088' 'Você executa UMA tarefa da feature "gestao-orcamentos-servicos" (fluxo onp-spec, spec-anchored).
+# ── sequencial T-088 (ordem do tasks.md) ──
+executar_seq_T_088() {
+  info 'sequencial T-088 — Entidades de Domínio para Orçamentos e Serviços'
+  if rodar_tarefa seq 'T-088' 'Você executa UMA tarefa da feature "gestao-orcamentos-servicos" (fluxo onp-spec, spec-anchored).
 Leia primeiro: .spec/features/gestao-orcamentos-servicos/spec.md, .spec/features/gestao-orcamentos-servicos/tasks.md e .spec/constituicao.md.
 
 Sua tarefa (somente ela):
 T-088 — "Entidades de Domínio para Orçamentos e Serviços"
-  critérios/refs: AC-075 (Aceite de convite e definição de senha), AC-077
-  arquivos permitidos (e seus testes): src/Agendamento.Api/Domain/Quotations/Quotation.cs, src/Agendamento.Api/Domain/Quotations/QuotationStatus.cs, src/Agendamento.Api/Domain/Quotations/QuotationItem.cs
+  critérios/refs: AC-090 (Status inicial e soma dos serviços), AC-092 (Orçamentos são isolados entre empresas)
+  arquivos permitidos (e seus testes): src/Agendamento.Api/Domain/Quotations/Quotation.cs, src/Agendamento.Api/Domain/Quotations/QuotationStatus.cs, src/Agendamento.Api/Domain/Quotations/QuotationItem.cs, src/Agendamento.Api/Domain/Quotations/DepositInfo.cs, src/Agendamento.Api/Domain/Quotations/DepositType.cs
   mensagem de commit: "T-088 gestao-orcamentos-servicos: Entidades de Domínio para Orçamentos e Serviços"
 
 Regras inegociáveis:
 - Todo critério de aceite referenciado vira teste com @spec:AC-xxx no título.
 - NUNCA enfraqueça, pule (skip/todo) ou apague um teste para passar — teste pulado não é prova e o audit acusa.
-- Rode os testes localmente com `dotnet test tests/Agendamento.UnitTests/Agendamento.UnitTests.csproj --configuration Release && dotnet test tests/Agendamento.IntegrationTests/Agendamento.IntegrationTests.csproj --configuration Release` até passarem.
+- Rode os testes localmente com `powershell -ExecutionPolicy Bypass -File scripts/verify-spec.ps1` até passarem.
 - NÃO edite tasks.md, NÃO rode onp-spec verify/audit e NÃO toque em outras tarefas — o orquestrador cuida disso.
-- Ao final de CADA tarefa: `git add` só no que você tocou e um commit próprio.' 'gpt-5.6-terra' medium
-  ) >> "$LOG_DIR/faixa-1.log" 2>&1
-  local st=$?
-  mesclar_faixa 'faixa-1' 'spec/gestao-orcamentos-servicos-faixa-1' "$WT" "$st" || return 1
-  marcar_concluidas T-088
-  return 0
+- Ao final de CADA tarefa: `git add` só no que você tocou e um commit próprio.' 'gpt-5.6-terra' medium >> "$LOG_DIR/seq.log" 2>&1; then
+    # commit de segurança se o agente esqueceu (rastreabilidade > perfeição)
+    if [ -n "$(git status --porcelain)" ]; then
+      git add -A && git commit -q -m 'T-088 gestao-orcamentos-servicos: Entidades de Domínio para Orçamentos e Serviços (auto-commit do plano)'
+    fi
+    marcar_concluidas T-088
+    verde "✔ T-088 concluída"
+    return 0
+  fi
+  vermelho "✘ T-088 falhou (log: $LOG_DIR/seq.log)"
+  amarelo "  reexecute só ela: bash .spec/features/gestao-orcamentos-servicos/executar-tarefas.sh --seq T-088"
+  FALHAS="$FALHAS T-088"
+  return 1
 }
 
-# ── faixa-2: T-089 ──
-executar_faixa_2() {
-  local WT="$WT_BASE-faixa-2"
-  preparar_worktree 'faixa-2' 'spec/gestao-orcamentos-servicos-faixa-2' "$WT" || return 1
-  evento --tipo faixa --faixa 'faixa-2' --estado executando --tentativa "$(tentativa 'faixa-2')"
-  : > "$LOG_DIR/faixa-2.log"
-  (
-    cd "$WT" || exit 9
-    rodar_tarefa 'faixa-2' 'T-089' 'Você executa UMA tarefa da feature "gestao-orcamentos-servicos" (fluxo onp-spec, spec-anchored).
+# ── sequencial T-089 (ordem do tasks.md) ──
+executar_seq_T_089() {
+  info 'sequencial T-089 — Mapeamento EF Core para Orçamentos'
+  if rodar_tarefa seq 'T-089' 'Você executa UMA tarefa da feature "gestao-orcamentos-servicos" (fluxo onp-spec, spec-anchored).
 Leia primeiro: .spec/features/gestao-orcamentos-servicos/spec.md, .spec/features/gestao-orcamentos-servicos/tasks.md e .spec/constituicao.md.
 
 Sua tarefa (somente ela):
 T-089 — "Mapeamento EF Core para Orçamentos"
-  critérios/refs: AC-077
-  arquivos permitidos (e seus testes): src/Agendamento.Api/Infrastructure/Persistence/Configurations/QuotationConfiguration.cs, src/Agendamento.Api/Infrastructure/Persistence/Configurations/QuotationItemConfiguration.cs, src/Agendamento.Api/Infrastructure/Persistence/AgendamentoDbContext.cs
+  critérios/refs: AC-092 (Orçamentos são isolados entre empresas)
+  arquivos permitidos (e seus testes): src/Agendamento.Api/Infrastructure/Persistence/Configurations/QuotationConfiguration.cs, src/Agendamento.Api/Infrastructure/Persistence/AgendamentoDbContext.cs
   mensagem de commit: "T-089 gestao-orcamentos-servicos: Mapeamento EF Core para Orçamentos"
 
 Regras inegociáveis:
 - Todo critério de aceite referenciado vira teste com @spec:AC-xxx no título.
 - NUNCA enfraqueça, pule (skip/todo) ou apague um teste para passar — teste pulado não é prova e o audit acusa.
-- Rode os testes localmente com `dotnet test tests/Agendamento.UnitTests/Agendamento.UnitTests.csproj --configuration Release && dotnet test tests/Agendamento.IntegrationTests/Agendamento.IntegrationTests.csproj --configuration Release` até passarem.
+- Rode os testes localmente com `powershell -ExecutionPolicy Bypass -File scripts/verify-spec.ps1` até passarem.
 - NÃO edite tasks.md, NÃO rode onp-spec verify/audit e NÃO toque em outras tarefas — o orquestrador cuida disso.
-- Ao final de CADA tarefa: `git add` só no que você tocou e um commit próprio.' 'gpt-5.6-terra' medium
-  ) >> "$LOG_DIR/faixa-2.log" 2>&1
-  local st=$?
-  mesclar_faixa 'faixa-2' 'spec/gestao-orcamentos-servicos-faixa-2' "$WT" "$st" || return 1
-  marcar_concluidas T-089
-  return 0
+- Ao final de CADA tarefa: `git add` só no que você tocou e um commit próprio.' 'gpt-5.6-terra' medium >> "$LOG_DIR/seq.log" 2>&1; then
+    # commit de segurança se o agente esqueceu (rastreabilidade > perfeição)
+    if [ -n "$(git status --porcelain)" ]; then
+      git add -A && git commit -q -m 'T-089 gestao-orcamentos-servicos: Mapeamento EF Core para Orçamentos (auto-commit do plano)'
+    fi
+    marcar_concluidas T-089
+    verde "✔ T-089 concluída"
+    return 0
+  fi
+  vermelho "✘ T-089 falhou (log: $LOG_DIR/seq.log)"
+  amarelo "  reexecute só ela: bash .spec/features/gestao-orcamentos-servicos/executar-tarefas.sh --seq T-089"
+  FALHAS="$FALHAS T-089"
+  return 1
 }
 
-# ── faixa-3: T-090 T-091 ──
-executar_faixa_3() {
-  local WT="$WT_BASE-faixa-3"
-  preparar_worktree 'faixa-3' 'spec/gestao-orcamentos-servicos-faixa-3' "$WT" || return 1
-  evento --tipo faixa --faixa 'faixa-3' --estado executando --tentativa "$(tentativa 'faixa-3')"
-  : > "$LOG_DIR/faixa-3.log"
-  (
-    cd "$WT" || exit 9
-    rodar_tarefa 'faixa-3' 'T-090' 'Você executa UMA tarefa da feature "gestao-orcamentos-servicos" (fluxo onp-spec, spec-anchored).
+# ── sequencial T-090 (ordem do tasks.md) ──
+executar_seq_T_090() {
+  info 'sequencial T-090 — Endpoints de Gestão de Orçamentos'
+  if rodar_tarefa seq 'T-090' 'Você executa UMA tarefa da feature "gestao-orcamentos-servicos" (fluxo onp-spec, spec-anchored).
 Leia primeiro: .spec/features/gestao-orcamentos-servicos/spec.md, .spec/features/gestao-orcamentos-servicos/tasks.md e .spec/constituicao.md.
 
 Sua tarefa (somente ela):
 T-090 — "Endpoints de Gestão de Orçamentos"
-  critérios/refs: AC-075 (Aceite de convite e definição de senha), AC-077, AC-078
-  arquivos permitidos (e seus testes): src/Agendamento.Api/Features/Quotations/QuotationEndpoints.cs, src/Agendamento.Api/Program.cs
+  critérios/refs: AC-090 (Status inicial e soma dos serviços), AC-092 (Orçamentos são isolados entre empresas), AC-093 (Estados finais bloqueiam nova aprovação ou rejeição)
+  arquivos permitidos (e seus testes): src/Agendamento.Api/Features/Quotations/QuotationEndpoints.cs, src/Agendamento.Api/Program.cs, src/Agendamento.Api/Application/Quotations/GetQuotations/GetQuotationByIdHandler.cs, src/Agendamento.Api/Application/Quotations/GetQuotations/GetQuotationsHandler.cs, src/Agendamento.Api/Application/Quotations/GetQuotations/GetQuotationsQuery.cs, src/Agendamento.Api/Application/Quotations/UpdateQuotationStatus/UpdateQuotationStatusHandler.cs
   mensagem de commit: "T-090 gestao-orcamentos-servicos: Endpoints de Gestão de Orçamentos"
 
 Regras inegociáveis:
 - Todo critério de aceite referenciado vira teste com @spec:AC-xxx no título.
 - NUNCA enfraqueça, pule (skip/todo) ou apague um teste para passar — teste pulado não é prova e o audit acusa.
-- Rode os testes localmente com `dotnet test tests/Agendamento.UnitTests/Agendamento.UnitTests.csproj --configuration Release && dotnet test tests/Agendamento.IntegrationTests/Agendamento.IntegrationTests.csproj --configuration Release` até passarem.
+- Rode os testes localmente com `powershell -ExecutionPolicy Bypass -File scripts/verify-spec.ps1` até passarem.
 - NÃO edite tasks.md, NÃO rode onp-spec verify/audit e NÃO toque em outras tarefas — o orquestrador cuida disso.
-- Ao final de CADA tarefa: `git add` só no que você tocou e um commit próprio.' 'gpt-5.6-terra' medium &&
-    rodar_tarefa 'faixa-3' 'T-091' 'Você executa UMA tarefa da feature "gestao-orcamentos-servicos" (fluxo onp-spec, spec-anchored).
+- Ao final de CADA tarefa: `git add` só no que você tocou e um commit próprio.' 'gpt-5.6-terra' medium >> "$LOG_DIR/seq.log" 2>&1; then
+    # commit de segurança se o agente esqueceu (rastreabilidade > perfeição)
+    if [ -n "$(git status --porcelain)" ]; then
+      git add -A && git commit -q -m 'T-090 gestao-orcamentos-servicos: Endpoints de Gestão de Orçamentos (auto-commit do plano)'
+    fi
+    marcar_concluidas T-090
+    verde "✔ T-090 concluída"
+    return 0
+  fi
+  vermelho "✘ T-090 falhou (log: $LOG_DIR/seq.log)"
+  amarelo "  reexecute só ela: bash .spec/features/gestao-orcamentos-servicos/executar-tarefas.sh --seq T-090"
+  FALHAS="$FALHAS T-090"
+  return 1
+}
+
+# ── sequencial T-091 (ordem do tasks.md) ──
+executar_seq_T_091() {
+  info 'sequencial T-091 — Caso de Uso: Transformar Orçamento em O.S.'
+  if rodar_tarefa seq 'T-091' 'Você executa UMA tarefa da feature "gestao-orcamentos-servicos" (fluxo onp-spec, spec-anchored).
 Leia primeiro: .spec/features/gestao-orcamentos-servicos/spec.md, .spec/features/gestao-orcamentos-servicos/tasks.md e .spec/constituicao.md.
 
 Sua tarefa (somente ela):
 T-091 — "Caso de Uso: Transformar Orçamento em O.S."
-  critérios/refs: AC-076, AC-078
+  critérios/refs: AC-091 (Conversão exige aprovação), AC-093 (Estados finais bloqueiam nova aprovação ou rejeição)
   arquivos permitidos (e seus testes): src/Agendamento.Api/Application/WorkOrders/ConvertQuotationToWorkOrder/ConvertQuotationToWorkOrderHandler.cs, src/Agendamento.Api/Application/WorkOrders/ConvertQuotationToWorkOrder/ConvertQuotationToWorkOrderCommand.cs, src/Agendamento.Api/Features/Quotations/QuotationEndpoints.cs
   mensagem de commit: "T-091 gestao-orcamentos-servicos: Caso de Uso: Transformar Orçamento em O.S."
 
 Regras inegociáveis:
 - Todo critério de aceite referenciado vira teste com @spec:AC-xxx no título.
 - NUNCA enfraqueça, pule (skip/todo) ou apague um teste para passar — teste pulado não é prova e o audit acusa.
-- Rode os testes localmente com `dotnet test tests/Agendamento.UnitTests/Agendamento.UnitTests.csproj --configuration Release && dotnet test tests/Agendamento.IntegrationTests/Agendamento.IntegrationTests.csproj --configuration Release` até passarem.
+- Rode os testes localmente com `powershell -ExecutionPolicy Bypass -File scripts/verify-spec.ps1` até passarem.
 - NÃO edite tasks.md, NÃO rode onp-spec verify/audit e NÃO toque em outras tarefas — o orquestrador cuida disso.
-- Ao final de CADA tarefa: `git add` só no que você tocou e um commit próprio.' 'gpt-5.6-terra' medium
-  ) >> "$LOG_DIR/faixa-3.log" 2>&1
-  local st=$?
-  mesclar_faixa 'faixa-3' 'spec/gestao-orcamentos-servicos-faixa-3' "$WT" "$st" || return 1
-  marcar_concluidas T-090 T-091
-  return 0
+- Ao final de CADA tarefa: `git add` só no que você tocou e um commit próprio.' 'gpt-5.6-terra' medium >> "$LOG_DIR/seq.log" 2>&1; then
+    # commit de segurança se o agente esqueceu (rastreabilidade > perfeição)
+    if [ -n "$(git status --porcelain)" ]; then
+      git add -A && git commit -q -m 'T-091 gestao-orcamentos-servicos: Caso de Uso: Transformar Orçamento em O.S. (auto-commit do plano)'
+    fi
+    marcar_concluidas T-091
+    verde "✔ T-091 concluída"
+    return 0
+  fi
+  vermelho "✘ T-091 falhou (log: $LOG_DIR/seq.log)"
+  amarelo "  reexecute só ela: bash .spec/features/gestao-orcamentos-servicos/executar-tarefas.sh --seq T-091"
+  FALHAS="$FALHAS T-091"
+  return 1
 }
 
-# ── faixa-4: T-092 ──
-executar_faixa_4() {
-  local WT="$WT_BASE-faixa-4"
-  preparar_worktree 'faixa-4' 'spec/gestao-orcamentos-servicos-faixa-4' "$WT" || return 1
-  evento --tipo faixa --faixa 'faixa-4' --estado executando --tentativa "$(tentativa 'faixa-4')"
-  : > "$LOG_DIR/faixa-4.log"
-  (
-    cd "$WT" || exit 9
-    rodar_tarefa 'faixa-4' 'T-092' 'Você executa UMA tarefa da feature "gestao-orcamentos-servicos" (fluxo onp-spec, spec-anchored).
+# ── sequencial T-092 (ordem do tasks.md) ──
+executar_seq_T_092() {
+  info 'sequencial T-092 — Testes de Integração para Orçamentos'
+  if rodar_tarefa seq 'T-092' 'Você executa UMA tarefa da feature "gestao-orcamentos-servicos" (fluxo onp-spec, spec-anchored).
 Leia primeiro: .spec/features/gestao-orcamentos-servicos/spec.md, .spec/features/gestao-orcamentos-servicos/tasks.md e .spec/constituicao.md.
 
 Sua tarefa (somente ela):
 T-092 — "Testes de Integração para Orçamentos"
-  critérios/refs: AC-075 (Aceite de convite e definição de senha), AC-076, AC-077, AC-078
+  critérios/refs: AC-090 (Status inicial e soma dos serviços), AC-091 (Conversão exige aprovação), AC-092 (Orçamentos são isolados entre empresas), AC-093 (Estados finais bloqueiam nova aprovação ou rejeição)
   arquivos permitidos (e seus testes): tests/Agendamento.IntegrationTests/Features/QuotationTests.cs, tests/Agendamento.UnitTests/Quotations/QuotationDomainTests.cs
   mensagem de commit: "T-092 gestao-orcamentos-servicos: Testes de Integração para Orçamentos"
 
 Regras inegociáveis:
 - Todo critério de aceite referenciado vira teste com @spec:AC-xxx no título.
 - NUNCA enfraqueça, pule (skip/todo) ou apague um teste para passar — teste pulado não é prova e o audit acusa.
-- Rode os testes localmente com `dotnet test tests/Agendamento.UnitTests/Agendamento.UnitTests.csproj --configuration Release && dotnet test tests/Agendamento.IntegrationTests/Agendamento.IntegrationTests.csproj --configuration Release` até passarem.
+- Rode os testes localmente com `powershell -ExecutionPolicy Bypass -File scripts/verify-spec.ps1` até passarem.
 - NÃO edite tasks.md, NÃO rode onp-spec verify/audit e NÃO toque em outras tarefas — o orquestrador cuida disso.
-- Ao final de CADA tarefa: `git add` só no que você tocou e um commit próprio.' 'gpt-5.6-terra' medium
-  ) >> "$LOG_DIR/faixa-4.log" 2>&1
-  local st=$?
-  mesclar_faixa 'faixa-4' 'spec/gestao-orcamentos-servicos-faixa-4' "$WT" "$st" || return 1
-  marcar_concluidas T-092
-  return 0
+- Ao final de CADA tarefa: `git add` só no que você tocou e um commit próprio.' 'gpt-5.6-terra' medium >> "$LOG_DIR/seq.log" 2>&1; then
+    # commit de segurança se o agente esqueceu (rastreabilidade > perfeição)
+    if [ -n "$(git status --porcelain)" ]; then
+      git add -A && git commit -q -m 'T-092 gestao-orcamentos-servicos: Testes de Integração para Orçamentos (auto-commit do plano)'
+    fi
+    marcar_concluidas T-092
+    verde "✔ T-092 concluída"
+    return 0
+  fi
+  vermelho "✘ T-092 falhou (log: $LOG_DIR/seq.log)"
+  amarelo "  reexecute só ela: bash .spec/features/gestao-orcamentos-servicos/executar-tarefas.sh --seq T-092"
+  FALHAS="$FALHAS T-092"
+  return 1
+}
+
+# ── sequencial T-031 (ordem do tasks.md) ──
+executar_seq_T_031() {
+  info 'sequencial T-031 — Modelar Entidades do Catálogo de Serviços e Orçamentos'
+  if rodar_tarefa seq 'T-031' 'Você executa UMA tarefa da feature "gestao-orcamentos-servicos" (fluxo onp-spec, spec-anchored).
+Leia primeiro: .spec/features/gestao-orcamentos-servicos/spec.md, .spec/features/gestao-orcamentos-servicos/tasks.md e .spec/constituicao.md.
+
+Sua tarefa (somente ela):
+T-031 — "Modelar Entidades do Catálogo de Serviços e Orçamentos"
+  critérios/refs: AC-045 (Catálogo e orçamento pertencem ao tenant), AC-046 (Totais e composição da entrada são calculados)
+  arquivos permitidos (e seus testes): src/Agendamento.Api/Domain/Services/ServiceItem.cs, src/Agendamento.Api/Domain/Quotations/Quotation.cs, src/Agendamento.Api/Domain/Quotations/QuotationItem.cs, src/Agendamento.Api/Domain/Quotations/QuotationStatus.cs, src/Agendamento.Api/Domain/Quotations/DepositInfo.cs, src/Agendamento.Api/Domain/Quotations/DepositType.cs
+  mensagem de commit: "T-031 gestao-orcamentos-servicos: Modelar Entidades do Catálogo de Serviços e Orçamentos"
+
+Regras inegociáveis:
+- Todo critério de aceite referenciado vira teste com @spec:AC-xxx no título.
+- NUNCA enfraqueça, pule (skip/todo) ou apague um teste para passar — teste pulado não é prova e o audit acusa.
+- Rode os testes localmente com `powershell -ExecutionPolicy Bypass -File scripts/verify-spec.ps1` até passarem.
+- NÃO edite tasks.md, NÃO rode onp-spec verify/audit e NÃO toque em outras tarefas — o orquestrador cuida disso.
+- Ao final de CADA tarefa: `git add` só no que você tocou e um commit próprio.' 'gpt-5.6-terra' medium >> "$LOG_DIR/seq.log" 2>&1; then
+    # commit de segurança se o agente esqueceu (rastreabilidade > perfeição)
+    if [ -n "$(git status --porcelain)" ]; then
+      git add -A && git commit -q -m 'T-031 gestao-orcamentos-servicos: Modelar Entidades do Catálogo de Serviços e Orçamentos (auto-commit do plano)'
+    fi
+    marcar_concluidas T-031
+    verde "✔ T-031 concluída"
+    return 0
+  fi
+  vermelho "✘ T-031 falhou (log: $LOG_DIR/seq.log)"
+  amarelo "  reexecute só ela: bash .spec/features/gestao-orcamentos-servicos/executar-tarefas.sh --seq T-031"
+  FALHAS="$FALHAS T-031"
+  return 1
+}
+
+# ── sequencial T-032 (ordem do tasks.md) ──
+executar_seq_T_032() {
+  info 'sequencial T-032 — Mapear Persistência EF Core e Migrations'
+  if rodar_tarefa seq 'T-032' 'Você executa UMA tarefa da feature "gestao-orcamentos-servicos" (fluxo onp-spec, spec-anchored).
+Leia primeiro: .spec/features/gestao-orcamentos-servicos/spec.md, .spec/features/gestao-orcamentos-servicos/tasks.md e .spec/constituicao.md.
+
+Sua tarefa (somente ela):
+T-032 — "Mapear Persistência EF Core e Migrations"
+  critérios/refs: AC-045 (Catálogo e orçamento pertencem ao tenant)
+  arquivos permitidos (e seus testes): src/Agendamento.Api/Infrastructure/Persistence/AgendamentoDbContext.cs, src/Agendamento.Api/Infrastructure/Persistence/Configurations/ServiceItemConfiguration.cs, src/Agendamento.Api/Infrastructure/Persistence/Configurations/QuotationConfiguration.cs
+  mensagem de commit: "T-032 gestao-orcamentos-servicos: Mapear Persistência EF Core e Migrations"
+
+Regras inegociáveis:
+- Todo critério de aceite referenciado vira teste com @spec:AC-xxx no título.
+- NUNCA enfraqueça, pule (skip/todo) ou apague um teste para passar — teste pulado não é prova e o audit acusa.
+- Rode os testes localmente com `powershell -ExecutionPolicy Bypass -File scripts/verify-spec.ps1` até passarem.
+- NÃO edite tasks.md, NÃO rode onp-spec verify/audit e NÃO toque em outras tarefas — o orquestrador cuida disso.
+- Ao final de CADA tarefa: `git add` só no que você tocou e um commit próprio.' 'gpt-5.6-terra' medium >> "$LOG_DIR/seq.log" 2>&1; then
+    # commit de segurança se o agente esqueceu (rastreabilidade > perfeição)
+    if [ -n "$(git status --porcelain)" ]; then
+      git add -A && git commit -q -m 'T-032 gestao-orcamentos-servicos: Mapear Persistência EF Core e Migrations (auto-commit do plano)'
+    fi
+    marcar_concluidas T-032
+    verde "✔ T-032 concluída"
+    return 0
+  fi
+  vermelho "✘ T-032 falhou (log: $LOG_DIR/seq.log)"
+  amarelo "  reexecute só ela: bash .spec/features/gestao-orcamentos-servicos/executar-tarefas.sh --seq T-032"
+  FALHAS="$FALHAS T-032"
+  return 1
+}
+
+# ── sequencial T-033 (ordem do tasks.md) ──
+executar_seq_T_033() {
+  info 'sequencial T-033 — Orquestrar Casos de Uso do Catálogo de Serviços/Produtos'
+  if rodar_tarefa seq 'T-033' 'Você executa UMA tarefa da feature "gestao-orcamentos-servicos" (fluxo onp-spec, spec-anchored).
+Leia primeiro: .spec/features/gestao-orcamentos-servicos/spec.md, .spec/features/gestao-orcamentos-servicos/tasks.md e .spec/constituicao.md.
+
+Sua tarefa (somente ela):
+T-033 — "Orquestrar Casos de Uso do Catálogo de Serviços/Produtos"
+  critérios/refs: AC-045 (Catálogo e orçamento pertencem ao tenant)
+  arquivos permitidos (e seus testes): src/Agendamento.Api/Application/Services/CreateService/CreateServiceCommand.cs, src/Agendamento.Api/Application/Services/CreateService/CreateServiceHandler.cs, src/Agendamento.Api/Application/Services/GetServices/GetServiceByIdHandler.cs, src/Agendamento.Api/Application/Services/GetServices/GetServicesHandler.cs, src/Agendamento.Api/Application/Services/GetServices/GetServicesQuery.cs, src/Agendamento.Api/Application/Services/UpdateService/UpdateServiceCommand.cs, src/Agendamento.Api/Application/Services/UpdateService/UpdateServiceHandler.cs
+  mensagem de commit: "T-033 gestao-orcamentos-servicos: Orquestrar Casos de Uso do Catálogo de Serviços/Produtos"
+
+Regras inegociáveis:
+- Todo critério de aceite referenciado vira teste com @spec:AC-xxx no título.
+- NUNCA enfraqueça, pule (skip/todo) ou apague um teste para passar — teste pulado não é prova e o audit acusa.
+- Rode os testes localmente com `powershell -ExecutionPolicy Bypass -File scripts/verify-spec.ps1` até passarem.
+- NÃO edite tasks.md, NÃO rode onp-spec verify/audit e NÃO toque em outras tarefas — o orquestrador cuida disso.
+- Ao final de CADA tarefa: `git add` só no que você tocou e um commit próprio.' 'gpt-5.6-terra' medium >> "$LOG_DIR/seq.log" 2>&1; then
+    # commit de segurança se o agente esqueceu (rastreabilidade > perfeição)
+    if [ -n "$(git status --porcelain)" ]; then
+      git add -A && git commit -q -m 'T-033 gestao-orcamentos-servicos: Orquestrar Casos de Uso do Catálogo de Serviços/Produtos (auto-commit do plano)'
+    fi
+    marcar_concluidas T-033
+    verde "✔ T-033 concluída"
+    return 0
+  fi
+  vermelho "✘ T-033 falhou (log: $LOG_DIR/seq.log)"
+  amarelo "  reexecute só ela: bash .spec/features/gestao-orcamentos-servicos/executar-tarefas.sh --seq T-033"
+  FALHAS="$FALHAS T-033"
+  return 1
+}
+
+# ── sequencial T-034 (ordem do tasks.md) ──
+executar_seq_T_034() {
+  info 'sequencial T-034 — Orquestrar Casos de Uso da Gestão de Orçamentos'
+  if rodar_tarefa seq 'T-034' 'Você executa UMA tarefa da feature "gestao-orcamentos-servicos" (fluxo onp-spec, spec-anchored).
+Leia primeiro: .spec/features/gestao-orcamentos-servicos/spec.md, .spec/features/gestao-orcamentos-servicos/tasks.md e .spec/constituicao.md.
+
+Sua tarefa (somente ela):
+T-034 — "Orquestrar Casos de Uso da Gestão de Orçamentos"
+  critérios/refs: AC-045 (Catálogo e orçamento pertencem ao tenant), AC-046 (Totais e composição da entrada são calculados), AC-048 (Transições respeitam regras de negócio)
+  arquivos permitidos (e seus testes): src/Agendamento.Api/Application/Quotations/CreateQuotation/CreateQuotationCommand.cs, src/Agendamento.Api/Application/Quotations/CreateQuotation/CreateQuotationHandler.cs, src/Agendamento.Api/Application/Quotations/GetQuotations/GetQuotationByIdHandler.cs, src/Agendamento.Api/Application/Quotations/GetQuotations/GetQuotationsHandler.cs, src/Agendamento.Api/Application/Quotations/GetQuotations/GetQuotationsQuery.cs, src/Agendamento.Api/Application/Quotations/UpdateQuotationStatus/UpdateQuotationStatusHandler.cs
+  mensagem de commit: "T-034 gestao-orcamentos-servicos: Orquestrar Casos de Uso da Gestão de Orçamentos"
+
+Regras inegociáveis:
+- Todo critério de aceite referenciado vira teste com @spec:AC-xxx no título.
+- NUNCA enfraqueça, pule (skip/todo) ou apague um teste para passar — teste pulado não é prova e o audit acusa.
+- Rode os testes localmente com `powershell -ExecutionPolicy Bypass -File scripts/verify-spec.ps1` até passarem.
+- NÃO edite tasks.md, NÃO rode onp-spec verify/audit e NÃO toque em outras tarefas — o orquestrador cuida disso.
+- Ao final de CADA tarefa: `git add` só no que você tocou e um commit próprio.' 'gpt-5.6-terra' medium >> "$LOG_DIR/seq.log" 2>&1; then
+    # commit de segurança se o agente esqueceu (rastreabilidade > perfeição)
+    if [ -n "$(git status --porcelain)" ]; then
+      git add -A && git commit -q -m 'T-034 gestao-orcamentos-servicos: Orquestrar Casos de Uso da Gestão de Orçamentos (auto-commit do plano)'
+    fi
+    marcar_concluidas T-034
+    verde "✔ T-034 concluída"
+    return 0
+  fi
+  vermelho "✘ T-034 falhou (log: $LOG_DIR/seq.log)"
+  amarelo "  reexecute só ela: bash .spec/features/gestao-orcamentos-servicos/executar-tarefas.sh --seq T-034"
+  FALHAS="$FALHAS T-034"
+  return 1
+}
+
+# ── sequencial T-035 (ordem do tasks.md) ──
+executar_seq_T_035() {
+  info 'sequencial T-035 — Implementar Gerador de Exportação de Orçamento em PDF'
+  if rodar_tarefa seq 'T-035' 'Você executa UMA tarefa da feature "gestao-orcamentos-servicos" (fluxo onp-spec, spec-anchored).
+Leia primeiro: .spec/features/gestao-orcamentos-servicos/spec.md, .spec/features/gestao-orcamentos-servicos/tasks.md e .spec/constituicao.md.
+
+Sua tarefa (somente ela):
+T-035 — "Implementar Gerador de Exportação de Orçamento em PDF"
+  critérios/refs: AC-047 (PDF entregue por download privado)
+  arquivos permitidos (e seus testes): src/Agendamento.Api/Application/Quotations/ExportPdf/IQuotationPdfGenerator.cs, src/Agendamento.Api/Infrastructure/Pdf/QuestPdfQuotationGenerator.cs
+  mensagem de commit: "T-035 gestao-orcamentos-servicos: Implementar Gerador de Exportação de Orçamento em PDF"
+
+Regras inegociáveis:
+- Todo critério de aceite referenciado vira teste com @spec:AC-xxx no título.
+- NUNCA enfraqueça, pule (skip/todo) ou apague um teste para passar — teste pulado não é prova e o audit acusa.
+- Rode os testes localmente com `powershell -ExecutionPolicy Bypass -File scripts/verify-spec.ps1` até passarem.
+- NÃO edite tasks.md, NÃO rode onp-spec verify/audit e NÃO toque em outras tarefas — o orquestrador cuida disso.
+- Ao final de CADA tarefa: `git add` só no que você tocou e um commit próprio.' 'gpt-5.6-terra' medium >> "$LOG_DIR/seq.log" 2>&1; then
+    # commit de segurança se o agente esqueceu (rastreabilidade > perfeição)
+    if [ -n "$(git status --porcelain)" ]; then
+      git add -A && git commit -q -m 'T-035 gestao-orcamentos-servicos: Implementar Gerador de Exportação de Orçamento em PDF (auto-commit do plano)'
+    fi
+    marcar_concluidas T-035
+    verde "✔ T-035 concluída"
+    return 0
+  fi
+  vermelho "✘ T-035 falhou (log: $LOG_DIR/seq.log)"
+  amarelo "  reexecute só ela: bash .spec/features/gestao-orcamentos-servicos/executar-tarefas.sh --seq T-035"
+  FALHAS="$FALHAS T-035"
+  return 1
+}
+
+# ── sequencial T-036 (ordem do tasks.md) ──
+executar_seq_T_036() {
+  info 'sequencial T-036 — Expor Endpoints Minimal API de Serviços e Orçamentos'
+  if rodar_tarefa seq 'T-036' 'Você executa UMA tarefa da feature "gestao-orcamentos-servicos" (fluxo onp-spec, spec-anchored).
+Leia primeiro: .spec/features/gestao-orcamentos-servicos/spec.md, .spec/features/gestao-orcamentos-servicos/tasks.md e .spec/constituicao.md.
+
+Sua tarefa (somente ela):
+T-036 — "Expor Endpoints Minimal API de Serviços e Orçamentos"
+  critérios/refs: AC-045 (Catálogo e orçamento pertencem ao tenant), AC-047 (PDF entregue por download privado), AC-049 (Orçamento de outra empresa é inacessível)
+  arquivos permitidos (e seus testes): src/Agendamento.Api/Features/Services/ServiceEndpoints.cs, src/Agendamento.Api/Features/Quotations/QuotationEndpoints.cs, src/Agendamento.Api/Program.cs
+  mensagem de commit: "T-036 gestao-orcamentos-servicos: Expor Endpoints Minimal API de Serviços e Orçamentos"
+
+Regras inegociáveis:
+- Todo critério de aceite referenciado vira teste com @spec:AC-xxx no título.
+- NUNCA enfraqueça, pule (skip/todo) ou apague um teste para passar — teste pulado não é prova e o audit acusa.
+- Rode os testes localmente com `powershell -ExecutionPolicy Bypass -File scripts/verify-spec.ps1` até passarem.
+- NÃO edite tasks.md, NÃO rode onp-spec verify/audit e NÃO toque em outras tarefas — o orquestrador cuida disso.
+- Ao final de CADA tarefa: `git add` só no que você tocou e um commit próprio.' 'gpt-5.6-terra' medium >> "$LOG_DIR/seq.log" 2>&1; then
+    # commit de segurança se o agente esqueceu (rastreabilidade > perfeição)
+    if [ -n "$(git status --porcelain)" ]; then
+      git add -A && git commit -q -m 'T-036 gestao-orcamentos-servicos: Expor Endpoints Minimal API de Serviços e Orçamentos (auto-commit do plano)'
+    fi
+    marcar_concluidas T-036
+    verde "✔ T-036 concluída"
+    return 0
+  fi
+  vermelho "✘ T-036 falhou (log: $LOG_DIR/seq.log)"
+  amarelo "  reexecute só ela: bash .spec/features/gestao-orcamentos-servicos/executar-tarefas.sh --seq T-036"
+  FALHAS="$FALHAS T-036"
+  return 1
+}
+
+# ── sequencial T-037 (ordem do tasks.md) ──
+executar_seq_T_037() {
+  info 'sequencial T-037 — Testes de Integração, Isolamento Multi-Tenant e Exportação PDF'
+  if rodar_tarefa seq 'T-037' 'Você executa UMA tarefa da feature "gestao-orcamentos-servicos" (fluxo onp-spec, spec-anchored).
+Leia primeiro: .spec/features/gestao-orcamentos-servicos/spec.md, .spec/features/gestao-orcamentos-servicos/tasks.md e .spec/constituicao.md.
+
+Sua tarefa (somente ela):
+T-037 — "Testes de Integração, Isolamento Multi-Tenant e Exportação PDF"
+  critérios/refs: AC-045 (Catálogo e orçamento pertencem ao tenant), AC-046 (Totais e composição da entrada são calculados), AC-047 (PDF entregue por download privado), AC-048 (Transições respeitam regras de negócio), AC-049 (Orçamento de outra empresa é inacessível)
+  arquivos permitidos (e seus testes): tests/Agendamento.UnitTests/Quotations/QuotationDomainTests.cs, tests/Agendamento.IntegrationTests/Quotations/QuotationApiTests.cs
+  mensagem de commit: "T-037 gestao-orcamentos-servicos: Testes de Integração, Isolamento Multi-Tenant e Exportação PDF"
+
+Regras inegociáveis:
+- Todo critério de aceite referenciado vira teste com @spec:AC-xxx no título.
+- NUNCA enfraqueça, pule (skip/todo) ou apague um teste para passar — teste pulado não é prova e o audit acusa.
+- Rode os testes localmente com `powershell -ExecutionPolicy Bypass -File scripts/verify-spec.ps1` até passarem.
+- NÃO edite tasks.md, NÃO rode onp-spec verify/audit e NÃO toque em outras tarefas — o orquestrador cuida disso.
+- Ao final de CADA tarefa: `git add` só no que você tocou e um commit próprio.' 'gpt-5.6-terra' medium >> "$LOG_DIR/seq.log" 2>&1; then
+    # commit de segurança se o agente esqueceu (rastreabilidade > perfeição)
+    if [ -n "$(git status --porcelain)" ]; then
+      git add -A && git commit -q -m 'T-037 gestao-orcamentos-servicos: Testes de Integração, Isolamento Multi-Tenant e Exportação PDF (auto-commit do plano)'
+    fi
+    marcar_concluidas T-037
+    verde "✔ T-037 concluída"
+    return 0
+  fi
+  vermelho "✘ T-037 falhou (log: $LOG_DIR/seq.log)"
+  amarelo "  reexecute só ela: bash .spec/features/gestao-orcamentos-servicos/executar-tarefas.sh --seq T-037"
+  FALHAS="$FALHAS T-037"
+  return 1
+}
+
+# ── sequencial T-103 (ordem do tasks.md) ──
+executar_seq_T_103() {
+  info 'sequencial T-103 — Implementar e provar edição de orçamento pendente'
+  if rodar_tarefa seq 'T-103' 'Você executa UMA tarefa da feature "gestao-orcamentos-servicos" (fluxo onp-spec, spec-anchored).
+Leia primeiro: .spec/features/gestao-orcamentos-servicos/spec.md, .spec/features/gestao-orcamentos-servicos/tasks.md e .spec/constituicao.md.
+
+Sua tarefa (somente ela):
+T-103 — "Implementar e provar edição de orçamento pendente"
+  critérios/refs: AC-206 (Edição permitida somente enquanto pendente)
+  arquivos permitidos (e seus testes): src/Agendamento.Api/Features/Quotations/QuotationEndpoints.cs, src/Agendamento.Api/Domain/Quotations/Quotation.cs, tests/Agendamento.IntegrationTests/Features/QuotationTests.cs
+  mensagem de commit: "T-103 gestao-orcamentos-servicos: Implementar e provar edição de orçamento pendente"
+
+Regras inegociáveis:
+- Todo critério de aceite referenciado vira teste com @spec:AC-xxx no título.
+- NUNCA enfraqueça, pule (skip/todo) ou apague um teste para passar — teste pulado não é prova e o audit acusa.
+- Rode os testes localmente com `powershell -ExecutionPolicy Bypass -File scripts/verify-spec.ps1` até passarem.
+- NÃO edite tasks.md, NÃO rode onp-spec verify/audit e NÃO toque em outras tarefas — o orquestrador cuida disso.
+- Ao final de CADA tarefa: `git add` só no que você tocou e um commit próprio.' 'gpt-5.6-terra' medium >> "$LOG_DIR/seq.log" 2>&1; then
+    # commit de segurança se o agente esqueceu (rastreabilidade > perfeição)
+    if [ -n "$(git status --porcelain)" ]; then
+      git add -A && git commit -q -m 'T-103 gestao-orcamentos-servicos: Implementar e provar edição de orçamento pendente (auto-commit do plano)'
+    fi
+    marcar_concluidas T-103
+    verde "✔ T-103 concluída"
+    return 0
+  fi
+  vermelho "✘ T-103 falhou (log: $LOG_DIR/seq.log)"
+  amarelo "  reexecute só ela: bash .spec/features/gestao-orcamentos-servicos/executar-tarefas.sh --seq T-103"
+  FALHAS="$FALHAS T-103"
+  return 1
 }
 
 # ── gate: quem decide é a máquina ────────────────────────────────────
@@ -356,27 +637,37 @@ executar_tudo() {
   iniciar_resumos
   info "logs em: $LOG_DIR"
   info "resumo geral de andamento: a cada 1 min aqui no terminal (e via: onp-spec resumo)"
-  # onda 1: faixa-1 ∥ faixa-2 ∥ faixa-3
-  info "onda 1: faixa-1 ∥ faixa-2 ∥ faixa-3 — janelas limpas em paralelo"
-  executar_faixa_1 & PID_FAIXA_1=$!
-  executar_faixa_2 & PID_FAIXA_2=$!
-  executar_faixa_3 & PID_FAIXA_3=$!
-  wait "$PID_FAIXA_1" || true
-  wait "$PID_FAIXA_2" || true
-  wait "$PID_FAIXA_3" || true
-  # onda 2: faixa-4
-  info "onda 2: faixa-4 — janelas limpas em paralelo"
-  executar_faixa_4 & PID_FAIXA_4=$!
-  wait "$PID_FAIXA_4" || true
+  executar_seq_T_088 || true
+  executar_seq_T_089 || true
+  executar_seq_T_090 || true
+  executar_seq_T_091 || true
+  executar_seq_T_092 || true
+  executar_seq_T_031 || true
+  executar_seq_T_032 || true
+  executar_seq_T_033 || true
+  executar_seq_T_034 || true
+  executar_seq_T_035 || true
+  executar_seq_T_036 || true
+  executar_seq_T_037 || true
+  executar_seq_T_103 || true
   encerrar tudo
 }
 
 listar() {
   echo "execução: $RUN_ID (feature $FEATURE, branch $BASE_BRANCH)"
-  echo "  faixa-1  onda 1  T-088"
-  echo "  faixa-2  onda 1  T-089"
-  echo "  faixa-3  onda 1  T-090, T-091"
-  echo "  faixa-4  onda 2  T-092"
+  echo "  seq       T-088 (sequencial)"
+  echo "  seq       T-089 (sequencial)"
+  echo "  seq       T-090 (sequencial)"
+  echo "  seq       T-091 (sequencial)"
+  echo "  seq       T-092 (sequencial)"
+  echo "  seq       T-031 (sequencial)"
+  echo "  seq       T-032 (sequencial)"
+  echo "  seq       T-033 (sequencial)"
+  echo "  seq       T-034 (sequencial)"
+  echo "  seq       T-035 (sequencial)"
+  echo "  seq       T-036 (sequencial)"
+  echo "  seq       T-037 (sequencial)"
+  echo "  seq       T-103 (sequencial)"
   echo
   echo "reexecutar uma faixa:    --faixa <id>"
   echo "reexecutar sequencial:   --seq <T-xxx>"
@@ -407,14 +698,23 @@ case "$MODO" in
   gate) COM_GATE=1; iniciar_resumos; encerrar gate ;;
   faixa)
     case "$ALVO" in
-      faixa-1) evento --tipo inicio --escopo "faixa:faixa-1"; iniciar_resumos; executar_faixa_1 || true; encerrar "faixa:faixa-1" ;;
-      faixa-2) evento --tipo inicio --escopo "faixa:faixa-2"; iniciar_resumos; executar_faixa_2 || true; encerrar "faixa:faixa-2" ;;
-      faixa-3) evento --tipo inicio --escopo "faixa:faixa-3"; iniciar_resumos; executar_faixa_3 || true; encerrar "faixa:faixa-3" ;;
-      faixa-4) evento --tipo inicio --escopo "faixa:faixa-4"; iniciar_resumos; executar_faixa_4 || true; encerrar "faixa:faixa-4" ;;
       *) falhar "faixa desconhecida: '$ALVO' — veja as disponíveis com --listar" ;;
     esac ;;
   seq)
     case "$ALVO" in
+      T-088) evento --tipo inicio --escopo "seq:T-088"; iniciar_resumos; executar_seq_T_088 || true; encerrar "seq:T-088" ;;
+      T-089) evento --tipo inicio --escopo "seq:T-089"; iniciar_resumos; executar_seq_T_089 || true; encerrar "seq:T-089" ;;
+      T-090) evento --tipo inicio --escopo "seq:T-090"; iniciar_resumos; executar_seq_T_090 || true; encerrar "seq:T-090" ;;
+      T-091) evento --tipo inicio --escopo "seq:T-091"; iniciar_resumos; executar_seq_T_091 || true; encerrar "seq:T-091" ;;
+      T-092) evento --tipo inicio --escopo "seq:T-092"; iniciar_resumos; executar_seq_T_092 || true; encerrar "seq:T-092" ;;
+      T-031) evento --tipo inicio --escopo "seq:T-031"; iniciar_resumos; executar_seq_T_031 || true; encerrar "seq:T-031" ;;
+      T-032) evento --tipo inicio --escopo "seq:T-032"; iniciar_resumos; executar_seq_T_032 || true; encerrar "seq:T-032" ;;
+      T-033) evento --tipo inicio --escopo "seq:T-033"; iniciar_resumos; executar_seq_T_033 || true; encerrar "seq:T-033" ;;
+      T-034) evento --tipo inicio --escopo "seq:T-034"; iniciar_resumos; executar_seq_T_034 || true; encerrar "seq:T-034" ;;
+      T-035) evento --tipo inicio --escopo "seq:T-035"; iniciar_resumos; executar_seq_T_035 || true; encerrar "seq:T-035" ;;
+      T-036) evento --tipo inicio --escopo "seq:T-036"; iniciar_resumos; executar_seq_T_036 || true; encerrar "seq:T-036" ;;
+      T-037) evento --tipo inicio --escopo "seq:T-037"; iniciar_resumos; executar_seq_T_037 || true; encerrar "seq:T-037" ;;
+      T-103) evento --tipo inicio --escopo "seq:T-103"; iniciar_resumos; executar_seq_T_103 || true; encerrar "seq:T-103" ;;
       *) falhar "tarefa sequencial desconhecida: '$ALVO' — veja as disponíveis com --listar" ;;
     esac ;;
 esac

@@ -1,17 +1,30 @@
 {
   "feature": "documentacao-readme-backend",
-  "timestamp": "2026-10-04T02:04:43.940Z",
-  "gitRev": "5954711",
-  "command": "dotnet test tests/Agendamento.UnitTests/Agendamento.UnitTests.csproj --configuration Release && dotnet test tests/Agendamento.IntegrationTests/Agendamento.IntegrationTests.csproj --configuration Release",
-  "reporter": "exitcode",
+  "timestamp": "2026-10-12T05:10:06.358Z",
+  "gitRev": "d79b630",
+  "command": "powershell -ExecutionPolicy Bypass -File scripts/verify-spec.ps1",
+  "reporter": "jest-json",
   "exitCode": 0,
-  "testsParsed": 0,
+  "testsParsed": 175,
   "results": {
     "AC-102": {
       "status": "pass",
-      "testName": null,
-      "method": "exitcode"
+      "testName": "README apresenta o backend SaaS e sua execução local @spec:AC-102 README apresenta o backend SaaS e sua execução local @spec:AC-102",
+      "method": "jest-json"
     }
   },
-  "principles": {}
+  "principles": {
+    "P-005": {
+      "status": "pass",
+      "testName": "Token de e-mail é armazenado somente como digest e expira em 24 horas @spec:AC-009 @principle:P-005 Token de e-mail é armazenado somente como digest e expira em 24 horas @spec:AC-009 @principle:P-005"
+    },
+    "P-003": {
+      "status": "pass",
+      "testName": "@spec:AC-013 @principle:P-003 @principle:P-005 valid login emits only user_tenant_and_role @spec:AC-013 @principle:P-003 @principle:P-005 valid login emits only user_tenant_and_role"
+    },
+    "P-004": {
+      "status": "pass",
+      "testName": "Papel restrito impede SQL direto entre tenants em todas as tabelas @spec:AC-033 @principle:P-004 Papel restrito impede SQL direto entre tenants em todas as tabelas @spec:AC-033 @principle:P-004"
+    }
+  }
 }

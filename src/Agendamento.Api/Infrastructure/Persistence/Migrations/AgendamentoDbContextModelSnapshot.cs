@@ -47,7 +47,8 @@ namespace Agendamento.Api.Infrastructure.Persistence.Migrations
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<Guid>("TenantId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uuid")
+                        .HasColumnName("tenant_id");
 
                     b.Property<int>("Type")
                         .HasColumnType("integer");
@@ -92,9 +93,12 @@ namespace Agendamento.Api.Infrastructure.Persistence.Migrations
                         .HasColumnType("character varying(20)");
 
                     b.Property<Guid>("TenantId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uuid")
+                        .HasColumnName("tenant_id");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("TenantId");
 
                     b.HasIndex("TenantId", "Id");
 
@@ -131,9 +135,12 @@ namespace Agendamento.Api.Infrastructure.Persistence.Migrations
                         .HasColumnType("character varying(200)");
 
                     b.Property<Guid>("TenantId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uuid")
+                        .HasColumnName("tenant_id");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("TenantId");
 
                     b.HasIndex("TenantId", "DueDate", "Status");
 
@@ -167,13 +174,16 @@ namespace Agendamento.Api.Infrastructure.Persistence.Migrations
                         .HasColumnType("integer");
 
                     b.Property<Guid>("TenantId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uuid")
+                        .HasColumnName("tenant_id");
 
                     b.HasKey("Id");
 
                     b.HasIndex("CustomerId");
 
                     b.HasIndex("QuotationId");
+
+                    b.HasIndex("TenantId");
 
                     b.HasIndex("TenantId", "DueDate", "Status");
 
@@ -222,9 +232,12 @@ namespace Agendamento.Api.Infrastructure.Persistence.Migrations
                         .HasColumnType("character varying(50)");
 
                     b.Property<Guid>("TenantId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uuid")
+                        .HasColumnName("tenant_id");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("TenantId");
 
                     b.HasIndex("TenantId", "Status");
 
@@ -270,7 +283,8 @@ namespace Agendamento.Api.Infrastructure.Persistence.Migrations
                         .HasColumnType("numeric(18,2)");
 
                     b.Property<Guid>("TenantId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uuid")
+                        .HasColumnName("tenant_id");
 
                     b.Property<decimal>("TotalAmount")
                         .HasPrecision(18, 2)
@@ -282,6 +296,8 @@ namespace Agendamento.Api.Infrastructure.Persistence.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("CustomerId");
+
+                    b.HasIndex("TenantId");
 
                     b.HasIndex("TenantId", "Code")
                         .IsUnique();
@@ -315,6 +331,10 @@ namespace Agendamento.Api.Infrastructure.Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<Guid>("TenantId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("tenant_id");
+
                     b.Property<decimal>("TotalPrice")
                         .HasColumnType("numeric");
 
@@ -328,6 +348,8 @@ namespace Agendamento.Api.Infrastructure.Persistence.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("QuotationId");
+
+                    b.HasIndex("TenantId");
 
                     b.ToTable("QuotationItem");
                 });
@@ -355,7 +377,8 @@ namespace Agendamento.Api.Infrastructure.Persistence.Migrations
                         .HasColumnType("character varying(200)");
 
                     b.Property<Guid>("TenantId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uuid")
+                        .HasColumnName("tenant_id");
 
                     b.Property<string>("Unit")
                         .IsRequired()
@@ -363,6 +386,8 @@ namespace Agendamento.Api.Infrastructure.Persistence.Migrations
                         .HasColumnType("character varying(50)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("TenantId");
 
                     b.HasIndex("TenantId", "IsActive", "Name");
 
@@ -400,7 +425,8 @@ namespace Agendamento.Api.Infrastructure.Persistence.Migrations
                         .HasColumnType("integer");
 
                     b.Property<Guid>("TenantId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uuid")
+                        .HasColumnName("tenant_id");
 
                     b.HasKey("Id");
 
@@ -565,7 +591,8 @@ namespace Agendamento.Api.Infrastructure.Persistence.Migrations
                         .HasColumnType("integer");
 
                     b.Property<Guid>("TenantId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uuid")
+                        .HasColumnName("tenant_id");
 
                     b.Property<DateTimeOffset?>("TrialEndDate")
                         .HasColumnType("timestamp with time zone");
@@ -615,7 +642,8 @@ namespace Agendamento.Api.Infrastructure.Persistence.Migrations
                         .HasColumnType("integer");
 
                     b.Property<Guid>("TenantId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uuid")
+                        .HasColumnName("tenant_id");
 
                     b.Property<string>("Token")
                         .IsRequired()
@@ -623,6 +651,8 @@ namespace Agendamento.Api.Infrastructure.Persistence.Migrations
                         .HasColumnType("character varying(100)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("TenantId");
 
                     b.HasIndex("Token")
                         .IsUnique();
@@ -741,7 +771,8 @@ namespace Agendamento.Api.Infrastructure.Persistence.Migrations
             modelBuilder.Entity("Agendamento.Domain.Tenants.TenantFiscalProfile", b =>
                 {
                     b.Property<Guid>("TenantId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uuid")
+                        .HasColumnName("tenant_id");
 
                     b.Property<string>("FiscalEmail")
                         .IsRequired()
@@ -767,6 +798,8 @@ namespace Agendamento.Api.Infrastructure.Persistence.Migrations
                         .HasColumnType("character varying(50)");
 
                     b.HasKey("TenantId");
+
+                    b.HasIndex("TenantId");
 
                     b.ToTable("tenant_fiscal_profiles", (string)null);
                 });
@@ -794,12 +827,15 @@ namespace Agendamento.Api.Infrastructure.Persistence.Migrations
                         .HasColumnType("character varying(50)");
 
                     b.Property<Guid>("TenantId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uuid")
+                        .HasColumnName("tenant_id");
 
                     b.Property<Guid>("UserId")
                         .HasColumnType("uuid");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("TenantId");
 
                     b.HasIndex("UserId");
 
@@ -811,6 +847,12 @@ namespace Agendamento.Api.Infrastructure.Persistence.Migrations
 
             modelBuilder.Entity("Agendamento.Api.Domain.Appointments.Appointment", b =>
                 {
+                    b.HasOne("Agendamento.Domain.Tenants.Tenant", null)
+                        .WithMany()
+                        .HasForeignKey("TenantId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
                     b.HasOne("Agendamento.Api.Domain.WorkOrders.WorkOrder", "WorkOrder")
                         .WithMany()
                         .HasForeignKey("WorkOrderId")
@@ -821,6 +863,12 @@ namespace Agendamento.Api.Infrastructure.Persistence.Migrations
 
             modelBuilder.Entity("Agendamento.Api.Domain.Customers.Customer", b =>
                 {
+                    b.HasOne("Agendamento.Domain.Tenants.Tenant", null)
+                        .WithMany()
+                        .HasForeignKey("TenantId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
                     b.OwnsOne("Agendamento.Api.Domain.Customers.CustomerAddress", "Address", b1 =>
                         {
                             b1.Property<Guid>("CustomerId")
@@ -909,6 +957,12 @@ namespace Agendamento.Api.Infrastructure.Persistence.Migrations
 
             modelBuilder.Entity("Agendamento.Api.Domain.Financial.PayableTitle", b =>
                 {
+                    b.HasOne("Agendamento.Domain.Tenants.Tenant", null)
+                        .WithMany()
+                        .HasForeignKey("TenantId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
                     b.OwnsMany("Agendamento.Api.Domain.Financial.PaymentEntry", "Payments", b1 =>
                         {
                             b1.Property<Guid>("Id")
@@ -932,14 +986,26 @@ namespace Agendamento.Api.Infrastructure.Persistence.Migrations
                             b1.Property<DateTime>("PaymentDate")
                                 .HasColumnType("timestamp with time zone");
 
+                            b1.Property<Guid>("TenantId")
+                                .HasColumnType("uuid")
+                                .HasColumnName("tenant_id");
+
                             b1.HasKey("Id");
 
                             b1.HasIndex("PayableTitleId");
+
+                            b1.HasIndex("TenantId");
 
                             b1.ToTable("PayablePayments", (string)null);
 
                             b1.WithOwner()
                                 .HasForeignKey("PayableTitleId");
+
+                            b1.HasOne("Agendamento.Domain.Tenants.Tenant", null)
+                                .WithMany()
+                                .HasForeignKey("TenantId")
+                                .OnDelete(DeleteBehavior.Restrict)
+                                .IsRequired();
                         });
 
                     b.Navigation("Payments");
@@ -956,6 +1022,12 @@ namespace Agendamento.Api.Infrastructure.Persistence.Migrations
                         .WithMany()
                         .HasForeignKey("QuotationId")
                         .OnDelete(DeleteBehavior.SetNull);
+
+                    b.HasOne("Agendamento.Domain.Tenants.Tenant", null)
+                        .WithMany()
+                        .HasForeignKey("TenantId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
 
                     b.OwnsMany("Agendamento.Api.Domain.Financial.PaymentEntry", "Payments", b1 =>
                         {
@@ -980,14 +1052,26 @@ namespace Agendamento.Api.Infrastructure.Persistence.Migrations
                             b1.Property<Guid>("ReceivableTitleId")
                                 .HasColumnType("uuid");
 
+                            b1.Property<Guid>("TenantId")
+                                .HasColumnType("uuid")
+                                .HasColumnName("tenant_id");
+
                             b1.HasKey("Id");
 
                             b1.HasIndex("ReceivableTitleId");
+
+                            b1.HasIndex("TenantId");
 
                             b1.ToTable("ReceivablePayments", (string)null);
 
                             b1.WithOwner()
                                 .HasForeignKey("ReceivableTitleId");
+
+                            b1.HasOne("Agendamento.Domain.Tenants.Tenant", null)
+                                .WithMany()
+                                .HasForeignKey("TenantId")
+                                .OnDelete(DeleteBehavior.Restrict)
+                                .IsRequired();
                         });
 
                     b.Navigation("Customer");
@@ -997,11 +1081,26 @@ namespace Agendamento.Api.Infrastructure.Persistence.Migrations
                     b.Navigation("Quotation");
                 });
 
+            modelBuilder.Entity("Agendamento.Api.Domain.Notifications.NotificationMessage", b =>
+                {
+                    b.HasOne("Agendamento.Domain.Tenants.Tenant", null)
+                        .WithMany()
+                        .HasForeignKey("TenantId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("Agendamento.Api.Domain.Quotations.Quotation", b =>
                 {
                     b.HasOne("Agendamento.Api.Domain.Customers.Customer", "Customer")
                         .WithMany()
                         .HasForeignKey("CustomerId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Agendamento.Domain.Tenants.Tenant", null)
+                        .WithMany()
+                        .HasForeignKey("TenantId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
@@ -1058,6 +1157,21 @@ namespace Agendamento.Api.Infrastructure.Persistence.Migrations
                         .HasForeignKey("QuotationId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("Agendamento.Domain.Tenants.Tenant", null)
+                        .WithMany()
+                        .HasForeignKey("TenantId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Agendamento.Api.Domain.Services.ServiceItem", b =>
+                {
+                    b.HasOne("Agendamento.Domain.Tenants.Tenant", null)
+                        .WithMany()
+                        .HasForeignKey("TenantId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Agendamento.Api.Domain.WorkOrders.WorkOrder", b =>
@@ -1071,6 +1185,12 @@ namespace Agendamento.Api.Infrastructure.Persistence.Migrations
                     b.HasOne("Agendamento.Api.Domain.Quotations.Quotation", "Quotation")
                         .WithMany()
                         .HasForeignKey("QuotationId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Agendamento.Domain.Tenants.Tenant", null)
+                        .WithMany()
+                        .HasForeignKey("TenantId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
@@ -1096,6 +1216,10 @@ namespace Agendamento.Api.Infrastructure.Persistence.Migrations
                                 .HasMaxLength(255)
                                 .HasColumnType("character varying(255)");
 
+                            b1.Property<Guid>("TenantId")
+                                .HasColumnType("uuid")
+                                .HasColumnName("tenant_id");
+
                             b1.Property<string>("Unit")
                                 .IsRequired()
                                 .HasMaxLength(50)
@@ -1110,9 +1234,17 @@ namespace Agendamento.Api.Infrastructure.Persistence.Migrations
 
                             b1.HasKey("Id");
 
+                            b1.HasIndex("TenantId");
+
                             b1.HasIndex("WorkOrderId");
 
                             b1.ToTable("WorkOrderItems", (string)null);
+
+                            b1.HasOne("Agendamento.Domain.Tenants.Tenant", null)
+                                .WithMany()
+                                .HasForeignKey("TenantId")
+                                .OnDelete(DeleteBehavior.Restrict)
+                                .IsRequired();
 
                             b1.WithOwner()
                                 .HasForeignKey("WorkOrderId");
@@ -1173,7 +1305,22 @@ namespace Agendamento.Api.Infrastructure.Persistence.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
+                    b.HasOne("Agendamento.Domain.Tenants.Tenant", null)
+                        .WithMany()
+                        .HasForeignKey("TenantId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
                     b.Navigation("Plan");
+                });
+
+            modelBuilder.Entity("Agendamento.Domain.Tenants.TeamInvitation", b =>
+                {
+                    b.HasOne("Agendamento.Domain.Tenants.Tenant", null)
+                        .WithMany()
+                        .HasForeignKey("TenantId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Agendamento.Domain.Tenants.TenantFiscalProfile", b =>

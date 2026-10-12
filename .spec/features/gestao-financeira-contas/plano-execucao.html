@@ -38,13 +38,13 @@
 </style>
 <main>
   <h1>Plano de execução — gestao-financeira-contas</h1>
-  <p class="sub">gerado por <code>onp-spec plano</code> em 2026-10-12 00:26 · regenere após mudar tasks.md</p>
+  <p class="sub">gerado por <code>onp-spec plano</code> em 2026-10-12 03:55 · regenere após mudar tasks.md</p>
   <div class="resumo">
-    <div><b>4</b> tarefa(s), uma após a outra</div>
+    <div><b>7</b> tarefa(s), uma após a outra</div>
     <div>modo <b>sequencial</b> (escolha do usuário)</div>
     <div>branch <code>spec/gestao-financeira-contas</code></div>
   </div>
-  <div class="avisos"><div>⚠ T-095 está [em-andamento] — entrou no plano; se já houver trabalho local, commite antes de executar</div></div>
+
   <div class="executor">
     <h2>Como executar — via agente</h2>
     <p>Peça ao agente (Codex) para executar o plano. Ele roda:</p>
@@ -61,28 +61,46 @@
       <h3>Ordem de execução <small>uma tarefa após a outra, na árvore principal</small></h3>
       <div class="grade"><div class="faixa">
         <div class="tarefa">
-          <span class="tid">T-093</span>
-          <span class="ttitulo">Entidades de Domínio para Financeiro</span>
+          <span class="tid">T-045</span>
+          <span class="ttitulo">Modelar Entidades Financeiras (FinancialTransaction, Receivable, Payable)</span>
           <span class="meta"><code>gpt-5.6-terra</code> · esforço <b>medium</b></span>
-          <span class="arquivos"><code>src/Agendamento.Api/Domain/Financial/PayableTitle.cs</code> <code>src/Agendamento.Api/Domain/Financial/ReceivableTitle.cs</code> <code>src/Agendamento.Api/Domain/Financial/PaymentEntry.cs</code> <code>src/Agendamento.Api/Domain/Financial/PaymentMethod.cs</code> <code>src/Agendamento.Api/Domain/Financial/TransactionStatus.cs</code></span>
+          <span class="arquivos"><code>src/Agendamento.Api/Domain/Financial/ReceivableTitle.cs</code> <code>src/Agendamento.Api/Domain/Financial/PayableTitle.cs</code> <code>src/Agendamento.Api/Domain/Financial/PaymentEntry.cs</code> <code>src/Agendamento.Api/Domain/Financial/TransactionStatus.cs</code> <code>src/Agendamento.Api/Domain/Financial/PaymentMethod.cs</code></span>
         </div>
         <div class="tarefa">
-          <span class="tid">T-094</span>
-          <span class="ttitulo">Mapeamento EF Core para Financeiro</span>
+          <span class="tid">T-046</span>
+          <span class="ttitulo">Configurar Persistência EF Core e Migrations Financeiras</span>
           <span class="meta"><code>gpt-5.6-terra</code> · esforço <b>medium</b></span>
-          <span class="arquivos"><code>src/Agendamento.Api/Infrastructure/Persistence/Configurations/PayableTitleConfiguration.cs</code> <code>src/Agendamento.Api/Infrastructure/Persistence/Configurations/ReceivableTitleConfiguration.cs</code> <code>src/Agendamento.Api/Infrastructure/Persistence/AgendamentoDbContext.cs</code></span>
+          <span class="arquivos"><code>src/Agendamento.Api/Infrastructure/Persistence/AgendamentoDbContext.cs</code> <code>src/Agendamento.Api/Infrastructure/Persistence/Configurations/ReceivableTitleConfiguration.cs</code> <code>src/Agendamento.Api/Infrastructure/Persistence/Configurations/PayableTitleConfiguration.cs</code></span>
         </div>
         <div class="tarefa">
-          <span class="tid">T-095</span>
-          <span class="ttitulo">Caso de Uso e Endpoints de Financeiro</span>
+          <span class="tid">T-047</span>
+          <span class="ttitulo">Caso de Uso: Lançamento Automático de Títulos via Orçamento/OS</span>
           <span class="meta"><code>gpt-5.6-terra</code> · esforço <b>medium</b></span>
-          <span class="arquivos"><code>src/Agendamento.Api/Features/Financial/FinancialEndpoints.cs</code> <code>src/Agendamento.Api/Program.cs</code> <code>src/Agendamento.Api/Application/Quotations/UpdateQuotationStatus/UpdateQuotationStatusHandler.cs</code> <code>src/Agendamento.Api/Application/WorkOrders/UpdateWorkOrderStatus/UpdateWorkOrderStatusHandler.cs</code> <code>src/Agendamento.Api/Application/Financial/GetFinancialStatement/GetFinancialStatementHandler.cs</code> <code>src/Agendamento.Api/Application/Financial/RegisterPayment/RegisterPaymentHandler.cs</code> <code>src/Agendamento.Api/Application/Financial/GenerateReceivablesFromQuotation/GenerateReceivablesFromQuotationHandler.cs</code> <code>src/Agendamento.Api/Application/Financial/CreatePayable/CreatePayableHandler.cs</code></span>
+          <span class="arquivos"><code>src/Agendamento.Api/Application/Financial/GenerateReceivablesFromQuotation/GenerateReceivablesFromQuotationHandler.cs</code></span>
         </div>
         <div class="tarefa">
-          <span class="tid">T-096</span>
-          <span class="ttitulo">Testes de Integração para Financeiro</span>
+          <span class="tid">T-048</span>
+          <span class="ttitulo">Caso de Uso: Registro de Liquidação / Baixa de Títulos</span>
           <span class="meta"><code>gpt-5.6-terra</code> · esforço <b>medium</b></span>
-          <span class="arquivos"><code>tests/Agendamento.IntegrationTests/Financial/FinancialApiTests.cs</code> <code>tests/Agendamento.IntegrationTests/Financial/FinancialIsolationTests.cs</code> <code>tests/Agendamento.UnitTests/Financial/FinancialDomainTests.cs</code> <code>tests/Agendamento.IntegrationTests/Features/TeamFinancialHttpTests.cs</code> <code>scripts/verify-spec.ps1</code> <code>Directory.Packages.props</code></span>
+          <span class="arquivos"><code>src/Agendamento.Api/Application/Financial/RegisterPayment/RegisterPaymentHandler.cs</code></span>
+        </div>
+        <div class="tarefa">
+          <span class="tid">T-049</span>
+          <span class="ttitulo">Casos de Uso: Gestão de Contas a Pagar e Extrato Financeiro</span>
+          <span class="meta"><code>gpt-5.6-terra</code> · esforço <b>medium</b></span>
+          <span class="arquivos"><code>src/Agendamento.Api/Application/Financial/CreatePayable/CreatePayableHandler.cs</code> <code>src/Agendamento.Api/Application/Financial/GetFinancialStatement/GetFinancialStatementHandler.cs</code></span>
+        </div>
+        <div class="tarefa">
+          <span class="tid">T-050</span>
+          <span class="ttitulo">Expor Endpoints Minimal API Financeiros</span>
+          <span class="meta"><code>gpt-5.6-terra</code> · esforço <b>medium</b></span>
+          <span class="arquivos"><code>src/Agendamento.Api/Features/Financial/FinancialEndpoints.cs</code> <code>src/Agendamento.Api/Program.cs</code></span>
+        </div>
+        <div class="tarefa">
+          <span class="tid">T-051</span>
+          <span class="ttitulo">Testes de Integração Financeira, Baixas Parciais e Isolamento RLS</span>
+          <span class="meta"><code>gpt-5.6-terra</code> · esforço <b>medium</b></span>
+          <span class="arquivos"><code>tests/Agendamento.UnitTests/Financial/FinancialDomainTests.cs</code> <code>tests/Agendamento.IntegrationTests/Financial/FinancialApiTests.cs</code> <code>tests/Agendamento.IntegrationTests/Financial/FinancialIsolationTests.cs</code></span>
         </div></div></div>
     </section>
   <section class="onda">

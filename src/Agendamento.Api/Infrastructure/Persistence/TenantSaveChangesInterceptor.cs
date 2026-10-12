@@ -37,8 +37,24 @@ public sealed class TenantSaveChangesInterceptor : SaveChangesInterceptor
         var allowedTenantId = newTenantEntry?.Entity.Id 
             ?? (_tenantContext.HasTenant ? _tenantContext.TenantId : Guid.Empty);
 
+        foreach (var entry in context.ChangeTracker.Entries().Where(e =>
+            e.Metadata.FindProperty("TenantId")?.IsShadowProperty() == true && e.State == EntityState.Added))
+            entry.Property("TenantId").CurrentValue = allowedTenantId;
+
         foreach (var entry in context.ChangeTracker.Entries<ITenantOwned>())
         {
+            if (!_tenantContext.HasTenant && context is AgendamentoDbContext db && db.Administrative.IsActive
+                && entry.Entity is Agendamento.Api.Domain.Notifications.NotificationMessage)
+                continue; // Trusted background outbox only; ordinary tenant writes retain the guard.
+            if (entry.State is EntityState.Modified or EntityState.Deleted)
+            {
+                var originalTenantId = entry.Property(nameof(ITenantOwned.TenantId)).OriginalValue;
+                if (originalTenantId is not Guid tenantId || tenantId != allowedTenantId)
+                {
+                    throw new InvalidOperationException("Divergência do TenantId original detectada durante o salvamento.");
+                }
+            }
+
             if (entry.State == EntityState.Added || entry.State == EntityState.Modified)
             {
                 if (!_tenantContext.HasTenant && !isRegisteringNewTenant)

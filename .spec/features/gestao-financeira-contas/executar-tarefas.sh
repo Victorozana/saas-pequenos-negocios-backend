@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# executar-tarefas.sh — gerado por `onp-spec plano gestao-financeira-contas` em 2026-10-12 00:26
+# executar-tarefas.sh — gerado por `onp-spec plano gestao-financeira-contas` em 2026-10-12 03:55
 # NÃO edite à mão: mudou tasks.md ou a config, regenere o plano.
 #
 # uso:
@@ -14,7 +14,7 @@
 set -u
 set -o pipefail
 
-RUN_ID='saas-pequenos-negocios-backend-gestao-financeira-contas-mv4ihbfn'
+RUN_ID='saas-pequenos-negocios-backend-gestao-financeira-contas-mv4pyu2g'
 FEATURE='gestao-financeira-contas'
 BASE_BRANCH='spec/gestao-financeira-contas'
 ENGINE='.agents/skills/onp-spec-driven/scripts/onp-spec.mjs'
@@ -168,17 +168,17 @@ iniciar_resumos() {
   trap 'parar_resumos; node "$ENGINE" resumo "$FEATURE" --gravar >/dev/null 2>&1 || true' EXIT
 }
 
-# ── sequencial T-093 (ordem do tasks.md) ──
-executar_seq_T_093() {
-  info 'sequencial T-093 — Entidades de Domínio para Financeiro'
-  if rodar_tarefa seq 'T-093' 'Você executa UMA tarefa da feature "gestao-financeira-contas" (fluxo onp-spec, spec-anchored).
+# ── sequencial T-045 (ordem do tasks.md) ──
+executar_seq_T_045() {
+  info 'sequencial T-045 — Modelar Entidades Financeiras (FinancialTransaction, Receivable, Payable)'
+  if rodar_tarefa seq 'T-045' 'Você executa UMA tarefa da feature "gestao-financeira-contas" (fluxo onp-spec, spec-anchored).
 Leia primeiro: .spec/features/gestao-financeira-contas/spec.md, .spec/features/gestao-financeira-contas/tasks.md e .spec/constituicao.md.
 
 Sua tarefa (somente ela):
-T-093 — "Entidades de Domínio para Financeiro"
-  critérios/refs: AC-094 (Geração de recebíveis vinculados), AC-095 (Baixa parcial ou total), AC-096 (Isolamento e acesso financeiro)
-  arquivos permitidos (e seus testes): src/Agendamento.Api/Domain/Financial/PayableTitle.cs, src/Agendamento.Api/Domain/Financial/ReceivableTitle.cs, src/Agendamento.Api/Domain/Financial/PaymentEntry.cs, src/Agendamento.Api/Domain/Financial/PaymentMethod.cs, src/Agendamento.Api/Domain/Financial/TransactionStatus.cs
-  mensagem de commit: "T-093 gestao-financeira-contas: Entidades de Domínio para Financeiro"
+T-045 — "Modelar Entidades Financeiras (FinancialTransaction, Receivable, Payable)"
+  critérios/refs: AC-055 (Registros financeiros pertencem ao tenant), AC-057 (Baixa parcial acumula pagamentos até quitação), AC-058 (Títulos vencidos são sinalizados)
+  arquivos permitidos (e seus testes): src/Agendamento.Api/Domain/Financial/ReceivableTitle.cs, src/Agendamento.Api/Domain/Financial/PayableTitle.cs, src/Agendamento.Api/Domain/Financial/PaymentEntry.cs, src/Agendamento.Api/Domain/Financial/TransactionStatus.cs, src/Agendamento.Api/Domain/Financial/PaymentMethod.cs
+  mensagem de commit: "T-045 gestao-financeira-contas: Modelar Entidades Financeiras (FinancialTransaction, Receivable, Payable)"
 
 Regras inegociáveis:
 - Todo critério de aceite referenciado vira teste com @spec:AC-xxx no título.
@@ -188,29 +188,29 @@ Regras inegociáveis:
 - Ao final de CADA tarefa: `git add` só no que você tocou e um commit próprio.' 'gpt-5.6-terra' medium >> "$LOG_DIR/seq.log" 2>&1; then
     # commit de segurança se o agente esqueceu (rastreabilidade > perfeição)
     if [ -n "$(git status --porcelain)" ]; then
-      git add -A && git commit -q -m 'T-093 gestao-financeira-contas: Entidades de Domínio para Financeiro (auto-commit do plano)'
+      git add -A && git commit -q -m 'T-045 gestao-financeira-contas: Modelar Entidades Financeiras (FinancialTransaction, Receivable, Payable) (auto-commit do plano)'
     fi
-    marcar_concluidas T-093
-    verde "✔ T-093 concluída"
+    marcar_concluidas T-045
+    verde "✔ T-045 concluída"
     return 0
   fi
-  vermelho "✘ T-093 falhou (log: $LOG_DIR/seq.log)"
-  amarelo "  reexecute só ela: bash .spec/features/gestao-financeira-contas/executar-tarefas.sh --seq T-093"
-  FALHAS="$FALHAS T-093"
+  vermelho "✘ T-045 falhou (log: $LOG_DIR/seq.log)"
+  amarelo "  reexecute só ela: bash .spec/features/gestao-financeira-contas/executar-tarefas.sh --seq T-045"
+  FALHAS="$FALHAS T-045"
   return 1
 }
 
-# ── sequencial T-094 (ordem do tasks.md) ──
-executar_seq_T_094() {
-  info 'sequencial T-094 — Mapeamento EF Core para Financeiro'
-  if rodar_tarefa seq 'T-094' 'Você executa UMA tarefa da feature "gestao-financeira-contas" (fluxo onp-spec, spec-anchored).
+# ── sequencial T-046 (ordem do tasks.md) ──
+executar_seq_T_046() {
+  info 'sequencial T-046 — Configurar Persistência EF Core e Migrations Financeiras'
+  if rodar_tarefa seq 'T-046' 'Você executa UMA tarefa da feature "gestao-financeira-contas" (fluxo onp-spec, spec-anchored).
 Leia primeiro: .spec/features/gestao-financeira-contas/spec.md, .spec/features/gestao-financeira-contas/tasks.md e .spec/constituicao.md.
 
 Sua tarefa (somente ela):
-T-094 — "Mapeamento EF Core para Financeiro"
-  critérios/refs: AC-096 (Isolamento e acesso financeiro)
-  arquivos permitidos (e seus testes): src/Agendamento.Api/Infrastructure/Persistence/Configurations/PayableTitleConfiguration.cs, src/Agendamento.Api/Infrastructure/Persistence/Configurations/ReceivableTitleConfiguration.cs, src/Agendamento.Api/Infrastructure/Persistence/AgendamentoDbContext.cs
-  mensagem de commit: "T-094 gestao-financeira-contas: Mapeamento EF Core para Financeiro"
+T-046 — "Configurar Persistência EF Core e Migrations Financeiras"
+  critérios/refs: AC-055 (Registros financeiros pertencem ao tenant)
+  arquivos permitidos (e seus testes): src/Agendamento.Api/Infrastructure/Persistence/AgendamentoDbContext.cs, src/Agendamento.Api/Infrastructure/Persistence/Configurations/ReceivableTitleConfiguration.cs, src/Agendamento.Api/Infrastructure/Persistence/Configurations/PayableTitleConfiguration.cs
+  mensagem de commit: "T-046 gestao-financeira-contas: Configurar Persistência EF Core e Migrations Financeiras"
 
 Regras inegociáveis:
 - Todo critério de aceite referenciado vira teste com @spec:AC-xxx no título.
@@ -220,29 +220,29 @@ Regras inegociáveis:
 - Ao final de CADA tarefa: `git add` só no que você tocou e um commit próprio.' 'gpt-5.6-terra' medium >> "$LOG_DIR/seq.log" 2>&1; then
     # commit de segurança se o agente esqueceu (rastreabilidade > perfeição)
     if [ -n "$(git status --porcelain)" ]; then
-      git add -A && git commit -q -m 'T-094 gestao-financeira-contas: Mapeamento EF Core para Financeiro (auto-commit do plano)'
+      git add -A && git commit -q -m 'T-046 gestao-financeira-contas: Configurar Persistência EF Core e Migrations Financeiras (auto-commit do plano)'
     fi
-    marcar_concluidas T-094
-    verde "✔ T-094 concluída"
+    marcar_concluidas T-046
+    verde "✔ T-046 concluída"
     return 0
   fi
-  vermelho "✘ T-094 falhou (log: $LOG_DIR/seq.log)"
-  amarelo "  reexecute só ela: bash .spec/features/gestao-financeira-contas/executar-tarefas.sh --seq T-094"
-  FALHAS="$FALHAS T-094"
+  vermelho "✘ T-046 falhou (log: $LOG_DIR/seq.log)"
+  amarelo "  reexecute só ela: bash .spec/features/gestao-financeira-contas/executar-tarefas.sh --seq T-046"
+  FALHAS="$FALHAS T-046"
   return 1
 }
 
-# ── sequencial T-095 (ordem do tasks.md) ──
-executar_seq_T_095() {
-  info 'sequencial T-095 — Caso de Uso e Endpoints de Financeiro'
-  if rodar_tarefa seq 'T-095' 'Você executa UMA tarefa da feature "gestao-financeira-contas" (fluxo onp-spec, spec-anchored).
+# ── sequencial T-047 (ordem do tasks.md) ──
+executar_seq_T_047() {
+  info 'sequencial T-047 — Caso de Uso: Lançamento Automático de Títulos via Orçamento/OS'
+  if rodar_tarefa seq 'T-047' 'Você executa UMA tarefa da feature "gestao-financeira-contas" (fluxo onp-spec, spec-anchored).
 Leia primeiro: .spec/features/gestao-financeira-contas/spec.md, .spec/features/gestao-financeira-contas/tasks.md e .spec/constituicao.md.
 
 Sua tarefa (somente ela):
-T-095 — "Caso de Uso e Endpoints de Financeiro"
-  critérios/refs: AC-094 (Geração de recebíveis vinculados), AC-095 (Baixa parcial ou total), AC-096 (Isolamento e acesso financeiro)
-  arquivos permitidos (e seus testes): src/Agendamento.Api/Features/Financial/FinancialEndpoints.cs, src/Agendamento.Api/Program.cs, src/Agendamento.Api/Application/Quotations/UpdateQuotationStatus/UpdateQuotationStatusHandler.cs, src/Agendamento.Api/Application/WorkOrders/UpdateWorkOrderStatus/UpdateWorkOrderStatusHandler.cs, src/Agendamento.Api/Application/Financial/GetFinancialStatement/GetFinancialStatementHandler.cs, src/Agendamento.Api/Application/Financial/RegisterPayment/RegisterPaymentHandler.cs, src/Agendamento.Api/Application/Financial/GenerateReceivablesFromQuotation/GenerateReceivablesFromQuotationHandler.cs, src/Agendamento.Api/Application/Financial/CreatePayable/CreatePayableHandler.cs
-  mensagem de commit: "T-095 gestao-financeira-contas: Caso de Uso e Endpoints de Financeiro"
+T-047 — "Caso de Uso: Lançamento Automático de Títulos via Orçamento/OS"
+  critérios/refs: AC-056 (Entrada gera título no valor configurado)
+  arquivos permitidos (e seus testes): src/Agendamento.Api/Application/Financial/GenerateReceivablesFromQuotation/GenerateReceivablesFromQuotationHandler.cs
+  mensagem de commit: "T-047 gestao-financeira-contas: Caso de Uso: Lançamento Automático de Títulos via Orçamento/OS"
 
 Regras inegociáveis:
 - Todo critério de aceite referenciado vira teste com @spec:AC-xxx no título.
@@ -252,29 +252,29 @@ Regras inegociáveis:
 - Ao final de CADA tarefa: `git add` só no que você tocou e um commit próprio.' 'gpt-5.6-terra' medium >> "$LOG_DIR/seq.log" 2>&1; then
     # commit de segurança se o agente esqueceu (rastreabilidade > perfeição)
     if [ -n "$(git status --porcelain)" ]; then
-      git add -A && git commit -q -m 'T-095 gestao-financeira-contas: Caso de Uso e Endpoints de Financeiro (auto-commit do plano)'
+      git add -A && git commit -q -m 'T-047 gestao-financeira-contas: Caso de Uso: Lançamento Automático de Títulos via Orçamento/OS (auto-commit do plano)'
     fi
-    marcar_concluidas T-095
-    verde "✔ T-095 concluída"
+    marcar_concluidas T-047
+    verde "✔ T-047 concluída"
     return 0
   fi
-  vermelho "✘ T-095 falhou (log: $LOG_DIR/seq.log)"
-  amarelo "  reexecute só ela: bash .spec/features/gestao-financeira-contas/executar-tarefas.sh --seq T-095"
-  FALHAS="$FALHAS T-095"
+  vermelho "✘ T-047 falhou (log: $LOG_DIR/seq.log)"
+  amarelo "  reexecute só ela: bash .spec/features/gestao-financeira-contas/executar-tarefas.sh --seq T-047"
+  FALHAS="$FALHAS T-047"
   return 1
 }
 
-# ── sequencial T-096 (ordem do tasks.md) ──
-executar_seq_T_096() {
-  info 'sequencial T-096 — Testes de Integração para Financeiro'
-  if rodar_tarefa seq 'T-096' 'Você executa UMA tarefa da feature "gestao-financeira-contas" (fluxo onp-spec, spec-anchored).
+# ── sequencial T-048 (ordem do tasks.md) ──
+executar_seq_T_048() {
+  info 'sequencial T-048 — Caso de Uso: Registro de Liquidação / Baixa de Títulos'
+  if rodar_tarefa seq 'T-048' 'Você executa UMA tarefa da feature "gestao-financeira-contas" (fluxo onp-spec, spec-anchored).
 Leia primeiro: .spec/features/gestao-financeira-contas/spec.md, .spec/features/gestao-financeira-contas/tasks.md e .spec/constituicao.md.
 
 Sua tarefa (somente ela):
-T-096 — "Testes de Integração para Financeiro"
-  critérios/refs: AC-094 (Geração de recebíveis vinculados), AC-095 (Baixa parcial ou total), AC-096 (Isolamento e acesso financeiro)
-  arquivos permitidos (e seus testes): tests/Agendamento.IntegrationTests/Financial/FinancialApiTests.cs, tests/Agendamento.IntegrationTests/Financial/FinancialIsolationTests.cs, tests/Agendamento.UnitTests/Financial/FinancialDomainTests.cs, tests/Agendamento.IntegrationTests/Features/TeamFinancialHttpTests.cs, scripts/verify-spec.ps1, Directory.Packages.props
-  mensagem de commit: "T-096 gestao-financeira-contas: Testes de Integração para Financeiro"
+T-048 — "Caso de Uso: Registro de Liquidação / Baixa de Títulos"
+  critérios/refs: AC-057 (Baixa parcial acumula pagamentos até quitação)
+  arquivos permitidos (e seus testes): src/Agendamento.Api/Application/Financial/RegisterPayment/RegisterPaymentHandler.cs
+  mensagem de commit: "T-048 gestao-financeira-contas: Caso de Uso: Registro de Liquidação / Baixa de Títulos"
 
 Regras inegociáveis:
 - Todo critério de aceite referenciado vira teste com @spec:AC-xxx no título.
@@ -284,15 +284,111 @@ Regras inegociáveis:
 - Ao final de CADA tarefa: `git add` só no que você tocou e um commit próprio.' 'gpt-5.6-terra' medium >> "$LOG_DIR/seq.log" 2>&1; then
     # commit de segurança se o agente esqueceu (rastreabilidade > perfeição)
     if [ -n "$(git status --porcelain)" ]; then
-      git add -A && git commit -q -m 'T-096 gestao-financeira-contas: Testes de Integração para Financeiro (auto-commit do plano)'
+      git add -A && git commit -q -m 'T-048 gestao-financeira-contas: Caso de Uso: Registro de Liquidação / Baixa de Títulos (auto-commit do plano)'
     fi
-    marcar_concluidas T-096
-    verde "✔ T-096 concluída"
+    marcar_concluidas T-048
+    verde "✔ T-048 concluída"
     return 0
   fi
-  vermelho "✘ T-096 falhou (log: $LOG_DIR/seq.log)"
-  amarelo "  reexecute só ela: bash .spec/features/gestao-financeira-contas/executar-tarefas.sh --seq T-096"
-  FALHAS="$FALHAS T-096"
+  vermelho "✘ T-048 falhou (log: $LOG_DIR/seq.log)"
+  amarelo "  reexecute só ela: bash .spec/features/gestao-financeira-contas/executar-tarefas.sh --seq T-048"
+  FALHAS="$FALHAS T-048"
+  return 1
+}
+
+# ── sequencial T-049 (ordem do tasks.md) ──
+executar_seq_T_049() {
+  info 'sequencial T-049 — Casos de Uso: Gestão de Contas a Pagar e Extrato Financeiro'
+  if rodar_tarefa seq 'T-049' 'Você executa UMA tarefa da feature "gestao-financeira-contas" (fluxo onp-spec, spec-anchored).
+Leia primeiro: .spec/features/gestao-financeira-contas/spec.md, .spec/features/gestao-financeira-contas/tasks.md e .spec/constituicao.md.
+
+Sua tarefa (somente ela):
+T-049 — "Casos de Uso: Gestão de Contas a Pagar e Extrato Financeiro"
+  critérios/refs: AC-058 (Títulos vencidos são sinalizados), AC-059 (Extrato consolida totais por período)
+  arquivos permitidos (e seus testes): src/Agendamento.Api/Application/Financial/CreatePayable/CreatePayableHandler.cs, src/Agendamento.Api/Application/Financial/GetFinancialStatement/GetFinancialStatementHandler.cs
+  mensagem de commit: "T-049 gestao-financeira-contas: Casos de Uso: Gestão de Contas a Pagar e Extrato Financeiro"
+
+Regras inegociáveis:
+- Todo critério de aceite referenciado vira teste com @spec:AC-xxx no título.
+- NUNCA enfraqueça, pule (skip/todo) ou apague um teste para passar — teste pulado não é prova e o audit acusa.
+- Rode os testes localmente com `powershell -ExecutionPolicy Bypass -File scripts/verify-spec.ps1` até passarem.
+- NÃO edite tasks.md, NÃO rode onp-spec verify/audit e NÃO toque em outras tarefas — o orquestrador cuida disso.
+- Ao final de CADA tarefa: `git add` só no que você tocou e um commit próprio.' 'gpt-5.6-terra' medium >> "$LOG_DIR/seq.log" 2>&1; then
+    # commit de segurança se o agente esqueceu (rastreabilidade > perfeição)
+    if [ -n "$(git status --porcelain)" ]; then
+      git add -A && git commit -q -m 'T-049 gestao-financeira-contas: Casos de Uso: Gestão de Contas a Pagar e Extrato Financeiro (auto-commit do plano)'
+    fi
+    marcar_concluidas T-049
+    verde "✔ T-049 concluída"
+    return 0
+  fi
+  vermelho "✘ T-049 falhou (log: $LOG_DIR/seq.log)"
+  amarelo "  reexecute só ela: bash .spec/features/gestao-financeira-contas/executar-tarefas.sh --seq T-049"
+  FALHAS="$FALHAS T-049"
+  return 1
+}
+
+# ── sequencial T-050 (ordem do tasks.md) ──
+executar_seq_T_050() {
+  info 'sequencial T-050 — Expor Endpoints Minimal API Financeiros'
+  if rodar_tarefa seq 'T-050' 'Você executa UMA tarefa da feature "gestao-financeira-contas" (fluxo onp-spec, spec-anchored).
+Leia primeiro: .spec/features/gestao-financeira-contas/spec.md, .spec/features/gestao-financeira-contas/tasks.md e .spec/constituicao.md.
+
+Sua tarefa (somente ela):
+T-050 — "Expor Endpoints Minimal API Financeiros"
+  critérios/refs: AC-055 (Registros financeiros pertencem ao tenant), AC-059 (Extrato consolida totais por período)
+  arquivos permitidos (e seus testes): src/Agendamento.Api/Features/Financial/FinancialEndpoints.cs, src/Agendamento.Api/Program.cs
+  mensagem de commit: "T-050 gestao-financeira-contas: Expor Endpoints Minimal API Financeiros"
+
+Regras inegociáveis:
+- Todo critério de aceite referenciado vira teste com @spec:AC-xxx no título.
+- NUNCA enfraqueça, pule (skip/todo) ou apague um teste para passar — teste pulado não é prova e o audit acusa.
+- Rode os testes localmente com `powershell -ExecutionPolicy Bypass -File scripts/verify-spec.ps1` até passarem.
+- NÃO edite tasks.md, NÃO rode onp-spec verify/audit e NÃO toque em outras tarefas — o orquestrador cuida disso.
+- Ao final de CADA tarefa: `git add` só no que você tocou e um commit próprio.' 'gpt-5.6-terra' medium >> "$LOG_DIR/seq.log" 2>&1; then
+    # commit de segurança se o agente esqueceu (rastreabilidade > perfeição)
+    if [ -n "$(git status --porcelain)" ]; then
+      git add -A && git commit -q -m 'T-050 gestao-financeira-contas: Expor Endpoints Minimal API Financeiros (auto-commit do plano)'
+    fi
+    marcar_concluidas T-050
+    verde "✔ T-050 concluída"
+    return 0
+  fi
+  vermelho "✘ T-050 falhou (log: $LOG_DIR/seq.log)"
+  amarelo "  reexecute só ela: bash .spec/features/gestao-financeira-contas/executar-tarefas.sh --seq T-050"
+  FALHAS="$FALHAS T-050"
+  return 1
+}
+
+# ── sequencial T-051 (ordem do tasks.md) ──
+executar_seq_T_051() {
+  info 'sequencial T-051 — Testes de Integração Financeira, Baixas Parciais e Isolamento RLS'
+  if rodar_tarefa seq 'T-051' 'Você executa UMA tarefa da feature "gestao-financeira-contas" (fluxo onp-spec, spec-anchored).
+Leia primeiro: .spec/features/gestao-financeira-contas/spec.md, .spec/features/gestao-financeira-contas/tasks.md e .spec/constituicao.md.
+
+Sua tarefa (somente ela):
+T-051 — "Testes de Integração Financeira, Baixas Parciais e Isolamento RLS"
+  critérios/refs: AC-055 (Registros financeiros pertencem ao tenant), AC-056 (Entrada gera título no valor configurado), AC-057 (Baixa parcial acumula pagamentos até quitação), AC-058 (Títulos vencidos são sinalizados), AC-059 (Extrato consolida totais por período)
+  arquivos permitidos (e seus testes): tests/Agendamento.UnitTests/Financial/FinancialDomainTests.cs, tests/Agendamento.IntegrationTests/Financial/FinancialApiTests.cs, tests/Agendamento.IntegrationTests/Financial/FinancialIsolationTests.cs
+  mensagem de commit: "T-051 gestao-financeira-contas: Testes de Integração Financeira, Baixas Parciais e Isolamento RLS"
+
+Regras inegociáveis:
+- Todo critério de aceite referenciado vira teste com @spec:AC-xxx no título.
+- NUNCA enfraqueça, pule (skip/todo) ou apague um teste para passar — teste pulado não é prova e o audit acusa.
+- Rode os testes localmente com `powershell -ExecutionPolicy Bypass -File scripts/verify-spec.ps1` até passarem.
+- NÃO edite tasks.md, NÃO rode onp-spec verify/audit e NÃO toque em outras tarefas — o orquestrador cuida disso.
+- Ao final de CADA tarefa: `git add` só no que você tocou e um commit próprio.' 'gpt-5.6-terra' medium >> "$LOG_DIR/seq.log" 2>&1; then
+    # commit de segurança se o agente esqueceu (rastreabilidade > perfeição)
+    if [ -n "$(git status --porcelain)" ]; then
+      git add -A && git commit -q -m 'T-051 gestao-financeira-contas: Testes de Integração Financeira, Baixas Parciais e Isolamento RLS (auto-commit do plano)'
+    fi
+    marcar_concluidas T-051
+    verde "✔ T-051 concluída"
+    return 0
+  fi
+  vermelho "✘ T-051 falhou (log: $LOG_DIR/seq.log)"
+  amarelo "  reexecute só ela: bash .spec/features/gestao-financeira-contas/executar-tarefas.sh --seq T-051"
+  FALHAS="$FALHAS T-051"
   return 1
 }
 
@@ -349,19 +445,25 @@ executar_tudo() {
   iniciar_resumos
   info "logs em: $LOG_DIR"
   info "resumo geral de andamento: a cada 1 min aqui no terminal (e via: onp-spec resumo)"
-  executar_seq_T_093 || true
-  executar_seq_T_094 || true
-  executar_seq_T_095 || true
-  executar_seq_T_096 || true
+  executar_seq_T_045 || true
+  executar_seq_T_046 || true
+  executar_seq_T_047 || true
+  executar_seq_T_048 || true
+  executar_seq_T_049 || true
+  executar_seq_T_050 || true
+  executar_seq_T_051 || true
   encerrar tudo
 }
 
 listar() {
   echo "execução: $RUN_ID (feature $FEATURE, branch $BASE_BRANCH)"
-  echo "  seq       T-093 (sequencial)"
-  echo "  seq       T-094 (sequencial)"
-  echo "  seq       T-095 (sequencial)"
-  echo "  seq       T-096 (sequencial)"
+  echo "  seq       T-045 (sequencial)"
+  echo "  seq       T-046 (sequencial)"
+  echo "  seq       T-047 (sequencial)"
+  echo "  seq       T-048 (sequencial)"
+  echo "  seq       T-049 (sequencial)"
+  echo "  seq       T-050 (sequencial)"
+  echo "  seq       T-051 (sequencial)"
   echo
   echo "reexecutar uma faixa:    --faixa <id>"
   echo "reexecutar sequencial:   --seq <T-xxx>"
@@ -396,10 +498,13 @@ case "$MODO" in
     esac ;;
   seq)
     case "$ALVO" in
-      T-093) evento --tipo inicio --escopo "seq:T-093"; iniciar_resumos; executar_seq_T_093 || true; encerrar "seq:T-093" ;;
-      T-094) evento --tipo inicio --escopo "seq:T-094"; iniciar_resumos; executar_seq_T_094 || true; encerrar "seq:T-094" ;;
-      T-095) evento --tipo inicio --escopo "seq:T-095"; iniciar_resumos; executar_seq_T_095 || true; encerrar "seq:T-095" ;;
-      T-096) evento --tipo inicio --escopo "seq:T-096"; iniciar_resumos; executar_seq_T_096 || true; encerrar "seq:T-096" ;;
+      T-045) evento --tipo inicio --escopo "seq:T-045"; iniciar_resumos; executar_seq_T_045 || true; encerrar "seq:T-045" ;;
+      T-046) evento --tipo inicio --escopo "seq:T-046"; iniciar_resumos; executar_seq_T_046 || true; encerrar "seq:T-046" ;;
+      T-047) evento --tipo inicio --escopo "seq:T-047"; iniciar_resumos; executar_seq_T_047 || true; encerrar "seq:T-047" ;;
+      T-048) evento --tipo inicio --escopo "seq:T-048"; iniciar_resumos; executar_seq_T_048 || true; encerrar "seq:T-048" ;;
+      T-049) evento --tipo inicio --escopo "seq:T-049"; iniciar_resumos; executar_seq_T_049 || true; encerrar "seq:T-049" ;;
+      T-050) evento --tipo inicio --escopo "seq:T-050"; iniciar_resumos; executar_seq_T_050 || true; encerrar "seq:T-050" ;;
+      T-051) evento --tipo inicio --escopo "seq:T-051"; iniciar_resumos; executar_seq_T_051 || true; encerrar "seq:T-051" ;;
       *) falhar "tarefa sequencial desconhecida: '$ALVO' — veja as disponíveis com --listar" ;;
     esac ;;
 esac

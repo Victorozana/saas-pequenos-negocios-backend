@@ -31,6 +31,9 @@ public class PayableTitleConfiguration : IEntityTypeConfiguration<PayableTitle>
         {
             pb.ToTable("PayablePayments");
             pb.HasKey(pay => pay.Id);
+            pb.Property<Guid>("TenantId").HasColumnName("tenant_id").IsRequired();
+            pb.HasIndex("TenantId");
+            pb.HasOne<Agendamento.Domain.Tenants.Tenant>().WithMany().HasForeignKey("TenantId").OnDelete(DeleteBehavior.Restrict);
             pb.Property(pay => pay.Amount).HasColumnType("decimal(18,2)").IsRequired();
             pb.Property(pay => pay.PaymentDate).IsRequired();
             pb.Property(pay => pay.Method).HasConversion<string>().IsRequired();

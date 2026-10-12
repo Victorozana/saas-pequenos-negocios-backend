@@ -46,6 +46,7 @@ public class NotificationOutboxProcessor : BackgroundService
         using var scope = _serviceProvider.CreateScope();
         
         var dbContext = scope.ServiceProvider.GetRequiredService<AgendamentoDbContext>();
+        using var administrative = dbContext.Administrative.Enter();
         var gateway = scope.ServiceProvider.GetRequiredService<ICommunicationGateway>();
 
         // Disable query filters here since we want to process outbox for all tenants at once in the background

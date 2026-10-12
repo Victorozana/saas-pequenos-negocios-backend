@@ -65,6 +65,7 @@ public static class DependencyInjection
                             return;
                         }
                         var db = context.HttpContext.RequestServices.GetRequiredService<Agendamento.Api.Infrastructure.Persistence.AgendamentoDbContext>();
+                        using var administrative = db.Administrative.Enter();
                         var active = await db.TenantMemberships.IgnoreQueryFilters()
                             .Where(m => m.TenantId == tenantId && m.UserId == userId && m.IsActive)
                             .Join(db.Users.Where(u => u.Status == Agendamento.Domain.Identity.UserStatus.Active), m => m.UserId, u => u.Id, (m, u) => m.Id)
@@ -83,6 +84,9 @@ public static class DependencyInjection
         services.AddAuthorization();
 
         services.AddScoped<Agendamento.Api.Infrastructure.Persistence.TenantSaveChangesInterceptor>();
+        services.AddScoped<Agendamento.Api.Infrastructure.Persistence.AdministrativeDatabaseScope>();
+        services.AddScoped<Agendamento.Api.Infrastructure.Persistence.TenantTransactionInterceptor>();
+        services.AddScoped<Agendamento.Api.Infrastructure.Persistence.TenantConnectionInterceptor>();
 
         if (configuration.GetValue<bool>("Database:RequirePostgreSql"))
         {
@@ -97,7 +101,7 @@ public static class DependencyInjection
             services.AddDbContext<Agendamento.Api.Infrastructure.Persistence.AgendamentoDbContext>((sp, options) =>
             {
                 var interceptor = sp.GetRequiredService<Agendamento.Api.Infrastructure.Persistence.TenantSaveChangesInterceptor>();
-                options.UseNpgsql(connectionString).AddInterceptors(interceptor);
+                options.UseNpgsql(connectionString).AddInterceptors(interceptor, sp.GetRequiredService<Agendamento.Api.Infrastructure.Persistence.TenantTransactionInterceptor>(), sp.GetRequiredService<Agendamento.Api.Infrastructure.Persistence.TenantConnectionInterceptor>());
             });
 
             services.AddScoped<Agendamento.Api.Application.Common.IUnitOfWork, Agendamento.Api.Infrastructure.Persistence.UnitOfWork>();

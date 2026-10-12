@@ -1,0 +1,136 @@
+{
+  "ok": false,
+  "stats": {
+    "features": 15,
+    "stories": 57,
+    "acs": 94,
+    "acsWithTest": 86,
+    "acsProven": 86,
+    "assumptionsOpen": 1,
+    "questionsOpen": 0,
+    "principles": 5,
+    "errors": 10,
+    "warnings": 5
+  },
+  "findings": [
+    {
+      "code": "AC_SEM_TESTE",
+      "severity": "erro",
+      "message": "AC-038 (Schemas não expõem dados secretos) não tem nenhum teste anotado com @spec:AC-038",
+      "feature": "contrato-openapi-swagger",
+      "file": ".spec\\features\\contrato-openapi-swagger\\spec.md",
+      "line": 28
+    },
+    {
+      "code": "AC_SEM_TESTE",
+      "severity": "erro",
+      "message": "AC-206 (Edição permitida somente enquanto pendente) não tem nenhum teste anotado com @spec:AC-206",
+      "feature": "gestao-orcamentos-servicos",
+      "file": ".spec\\features\\gestao-orcamentos-servicos\\spec.md",
+      "line": 28
+    },
+    {
+      "code": "ARQUIVO_INEXISTENTE",
+      "severity": "aviso",
+      "message": "a tarefa T-019 mapeia src/Agendamento.Api/Infrastructure/Persistence/TenantTransactionInterceptor.cs, que não existe",
+      "feature": "isolamento-multitenancy",
+      "file": ".spec\\features\\isolamento-multitenancy\\tasks.md",
+      "line": 17
+    },
+    {
+      "code": "ARQUIVO_INEXISTENTE",
+      "severity": "aviso",
+      "message": "a tarefa T-019 mapeia src/Agendamento.Api/Infrastructure/Persistence/Sql/TenantRls.sql, que não existe",
+      "feature": "isolamento-multitenancy",
+      "file": ".spec\\features\\isolamento-multitenancy\\tasks.md",
+      "line": 17
+    },
+    {
+      "code": "ARQUIVO_INEXISTENTE",
+      "severity": "aviso",
+      "message": "a tarefa T-019 mapeia tests/Agendamento.IntegrationTests/Tenancy/PostgreSqlRlsTests.cs, que não existe",
+      "feature": "isolamento-multitenancy",
+      "file": ".spec\\features\\isolamento-multitenancy\\tasks.md",
+      "line": 17
+    },
+    {
+      "code": "ARQUIVO_INEXISTENTE",
+      "severity": "aviso",
+      "message": "a tarefa T-020 mapeia tests/Agendamento.IntegrationTests/Tenancy/CrossTenantIsolationTests.cs, que não existe",
+      "feature": "isolamento-multitenancy",
+      "file": ".spec\\features\\isolamento-multitenancy\\tasks.md",
+      "line": 22
+    },
+    {
+      "code": "ARQUIVO_INEXISTENTE",
+      "severity": "aviso",
+      "message": "a tarefa T-021 mapeia tests/Agendamento.ArchitectureTests/Tenancy/TenantOwnedMigrationTests.cs, que não existe",
+      "feature": "isolamento-multitenancy",
+      "file": ".spec\\features\\isolamento-multitenancy\\tasks.md",
+      "line": 27
+    },
+    {
+      "code": "AC_SEM_TESTE",
+      "severity": "erro",
+      "message": "AC-033 (Papel da aplicação não contorna RLS) não tem nenhum teste anotado com @spec:AC-033",
+      "feature": "isolamento-multitenancy",
+      "file": ".spec\\features\\isolamento-multitenancy\\spec.md",
+      "line": 54
+    },
+    {
+      "code": "AC_SEM_TESTE",
+      "severity": "erro",
+      "message": "AC-034 (Contexto não vaza pelo pool de conexões) não tem nenhum teste anotado com @spec:AC-034",
+      "feature": "isolamento-multitenancy",
+      "file": ".spec\\features\\isolamento-multitenancy\\spec.md",
+      "line": 60
+    },
+    {
+      "code": "AC_SEM_TESTE",
+      "severity": "erro",
+      "message": "AC-035 (Toda tabela tenant-owned nasce protegida) não tem nenhum teste anotado com @spec:AC-035",
+      "feature": "isolamento-multitenancy",
+      "file": ".spec\\features\\isolamento-multitenancy\\spec.md",
+      "line": 66
+    },
+    {
+      "code": "US_SEM_AC",
+      "severity": "erro",
+      "message": "US-052 (Aviso de Fatura Vencida) sem critério de aceite",
+      "feature": "notificacoes-lembretes-whatsapp",
+      "file": ".spec\\features\\notificacoes-lembretes-whatsapp\\spec.md",
+      "line": 40
+    },
+    {
+      "code": "AC_SEM_TESTE",
+      "severity": "erro",
+      "message": "AC-097 (Serviço centralizado abstrai o provedor) não tem nenhum teste anotado com @spec:AC-097",
+      "feature": "notificacoes-lembretes-whatsapp",
+      "file": ".spec\\features\\notificacoes-lembretes-whatsapp\\spec.md",
+      "line": 16
+    },
+    {
+      "code": "AC_SEM_TESTE",
+      "severity": "erro",
+      "message": "AC-098 (Histórico vinculado ao tenant e cliente) não tem nenhum teste anotado com @spec:AC-098",
+      "feature": "notificacoes-lembretes-whatsapp",
+      "file": ".spec\\features\\notificacoes-lembretes-whatsapp\\spec.md",
+      "line": 22
+    },
+    {
+      "code": "AC_SEM_TESTE",
+      "severity": "erro",
+      "message": "AC-207 (Lembretes podem ser desativados por cliente) não tem nenhum teste anotado com @spec:AC-207",
+      "feature": "notificacoes-lembretes-whatsapp",
+      "file": ".spec\\features\\notificacoes-lembretes-whatsapp\\spec.md",
+      "line": 34
+    },
+    {
+      "code": "PRINCIPIO_VIOLADO",
+      "severity": "erro",
+      "message": "P-004 exige teste @principle:P-004 e nenhum teste tem essa tag",
+      "file": ".spec\\constituicao.md",
+      "line": 43
+    }
+  ]
+}

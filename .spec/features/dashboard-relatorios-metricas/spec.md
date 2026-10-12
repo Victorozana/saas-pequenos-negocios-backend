@@ -25,12 +25,6 @@ Para tomar decisões estratégicas rápidas sobre a operação do negócio.
 - **Quando** o KPI de faturamento no dashboard é calculado
 - **Então** considera apenas títulos efetivamente baixados/pagos dentro do intervalo de datas consultado
 
-#### AC-067 — Consultas agregadas otimizadas
-
-- **Dado** a execução de consultas agregadas do dashboard
-- **Quando** o usuário solicita o resumo ou agenda
-- **Então** a consulta responde de forma otimizada em menos de 200ms
-
 ### US-038 — Acompanhar Taxa de Conversão de Orçamentos
 Como gestor do tenant autenticado,  
 Quero visualizar o indicador de taxa de aprovação de orçamentos (total emitido vs total aprovado em R$ e quantidade),  
@@ -46,6 +40,12 @@ Para avaliar a eficiência da equipe comercial e atratividade das propostas.
 Como prestador de serviço autenticado,  
 Quero ver um painel compacto com os próximos agendamentos e visitas técnicas marcadas para hoje e nos próximos 7 dias,  
 Para planejar o deslocamento e prioridades de atendimento da equipe.
+
+#### AC-067 — Consultas agregadas otimizadas
+
+- **Dado** a execução de consultas agregadas do dashboard
+- **Quando** o usuário solicita o resumo ou agenda
+- **Então** a consulta responde de forma otimizada em menos de 200ms
 
 ### US-040 — Exportar Relatório Consolidado de Desempenho (CSV/PDF)
 Como gestor do tenant autenticado,  
@@ -63,7 +63,7 @@ Para acompanhamento contábil ou prestação de contas dos sócios.
 
 | ID | Suposição | Status | Resolução |
 |---|---|---|---|
-| ASM-008 | O formato CSV é suficiente para exportação sintética neste momento. | confirmada | Confirmado na especificação do módulo. |
+| ASM-015 | O formato CSV é suficiente para exportação sintética neste momento. | confirmada | Confirmado na especificação do módulo. |
 
 ## Perguntas em aberto
 

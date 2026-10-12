@@ -1,115 +1,188 @@
 {
-  "runId": "agendamento-notificacoes-lembretes-whatsapp-msp1yzgc",
+  "runId": "saas-pequenos-negocios-backend-notificacoes-lembretes-whatsapp-mv4pyvhh",
   "feature": "notificacoes-lembretes-whatsapp",
   "agent": "codex",
-  "modo": "paralelo",
+  "modo": "sequencial",
   "paralelizar": null,
   "modeloForcado": null,
   "esforcoForcado": null,
-  "geradoEm": "2026-08-11 19:28",
+  "geradoEm": "2026-10-12 03:55",
   "branchTrabalho": "spec/notificacoes-lembretes-whatsapp",
   "baseDir": ".spec/features/notificacoes-lembretes-whatsapp",
   "specDir": ".spec",
-  "repoName": "agendamento",
-  "logsDir": "../onp-worktrees/agendamento-notificacoes-lembretes-whatsapp-logs",
-  "ondas": [
-    [
-      "faixa-1",
-      "faixa-2",
-      "faixa-3"
-    ],
-    [
-      "faixa-4"
-    ]
-  ],
-  "faixas": [
+  "repoName": "saas-pequenos-negocios-backend",
+  "logsDir": "../onp-worktrees/saas-pequenos-negocios-backend-notificacoes-lembretes-whatsapp-logs",
+  "ondas": [],
+  "faixas": [],
+  "sequenciais": [
     {
-      "id": "faixa-1",
-      "branch": "spec/notificacoes-lembretes-whatsapp-faixa-1",
-      "worktree": "../onp-worktrees/agendamento-notificacoes-lembretes-whatsapp-faixa-1",
-      "tarefas": [
-        {
-          "id": "T-097",
-          "titulo": "Serviço Abstrato e Entidades de Notificação",
-          "modelo": "gpt-5.6-terra",
-          "esforco": "medium",
-          "arquivos": [
-            "src/Agendamento.Api/Application/Notifications/INotificationService.cs",
-            "src/Agendamento.Api/Domain/Notifications/NotificationRecord.cs",
-            "src/Agendamento.Api/Infrastructure/Notifications/ConsoleNotificationService.cs"
-          ],
-          "refs": [
-            "US-051",
-            "US-052",
-            "AC-097",
-            "AC-098"
-          ]
-        }
+      "id": "T-097",
+      "titulo": "Serviço Abstrato e Entidades de Notificação",
+      "modelo": "gpt-5.6-terra",
+      "esforco": "medium",
+      "arquivos": [
+        "src/Agendamento.Api/Infrastructure/Notifications/ICommunicationGateway.cs",
+        "src/Agendamento.Api/Domain/Notifications/NotificationMessage.cs",
+        "src/Agendamento.Api/Domain/Notifications/NotificationChannel.cs",
+        "src/Agendamento.Api/Domain/Notifications/NotificationStatus.cs",
+        "src/Agendamento.Api/Domain/Notifications/NotificationTemplate.cs",
+        "src/Agendamento.Api/Infrastructure/Notifications/MockCommunicationGateway.cs",
+        "src/Agendamento.Api/Infrastructure/Notifications/NotificationOutboxProcessor.cs"
+      ],
+      "refs": [
+        "US-051",
+        "US-052",
+        "AC-097",
+        "AC-098"
       ]
     },
     {
-      "id": "faixa-2",
-      "branch": "spec/notificacoes-lembretes-whatsapp-faixa-2",
-      "worktree": "../onp-worktrees/agendamento-notificacoes-lembretes-whatsapp-faixa-2",
-      "tarefas": [
-        {
-          "id": "T-098",
-          "titulo": "Mapeamento EF Core de Notificações",
-          "modelo": "gpt-5.6-terra",
-          "esforco": "medium",
-          "arquivos": [
-            "src/Agendamento.Api/Infrastructure/Persistence/Configurations/NotificationRecordConfiguration.cs",
-            "src/Agendamento.Api/Infrastructure/Persistence/AgendamentoDbContext.cs"
-          ],
-          "refs": [
-            "AC-098"
-          ]
-        }
+      "id": "T-098",
+      "titulo": "Mapeamento EF Core de Notificações",
+      "modelo": "gpt-5.6-terra",
+      "esforco": "medium",
+      "arquivos": [
+        "src/Agendamento.Api/Infrastructure/Persistence/Configurations/NotificationMessageConfiguration.cs",
+        "src/Agendamento.Api/Infrastructure/Persistence/AgendamentoDbContext.cs"
+      ],
+      "refs": [
+        "AC-098"
       ]
     },
     {
-      "id": "faixa-3",
-      "branch": "spec/notificacoes-lembretes-whatsapp-faixa-3",
-      "worktree": "../onp-worktrees/agendamento-notificacoes-lembretes-whatsapp-faixa-3",
-      "tarefas": [
-        {
-          "id": "T-099",
-          "titulo": "Integração de Notificação no Agendamento",
-          "modelo": "gpt-5.6-terra",
-          "esforco": "medium",
-          "arquivos": [
-            "src/Agendamento.Api/Application/Appointments/CreateAppointment/CreateAppointmentHandler.cs"
-          ],
-          "refs": [
-            "US-051",
-            "AC-099"
-          ]
-        }
+      "id": "T-100",
+      "titulo": "Testes de Integração de Notificação",
+      "modelo": "gpt-5.6-terra",
+      "esforco": "medium",
+      "arquivos": [
+        "tests/Agendamento.IntegrationTests/Features/NotificationTests.cs"
+      ],
+      "refs": [
+        "AC-097",
+        "AC-098",
+        "AC-099"
       ]
     },
     {
-      "id": "faixa-4",
-      "branch": "spec/notificacoes-lembretes-whatsapp-faixa-4",
-      "worktree": "../onp-worktrees/agendamento-notificacoes-lembretes-whatsapp-faixa-4",
-      "tarefas": [
-        {
-          "id": "T-100",
-          "titulo": "Testes de Integração de Notificação",
-          "modelo": "gpt-5.6-terra",
-          "esforco": "medium",
-          "arquivos": [
-            "tests/Agendamento.IntegrationTests/Features/NotificationTests.cs"
-          ],
-          "refs": [
-            "AC-097",
-            "AC-098",
-            "AC-099"
-          ]
-        }
+      "id": "T-052",
+      "titulo": "Modelar Entidades de Notificação e Outbox (NotificationMessage, OutboxMessage)",
+      "modelo": "gpt-5.6-terra",
+      "esforco": "medium",
+      "arquivos": [
+        "src/Agendamento.Api/Domain/Notifications/NotificationMessage.cs",
+        "src/Agendamento.Api/Domain/Notifications/NotificationStatus.cs",
+        "src/Agendamento.Api/Domain/Notifications/NotificationChannel.cs",
+        "src/Agendamento.Api/Domain/Notifications/NotificationTemplate.cs"
+      ],
+      "refs": [
+        "US-033",
+        "US-035",
+        "US-036",
+        "AC-060",
+        "AC-061",
+        "AC-063"
+      ]
+    },
+    {
+      "id": "T-053",
+      "titulo": "Mapear Persistência EF Core e Outbox Pattern",
+      "modelo": "gpt-5.6-terra",
+      "esforco": "medium",
+      "arquivos": [
+        "src/Agendamento.Api/Infrastructure/Persistence/AgendamentoDbContext.cs",
+        "src/Agendamento.Api/Infrastructure/Persistence/Configurations/NotificationMessageConfiguration.cs"
+      ],
+      "refs": [
+        "US-035",
+        "AC-060",
+        "AC-061"
+      ]
+    },
+    {
+      "id": "T-054",
+      "titulo": "Implementar Provedor de Envio de Mensagens e Dispatcher Background",
+      "modelo": "gpt-5.6-terra",
+      "esforco": "medium",
+      "arquivos": [
+        "src/Agendamento.Api/Infrastructure/Notifications/ICommunicationGateway.cs",
+        "src/Agendamento.Api/Infrastructure/Notifications/NotificationOutboxProcessor.cs"
+      ],
+      "refs": [
+        "US-033",
+        "US-034",
+        "US-035",
+        "AC-061",
+        "AC-063"
+      ]
+    },
+    {
+      "id": "T-055",
+      "titulo": "Casos de Uso: Agendamento de Lembretes e Notificação de Orçamento",
+      "modelo": "gpt-5.6-terra",
+      "esforco": "medium",
+      "arquivos": [
+        "src/Agendamento.Api/Application/Notifications/ScheduleAppointmentReminder/ScheduleAppointmentReminderCommand.cs",
+        "src/Agendamento.Api/Application/Notifications/ScheduleAppointmentReminder/ScheduleAppointmentReminderHandler.cs",
+        "src/Agendamento.Api/Application/Notifications/SendQuotationNotification/SendQuotationNotificationCommand.cs",
+        "src/Agendamento.Api/Application/Notifications/SendQuotationNotification/SendQuotationNotificationHandler.cs"
+      ],
+      "refs": [
+        "US-033",
+        "US-034",
+        "AC-062"
+      ]
+    },
+    {
+      "id": "T-056",
+      "titulo": "Expor Endpoints Minimal API de Notificações e Histórico",
+      "modelo": "gpt-5.6-terra",
+      "esforco": "medium",
+      "arquivos": [
+        "src/Agendamento.Api/Features/Notifications/NotificationEndpoints.cs",
+        "src/Agendamento.Api/Program.cs"
+      ],
+      "refs": [
+        "US-036",
+        "AC-060",
+        "AC-064"
+      ]
+    },
+    {
+      "id": "T-057",
+      "titulo": "Testes de Integração do Outbox Processor e Formatação de Mensagens",
+      "modelo": "gpt-5.6-terra",
+      "esforco": "medium",
+      "arquivos": [
+        "tests/Agendamento.UnitTests/Notifications/NotificationDomainTests.cs",
+        "tests/Agendamento.IntegrationTests/Notifications/NotificationApiTests.cs",
+        "src/Agendamento.Api/Infrastructure/Notifications/MockCommunicationGateway.cs"
+      ],
+      "refs": [
+        "AC-060",
+        "AC-061",
+        "AC-062",
+        "AC-063"
+      ]
+    },
+    {
+      "id": "T-104",
+      "titulo": "Implementar preferência de lembretes por cliente",
+      "modelo": "gpt-5.6-terra",
+      "esforco": "medium",
+      "arquivos": [
+        "src/Agendamento.Api/Domain/Customers/Customer.cs",
+        "src/Agendamento.Api/Features/Customers/CustomerEndpoints.cs",
+        "src/Agendamento.Api/Application/Appointments/CreateAppointment/CreateAppointmentHandler.cs",
+        "tests/Agendamento.IntegrationTests/Features/NotificationTests.cs"
+      ],
+      "refs": [
+        "US-051",
+        "AC-207"
       ]
     }
   ],
-  "sequenciais": [],
-  "concluidas": [],
+  "concluidas": [
+    "T-099"
+  ],
   "avisos": []
 }

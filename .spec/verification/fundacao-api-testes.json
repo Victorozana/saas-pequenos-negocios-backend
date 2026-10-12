@@ -1,42 +1,55 @@
 {
   "feature": "fundacao-api-testes",
-  "timestamp": "2026-08-01T20:47:09.092Z",
-  "gitRev": "99ac0c3",
-  "command": "dotnet test Agendamento.sln --configuration Release",
-  "reporter": "exitcode",
+  "timestamp": "2026-10-12T05:11:07.930Z",
+  "gitRev": "d79b630",
+  "command": "powershell -ExecutionPolicy Bypass -File scripts/verify-spec.ps1",
+  "reporter": "jest-json",
   "exitCode": 0,
-  "testsParsed": 0,
+  "testsParsed": 175,
   "results": {
     "AC-001": {
       "status": "pass",
-      "testName": null,
-      "method": "exitcode"
+      "testName": "@spec:AC-001 A solução compila em Release sem avisos @spec:AC-001 A solução compila em Release sem avisos",
+      "method": "jest-json"
     },
     "AC-002": {
       "status": "pass",
-      "testName": null,
-      "method": "exitcode"
+      "testName": "GET /health responde que a aplicação está saudável @spec:AC-002 GET /health responde que a aplicação está saudável @spec:AC-002",
+      "method": "jest-json"
     },
     "AC-003": {
       "status": "pass",
-      "testName": null,
-      "method": "exitcode"
+      "testName": "O comando oficial descobre a prova HTTP de integração @spec:AC-003 O comando oficial descobre a prova HTTP de integração @spec:AC-003",
+      "method": "jest-json"
     },
     "AC-004": {
       "status": "pass",
-      "testName": null,
-      "method": "exitcode"
+      "testName": "PostgreSQL real aplica migrations em bases exclusivas sem compartilhar dados @spec:AC-004 PostgreSQL real aplica migrations em bases exclusivas sem compartilhar dados @spec:AC-004",
+      "method": "jest-json"
     },
     "AC-005": {
       "status": "pass",
-      "testName": null,
-      "method": "exitcode"
+      "testName": "Configurações versionadas não contêm segredos reais @spec:AC-005 Configurações versionadas não contêm segredos reais @spec:AC-005",
+      "method": "jest-json"
     },
     "AC-006": {
       "status": "pass",
-      "testName": null,
-      "method": "exitcode"
+      "testName": "PostgreSQL obrigatório falha sem expor credenciais @spec:AC-006 PostgreSQL obrigatório falha sem expor credenciais @spec:AC-006",
+      "method": "jest-json"
     }
   },
-  "principles": {}
+  "principles": {
+    "P-005": {
+      "status": "pass",
+      "testName": "Token de e-mail é armazenado somente como digest e expira em 24 horas @spec:AC-009 @principle:P-005 Token de e-mail é armazenado somente como digest e expira em 24 horas @spec:AC-009 @principle:P-005"
+    },
+    "P-003": {
+      "status": "pass",
+      "testName": "@spec:AC-013 @principle:P-003 @principle:P-005 valid login emits only user_tenant_and_role @spec:AC-013 @principle:P-003 @principle:P-005 valid login emits only user_tenant_and_role"
+    },
+    "P-004": {
+      "status": "pass",
+      "testName": "Papel restrito impede SQL direto entre tenants em todas as tabelas @spec:AC-033 @principle:P-004 Papel restrito impede SQL direto entre tenants em todas as tabelas @spec:AC-033 @principle:P-004"
+    }
+  }
 }

@@ -10,10 +10,11 @@
 using System;
 using System.Reflection;
 
+[assembly: Microsoft.Extensions.Configuration.UserSecrets.UserSecretsIdAttribute("agendamento-local-development")]
 [assembly: System.Reflection.AssemblyCompanyAttribute("Agendamento.Api")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+be49804beff2fb5a84df721bd4c49518bcca6000")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d79b630a1733338e789eec87fb8a1c2ecb353b3e")]
 [assembly: System.Reflection.AssemblyProductAttribute("Agendamento.Api")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Agendamento.Api")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

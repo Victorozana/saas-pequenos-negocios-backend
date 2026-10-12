@@ -1,82 +1,95 @@
 {
   "feature": "cadastro-tenants",
-  "timestamp": "2026-08-12T00:21:22.647Z",
-  "gitRev": "be49804",
-  "command": "dotnet test tests/Agendamento.UnitTests/Agendamento.UnitTests.csproj --configuration Release && dotnet test tests/Agendamento.IntegrationTests/Agendamento.IntegrationTests.csproj --configuration Release",
-  "reporter": "exitcode",
+  "timestamp": "2026-10-12T05:06:19.372Z",
+  "gitRev": "d79b630",
+  "command": "powershell -ExecutionPolicy Bypass -File scripts/verify-spec.ps1",
+  "reporter": "jest-json",
   "exitCode": 0,
-  "testsParsed": 0,
+  "testsParsed": 175,
   "results": {
     "AC-014": {
       "status": "pass",
-      "testName": null,
-      "method": "exitcode"
+      "testName": "CNPJ inválido é rejeitado localmente @spec:AC-014(invalidCnpj: \"00.000.000/0000-00\") CNPJ inválido é rejeitado localmente @spec:AC-014(invalidCnpj: \"00.000.000/0000-00\")",
+      "method": "jest-json"
     },
     "AC-015": {
       "status": "pass",
-      "testName": null,
-      "method": "exitcode"
+      "testName": "Handler throws when company is inactive @spec:AC-015 Handler throws when company is inactive @spec:AC-015",
+      "method": "jest-json"
     },
     "AC-016": {
       "status": "pass",
-      "testName": null,
-      "method": "exitcode"
+      "testName": "Empresa ativa com CNAE não alimentício é aceita @spec:AC-016 Empresa ativa com CNAE não alimentício é aceita @spec:AC-016",
+      "method": "jest-json"
     },
     "AC-017": {
       "status": "pass",
-      "testName": null,
-      "method": "exitcode"
+      "testName": "Empresa ausente é distinguida de CNPJ inválido @spec:AC-017 Empresa ausente é distinguida de CNPJ inválido @spec:AC-017",
+      "method": "jest-json"
     },
     "AC-018": {
       "status": "pass",
-      "testName": null,
-      "method": "exitcode"
+      "testName": "Dados obrigatórios são validados na criação do Tenant @spec:AC-018 Dados obrigatórios são validados na criação do Tenant @spec:AC-018",
+      "method": "jest-json"
     },
     "AC-019": {
       "status": "pass",
-      "testName": null,
-      "method": "exitcode"
+      "testName": "Perfil fiscal pertence exclusivamente ao tenant @spec:AC-019 Perfil fiscal pertence exclusivamente ao tenant @spec:AC-019",
+      "method": "jest-json"
     },
     "AC-020": {
       "status": "pass",
-      "testName": null,
-      "method": "exitcode"
+      "testName": "Cadastro inicial não coleta dados financeiros ou documentos @spec:AC-020 Cadastro inicial não coleta dados financeiros ou documentos @spec:AC-020",
+      "method": "jest-json"
     },
     "AC-021": {
       "status": "pass",
-      "testName": null,
-      "method": "exitcode"
+      "testName": "Cadastro composto cria todos os vínculos @spec:AC-021 Cadastro composto cria todos os vínculos @spec:AC-021",
+      "method": "jest-json"
     },
     "AC-022": {
       "status": "pass",
-      "testName": null,
-      "method": "exitcode"
+      "testName": "CNPJ é único globalmente @spec:AC-022 CNPJ é único globalmente @spec:AC-022",
+      "method": "jest-json"
     },
     "AC-023": {
       "status": "pass",
-      "testName": null,
-      "method": "exitcode"
+      "testName": "Repetição idempotente não duplica o cadastro @spec:AC-023 Repetição idempotente não duplica o cadastro @spec:AC-023",
+      "method": "jest-json"
     },
     "AC-024": {
       "status": "pass",
-      "testName": null,
-      "method": "exitcode"
+      "testName": "Falha parcial desfaz toda a criação @spec:AC-024 Falha parcial desfaz toda a criação @spec:AC-024",
+      "method": "jest-json"
     },
     "AC-025": {
       "status": "pass",
-      "testName": null,
-      "method": "exitcode"
+      "testName": "Endpoint GET /users/me retorna perfil do usuario logado @spec:AC-025 Endpoint GET /users/me retorna perfil do usuario logado @spec:AC-025",
+      "method": "jest-json"
     },
     "AC-026": {
       "status": "pass",
-      "testName": null,
-      "method": "exitcode"
+      "testName": "Endpoint GET /tenants/me retorna perfil do tenant logado sem parametro na rota @spec:AC-026 Endpoint GET /tenants/me retorna perfil do tenant logado sem parametro na rota @spec:AC-026",
+      "method": "jest-json"
     },
     "AC-027": {
       "status": "pass",
-      "testName": null,
-      "method": "exitcode"
+      "testName": "Endpoint GET /company-registry aplica limite de requisições @spec:AC-027 Endpoint GET /company-registry aplica limite de requisições @spec:AC-027",
+      "method": "jest-json"
     }
   },
-  "principles": {}
+  "principles": {
+    "P-005": {
+      "status": "pass",
+      "testName": "Token de e-mail é armazenado somente como digest e expira em 24 horas @spec:AC-009 @principle:P-005 Token de e-mail é armazenado somente como digest e expira em 24 horas @spec:AC-009 @principle:P-005"
+    },
+    "P-003": {
+      "status": "pass",
+      "testName": "Tenant externo no body não muda a empresa do cliente criado @spec:AC-029 @principle:P-003 Tenant externo no body não muda a empresa do cliente criado @spec:AC-029 @principle:P-003"
+    },
+    "P-004": {
+      "status": "pass",
+      "testName": "Papel restrito impede SQL direto entre tenants em todas as tabelas @spec:AC-033 @principle:P-004 Papel restrito impede SQL direto entre tenants em todas as tabelas @spec:AC-033 @principle:P-004"
+    }
+  }
 }

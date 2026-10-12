@@ -1,0 +1,1399 @@
+{
+  "ok": false,
+  "stats": {
+    "features": 15,
+    "stories": 57,
+    "acs": 92,
+    "acsWithTest": 83,
+    "acsProven": 43,
+    "assumptionsOpen": 2,
+    "questionsOpen": 1,
+    "principles": 5,
+    "errors": 143,
+    "warnings": 33
+  },
+  "findings": [
+    {
+      "code": "ID_DUPLICADO",
+      "severity": "erro",
+      "message": "ASM-010 definido em .spec\\features\\gestao-equipe-permissoes\\spec.md e em .spec\\features\\gestao-orcamentos-servicos\\spec.md",
+      "feature": "gestao-orcamentos-servicos",
+      "file": ".spec\\features\\gestao-orcamentos-servicos\\spec.md",
+      "line": 54
+    },
+    {
+      "code": "ID_DUPLICADO",
+      "severity": "erro",
+      "message": "Q-010 definido em .spec\\features\\gestao-equipe-permissoes\\spec.md e em .spec\\features\\gestao-orcamentos-servicos\\spec.md",
+      "feature": "gestao-orcamentos-servicos",
+      "file": ".spec\\features\\gestao-orcamentos-servicos\\spec.md",
+      "line": 60
+    },
+    {
+      "code": "ID_DUPLICADO",
+      "severity": "erro",
+      "message": "Q-012 definido em .spec\\features\\gestao-financeira-contas\\spec.md e em .spec\\features\\notificacoes-lembretes-whatsapp\\spec.md",
+      "feature": "notificacoes-lembretes-whatsapp",
+      "file": ".spec\\features\\notificacoes-lembretes-whatsapp\\spec.md",
+      "line": 51
+    },
+    {
+      "code": "PROVA_FRACA",
+      "severity": "aviso",
+      "message": "AC-014 provado apenas pelo exit code global (reporter \"exitcode\") — sem granularidade por teste; prefira tap/vitest-json/jest-json",
+      "feature": "cadastro-tenants",
+      "file": "tests/Agendamento.IntegrationTests/Tenants/CompanyRegistryContractTests.cs",
+      "line": 35
+    },
+    {
+      "code": "PROVA_FRACA",
+      "severity": "aviso",
+      "message": "AC-015 provado apenas pelo exit code global (reporter \"exitcode\") — sem granularidade por teste; prefira tap/vitest-json/jest-json",
+      "feature": "cadastro-tenants",
+      "file": "tests/Agendamento.IntegrationTests/Tenants/CompanyRegistryContractTests.cs",
+      "line": 48
+    },
+    {
+      "code": "PROVA_FRACA",
+      "severity": "aviso",
+      "message": "AC-016 provado apenas pelo exit code global (reporter \"exitcode\") — sem granularidade por teste; prefira tap/vitest-json/jest-json",
+      "feature": "cadastro-tenants",
+      "file": "tests/Agendamento.IntegrationTests/Tenants/CompanyRegistryContractTests.cs",
+      "line": 71
+    },
+    {
+      "code": "PROVA_FRACA",
+      "severity": "aviso",
+      "message": "AC-017 provado apenas pelo exit code global (reporter \"exitcode\") — sem granularidade por teste; prefira tap/vitest-json/jest-json",
+      "feature": "cadastro-tenants",
+      "file": "tests/Agendamento.ArchitectureTests/OpenApi/EndpointMetadataTests.cs",
+      "line": 99
+    },
+    {
+      "code": "PROVA_FRACA",
+      "severity": "aviso",
+      "message": "AC-018 provado apenas pelo exit code global (reporter \"exitcode\") — sem granularidade por teste; prefira tap/vitest-json/jest-json",
+      "feature": "cadastro-tenants",
+      "file": "tests/Agendamento.UnitTests/Tenants/TenantTests.cs",
+      "line": 8
+    },
+    {
+      "code": "PROVA_FRACA",
+      "severity": "aviso",
+      "message": "AC-019 provado apenas pelo exit code global (reporter \"exitcode\") — sem granularidade por teste; prefira tap/vitest-json/jest-json",
+      "feature": "cadastro-tenants",
+      "file": "tests/Agendamento.UnitTests/Tenants/TenantFiscalProfileTests.cs",
+      "line": 8
+    },
+    {
+      "code": "PROVA_FRACA",
+      "severity": "aviso",
+      "message": "AC-020 provado apenas pelo exit code global (reporter \"exitcode\") — sem granularidade por teste; prefira tap/vitest-json/jest-json",
+      "feature": "cadastro-tenants",
+      "file": "tests/Agendamento.UnitTests/Tenants/TenantTests.cs",
+      "line": 37
+    },
+    {
+      "code": "PROVA_FRACA",
+      "severity": "aviso",
+      "message": "AC-021 provado apenas pelo exit code global (reporter \"exitcode\") — sem granularidade por teste; prefira tap/vitest-json/jest-json",
+      "feature": "cadastro-tenants",
+      "file": "tests/Agendamento.IntegrationTests/Tenants/TenantOnboardingFlowTests.cs",
+      "line": 21
+    },
+    {
+      "code": "PROVA_FRACA",
+      "severity": "aviso",
+      "message": "AC-022 provado apenas pelo exit code global (reporter \"exitcode\") — sem granularidade por teste; prefira tap/vitest-json/jest-json",
+      "feature": "cadastro-tenants",
+      "file": "tests/Agendamento.UnitTests/Tenants/CnpjTests.cs",
+      "line": 38
+    },
+    {
+      "code": "PROVA_FRACA",
+      "severity": "aviso",
+      "message": "AC-023 provado apenas pelo exit code global (reporter \"exitcode\") — sem granularidade por teste; prefira tap/vitest-json/jest-json",
+      "feature": "cadastro-tenants",
+      "file": "tests/Agendamento.IntegrationTests/Tenants/TenantRegistrationEndpointTests.cs",
+      "line": 13
+    },
+    {
+      "code": "PROVA_FRACA",
+      "severity": "aviso",
+      "message": "AC-024 provado apenas pelo exit code global (reporter \"exitcode\") — sem granularidade por teste; prefira tap/vitest-json/jest-json",
+      "feature": "cadastro-tenants",
+      "file": "tests/Agendamento.IntegrationTests/Tenants/RegisterTenantTransactionTests.cs",
+      "line": 55
+    },
+    {
+      "code": "PROVA_FRACA",
+      "severity": "aviso",
+      "message": "AC-025 provado apenas pelo exit code global (reporter \"exitcode\") — sem granularidade por teste; prefira tap/vitest-json/jest-json",
+      "feature": "cadastro-tenants",
+      "file": "tests/Agendamento.IntegrationTests/Identity/CurrentUserEndpointTests.cs",
+      "line": 8
+    },
+    {
+      "code": "PROVA_FRACA",
+      "severity": "aviso",
+      "message": "AC-026 provado apenas pelo exit code global (reporter \"exitcode\") — sem granularidade por teste; prefira tap/vitest-json/jest-json",
+      "feature": "cadastro-tenants",
+      "file": "tests/Agendamento.IntegrationTests/Tenants/CurrentTenantEndpointTests.cs",
+      "line": 8
+    },
+    {
+      "code": "PROVA_FRACA",
+      "severity": "aviso",
+      "message": "AC-027 provado apenas pelo exit code global (reporter \"exitcode\") — sem granularidade por teste; prefira tap/vitest-json/jest-json",
+      "feature": "cadastro-tenants",
+      "file": "tests/Agendamento.IntegrationTests/Tenants/TenantRegistrationEndpointTests.cs",
+      "line": 21
+    },
+    {
+      "code": "VERIFY_OBSOLETO",
+      "severity": "erro",
+      "message": "código/testes mudaram depois do último verify de cadastro-tenants — rode `onp-spec verify cadastro-tenants` de novo",
+      "feature": "cadastro-tenants"
+    },
+    {
+      "code": "TASK_CONCLUIDA_SEM_PROVA",
+      "severity": "erro",
+      "message": "a tarefa T-022 está [concluida] mas o critério AC-036 não tem prova PASS do verify",
+      "feature": "contrato-openapi-swagger",
+      "file": ".spec\\features\\contrato-openapi-swagger\\tasks.md",
+      "line": 5
+    },
+    {
+      "code": "TASK_CONCLUIDA_SEM_PROVA",
+      "severity": "erro",
+      "message": "a tarefa T-022 está [concluida] mas o critério AC-040 não tem prova PASS do verify",
+      "feature": "contrato-openapi-swagger",
+      "file": ".spec\\features\\contrato-openapi-swagger\\tasks.md",
+      "line": 5
+    },
+    {
+      "code": "TASK_CONCLUIDA_SEM_PROVA",
+      "severity": "erro",
+      "message": "a tarefa T-023 está [concluida] mas o critério AC-036 não tem prova PASS do verify",
+      "feature": "contrato-openapi-swagger",
+      "file": ".spec\\features\\contrato-openapi-swagger\\tasks.md",
+      "line": 11
+    },
+    {
+      "code": "TASK_CONCLUIDA_SEM_PROVA",
+      "severity": "erro",
+      "message": "a tarefa T-023 está [concluida] mas o critério AC-037 não tem prova PASS do verify",
+      "feature": "contrato-openapi-swagger",
+      "file": ".spec\\features\\contrato-openapi-swagger\\tasks.md",
+      "line": 11
+    },
+    {
+      "code": "TASK_CONCLUIDA_SEM_PROVA",
+      "severity": "erro",
+      "message": "a tarefa T-023 está [concluida] mas o critério AC-038 não tem prova PASS do verify",
+      "feature": "contrato-openapi-swagger",
+      "file": ".spec\\features\\contrato-openapi-swagger\\tasks.md",
+      "line": 11
+    },
+    {
+      "code": "TASK_CONCLUIDA_SEM_PROVA",
+      "severity": "erro",
+      "message": "a tarefa T-024 está [concluida] mas o critério AC-039 não tem prova PASS do verify",
+      "feature": "contrato-openapi-swagger",
+      "file": ".spec\\features\\contrato-openapi-swagger\\tasks.md",
+      "line": 17
+    },
+    {
+      "code": "TASK_CONCLUIDA_SEM_PROVA",
+      "severity": "erro",
+      "message": "a tarefa T-025 está [concluida] mas o critério AC-036 não tem prova PASS do verify",
+      "feature": "contrato-openapi-swagger",
+      "file": ".spec\\features\\contrato-openapi-swagger\\tasks.md",
+      "line": 23
+    },
+    {
+      "code": "TASK_CONCLUIDA_SEM_PROVA",
+      "severity": "erro",
+      "message": "a tarefa T-025 está [concluida] mas o critério AC-037 não tem prova PASS do verify",
+      "feature": "contrato-openapi-swagger",
+      "file": ".spec\\features\\contrato-openapi-swagger\\tasks.md",
+      "line": 23
+    },
+    {
+      "code": "TASK_CONCLUIDA_SEM_PROVA",
+      "severity": "erro",
+      "message": "a tarefa T-025 está [concluida] mas o critério AC-038 não tem prova PASS do verify",
+      "feature": "contrato-openapi-swagger",
+      "file": ".spec\\features\\contrato-openapi-swagger\\tasks.md",
+      "line": 23
+    },
+    {
+      "code": "TASK_CONCLUIDA_SEM_PROVA",
+      "severity": "erro",
+      "message": "a tarefa T-025 está [concluida] mas o critério AC-039 não tem prova PASS do verify",
+      "feature": "contrato-openapi-swagger",
+      "file": ".spec\\features\\contrato-openapi-swagger\\tasks.md",
+      "line": 23
+    },
+    {
+      "code": "AC_SEM_PROVA",
+      "severity": "erro",
+      "message": "AC-036 tem teste (tests/Agendamento.IntegrationTests/OpenApi/SwaggerUiTests.cs:37) mas nunca foi provado — rode `onp-spec verify contrato-openapi-swagger`",
+      "feature": "contrato-openapi-swagger",
+      "file": "tests/Agendamento.IntegrationTests/OpenApi/SwaggerUiTests.cs",
+      "line": 37
+    },
+    {
+      "code": "AC_SEM_PROVA",
+      "severity": "erro",
+      "message": "AC-037 tem teste (tests/Agendamento.ArchitectureTests/OpenApi/EndpointMetadataTests.cs:27) mas nunca foi provado — rode `onp-spec verify contrato-openapi-swagger`",
+      "feature": "contrato-openapi-swagger",
+      "file": "tests/Agendamento.ArchitectureTests/OpenApi/EndpointMetadataTests.cs",
+      "line": 27
+    },
+    {
+      "code": "AC_SEM_TESTE",
+      "severity": "erro",
+      "message": "AC-038 (Schemas não expõem dados secretos) não tem nenhum teste anotado com @spec:AC-038",
+      "feature": "contrato-openapi-swagger",
+      "file": ".spec\\features\\contrato-openapi-swagger\\spec.md",
+      "line": 28
+    },
+    {
+      "code": "AC_SEM_PROVA",
+      "severity": "erro",
+      "message": "AC-039 tem teste (tests/Agendamento.IntegrationTests/OpenApi/OpenApiSnapshotTests.cs:21) mas nunca foi provado — rode `onp-spec verify contrato-openapi-swagger`",
+      "feature": "contrato-openapi-swagger",
+      "file": "tests/Agendamento.IntegrationTests/OpenApi/OpenApiSnapshotTests.cs",
+      "line": 21
+    },
+    {
+      "code": "AC_SEM_PROVA",
+      "severity": "erro",
+      "message": "AC-040 tem teste (tests/Agendamento.IntegrationTests/OpenApi/SwaggerUiTests.cs:18) mas nunca foi provado — rode `onp-spec verify contrato-openapi-swagger`",
+      "feature": "contrato-openapi-swagger",
+      "file": "tests/Agendamento.IntegrationTests/OpenApi/SwaggerUiTests.cs",
+      "line": 18
+    },
+    {
+      "code": "PROVA_FRACA",
+      "severity": "aviso",
+      "message": "AC-065 provado apenas pelo exit code global (reporter \"exitcode\") — sem granularidade por teste; prefira tap/vitest-json/jest-json",
+      "feature": "dashboard-relatorios-metricas",
+      "file": "tests/Agendamento.IntegrationTests/Dashboard/DashboardApiTests.cs",
+      "line": 60
+    },
+    {
+      "code": "PROVA_FRACA",
+      "severity": "aviso",
+      "message": "AC-066 provado apenas pelo exit code global (reporter \"exitcode\") — sem granularidade por teste; prefira tap/vitest-json/jest-json",
+      "feature": "dashboard-relatorios-metricas",
+      "file": "tests/Agendamento.UnitTests/Dashboard/DashboardMetricTests.cs",
+      "line": 46
+    },
+    {
+      "code": "PROVA_FRACA",
+      "severity": "aviso",
+      "message": "AC-068 provado apenas pelo exit code global (reporter \"exitcode\") — sem granularidade por teste; prefira tap/vitest-json/jest-json",
+      "feature": "dashboard-relatorios-metricas",
+      "file": "tests/Agendamento.UnitTests/Dashboard/DashboardMetricTests.cs",
+      "line": 70
+    },
+    {
+      "code": "PROVA_FRACA",
+      "severity": "aviso",
+      "message": "AC-067 provado apenas pelo exit code global (reporter \"exitcode\") — sem granularidade por teste; prefira tap/vitest-json/jest-json",
+      "feature": "dashboard-relatorios-metricas",
+      "file": "tests/Agendamento.UnitTests/Dashboard/DashboardMetricTests.cs",
+      "line": 138
+    },
+    {
+      "code": "PROVA_FRACA",
+      "severity": "aviso",
+      "message": "AC-069 provado apenas pelo exit code global (reporter \"exitcode\") — sem granularidade por teste; prefira tap/vitest-json/jest-json",
+      "feature": "dashboard-relatorios-metricas",
+      "file": "tests/Agendamento.UnitTests/Dashboard/DashboardMetricTests.cs",
+      "line": 103
+    },
+    {
+      "code": "VERIFY_OBSOLETO",
+      "severity": "erro",
+      "message": "código/testes mudaram depois do último verify de dashboard-relatorios-metricas — rode `onp-spec verify dashboard-relatorios-metricas` de novo",
+      "feature": "dashboard-relatorios-metricas"
+    },
+    {
+      "code": "PROVA_FRACA",
+      "severity": "aviso",
+      "message": "AC-102 provado apenas pelo exit code global (reporter \"exitcode\") — sem granularidade por teste; prefira tap/vitest-json/jest-json",
+      "feature": "documentacao-readme-backend",
+      "file": "tests/Agendamento.ArchitectureTests/Documentation/ReadmeDocumentationTests.cs",
+      "line": 7
+    },
+    {
+      "code": "VERIFY_OBSOLETO",
+      "severity": "erro",
+      "message": "código/testes mudaram depois do último verify de documentacao-readme-backend — rode `onp-spec verify documentacao-readme-backend` de novo",
+      "feature": "documentacao-readme-backend"
+    },
+    {
+      "code": "PROVA_FRACA",
+      "severity": "aviso",
+      "message": "AC-001 provado apenas pelo exit code global (reporter \"exitcode\") — sem granularidade por teste; prefira tap/vitest-json/jest-json",
+      "feature": "fundacao-api-testes",
+      "file": "tests/Agendamento.ArchitectureTests/Build/SolutionBuildTests.cs",
+      "line": 9
+    },
+    {
+      "code": "PROVA_FRACA",
+      "severity": "aviso",
+      "message": "AC-002 provado apenas pelo exit code global (reporter \"exitcode\") — sem granularidade por teste; prefira tap/vitest-json/jest-json",
+      "feature": "fundacao-api-testes",
+      "file": "tests/Agendamento.IntegrationTests/Health/HealthEndpointTests.cs",
+      "line": 9
+    },
+    {
+      "code": "PROVA_FRACA",
+      "severity": "aviso",
+      "message": "AC-003 provado apenas pelo exit code global (reporter \"exitcode\") — sem granularidade por teste; prefira tap/vitest-json/jest-json",
+      "feature": "fundacao-api-testes",
+      "file": "tests/Agendamento.IntegrationTests/Health/HealthEndpointTests.cs",
+      "line": 19
+    },
+    {
+      "code": "AC_SEM_TESTE",
+      "severity": "erro",
+      "message": "AC-004 (Integrações usam PostgreSQL real e isolado) não tem nenhum teste anotado com @spec:AC-004",
+      "feature": "fundacao-api-testes",
+      "file": ".spec\\features\\fundacao-api-testes\\spec.md",
+      "line": 38
+    },
+    {
+      "code": "PROVA_FRACA",
+      "severity": "aviso",
+      "message": "AC-005 provado apenas pelo exit code global (reporter \"exitcode\") — sem granularidade por teste; prefira tap/vitest-json/jest-json",
+      "feature": "fundacao-api-testes",
+      "file": "tests/Agendamento.ArchitectureTests/Configuration/SecretConfigurationTests.cs",
+      "line": 8
+    },
+    {
+      "code": "PROVA_FRACA",
+      "severity": "aviso",
+      "message": "AC-006 provado apenas pelo exit code global (reporter \"exitcode\") — sem granularidade por teste; prefira tap/vitest-json/jest-json",
+      "feature": "fundacao-api-testes",
+      "file": "tests/Agendamento.IntegrationTests/Configuration/DatabaseConfigurationTests.cs",
+      "line": 10
+    },
+    {
+      "code": "VERIFY_OBSOLETO",
+      "severity": "erro",
+      "message": "código/testes mudaram depois do último verify de fundacao-api-testes — rode `onp-spec verify fundacao-api-testes` de novo",
+      "feature": "fundacao-api-testes"
+    },
+    {
+      "code": "TASK_CONCLUIDA_SEM_PROVA",
+      "severity": "erro",
+      "message": "a tarefa T-038 está [concluida] mas o critério AC-050 não tem prova PASS do verify",
+      "feature": "gestao-agendamentos-ordens-servico",
+      "file": ".spec\\features\\gestao-agendamentos-ordens-servico\\tasks.md",
+      "line": 3
+    },
+    {
+      "code": "TASK_CONCLUIDA_SEM_PROVA",
+      "severity": "erro",
+      "message": "a tarefa T-038 está [concluida] mas o critério AC-051 não tem prova PASS do verify",
+      "feature": "gestao-agendamentos-ordens-servico",
+      "file": ".spec\\features\\gestao-agendamentos-ordens-servico\\tasks.md",
+      "line": 3
+    },
+    {
+      "code": "TASK_CONCLUIDA_SEM_PROVA",
+      "severity": "erro",
+      "message": "a tarefa T-038 está [concluida] mas o critério AC-052 não tem prova PASS do verify",
+      "feature": "gestao-agendamentos-ordens-servico",
+      "file": ".spec\\features\\gestao-agendamentos-ordens-servico\\tasks.md",
+      "line": 3
+    },
+    {
+      "code": "TASK_CONCLUIDA_SEM_PROVA",
+      "severity": "erro",
+      "message": "a tarefa T-039 está [concluida] mas o critério AC-050 não tem prova PASS do verify",
+      "feature": "gestao-agendamentos-ordens-servico",
+      "file": ".spec\\features\\gestao-agendamentos-ordens-servico\\tasks.md",
+      "line": 9
+    },
+    {
+      "code": "TASK_CONCLUIDA_SEM_PROVA",
+      "severity": "erro",
+      "message": "a tarefa T-040 está [concluida] mas o critério AC-051 não tem prova PASS do verify",
+      "feature": "gestao-agendamentos-ordens-servico",
+      "file": ".spec\\features\\gestao-agendamentos-ordens-servico\\tasks.md",
+      "line": 15
+    },
+    {
+      "code": "TASK_CONCLUIDA_SEM_PROVA",
+      "severity": "erro",
+      "message": "a tarefa T-040 está [concluida] mas o critério AC-052 não tem prova PASS do verify",
+      "feature": "gestao-agendamentos-ordens-servico",
+      "file": ".spec\\features\\gestao-agendamentos-ordens-servico\\tasks.md",
+      "line": 15
+    },
+    {
+      "code": "TASK_CONCLUIDA_SEM_PROVA",
+      "severity": "erro",
+      "message": "a tarefa T-041 está [concluida] mas o critério AC-053 não tem prova PASS do verify",
+      "feature": "gestao-agendamentos-ordens-servico",
+      "file": ".spec\\features\\gestao-agendamentos-ordens-servico\\tasks.md",
+      "line": 21
+    },
+    {
+      "code": "TASK_CONCLUIDA_SEM_PROVA",
+      "severity": "erro",
+      "message": "a tarefa T-042 está [concluida] mas o critério AC-054 não tem prova PASS do verify",
+      "feature": "gestao-agendamentos-ordens-servico",
+      "file": ".spec\\features\\gestao-agendamentos-ordens-servico\\tasks.md",
+      "line": 27
+    },
+    {
+      "code": "TASK_CONCLUIDA_SEM_PROVA",
+      "severity": "erro",
+      "message": "a tarefa T-043 está [concluida] mas o critério AC-050 não tem prova PASS do verify",
+      "feature": "gestao-agendamentos-ordens-servico",
+      "file": ".spec\\features\\gestao-agendamentos-ordens-servico\\tasks.md",
+      "line": 33
+    },
+    {
+      "code": "TASK_CONCLUIDA_SEM_PROVA",
+      "severity": "erro",
+      "message": "a tarefa T-044 está [concluida] mas o critério AC-050 não tem prova PASS do verify",
+      "feature": "gestao-agendamentos-ordens-servico",
+      "file": ".spec\\features\\gestao-agendamentos-ordens-servico\\tasks.md",
+      "line": 39
+    },
+    {
+      "code": "TASK_CONCLUIDA_SEM_PROVA",
+      "severity": "erro",
+      "message": "a tarefa T-044 está [concluida] mas o critério AC-051 não tem prova PASS do verify",
+      "feature": "gestao-agendamentos-ordens-servico",
+      "file": ".spec\\features\\gestao-agendamentos-ordens-servico\\tasks.md",
+      "line": 39
+    },
+    {
+      "code": "TASK_CONCLUIDA_SEM_PROVA",
+      "severity": "erro",
+      "message": "a tarefa T-044 está [concluida] mas o critério AC-053 não tem prova PASS do verify",
+      "feature": "gestao-agendamentos-ordens-servico",
+      "file": ".spec\\features\\gestao-agendamentos-ordens-servico\\tasks.md",
+      "line": 39
+    },
+    {
+      "code": "TASK_CONCLUIDA_SEM_PROVA",
+      "severity": "erro",
+      "message": "a tarefa T-044 está [concluida] mas o critério AC-054 não tem prova PASS do verify",
+      "feature": "gestao-agendamentos-ordens-servico",
+      "file": ".spec\\features\\gestao-agendamentos-ordens-servico\\tasks.md",
+      "line": 39
+    },
+    {
+      "code": "AC_SEM_PROVA",
+      "severity": "erro",
+      "message": "AC-051 tem teste (tests/Agendamento.IntegrationTests/WorkOrders/WorkOrderApiTests.cs:106) mas nunca foi provado — rode `onp-spec verify gestao-agendamentos-ordens-servico`",
+      "feature": "gestao-agendamentos-ordens-servico",
+      "file": "tests/Agendamento.IntegrationTests/WorkOrders/WorkOrderApiTests.cs",
+      "line": 106
+    },
+    {
+      "code": "AC_SEM_PROVA",
+      "severity": "erro",
+      "message": "AC-052 tem teste (tests/Agendamento.IntegrationTests/WorkOrders/WorkOrderApiTests.cs:106) mas nunca foi provado — rode `onp-spec verify gestao-agendamentos-ordens-servico`",
+      "feature": "gestao-agendamentos-ordens-servico",
+      "file": "tests/Agendamento.IntegrationTests/WorkOrders/WorkOrderApiTests.cs",
+      "line": 106
+    },
+    {
+      "code": "AC_SEM_PROVA",
+      "severity": "erro",
+      "message": "AC-050 tem teste (tests/Agendamento.IntegrationTests/WorkOrders/WorkOrderApiTests.cs:46) mas nunca foi provado — rode `onp-spec verify gestao-agendamentos-ordens-servico`",
+      "feature": "gestao-agendamentos-ordens-servico",
+      "file": "tests/Agendamento.IntegrationTests/WorkOrders/WorkOrderApiTests.cs",
+      "line": 46
+    },
+    {
+      "code": "AC_SEM_PROVA",
+      "severity": "erro",
+      "message": "AC-054 tem teste (tests/Agendamento.IntegrationTests/WorkOrders/WorkOrderApiTests.cs:137) mas nunca foi provado — rode `onp-spec verify gestao-agendamentos-ordens-servico`",
+      "feature": "gestao-agendamentos-ordens-servico",
+      "file": "tests/Agendamento.IntegrationTests/WorkOrders/WorkOrderApiTests.cs",
+      "line": 137
+    },
+    {
+      "code": "AC_SEM_PROVA",
+      "severity": "erro",
+      "message": "AC-053 tem teste (tests/Agendamento.IntegrationTests/WorkOrders/WorkOrderApiTests.cs:172) mas nunca foi provado — rode `onp-spec verify gestao-agendamentos-ordens-servico`",
+      "feature": "gestao-agendamentos-ordens-servico",
+      "file": "tests/Agendamento.IntegrationTests/WorkOrders/WorkOrderApiTests.cs",
+      "line": 172
+    },
+    {
+      "code": "VERIFY_OBSOLETO",
+      "severity": "erro",
+      "message": "código/testes mudaram depois do último verify de gestao-agendamentos-ordens-servico — rode `onp-spec verify gestao-agendamentos-ordens-servico` de novo",
+      "feature": "gestao-agendamentos-ordens-servico"
+    },
+    {
+      "code": "TASK_CONCLUIDA_SEM_PROVA",
+      "severity": "erro",
+      "message": "a tarefa T-064 está [concluida] mas o critério AC-201 não tem prova PASS do verify",
+      "feature": "gestao-assinaturas-saas",
+      "file": ".spec\\features\\gestao-assinaturas-saas\\tasks.md",
+      "line": 3
+    },
+    {
+      "code": "TASK_CONCLUIDA_SEM_PROVA",
+      "severity": "erro",
+      "message": "a tarefa T-064 está [concluida] mas o critério AC-205 não tem prova PASS do verify",
+      "feature": "gestao-assinaturas-saas",
+      "file": ".spec\\features\\gestao-assinaturas-saas\\tasks.md",
+      "line": 3
+    },
+    {
+      "code": "TASK_CONCLUIDA_SEM_PROVA",
+      "severity": "erro",
+      "message": "a tarefa T-065 está [concluida] mas o critério AC-201 não tem prova PASS do verify",
+      "feature": "gestao-assinaturas-saas",
+      "file": ".spec\\features\\gestao-assinaturas-saas\\tasks.md",
+      "line": 9
+    },
+    {
+      "code": "TASK_CONCLUIDA_SEM_PROVA",
+      "severity": "erro",
+      "message": "a tarefa T-066 está [concluida] mas o critério AC-202 não tem prova PASS do verify",
+      "feature": "gestao-assinaturas-saas",
+      "file": ".spec\\features\\gestao-assinaturas-saas\\tasks.md",
+      "line": 15
+    },
+    {
+      "code": "TASK_CONCLUIDA_SEM_PROVA",
+      "severity": "erro",
+      "message": "a tarefa T-067 está [concluida] mas o critério AC-203 não tem prova PASS do verify",
+      "feature": "gestao-assinaturas-saas",
+      "file": ".spec\\features\\gestao-assinaturas-saas\\tasks.md",
+      "line": 21
+    },
+    {
+      "code": "TASK_CONCLUIDA_SEM_PROVA",
+      "severity": "erro",
+      "message": "a tarefa T-067 está [concluida] mas o critério AC-204 não tem prova PASS do verify",
+      "feature": "gestao-assinaturas-saas",
+      "file": ".spec\\features\\gestao-assinaturas-saas\\tasks.md",
+      "line": 21
+    },
+    {
+      "code": "TASK_CONCLUIDA_SEM_PROVA",
+      "severity": "erro",
+      "message": "a tarefa T-068 está [concluida] mas o critério AC-201 não tem prova PASS do verify",
+      "feature": "gestao-assinaturas-saas",
+      "file": ".spec\\features\\gestao-assinaturas-saas\\tasks.md",
+      "line": 27
+    },
+    {
+      "code": "TASK_CONCLUIDA_SEM_PROVA",
+      "severity": "erro",
+      "message": "a tarefa T-068 está [concluida] mas o critério AC-205 não tem prova PASS do verify",
+      "feature": "gestao-assinaturas-saas",
+      "file": ".spec\\features\\gestao-assinaturas-saas\\tasks.md",
+      "line": 27
+    },
+    {
+      "code": "TASK_CONCLUIDA_SEM_PROVA",
+      "severity": "erro",
+      "message": "a tarefa T-069 está [concluida] mas o critério AC-201 não tem prova PASS do verify",
+      "feature": "gestao-assinaturas-saas",
+      "file": ".spec\\features\\gestao-assinaturas-saas\\tasks.md",
+      "line": 33
+    },
+    {
+      "code": "TASK_CONCLUIDA_SEM_PROVA",
+      "severity": "erro",
+      "message": "a tarefa T-069 está [concluida] mas o critério AC-203 não tem prova PASS do verify",
+      "feature": "gestao-assinaturas-saas",
+      "file": ".spec\\features\\gestao-assinaturas-saas\\tasks.md",
+      "line": 33
+    },
+    {
+      "code": "TASK_CONCLUIDA_SEM_PROVA",
+      "severity": "erro",
+      "message": "a tarefa T-070 está [concluida] mas o critério AC-201 não tem prova PASS do verify",
+      "feature": "gestao-assinaturas-saas",
+      "file": ".spec\\features\\gestao-assinaturas-saas\\tasks.md",
+      "line": 39
+    },
+    {
+      "code": "TASK_CONCLUIDA_SEM_PROVA",
+      "severity": "erro",
+      "message": "a tarefa T-070 está [concluida] mas o critério AC-202 não tem prova PASS do verify",
+      "feature": "gestao-assinaturas-saas",
+      "file": ".spec\\features\\gestao-assinaturas-saas\\tasks.md",
+      "line": 39
+    },
+    {
+      "code": "TASK_CONCLUIDA_SEM_PROVA",
+      "severity": "erro",
+      "message": "a tarefa T-070 está [concluida] mas o critério AC-203 não tem prova PASS do verify",
+      "feature": "gestao-assinaturas-saas",
+      "file": ".spec\\features\\gestao-assinaturas-saas\\tasks.md",
+      "line": 39
+    },
+    {
+      "code": "TASK_CONCLUIDA_SEM_PROVA",
+      "severity": "erro",
+      "message": "a tarefa T-070 está [concluida] mas o critério AC-204 não tem prova PASS do verify",
+      "feature": "gestao-assinaturas-saas",
+      "file": ".spec\\features\\gestao-assinaturas-saas\\tasks.md",
+      "line": 39
+    },
+    {
+      "code": "TASK_CONCLUIDA_SEM_PROVA",
+      "severity": "erro",
+      "message": "a tarefa T-070 está [concluida] mas o critério AC-205 não tem prova PASS do verify",
+      "feature": "gestao-assinaturas-saas",
+      "file": ".spec\\features\\gestao-assinaturas-saas\\tasks.md",
+      "line": 39
+    },
+    {
+      "code": "AC_SEM_PROVA",
+      "severity": "erro",
+      "message": "AC-201 tem teste (tests/Agendamento.UnitTests/Subscriptions/SubscriptionDomainTests.cs:15) mas nunca foi provado — rode `onp-spec verify gestao-assinaturas-saas`",
+      "feature": "gestao-assinaturas-saas",
+      "file": "tests/Agendamento.UnitTests/Subscriptions/SubscriptionDomainTests.cs",
+      "line": 15
+    },
+    {
+      "code": "AC_SEM_PROVA",
+      "severity": "erro",
+      "message": "AC-204 tem teste (tests/Agendamento.UnitTests/Subscriptions/SubscriptionDomainTests.cs:25) mas nunca foi provado — rode `onp-spec verify gestao-assinaturas-saas`",
+      "feature": "gestao-assinaturas-saas",
+      "file": "tests/Agendamento.UnitTests/Subscriptions/SubscriptionDomainTests.cs",
+      "line": 25
+    },
+    {
+      "code": "AC_SEM_PROVA",
+      "severity": "erro",
+      "message": "AC-205 tem teste (tests/Agendamento.UnitTests/Subscriptions/SubscriptionDomainTests.cs:57) mas nunca foi provado — rode `onp-spec verify gestao-assinaturas-saas`",
+      "feature": "gestao-assinaturas-saas",
+      "file": "tests/Agendamento.UnitTests/Subscriptions/SubscriptionDomainTests.cs",
+      "line": 57
+    },
+    {
+      "code": "AC_SEM_PROVA",
+      "severity": "erro",
+      "message": "AC-202 tem teste (tests/Agendamento.UnitTests/Subscriptions/SubscriptionDomainTests.cs:103) mas nunca foi provado — rode `onp-spec verify gestao-assinaturas-saas`",
+      "feature": "gestao-assinaturas-saas",
+      "file": "tests/Agendamento.UnitTests/Subscriptions/SubscriptionDomainTests.cs",
+      "line": 103
+    },
+    {
+      "code": "AC_SEM_PROVA",
+      "severity": "erro",
+      "message": "AC-203 tem teste (tests/Agendamento.IntegrationTests/Subscriptions/SubscriptionApiTests.cs:31) mas nunca foi provado — rode `onp-spec verify gestao-assinaturas-saas`",
+      "feature": "gestao-assinaturas-saas",
+      "file": "tests/Agendamento.IntegrationTests/Subscriptions/SubscriptionApiTests.cs",
+      "line": 31
+    },
+    {
+      "code": "VERIFY_OBSOLETO",
+      "severity": "erro",
+      "message": "código/testes mudaram depois do último verify de gestao-assinaturas-saas — rode `onp-spec verify gestao-assinaturas-saas` de novo",
+      "feature": "gestao-assinaturas-saas"
+    },
+    {
+      "code": "TASK_CONCLUIDA_SEM_PROVA",
+      "severity": "erro",
+      "message": "a tarefa T-026 está [concluida] mas o critério AC-041 não tem prova PASS do verify",
+      "feature": "gestao-clientes",
+      "file": ".spec\\features\\gestao-clientes\\tasks.md",
+      "line": 3
+    },
+    {
+      "code": "TASK_CONCLUIDA_SEM_PROVA",
+      "severity": "erro",
+      "message": "a tarefa T-026 está [concluida] mas o critério AC-042 não tem prova PASS do verify",
+      "feature": "gestao-clientes",
+      "file": ".spec\\features\\gestao-clientes\\tasks.md",
+      "line": 3
+    },
+    {
+      "code": "TASK_CONCLUIDA_SEM_PROVA",
+      "severity": "erro",
+      "message": "a tarefa T-027 está [concluida] mas o critério AC-041 não tem prova PASS do verify",
+      "feature": "gestao-clientes",
+      "file": ".spec\\features\\gestao-clientes\\tasks.md",
+      "line": 9
+    },
+    {
+      "code": "TASK_CONCLUIDA_SEM_PROVA",
+      "severity": "erro",
+      "message": "a tarefa T-028 está [concluida] mas o critério AC-041 não tem prova PASS do verify",
+      "feature": "gestao-clientes",
+      "file": ".spec\\features\\gestao-clientes\\tasks.md",
+      "line": 15
+    },
+    {
+      "code": "TASK_CONCLUIDA_SEM_PROVA",
+      "severity": "erro",
+      "message": "a tarefa T-028 está [concluida] mas o critério AC-043 não tem prova PASS do verify",
+      "feature": "gestao-clientes",
+      "file": ".spec\\features\\gestao-clientes\\tasks.md",
+      "line": 15
+    },
+    {
+      "code": "TASK_CONCLUIDA_SEM_PROVA",
+      "severity": "erro",
+      "message": "a tarefa T-029 está [concluida] mas o critério AC-043 não tem prova PASS do verify",
+      "feature": "gestao-clientes",
+      "file": ".spec\\features\\gestao-clientes\\tasks.md",
+      "line": 21
+    },
+    {
+      "code": "TASK_CONCLUIDA_SEM_PROVA",
+      "severity": "erro",
+      "message": "a tarefa T-029 está [concluida] mas o critério AC-044 não tem prova PASS do verify",
+      "feature": "gestao-clientes",
+      "file": ".spec\\features\\gestao-clientes\\tasks.md",
+      "line": 21
+    },
+    {
+      "code": "TASK_CONCLUIDA_SEM_PROVA",
+      "severity": "erro",
+      "message": "a tarefa T-030 está [concluida] mas o critério AC-041 não tem prova PASS do verify",
+      "feature": "gestao-clientes",
+      "file": ".spec\\features\\gestao-clientes\\tasks.md",
+      "line": 27
+    },
+    {
+      "code": "TASK_CONCLUIDA_SEM_PROVA",
+      "severity": "erro",
+      "message": "a tarefa T-030 está [concluida] mas o critério AC-044 não tem prova PASS do verify",
+      "feature": "gestao-clientes",
+      "file": ".spec\\features\\gestao-clientes\\tasks.md",
+      "line": 27
+    },
+    {
+      "code": "AC_SEM_PROVA",
+      "severity": "erro",
+      "message": "AC-041 tem teste (tests/Agendamento.IntegrationTests/Customers/CustomerIsolationTests.cs:36) mas nunca foi provado — rode `onp-spec verify gestao-clientes`",
+      "feature": "gestao-clientes",
+      "file": "tests/Agendamento.IntegrationTests/Customers/CustomerIsolationTests.cs",
+      "line": 36
+    },
+    {
+      "code": "AC_SEM_PROVA",
+      "severity": "erro",
+      "message": "AC-042 tem teste (tests/Agendamento.UnitTests/Customers/CustomerHandlerTests.cs:67) mas nunca foi provado — rode `onp-spec verify gestao-clientes`",
+      "feature": "gestao-clientes",
+      "file": "tests/Agendamento.UnitTests/Customers/CustomerHandlerTests.cs",
+      "line": 67
+    },
+    {
+      "code": "AC_SEM_PROVA",
+      "severity": "erro",
+      "message": "AC-043 tem teste (tests/Agendamento.UnitTests/Customers/CustomerHandlerTests.cs:80) mas nunca foi provado — rode `onp-spec verify gestao-clientes`",
+      "feature": "gestao-clientes",
+      "file": "tests/Agendamento.UnitTests/Customers/CustomerHandlerTests.cs",
+      "line": 80
+    },
+    {
+      "code": "AC_SEM_PROVA",
+      "severity": "erro",
+      "message": "AC-044 tem teste (tests/Agendamento.IntegrationTests/Customers/CustomerIsolationTests.cs:58) mas nunca foi provado — rode `onp-spec verify gestao-clientes`",
+      "feature": "gestao-clientes",
+      "file": "tests/Agendamento.IntegrationTests/Customers/CustomerIsolationTests.cs",
+      "line": 58
+    },
+    {
+      "code": "VERIFY_OBSOLETO",
+      "severity": "erro",
+      "message": "código/testes mudaram depois do último verify de gestao-clientes — rode `onp-spec verify gestao-clientes` de novo",
+      "feature": "gestao-clientes"
+    },
+    {
+      "code": "VERIFY_OBSOLETO",
+      "severity": "erro",
+      "message": "código/testes mudaram depois do último verify de gestao-equipe-permissoes — rode `onp-spec verify gestao-equipe-permissoes` de novo",
+      "feature": "gestao-equipe-permissoes"
+    },
+    {
+      "code": "AC_SEM_PROVA",
+      "severity": "erro",
+      "message": "AC-056 tem teste (tests/Agendamento.IntegrationTests/Financial/FinancialApiTests.cs:43) mas nunca foi provado — rode `onp-spec verify gestao-financeira-contas`",
+      "feature": "gestao-financeira-contas",
+      "file": "tests/Agendamento.IntegrationTests/Financial/FinancialApiTests.cs",
+      "line": 43
+    },
+    {
+      "code": "AC_SEM_PROVA",
+      "severity": "erro",
+      "message": "AC-057 tem teste (tests/Agendamento.IntegrationTests/Financial/FinancialApiTests.cs:76) mas nunca foi provado — rode `onp-spec verify gestao-financeira-contas`",
+      "feature": "gestao-financeira-contas",
+      "file": "tests/Agendamento.IntegrationTests/Financial/FinancialApiTests.cs",
+      "line": 76
+    },
+    {
+      "code": "AC_SEM_PROVA",
+      "severity": "erro",
+      "message": "AC-055 tem teste (tests/Agendamento.IntegrationTests/Financial/FinancialIsolationTests.cs:36) mas nunca foi provado — rode `onp-spec verify gestao-financeira-contas`",
+      "feature": "gestao-financeira-contas",
+      "file": "tests/Agendamento.IntegrationTests/Financial/FinancialIsolationTests.cs",
+      "line": 36
+    },
+    {
+      "code": "AC_SEM_PROVA",
+      "severity": "erro",
+      "message": "AC-058 tem teste (tests/Agendamento.UnitTests/Financial/FinancialDomainTests.cs:54) mas nunca foi provado — rode `onp-spec verify gestao-financeira-contas`",
+      "feature": "gestao-financeira-contas",
+      "file": "tests/Agendamento.UnitTests/Financial/FinancialDomainTests.cs",
+      "line": 54
+    },
+    {
+      "code": "AC_SEM_PROVA",
+      "severity": "erro",
+      "message": "AC-059 tem teste (tests/Agendamento.IntegrationTests/Financial/FinancialApiTests.cs:102) mas nunca foi provado — rode `onp-spec verify gestao-financeira-contas`",
+      "feature": "gestao-financeira-contas",
+      "file": "tests/Agendamento.IntegrationTests/Financial/FinancialApiTests.cs",
+      "line": 102
+    },
+    {
+      "code": "VERIFY_OBSOLETO",
+      "severity": "erro",
+      "message": "código/testes mudaram depois do último verify de gestao-financeira-contas — rode `onp-spec verify gestao-financeira-contas` de novo",
+      "feature": "gestao-financeira-contas"
+    },
+    {
+      "code": "AC_SEM_PROVA",
+      "severity": "erro",
+      "message": "AC-090 tem teste (tests/Agendamento.IntegrationTests/Features/QuotationTests.cs:68) mas nunca foi provado — rode `onp-spec verify gestao-orcamentos-servicos`",
+      "feature": "gestao-orcamentos-servicos",
+      "file": "tests/Agendamento.IntegrationTests/Features/QuotationTests.cs",
+      "line": 68
+    },
+    {
+      "code": "AC_SEM_PROVA",
+      "severity": "erro",
+      "message": "AC-092 tem teste (tests/Agendamento.IntegrationTests/Features/QuotationTests.cs:133) mas nunca foi provado — rode `onp-spec verify gestao-orcamentos-servicos`",
+      "feature": "gestao-orcamentos-servicos",
+      "file": "tests/Agendamento.IntegrationTests/Features/QuotationTests.cs",
+      "line": 133
+    },
+    {
+      "code": "AC_SEM_PROVA",
+      "severity": "erro",
+      "message": "AC-093 tem teste (tests/Agendamento.IntegrationTests/Features/QuotationTests.cs:158) mas nunca foi provado — rode `onp-spec verify gestao-orcamentos-servicos`",
+      "feature": "gestao-orcamentos-servicos",
+      "file": "tests/Agendamento.IntegrationTests/Features/QuotationTests.cs",
+      "line": 158
+    },
+    {
+      "code": "AC_SEM_PROVA",
+      "severity": "erro",
+      "message": "AC-091 tem teste (tests/Agendamento.IntegrationTests/Features/QuotationTests.cs:98) mas nunca foi provado — rode `onp-spec verify gestao-orcamentos-servicos`",
+      "feature": "gestao-orcamentos-servicos",
+      "file": "tests/Agendamento.IntegrationTests/Features/QuotationTests.cs",
+      "line": 98
+    },
+    {
+      "code": "AC_SEM_PROVA",
+      "severity": "erro",
+      "message": "AC-045 tem teste (tests/Agendamento.IntegrationTests/Quotations/QuotationApiTests.cs:44) mas nunca foi provado — rode `onp-spec verify gestao-orcamentos-servicos`",
+      "feature": "gestao-orcamentos-servicos",
+      "file": "tests/Agendamento.IntegrationTests/Quotations/QuotationApiTests.cs",
+      "line": 44
+    },
+    {
+      "code": "AC_SEM_PROVA",
+      "severity": "erro",
+      "message": "AC-049 tem teste (tests/Agendamento.IntegrationTests/Quotations/QuotationApiTests.cs:193) mas nunca foi provado — rode `onp-spec verify gestao-orcamentos-servicos`",
+      "feature": "gestao-orcamentos-servicos",
+      "file": "tests/Agendamento.IntegrationTests/Quotations/QuotationApiTests.cs",
+      "line": 193
+    },
+    {
+      "code": "AC_SEM_PROVA",
+      "severity": "erro",
+      "message": "AC-046 tem teste (tests/Agendamento.IntegrationTests/Quotations/QuotationApiTests.cs:80) mas nunca foi provado — rode `onp-spec verify gestao-orcamentos-servicos`",
+      "feature": "gestao-orcamentos-servicos",
+      "file": "tests/Agendamento.IntegrationTests/Quotations/QuotationApiTests.cs",
+      "line": 80
+    },
+    {
+      "code": "AC_SEM_PROVA",
+      "severity": "erro",
+      "message": "AC-047 tem teste (tests/Agendamento.IntegrationTests/Quotations/QuotationApiTests.cs:120) mas nunca foi provado — rode `onp-spec verify gestao-orcamentos-servicos`",
+      "feature": "gestao-orcamentos-servicos",
+      "file": "tests/Agendamento.IntegrationTests/Quotations/QuotationApiTests.cs",
+      "line": 120
+    },
+    {
+      "code": "AC_SEM_PROVA",
+      "severity": "erro",
+      "message": "AC-048 tem teste (tests/Agendamento.IntegrationTests/Quotations/QuotationApiTests.cs:157) mas nunca foi provado — rode `onp-spec verify gestao-orcamentos-servicos`",
+      "feature": "gestao-orcamentos-servicos",
+      "file": "tests/Agendamento.IntegrationTests/Quotations/QuotationApiTests.cs",
+      "line": 157
+    },
+    {
+      "code": "VERIFY_OBSOLETO",
+      "severity": "erro",
+      "message": "código/testes mudaram depois do último verify de gestao-orcamentos-servicos — rode `onp-spec verify gestao-orcamentos-servicos` de novo",
+      "feature": "gestao-orcamentos-servicos"
+    },
+    {
+      "code": "PROVA_FRACA",
+      "severity": "aviso",
+      "message": "AC-007 provado apenas pelo exit code global (reporter \"exitcode\") — sem granularidade por teste; prefira tap/vitest-json/jest-json",
+      "feature": "identidade-acesso-inicial",
+      "file": "tests/Agendamento.UnitTests/Identity/UserTests.cs",
+      "line": 9
+    },
+    {
+      "code": "PROVA_FRACA",
+      "severity": "aviso",
+      "message": "AC-008 provado apenas pelo exit code global (reporter \"exitcode\") — sem granularidade por teste; prefira tap/vitest-json/jest-json",
+      "feature": "identidade-acesso-inicial",
+      "file": "tests/Agendamento.UnitTests/Identity/UserTests.cs",
+      "line": 24
+    },
+    {
+      "code": "PROVA_FRACA",
+      "severity": "aviso",
+      "message": "AC-009 provado apenas pelo exit code global (reporter \"exitcode\") — sem granularidade por teste; prefira tap/vitest-json/jest-json",
+      "feature": "identidade-acesso-inicial",
+      "file": "tests/Agendamento.IntegrationTests/Identity/EmailVerificationOutboxTests.cs",
+      "line": 10
+    },
+    {
+      "code": "PROVA_FRACA",
+      "severity": "aviso",
+      "message": "AC-010 provado apenas pelo exit code global (reporter \"exitcode\") — sem granularidade por teste; prefira tap/vitest-json/jest-json",
+      "feature": "identidade-acesso-inicial",
+      "file": "tests/Agendamento.IntegrationTests/Identity/EmailVerificationEndpointTests.cs",
+      "line": 14
+    },
+    {
+      "code": "PROVA_FRACA",
+      "severity": "aviso",
+      "message": "AC-011 provado apenas pelo exit code global (reporter \"exitcode\") — sem granularidade por teste; prefira tap/vitest-json/jest-json",
+      "feature": "identidade-acesso-inicial",
+      "file": "tests/Agendamento.IntegrationTests/Identity/EmailVerificationEndpointTests.cs",
+      "line": 29
+    },
+    {
+      "code": "PROVA_FRACA",
+      "severity": "aviso",
+      "message": "AC-012 provado apenas pelo exit code global (reporter \"exitcode\") — sem granularidade por teste; prefira tap/vitest-json/jest-json",
+      "feature": "identidade-acesso-inicial",
+      "file": "tests/Agendamento.IntegrationTests/Identity/SessionEndpointTests.cs",
+      "line": 17
+    },
+    {
+      "code": "PROVA_FRACA",
+      "severity": "aviso",
+      "message": "AC-013 provado apenas pelo exit code global (reporter \"exitcode\") — sem granularidade por teste; prefira tap/vitest-json/jest-json",
+      "feature": "identidade-acesso-inicial",
+      "file": "tests/Agendamento.ArchitectureTests/OpenApi/EndpointMetadataTests.cs",
+      "line": 83
+    },
+    {
+      "code": "VERIFY_OBSOLETO",
+      "severity": "erro",
+      "message": "código/testes mudaram depois do último verify de identidade-acesso-inicial — rode `onp-spec verify identidade-acesso-inicial` de novo",
+      "feature": "identidade-acesso-inicial"
+    },
+    {
+      "code": "TASK_CONCLUIDA_SEM_PROVA",
+      "severity": "erro",
+      "message": "a tarefa T-017 está [concluida] mas o critério AC-028 não tem prova PASS do verify",
+      "feature": "isolamento-multitenancy",
+      "file": ".spec\\features\\isolamento-multitenancy\\tasks.md",
+      "line": 5
+    },
+    {
+      "code": "TASK_CONCLUIDA_SEM_PROVA",
+      "severity": "erro",
+      "message": "a tarefa T-017 está [concluida] mas o critério AC-029 não tem prova PASS do verify",
+      "feature": "isolamento-multitenancy",
+      "file": ".spec\\features\\isolamento-multitenancy\\tasks.md",
+      "line": 5
+    },
+    {
+      "code": "TASK_CONCLUIDA_SEM_PROVA",
+      "severity": "erro",
+      "message": "a tarefa T-018 está [concluida] mas o critério AC-030 não tem prova PASS do verify",
+      "feature": "isolamento-multitenancy",
+      "file": ".spec\\features\\isolamento-multitenancy\\tasks.md",
+      "line": 11
+    },
+    {
+      "code": "TASK_CONCLUIDA_SEM_PROVA",
+      "severity": "erro",
+      "message": "a tarefa T-018 está [concluida] mas o critério AC-031 não tem prova PASS do verify",
+      "feature": "isolamento-multitenancy",
+      "file": ".spec\\features\\isolamento-multitenancy\\tasks.md",
+      "line": 11
+    },
+    {
+      "code": "TASK_CONCLUIDA_SEM_PROVA",
+      "severity": "erro",
+      "message": "a tarefa T-018 está [concluida] mas o critério AC-032 não tem prova PASS do verify",
+      "feature": "isolamento-multitenancy",
+      "file": ".spec\\features\\isolamento-multitenancy\\tasks.md",
+      "line": 11
+    },
+    {
+      "code": "ARQUIVO_INEXISTENTE",
+      "severity": "erro",
+      "message": "a tarefa T-019 mapeia src/Agendamento.Api/Infrastructure/Persistence/TenantTransactionInterceptor.cs, que não existe (tarefa concluída!)",
+      "feature": "isolamento-multitenancy",
+      "file": ".spec\\features\\isolamento-multitenancy\\tasks.md",
+      "line": 17
+    },
+    {
+      "code": "ARQUIVO_INEXISTENTE",
+      "severity": "erro",
+      "message": "a tarefa T-019 mapeia src/Agendamento.Api/Infrastructure/Persistence/Sql/TenantRls.sql, que não existe (tarefa concluída!)",
+      "feature": "isolamento-multitenancy",
+      "file": ".spec\\features\\isolamento-multitenancy\\tasks.md",
+      "line": 17
+    },
+    {
+      "code": "ARQUIVO_INEXISTENTE",
+      "severity": "erro",
+      "message": "a tarefa T-019 mapeia tests/Agendamento.IntegrationTests/Tenancy/PostgreSqlRlsTests.cs, que não existe (tarefa concluída!)",
+      "feature": "isolamento-multitenancy",
+      "file": ".spec\\features\\isolamento-multitenancy\\tasks.md",
+      "line": 17
+    },
+    {
+      "code": "TASK_CONCLUIDA_SEM_PROVA",
+      "severity": "erro",
+      "message": "a tarefa T-019 está [concluida] mas o critério AC-033 não tem prova PASS do verify",
+      "feature": "isolamento-multitenancy",
+      "file": ".spec\\features\\isolamento-multitenancy\\tasks.md",
+      "line": 17
+    },
+    {
+      "code": "TASK_CONCLUIDA_SEM_PROVA",
+      "severity": "erro",
+      "message": "a tarefa T-019 está [concluida] mas o critério AC-034 não tem prova PASS do verify",
+      "feature": "isolamento-multitenancy",
+      "file": ".spec\\features\\isolamento-multitenancy\\tasks.md",
+      "line": 17
+    },
+    {
+      "code": "TASK_CONCLUIDA_SEM_PROVA",
+      "severity": "erro",
+      "message": "a tarefa T-019 está [concluida] mas o critério AC-035 não tem prova PASS do verify",
+      "feature": "isolamento-multitenancy",
+      "file": ".spec\\features\\isolamento-multitenancy\\tasks.md",
+      "line": 17
+    },
+    {
+      "code": "ARQUIVO_INEXISTENTE",
+      "severity": "erro",
+      "message": "a tarefa T-020 mapeia tests/Agendamento.IntegrationTests/Tenancy/CrossTenantIsolationTests.cs, que não existe (tarefa concluída!)",
+      "feature": "isolamento-multitenancy",
+      "file": ".spec\\features\\isolamento-multitenancy\\tasks.md",
+      "line": 23
+    },
+    {
+      "code": "TASK_CONCLUIDA_SEM_PROVA",
+      "severity": "erro",
+      "message": "a tarefa T-020 está [concluida] mas o critério AC-028 não tem prova PASS do verify",
+      "feature": "isolamento-multitenancy",
+      "file": ".spec\\features\\isolamento-multitenancy\\tasks.md",
+      "line": 23
+    },
+    {
+      "code": "TASK_CONCLUIDA_SEM_PROVA",
+      "severity": "erro",
+      "message": "a tarefa T-020 está [concluida] mas o critério AC-029 não tem prova PASS do verify",
+      "feature": "isolamento-multitenancy",
+      "file": ".spec\\features\\isolamento-multitenancy\\tasks.md",
+      "line": 23
+    },
+    {
+      "code": "TASK_CONCLUIDA_SEM_PROVA",
+      "severity": "erro",
+      "message": "a tarefa T-020 está [concluida] mas o critério AC-030 não tem prova PASS do verify",
+      "feature": "isolamento-multitenancy",
+      "file": ".spec\\features\\isolamento-multitenancy\\tasks.md",
+      "line": 23
+    },
+    {
+      "code": "TASK_CONCLUIDA_SEM_PROVA",
+      "severity": "erro",
+      "message": "a tarefa T-020 está [concluida] mas o critério AC-031 não tem prova PASS do verify",
+      "feature": "isolamento-multitenancy",
+      "file": ".spec\\features\\isolamento-multitenancy\\tasks.md",
+      "line": 23
+    },
+    {
+      "code": "TASK_CONCLUIDA_SEM_PROVA",
+      "severity": "erro",
+      "message": "a tarefa T-020 está [concluida] mas o critério AC-032 não tem prova PASS do verify",
+      "feature": "isolamento-multitenancy",
+      "file": ".spec\\features\\isolamento-multitenancy\\tasks.md",
+      "line": 23
+    },
+    {
+      "code": "TASK_CONCLUIDA_SEM_PROVA",
+      "severity": "erro",
+      "message": "a tarefa T-020 está [concluida] mas o critério AC-033 não tem prova PASS do verify",
+      "feature": "isolamento-multitenancy",
+      "file": ".spec\\features\\isolamento-multitenancy\\tasks.md",
+      "line": 23
+    },
+    {
+      "code": "TASK_CONCLUIDA_SEM_PROVA",
+      "severity": "erro",
+      "message": "a tarefa T-020 está [concluida] mas o critério AC-034 não tem prova PASS do verify",
+      "feature": "isolamento-multitenancy",
+      "file": ".spec\\features\\isolamento-multitenancy\\tasks.md",
+      "line": 23
+    },
+    {
+      "code": "ARQUIVO_INEXISTENTE",
+      "severity": "erro",
+      "message": "a tarefa T-021 mapeia tests/Agendamento.ArchitectureTests/Tenancy/TenantOwnedMigrationTests.cs, que não existe (tarefa concluída!)",
+      "feature": "isolamento-multitenancy",
+      "file": ".spec\\features\\isolamento-multitenancy\\tasks.md",
+      "line": 29
+    },
+    {
+      "code": "TASK_CONCLUIDA_SEM_PROVA",
+      "severity": "erro",
+      "message": "a tarefa T-021 está [concluida] mas o critério AC-035 não tem prova PASS do verify",
+      "feature": "isolamento-multitenancy",
+      "file": ".spec\\features\\isolamento-multitenancy\\tasks.md",
+      "line": 29
+    },
+    {
+      "code": "AC_SEM_TESTE",
+      "severity": "erro",
+      "message": "AC-028 (Requisição sem tenant autenticado não acessa dados privados) não tem nenhum teste anotado com @spec:AC-028",
+      "feature": "isolamento-multitenancy",
+      "file": ".spec\\features\\isolamento-multitenancy\\spec.md",
+      "line": 16
+    },
+    {
+      "code": "AC_SEM_TESTE",
+      "severity": "erro",
+      "message": "AC-029 (Request não escolhe tenant) não tem nenhum teste anotado com @spec:AC-029",
+      "feature": "isolamento-multitenancy",
+      "file": ".spec\\features\\isolamento-multitenancy\\spec.md",
+      "line": 22
+    },
+    {
+      "code": "AC_SEM_PROVA",
+      "severity": "erro",
+      "message": "AC-030 tem teste (tests/Agendamento.IntegrationTests/Tenancy/TenantWriteGuardTests.cs:25) mas nunca foi provado — rode `onp-spec verify isolamento-multitenancy`",
+      "feature": "isolamento-multitenancy",
+      "file": "tests/Agendamento.IntegrationTests/Tenancy/TenantWriteGuardTests.cs",
+      "line": 25
+    },
+    {
+      "code": "AC_SEM_PROVA",
+      "severity": "erro",
+      "message": "AC-031 tem teste (tests/Agendamento.IntegrationTests/Tenancy/TenantWriteGuardTests.cs:60) mas nunca foi provado — rode `onp-spec verify isolamento-multitenancy`",
+      "feature": "isolamento-multitenancy",
+      "file": "tests/Agendamento.IntegrationTests/Tenancy/TenantWriteGuardTests.cs",
+      "line": 60
+    },
+    {
+      "code": "AC_SEM_PROVA",
+      "severity": "erro",
+      "message": "AC-032 tem teste (tests/Agendamento.IntegrationTests/Tenancy/TenantWriteGuardTests.cs:43) mas nunca foi provado — rode `onp-spec verify isolamento-multitenancy`",
+      "feature": "isolamento-multitenancy",
+      "file": "tests/Agendamento.IntegrationTests/Tenancy/TenantWriteGuardTests.cs",
+      "line": 43
+    },
+    {
+      "code": "AC_SEM_TESTE",
+      "severity": "erro",
+      "message": "AC-033 (Papel da aplicação não contorna RLS) não tem nenhum teste anotado com @spec:AC-033",
+      "feature": "isolamento-multitenancy",
+      "file": ".spec\\features\\isolamento-multitenancy\\spec.md",
+      "line": 54
+    },
+    {
+      "code": "AC_SEM_TESTE",
+      "severity": "erro",
+      "message": "AC-034 (Contexto não vaza pelo pool de conexões) não tem nenhum teste anotado com @spec:AC-034",
+      "feature": "isolamento-multitenancy",
+      "file": ".spec\\features\\isolamento-multitenancy\\spec.md",
+      "line": 60
+    },
+    {
+      "code": "AC_SEM_TESTE",
+      "severity": "erro",
+      "message": "AC-035 (Toda tabela tenant-owned nasce protegida) não tem nenhum teste anotado com @spec:AC-035",
+      "feature": "isolamento-multitenancy",
+      "file": ".spec\\features\\isolamento-multitenancy\\spec.md",
+      "line": 66
+    },
+    {
+      "code": "US_SEM_AC",
+      "severity": "erro",
+      "message": "US-052 (Aviso de Fatura Vencida) sem critério de aceite",
+      "feature": "notificacoes-lembretes-whatsapp",
+      "file": ".spec\\features\\notificacoes-lembretes-whatsapp\\spec.md",
+      "line": 34
+    },
+    {
+      "code": "Q_ABERTA",
+      "severity": "erro",
+      "message": "Q-012 em aberto durante implementação: \"O prestador poderá desligar notificações automáticas para determinados clientes?\"",
+      "feature": "notificacoes-lembretes-whatsapp",
+      "file": ".spec\\features\\notificacoes-lembretes-whatsapp\\spec.md",
+      "line": 51
+    },
+    {
+      "code": "TASK_CONCLUIDA_SEM_PROVA",
+      "severity": "erro",
+      "message": "a tarefa T-097 está [concluida] mas o critério AC-097 não tem prova PASS do verify",
+      "feature": "notificacoes-lembretes-whatsapp",
+      "file": ".spec\\features\\notificacoes-lembretes-whatsapp\\tasks.md",
+      "line": 3
+    },
+    {
+      "code": "TASK_CONCLUIDA_SEM_PROVA",
+      "severity": "erro",
+      "message": "a tarefa T-097 está [concluida] mas o critério AC-098 não tem prova PASS do verify",
+      "feature": "notificacoes-lembretes-whatsapp",
+      "file": ".spec\\features\\notificacoes-lembretes-whatsapp\\tasks.md",
+      "line": 3
+    },
+    {
+      "code": "TASK_CONCLUIDA_SEM_PROVA",
+      "severity": "erro",
+      "message": "a tarefa T-098 está [concluida] mas o critério AC-098 não tem prova PASS do verify",
+      "feature": "notificacoes-lembretes-whatsapp",
+      "file": ".spec\\features\\notificacoes-lembretes-whatsapp\\tasks.md",
+      "line": 9
+    },
+    {
+      "code": "TASK_CONCLUIDA_SEM_PROVA",
+      "severity": "erro",
+      "message": "a tarefa T-099 está [concluida] mas o critério AC-099 não tem prova PASS do verify",
+      "feature": "notificacoes-lembretes-whatsapp",
+      "file": ".spec\\features\\notificacoes-lembretes-whatsapp\\tasks.md",
+      "line": 15
+    },
+    {
+      "code": "TASK_CONCLUIDA_SEM_PROVA",
+      "severity": "erro",
+      "message": "a tarefa T-100 está [concluida] mas o critério AC-097 não tem prova PASS do verify",
+      "feature": "notificacoes-lembretes-whatsapp",
+      "file": ".spec\\features\\notificacoes-lembretes-whatsapp\\tasks.md",
+      "line": 21
+    },
+    {
+      "code": "TASK_CONCLUIDA_SEM_PROVA",
+      "severity": "erro",
+      "message": "a tarefa T-100 está [concluida] mas o critério AC-098 não tem prova PASS do verify",
+      "feature": "notificacoes-lembretes-whatsapp",
+      "file": ".spec\\features\\notificacoes-lembretes-whatsapp\\tasks.md",
+      "line": 21
+    },
+    {
+      "code": "TASK_CONCLUIDA_SEM_PROVA",
+      "severity": "erro",
+      "message": "a tarefa T-100 está [concluida] mas o critério AC-099 não tem prova PASS do verify",
+      "feature": "notificacoes-lembretes-whatsapp",
+      "file": ".spec\\features\\notificacoes-lembretes-whatsapp\\tasks.md",
+      "line": 21
+    },
+    {
+      "code": "AC_SEM_TESTE",
+      "severity": "erro",
+      "message": "AC-097 (Serviço centralizado abstrai o provedor) não tem nenhum teste anotado com @spec:AC-097",
+      "feature": "notificacoes-lembretes-whatsapp",
+      "file": ".spec\\features\\notificacoes-lembretes-whatsapp\\spec.md",
+      "line": 16
+    },
+    {
+      "code": "AC_SEM_TESTE",
+      "severity": "erro",
+      "message": "AC-098 (Histórico vinculado ao tenant e cliente) não tem nenhum teste anotado com @spec:AC-098",
+      "feature": "notificacoes-lembretes-whatsapp",
+      "file": ".spec\\features\\notificacoes-lembretes-whatsapp\\spec.md",
+      "line": 22
+    },
+    {
+      "code": "AC_SEM_PROVA",
+      "severity": "erro",
+      "message": "AC-099 tem teste (tests/Agendamento.IntegrationTests/Features/NotificationTests.cs:99) mas nunca foi provado — rode `onp-spec verify notificacoes-lembretes-whatsapp`",
+      "feature": "notificacoes-lembretes-whatsapp",
+      "file": "tests/Agendamento.IntegrationTests/Features/NotificationTests.cs",
+      "line": 99
+    },
+    {
+      "code": "AC_SEM_PROVA",
+      "severity": "erro",
+      "message": "AC-062 tem teste (tests/Agendamento.UnitTests/Notifications/NotificationDomainTests.cs:8) mas nunca foi provado — rode `onp-spec verify notificacoes-lembretes-whatsapp`",
+      "feature": "notificacoes-lembretes-whatsapp",
+      "file": "tests/Agendamento.UnitTests/Notifications/NotificationDomainTests.cs",
+      "line": 8
+    },
+    {
+      "code": "AC_SEM_PROVA",
+      "severity": "erro",
+      "message": "AC-064 tem teste (tests/Agendamento.IntegrationTests/Notifications/NotificationApiTests.cs:102) mas nunca foi provado — rode `onp-spec verify notificacoes-lembretes-whatsapp`",
+      "feature": "notificacoes-lembretes-whatsapp",
+      "file": "tests/Agendamento.IntegrationTests/Notifications/NotificationApiTests.cs",
+      "line": 102
+    },
+    {
+      "code": "AC_SEM_PROVA",
+      "severity": "erro",
+      "message": "AC-061 tem teste (tests/Agendamento.IntegrationTests/Notifications/NotificationApiTests.cs:68) mas nunca foi provado — rode `onp-spec verify notificacoes-lembretes-whatsapp`",
+      "feature": "notificacoes-lembretes-whatsapp",
+      "file": "tests/Agendamento.IntegrationTests/Notifications/NotificationApiTests.cs",
+      "line": 68
+    },
+    {
+      "code": "AC_SEM_PROVA",
+      "severity": "erro",
+      "message": "AC-063 tem teste (tests/Agendamento.UnitTests/Notifications/NotificationDomainTests.cs:41) mas nunca foi provado — rode `onp-spec verify notificacoes-lembretes-whatsapp`",
+      "feature": "notificacoes-lembretes-whatsapp",
+      "file": "tests/Agendamento.UnitTests/Notifications/NotificationDomainTests.cs",
+      "line": 41
+    },
+    {
+      "code": "AC_SEM_PROVA",
+      "severity": "erro",
+      "message": "AC-060 tem teste (tests/Agendamento.IntegrationTests/Notifications/NotificationApiTests.cs:40) mas nunca foi provado — rode `onp-spec verify notificacoes-lembretes-whatsapp`",
+      "feature": "notificacoes-lembretes-whatsapp",
+      "file": "tests/Agendamento.IntegrationTests/Notifications/NotificationApiTests.cs",
+      "line": 40
+    },
+    {
+      "code": "VERIFY_OBSOLETO",
+      "severity": "erro",
+      "message": "código/testes mudaram depois do último verify de notificacoes-lembretes-whatsapp — rode `onp-spec verify notificacoes-lembretes-whatsapp` de novo",
+      "feature": "notificacoes-lembretes-whatsapp"
+    },
+    {
+      "code": "PROVA_FRACA",
+      "severity": "aviso",
+      "message": "AC-100 provado apenas pelo exit code global (reporter \"exitcode\") — sem granularidade por teste; prefira tap/vitest-json/jest-json",
+      "feature": "onboarding-token-desenvolvimento",
+      "file": "tests/Agendamento.ArchitectureTests/OpenApi/EndpointMetadataTests.cs",
+      "line": 52
+    },
+    {
+      "code": "VERIFY_OBSOLETO",
+      "severity": "erro",
+      "message": "código/testes mudaram depois do último verify de onboarding-token-desenvolvimento — rode `onp-spec verify onboarding-token-desenvolvimento` de novo",
+      "feature": "onboarding-token-desenvolvimento"
+    }
+  ]
+}

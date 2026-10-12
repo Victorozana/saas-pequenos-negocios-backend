@@ -1,11 +1,70 @@
 {
   "feature": "gestao-orcamentos-servicos",
-  "timestamp": "2026-08-11T19:03:36.913Z",
-  "gitRev": "bea0769",
-  "command": "dotnet test tests/Agendamento.UnitTests/Agendamento.UnitTests.csproj --configuration Release && dotnet test tests/Agendamento.IntegrationTests/Agendamento.IntegrationTests.csproj --configuration Release",
-  "reporter": "exitcode",
+  "timestamp": "2026-10-12T14:23:28.954Z",
+  "gitRev": "d79b630",
+  "command": "powershell -ExecutionPolicy Bypass -File scripts/verify-spec.ps1",
+  "reporter": "jest-json",
   "exitCode": 0,
-  "testsParsed": 0,
-  "results": {},
-  "principles": {}
+  "testsParsed": 175,
+  "results": {
+    "AC-090": {
+      "status": "pass",
+      "testName": "Criar orçamento com status Pendente e valor total calculado @spec:AC-090 Criar orçamento com status Pendente e valor total calculado @spec:AC-090",
+      "method": "jest-json"
+    },
+    "AC-092": {
+      "status": "pass",
+      "testName": "Orçamentos não podem ser acessados por outro tenant @spec:AC-092 Orçamentos não podem ser acessados por outro tenant @spec:AC-092",
+      "method": "jest-json"
+    },
+    "AC-093": {
+      "status": "pass",
+      "testName": "Não é possível aprovar/rejeitar orçamento já convertido @spec:AC-093 Não é possível aprovar/rejeitar orçamento já convertido @spec:AC-093",
+      "method": "jest-json"
+    },
+    "AC-091": {
+      "status": "pass",
+      "testName": "Somente orçamentos aprovados podem ser convertidos em OS @spec:AC-091 Somente orçamentos aprovados podem ser convertidos em OS @spec:AC-091",
+      "method": "jest-json"
+    },
+    "AC-045": {
+      "status": "pass",
+      "testName": "ServiceItem e Quotation implementam ITenantOwned com TenantId @spec:AC-045 ServiceItem e Quotation implementam ITenantOwned com TenantId @spec:AC-045",
+      "method": "jest-json"
+    },
+    "AC-049": {
+      "status": "pass",
+      "testName": "Isolamento multi-tenant impede que um tenant acesse orçamento ou serviço de outro tenant @spec:AC-049 Isolamento multi-tenant impede que um tenant acesse orçamento ou serviço de outro tenant @spec:AC-049",
+      "method": "jest-json"
+    },
+    "AC-046": {
+      "status": "pass",
+      "testName": "Calcula entrada exigida em valor fixo e saldo restante @spec:AC-046 Calcula entrada exigida em valor fixo e saldo restante @spec:AC-046",
+      "method": "jest-json"
+    },
+    "AC-047": {
+      "status": "pass",
+      "testName": "Exportação de orçamento em PDF gera bytes válidos em stream application/pdf @spec:AC-047 Exportação de orçamento em PDF gera bytes válidos em stream application/pdf @spec:AC-047",
+      "method": "jest-json"
+    },
+    "AC-048": {
+      "status": "pass",
+      "testName": "Aprovação de orçamento expirado lança exceção @spec:AC-048 Aprovação de orçamento expirado lança exceção @spec:AC-048",
+      "method": "jest-json"
+    }
+  },
+  "principles": {
+    "P-005": {
+      "status": "pass",
+      "testName": "Senhas nunca são recuperáveis @spec:AC-008 @principle:P-005 Senhas nunca são recuperáveis @spec:AC-008 @principle:P-005"
+    },
+    "P-003": {
+      "status": "pass",
+      "testName": "Tenant externo no body não muda a empresa do cliente criado @spec:AC-029 @principle:P-003 Tenant externo no body não muda a empresa do cliente criado @spec:AC-029 @principle:P-003"
+    },
+    "P-004": {
+      "status": "pass",
+      "testName": "Papel restrito impede SQL direto entre tenants em todas as tabelas @spec:AC-033 @principle:P-004 Papel restrito impede SQL direto entre tenants em todas as tabelas @spec:AC-033 @principle:P-004"
+    }
+  }
 }

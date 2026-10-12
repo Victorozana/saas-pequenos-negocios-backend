@@ -17,6 +17,7 @@ public static class DbSeeder
     {
         using var scope = serviceProvider.CreateScope();
         var db = scope.ServiceProvider.GetRequiredService<AgendamentoDbContext>();
+        using var administrative = db.Administrative.Enter();
         var passwordService = scope.ServiceProvider.GetRequiredService<IPasswordService>();
 
         var defaultEmail = "victor@gmail.com";

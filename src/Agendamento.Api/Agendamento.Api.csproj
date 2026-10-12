@@ -21,4 +21,5 @@
     <PackageReference Include="QuestPDF" />
     <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" />
   </ItemGroup>
+  <ItemGroup><EmbeddedResource Include="Infrastructure/Persistence/Sql/TenantRls.sql" LogicalName="Agendamento.Api.TenantRls.sql" /></ItemGroup>
 </Project>

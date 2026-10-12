@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# executar-tarefas.sh — gerado por `onp-spec plano contrato-openapi-swagger` em 2026-08-07 01:05
+# executar-tarefas.sh — gerado por `onp-spec plano contrato-openapi-swagger` em 2026-10-12 03:55
 # NÃO edite à mão: mudou tasks.md ou a config, regenere o plano.
 #
 # uso:
@@ -14,7 +14,7 @@
 set -u
 set -o pipefail
 
-RUN_ID='agendamento-contrato-openapi-swagger-msi8tsto'
+RUN_ID='saas-pequenos-negocios-backend-contrato-openapi-swagger-mv4pytaw'
 FEATURE='contrato-openapi-swagger'
 BASE_BRANCH='spec/contrato-openapi-swagger'
 ENGINE='.agents/skills/onp-spec-driven/scripts/onp-spec.mjs'
@@ -65,8 +65,8 @@ preparar_ambiente() {
     info "branch de trabalho: $BASE_BRANCH (a partir de $ATUAL)"
   fi
   git worktree prune
-  LOG_DIR="$(dirname "$TOPLEVEL")/onp-worktrees/agendamento-contrato-openapi-swagger-logs"
-  WT_BASE="$(dirname "$TOPLEVEL")/onp-worktrees/agendamento-contrato-openapi-swagger"
+  LOG_DIR="$(dirname "$TOPLEVEL")/onp-worktrees/saas-pequenos-negocios-backend-contrato-openapi-swagger-logs"
+  WT_BASE="$(dirname "$TOPLEVEL")/onp-worktrees/saas-pequenos-negocios-backend-contrato-openapi-swagger"
   STREAMS_DIR="${ONP_SPEC_HOME:-$HOME/.onp-spec}/painel/streams/$RUN_ID"
   mkdir -p "$LOG_DIR" "$STREAMS_DIR"
 }
@@ -168,105 +168,42 @@ iniciar_resumos() {
   trap 'parar_resumos; node "$ENGINE" resumo "$FEATURE" --gravar >/dev/null 2>&1 || true' EXIT
 }
 
-# ── faixa-1: T-022 ──
-executar_faixa_1() {
-  local WT="$WT_BASE-faixa-1"
-  preparar_worktree 'faixa-1' 'spec/contrato-openapi-swagger-faixa-1' "$WT" || return 1
-  evento --tipo faixa --faixa 'faixa-1' --estado executando --tentativa "$(tentativa 'faixa-1')"
-  : > "$LOG_DIR/faixa-1.log"
-  (
-    cd "$WT" || exit 9
-    rodar_tarefa 'faixa-1' 'T-022' 'Você executa UMA tarefa da feature "contrato-openapi-swagger" (fluxo onp-spec, spec-anchored).
-Leia primeiro: .spec/features/contrato-openapi-swagger/spec.md, .spec/features/contrato-openapi-swagger/tasks.md e .spec/constituicao.md.
-
-Sua tarefa (somente ela):
-T-022 — "Registrar OpenAPI e Swagger UI"
-  critérios/refs: AC-036 (Todas as rotas implementadas aparecem no contrato), AC-040 (Swagger UI permite explorar a versão vigente)
-  arquivos permitidos (e seus testes): src/Agendamento.Api/Agendamento.Api.csproj, src/Agendamento.Api/Program.cs, src/Agendamento.Api/OpenApi/OpenApiExtensions.cs, tests/Agendamento.IntegrationTests/OpenApi/SwaggerUiTests.cs
-  mensagem de commit: "T-022 contrato-openapi-swagger: Registrar OpenAPI e Swagger UI"
-
-Regras inegociáveis:
-- Todo critério de aceite referenciado vira teste com @spec:AC-xxx no título.
-- NUNCA enfraqueça, pule (skip/todo) ou apague um teste para passar — teste pulado não é prova e o audit acusa.
-- Rode os testes localmente com `dotnet test tests/Agendamento.UnitTests/Agendamento.UnitTests.csproj --configuration Release && dotnet test tests/Agendamento.IntegrationTests/Agendamento.IntegrationTests.csproj --configuration Release --filter "FullyQualifiedName~CompanyRegistryContractTests|FullyQualifiedName~RegisterTenantTransactionTests|FullyQualifiedName~TenantRegistrationEndpointTests|FullyQualifiedName~CurrentTenantEndpointTests|FullyQualifiedName~CurrentUserEndpointTests"` até passarem.
-- NÃO edite tasks.md, NÃO rode onp-spec verify/audit e NÃO toque em outras tarefas — o orquestrador cuida disso.
-- Ao final de CADA tarefa: `git add` só no que você tocou e um commit próprio.' 'gpt-5.6-terra' medium
-  ) >> "$LOG_DIR/faixa-1.log" 2>&1
-  local st=$?
-  mesclar_faixa 'faixa-1' 'spec/contrato-openapi-swagger-faixa-1' "$WT" "$st" || return 1
-  marcar_concluidas T-022
-  return 0
-}
-
-# ── faixa-2: T-023 ──
-executar_faixa_2() {
-  local WT="$WT_BASE-faixa-2"
-  preparar_worktree 'faixa-2' 'spec/contrato-openapi-swagger-faixa-2' "$WT" || return 1
-  evento --tipo faixa --faixa 'faixa-2' --estado executando --tentativa "$(tentativa 'faixa-2')"
-  : > "$LOG_DIR/faixa-2.log"
-  (
-    cd "$WT" || exit 9
-    rodar_tarefa 'faixa-2' 'T-023' 'Você executa UMA tarefa da feature "contrato-openapi-swagger" (fluxo onp-spec, spec-anchored).
+# ── sequencial T-023 (ordem do tasks.md) ──
+executar_seq_T_023() {
+  info 'sequencial T-023 — Documentar endpoints, segurança e erros'
+  if rodar_tarefa seq 'T-023' 'Você executa UMA tarefa da feature "contrato-openapi-swagger" (fluxo onp-spec, spec-anchored).
 Leia primeiro: .spec/features/contrato-openapi-swagger/spec.md, .spec/features/contrato-openapi-swagger/tasks.md e .spec/constituicao.md.
 
 Sua tarefa (somente ela):
 T-023 — "Documentar endpoints, segurança e erros"
   critérios/refs: AC-036 (Todas as rotas implementadas aparecem no contrato), AC-037 (Operações descrevem sucesso e falhas), AC-038 (Schemas não expõem dados secretos)
-  arquivos permitidos (e seus testes): src/Agendamento.Api/Features/Health, src/Agendamento.Api/Features/Identity, src/Agendamento.Api/Features/Tenants, src/Agendamento.Api/OpenApi/ProblemDetailsOperationTransformer.cs, src/Agendamento.Api/OpenApi/BearerSecuritySchemeTransformer.cs, tests/Agendamento.ArchitectureTests/OpenApi/EndpointMetadataTests.cs
+  arquivos permitidos (e seus testes): src/Agendamento.Api/Program.cs, src/Agendamento.Api/Features/Identity/CurrentUserEndpoints.cs, src/Agendamento.Api/Features/Identity/EmailVerificationEndpoints.cs, src/Agendamento.Api/Features/Identity/SessionEndpoints.cs, src/Agendamento.Api/Features/Identity/VerifyEmailRequest.cs, src/Agendamento.Api/Features/Tenants/CompanyRegistryEndpoints.cs, src/Agendamento.Api/Features/Tenants/CurrentTenantEndpoints.cs, src/Agendamento.Api/Features/Tenants/RegisterTenantRequest.cs, src/Agendamento.Api/Features/Tenants/RegisterTenantResponse.cs, src/Agendamento.Api/Features/Tenants/TenantRegistrationEndpoints.cs, src/Agendamento.Api/OpenApi/ProblemDetailsOperationTransformer.cs, src/Agendamento.Api/OpenApi/BearerSecuritySchemeTransformer.cs, tests/Agendamento.ArchitectureTests/OpenApi/EndpointMetadataTests.cs
   mensagem de commit: "T-023 contrato-openapi-swagger: Documentar endpoints, segurança e erros"
 
 Regras inegociáveis:
 - Todo critério de aceite referenciado vira teste com @spec:AC-xxx no título.
 - NUNCA enfraqueça, pule (skip/todo) ou apague um teste para passar — teste pulado não é prova e o audit acusa.
-- Rode os testes localmente com `dotnet test tests/Agendamento.UnitTests/Agendamento.UnitTests.csproj --configuration Release && dotnet test tests/Agendamento.IntegrationTests/Agendamento.IntegrationTests.csproj --configuration Release --filter "FullyQualifiedName~CompanyRegistryContractTests|FullyQualifiedName~RegisterTenantTransactionTests|FullyQualifiedName~TenantRegistrationEndpointTests|FullyQualifiedName~CurrentTenantEndpointTests|FullyQualifiedName~CurrentUserEndpointTests"` até passarem.
+- Rode os testes localmente com `powershell -ExecutionPolicy Bypass -File scripts/verify-spec.ps1` até passarem.
 - NÃO edite tasks.md, NÃO rode onp-spec verify/audit e NÃO toque em outras tarefas — o orquestrador cuida disso.
-- Ao final de CADA tarefa: `git add` só no que você tocou e um commit próprio.' 'gpt-5.6-terra' medium
-  ) >> "$LOG_DIR/faixa-2.log" 2>&1
-  local st=$?
-  mesclar_faixa 'faixa-2' 'spec/contrato-openapi-swagger-faixa-2' "$WT" "$st" || return 1
-  marcar_concluidas T-023
-  return 0
+- Ao final de CADA tarefa: `git add` só no que você tocou e um commit próprio.' 'gpt-5.6-terra' medium >> "$LOG_DIR/seq.log" 2>&1; then
+    # commit de segurança se o agente esqueceu (rastreabilidade > perfeição)
+    if [ -n "$(git status --porcelain)" ]; then
+      git add -A && git commit -q -m 'T-023 contrato-openapi-swagger: Documentar endpoints, segurança e erros (auto-commit do plano)'
+    fi
+    marcar_concluidas T-023
+    verde "✔ T-023 concluída"
+    return 0
+  fi
+  vermelho "✘ T-023 falhou (log: $LOG_DIR/seq.log)"
+  amarelo "  reexecute só ela: bash .spec/features/contrato-openapi-swagger/executar-tarefas.sh --seq T-023"
+  FALHAS="$FALHAS T-023"
+  return 1
 }
 
-# ── faixa-3: T-024 ──
-executar_faixa_3() {
-  local WT="$WT_BASE-faixa-3"
-  preparar_worktree 'faixa-3' 'spec/contrato-openapi-swagger-faixa-3' "$WT" || return 1
-  evento --tipo faixa --faixa 'faixa-3' --estado executando --tentativa "$(tentativa 'faixa-3')"
-  : > "$LOG_DIR/faixa-3.log"
-  (
-    cd "$WT" || exit 9
-    rodar_tarefa 'faixa-3' 'T-024' 'Você executa UMA tarefa da feature "contrato-openapi-swagger" (fluxo onp-spec, spec-anchored).
-Leia primeiro: .spec/features/contrato-openapi-swagger/spec.md, .spec/features/contrato-openapi-swagger/tasks.md e .spec/constituicao.md.
-
-Sua tarefa (somente ela):
-T-024 — "Gerar contrato canônico versionado"
-  critérios/refs: AC-039 (Documento versionado coincide com a aplicação)
-  arquivos permitidos (e seus testes): docs/openapi/v1.json, tools/export-openapi.ps1, tests/Agendamento.IntegrationTests/OpenApi/OpenApiSnapshotTests.cs
-  mensagem de commit: "T-024 contrato-openapi-swagger: Gerar contrato canônico versionado"
-
-Regras inegociáveis:
-- Todo critério de aceite referenciado vira teste com @spec:AC-xxx no título.
-- NUNCA enfraqueça, pule (skip/todo) ou apague um teste para passar — teste pulado não é prova e o audit acusa.
-- Rode os testes localmente com `dotnet test tests/Agendamento.UnitTests/Agendamento.UnitTests.csproj --configuration Release && dotnet test tests/Agendamento.IntegrationTests/Agendamento.IntegrationTests.csproj --configuration Release --filter "FullyQualifiedName~CompanyRegistryContractTests|FullyQualifiedName~RegisterTenantTransactionTests|FullyQualifiedName~TenantRegistrationEndpointTests|FullyQualifiedName~CurrentTenantEndpointTests|FullyQualifiedName~CurrentUserEndpointTests"` até passarem.
-- NÃO edite tasks.md, NÃO rode onp-spec verify/audit e NÃO toque em outras tarefas — o orquestrador cuida disso.
-- Ao final de CADA tarefa: `git add` só no que você tocou e um commit próprio.' 'gpt-5.6-terra' medium
-  ) >> "$LOG_DIR/faixa-3.log" 2>&1
-  local st=$?
-  mesclar_faixa 'faixa-3' 'spec/contrato-openapi-swagger-faixa-3' "$WT" "$st" || return 1
-  marcar_concluidas T-024
-  return 0
-}
-
-# ── faixa-4: T-025 ──
-executar_faixa_4() {
-  local WT="$WT_BASE-faixa-4"
-  preparar_worktree 'faixa-4' 'spec/contrato-openapi-swagger-faixa-4' "$WT" || return 1
-  evento --tipo faixa --faixa 'faixa-4' --estado executando --tentativa "$(tentativa 'faixa-4')"
-  : > "$LOG_DIR/faixa-4.log"
-  (
-    cd "$WT" || exit 9
-    rodar_tarefa 'faixa-4' 'T-025' 'Você executa UMA tarefa da feature "contrato-openapi-swagger" (fluxo onp-spec, spec-anchored).
+# ── sequencial T-025 (ordem do tasks.md) ──
+executar_seq_T_025() {
+  info 'sequencial T-025 — Validar completude e minimização dos schemas'
+  if rodar_tarefa seq 'T-025' 'Você executa UMA tarefa da feature "contrato-openapi-swagger" (fluxo onp-spec, spec-anchored).
 Leia primeiro: .spec/features/contrato-openapi-swagger/spec.md, .spec/features/contrato-openapi-swagger/tasks.md e .spec/constituicao.md.
 
 Sua tarefa (somente ela):
@@ -278,14 +215,21 @@ T-025 — "Validar completude e minimização dos schemas"
 Regras inegociáveis:
 - Todo critério de aceite referenciado vira teste com @spec:AC-xxx no título.
 - NUNCA enfraqueça, pule (skip/todo) ou apague um teste para passar — teste pulado não é prova e o audit acusa.
-- Rode os testes localmente com `dotnet test tests/Agendamento.UnitTests/Agendamento.UnitTests.csproj --configuration Release && dotnet test tests/Agendamento.IntegrationTests/Agendamento.IntegrationTests.csproj --configuration Release --filter "FullyQualifiedName~CompanyRegistryContractTests|FullyQualifiedName~RegisterTenantTransactionTests|FullyQualifiedName~TenantRegistrationEndpointTests|FullyQualifiedName~CurrentTenantEndpointTests|FullyQualifiedName~CurrentUserEndpointTests"` até passarem.
+- Rode os testes localmente com `powershell -ExecutionPolicy Bypass -File scripts/verify-spec.ps1` até passarem.
 - NÃO edite tasks.md, NÃO rode onp-spec verify/audit e NÃO toque em outras tarefas — o orquestrador cuida disso.
-- Ao final de CADA tarefa: `git add` só no que você tocou e um commit próprio.' 'gpt-5.6-terra' medium
-  ) >> "$LOG_DIR/faixa-4.log" 2>&1
-  local st=$?
-  mesclar_faixa 'faixa-4' 'spec/contrato-openapi-swagger-faixa-4' "$WT" "$st" || return 1
-  marcar_concluidas T-025
-  return 0
+- Ao final de CADA tarefa: `git add` só no que você tocou e um commit próprio.' 'gpt-5.6-terra' medium >> "$LOG_DIR/seq.log" 2>&1; then
+    # commit de segurança se o agente esqueceu (rastreabilidade > perfeição)
+    if [ -n "$(git status --porcelain)" ]; then
+      git add -A && git commit -q -m 'T-025 contrato-openapi-swagger: Validar completude e minimização dos schemas (auto-commit do plano)'
+    fi
+    marcar_concluidas T-025
+    verde "✔ T-025 concluída"
+    return 0
+  fi
+  vermelho "✘ T-025 falhou (log: $LOG_DIR/seq.log)"
+  amarelo "  reexecute só ela: bash .spec/features/contrato-openapi-swagger/executar-tarefas.sh --seq T-025"
+  FALHAS="$FALHAS T-025"
+  return 1
 }
 
 # ── gate: quem decide é a máquina ────────────────────────────────────
@@ -341,27 +285,15 @@ executar_tudo() {
   iniciar_resumos
   info "logs em: $LOG_DIR"
   info "resumo geral de andamento: a cada 1 min aqui no terminal (e via: onp-spec resumo)"
-  # onda 1: faixa-1 ∥ faixa-2 ∥ faixa-3
-  info "onda 1: faixa-1 ∥ faixa-2 ∥ faixa-3 — janelas limpas em paralelo"
-  executar_faixa_1 & PID_FAIXA_1=$!
-  executar_faixa_2 & PID_FAIXA_2=$!
-  executar_faixa_3 & PID_FAIXA_3=$!
-  wait "$PID_FAIXA_1" || true
-  wait "$PID_FAIXA_2" || true
-  wait "$PID_FAIXA_3" || true
-  # onda 2: faixa-4
-  info "onda 2: faixa-4 — janelas limpas em paralelo"
-  executar_faixa_4 & PID_FAIXA_4=$!
-  wait "$PID_FAIXA_4" || true
+  executar_seq_T_023 || true
+  executar_seq_T_025 || true
   encerrar tudo
 }
 
 listar() {
   echo "execução: $RUN_ID (feature $FEATURE, branch $BASE_BRANCH)"
-  echo "  faixa-1  onda 1  T-022"
-  echo "  faixa-2  onda 1  T-023"
-  echo "  faixa-3  onda 1  T-024"
-  echo "  faixa-4  onda 2  T-025"
+  echo "  seq       T-023 (sequencial)"
+  echo "  seq       T-025 (sequencial)"
   echo
   echo "reexecutar uma faixa:    --faixa <id>"
   echo "reexecutar sequencial:   --seq <T-xxx>"
@@ -392,14 +324,12 @@ case "$MODO" in
   gate) COM_GATE=1; iniciar_resumos; encerrar gate ;;
   faixa)
     case "$ALVO" in
-      faixa-1) evento --tipo inicio --escopo "faixa:faixa-1"; iniciar_resumos; executar_faixa_1 || true; encerrar "faixa:faixa-1" ;;
-      faixa-2) evento --tipo inicio --escopo "faixa:faixa-2"; iniciar_resumos; executar_faixa_2 || true; encerrar "faixa:faixa-2" ;;
-      faixa-3) evento --tipo inicio --escopo "faixa:faixa-3"; iniciar_resumos; executar_faixa_3 || true; encerrar "faixa:faixa-3" ;;
-      faixa-4) evento --tipo inicio --escopo "faixa:faixa-4"; iniciar_resumos; executar_faixa_4 || true; encerrar "faixa:faixa-4" ;;
       *) falhar "faixa desconhecida: '$ALVO' — veja as disponíveis com --listar" ;;
     esac ;;
   seq)
     case "$ALVO" in
+      T-023) evento --tipo inicio --escopo "seq:T-023"; iniciar_resumos; executar_seq_T_023 || true; encerrar "seq:T-023" ;;
+      T-025) evento --tipo inicio --escopo "seq:T-025"; iniciar_resumos; executar_seq_T_025 || true; encerrar "seq:T-025" ;;
       *) falhar "tarefa sequencial desconhecida: '$ALVO' — veja as disponíveis com --listar" ;;
     esac ;;
 esac

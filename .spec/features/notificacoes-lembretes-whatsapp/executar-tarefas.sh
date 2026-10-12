@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# executar-tarefas.sh — gerado por `onp-spec plano notificacoes-lembretes-whatsapp` em 2026-08-11 19:28
+# executar-tarefas.sh — gerado por `onp-spec plano notificacoes-lembretes-whatsapp` em 2026-10-12 03:55
 # NÃO edite à mão: mudou tasks.md ou a config, regenere o plano.
 #
 # uso:
@@ -14,7 +14,7 @@
 set -u
 set -o pipefail
 
-RUN_ID='agendamento-notificacoes-lembretes-whatsapp-msp1yzgc'
+RUN_ID='saas-pequenos-negocios-backend-notificacoes-lembretes-whatsapp-mv4pyvhh'
 FEATURE='notificacoes-lembretes-whatsapp'
 BASE_BRANCH='spec/notificacoes-lembretes-whatsapp'
 ENGINE='.agents/skills/onp-spec-driven/scripts/onp-spec.mjs'
@@ -65,8 +65,8 @@ preparar_ambiente() {
     info "branch de trabalho: $BASE_BRANCH (a partir de $ATUAL)"
   fi
   git worktree prune
-  LOG_DIR="$(dirname "$TOPLEVEL")/onp-worktrees/agendamento-notificacoes-lembretes-whatsapp-logs"
-  WT_BASE="$(dirname "$TOPLEVEL")/onp-worktrees/agendamento-notificacoes-lembretes-whatsapp"
+  LOG_DIR="$(dirname "$TOPLEVEL")/onp-worktrees/saas-pequenos-negocios-backend-notificacoes-lembretes-whatsapp-logs"
+  WT_BASE="$(dirname "$TOPLEVEL")/onp-worktrees/saas-pequenos-negocios-backend-notificacoes-lembretes-whatsapp"
   STREAMS_DIR="${ONP_SPEC_HOME:-$HOME/.onp-spec}/painel/streams/$RUN_ID"
   mkdir -p "$LOG_DIR" "$STREAMS_DIR"
 }
@@ -168,124 +168,324 @@ iniciar_resumos() {
   trap 'parar_resumos; node "$ENGINE" resumo "$FEATURE" --gravar >/dev/null 2>&1 || true' EXIT
 }
 
-# ── faixa-1: T-097 ──
-executar_faixa_1() {
-  local WT="$WT_BASE-faixa-1"
-  preparar_worktree 'faixa-1' 'spec/notificacoes-lembretes-whatsapp-faixa-1' "$WT" || return 1
-  evento --tipo faixa --faixa 'faixa-1' --estado executando --tentativa "$(tentativa 'faixa-1')"
-  : > "$LOG_DIR/faixa-1.log"
-  (
-    cd "$WT" || exit 9
-    rodar_tarefa 'faixa-1' 'T-097' 'Você executa UMA tarefa da feature "notificacoes-lembretes-whatsapp" (fluxo onp-spec, spec-anchored).
+# ── sequencial T-097 (ordem do tasks.md) ──
+executar_seq_T_097() {
+  info 'sequencial T-097 — Serviço Abstrato e Entidades de Notificação'
+  if rodar_tarefa seq 'T-097' 'Você executa UMA tarefa da feature "notificacoes-lembretes-whatsapp" (fluxo onp-spec, spec-anchored).
 Leia primeiro: .spec/features/notificacoes-lembretes-whatsapp/spec.md, .spec/features/notificacoes-lembretes-whatsapp/tasks.md e .spec/constituicao.md.
 
 Sua tarefa (somente ela):
 T-097 — "Serviço Abstrato e Entidades de Notificação"
-  critérios/refs: AC-097, AC-098
-  arquivos permitidos (e seus testes): src/Agendamento.Api/Application/Notifications/INotificationService.cs, src/Agendamento.Api/Domain/Notifications/NotificationRecord.cs, src/Agendamento.Api/Infrastructure/Notifications/ConsoleNotificationService.cs
+  critérios/refs: AC-097 (Serviço centralizado abstrai o provedor), AC-098 (Histórico vinculado ao tenant e cliente)
+  arquivos permitidos (e seus testes): src/Agendamento.Api/Infrastructure/Notifications/ICommunicationGateway.cs, src/Agendamento.Api/Domain/Notifications/NotificationMessage.cs, src/Agendamento.Api/Domain/Notifications/NotificationChannel.cs, src/Agendamento.Api/Domain/Notifications/NotificationStatus.cs, src/Agendamento.Api/Domain/Notifications/NotificationTemplate.cs, src/Agendamento.Api/Infrastructure/Notifications/MockCommunicationGateway.cs, src/Agendamento.Api/Infrastructure/Notifications/NotificationOutboxProcessor.cs
   mensagem de commit: "T-097 notificacoes-lembretes-whatsapp: Serviço Abstrato e Entidades de Notificação"
 
 Regras inegociáveis:
 - Todo critério de aceite referenciado vira teste com @spec:AC-xxx no título.
 - NUNCA enfraqueça, pule (skip/todo) ou apague um teste para passar — teste pulado não é prova e o audit acusa.
-- Rode os testes localmente com `dotnet test tests/Agendamento.UnitTests/Agendamento.UnitTests.csproj --configuration Release && dotnet test tests/Agendamento.IntegrationTests/Agendamento.IntegrationTests.csproj --configuration Release` até passarem.
+- Rode os testes localmente com `powershell -ExecutionPolicy Bypass -File scripts/verify-spec.ps1` até passarem.
 - NÃO edite tasks.md, NÃO rode onp-spec verify/audit e NÃO toque em outras tarefas — o orquestrador cuida disso.
-- Ao final de CADA tarefa: `git add` só no que você tocou e um commit próprio.' 'gpt-5.6-terra' medium
-  ) >> "$LOG_DIR/faixa-1.log" 2>&1
-  local st=$?
-  mesclar_faixa 'faixa-1' 'spec/notificacoes-lembretes-whatsapp-faixa-1' "$WT" "$st" || return 1
-  marcar_concluidas T-097
-  return 0
+- Ao final de CADA tarefa: `git add` só no que você tocou e um commit próprio.' 'gpt-5.6-terra' medium >> "$LOG_DIR/seq.log" 2>&1; then
+    # commit de segurança se o agente esqueceu (rastreabilidade > perfeição)
+    if [ -n "$(git status --porcelain)" ]; then
+      git add -A && git commit -q -m 'T-097 notificacoes-lembretes-whatsapp: Serviço Abstrato e Entidades de Notificação (auto-commit do plano)'
+    fi
+    marcar_concluidas T-097
+    verde "✔ T-097 concluída"
+    return 0
+  fi
+  vermelho "✘ T-097 falhou (log: $LOG_DIR/seq.log)"
+  amarelo "  reexecute só ela: bash .spec/features/notificacoes-lembretes-whatsapp/executar-tarefas.sh --seq T-097"
+  FALHAS="$FALHAS T-097"
+  return 1
 }
 
-# ── faixa-2: T-098 ──
-executar_faixa_2() {
-  local WT="$WT_BASE-faixa-2"
-  preparar_worktree 'faixa-2' 'spec/notificacoes-lembretes-whatsapp-faixa-2' "$WT" || return 1
-  evento --tipo faixa --faixa 'faixa-2' --estado executando --tentativa "$(tentativa 'faixa-2')"
-  : > "$LOG_DIR/faixa-2.log"
-  (
-    cd "$WT" || exit 9
-    rodar_tarefa 'faixa-2' 'T-098' 'Você executa UMA tarefa da feature "notificacoes-lembretes-whatsapp" (fluxo onp-spec, spec-anchored).
+# ── sequencial T-098 (ordem do tasks.md) ──
+executar_seq_T_098() {
+  info 'sequencial T-098 — Mapeamento EF Core de Notificações'
+  if rodar_tarefa seq 'T-098' 'Você executa UMA tarefa da feature "notificacoes-lembretes-whatsapp" (fluxo onp-spec, spec-anchored).
 Leia primeiro: .spec/features/notificacoes-lembretes-whatsapp/spec.md, .spec/features/notificacoes-lembretes-whatsapp/tasks.md e .spec/constituicao.md.
 
 Sua tarefa (somente ela):
 T-098 — "Mapeamento EF Core de Notificações"
-  critérios/refs: AC-098
-  arquivos permitidos (e seus testes): src/Agendamento.Api/Infrastructure/Persistence/Configurations/NotificationRecordConfiguration.cs, src/Agendamento.Api/Infrastructure/Persistence/AgendamentoDbContext.cs
+  critérios/refs: AC-098 (Histórico vinculado ao tenant e cliente)
+  arquivos permitidos (e seus testes): src/Agendamento.Api/Infrastructure/Persistence/Configurations/NotificationMessageConfiguration.cs, src/Agendamento.Api/Infrastructure/Persistence/AgendamentoDbContext.cs
   mensagem de commit: "T-098 notificacoes-lembretes-whatsapp: Mapeamento EF Core de Notificações"
 
 Regras inegociáveis:
 - Todo critério de aceite referenciado vira teste com @spec:AC-xxx no título.
 - NUNCA enfraqueça, pule (skip/todo) ou apague um teste para passar — teste pulado não é prova e o audit acusa.
-- Rode os testes localmente com `dotnet test tests/Agendamento.UnitTests/Agendamento.UnitTests.csproj --configuration Release && dotnet test tests/Agendamento.IntegrationTests/Agendamento.IntegrationTests.csproj --configuration Release` até passarem.
+- Rode os testes localmente com `powershell -ExecutionPolicy Bypass -File scripts/verify-spec.ps1` até passarem.
 - NÃO edite tasks.md, NÃO rode onp-spec verify/audit e NÃO toque em outras tarefas — o orquestrador cuida disso.
-- Ao final de CADA tarefa: `git add` só no que você tocou e um commit próprio.' 'gpt-5.6-terra' medium
-  ) >> "$LOG_DIR/faixa-2.log" 2>&1
-  local st=$?
-  mesclar_faixa 'faixa-2' 'spec/notificacoes-lembretes-whatsapp-faixa-2' "$WT" "$st" || return 1
-  marcar_concluidas T-098
-  return 0
+- Ao final de CADA tarefa: `git add` só no que você tocou e um commit próprio.' 'gpt-5.6-terra' medium >> "$LOG_DIR/seq.log" 2>&1; then
+    # commit de segurança se o agente esqueceu (rastreabilidade > perfeição)
+    if [ -n "$(git status --porcelain)" ]; then
+      git add -A && git commit -q -m 'T-098 notificacoes-lembretes-whatsapp: Mapeamento EF Core de Notificações (auto-commit do plano)'
+    fi
+    marcar_concluidas T-098
+    verde "✔ T-098 concluída"
+    return 0
+  fi
+  vermelho "✘ T-098 falhou (log: $LOG_DIR/seq.log)"
+  amarelo "  reexecute só ela: bash .spec/features/notificacoes-lembretes-whatsapp/executar-tarefas.sh --seq T-098"
+  FALHAS="$FALHAS T-098"
+  return 1
 }
 
-# ── faixa-3: T-099 ──
-executar_faixa_3() {
-  local WT="$WT_BASE-faixa-3"
-  preparar_worktree 'faixa-3' 'spec/notificacoes-lembretes-whatsapp-faixa-3' "$WT" || return 1
-  evento --tipo faixa --faixa 'faixa-3' --estado executando --tentativa "$(tentativa 'faixa-3')"
-  : > "$LOG_DIR/faixa-3.log"
-  (
-    cd "$WT" || exit 9
-    rodar_tarefa 'faixa-3' 'T-099' 'Você executa UMA tarefa da feature "notificacoes-lembretes-whatsapp" (fluxo onp-spec, spec-anchored).
-Leia primeiro: .spec/features/notificacoes-lembretes-whatsapp/spec.md, .spec/features/notificacoes-lembretes-whatsapp/tasks.md e .spec/constituicao.md.
-
-Sua tarefa (somente ela):
-T-099 — "Integração de Notificação no Agendamento"
-  critérios/refs: AC-099
-  arquivos permitidos (e seus testes): src/Agendamento.Api/Application/Appointments/CreateAppointment/CreateAppointmentHandler.cs
-  mensagem de commit: "T-099 notificacoes-lembretes-whatsapp: Integração de Notificação no Agendamento"
-
-Regras inegociáveis:
-- Todo critério de aceite referenciado vira teste com @spec:AC-xxx no título.
-- NUNCA enfraqueça, pule (skip/todo) ou apague um teste para passar — teste pulado não é prova e o audit acusa.
-- Rode os testes localmente com `dotnet test tests/Agendamento.UnitTests/Agendamento.UnitTests.csproj --configuration Release && dotnet test tests/Agendamento.IntegrationTests/Agendamento.IntegrationTests.csproj --configuration Release` até passarem.
-- NÃO edite tasks.md, NÃO rode onp-spec verify/audit e NÃO toque em outras tarefas — o orquestrador cuida disso.
-- Ao final de CADA tarefa: `git add` só no que você tocou e um commit próprio.' 'gpt-5.6-terra' medium
-  ) >> "$LOG_DIR/faixa-3.log" 2>&1
-  local st=$?
-  mesclar_faixa 'faixa-3' 'spec/notificacoes-lembretes-whatsapp-faixa-3' "$WT" "$st" || return 1
-  marcar_concluidas T-099
-  return 0
-}
-
-# ── faixa-4: T-100 ──
-executar_faixa_4() {
-  local WT="$WT_BASE-faixa-4"
-  preparar_worktree 'faixa-4' 'spec/notificacoes-lembretes-whatsapp-faixa-4' "$WT" || return 1
-  evento --tipo faixa --faixa 'faixa-4' --estado executando --tentativa "$(tentativa 'faixa-4')"
-  : > "$LOG_DIR/faixa-4.log"
-  (
-    cd "$WT" || exit 9
-    rodar_tarefa 'faixa-4' 'T-100' 'Você executa UMA tarefa da feature "notificacoes-lembretes-whatsapp" (fluxo onp-spec, spec-anchored).
+# ── sequencial T-100 (ordem do tasks.md) ──
+executar_seq_T_100() {
+  info 'sequencial T-100 — Testes de Integração de Notificação'
+  if rodar_tarefa seq 'T-100' 'Você executa UMA tarefa da feature "notificacoes-lembretes-whatsapp" (fluxo onp-spec, spec-anchored).
 Leia primeiro: .spec/features/notificacoes-lembretes-whatsapp/spec.md, .spec/features/notificacoes-lembretes-whatsapp/tasks.md e .spec/constituicao.md.
 
 Sua tarefa (somente ela):
 T-100 — "Testes de Integração de Notificação"
-  critérios/refs: AC-097, AC-098, AC-099
+  critérios/refs: AC-097 (Serviço centralizado abstrai o provedor), AC-098 (Histórico vinculado ao tenant e cliente), AC-099 (Agendamento futuro registra intenção de notificar)
   arquivos permitidos (e seus testes): tests/Agendamento.IntegrationTests/Features/NotificationTests.cs
   mensagem de commit: "T-100 notificacoes-lembretes-whatsapp: Testes de Integração de Notificação"
 
 Regras inegociáveis:
 - Todo critério de aceite referenciado vira teste com @spec:AC-xxx no título.
 - NUNCA enfraqueça, pule (skip/todo) ou apague um teste para passar — teste pulado não é prova e o audit acusa.
-- Rode os testes localmente com `dotnet test tests/Agendamento.UnitTests/Agendamento.UnitTests.csproj --configuration Release && dotnet test tests/Agendamento.IntegrationTests/Agendamento.IntegrationTests.csproj --configuration Release` até passarem.
+- Rode os testes localmente com `powershell -ExecutionPolicy Bypass -File scripts/verify-spec.ps1` até passarem.
 - NÃO edite tasks.md, NÃO rode onp-spec verify/audit e NÃO toque em outras tarefas — o orquestrador cuida disso.
-- Ao final de CADA tarefa: `git add` só no que você tocou e um commit próprio.' 'gpt-5.6-terra' medium
-  ) >> "$LOG_DIR/faixa-4.log" 2>&1
-  local st=$?
-  mesclar_faixa 'faixa-4' 'spec/notificacoes-lembretes-whatsapp-faixa-4' "$WT" "$st" || return 1
-  marcar_concluidas T-100
-  return 0
+- Ao final de CADA tarefa: `git add` só no que você tocou e um commit próprio.' 'gpt-5.6-terra' medium >> "$LOG_DIR/seq.log" 2>&1; then
+    # commit de segurança se o agente esqueceu (rastreabilidade > perfeição)
+    if [ -n "$(git status --porcelain)" ]; then
+      git add -A && git commit -q -m 'T-100 notificacoes-lembretes-whatsapp: Testes de Integração de Notificação (auto-commit do plano)'
+    fi
+    marcar_concluidas T-100
+    verde "✔ T-100 concluída"
+    return 0
+  fi
+  vermelho "✘ T-100 falhou (log: $LOG_DIR/seq.log)"
+  amarelo "  reexecute só ela: bash .spec/features/notificacoes-lembretes-whatsapp/executar-tarefas.sh --seq T-100"
+  FALHAS="$FALHAS T-100"
+  return 1
+}
+
+# ── sequencial T-052 (ordem do tasks.md) ──
+executar_seq_T_052() {
+  info 'sequencial T-052 — Modelar Entidades de Notificação e Outbox (NotificationMessage, OutboxMessage)'
+  if rodar_tarefa seq 'T-052' 'Você executa UMA tarefa da feature "notificacoes-lembretes-whatsapp" (fluxo onp-spec, spec-anchored).
+Leia primeiro: .spec/features/notificacoes-lembretes-whatsapp/spec.md, .spec/features/notificacoes-lembretes-whatsapp/tasks.md e .spec/constituicao.md.
+
+Sua tarefa (somente ela):
+T-052 — "Modelar Entidades de Notificação e Outbox (NotificationMessage, OutboxMessage)"
+  critérios/refs: AC-060 (Histórico pertence ao tenant), AC-061 (Outbox processada em background), AC-063 (Falha provoca retry com backoff)
+  arquivos permitidos (e seus testes): src/Agendamento.Api/Domain/Notifications/NotificationMessage.cs, src/Agendamento.Api/Domain/Notifications/NotificationStatus.cs, src/Agendamento.Api/Domain/Notifications/NotificationChannel.cs, src/Agendamento.Api/Domain/Notifications/NotificationTemplate.cs
+  mensagem de commit: "T-052 notificacoes-lembretes-whatsapp: Modelar Entidades de Notificação e Outbox (NotificationMessage, OutboxMessage)"
+
+Regras inegociáveis:
+- Todo critério de aceite referenciado vira teste com @spec:AC-xxx no título.
+- NUNCA enfraqueça, pule (skip/todo) ou apague um teste para passar — teste pulado não é prova e o audit acusa.
+- Rode os testes localmente com `powershell -ExecutionPolicy Bypass -File scripts/verify-spec.ps1` até passarem.
+- NÃO edite tasks.md, NÃO rode onp-spec verify/audit e NÃO toque em outras tarefas — o orquestrador cuida disso.
+- Ao final de CADA tarefa: `git add` só no que você tocou e um commit próprio.' 'gpt-5.6-terra' medium >> "$LOG_DIR/seq.log" 2>&1; then
+    # commit de segurança se o agente esqueceu (rastreabilidade > perfeição)
+    if [ -n "$(git status --porcelain)" ]; then
+      git add -A && git commit -q -m 'T-052 notificacoes-lembretes-whatsapp: Modelar Entidades de Notificação e Outbox (NotificationMessage, OutboxMessage) (auto-commit do plano)'
+    fi
+    marcar_concluidas T-052
+    verde "✔ T-052 concluída"
+    return 0
+  fi
+  vermelho "✘ T-052 falhou (log: $LOG_DIR/seq.log)"
+  amarelo "  reexecute só ela: bash .spec/features/notificacoes-lembretes-whatsapp/executar-tarefas.sh --seq T-052"
+  FALHAS="$FALHAS T-052"
+  return 1
+}
+
+# ── sequencial T-053 (ordem do tasks.md) ──
+executar_seq_T_053() {
+  info 'sequencial T-053 — Mapear Persistência EF Core e Outbox Pattern'
+  if rodar_tarefa seq 'T-053' 'Você executa UMA tarefa da feature "notificacoes-lembretes-whatsapp" (fluxo onp-spec, spec-anchored).
+Leia primeiro: .spec/features/notificacoes-lembretes-whatsapp/spec.md, .spec/features/notificacoes-lembretes-whatsapp/tasks.md e .spec/constituicao.md.
+
+Sua tarefa (somente ela):
+T-053 — "Mapear Persistência EF Core e Outbox Pattern"
+  critérios/refs: AC-060 (Histórico pertence ao tenant), AC-061 (Outbox processada em background)
+  arquivos permitidos (e seus testes): src/Agendamento.Api/Infrastructure/Persistence/AgendamentoDbContext.cs, src/Agendamento.Api/Infrastructure/Persistence/Configurations/NotificationMessageConfiguration.cs
+  mensagem de commit: "T-053 notificacoes-lembretes-whatsapp: Mapear Persistência EF Core e Outbox Pattern"
+
+Regras inegociáveis:
+- Todo critério de aceite referenciado vira teste com @spec:AC-xxx no título.
+- NUNCA enfraqueça, pule (skip/todo) ou apague um teste para passar — teste pulado não é prova e o audit acusa.
+- Rode os testes localmente com `powershell -ExecutionPolicy Bypass -File scripts/verify-spec.ps1` até passarem.
+- NÃO edite tasks.md, NÃO rode onp-spec verify/audit e NÃO toque em outras tarefas — o orquestrador cuida disso.
+- Ao final de CADA tarefa: `git add` só no que você tocou e um commit próprio.' 'gpt-5.6-terra' medium >> "$LOG_DIR/seq.log" 2>&1; then
+    # commit de segurança se o agente esqueceu (rastreabilidade > perfeição)
+    if [ -n "$(git status --porcelain)" ]; then
+      git add -A && git commit -q -m 'T-053 notificacoes-lembretes-whatsapp: Mapear Persistência EF Core e Outbox Pattern (auto-commit do plano)'
+    fi
+    marcar_concluidas T-053
+    verde "✔ T-053 concluída"
+    return 0
+  fi
+  vermelho "✘ T-053 falhou (log: $LOG_DIR/seq.log)"
+  amarelo "  reexecute só ela: bash .spec/features/notificacoes-lembretes-whatsapp/executar-tarefas.sh --seq T-053"
+  FALHAS="$FALHAS T-053"
+  return 1
+}
+
+# ── sequencial T-054 (ordem do tasks.md) ──
+executar_seq_T_054() {
+  info 'sequencial T-054 — Implementar Provedor de Envio de Mensagens e Dispatcher Background'
+  if rodar_tarefa seq 'T-054' 'Você executa UMA tarefa da feature "notificacoes-lembretes-whatsapp" (fluxo onp-spec, spec-anchored).
+Leia primeiro: .spec/features/notificacoes-lembretes-whatsapp/spec.md, .spec/features/notificacoes-lembretes-whatsapp/tasks.md e .spec/constituicao.md.
+
+Sua tarefa (somente ela):
+T-054 — "Implementar Provedor de Envio de Mensagens e Dispatcher Background"
+  critérios/refs: AC-061 (Outbox processada em background), AC-063 (Falha provoca retry com backoff)
+  arquivos permitidos (e seus testes): src/Agendamento.Api/Infrastructure/Notifications/ICommunicationGateway.cs, src/Agendamento.Api/Infrastructure/Notifications/NotificationOutboxProcessor.cs
+  mensagem de commit: "T-054 notificacoes-lembretes-whatsapp: Implementar Provedor de Envio de Mensagens e Dispatcher Background"
+
+Regras inegociáveis:
+- Todo critério de aceite referenciado vira teste com @spec:AC-xxx no título.
+- NUNCA enfraqueça, pule (skip/todo) ou apague um teste para passar — teste pulado não é prova e o audit acusa.
+- Rode os testes localmente com `powershell -ExecutionPolicy Bypass -File scripts/verify-spec.ps1` até passarem.
+- NÃO edite tasks.md, NÃO rode onp-spec verify/audit e NÃO toque em outras tarefas — o orquestrador cuida disso.
+- Ao final de CADA tarefa: `git add` só no que você tocou e um commit próprio.' 'gpt-5.6-terra' medium >> "$LOG_DIR/seq.log" 2>&1; then
+    # commit de segurança se o agente esqueceu (rastreabilidade > perfeição)
+    if [ -n "$(git status --porcelain)" ]; then
+      git add -A && git commit -q -m 'T-054 notificacoes-lembretes-whatsapp: Implementar Provedor de Envio de Mensagens e Dispatcher Background (auto-commit do plano)'
+    fi
+    marcar_concluidas T-054
+    verde "✔ T-054 concluída"
+    return 0
+  fi
+  vermelho "✘ T-054 falhou (log: $LOG_DIR/seq.log)"
+  amarelo "  reexecute só ela: bash .spec/features/notificacoes-lembretes-whatsapp/executar-tarefas.sh --seq T-054"
+  FALHAS="$FALHAS T-054"
+  return 1
+}
+
+# ── sequencial T-055 (ordem do tasks.md) ──
+executar_seq_T_055() {
+  info 'sequencial T-055 — Casos de Uso: Agendamento de Lembretes e Notificação de Orçamento'
+  if rodar_tarefa seq 'T-055' 'Você executa UMA tarefa da feature "notificacoes-lembretes-whatsapp" (fluxo onp-spec, spec-anchored).
+Leia primeiro: .spec/features/notificacoes-lembretes-whatsapp/spec.md, .spec/features/notificacoes-lembretes-whatsapp/tasks.md e .spec/constituicao.md.
+
+Sua tarefa (somente ela):
+T-055 — "Casos de Uso: Agendamento de Lembretes e Notificação de Orçamento"
+  critérios/refs: AC-062 (Templates configuráveis por tenant)
+  arquivos permitidos (e seus testes): src/Agendamento.Api/Application/Notifications/ScheduleAppointmentReminder/ScheduleAppointmentReminderCommand.cs, src/Agendamento.Api/Application/Notifications/ScheduleAppointmentReminder/ScheduleAppointmentReminderHandler.cs, src/Agendamento.Api/Application/Notifications/SendQuotationNotification/SendQuotationNotificationCommand.cs, src/Agendamento.Api/Application/Notifications/SendQuotationNotification/SendQuotationNotificationHandler.cs
+  mensagem de commit: "T-055 notificacoes-lembretes-whatsapp: Casos de Uso: Agendamento de Lembretes e Notificação de Orçamento"
+
+Regras inegociáveis:
+- Todo critério de aceite referenciado vira teste com @spec:AC-xxx no título.
+- NUNCA enfraqueça, pule (skip/todo) ou apague um teste para passar — teste pulado não é prova e o audit acusa.
+- Rode os testes localmente com `powershell -ExecutionPolicy Bypass -File scripts/verify-spec.ps1` até passarem.
+- NÃO edite tasks.md, NÃO rode onp-spec verify/audit e NÃO toque em outras tarefas — o orquestrador cuida disso.
+- Ao final de CADA tarefa: `git add` só no que você tocou e um commit próprio.' 'gpt-5.6-terra' medium >> "$LOG_DIR/seq.log" 2>&1; then
+    # commit de segurança se o agente esqueceu (rastreabilidade > perfeição)
+    if [ -n "$(git status --porcelain)" ]; then
+      git add -A && git commit -q -m 'T-055 notificacoes-lembretes-whatsapp: Casos de Uso: Agendamento de Lembretes e Notificação de Orçamento (auto-commit do plano)'
+    fi
+    marcar_concluidas T-055
+    verde "✔ T-055 concluída"
+    return 0
+  fi
+  vermelho "✘ T-055 falhou (log: $LOG_DIR/seq.log)"
+  amarelo "  reexecute só ela: bash .spec/features/notificacoes-lembretes-whatsapp/executar-tarefas.sh --seq T-055"
+  FALHAS="$FALHAS T-055"
+  return 1
+}
+
+# ── sequencial T-056 (ordem do tasks.md) ──
+executar_seq_T_056() {
+  info 'sequencial T-056 — Expor Endpoints Minimal API de Notificações e Histórico'
+  if rodar_tarefa seq 'T-056' 'Você executa UMA tarefa da feature "notificacoes-lembretes-whatsapp" (fluxo onp-spec, spec-anchored).
+Leia primeiro: .spec/features/notificacoes-lembretes-whatsapp/spec.md, .spec/features/notificacoes-lembretes-whatsapp/tasks.md e .spec/constituicao.md.
+
+Sua tarefa (somente ela):
+T-056 — "Expor Endpoints Minimal API de Notificações e Histórico"
+  critérios/refs: AC-060 (Histórico pertence ao tenant), AC-064 (Mensagem não expõe dados internos sensíveis)
+  arquivos permitidos (e seus testes): src/Agendamento.Api/Features/Notifications/NotificationEndpoints.cs, src/Agendamento.Api/Program.cs
+  mensagem de commit: "T-056 notificacoes-lembretes-whatsapp: Expor Endpoints Minimal API de Notificações e Histórico"
+
+Regras inegociáveis:
+- Todo critério de aceite referenciado vira teste com @spec:AC-xxx no título.
+- NUNCA enfraqueça, pule (skip/todo) ou apague um teste para passar — teste pulado não é prova e o audit acusa.
+- Rode os testes localmente com `powershell -ExecutionPolicy Bypass -File scripts/verify-spec.ps1` até passarem.
+- NÃO edite tasks.md, NÃO rode onp-spec verify/audit e NÃO toque em outras tarefas — o orquestrador cuida disso.
+- Ao final de CADA tarefa: `git add` só no que você tocou e um commit próprio.' 'gpt-5.6-terra' medium >> "$LOG_DIR/seq.log" 2>&1; then
+    # commit de segurança se o agente esqueceu (rastreabilidade > perfeição)
+    if [ -n "$(git status --porcelain)" ]; then
+      git add -A && git commit -q -m 'T-056 notificacoes-lembretes-whatsapp: Expor Endpoints Minimal API de Notificações e Histórico (auto-commit do plano)'
+    fi
+    marcar_concluidas T-056
+    verde "✔ T-056 concluída"
+    return 0
+  fi
+  vermelho "✘ T-056 falhou (log: $LOG_DIR/seq.log)"
+  amarelo "  reexecute só ela: bash .spec/features/notificacoes-lembretes-whatsapp/executar-tarefas.sh --seq T-056"
+  FALHAS="$FALHAS T-056"
+  return 1
+}
+
+# ── sequencial T-057 (ordem do tasks.md) ──
+executar_seq_T_057() {
+  info 'sequencial T-057 — Testes de Integração do Outbox Processor e Formatação de Mensagens'
+  if rodar_tarefa seq 'T-057' 'Você executa UMA tarefa da feature "notificacoes-lembretes-whatsapp" (fluxo onp-spec, spec-anchored).
+Leia primeiro: .spec/features/notificacoes-lembretes-whatsapp/spec.md, .spec/features/notificacoes-lembretes-whatsapp/tasks.md e .spec/constituicao.md.
+
+Sua tarefa (somente ela):
+T-057 — "Testes de Integração do Outbox Processor e Formatação de Mensagens"
+  critérios/refs: AC-060 (Histórico pertence ao tenant), AC-061 (Outbox processada em background), AC-062 (Templates configuráveis por tenant), AC-063 (Falha provoca retry com backoff)
+  arquivos permitidos (e seus testes): tests/Agendamento.UnitTests/Notifications/NotificationDomainTests.cs, tests/Agendamento.IntegrationTests/Notifications/NotificationApiTests.cs, src/Agendamento.Api/Infrastructure/Notifications/MockCommunicationGateway.cs
+  mensagem de commit: "T-057 notificacoes-lembretes-whatsapp: Testes de Integração do Outbox Processor e Formatação de Mensagens"
+
+Regras inegociáveis:
+- Todo critério de aceite referenciado vira teste com @spec:AC-xxx no título.
+- NUNCA enfraqueça, pule (skip/todo) ou apague um teste para passar — teste pulado não é prova e o audit acusa.
+- Rode os testes localmente com `powershell -ExecutionPolicy Bypass -File scripts/verify-spec.ps1` até passarem.
+- NÃO edite tasks.md, NÃO rode onp-spec verify/audit e NÃO toque em outras tarefas — o orquestrador cuida disso.
+- Ao final de CADA tarefa: `git add` só no que você tocou e um commit próprio.' 'gpt-5.6-terra' medium >> "$LOG_DIR/seq.log" 2>&1; then
+    # commit de segurança se o agente esqueceu (rastreabilidade > perfeição)
+    if [ -n "$(git status --porcelain)" ]; then
+      git add -A && git commit -q -m 'T-057 notificacoes-lembretes-whatsapp: Testes de Integração do Outbox Processor e Formatação de Mensagens (auto-commit do plano)'
+    fi
+    marcar_concluidas T-057
+    verde "✔ T-057 concluída"
+    return 0
+  fi
+  vermelho "✘ T-057 falhou (log: $LOG_DIR/seq.log)"
+  amarelo "  reexecute só ela: bash .spec/features/notificacoes-lembretes-whatsapp/executar-tarefas.sh --seq T-057"
+  FALHAS="$FALHAS T-057"
+  return 1
+}
+
+# ── sequencial T-104 (ordem do tasks.md) ──
+executar_seq_T_104() {
+  info 'sequencial T-104 — Implementar preferência de lembretes por cliente'
+  if rodar_tarefa seq 'T-104' 'Você executa UMA tarefa da feature "notificacoes-lembretes-whatsapp" (fluxo onp-spec, spec-anchored).
+Leia primeiro: .spec/features/notificacoes-lembretes-whatsapp/spec.md, .spec/features/notificacoes-lembretes-whatsapp/tasks.md e .spec/constituicao.md.
+
+Sua tarefa (somente ela):
+T-104 — "Implementar preferência de lembretes por cliente"
+  critérios/refs: AC-207 (Lembretes podem ser desativados por cliente)
+  arquivos permitidos (e seus testes): src/Agendamento.Api/Domain/Customers/Customer.cs, src/Agendamento.Api/Features/Customers/CustomerEndpoints.cs, src/Agendamento.Api/Application/Appointments/CreateAppointment/CreateAppointmentHandler.cs, tests/Agendamento.IntegrationTests/Features/NotificationTests.cs
+  mensagem de commit: "T-104 notificacoes-lembretes-whatsapp: Implementar preferência de lembretes por cliente"
+
+Regras inegociáveis:
+- Todo critério de aceite referenciado vira teste com @spec:AC-xxx no título.
+- NUNCA enfraqueça, pule (skip/todo) ou apague um teste para passar — teste pulado não é prova e o audit acusa.
+- Rode os testes localmente com `powershell -ExecutionPolicy Bypass -File scripts/verify-spec.ps1` até passarem.
+- NÃO edite tasks.md, NÃO rode onp-spec verify/audit e NÃO toque em outras tarefas — o orquestrador cuida disso.
+- Ao final de CADA tarefa: `git add` só no que você tocou e um commit próprio.' 'gpt-5.6-terra' medium >> "$LOG_DIR/seq.log" 2>&1; then
+    # commit de segurança se o agente esqueceu (rastreabilidade > perfeição)
+    if [ -n "$(git status --porcelain)" ]; then
+      git add -A && git commit -q -m 'T-104 notificacoes-lembretes-whatsapp: Implementar preferência de lembretes por cliente (auto-commit do plano)'
+    fi
+    marcar_concluidas T-104
+    verde "✔ T-104 concluída"
+    return 0
+  fi
+  vermelho "✘ T-104 falhou (log: $LOG_DIR/seq.log)"
+  amarelo "  reexecute só ela: bash .spec/features/notificacoes-lembretes-whatsapp/executar-tarefas.sh --seq T-104"
+  FALHAS="$FALHAS T-104"
+  return 1
 }
 
 # ── gate: quem decide é a máquina ────────────────────────────────────
@@ -341,27 +541,31 @@ executar_tudo() {
   iniciar_resumos
   info "logs em: $LOG_DIR"
   info "resumo geral de andamento: a cada 1 min aqui no terminal (e via: onp-spec resumo)"
-  # onda 1: faixa-1 ∥ faixa-2 ∥ faixa-3
-  info "onda 1: faixa-1 ∥ faixa-2 ∥ faixa-3 — janelas limpas em paralelo"
-  executar_faixa_1 & PID_FAIXA_1=$!
-  executar_faixa_2 & PID_FAIXA_2=$!
-  executar_faixa_3 & PID_FAIXA_3=$!
-  wait "$PID_FAIXA_1" || true
-  wait "$PID_FAIXA_2" || true
-  wait "$PID_FAIXA_3" || true
-  # onda 2: faixa-4
-  info "onda 2: faixa-4 — janelas limpas em paralelo"
-  executar_faixa_4 & PID_FAIXA_4=$!
-  wait "$PID_FAIXA_4" || true
+  executar_seq_T_097 || true
+  executar_seq_T_098 || true
+  executar_seq_T_100 || true
+  executar_seq_T_052 || true
+  executar_seq_T_053 || true
+  executar_seq_T_054 || true
+  executar_seq_T_055 || true
+  executar_seq_T_056 || true
+  executar_seq_T_057 || true
+  executar_seq_T_104 || true
   encerrar tudo
 }
 
 listar() {
   echo "execução: $RUN_ID (feature $FEATURE, branch $BASE_BRANCH)"
-  echo "  faixa-1  onda 1  T-097"
-  echo "  faixa-2  onda 1  T-098"
-  echo "  faixa-3  onda 1  T-099"
-  echo "  faixa-4  onda 2  T-100"
+  echo "  seq       T-097 (sequencial)"
+  echo "  seq       T-098 (sequencial)"
+  echo "  seq       T-100 (sequencial)"
+  echo "  seq       T-052 (sequencial)"
+  echo "  seq       T-053 (sequencial)"
+  echo "  seq       T-054 (sequencial)"
+  echo "  seq       T-055 (sequencial)"
+  echo "  seq       T-056 (sequencial)"
+  echo "  seq       T-057 (sequencial)"
+  echo "  seq       T-104 (sequencial)"
   echo
   echo "reexecutar uma faixa:    --faixa <id>"
   echo "reexecutar sequencial:   --seq <T-xxx>"
@@ -392,14 +596,20 @@ case "$MODO" in
   gate) COM_GATE=1; iniciar_resumos; encerrar gate ;;
   faixa)
     case "$ALVO" in
-      faixa-1) evento --tipo inicio --escopo "faixa:faixa-1"; iniciar_resumos; executar_faixa_1 || true; encerrar "faixa:faixa-1" ;;
-      faixa-2) evento --tipo inicio --escopo "faixa:faixa-2"; iniciar_resumos; executar_faixa_2 || true; encerrar "faixa:faixa-2" ;;
-      faixa-3) evento --tipo inicio --escopo "faixa:faixa-3"; iniciar_resumos; executar_faixa_3 || true; encerrar "faixa:faixa-3" ;;
-      faixa-4) evento --tipo inicio --escopo "faixa:faixa-4"; iniciar_resumos; executar_faixa_4 || true; encerrar "faixa:faixa-4" ;;
       *) falhar "faixa desconhecida: '$ALVO' — veja as disponíveis com --listar" ;;
     esac ;;
   seq)
     case "$ALVO" in
+      T-097) evento --tipo inicio --escopo "seq:T-097"; iniciar_resumos; executar_seq_T_097 || true; encerrar "seq:T-097" ;;
+      T-098) evento --tipo inicio --escopo "seq:T-098"; iniciar_resumos; executar_seq_T_098 || true; encerrar "seq:T-098" ;;
+      T-100) evento --tipo inicio --escopo "seq:T-100"; iniciar_resumos; executar_seq_T_100 || true; encerrar "seq:T-100" ;;
+      T-052) evento --tipo inicio --escopo "seq:T-052"; iniciar_resumos; executar_seq_T_052 || true; encerrar "seq:T-052" ;;
+      T-053) evento --tipo inicio --escopo "seq:T-053"; iniciar_resumos; executar_seq_T_053 || true; encerrar "seq:T-053" ;;
+      T-054) evento --tipo inicio --escopo "seq:T-054"; iniciar_resumos; executar_seq_T_054 || true; encerrar "seq:T-054" ;;
+      T-055) evento --tipo inicio --escopo "seq:T-055"; iniciar_resumos; executar_seq_T_055 || true; encerrar "seq:T-055" ;;
+      T-056) evento --tipo inicio --escopo "seq:T-056"; iniciar_resumos; executar_seq_T_056 || true; encerrar "seq:T-056" ;;
+      T-057) evento --tipo inicio --escopo "seq:T-057"; iniciar_resumos; executar_seq_T_057 || true; encerrar "seq:T-057" ;;
+      T-104) evento --tipo inicio --escopo "seq:T-104"; iniciar_resumos; executar_seq_T_104 || true; encerrar "seq:T-104" ;;
       *) falhar "tarefa sequencial desconhecida: '$ALVO' — veja as disponíveis com --listar" ;;
     esac ;;
 esac

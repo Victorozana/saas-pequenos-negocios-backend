@@ -1,37 +1,50 @@
 {
   "feature": "dashboard-relatorios-metricas",
-  "timestamp": "2026-08-10T23:47:28.255Z",
-  "gitRev": "cdcd95b",
-  "command": "dotnet test tests/Agendamento.UnitTests/Agendamento.UnitTests.csproj --configuration Release && dotnet test tests/Agendamento.IntegrationTests/Agendamento.IntegrationTests.csproj --configuration Release",
-  "reporter": "exitcode",
+  "timestamp": "2026-10-12T05:08:51.433Z",
+  "gitRev": "d79b630",
+  "command": "powershell -ExecutionPolicy Bypass -File scripts/verify-spec.ps1",
+  "reporter": "jest-json",
   "exitCode": 0,
-  "testsParsed": 0,
+  "testsParsed": 175,
   "results": {
     "AC-065": {
       "status": "pass",
-      "testName": null,
-      "method": "exitcode"
+      "testName": "Isolamento estrito de dados por tenant no dashboard @spec:AC-065 Isolamento estrito de dados por tenant no dashboard @spec:AC-065",
+      "method": "jest-json"
     },
     "AC-066": {
       "status": "pass",
-      "testName": null,
-      "method": "exitcode"
-    },
-    "AC-067": {
-      "status": "pass",
-      "testName": null,
-      "method": "exitcode"
+      "testName": "Faturamento considera apenas títulos baixados/pagos @spec:AC-066 Faturamento considera apenas títulos baixados/pagos @spec:AC-066",
+      "method": "jest-json"
     },
     "AC-068": {
       "status": "pass",
-      "testName": null,
-      "method": "exitcode"
+      "testName": "Cálculo da taxa de conversão considera apenas orçamentos finalizados @spec:AC-068 Cálculo da taxa de conversão considera apenas orçamentos finalizados @spec:AC-068",
+      "method": "jest-json"
+    },
+    "AC-067": {
+      "status": "pass",
+      "testName": "Consultas agregadas respondem em tempo aceitável @spec:AC-067 Consultas agregadas respondem em tempo aceitável @spec:AC-067",
+      "method": "jest-json"
     },
     "AC-069": {
       "status": "pass",
-      "testName": null,
-      "method": "exitcode"
+      "testName": "Relatório CSV gerado corretamente e permite filtros @spec:AC-069 Relatório CSV gerado corretamente e permite filtros @spec:AC-069",
+      "method": "jest-json"
     }
   },
-  "principles": {}
+  "principles": {
+    "P-005": {
+      "status": "pass",
+      "testName": "Token de e-mail é armazenado somente como digest e expira em 24 horas @spec:AC-009 @principle:P-005 Token de e-mail é armazenado somente como digest e expira em 24 horas @spec:AC-009 @principle:P-005"
+    },
+    "P-004": {
+      "status": "pass",
+      "testName": "Papel restrito impede SQL direto entre tenants em todas as tabelas @spec:AC-033 @principle:P-004 Papel restrito impede SQL direto entre tenants em todas as tabelas @spec:AC-033 @principle:P-004"
+    },
+    "P-003": {
+      "status": "pass",
+      "testName": "Tenant externo em header ou query não substitui a sessão @spec:AC-029 @principle:P-003(useQuery: True) Tenant externo em header ou query não substitui a sessão @spec:AC-029 @principle:P-003(useQuery: True)"
+    }
+  }
 }

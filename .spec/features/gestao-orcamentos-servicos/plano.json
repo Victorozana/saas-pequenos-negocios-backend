@@ -1,139 +1,252 @@
 {
-  "runId": "agendamento-gestao-orcamentos-servicos-msoz7ugd",
+  "runId": "saas-pequenos-negocios-backend-gestao-orcamentos-servicos-mv4pyuoj",
   "feature": "gestao-orcamentos-servicos",
   "agent": "codex",
-  "modo": "paralelo",
+  "modo": "sequencial",
   "paralelizar": null,
   "modeloForcado": null,
   "esforcoForcado": null,
-  "geradoEm": "2026-08-11 18:10",
+  "geradoEm": "2026-10-12 03:55",
   "branchTrabalho": "spec/gestao-orcamentos-servicos",
   "baseDir": ".spec/features/gestao-orcamentos-servicos",
   "specDir": ".spec",
-  "repoName": "agendamento",
-  "logsDir": "../onp-worktrees/agendamento-gestao-orcamentos-servicos-logs",
-  "ondas": [
-    [
-      "faixa-1",
-      "faixa-2",
-      "faixa-3"
-    ],
-    [
-      "faixa-4"
-    ]
-  ],
-  "faixas": [
+  "repoName": "saas-pequenos-negocios-backend",
+  "logsDir": "../onp-worktrees/saas-pequenos-negocios-backend-gestao-orcamentos-servicos-logs",
+  "ondas": [],
+  "faixas": [],
+  "sequenciais": [
     {
-      "id": "faixa-1",
-      "branch": "spec/gestao-orcamentos-servicos-faixa-1",
-      "worktree": "../onp-worktrees/agendamento-gestao-orcamentos-servicos-faixa-1",
-      "tarefas": [
-        {
-          "id": "T-088",
-          "titulo": "Entidades de Domínio para Orçamentos e Serviços",
-          "modelo": "gpt-5.6-terra",
-          "esforco": "medium",
-          "arquivos": [
-            "src/Agendamento.Api/Domain/Quotations/Quotation.cs",
-            "src/Agendamento.Api/Domain/Quotations/QuotationStatus.cs",
-            "src/Agendamento.Api/Domain/Quotations/QuotationItem.cs"
-          ],
-          "refs": [
-            "US-045",
-            "US-046",
-            "AC-075",
-            "AC-077"
-          ]
-        }
+      "id": "T-088",
+      "titulo": "Entidades de Domínio para Orçamentos e Serviços",
+      "modelo": "gpt-5.6-terra",
+      "esforco": "medium",
+      "arquivos": [
+        "src/Agendamento.Api/Domain/Quotations/Quotation.cs",
+        "src/Agendamento.Api/Domain/Quotations/QuotationStatus.cs",
+        "src/Agendamento.Api/Domain/Quotations/QuotationItem.cs",
+        "src/Agendamento.Api/Domain/Quotations/DepositInfo.cs",
+        "src/Agendamento.Api/Domain/Quotations/DepositType.cs"
+      ],
+      "refs": [
+        "US-045",
+        "US-046",
+        "AC-090",
+        "AC-092"
       ]
     },
     {
-      "id": "faixa-2",
-      "branch": "spec/gestao-orcamentos-servicos-faixa-2",
-      "worktree": "../onp-worktrees/agendamento-gestao-orcamentos-servicos-faixa-2",
-      "tarefas": [
-        {
-          "id": "T-089",
-          "titulo": "Mapeamento EF Core para Orçamentos",
-          "modelo": "gpt-5.6-terra",
-          "esforco": "medium",
-          "arquivos": [
-            "src/Agendamento.Api/Infrastructure/Persistence/Configurations/QuotationConfiguration.cs",
-            "src/Agendamento.Api/Infrastructure/Persistence/Configurations/QuotationItemConfiguration.cs",
-            "src/Agendamento.Api/Infrastructure/Persistence/AgendamentoDbContext.cs"
-          ],
-          "refs": [
-            "US-045",
-            "AC-077"
-          ]
-        }
+      "id": "T-089",
+      "titulo": "Mapeamento EF Core para Orçamentos",
+      "modelo": "gpt-5.6-terra",
+      "esforco": "medium",
+      "arquivos": [
+        "src/Agendamento.Api/Infrastructure/Persistence/Configurations/QuotationConfiguration.cs",
+        "src/Agendamento.Api/Infrastructure/Persistence/AgendamentoDbContext.cs"
+      ],
+      "refs": [
+        "US-045",
+        "AC-092"
       ]
     },
     {
-      "id": "faixa-3",
-      "branch": "spec/gestao-orcamentos-servicos-faixa-3",
-      "worktree": "../onp-worktrees/agendamento-gestao-orcamentos-servicos-faixa-3",
-      "tarefas": [
-        {
-          "id": "T-090",
-          "titulo": "Endpoints de Gestão de Orçamentos",
-          "modelo": "gpt-5.6-terra",
-          "esforco": "medium",
-          "arquivos": [
-            "src/Agendamento.Api/Features/Quotations/QuotationEndpoints.cs",
-            "src/Agendamento.Api/Program.cs"
-          ],
-          "refs": [
-            "US-045",
-            "US-046",
-            "AC-075",
-            "AC-077",
-            "AC-078"
-          ]
-        },
-        {
-          "id": "T-091",
-          "titulo": "Caso de Uso: Transformar Orçamento em O.S.",
-          "modelo": "gpt-5.6-terra",
-          "esforco": "medium",
-          "arquivos": [
-            "src/Agendamento.Api/Application/WorkOrders/ConvertQuotationToWorkOrder/ConvertQuotationToWorkOrderHandler.cs",
-            "src/Agendamento.Api/Application/WorkOrders/ConvertQuotationToWorkOrder/ConvertQuotationToWorkOrderCommand.cs",
-            "src/Agendamento.Api/Features/Quotations/QuotationEndpoints.cs"
-          ],
-          "refs": [
-            "US-047",
-            "AC-076",
-            "AC-078"
-          ]
-        }
+      "id": "T-090",
+      "titulo": "Endpoints de Gestão de Orçamentos",
+      "modelo": "gpt-5.6-terra",
+      "esforco": "medium",
+      "arquivos": [
+        "src/Agendamento.Api/Features/Quotations/QuotationEndpoints.cs",
+        "src/Agendamento.Api/Program.cs",
+        "src/Agendamento.Api/Application/Quotations/GetQuotations/GetQuotationByIdHandler.cs",
+        "src/Agendamento.Api/Application/Quotations/GetQuotations/GetQuotationsHandler.cs",
+        "src/Agendamento.Api/Application/Quotations/GetQuotations/GetQuotationsQuery.cs",
+        "src/Agendamento.Api/Application/Quotations/UpdateQuotationStatus/UpdateQuotationStatusHandler.cs"
+      ],
+      "refs": [
+        "US-045",
+        "US-046",
+        "AC-090",
+        "AC-092",
+        "AC-093"
       ]
     },
     {
-      "id": "faixa-4",
-      "branch": "spec/gestao-orcamentos-servicos-faixa-4",
-      "worktree": "../onp-worktrees/agendamento-gestao-orcamentos-servicos-faixa-4",
-      "tarefas": [
-        {
-          "id": "T-092",
-          "titulo": "Testes de Integração para Orçamentos",
-          "modelo": "gpt-5.6-terra",
-          "esforco": "medium",
-          "arquivos": [
-            "tests/Agendamento.IntegrationTests/Features/QuotationTests.cs",
-            "tests/Agendamento.UnitTests/Quotations/QuotationDomainTests.cs"
-          ],
-          "refs": [
-            "AC-075",
-            "AC-076",
-            "AC-077",
-            "AC-078"
-          ]
-        }
+      "id": "T-091",
+      "titulo": "Caso de Uso: Transformar Orçamento em O.S.",
+      "modelo": "gpt-5.6-terra",
+      "esforco": "medium",
+      "arquivos": [
+        "src/Agendamento.Api/Application/WorkOrders/ConvertQuotationToWorkOrder/ConvertQuotationToWorkOrderHandler.cs",
+        "src/Agendamento.Api/Application/WorkOrders/ConvertQuotationToWorkOrder/ConvertQuotationToWorkOrderCommand.cs",
+        "src/Agendamento.Api/Features/Quotations/QuotationEndpoints.cs"
+      ],
+      "refs": [
+        "US-047",
+        "AC-091",
+        "AC-093"
+      ]
+    },
+    {
+      "id": "T-092",
+      "titulo": "Testes de Integração para Orçamentos",
+      "modelo": "gpt-5.6-terra",
+      "esforco": "medium",
+      "arquivos": [
+        "tests/Agendamento.IntegrationTests/Features/QuotationTests.cs",
+        "tests/Agendamento.UnitTests/Quotations/QuotationDomainTests.cs"
+      ],
+      "refs": [
+        "AC-090",
+        "AC-091",
+        "AC-092",
+        "AC-093"
+      ]
+    },
+    {
+      "id": "T-031",
+      "titulo": "Modelar Entidades do Catálogo de Serviços e Orçamentos",
+      "modelo": "gpt-5.6-terra",
+      "esforco": "medium",
+      "arquivos": [
+        "src/Agendamento.Api/Domain/Services/ServiceItem.cs",
+        "src/Agendamento.Api/Domain/Quotations/Quotation.cs",
+        "src/Agendamento.Api/Domain/Quotations/QuotationItem.cs",
+        "src/Agendamento.Api/Domain/Quotations/QuotationStatus.cs",
+        "src/Agendamento.Api/Domain/Quotations/DepositInfo.cs",
+        "src/Agendamento.Api/Domain/Quotations/DepositType.cs"
+      ],
+      "refs": [
+        "US-020",
+        "US-021",
+        "US-022",
+        "AC-045",
+        "AC-046"
+      ]
+    },
+    {
+      "id": "T-032",
+      "titulo": "Mapear Persistência EF Core e Migrations",
+      "modelo": "gpt-5.6-terra",
+      "esforco": "medium",
+      "arquivos": [
+        "src/Agendamento.Api/Infrastructure/Persistence/AgendamentoDbContext.cs",
+        "src/Agendamento.Api/Infrastructure/Persistence/Configurations/ServiceItemConfiguration.cs",
+        "src/Agendamento.Api/Infrastructure/Persistence/Configurations/QuotationConfiguration.cs"
+      ],
+      "refs": [
+        "US-020",
+        "US-021",
+        "AC-045"
+      ]
+    },
+    {
+      "id": "T-033",
+      "titulo": "Orquestrar Casos de Uso do Catálogo de Serviços/Produtos",
+      "modelo": "gpt-5.6-terra",
+      "esforco": "medium",
+      "arquivos": [
+        "src/Agendamento.Api/Application/Services/CreateService/CreateServiceCommand.cs",
+        "src/Agendamento.Api/Application/Services/CreateService/CreateServiceHandler.cs",
+        "src/Agendamento.Api/Application/Services/GetServices/GetServiceByIdHandler.cs",
+        "src/Agendamento.Api/Application/Services/GetServices/GetServicesHandler.cs",
+        "src/Agendamento.Api/Application/Services/GetServices/GetServicesQuery.cs",
+        "src/Agendamento.Api/Application/Services/UpdateService/UpdateServiceCommand.cs",
+        "src/Agendamento.Api/Application/Services/UpdateService/UpdateServiceHandler.cs"
+      ],
+      "refs": [
+        "US-020",
+        "AC-045"
+      ]
+    },
+    {
+      "id": "T-034",
+      "titulo": "Orquestrar Casos de Uso da Gestão de Orçamentos",
+      "modelo": "gpt-5.6-terra",
+      "esforco": "medium",
+      "arquivos": [
+        "src/Agendamento.Api/Application/Quotations/CreateQuotation/CreateQuotationCommand.cs",
+        "src/Agendamento.Api/Application/Quotations/CreateQuotation/CreateQuotationHandler.cs",
+        "src/Agendamento.Api/Application/Quotations/GetQuotations/GetQuotationByIdHandler.cs",
+        "src/Agendamento.Api/Application/Quotations/GetQuotations/GetQuotationsHandler.cs",
+        "src/Agendamento.Api/Application/Quotations/GetQuotations/GetQuotationsQuery.cs",
+        "src/Agendamento.Api/Application/Quotations/UpdateQuotationStatus/UpdateQuotationStatusHandler.cs"
+      ],
+      "refs": [
+        "US-021",
+        "US-022",
+        "US-024",
+        "AC-045",
+        "AC-046",
+        "AC-048"
+      ]
+    },
+    {
+      "id": "T-035",
+      "titulo": "Implementar Gerador de Exportação de Orçamento em PDF",
+      "modelo": "gpt-5.6-terra",
+      "esforco": "medium",
+      "arquivos": [
+        "src/Agendamento.Api/Application/Quotations/ExportPdf/IQuotationPdfGenerator.cs",
+        "src/Agendamento.Api/Infrastructure/Pdf/QuestPdfQuotationGenerator.cs"
+      ],
+      "refs": [
+        "US-023",
+        "AC-047"
+      ]
+    },
+    {
+      "id": "T-036",
+      "titulo": "Expor Endpoints Minimal API de Serviços e Orçamentos",
+      "modelo": "gpt-5.6-terra",
+      "esforco": "medium",
+      "arquivos": [
+        "src/Agendamento.Api/Features/Services/ServiceEndpoints.cs",
+        "src/Agendamento.Api/Features/Quotations/QuotationEndpoints.cs",
+        "src/Agendamento.Api/Program.cs"
+      ],
+      "refs": [
+        "US-020",
+        "US-021",
+        "US-022",
+        "US-023",
+        "US-024",
+        "AC-045",
+        "AC-047",
+        "AC-049"
+      ]
+    },
+    {
+      "id": "T-037",
+      "titulo": "Testes de Integração, Isolamento Multi-Tenant e Exportação PDF",
+      "modelo": "gpt-5.6-terra",
+      "esforco": "medium",
+      "arquivos": [
+        "tests/Agendamento.UnitTests/Quotations/QuotationDomainTests.cs",
+        "tests/Agendamento.IntegrationTests/Quotations/QuotationApiTests.cs"
+      ],
+      "refs": [
+        "AC-045",
+        "AC-046",
+        "AC-047",
+        "AC-048",
+        "AC-049"
+      ]
+    },
+    {
+      "id": "T-103",
+      "titulo": "Implementar e provar edição de orçamento pendente",
+      "modelo": "gpt-5.6-terra",
+      "esforco": "medium",
+      "arquivos": [
+        "src/Agendamento.Api/Features/Quotations/QuotationEndpoints.cs",
+        "src/Agendamento.Api/Domain/Quotations/Quotation.cs",
+        "tests/Agendamento.IntegrationTests/Features/QuotationTests.cs"
+      ],
+      "refs": [
+        "US-045",
+        "AC-206"
       ]
     }
   ],
-  "sequenciais": [],
   "concluidas": [],
   "avisos": []
 }

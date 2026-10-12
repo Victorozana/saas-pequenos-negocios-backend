@@ -30,6 +30,9 @@ public class WorkOrderConfiguration : IEntityTypeConfiguration<WorkOrder>
         {
             itemBuilder.ToTable("WorkOrderItems");
             itemBuilder.HasKey(i => i.Id);
+            itemBuilder.Property<Guid>("TenantId").HasColumnName("tenant_id").IsRequired();
+            itemBuilder.HasIndex("TenantId");
+            itemBuilder.HasOne<Agendamento.Domain.Tenants.Tenant>().WithMany().HasForeignKey("TenantId").OnDelete(DeleteBehavior.Restrict);
             itemBuilder.Property(i => i.ServiceName).IsRequired().HasMaxLength(255);
             itemBuilder.Property(i => i.Unit).HasMaxLength(50);
             itemBuilder.Property(i => i.Quantity).HasPrecision(18, 2);

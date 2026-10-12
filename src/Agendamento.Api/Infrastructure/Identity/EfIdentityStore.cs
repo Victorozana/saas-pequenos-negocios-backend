@@ -19,6 +19,7 @@ public sealed class EfIdentityStore(AgendamentoDbContext db) :
         string normalizedEmail,
         CancellationToken cancellationToken = default)
     {
+        using var administrative = db.Administrative.Enter();
         var user = await db.Users
             .FirstOrDefaultAsync(u => u.Email == normalizedEmail, cancellationToken);
             

@@ -38,56 +38,45 @@
 </style>
 <main>
   <h1>Plano de execução — gestao-orcamentos-servicos</h1>
-  <p class="sub">gerado por <code>onp-spec plano</code> em 2026-08-11 18:10 · regenere após mudar tasks.md</p>
+  <p class="sub">gerado por <code>onp-spec plano</code> em 2026-10-12 03:55 · regenere após mudar tasks.md</p>
   <div class="resumo">
-    <div><b>5</b> tarefa(s) em paralelo</div>
-    <div><b>4</b> faixa(s) · <b>2</b> onda(s)</div>
-    <div><b>0</b> sequencial(is)</div>
+    <div><b>13</b> tarefa(s), uma após a outra</div>
+    <div>modo <b>sequencial</b> (escolha do usuário)</div>
     <div>branch <code>spec/gestao-orcamentos-servicos</code></div>
   </div>
-  
+
   <div class="executor">
     <h2>Como executar — via agente</h2>
     <p>Peça ao agente (Codex) para executar o plano. Ele roda:</p>
     <div><code id="cmd">bash .spec/features/gestao-orcamentos-servicos/executar-tarefas.sh</code></div>
-    <p class="nota">Este arquivo é só visualização. Cada faixa roda <code>codex exec</code> num worktree próprio, com contexto limpo, modelo e esforço já definidos.
+    <p class="nota">Este arquivo é só visualização. Cada tarefa roda <code>codex exec</code> na árvore principal, uma após a outra, com contexto limpo e modelo/esforço já definidos.
     O gate final (verify + audit) roda sozinho; a execução fica em background e, a cada
     1 minuto, o agente posta no chat a <b>tabela de andamento</b>
     (<code>onp-spec resumo gestao-orcamentos-servicos --tabela</code>) e o
     <b>resumo geral de andamento</b> (<code>onp-spec resumo gestao-orcamentos-servicos</code>).</p>
   </div>
-  
+
+
     <section class="onda">
-      <h3>Onda 1 <small>faixa-1 ∥ faixa-2 ∥ faixa-3 — em paralelo, janelas limpas</small></h3>
-      <div class="grade">
-      <div class="faixa">
-        <h4>faixa-1 <small>branch <code>spec/gestao-orcamentos-servicos-faixa-1</code> · worktree <code>../onp-worktrees/agendamento-gestao-orcamentos-servicos-faixa-1</code></small></h4>
-        
+      <h3>Ordem de execução <small>uma tarefa após a outra, na árvore principal</small></h3>
+      <div class="grade"><div class="faixa">
         <div class="tarefa">
           <span class="tid">T-088</span>
           <span class="ttitulo">Entidades de Domínio para Orçamentos e Serviços</span>
           <span class="meta"><code>gpt-5.6-terra</code> · esforço <b>medium</b></span>
-          <span class="arquivos"><code>src/Agendamento.Api/Domain/Quotations/Quotation.cs</code> <code>src/Agendamento.Api/Domain/Quotations/QuotationStatus.cs</code> <code>src/Agendamento.Api/Domain/Quotations/QuotationItem.cs</code></span>
+          <span class="arquivos"><code>src/Agendamento.Api/Domain/Quotations/Quotation.cs</code> <code>src/Agendamento.Api/Domain/Quotations/QuotationStatus.cs</code> <code>src/Agendamento.Api/Domain/Quotations/QuotationItem.cs</code> <code>src/Agendamento.Api/Domain/Quotations/DepositInfo.cs</code> <code>src/Agendamento.Api/Domain/Quotations/DepositType.cs</code></span>
         </div>
-      </div>
-      <div class="faixa">
-        <h4>faixa-2 <small>branch <code>spec/gestao-orcamentos-servicos-faixa-2</code> · worktree <code>../onp-worktrees/agendamento-gestao-orcamentos-servicos-faixa-2</code></small></h4>
-        
         <div class="tarefa">
           <span class="tid">T-089</span>
           <span class="ttitulo">Mapeamento EF Core para Orçamentos</span>
           <span class="meta"><code>gpt-5.6-terra</code> · esforço <b>medium</b></span>
-          <span class="arquivos"><code>src/Agendamento.Api/Infrastructure/Persistence/Configurations/QuotationConfiguration.cs</code> <code>src/Agendamento.Api/Infrastructure/Persistence/Configurations/QuotationItemConfiguration.cs</code> <code>src/Agendamento.Api/Infrastructure/Persistence/AgendamentoDbContext.cs</code></span>
+          <span class="arquivos"><code>src/Agendamento.Api/Infrastructure/Persistence/Configurations/QuotationConfiguration.cs</code> <code>src/Agendamento.Api/Infrastructure/Persistence/AgendamentoDbContext.cs</code></span>
         </div>
-      </div>
-      <div class="faixa">
-        <h4>faixa-3 <small>branch <code>spec/gestao-orcamentos-servicos-faixa-3</code> · worktree <code>../onp-worktrees/agendamento-gestao-orcamentos-servicos-faixa-3</code></small></h4>
-        
         <div class="tarefa">
           <span class="tid">T-090</span>
           <span class="ttitulo">Endpoints de Gestão de Orçamentos</span>
           <span class="meta"><code>gpt-5.6-terra</code> · esforço <b>medium</b></span>
-          <span class="arquivos"><code>src/Agendamento.Api/Features/Quotations/QuotationEndpoints.cs</code> <code>src/Agendamento.Api/Program.cs</code></span>
+          <span class="arquivos"><code>src/Agendamento.Api/Features/Quotations/QuotationEndpoints.cs</code> <code>src/Agendamento.Api/Program.cs</code> <code>src/Agendamento.Api/Application/Quotations/GetQuotations/GetQuotationByIdHandler.cs</code> <code>src/Agendamento.Api/Application/Quotations/GetQuotations/GetQuotationsHandler.cs</code> <code>src/Agendamento.Api/Application/Quotations/GetQuotations/GetQuotationsQuery.cs</code> <code>src/Agendamento.Api/Application/Quotations/UpdateQuotationStatus/UpdateQuotationStatusHandler.cs</code></span>
         </div>
         <div class="tarefa">
           <span class="tid">T-091</span>
@@ -95,29 +84,66 @@
           <span class="meta"><code>gpt-5.6-terra</code> · esforço <b>medium</b></span>
           <span class="arquivos"><code>src/Agendamento.Api/Application/WorkOrders/ConvertQuotationToWorkOrder/ConvertQuotationToWorkOrderHandler.cs</code> <code>src/Agendamento.Api/Application/WorkOrders/ConvertQuotationToWorkOrder/ConvertQuotationToWorkOrderCommand.cs</code> <code>src/Agendamento.Api/Features/Quotations/QuotationEndpoints.cs</code></span>
         </div>
-      </div></div>
-    </section>
-    <section class="onda">
-      <h3>Onda 2 <small>faixa-4 — em paralelo, janelas limpas</small></h3>
-      <div class="grade">
-      <div class="faixa">
-        <h4>faixa-4 <small>branch <code>spec/gestao-orcamentos-servicos-faixa-4</code> · worktree <code>../onp-worktrees/agendamento-gestao-orcamentos-servicos-faixa-4</code></small></h4>
-        
         <div class="tarefa">
           <span class="tid">T-092</span>
           <span class="ttitulo">Testes de Integração para Orçamentos</span>
           <span class="meta"><code>gpt-5.6-terra</code> · esforço <b>medium</b></span>
           <span class="arquivos"><code>tests/Agendamento.IntegrationTests/Features/QuotationTests.cs</code> <code>tests/Agendamento.UnitTests/Quotations/QuotationDomainTests.cs</code></span>
         </div>
-      </div></div>
+        <div class="tarefa">
+          <span class="tid">T-031</span>
+          <span class="ttitulo">Modelar Entidades do Catálogo de Serviços e Orçamentos</span>
+          <span class="meta"><code>gpt-5.6-terra</code> · esforço <b>medium</b></span>
+          <span class="arquivos"><code>src/Agendamento.Api/Domain/Services/ServiceItem.cs</code> <code>src/Agendamento.Api/Domain/Quotations/Quotation.cs</code> <code>src/Agendamento.Api/Domain/Quotations/QuotationItem.cs</code> <code>src/Agendamento.Api/Domain/Quotations/QuotationStatus.cs</code> <code>src/Agendamento.Api/Domain/Quotations/DepositInfo.cs</code> <code>src/Agendamento.Api/Domain/Quotations/DepositType.cs</code></span>
+        </div>
+        <div class="tarefa">
+          <span class="tid">T-032</span>
+          <span class="ttitulo">Mapear Persistência EF Core e Migrations</span>
+          <span class="meta"><code>gpt-5.6-terra</code> · esforço <b>medium</b></span>
+          <span class="arquivos"><code>src/Agendamento.Api/Infrastructure/Persistence/AgendamentoDbContext.cs</code> <code>src/Agendamento.Api/Infrastructure/Persistence/Configurations/ServiceItemConfiguration.cs</code> <code>src/Agendamento.Api/Infrastructure/Persistence/Configurations/QuotationConfiguration.cs</code></span>
+        </div>
+        <div class="tarefa">
+          <span class="tid">T-033</span>
+          <span class="ttitulo">Orquestrar Casos de Uso do Catálogo de Serviços/Produtos</span>
+          <span class="meta"><code>gpt-5.6-terra</code> · esforço <b>medium</b></span>
+          <span class="arquivos"><code>src/Agendamento.Api/Application/Services/CreateService/CreateServiceCommand.cs</code> <code>src/Agendamento.Api/Application/Services/CreateService/CreateServiceHandler.cs</code> <code>src/Agendamento.Api/Application/Services/GetServices/GetServiceByIdHandler.cs</code> <code>src/Agendamento.Api/Application/Services/GetServices/GetServicesHandler.cs</code> <code>src/Agendamento.Api/Application/Services/GetServices/GetServicesQuery.cs</code> <code>src/Agendamento.Api/Application/Services/UpdateService/UpdateServiceCommand.cs</code> <code>src/Agendamento.Api/Application/Services/UpdateService/UpdateServiceHandler.cs</code></span>
+        </div>
+        <div class="tarefa">
+          <span class="tid">T-034</span>
+          <span class="ttitulo">Orquestrar Casos de Uso da Gestão de Orçamentos</span>
+          <span class="meta"><code>gpt-5.6-terra</code> · esforço <b>medium</b></span>
+          <span class="arquivos"><code>src/Agendamento.Api/Application/Quotations/CreateQuotation/CreateQuotationCommand.cs</code> <code>src/Agendamento.Api/Application/Quotations/CreateQuotation/CreateQuotationHandler.cs</code> <code>src/Agendamento.Api/Application/Quotations/GetQuotations/GetQuotationByIdHandler.cs</code> <code>src/Agendamento.Api/Application/Quotations/GetQuotations/GetQuotationsHandler.cs</code> <code>src/Agendamento.Api/Application/Quotations/GetQuotations/GetQuotationsQuery.cs</code> <code>src/Agendamento.Api/Application/Quotations/UpdateQuotationStatus/UpdateQuotationStatusHandler.cs</code></span>
+        </div>
+        <div class="tarefa">
+          <span class="tid">T-035</span>
+          <span class="ttitulo">Implementar Gerador de Exportação de Orçamento em PDF</span>
+          <span class="meta"><code>gpt-5.6-terra</code> · esforço <b>medium</b></span>
+          <span class="arquivos"><code>src/Agendamento.Api/Application/Quotations/ExportPdf/IQuotationPdfGenerator.cs</code> <code>src/Agendamento.Api/Infrastructure/Pdf/QuestPdfQuotationGenerator.cs</code></span>
+        </div>
+        <div class="tarefa">
+          <span class="tid">T-036</span>
+          <span class="ttitulo">Expor Endpoints Minimal API de Serviços e Orçamentos</span>
+          <span class="meta"><code>gpt-5.6-terra</code> · esforço <b>medium</b></span>
+          <span class="arquivos"><code>src/Agendamento.Api/Features/Services/ServiceEndpoints.cs</code> <code>src/Agendamento.Api/Features/Quotations/QuotationEndpoints.cs</code> <code>src/Agendamento.Api/Program.cs</code></span>
+        </div>
+        <div class="tarefa">
+          <span class="tid">T-037</span>
+          <span class="ttitulo">Testes de Integração, Isolamento Multi-Tenant e Exportação PDF</span>
+          <span class="meta"><code>gpt-5.6-terra</code> · esforço <b>medium</b></span>
+          <span class="arquivos"><code>tests/Agendamento.UnitTests/Quotations/QuotationDomainTests.cs</code> <code>tests/Agendamento.IntegrationTests/Quotations/QuotationApiTests.cs</code></span>
+        </div>
+        <div class="tarefa">
+          <span class="tid">T-103</span>
+          <span class="ttitulo">Implementar e provar edição de orçamento pendente</span>
+          <span class="meta"><code>gpt-5.6-terra</code> · esforço <b>medium</b></span>
+          <span class="arquivos"><code>src/Agendamento.Api/Features/Quotations/QuotationEndpoints.cs</code> <code>src/Agendamento.Api/Domain/Quotations/Quotation.cs</code> <code>tests/Agendamento.IntegrationTests/Features/QuotationTests.cs</code></span>
+        </div></div></div>
     </section>
-  
   <section class="onda">
     <h3>Branches e commits</h3>
     <ol>
       <li>tudo parte da branch de trabalho <code>spec/gestao-orcamentos-servicos</code></li>
-      <li>1 faixa = 1 branch + 1 worktree; 1 tarefa = 1 commit <code>T-xxx gestao-orcamentos-servicos: título</code></li>
-      <li>merge <code>--no-ff</code> por faixa, na ordem; conflito interrompe e pede você</li>
+      <li>as tarefas rodam nela mesma, na ordem; 1 tarefa = 1 commit <code>T-xxx gestao-orcamentos-servicos: título</code></li>
       <li>gate final: <code>onp-spec verify gestao-orcamentos-servicos</code> + <code>onp-spec audit --ci</code> — exit 0 ou não está pronto</li>
     </ol>
   </section>

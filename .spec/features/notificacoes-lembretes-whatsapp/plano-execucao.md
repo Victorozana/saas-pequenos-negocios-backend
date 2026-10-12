@@ -1,52 +1,34 @@
 # Plano de execução — notificacoes-lembretes-whatsapp
 
-> gerado por `onp-spec plano` em 2026-08-11 19:28 — NÃO edite à mão;
-> mudou tasks.md ou a config? Regenere: `onp-spec plano notificacoes-lembretes-whatsapp`
+> gerado por `onp-spec plano` em 2026-10-12 03:55 — NÃO edite à mão;
+> mudou tasks.md ou a config? Regenere: `onp-spec plano notificacoes-lembretes-whatsapp --sequencial`
 
 ## Resumo — o que vai acontecer
 
-- **4 tarefa(s) pendente(s)**: 4 em 4 faixa(s) paralela(s) + 0 sequencial(is)
-- **1 faixa = 1 worktree + 1 branch + 1 janela de contexto limpa** — faixas não compartilham nenhum arquivo entre si
-- prefere outra seleção ou uma após a outra? Regenere com `onp-spec plano notificacoes-lembretes-whatsapp --paralelizar T-xxx,T-yyy` ou `--sequencial`
+- **modo SEQUENCIAL (escolha do usuário)**: 10 tarefa(s) pendente(s), UMA APÓS A OUTRA, na árvore principal (1 já concluída(s): T-099)
+- sem worktrees e sem paralelismo — cada tarefa roda numa janela de contexto limpa, na ordem do tasks.md
 - tudo acontece na branch de trabalho `spec/notificacoes-lembretes-whatsapp`; levar para a main é decisão sua
 
-## Faixas e ondas
+## Ordem de execução (uma tarefa após a outra)
 
-### Onda 1 — faixa-1 ∥ faixa-2 ∥ faixa-3
-
-#### faixa-1 — branch `spec/notificacoes-lembretes-whatsapp-faixa-1` — worktree `../onp-worktrees/agendamento-notificacoes-lembretes-whatsapp-faixa-1`
-
-| tarefa | título | modelo | esforço | arquivos |
-|---|---|---|---|---|
-| T-097 | Serviço Abstrato e Entidades de Notificação | `gpt-5.6-terra` | medium | `src/Agendamento.Api/Application/Notifications/INotificationService.cs`, `src/Agendamento.Api/Domain/Notifications/NotificationRecord.cs`, `src/Agendamento.Api/Infrastructure/Notifications/ConsoleNotificationService.cs` |
-
-#### faixa-2 — branch `spec/notificacoes-lembretes-whatsapp-faixa-2` — worktree `../onp-worktrees/agendamento-notificacoes-lembretes-whatsapp-faixa-2`
-
-| tarefa | título | modelo | esforço | arquivos |
-|---|---|---|---|---|
-| T-098 | Mapeamento EF Core de Notificações | `gpt-5.6-terra` | medium | `src/Agendamento.Api/Infrastructure/Persistence/Configurations/NotificationRecordConfiguration.cs`, `src/Agendamento.Api/Infrastructure/Persistence/AgendamentoDbContext.cs` |
-
-#### faixa-3 — branch `spec/notificacoes-lembretes-whatsapp-faixa-3` — worktree `../onp-worktrees/agendamento-notificacoes-lembretes-whatsapp-faixa-3`
-
-| tarefa | título | modelo | esforço | arquivos |
-|---|---|---|---|---|
-| T-099 | Integração de Notificação no Agendamento | `gpt-5.6-terra` | medium | `src/Agendamento.Api/Application/Appointments/CreateAppointment/CreateAppointmentHandler.cs` |
-
-### Onda 2 — faixa-4
-
-#### faixa-4 — branch `spec/notificacoes-lembretes-whatsapp-faixa-4` — worktree `../onp-worktrees/agendamento-notificacoes-lembretes-whatsapp-faixa-4`
-
-| tarefa | título | modelo | esforço | arquivos |
-|---|---|---|---|---|
-| T-100 | Testes de Integração de Notificação | `gpt-5.6-terra` | medium | `tests/Agendamento.IntegrationTests/Features/NotificationTests.cs` |
+| tarefa | título | modelo | esforço |
+|---|---|---|---|
+| T-097 | Serviço Abstrato e Entidades de Notificação | `gpt-5.6-terra` | medium |
+| T-098 | Mapeamento EF Core de Notificações | `gpt-5.6-terra` | medium |
+| T-100 | Testes de Integração de Notificação | `gpt-5.6-terra` | medium |
+| T-052 | Modelar Entidades de Notificação e Outbox (NotificationMessage, OutboxMessage) | `gpt-5.6-terra` | medium |
+| T-053 | Mapear Persistência EF Core e Outbox Pattern | `gpt-5.6-terra` | medium |
+| T-054 | Implementar Provedor de Envio de Mensagens e Dispatcher Background | `gpt-5.6-terra` | medium |
+| T-055 | Casos de Uso: Agendamento de Lembretes e Notificação de Orçamento | `gpt-5.6-terra` | medium |
+| T-056 | Expor Endpoints Minimal API de Notificações e Histórico | `gpt-5.6-terra` | medium |
+| T-057 | Testes de Integração do Outbox Processor e Formatação de Mensagens | `gpt-5.6-terra` | medium |
+| T-104 | Implementar preferência de lembretes por cliente | `gpt-5.6-terra` | medium |
 
 ## Gestão de branches e commits
 
 1. branch de trabalho `spec/notificacoes-lembretes-whatsapp` criada do ponto atual (se ainda não existir)
-2. cada faixa nasce dela como branch própria e roda no seu worktree — **1 tarefa = 1 commit** (`T-xxx feature: título`)
-3. terminou a onda → merge `--no-ff` de cada faixa de volta, na ordem; conflito interrompe a faixa e pede resolução humana
-4. faixa mesclada → worktree removido, branch apagada, tarefa marcada `[concluida]` no tasks.md
-5. gate final na branch de trabalho: `onp-spec verify notificacoes-lembretes-whatsapp` + `onp-spec audit --ci` — **exit 0 ou não está pronto**
+2. as tarefas rodam nela mesma, na ordem — **1 tarefa = 1 commit** (`T-xxx feature: título`), marcada `[concluida]` só com trabalho feito
+3. gate final na branch de trabalho: `onp-spec verify notificacoes-lembretes-whatsapp` + `onp-spec audit --ci` — **exit 0 ou não está pronto**
 
 ## Como executar
 
@@ -56,10 +38,10 @@
 bash .spec/features/notificacoes-lembretes-whatsapp/executar-tarefas.sh
 ```
 
-Cada faixa roda `codex exec` com **janela de contexto limpa**, no seu worktree, com
-`--model` e `model_reasoning_effort` já definidos por tarefa e sandbox `workspace-write`. Os prompts exatos estão
-embutidos no script — quer rodar uma faixa na mão, é só copiá-los de lá.
-Logs: `../onp-worktrees/agendamento-notificacoes-lembretes-whatsapp-logs/`.
+Cada tarefa roda `codex exec` com **janela de contexto limpa**, na árvore principal,
+uma após a outra, com `--model` e `model_reasoning_effort` já definidos por tarefa e sandbox `workspace-write`.
+Os prompts exatos estão embutidos no script.
+Logs: `../onp-worktrees/saas-pequenos-negocios-backend-notificacoes-lembretes-whatsapp-logs/`.
 
 **Confirmação de custos — antes de executar**: os modelos e esforços por
 tarefa estão nas tabelas acima; o agente CONFIRMA com o usuário se estão

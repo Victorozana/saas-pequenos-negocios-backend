@@ -1,23 +1,28 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\victo\\OneDrive\\Documentos\\projetos\\agendamento\\src\\Agendamento.Api\\Agendamento.Api.csproj": {}
+    "C:\\Users\\Victor Ozana\\Documents\\agendamento\\saas-pequenos-negocios-backend\\src\\Agendamento.Api\\Agendamento.Api.csproj": {}
   },
   "projects": {
-    "C:\\Users\\victo\\OneDrive\\Documentos\\projetos\\agendamento\\src\\Agendamento.Api\\Agendamento.Api.csproj": {
+    "C:\\Users\\Victor Ozana\\Documents\\agendamento\\saas-pequenos-negocios-backend\\src\\Agendamento.Api\\Agendamento.Api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\victo\\OneDrive\\Documentos\\projetos\\agendamento\\src\\Agendamento.Api\\Agendamento.Api.csproj",
+        "projectUniqueName": "C:\\Users\\Victor Ozana\\Documents\\agendamento\\saas-pequenos-negocios-backend\\src\\Agendamento.Api\\Agendamento.Api.csproj",
         "projectName": "Agendamento.Api",
-        "projectPath": "C:\\Users\\victo\\OneDrive\\Documentos\\projetos\\agendamento\\src\\Agendamento.Api\\Agendamento.Api.csproj",
-        "packagesPath": "C:\\Users\\victo\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\victo\\OneDrive\\Documentos\\projetos\\agendamento\\src\\Agendamento.Api\\obj\\",
+        "projectPath": "C:\\Users\\Victor Ozana\\Documents\\agendamento\\saas-pequenos-negocios-backend\\src\\Agendamento.Api\\Agendamento.Api.csproj",
+        "packagesPath": "C:\\Users\\Victor Ozana\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Victor Ozana\\Documents\\agendamento\\saas-pequenos-negocios-backend\\src\\Agendamento.Api\\obj\\",
         "projectStyle": "PackageReference",
         "centralPackageVersionsManagementEnabled": true,
         "CentralPackageTransitivePinningEnabled": true,
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\victo\\OneDrive\\Documentos\\projetos\\agendamento\\NuGet.Config",
-          "C:\\Users\\victo\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\Victor Ozana\\Documents\\agendamento\\saas-pequenos-negocios-backend\\NuGet.Config",
+          "C:\\Users\\Victor Ozana\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net10.0"
@@ -112,6 +117,7 @@
             "Microsoft.OpenApi": "2.0.0",
             "Npgsql.EntityFrameworkCore.PostgreSQL": "9.0.0",
             "QuestPDF": "2024.12.3",
+            "SSH.NET": "2026.0.0",
             "Swashbuckle.AspNetCore.SwaggerUI": "10.2.3",
             "Testcontainers.PostgreSql": "4.8.1",
             "xunit": "2.9.3",
