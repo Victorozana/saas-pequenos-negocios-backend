@@ -1,0 +1,25 @@
+{
+  "ok": false,
+  "stats": {
+    "features": 15,
+    "stories": 57,
+    "acs": 95,
+    "acsWithTest": 94,
+    "acsProven": 94,
+    "assumptionsOpen": 1,
+    "questionsOpen": 0,
+    "principles": 5,
+    "errors": 1,
+    "warnings": 0
+  },
+  "findings": [
+    {
+      "code": "AC_SEM_TESTE",
+      "severity": "erro",
+      "message": "AC-208 (Aviso automático diário de conta vencida com saldo aberto) não tem nenhum teste anotado com @spec:AC-208",
+      "feature": "notificacoes-lembretes-whatsapp",
+      "file": ".spec\\features\\notificacoes-lembretes-whatsapp\\spec.md",
+      "line": 52
+    }
+  ]
+}

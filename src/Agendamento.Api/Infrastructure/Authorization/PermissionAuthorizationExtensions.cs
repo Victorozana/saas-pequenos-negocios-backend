@@ -51,6 +51,6 @@ public static class PermissionAuthorizationExtensions
             }
 
             return await next(context);
-        }).ProducesProblem(StatusCodes.Status401Unauthorized).ProducesProblem(StatusCodes.Status403Forbidden);
+        }).Produces(StatusCodes.Status401Unauthorized).ProducesProblem(StatusCodes.Status403Forbidden);
     }
 }

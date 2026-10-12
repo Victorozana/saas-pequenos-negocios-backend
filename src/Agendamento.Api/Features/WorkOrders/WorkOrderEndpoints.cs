@@ -1,4 +1,5 @@
 using Agendamento.Api.Infrastructure.Authorization;
+using Agendamento.Api.Features.Common;
 using Agendamento.Api.Application.WorkOrders.ConvertQuotationToWorkOrder;
 using Agendamento.Api.Application.WorkOrders.GetWorkOrderById;
 using Agendamento.Api.Application.WorkOrders.UpdateWorkOrderStatus;
@@ -21,10 +22,23 @@ public static class WorkOrderEndpoints
             CancellationToken cancellationToken) =>
         {
             var command = new ConvertQuotationToWorkOrderCommand { QuotationId = quotationId };
-            var id = await handler.HandleAsync(command, cancellationToken);
-            return Results.Created($"/api/v1/work-orders/{id}", new { Id = id });
+            try
+            {
+                var id = await handler.HandleAsync(command, cancellationToken);
+                return Results.Created($"/api/v1/work-orders/{id}", new CreatedIdResponse(id));
+            }
+            catch (InvalidOperationException ex) when (ex.Message == "Quotation not found.")
+            {
+                return Results.Problem(statusCode: 400, title: "Orçamento não encontrado.");
+            }
+            catch (InvalidOperationException ex) when (ex.Message == "Quotation must be approved before converting to a work order.")
+            {
+                return Results.Problem(statusCode: 400, title: "O orçamento deve ser aprovado antes da conversão.");
+            }
         })
         .WithName("ConvertQuotationToWorkOrder")
+        .Produces<CreatedIdResponse>(StatusCodes.Status201Created)
+        .ProducesProblem(StatusCodes.Status400BadRequest)
         .RequirePermission("sales.write");
 
         group.MapGet("/{id:guid}", async (
@@ -41,6 +55,8 @@ public static class WorkOrderEndpoints
             return Results.Ok(result);
         })
         .WithName("GetWorkOrderById")
+        .Produces<WorkOrderResponse>()
+        .Produces(StatusCodes.Status404NotFound)
         .RequirePermission("sales.read");
 
         group.MapPatch("/{id:guid}/status", async (
@@ -56,10 +72,24 @@ public static class WorkOrderEndpoints
                 Notes = request.Notes
             };
             
-            await handler.HandleAsync(command, cancellationToken);
-            return Results.NoContent();
+            try
+            {
+                await handler.HandleAsync(command, cancellationToken);
+                return Results.NoContent();
+            }
+            catch (InvalidOperationException ex) when (ex.Message == "Work Order not found.")
+            {
+                return Results.NotFound();
+            }
+            catch (InvalidOperationException ex) when (ex.Message == "Cannot update status of a completed or cancelled work order.")
+            {
+                return Results.Problem(statusCode: 400, title: "Não é possível alterar uma ordem concluída ou cancelada.");
+            }
         })
         .WithName("UpdateWorkOrderStatus")
+        .Produces(StatusCodes.Status204NoContent)
+        .Produces(StatusCodes.Status404NotFound)
+        .ProducesProblem(StatusCodes.Status400BadRequest)
         .RequirePermission("sales.write");
     }
 }

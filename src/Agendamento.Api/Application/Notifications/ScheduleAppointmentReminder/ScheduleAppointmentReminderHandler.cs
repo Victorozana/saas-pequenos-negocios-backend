@@ -1,4 +1,3 @@
-using Agendamento.Api.Application.Tenancy;
 using Agendamento.Api.Domain.Notifications;
 using Agendamento.Api.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
@@ -8,12 +7,12 @@ namespace Agendamento.Api.Application.Notifications.ScheduleAppointmentReminder;
 public class ScheduleAppointmentReminderHandler
 {
     private readonly AgendamentoDbContext _dbContext;
-    private readonly ITenantContext _tenantContext;
+    private readonly INotificationService _notifications;
 
-    public ScheduleAppointmentReminderHandler(AgendamentoDbContext dbContext, ITenantContext tenantContext)
+    public ScheduleAppointmentReminderHandler(AgendamentoDbContext dbContext, INotificationService notifications)
     {
         _dbContext = dbContext;
-        _tenantContext = tenantContext;
+        _notifications = notifications;
     }
 
     public async Task<bool> HandleAsync(ScheduleAppointmentReminderCommand request, CancellationToken cancellationToken = default)
@@ -45,13 +44,14 @@ public class ScheduleAppointmentReminderHandler
 
         var content = template.Render();
 
-        var notification = NotificationMessage.Create(
-            _tenantContext.TenantId,
+        var reminder = await _notifications.QueueAutomaticReminderAsync(
+            appointment.WorkOrder!.CustomerId,
             phone,
             NotificationChannel.WhatsApp,
-            content);
+            content, cancellationToken);
 
-        _dbContext.NotificationMessages.Add(notification);
+        if (reminder == null) return false;
+
         await _dbContext.SaveChangesAsync(cancellationToken);
 
         return true;

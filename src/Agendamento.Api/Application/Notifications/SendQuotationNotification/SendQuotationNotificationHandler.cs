@@ -1,4 +1,3 @@
-using Agendamento.Api.Application.Tenancy;
 using Agendamento.Api.Domain.Notifications;
 using Agendamento.Api.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
@@ -8,12 +7,12 @@ namespace Agendamento.Api.Application.Notifications.SendQuotationNotification;
 public class SendQuotationNotificationHandler
 {
     private readonly AgendamentoDbContext _dbContext;
-    private readonly ITenantContext _tenantContext;
+    private readonly INotificationService _notifications;
 
-    public SendQuotationNotificationHandler(AgendamentoDbContext dbContext, ITenantContext tenantContext)
+    public SendQuotationNotificationHandler(AgendamentoDbContext dbContext, INotificationService notifications)
     {
         _dbContext = dbContext;
-        _tenantContext = tenantContext;
+        _notifications = notifications;
     }
 
     public async Task<bool> HandleAsync(SendQuotationNotificationCommand request, CancellationToken cancellationToken = default)
@@ -49,13 +48,12 @@ public class SendQuotationNotificationHandler
 
         var content = template.Render();
 
-        var notification = NotificationMessage.Create(
-            _tenantContext.TenantId,
+        await _notifications.QueueForCustomerAsync(
+            quotation.CustomerId,
             recipient!,
             channel,
-            content);
+            content, cancellationToken);
 
-        _dbContext.NotificationMessages.Add(notification);
         await _dbContext.SaveChangesAsync(cancellationToken);
 
         return true;

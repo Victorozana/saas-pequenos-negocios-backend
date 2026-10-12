@@ -36,7 +36,7 @@ public class GetTenantSubscriptionHandler
             .FirstOrDefaultAsync(s => s.TenantId == _tenantContext.TenantId, cancellationToken);
 
         if (subscription == null)
-            throw new Exception("Tenant não possui assinatura ativa."); // Idealmente usar uma exceção de negócio NotFoundException
+            throw new SubscriptionNotFoundException("Tenant não possui assinatura ativa.");
 
         return new TenantSubscriptionDto(
             subscription.Id,

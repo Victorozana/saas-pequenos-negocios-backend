@@ -15,12 +15,13 @@ public static class NotificationEndpoints
             .RequireAuthorization()
             .WithTags("Notifications");
 
-        group.MapGet("/", async ([FromServices] AgendamentoDbContext dbContext, [FromServices] ITenantContext tenantContext, CancellationToken cancellationToken) =>
+        group.MapGet("/", async ([FromQuery] Guid? customerId, [FromServices] AgendamentoDbContext dbContext, CancellationToken cancellationToken) =>
         {
             var notifications = await dbContext.NotificationMessages
+                .Where(n => customerId == null || n.CustomerId == customerId)
                 .OrderByDescending(n => n.CreatedAt)
                 .Select(n => new NotificationHistoryResponse(n.Id, n.Recipient, n.Channel.ToString(),
-                    n.Status.ToString(), n.CreatedAt, n.SentAt))
+                    n.Status.ToString(), n.CreatedAt, n.SentAt, n.CustomerId, n.Audience.ToString()))
                 .ToListAsync(cancellationToken);
 
             return Results.Ok(notifications);
@@ -32,24 +33,32 @@ public static class NotificationEndpoints
         group.MapPost("/send-manual", async (
             [FromBody] SendManualNotificationRequest request,
             [FromServices] AgendamentoDbContext dbContext,
-            [FromServices] ITenantContext tenantContext,
+            [FromServices] Agendamento.Api.Application.Notifications.INotificationService notifications,
             CancellationToken cancellationToken) =>
         {
-            var channel = Enum.Parse<NotificationChannel>(request.Channel, ignoreCase: true);
+            if (!Enum.TryParse<NotificationChannel>(request.Channel, true, out var channel) || !Enum.IsDefined(channel)
+                || string.IsNullOrWhiteSpace(request.Recipient) || request.Recipient.Length > 255 || string.IsNullOrWhiteSpace(request.Content))
+                return Results.Problem(statusCode: 400, title: "Informe canal, destinatário e conteúdo válidos.");
 
-            var notification = NotificationMessage.Create(
-                tenantContext.TenantId,
-                request.Recipient,
-                channel,
-                request.Content);
+            NotificationMessage notification;
+            try
+            {
+                notification = request.CustomerId.HasValue
+                    ? await notifications.QueueForCustomerAsync(request.CustomerId.Value, request.Recipient, channel, request.Content, cancellationToken)
+                    : notifications.QueueStandalone(request.Recipient, channel, request.Content);
+            }
+            catch (ArgumentException)
+            {
+                return Results.Problem(statusCode: 400, title: "Cliente não encontrado na empresa atual.");
+            }
 
-            dbContext.NotificationMessages.Add(notification);
             await dbContext.SaveChangesAsync(cancellationToken);
 
             return Results.Ok(new NotificationQueuedResponse("Notificação enfileirada com sucesso", notification.Id));
         })
         .WithName("SendManualNotification")
         .Produces<NotificationQueuedResponse>()
+        .ProducesProblem(400)
         .WithSummary("Enfileira uma notificação manual avulsa");
 
         group.MapPost("/schedule-reminder", async (
@@ -59,12 +68,13 @@ public static class NotificationEndpoints
         {
             var success = await handler.HandleAsync(request, cancellationToken);
             if (!success)
-                return Results.BadRequest(new { Message = "Não foi possível agendar o lembrete. Verifique se o agendamento existe e se o cliente possui um telefone válido." });
+                return Results.Problem(statusCode: 400, title: "Não foi possível agendar o lembrete. Verifique se o agendamento existe e se o cliente possui um telefone válido.");
 
             return Results.Ok(new MessageResponse("Lembrete enfileirado com sucesso"));
         })
         .WithName("ScheduleReminder")
         .Produces<MessageResponse>()
+        .ProducesProblem(400)
         .WithSummary("Enfileira um lembrete para agendamento");
 
         group.MapPost("/send-quotation-notification", async (
@@ -74,16 +84,17 @@ public static class NotificationEndpoints
         {
             var success = await handler.HandleAsync(request, cancellationToken);
             if (!success)
-                return Results.BadRequest(new { Message = "Não foi possível enviar a notificação do orçamento. Verifique se o orçamento existe e se o cliente possui um telefone ou e-mail válido." });
+                return Results.Problem(statusCode: 400, title: "Não foi possível enviar a notificação do orçamento. Verifique se o orçamento existe e se o cliente possui um telefone ou e-mail válido.");
 
             return Results.Ok(new MessageResponse("Notificação de orçamento enfileirada com sucesso"));
         })
         .WithName("SendQuotationNotification")
         .Produces<MessageResponse>()
+        .ProducesProblem(400)
         .WithSummary("Enfileira uma notificação de orçamento emitido");
     }
 }
 
-public record SendManualNotificationRequest(string Recipient, string Channel, string Content);
-public record NotificationHistoryResponse(Guid Id, string Recipient, string Channel, string Status, DateTime CreatedAt, DateTime? SentAt);
+public record SendManualNotificationRequest(string Recipient, string Channel, string Content, Guid? CustomerId = null);
+public record NotificationHistoryResponse(Guid Id, string Recipient, string Channel, string Status, DateTime CreatedAt, DateTime? SentAt, Guid? CustomerId, string Audience);
 public record NotificationQueuedResponse(string Message, Guid NotificationId);

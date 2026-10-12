@@ -1,3 +1,5 @@
+using Agendamento.Api.Infrastructure.Notifications;
+using Microsoft.Extensions.Logging.Abstractions;
 using System;
 using System.Linq;
 using System.Threading;
@@ -185,7 +187,7 @@ public class WorkOrderApiTests
         db.Appointments.Add(existingAppointment);
         await db.SaveChangesAsync();
 
-        var handler = new CreateAppointmentHandler(db, new DummyTenantContext(tenantId), uow);
+        var handler = new CreateAppointmentHandler(db, new DummyTenantContext(tenantId), uow, new NotificationService(db, new DummyTenantContext(tenantId), new MockCommunicationGateway(NullLogger<MockCommunicationGateway>.Instance), NullLogger<NotificationService>.Instance));
         
         var command = new CreateAppointmentCommand
         {

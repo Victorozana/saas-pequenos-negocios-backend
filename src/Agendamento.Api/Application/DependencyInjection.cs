@@ -27,6 +27,7 @@ public static class DependencyInjection
 
         // Quotations
         services.AddTransient<Agendamento.Api.Application.Quotations.CreateQuotation.CreateQuotationHandler>();
+        services.AddTransient<Agendamento.Api.Application.Quotations.UpdateQuotation.UpdateQuotationHandler>();
         services.AddTransient<Agendamento.Api.Application.Quotations.GetQuotations.GetQuotationsHandler>();
         services.AddTransient<Agendamento.Api.Application.Quotations.GetQuotations.GetQuotationByIdHandler>();
         services.AddTransient<Agendamento.Api.Application.Quotations.UpdateQuotationStatus.UpdateQuotationStatusHandler>();

@@ -68,6 +68,36 @@ public class EndpointMetadataTests : IClassFixture<WebApplicationFactory<Program
                 var hasBearer = operation.TryGetProperty("security", out var security) &&
                     security.EnumerateArray().Any(s => s.TryGetProperty("Bearer", out _));
                 Assert.Equal(secured, hasBearer);
+                if (secured)
+                {
+                    var challenge = operation.GetProperty("responses").GetProperty("401");
+                    Assert.False(challenge.TryGetProperty("content", out _));
+                    Assert.True(challenge.GetProperty("headers").TryGetProperty("WWW-Authenticate", out _));
+                }
+            }
+        }
+    }
+
+    [Fact(DisplayName = "Contrato transversal preserva 204 vazios e tipa todas as mídias de resposta @spec:AC-037")]
+    public async Task Response_media_and_empty_statuses_are_explicit()
+    {
+        using var client = _factory.CreateClient();
+        using var document = JsonDocument.Parse(await client.GetStringAsync("/openapi/v1.json"));
+        foreach (var path in document.RootElement.GetProperty("paths").EnumerateObject())
+        foreach (var operation in path.Value.EnumerateObject())
+        {
+            if (!operation.Value.TryGetProperty("responses", out var responses)) continue;
+            foreach (var response in responses.EnumerateObject())
+            {
+                if (response.Name == "204") Assert.False(response.Value.TryGetProperty("content", out _));
+                if (!response.Value.TryGetProperty("content", out var content)) continue;
+                foreach (var media in content.EnumerateObject())
+                    Assert.True(media.Value.TryGetProperty("schema", out _), $"Schema ausente: {operation.Name} {path.Name} {response.Name} {media.Name}");
+                if (content.TryGetProperty("application/problem+json", out var problem))
+                {
+                    Assert.Single(content.EnumerateObject());
+                    Assert.Equal("#/components/schemas/ProblemDetails", problem.GetProperty("schema").GetProperty("$ref").GetString());
+                }
             }
         }
     }

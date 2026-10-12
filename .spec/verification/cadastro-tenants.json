@@ -1,15 +1,15 @@
 {
   "feature": "cadastro-tenants",
-  "timestamp": "2026-10-12T15:28:33.156Z",
-  "gitRev": "fb5836d",
+  "timestamp": "2026-10-12T21:05:00.372Z",
+  "gitRev": "96875bb",
   "command": "powershell -ExecutionPolicy Bypass -File scripts/verify-spec.ps1",
   "reporter": "jest-json",
   "exitCode": 0,
-  "testsParsed": 198,
+  "testsParsed": 250,
   "results": {
     "AC-014": {
       "status": "pass",
-      "testName": "CNPJ inválido é rejeitado localmente @spec:AC-014(invalidCnpj: \"123\") CNPJ inválido é rejeitado localmente @spec:AC-014(invalidCnpj: \"123\")",
+      "testName": "CNPJ inválido é rejeitado localmente @spec:AC-014(invalidCnpj: \"11.111.111/1111-11\") CNPJ inválido é rejeitado localmente @spec:AC-014(invalidCnpj: \"11.111.111/1111-11\")",
       "method": "jest-json"
     },
     "AC-015": {
@@ -24,7 +24,7 @@
     },
     "AC-017": {
       "status": "pass",
-      "testName": "Empresa ausente é distinguida de CNPJ inválido @spec:AC-017 Empresa ausente é distinguida de CNPJ inválido @spec:AC-017",
+      "testName": "Gateway consulta URL exata e mapeia todos os dados públicos @spec:AC-017 Gateway consulta URL exata e mapeia todos os dados públicos @spec:AC-017",
       "method": "jest-json"
     },
     "AC-018": {
@@ -49,7 +49,7 @@
     },
     "AC-022": {
       "status": "pass",
-      "testName": "CNPJ é único globalmente @spec:AC-022 CNPJ é único globalmente @spec:AC-022",
+      "testName": "CNPJ é único globalmente (normalização consistente) @spec:AC-022 CNPJ é único globalmente (normalização consistente) @spec:AC-022",
       "method": "jest-json"
     },
     "AC-023": {
@@ -83,13 +83,13 @@
       "status": "pass",
       "testName": "Token de e-mail é armazenado somente como digest e expira em 24 horas @spec:AC-009 @principle:P-005 Token de e-mail é armazenado somente como digest e expira em 24 horas @spec:AC-009 @principle:P-005"
     },
-    "P-004": {
-      "status": "pass",
-      "testName": "Papel restrito impede SQL direto entre tenants em todas as tabelas @spec:AC-033 @principle:P-004 Papel restrito impede SQL direto entre tenants em todas as tabelas @spec:AC-033 @principle:P-004"
-    },
     "P-003": {
       "status": "pass",
       "testName": "Tenant externo em header ou query não substitui a sessão @spec:AC-029 @principle:P-003(useQuery: False) Tenant externo em header ou query não substitui a sessão @spec:AC-029 @principle:P-003(useQuery: False)"
+    },
+    "P-004": {
+      "status": "pass",
+      "testName": "Papel restrito impede SQL direto entre tenants em todas as tabelas @spec:AC-033 @principle:P-004 Papel restrito impede SQL direto entre tenants em todas as tabelas @spec:AC-033 @principle:P-004"
     }
   }
 }

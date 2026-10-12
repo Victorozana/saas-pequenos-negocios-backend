@@ -140,3 +140,206 @@ A migration RLS segue NÃO aplicada a agendamento_local. Não foram alterados ca
 O usuário autorizou explicitamente commit e push das alterações desta retomada nos dois repositórios. Obter os hashes finais por git log -1 em cada repositório; os hashes fb5836d/37cd243 acima são a base anterior às alterações OpenAPI.
 
 Auditoria final .spec/audit-openapi.json: exit 1, cinco erros, zero avisos, 90/94 critérios com prova granular. Próxima prioridade recomendada: implementar o serviço centralizado de notificações (AC-097) e o vínculo do histórico ao cliente (AC-098), com isolamento por tenant e preservação das provas de outbox/retries. Depois, implementar a preferência por cliente (AC-207), definir com o usuário o disparo executável de fatura vencida (US-052) e resolver edição de orçamento pendente (AC-206/T-103). T-023 permanece pendente pelas divergências reais documentadas. Não considerar a auditoria aprovada nem iniciar telas de financeiro/equipe ou e-mail real antes da base auditada.
+
+## Retomada de notificações — 12/10/2026
+
+Base backend main/96875bb e frontend master/ca1d485; execução manual sequencial, modelo/esforço
+atuais, sem agentes/executores de modelos. Alterações desta retomada permanecem locais,
+sem commit/push/deploy; obj e histórico de sinais preservados.
+
+AC-097/AC-098 implementados e provados. INotificationService centraliza validação/staging e
+processamento da outbox; ICommunicationGateway continua adaptador substituível. Agenda,
+lembretes, orçamento, envio manual e convite usam o serviço. Queue não salva nem envia;
+o caso de uso confirma no mesmo DbContext. Worker mantém lote 50, polling 30s, elegibilidade,
+retries de 2/4 minutos e limite de três tentativas. Envio continua simulado.
+
+NotificationMessage possui CustomerId e Audience. Mensagens de cliente exigem vínculo;
+cliente externo/inexistente é rejeitado antes de staging e pela FK composta tenant/cliente.
+Avulsa sem cliente é Standalone, convite é System: ambos ficam no histórico geral do tenant,
+sem fingir interação de cliente. Legado é LegacyUnlinked, preservando todos os campos antigos,
+sem inferir cliente por telefone/e-mail. Ver design/spec e .spec/revisao-notificacoes.md.
+
+Migration nova 20261012154514_AddNotificationCustomerHistory: CHECK, FK composta com Restrict,
+índice iniciado pelo tenant e backfill conservador. Provada em duas bases temporárias
+exclusivas a partir de RLS, comparando todos os campos antigos e exercitando credenciais
+restritas no HTTP/outbox/histórico. Nem RLS nem esta migration foram aplicadas a
+agendamento_local. Não alterados cadastros ou segredos; ler POSTGRESQL_RLS.md antes da API.
+
+Contrato: histórico aceita filtro customerId e retorna CustomerId/Audience; manual aceita
+CustomerId opcional sem fallback se inválido. OpenAPI e schema frontend regenerados.
+T-023 permanece pendente pelas divergências documentadas anteriormente.
+
+T-097/T-098/T-100 concluídas após verify exit 0; plano sequencial regenerado, executor não
+iniciado e modelos históricos sugeridos não adotados. As 15 features revalidadas com 207
+resultados finais por execução: 201 PASS, zero falhas, seis skips antigos. Frontend:
+typecheck e suíte integral de 209 testes/45 arquivos PASS. EF sem pending model changes;
+git diff --check dos dois repositórios passou.
+
+Build Release voltou a falhar intermitentemente durante uma renovação; agenda tinha critérios
+PASS, mas runner exit 1 por AC-001. CLI do motor retornou 0 por considerar apenas critérios
+da feature. Isso foi detectado e interrompido; repetição passou sem alterar testes/asserts.
+A causa permanece sem diagnóstico definitivo. Registro falho e limitação do TRX substituído
+estão documentados na revisão; retomada exige record.exitCode=0 e preserva TRX por feature.
+Logs em .local-verification/notifications/.
+
+Relatório final: .spec/audit-notificacoes.json. Não declarar auditoria aprovada. Próximas
+pendências continuam AC-207/T-104 (preferência por cliente), US-052 (definir com o usuário
+regra executável de fatura vencida) e AC-206/T-103 (edição de orçamento pendente).
+Financeiro/equipe frontend e entrega real de e-mail seguem após resolver requisitos e gate.
+
+Gate final desta etapa: exit 1, três erros, zero avisos, 92/94 critérios com prova granular.
+Achados somente de AC-206, US-052 e AC-207. AC-097/AC-098 possuem provas. Relatório JSON
+consultável em .spec/audit-notificacoes.json; saída bruta e logs em .local-verification/notifications/.
+O HTML regenerado do plano teve apenas espaços finais normalizados para passar diff --check.
+
+## Correção da inicialização local — 12/10/2026
+
+Usuário pediu corrigir falha e enviou o comando dotnet run do perfil http: build passava, mas
+DbSeeder caía porque PostgreSqlAdministrative não estava configurada. A operação local descrita
+como pendente nas seções anteriores foi concluída nesta correção: backup custom preservado,
+restauração exclusiva validada com integridade das 21 tabelas, aplicação das duas migrations
+RLS/notificações a agendamento_local e dois logins restritos separados em segredos .NET.
+Credencial anterior preservada como PostgreSqlMigration. Cadastros não foram alterados.
+
+API iniciou com o comando original, health/OpenAPI 200 e consulta EF com login normal restrito
+PASS. Worker atualizou mensagens pendentes com envio simulado, sem envio real. Cópia temporária
+removida; backup em .local-verification/runtime-repair/agendamento_local-before-rls.dump.
+Execução oculta de validação encerrada para liberar porta 5050. Frontend npm run build PASS.
+
+scripts/configurar-banco-local.ps1 passa a gravar PostgreSqlMigration, preservando conexões de
+runtime. Não remover as proteções do TenantConnectionInterceptor para solucionar configuração.
+Avisos ValueComparer não causavam a queda; intermitência histórica do teste de build continua
+separada. Alterações anteriores, obj/sinais e schema gerado preservados; sem commit/push/deploy.
+
+## Preferência de cliente e edição de orçamento — 12/10/2026
+
+Retomada manual em backend main/96875bb e frontend master/ca1d485. Agentes auxiliares
+autorizados pelo usuário, sem alteração de modelo/esforço. Todas as mudanças anteriores,
+obj, schema, sinais e relatórios preservados; nenhuma operação de commit/push/deploy.
+
+AC-207/T-104 implementado: AutomaticRemindersEnabled persistido em Customer, default true
+no cadastro e para registros existentes, update nullable preservando escolha omitida, lista
+e detalhe devolvendo preferência. Checkbox no frontend. CPF mascarado/PreserveDocument e
+substituição explícita de CPF preservados. QueueAutomaticReminderAsync valida tenant/cliente
+e opt-out antes da fila nos dois produtores de agenda; manual/orçamento/System permanecem.
+Histórico já enfileirado não é alterado. Sete novas provas HTTP/serviço/PostgreSQL passaram.
+
+Migration 20261012174238_AddCustomerAutomaticReminderPreference validada apenas em base
+temporária exclusiva: compara todos os campos anteriores, default/backfill, persistência
+e RLS. NÃO aplicada a agendamento_local; a versão nova requer essa coluna antes de iniciar
+contra o banco de trabalho. API preexistente PID 27004/porta 5050 foi preservada. O rollout
+RLS/histórico documentado na seção anterior continua concluído, independente desta migration.
+
+AC-206/T-103 implementado: PUT de conteúdo completo apenas Pending; valida antes de alterar,
+substitui itens e recalcula total/entrada, protege tenant/cliente/catálogo e compartilha lock
+com aprovação. Estados finais permanecem imutáveis. Seis provas HTTP/PostgreSQL, incluindo
+espera real de lock na edição concorrente, passaram. Frontend oferece edição só Pending,
+carrega detalhes e preserva código, data de emissão, pagamento e entrada.
+
+US-052 definido pelo usuário: disparo automático diário para conta vencida com saldo aberto,
+um aviso por conta por dia até quitar ou cancelar. Q-018/Q-019 respondidos, AC-208 criado,
+T-105 PENDENTE. Definição não é implementação nem prova. Próxima prioridade é T-105, com
+deduplicação durável por tenant/conta/dia, data controlável, opt-out e provas em bases exclusivas.
+Não avançar para financeiro/equipe frontend ou e-mail real enquanto o gate continuar pendente.
+T-023 e demais tarefas históricas não foram marcadas por aparência.
+
+Duas falhas intermediárias preservadas: MSB3026 em recursos comuns de testhost no OutDir
+compartilhado de SolutionBuildTests (projetos agora serializados mantendo todas as asserções),
+e PID diferente em AC-034 causado por ClearAllPools de outro teste (cleanup agora só ClearPool
+das bases exclusivas da própria fixture). Não atribuir automaticamente essa causa às falhas
+históricas sem diagnóstico. Evidências em .local-verification/customer-reminders/failed-*.
+
+As 15 features foram revalidadas após a versão final: motor=0/runner=0 em todas, 220 resultados
+por execução (214 PASS, zero falhas e seis skips antigos). TRX/JSON separados por feature.
+Frontend final: 221 testes em 47 arquivos, typecheck, build e ESLint dos arquivos alterados PASS.
+OpenAPI/schema regenerados; EF sem pending model changes e diff --check dos dois repos PASS.
+Planos regenerados sem executar headless/modelos históricos. Revisão detalhada em
+.spec/revisao-preferencia-clientes.md; veredito final em .spec/audit-preferencia-clientes.json.
+
+## Aviso automático diário de conta vencida — 12/10/2026
+
+AC-208/T-105 implementado e provado. Worker dedicado inicia automaticamente e reconcilia
+a cada minuto, sem horário operacional fixo. TimeProvider controla o dia UTC seguindo o
+calendário financeiro existente. INotificationService valida conta/cliente/preferência,
+saldo e vencimento e confirma somente a intenção na outbox. FOR UPDATE por conta e índice
+único tenant/conta/dia impedem duplicação entre jobs concorrentes e reinícios. Retries mantêm
+o mesmo registro; no próximo dia a conta ainda elegível recebe outra intenção.
+
+Quatro provas PostgreSQL novas PASS: elegibilidade/partial/zero/hoje/futuro/opt-out,
+repetição, reinício, dia seguinte, quitação/cancelamento, outra conta/empresa, worker real,
+concorrência observada com dois waiters, índice único pelo nome, FKs externas rejeitadas,
+upgrade preservando campos históricos e privilégios administrativos mínimos.
+Evidência focada final em .local-verification/overdue-reminders/proofs-20261012-162507/.
+Falhas intermediárias preservadas: fixture de pagamentos/status e privilégio administrativo
+ausente nos recebíveis (corrigido na migration, sem enfraquecer testes).
+
+Migration adicional 20261012191900_AddDailyReceivableReminderDeduplication validada SOMENTE
+em bases temporárias exclusivas. Permite leitura e FOR UPDATE pelo papel de sistema, mas
+policy WITH CHECK false rejeita gravações financeiras. Login normal mantém RLS/guarda.
+Esta migration e AddCustomerAutomaticReminderPreference NÃO foram aplicadas a agendamento_local;
+ambas são necessárias antes de iniciar a versão nova. API PID 27004/porta 5050 preservada.
+Sem mudança de segredos/cadastros/banco de trabalho, commit/push/deploy ou entrega real.
+
+Contrato HTTP permaneceu igual; snapshot OpenAPI PASS no verify completo. Frontend/schema
+e mudanças anteriores preservados. Build Release zero avisos/erros e EF sem pending changes.
+As 15 features finais tiveram motor=0/runner=0, 224 resultados por execução (218 PASS, zero
+falhas e seis skips antigos), com TRX/JSON/log separados em .local-verification/daily-reminders/
+final/<feature>/. Gate global exit 0: zero erros/avisos e 95/95 critérios provados.
+Relatório .spec/audit-aviso-diario.json; revisão .spec/revisao-aviso-diario.md.
+T-105 concluída após verify; plano regenerado sem executar headless/modelos históricos.
+
+T-023 revisada em .spec/revisao-t023-diario.md: divergências reais de erros, respostas vazias,
+metadata ausente e downloads PDF/CSV continuam pendentes. O gate mecânico não certifica esses
+casos ainda sem provas abrangentes. Não encerrar T-023/tarefas históricas por aparência,
+nem avançar para telas financeiro/equipe ou e-mail real nesta etapa.
+
+## Retomada do contrato HTTP/OpenAPI — 12/10/2026
+
+T-023 executada manualmente no workspace atual, mantendo main/96875bb e master/ca1d485,
+modelo/esforço e todas as alterações locais anteriores. Agentes auxiliares herdaram a mesma
+configuração. Nenhum commit/push/deploy, executor headless de modelo ou rollout de migrations.
+
+Revisão cobre todas as 50 operações (incluindo /health). Erros de clientes, notificações,
+orçamentos, agenda, serviços e OS têm ProblemDetails seguros coerentes com status/mídia;
+401 de challenge JWT é vazio e documenta WWW-Authenticate sem detalhes internos. 403 de
+permissão é ProblemDetails real. 204/404 e pagamentos 200 intencionalmente vazios não têm
+content no contrato. Binding 400/415 e erro inesperado 500 têm corpo produzido explicitamente
+pelo runtime, inclusive em Development; transformer não inventa corpo para erros vazios.
+CNPJ tem 429 real, confirmação de e-mail 400 documentado e sessão 503 seguro em indisponibilidade.
+Assinatura ausente e plano inexistente têm 404 seguro; webhook inválido 400 e sucesso 200 vazio.
+Itens null de orçamento são recusados antes de mutações; orçamento salvo permanece intacto.
+
+PDF/CSV possuem mídia, schema de arquivo e headers de download, com bytes/nome/conteúdo
+real comprovados por HTTP. PdfPig 0.1.16 é dependência somente de testes. A prova semântica
+detectou defeito real do renderer instalado: 48/400 PDFs concorrentes tinham mapas ToUnicode
+corrompidos; 400 sequenciais passavam e pypdf confirmou os caracteres NUL. Geração nativa
+agora usa SemaphoreSlim estático, compartilhado entre instâncias, espera cancelável e finally.
+400 gerações concorrentes corrigidas passaram, sem corrupção; regressão de 24 downloads HTTP
+concorrentes distintos verifica documento/cliente/serviço/total, bytes, headers e nomes.
+Limitação deliberada: cada processo renderiza um PDF de cada vez; layout e dados não mudaram.
+
+OpenAPI exportado por host InMemory Release/UseAppHost=false e schema frontend regenerado
+pelo arquivo. Frontend de conversão consome title ProblemDetails, aceita 401 vazio e valida
+workOrderId; atualização de status OS serializa enum numérico conforme schema. Documentação
+instalada Next.js 16.2.11 lida antes de alterações. Frontend: 225 testes em 48 arquivos PASS,
+typecheck, build e lint dos arquivos editados PASS; typecheck renovado após a exportação final.
+
+Provas e falhas intermediárias preservadas em .local-verification/t023/ e t023-pdf-*.
+O audit intermediário saiu 0 mesmo com um runner=1: NÃO foi aceito como certificação.
+Coletor de testes agora registra stdout de cada suíte, usa builds exclusivos e não aborta
+o JSON granular atual por stderr nativo de teste falho no Windows PowerShell. Renovação final
+em .local-verification/t023/render-certified/<feature>/; cada execução exige motor=0/runner=0.
+Detalhes e estado final na revisão .spec/revisao-t023.md e no relatório .spec/audit-t023.json
+do fechamento. T-023 concluída: 15 features com motor=0/record.exitCode=0, 250 resultados
+por execução, 244 PASS, seis skips antigos e zero falhas. Audit --ci exit 0, zero erros/
+avisos, 95/95 critérios provados. Regeneração sequencial recusada pelo motor porque todas
+as tarefas da feature já estão concluídas; planos/executor anteriores preservados como
+históricos obsoletos, sem execução headless ou adoção de modelos históricos.
+
+Banco/cadastros/segredos de trabalho e backup runtime-repair/agendamento_local-before-rls.dump
+preservados. Nenhum comando encerrou ou reiniciou a API do usuário; na conferência final,
+PID 27004 não estava ativo e não havia listener TCP em 5050. Causa não determinada.
+AddCustomerAutomaticReminderPreference
+e 20261012191900_AddDailyReceivableReminderDeduplication NÃO foram aplicadas a agendamento_local;
+ambas são necessárias antes de iniciar versão nova nesse banco. Sem entrega real de e-mail/
+WhatsApp e sem início de telas financeiro/equipe. Tarefas históricas restantes continuam pendentes.

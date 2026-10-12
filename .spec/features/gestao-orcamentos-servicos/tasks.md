@@ -72,15 +72,15 @@
 - Arquivos: tests/Agendamento.UnitTests/Quotations/QuotationDomainTests.cs, tests/Agendamento.IntegrationTests/Quotations/QuotationApiTests.cs
 - Regra: Validar isolamento RLS entre tenants, cálculos de total/sinal, transições de status e integridade da geração do PDF (`application/pdf`).
 
-## T-103 — Implementar e provar edição de orçamento pendente [pendente]
+## T-103 — Implementar e provar edição de orçamento pendente [concluida]
 
 - Refs: US-045, AC-206
-- Arquivos: src/Agendamento.Api/Features/Quotations/QuotationEndpoints.cs, src/Agendamento.Api/Domain/Quotations/Quotation.cs, tests/Agendamento.IntegrationTests/Features/QuotationTests.cs
-- Notas: Decisão de 12/10/2026; verificar contrato e persistência, sem permitir edição após os estados finais.
+- Arquivos: src/Agendamento.Api/Features/Quotations/QuotationEndpoints.cs, src/Agendamento.Api/Domain/Quotations/Quotation.cs, src/Agendamento.Api/Application/Quotations/UpdateQuotation/UpdateQuotationCommand.cs, src/Agendamento.Api/Application/Quotations/UpdateQuotation/UpdateQuotationHandler.cs, src/Agendamento.Api/Application/DependencyInjection.cs, tests/Agendamento.IntegrationTests/Quotations/QuotationEditHttpTests.cs, tests/Agendamento.IntegrationTests/Quotations/QuotationEditPostgreSqlTests.cs
+- Notas: PUT edita conteúdo completo apenas enquanto Pending, valida antes de modificar, substitui itens e recalcula totais/sinal. PostgreSQL usa transação e bloqueio de linha compartilhado com aprovação. Seis testes focados passaram em 12/10/2026, incluindo persistência PostgreSQL em base exclusiva, orçamento enviado, isolamento, estados finais imutáveis e edição concorrente com aprovação; prova granular da feature deve ser regenerada pelo verify.
 
 ## Revisão de provas — 12/10/2026
 
 - T-031 a T-037 recuperadas do commit f326f63, inicialmente pendentes para revisão de cobertura completa.
 - QuotationItem não possui arquivo de configuração separado; o mapeamento existente está em QuotationConfiguration/AgendamentoDbContext.
 - T-088 a T-092 permanecem pendentes até revisão de abrangência: o teste AC-093 cobre orçamento convertido, mas não todas as combinações de aprovado/rejeitado; a aprovação repetida também é idempotente no fluxo financeiro.
-- Edição de orçamento pendente está em T-103; confirmação do usuário não é prova de implementação.
+- Edição de orçamento pendente está em T-103, com testes HTTP e PostgreSQL anotados para AC-206; confirmação do usuário não substitui a prova gerada pelo verify.

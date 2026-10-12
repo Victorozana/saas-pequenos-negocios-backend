@@ -10,6 +10,46 @@
     }
   ],
   "paths": {
+    "/health": {
+      "get": {
+        "tags": [
+          "Health"
+        ],
+        "operationId": "HealthCheck",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Falha inesperada: resposta ProblemDetails segura, sem detalhes internos.",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/v1/auth/email-verifications": {
       "post": {
         "tags": [
@@ -29,6 +69,36 @@
         "responses": {
           "204": {
             "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Falha inesperada: resposta ProblemDetails segura, sem detalhes internos.",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "Tipo de conte\u00FAdo n\u00E3o suportado.",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
           }
         }
       }
@@ -99,6 +169,26 @@
                 }
               }
             }
+          },
+          "500": {
+            "description": "Falha inesperada: resposta ProblemDetails segura, sem detalhes internos.",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "Tipo de conte\u00FAdo n\u00E3o suportado.",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
           }
         }
       }
@@ -142,6 +232,26 @@
           },
           "409": {
             "description": "Conflict",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Falha inesperada: resposta ProblemDetails segura, sem detalhes internos.",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "Tipo de conte\u00FAdo n\u00E3o suportado.",
             "content": {
               "application/problem\u002Bjson": {
                 "schema": {
@@ -229,6 +339,16 @@
                 }
               }
             }
+          },
+          "500": {
+            "description": "Falha inesperada: resposta ProblemDetails segura, sem detalhes internos.",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
           }
         }
       }
@@ -289,6 +409,26 @@
                 }
               }
             }
+          },
+          "500": {
+            "description": "Falha inesperada: resposta ProblemDetails segura, sem detalhes internos.",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "Tipo de conte\u00FAdo n\u00E3o suportado.",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
           }
         }
       }
@@ -311,11 +451,12 @@
             }
           },
           "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/problem\u002Bjson": {
+            "description": "Sess\u00E3o ausente, inv\u00E1lida ou revogada. Resposta sem corpo.",
+            "headers": {
+              "WWW-Authenticate": {
+                "description": "Desafio de autentica\u00E7\u00E3o Bearer.",
                 "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
+                  "type": "string"
                 }
               }
             }
@@ -331,7 +472,10 @@
             }
           },
           "404": {
-            "description": "Not Found",
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Falha inesperada: resposta ProblemDetails segura, sem detalhes internos.",
             "content": {
               "application/problem\u002Bjson": {
                 "schema": {
@@ -361,6 +505,27 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/CurrentTenantResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Falha inesperada: resposta ProblemDetails segura, sem detalhes internos.",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Sess\u00E3o ausente, inv\u00E1lida ou revogada. Resposta sem corpo.",
+            "headers": {
+              "WWW-Authenticate": {
+                "description": "Desafio de autentica\u00E7\u00E3o Bearer.",
+                "schema": {
+                  "type": "string"
                 }
               }
             }
@@ -401,8 +566,8 @@
               }
             }
           },
-          "401": {
-            "description": "Unauthorized",
+          "400": {
+            "description": "Bad Request",
             "content": {
               "application/problem\u002Bjson": {
                 "schema": {
@@ -411,8 +576,39 @@
               }
             }
           },
+          "401": {
+            "description": "Sess\u00E3o ausente, inv\u00E1lida ou revogada. Resposta sem corpo.",
+            "headers": {
+              "WWW-Authenticate": {
+                "description": "Desafio de autentica\u00E7\u00E3o Bearer.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
           "403": {
             "description": "Forbidden",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Falha inesperada: resposta ProblemDetails segura, sem detalhes internos.",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "Tipo de conte\u00FAdo n\u00E3o suportado.",
             "content": {
               "application/problem\u002Bjson": {
                 "schema": {
@@ -471,7 +667,18 @@
             }
           },
           "401": {
-            "description": "Unauthorized",
+            "description": "Sess\u00E3o ausente, inv\u00E1lida ou revogada. Resposta sem corpo.",
+            "headers": {
+              "WWW-Authenticate": {
+                "description": "Desafio de autentica\u00E7\u00E3o Bearer.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
             "content": {
               "application/problem\u002Bjson": {
                 "schema": {
@@ -480,8 +687,18 @@
               }
             }
           },
-          "403": {
-            "description": "Forbidden",
+          "500": {
+            "description": "Falha inesperada: resposta ProblemDetails segura, sem detalhes internos.",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Dados da requisi\u00E7\u00E3o inv\u00E1lidos.",
             "content": {
               "application/problem\u002Bjson": {
                 "schema": {
@@ -527,8 +744,14 @@
           "required": true
         },
         "responses": {
-          "401": {
-            "description": "Unauthorized",
+          "204": {
+            "description": "No Content"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "400": {
+            "description": "Bad Request",
             "content": {
               "application/problem\u002Bjson": {
                 "schema": {
@@ -537,8 +760,39 @@
               }
             }
           },
+          "401": {
+            "description": "Sess\u00E3o ausente, inv\u00E1lida ou revogada. Resposta sem corpo.",
+            "headers": {
+              "WWW-Authenticate": {
+                "description": "Desafio de autentica\u00E7\u00E3o Bearer.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
           "403": {
             "description": "Forbidden",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Falha inesperada: resposta ProblemDetails segura, sem detalhes internos.",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "Tipo de conte\u00FAdo n\u00E3o suportado.",
             "content": {
               "application/problem\u002Bjson": {
                 "schema": {
@@ -582,8 +836,22 @@
               }
             }
           },
+          "404": {
+            "description": "Not Found"
+          },
           "401": {
-            "description": "Unauthorized",
+            "description": "Sess\u00E3o ausente, inv\u00E1lida ou revogada. Resposta sem corpo.",
+            "headers": {
+              "WWW-Authenticate": {
+                "description": "Desafio de autentica\u00E7\u00E3o Bearer.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
             "content": {
               "application/problem\u002Bjson": {
                 "schema": {
@@ -592,8 +860,8 @@
               }
             }
           },
-          "403": {
-            "description": "Forbidden",
+          "500": {
+            "description": "Falha inesperada: resposta ProblemDetails segura, sem detalhes internos.",
             "content": {
               "application/problem\u002Bjson": {
                 "schema": {
@@ -628,11 +896,12 @@
         },
         "responses": {
           "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/problem\u002Bjson": {
+            "description": "Sess\u00E3o ausente, inv\u00E1lida ou revogada. Resposta sem corpo.",
+            "headers": {
+              "WWW-Authenticate": {
+                "description": "Desafio de autentica\u00E7\u00E3o Bearer.",
                 "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
+                  "type": "string"
                 }
               }
             }
@@ -659,6 +928,26 @@
           },
           "400": {
             "description": "Bad Request",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Falha inesperada: resposta ProblemDetails segura, sem detalhes internos.",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "Tipo de conte\u00FAdo n\u00E3o suportado.",
             "content": {
               "application/problem\u002Bjson": {
                 "schema": {
@@ -715,11 +1004,12 @@
         ],
         "responses": {
           "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/problem\u002Bjson": {
+            "description": "Sess\u00E3o ausente, inv\u00E1lida ou revogada. Resposta sem corpo.",
+            "headers": {
+              "WWW-Authenticate": {
+                "description": "Desafio de autentica\u00E7\u00E3o Bearer.",
                 "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
+                  "type": "string"
                 }
               }
             }
@@ -740,6 +1030,26 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/PagedResultOfServiceItemDto"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Falha inesperada: resposta ProblemDetails segura, sem detalhes internos.",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Dados da requisi\u00E7\u00E3o inv\u00E1lidos.",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
                 }
               }
             }
@@ -771,11 +1081,12 @@
         ],
         "responses": {
           "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/problem\u002Bjson": {
+            "description": "Sess\u00E3o ausente, inv\u00E1lida ou revogada. Resposta sem corpo.",
+            "headers": {
+              "WWW-Authenticate": {
+                "description": "Desafio de autentica\u00E7\u00E3o Bearer.",
                 "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
+                  "type": "string"
                 }
               }
             }
@@ -801,7 +1112,10 @@
             }
           },
           "404": {
-            "description": "Not Found",
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Falha inesperada: resposta ProblemDetails segura, sem detalhes internos.",
             "content": {
               "application/problem\u002Bjson": {
                 "schema": {
@@ -845,11 +1159,12 @@
         },
         "responses": {
           "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/problem\u002Bjson": {
+            "description": "Sess\u00E3o ausente, inv\u00E1lida ou revogada. Resposta sem corpo.",
+            "headers": {
+              "WWW-Authenticate": {
+                "description": "Desafio de autentica\u00E7\u00E3o Bearer.",
                 "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
+                  "type": "string"
                 }
               }
             }
@@ -868,7 +1183,30 @@
             "description": "No Content"
           },
           "404": {
-            "description": "Not Found",
+            "description": "Not Found"
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Falha inesperada: resposta ProblemDetails segura, sem detalhes internos.",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "Tipo de conte\u00FAdo n\u00E3o suportado.",
             "content": {
               "application/problem\u002Bjson": {
                 "schema": {
@@ -903,11 +1241,12 @@
         },
         "responses": {
           "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/problem\u002Bjson": {
+            "description": "Sess\u00E3o ausente, inv\u00E1lida ou revogada. Resposta sem corpo.",
+            "headers": {
+              "WWW-Authenticate": {
+                "description": "Desafio de autentica\u00E7\u00E3o Bearer.",
                 "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
+                  "type": "string"
                 }
               }
             }
@@ -934,6 +1273,26 @@
           },
           "400": {
             "description": "Bad Request",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Falha inesperada: resposta ProblemDetails segura, sem detalhes internos.",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "Tipo de conte\u00FAdo n\u00E3o suportado.",
             "content": {
               "application/problem\u002Bjson": {
                 "schema": {
@@ -990,11 +1349,12 @@
         ],
         "responses": {
           "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/problem\u002Bjson": {
+            "description": "Sess\u00E3o ausente, inv\u00E1lida ou revogada. Resposta sem corpo.",
+            "headers": {
+              "WWW-Authenticate": {
+                "description": "Desafio de autentica\u00E7\u00E3o Bearer.",
                 "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
+                  "type": "string"
                 }
               }
             }
@@ -1015,6 +1375,26 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/PagedResultOfQuotationListDto"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Falha inesperada: resposta ProblemDetails segura, sem detalhes internos.",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Dados da requisi\u00E7\u00E3o inv\u00E1lidos.",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
                 }
               }
             }
@@ -1046,11 +1426,12 @@
         ],
         "responses": {
           "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/problem\u002Bjson": {
+            "description": "Sess\u00E3o ausente, inv\u00E1lida ou revogada. Resposta sem corpo.",
+            "headers": {
+              "WWW-Authenticate": {
+                "description": "Desafio de autentica\u00E7\u00E3o Bearer.",
                 "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
+                  "type": "string"
                 }
               }
             }
@@ -1076,7 +1457,101 @@
             }
           },
           "404": {
-            "description": "Not Found",
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Falha inesperada: resposta ProblemDetails segura, sem detalhes internos.",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "Quotations"
+        ],
+        "operationId": "UpdateQuotation",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateQuotationCommand"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "401": {
+            "description": "Sess\u00E3o ausente, inv\u00E1lida ou revogada. Resposta sem corpo.",
+            "headers": {
+              "WWW-Authenticate": {
+                "description": "Desafio de autentica\u00E7\u00E3o Bearer.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Falha inesperada: resposta ProblemDetails segura, sem detalhes internos.",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "Tipo de conte\u00FAdo n\u00E3o suportado.",
             "content": {
               "application/problem\u002Bjson": {
                 "schema": {
@@ -1122,11 +1597,12 @@
         },
         "responses": {
           "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/problem\u002Bjson": {
+            "description": "Sess\u00E3o ausente, inv\u00E1lida ou revogada. Resposta sem corpo.",
+            "headers": {
+              "WWW-Authenticate": {
+                "description": "Desafio de autentica\u00E7\u00E3o Bearer.",
                 "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
+                  "type": "string"
                 }
               }
             }
@@ -1145,7 +1621,10 @@
             "description": "No Content"
           },
           "404": {
-            "description": "Not Found",
+            "description": "Not Found"
+          },
+          "400": {
+            "description": "Bad Request",
             "content": {
               "application/problem\u002Bjson": {
                 "schema": {
@@ -1154,8 +1633,18 @@
               }
             }
           },
-          "400": {
-            "description": "Bad Request",
+          "500": {
+            "description": "Falha inesperada: resposta ProblemDetails segura, sem detalhes internos.",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "Tipo de conte\u00FAdo n\u00E3o suportado.",
             "content": {
               "application/problem\u002Bjson": {
                 "schema": {
@@ -1191,11 +1680,12 @@
         ],
         "responses": {
           "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/problem\u002Bjson": {
+            "description": "Sess\u00E3o ausente, inv\u00E1lida ou revogada. Resposta sem corpo.",
+            "headers": {
+              "WWW-Authenticate": {
+                "description": "Desafio de autentica\u00E7\u00E3o Bearer.",
                 "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
+                  "type": "string"
                 }
               }
             }
@@ -1222,6 +1712,16 @@
           },
           "400": {
             "description": "Bad Request",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Falha inesperada: resposta ProblemDetails segura, sem detalhes internos.",
             "content": {
               "application/problem\u002Bjson": {
                 "schema": {
@@ -1257,11 +1757,12 @@
         ],
         "responses": {
           "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/problem\u002Bjson": {
+            "description": "Sess\u00E3o ausente, inv\u00E1lida ou revogada. Resposta sem corpo.",
+            "headers": {
+              "WWW-Authenticate": {
+                "description": "Desafio de autentica\u00E7\u00E3o Bearer.",
                 "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
+                  "type": "string"
                 }
               }
             }
@@ -1277,10 +1778,36 @@
             }
           },
           "200": {
-            "description": "OK"
+            "description": "OK",
+            "headers": {
+              "Content-Disposition": {
+                "description": "attachment; filename e filename* informam o nome do arquivo para download.",
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "Content-Length": {
+                "description": "Tamanho do arquivo em bytes.",
+                "schema": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            },
+            "content": {
+              "application/pdf": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            }
           },
           "404": {
-            "description": "Not Found",
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Falha inesperada: resposta ProblemDetails segura, sem detalhes internos.",
             "content": {
               "application/problem\u002Bjson": {
                 "schema": {
@@ -1315,8 +1842,18 @@
           }
         ],
         "responses": {
-          "401": {
-            "description": "Unauthorized",
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreatedIdResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
             "content": {
               "application/problem\u002Bjson": {
                 "schema": {
@@ -1325,8 +1862,29 @@
               }
             }
           },
+          "401": {
+            "description": "Sess\u00E3o ausente, inv\u00E1lida ou revogada. Resposta sem corpo.",
+            "headers": {
+              "WWW-Authenticate": {
+                "description": "Desafio de autentica\u00E7\u00E3o Bearer.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
           "403": {
             "description": "Forbidden",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Falha inesperada: resposta ProblemDetails segura, sem detalhes internos.",
             "content": {
               "application/problem\u002Bjson": {
                 "schema": {
@@ -1361,8 +1919,32 @@
           }
         ],
         "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WorkOrderResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          },
           "401": {
-            "description": "Unauthorized",
+            "description": "Sess\u00E3o ausente, inv\u00E1lida ou revogada. Resposta sem corpo.",
+            "headers": {
+              "WWW-Authenticate": {
+                "description": "Desafio de autentica\u00E7\u00E3o Bearer.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
             "content": {
               "application/problem\u002Bjson": {
                 "schema": {
@@ -1371,8 +1953,8 @@
               }
             }
           },
-          "403": {
-            "description": "Forbidden",
+          "500": {
+            "description": "Falha inesperada: resposta ProblemDetails segura, sem detalhes internos.",
             "content": {
               "application/problem\u002Bjson": {
                 "schema": {
@@ -1417,8 +1999,14 @@
           "required": true
         },
         "responses": {
-          "401": {
-            "description": "Unauthorized",
+          "204": {
+            "description": "No Content"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "400": {
+            "description": "Bad Request",
             "content": {
               "application/problem\u002Bjson": {
                 "schema": {
@@ -1427,8 +2015,39 @@
               }
             }
           },
+          "401": {
+            "description": "Sess\u00E3o ausente, inv\u00E1lida ou revogada. Resposta sem corpo.",
+            "headers": {
+              "WWW-Authenticate": {
+                "description": "Desafio de autentica\u00E7\u00E3o Bearer.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
           "403": {
             "description": "Forbidden",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Falha inesperada: resposta ProblemDetails segura, sem detalhes internos.",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "Tipo de conte\u00FAdo n\u00E3o suportado.",
             "content": {
               "application/problem\u002Bjson": {
                 "schema": {
@@ -1463,11 +2082,12 @@
         },
         "responses": {
           "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/problem\u002Bjson": {
+            "description": "Sess\u00E3o ausente, inv\u00E1lida ou revogada. Resposta sem corpo.",
+            "headers": {
+              "WWW-Authenticate": {
+                "description": "Desafio de autentica\u00E7\u00E3o Bearer.",
                 "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
+                  "type": "string"
                 }
               }
             }
@@ -1494,6 +2114,26 @@
           },
           "400": {
             "description": "Bad Request",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Falha inesperada: resposta ProblemDetails segura, sem detalhes internos.",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "Tipo de conte\u00FAdo n\u00E3o suportado.",
             "content": {
               "application/problem\u002Bjson": {
                 "schema": {
@@ -1549,8 +2189,32 @@
           }
         ],
         "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AppointmentResponse"
+                  }
+                }
+              }
+            }
+          },
           "401": {
-            "description": "Unauthorized",
+            "description": "Sess\u00E3o ausente, inv\u00E1lida ou revogada. Resposta sem corpo.",
+            "headers": {
+              "WWW-Authenticate": {
+                "description": "Desafio de autentica\u00E7\u00E3o Bearer.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
             "content": {
               "application/problem\u002Bjson": {
                 "schema": {
@@ -1559,8 +2223,18 @@
               }
             }
           },
-          "403": {
-            "description": "Forbidden",
+          "500": {
+            "description": "Falha inesperada: resposta ProblemDetails segura, sem detalhes internos.",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Dados da requisi\u00E7\u00E3o inv\u00E1lidos.",
             "content": {
               "application/problem\u002Bjson": {
                 "schema": {
@@ -1605,8 +2279,14 @@
           "required": true
         },
         "responses": {
-          "401": {
-            "description": "Unauthorized",
+          "204": {
+            "description": "No Content"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "400": {
+            "description": "Bad Request",
             "content": {
               "application/problem\u002Bjson": {
                 "schema": {
@@ -1615,8 +2295,39 @@
               }
             }
           },
+          "401": {
+            "description": "Sess\u00E3o ausente, inv\u00E1lida ou revogada. Resposta sem corpo.",
+            "headers": {
+              "WWW-Authenticate": {
+                "description": "Desafio de autentica\u00E7\u00E3o Bearer.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
           "403": {
             "description": "Forbidden",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Falha inesperada: resposta ProblemDetails segura, sem detalhes internos.",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "Tipo de conte\u00FAdo n\u00E3o suportado.",
             "content": {
               "application/problem\u002Bjson": {
                 "schema": {
@@ -1641,11 +2352,12 @@
         "operationId": "GetReceivables",
         "responses": {
           "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/problem\u002Bjson": {
+            "description": "Sess\u00E3o ausente, inv\u00E1lida ou revogada. Resposta sem corpo.",
+            "headers": {
+              "WWW-Authenticate": {
+                "description": "Desafio de autentica\u00E7\u00E3o Bearer.",
                 "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
+                  "type": "string"
                 }
               }
             }
@@ -1669,6 +2381,16 @@
                   "items": {
                     "$ref": "#/components/schemas/FinancialTitleResponse"
                   }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Falha inesperada: resposta ProblemDetails segura, sem detalhes internos.",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
                 }
               }
             }
@@ -1689,11 +2411,12 @@
         "operationId": "GetPayables",
         "responses": {
           "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/problem\u002Bjson": {
+            "description": "Sess\u00E3o ausente, inv\u00E1lida ou revogada. Resposta sem corpo.",
+            "headers": {
+              "WWW-Authenticate": {
+                "description": "Desafio de autentica\u00E7\u00E3o Bearer.",
                 "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
+                  "type": "string"
                 }
               }
             }
@@ -1717,6 +2440,16 @@
                   "items": {
                     "$ref": "#/components/schemas/FinancialTitleResponse"
                   }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Falha inesperada: resposta ProblemDetails segura, sem detalhes internos.",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
                 }
               }
             }
@@ -1745,11 +2478,12 @@
         },
         "responses": {
           "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/problem\u002Bjson": {
+            "description": "Sess\u00E3o ausente, inv\u00E1lida ou revogada. Resposta sem corpo.",
+            "headers": {
+              "WWW-Authenticate": {
+                "description": "Desafio de autentica\u00E7\u00E3o Bearer.",
                 "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
+                  "type": "string"
                 }
               }
             }
@@ -1776,6 +2510,26 @@
           },
           "400": {
             "description": "Bad Request",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Falha inesperada: resposta ProblemDetails segura, sem detalhes internos.",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "Tipo de conte\u00FAdo n\u00E3o suportado.",
             "content": {
               "application/problem\u002Bjson": {
                 "schema": {
@@ -1821,11 +2575,12 @@
         },
         "responses": {
           "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/problem\u002Bjson": {
+            "description": "Sess\u00E3o ausente, inv\u00E1lida ou revogada. Resposta sem corpo.",
+            "headers": {
+              "WWW-Authenticate": {
+                "description": "Desafio de autentica\u00E7\u00E3o Bearer.",
                 "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
+                  "type": "string"
                 }
               }
             }
@@ -1844,7 +2599,10 @@
             "description": "OK"
           },
           "404": {
-            "description": "Not Found",
+            "description": "Not Found"
+          },
+          "400": {
+            "description": "Bad Request",
             "content": {
               "application/problem\u002Bjson": {
                 "schema": {
@@ -1853,8 +2611,18 @@
               }
             }
           },
-          "400": {
-            "description": "Bad Request",
+          "500": {
+            "description": "Falha inesperada: resposta ProblemDetails segura, sem detalhes internos.",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "Tipo de conte\u00FAdo n\u00E3o suportado.",
             "content": {
               "application/problem\u002Bjson": {
                 "schema": {
@@ -1900,11 +2668,12 @@
         },
         "responses": {
           "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/problem\u002Bjson": {
+            "description": "Sess\u00E3o ausente, inv\u00E1lida ou revogada. Resposta sem corpo.",
+            "headers": {
+              "WWW-Authenticate": {
+                "description": "Desafio de autentica\u00E7\u00E3o Bearer.",
                 "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
+                  "type": "string"
                 }
               }
             }
@@ -1923,7 +2692,10 @@
             "description": "OK"
           },
           "404": {
-            "description": "Not Found",
+            "description": "Not Found"
+          },
+          "400": {
+            "description": "Bad Request",
             "content": {
               "application/problem\u002Bjson": {
                 "schema": {
@@ -1932,8 +2704,18 @@
               }
             }
           },
-          "400": {
-            "description": "Bad Request",
+          "500": {
+            "description": "Falha inesperada: resposta ProblemDetails segura, sem detalhes internos.",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "Tipo de conte\u00FAdo n\u00E3o suportado.",
             "content": {
               "application/problem\u002Bjson": {
                 "schema": {
@@ -1978,11 +2760,12 @@
         ],
         "responses": {
           "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/problem\u002Bjson": {
+            "description": "Sess\u00E3o ausente, inv\u00E1lida ou revogada. Resposta sem corpo.",
+            "headers": {
+              "WWW-Authenticate": {
+                "description": "Desafio de autentica\u00E7\u00E3o Bearer.",
                 "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
+                  "type": "string"
                 }
               }
             }
@@ -2016,6 +2799,16 @@
                 }
               }
             }
+          },
+          "500": {
+            "description": "Falha inesperada: resposta ProblemDetails segura, sem detalhes internos.",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
           }
         },
         "security": [
@@ -2032,6 +2825,16 @@
         ],
         "summary": "Lista o hist\u00F3rico de notifica\u00E7\u00F5es do tenant atual",
         "operationId": "GetNotifications",
+        "parameters": [
+          {
+            "name": "customerId",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK",
@@ -2042,6 +2845,37 @@
                   "items": {
                     "$ref": "#/components/schemas/NotificationHistoryResponse"
                   }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Falha inesperada: resposta ProblemDetails segura, sem detalhes internos.",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Dados da requisi\u00E7\u00E3o inv\u00E1lidos.",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Sess\u00E3o ausente, inv\u00E1lida ou revogada. Resposta sem corpo.",
+            "headers": {
+              "WWW-Authenticate": {
+                "description": "Desafio de autentica\u00E7\u00E3o Bearer.",
+                "schema": {
+                  "type": "string"
                 }
               }
             }
@@ -2081,6 +2915,47 @@
                 }
               }
             }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Falha inesperada: resposta ProblemDetails segura, sem detalhes internos.",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "Tipo de conte\u00FAdo n\u00E3o suportado.",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Sess\u00E3o ausente, inv\u00E1lida ou revogada. Resposta sem corpo.",
+            "headers": {
+              "WWW-Authenticate": {
+                "description": "Desafio de autentica\u00E7\u00E3o Bearer.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
           }
         },
         "security": [
@@ -2114,6 +2989,47 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/MessageResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Falha inesperada: resposta ProblemDetails segura, sem detalhes internos.",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "Tipo de conte\u00FAdo n\u00E3o suportado.",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Sess\u00E3o ausente, inv\u00E1lida ou revogada. Resposta sem corpo.",
+            "headers": {
+              "WWW-Authenticate": {
+                "description": "Desafio de autentica\u00E7\u00E3o Bearer.",
+                "schema": {
+                  "type": "string"
                 }
               }
             }
@@ -2153,6 +3069,47 @@
                 }
               }
             }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Falha inesperada: resposta ProblemDetails segura, sem detalhes internos.",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "Tipo de conte\u00FAdo n\u00E3o suportado.",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Sess\u00E3o ausente, inv\u00E1lida ou revogada. Resposta sem corpo.",
+            "headers": {
+              "WWW-Authenticate": {
+                "description": "Desafio de autentica\u00E7\u00E3o Bearer.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
           }
         },
         "security": [
@@ -2188,11 +3145,12 @@
         ],
         "responses": {
           "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/problem\u002Bjson": {
+            "description": "Sess\u00E3o ausente, inv\u00E1lida ou revogada. Resposta sem corpo.",
+            "headers": {
+              "WWW-Authenticate": {
+                "description": "Desafio de autentica\u00E7\u00E3o Bearer.",
                 "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
+                  "type": "string"
                 }
               }
             }
@@ -2213,6 +3171,26 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/DashboardSummaryDto"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Falha inesperada: resposta ProblemDetails segura, sem detalhes internos.",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Dados da requisi\u00E7\u00E3o inv\u00E1lidos.",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
                 }
               }
             }
@@ -2243,11 +3221,12 @@
         ],
         "responses": {
           "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/problem\u002Bjson": {
+            "description": "Sess\u00E3o ausente, inv\u00E1lida ou revogada. Resposta sem corpo.",
+            "headers": {
+              "WWW-Authenticate": {
+                "description": "Desafio de autentica\u00E7\u00E3o Bearer.",
                 "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
+                  "type": "string"
                 }
               }
             }
@@ -2271,6 +3250,26 @@
                   "items": {
                     "$ref": "#/components/schemas/UpcomingScheduleDto"
                   }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Falha inesperada: resposta ProblemDetails segura, sem detalhes internos.",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Dados da requisi\u00E7\u00E3o inv\u00E1lidos.",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
                 }
               }
             }
@@ -2309,11 +3308,12 @@
         ],
         "responses": {
           "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/problem\u002Bjson": {
+            "description": "Sess\u00E3o ausente, inv\u00E1lida ou revogada. Resposta sem corpo.",
+            "headers": {
+              "WWW-Authenticate": {
+                "description": "Desafio de autentica\u00E7\u00E3o Bearer.",
                 "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
+                  "type": "string"
                 }
               }
             }
@@ -2329,7 +3329,49 @@
             }
           },
           "200": {
-            "description": "OK"
+            "description": "OK",
+            "headers": {
+              "Content-Disposition": {
+                "description": "attachment; filename e filename* informam o nome do arquivo para download.",
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "Content-Length": {
+                "description": "Tamanho do arquivo em bytes.",
+                "schema": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            },
+            "content": {
+              "text/csv": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Falha inesperada: resposta ProblemDetails segura, sem detalhes internos.",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Dados da requisi\u00E7\u00E3o inv\u00E1lidos.",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
           }
         },
         "security": [
@@ -2347,11 +3389,12 @@
         "operationId": "GetTeamMembers",
         "responses": {
           "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/problem\u002Bjson": {
+            "description": "Sess\u00E3o ausente, inv\u00E1lida ou revogada. Resposta sem corpo.",
+            "headers": {
+              "WWW-Authenticate": {
+                "description": "Desafio de autentica\u00E7\u00E3o Bearer.",
                 "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
+                  "type": "string"
                 }
               }
             }
@@ -2375,6 +3418,16 @@
                   "items": {
                     "$ref": "#/components/schemas/TeamMemberResponse"
                   }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Falha inesperada: resposta ProblemDetails segura, sem detalhes internos.",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
                 }
               }
             }
@@ -2416,11 +3469,12 @@
         },
         "responses": {
           "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/problem\u002Bjson": {
+            "description": "Sess\u00E3o ausente, inv\u00E1lida ou revogada. Resposta sem corpo.",
+            "headers": {
+              "WWW-Authenticate": {
+                "description": "Desafio de autentica\u00E7\u00E3o Bearer.",
                 "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
+                  "type": "string"
                 }
               }
             }
@@ -2439,14 +3493,7 @@
             "description": "No Content"
           },
           "404": {
-            "description": "Not Found",
-            "content": {
-              "application/problem\u002Bjson": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              }
-            }
+            "description": "Not Found"
           },
           "400": {
             "description": "Bad Request",
@@ -2460,6 +3507,26 @@
           },
           "409": {
             "description": "Conflict",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Falha inesperada: resposta ProblemDetails segura, sem detalhes internos.",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "Tipo de conte\u00FAdo n\u00E3o suportado.",
             "content": {
               "application/problem\u002Bjson": {
                 "schema": {
@@ -2505,11 +3572,12 @@
         },
         "responses": {
           "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/problem\u002Bjson": {
+            "description": "Sess\u00E3o ausente, inv\u00E1lida ou revogada. Resposta sem corpo.",
+            "headers": {
+              "WWW-Authenticate": {
+                "description": "Desafio de autentica\u00E7\u00E3o Bearer.",
                 "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
+                  "type": "string"
                 }
               }
             }
@@ -2528,7 +3596,10 @@
             "description": "No Content"
           },
           "404": {
-            "description": "Not Found",
+            "description": "Not Found"
+          },
+          "409": {
+            "description": "Conflict",
             "content": {
               "application/problem\u002Bjson": {
                 "schema": {
@@ -2537,8 +3608,28 @@
               }
             }
           },
-          "409": {
-            "description": "Conflict",
+          "500": {
+            "description": "Falha inesperada: resposta ProblemDetails segura, sem detalhes internos.",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Dados da requisi\u00E7\u00E3o inv\u00E1lidos.",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "Tipo de conte\u00FAdo n\u00E3o suportado.",
             "content": {
               "application/problem\u002Bjson": {
                 "schema": {
@@ -2573,11 +3664,12 @@
         },
         "responses": {
           "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/problem\u002Bjson": {
+            "description": "Sess\u00E3o ausente, inv\u00E1lida ou revogada. Resposta sem corpo.",
+            "headers": {
+              "WWW-Authenticate": {
+                "description": "Desafio de autentica\u00E7\u00E3o Bearer.",
                 "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
+                  "type": "string"
                 }
               }
             }
@@ -2621,6 +3713,26 @@
                 }
               }
             }
+          },
+          "500": {
+            "description": "Falha inesperada: resposta ProblemDetails segura, sem detalhes internos.",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "Tipo de conte\u00FAdo n\u00E3o suportado.",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
           }
         },
         "security": [
@@ -2643,6 +3755,37 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/TenantSubscriptionDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Falha inesperada: resposta ProblemDetails segura, sem detalhes internos.",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Sess\u00E3o ausente, inv\u00E1lida ou revogada. Resposta sem corpo.",
+            "headers": {
+              "WWW-Authenticate": {
+                "description": "Desafio de autentica\u00E7\u00E3o Bearer.",
+                "schema": {
+                  "type": "string"
                 }
               }
             }
@@ -2674,6 +3817,16 @@
                 }
               }
             }
+          },
+          "500": {
+            "description": "Falha inesperada: resposta ProblemDetails segura, sem detalhes internos.",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
           }
         }
       }
@@ -2697,6 +3850,57 @@
         "responses": {
           "204": {
             "description": "No Content"
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Falha inesperada: resposta ProblemDetails segura, sem detalhes internos.",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Dados da requisi\u00E7\u00E3o inv\u00E1lidos.",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "Tipo de conte\u00FAdo n\u00E3o suportado.",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Sess\u00E3o ausente, inv\u00E1lida ou revogada. Resposta sem corpo.",
+            "headers": {
+              "WWW-Authenticate": {
+                "description": "Desafio de autentica\u00E7\u00E3o Bearer.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
           }
         },
         "security": [
@@ -2725,6 +3929,36 @@
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Falha inesperada: resposta ProblemDetails segura, sem detalhes internos.",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "Tipo de conte\u00FAdo n\u00E3o suportado.",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
           }
         }
       }
@@ -2748,6 +3982,44 @@
           },
           "name": {
             "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "AppointmentResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "workOrderId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "type": {
+            "type": "string"
+          },
+          "startTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "endTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "address": {
+            "type": "string",
+            "nullable": true
+          },
+          "notes": {
+            "type": "string",
+            "nullable": true
+          },
+          "assignedToUserId": {
+            "type": "string",
+            "format": "uuid",
             "nullable": true
           }
         }
@@ -2915,6 +4187,10 @@
           "zipCode": {
             "type": "string",
             "nullable": true
+          },
+          "automaticRemindersEnabled": {
+            "type": "boolean",
+            "default": true
           }
         }
       },
@@ -3196,6 +4472,10 @@
           },
           "isActive": {
             "type": "boolean"
+          },
+          "automaticRemindersEnabled": {
+            "type": "boolean",
+            "default": true
           }
         }
       },
@@ -3380,7 +4660,9 @@
           "channel",
           "status",
           "createdAt",
-          "sentAt"
+          "sentAt",
+          "customerId",
+          "audience"
         ],
         "type": "object",
         "properties": {
@@ -3405,6 +4687,14 @@
             "type": "string",
             "format": "date-time",
             "nullable": true
+          },
+          "customerId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "audience": {
+            "type": "string"
           }
         }
       },
@@ -3994,6 +5284,11 @@
           },
           "content": {
             "type": "string"
+          },
+          "customerId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
           }
         }
       },
@@ -4331,6 +5626,65 @@
           "preserveDocument": {
             "type": "boolean",
             "default": false
+          },
+          "automaticRemindersEnabled": {
+            "type": "boolean",
+            "nullable": true
+          }
+        }
+      },
+      "UpdateQuotationCommand": {
+        "required": [
+          "code",
+          "customerId",
+          "issueDate",
+          "validUntil",
+          "notes",
+          "paymentTerms",
+          "items",
+          "deposit"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "customerId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "issueDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "validUntil": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "notes": {
+            "type": "string",
+            "nullable": true
+          },
+          "paymentTerms": {
+            "type": "string",
+            "nullable": true
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CreateQuotationItemDto"
+            }
+          },
+          "deposit": {
+            "oneOf": [
+              {
+                "nullable": true
+              },
+              {
+                "$ref": "#/components/schemas/CreateDepositDto"
+              }
+            ]
           }
         }
       },
@@ -4512,6 +5866,84 @@
           }
         }
       },
+      "WorkOrderItemResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "serviceItemId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "serviceName": {
+            "type": "string"
+          },
+          "unit": {
+            "type": "string"
+          },
+          "quantity": {
+            "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d\u002B)?$",
+            "format": "double"
+          },
+          "unitPrice": {
+            "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d\u002B)?$",
+            "format": "double"
+          },
+          "discountAmount": {
+            "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d\u002B)?$",
+            "format": "double"
+          },
+          "totalAmount": {
+            "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d\u002B)?$",
+            "format": "double"
+          }
+        }
+      },
+      "WorkOrderResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "code": {
+            "type": "string"
+          },
+          "customerId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "quotationId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "completedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "status": {
+            "type": "string"
+          },
+          "notes": {
+            "type": "string",
+            "nullable": true
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/WorkOrderItemResponse"
+            }
+          }
+        }
+      },
       "WorkOrderStatus": {
         "type": "integer"
       }
@@ -4526,6 +5958,9 @@
     }
   },
   "tags": [
+    {
+      "name": "Health"
+    },
     {
       "name": "Identity"
     },

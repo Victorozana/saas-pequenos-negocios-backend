@@ -37,12 +37,30 @@ Para reduzir a taxa de não-comparecimento (no-show).
 - **Quando** o sistema prepara lembretes automáticos de agendamento
 - **Então** não enfileira lembrete para o cliente desativado e mantém os lembretes do outro cliente, sem afetar outras empresas.
 
+A preferência `AutomaticRemindersEnabled` é persistida por cliente e exposta no cadastro,
+edição, lista e detalhe. Clientes existentes e cadastros que omitem o campo continuam
+habilitados; edições que omitem o campo preservam a escolha atual. Tanto a intenção automática
+na criação da agenda quanto o handler de lembretes passam pela verificação central antes de
+enfileirar. A desativação não bloqueia mensagens manuais, orçamento nem convites System.
+O critério trata da preparação de novos lembretes; não altera o histórico já enfileirado.
+
 ### US-052 — Aviso de Fatura Vencida
 Como prestador de serviços,
 Quero que o sistema notifique clientes com contas atrasadas,
 Para melhorar o meu recebimento financeiro.
 
-Esta história ainda não possui critério de aceite executável para o disparo de avisos de atraso. A lacuna permanece na auditoria.
+#### AC-208 — Aviso automático diário de conta vencida com saldo aberto
+
+- **Dado** contas a receber de duas empresas, com vencimento anterior à data de processamento e saldo aberto maior que zero, não canceladas e vinculadas a clientes com lembretes automáticos habilitados
+- **Quando** o processamento automático diário é executado, inclusive repetido ou reiniciado no mesmo dia
+- **Então** é enfileirado no máximo um aviso por conta e dia, vinculado ao tenant e cliente corretos; em um dia seguinte a conta ainda vencida e com saldo aberto recebe novo aviso, até quitar ou cancelar, sem duplicar o aviso do dia nem afetar a outra empresa.
+
+Contas com vencimento hoje/futuro, quitadas, canceladas ou sem saldo aberto não geram aviso.
+O opt-out de lembretes automáticos do cliente também será respeitado neste novo produtor.
+Retries de entrega reutilizam o registro do aviso, sem constituir novo disparo diário.
+O produtor grava a intenção na outbox; a entrega permanece simulada pelo adaptador atual.
+A comparação de vencimento deve seguir a regra de calendário financeiro; o horário operacional
+do job não foi fixado nesta decisão. Os testes devem controlar a data de processamento.
 
 ## Suposições
 
@@ -55,6 +73,8 @@ Esta história ainda não possui critério de aceite executável para o disparo 
 | ID | Pergunta | Status | Resposta |
 | --- | --- | --- |
 | Q-017 | O prestador poderá desligar notificações automáticas para determinados clientes? | respondida | Sim, por cliente; usuário confirmou em 12/10/2026. |
+| Q-018 | Qual disparo gera o aviso de conta vencida? | respondida | Automático diário, somente conta vencida e com saldo aberto; usuário confirmou em 12/10/2026. |
+| Q-019 | O aviso se repete enquanto a conta continua aberta? | respondida | Um aviso por conta por dia, até quitar ou cancelar; usuário confirmou em 12/10/2026. |
 
 ## Requisitos recuperados do histórico
 
@@ -109,3 +129,27 @@ Para ter registro de todas as interações e mensagens transmitidas.
 - **Dado** um tenant autenticado
 - **Quando** suas notificações são registradas ou consultadas
 - **Então** Todas as notificações e mensagens registradas pertencem obrigatoriamente ao `TenantId` autenticado (`ITenantOwned`).
+
+## Semântica do histórico e mensagens sem cliente — 12/10/2026
+
+O vínculo de cliente é obrigatório para notificações de cliente: confirmação/lembrete de agenda,
+notificação de orçamento e envio manual explicitamente associado a um cliente. Não pode ser
+omitido nesses fluxos nem substituído pelo destinatário. O serviço valida o cliente no tenant
+atual antes de gravar; a FK composta (tenant_id, CustomerId) reforça essa regra no PostgreSQL.
+
+A rota manual avulsa existente continua aceitando destinatário livre quando CustomerId não é
+informado. Essas mensagens são classificadas como Standalone e aparecem somente no histórico
+geral do tenant, nunca como interação de um cliente nem como prova do vínculo exigido em AC-098.
+Convites de equipe são System e também não são interações de clientes. Ambas as classificações
+proíbem CustomerId. Informar cliente inexistente/de outra empresa retorna 400 sem gravação;
+não há fallback para mensagem avulsa quando o vínculo informado é inválido.
+
+Mensagens anteriores à migration são LegacyUnlinked, preservando todos os campos originais.
+Não há evidência histórica suficiente para vincular essas mensagens: telefone/e-mail pode ser
+compartilhado, alterado ou corresponder a convite. A migration não infere vínculos nem reclassifica
+esse legado como histórico de cliente. Novas mensagens não podem usar LegacyUnlinked pelo serviço.
+Essa limitação explícita do legado não dispensa o vínculo de nenhuma nova notificação de cliente.
+
+O histórico expõe CustomerId e Audience e aceita filtro customerId, sempre sob o tenant
+autenticado. O envio atual segue simulado; Sent registra sucesso do adaptador simulado,
+sem certificar entrega real em WhatsApp ou e-mail.

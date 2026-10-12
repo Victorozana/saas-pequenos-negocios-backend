@@ -8,7 +8,20 @@ public class NotificationMessageConfiguration : IEntityTypeConfiguration<Notific
 {
     public void Configure(EntityTypeBuilder<NotificationMessage> builder)
     {
-        builder.ToTable("NotificationMessages");
+        builder.ToTable("NotificationMessages", table => table.HasCheckConstraint("CK_NotificationMessages_AudienceCustomer",
+            "(\"Audience\" = 'Customer' AND \"CustomerId\" IS NOT NULL) OR (\"Audience\" IN ('Standalone', 'System', 'LegacyUnlinked') AND \"CustomerId\" IS NULL)"));
+        builder.Property(n => n.Audience).HasConversion<string>().HasMaxLength(50).IsRequired();
+        builder.HasOne<Agendamento.Api.Domain.Customers.Customer>().WithMany()
+            .HasForeignKey(n => new { n.TenantId, n.CustomerId })
+            .HasPrincipalKey(c => new { c.TenantId, c.Id }).OnDelete(DeleteBehavior.Restrict);
+        builder.HasIndex(n => new { n.TenantId, n.CustomerId, n.CreatedAt });
+        builder.HasIndex(n => new { n.TenantId, n.ReceivableTitleId, n.ReminderDate })
+            .IsUnique().HasDatabaseName("UX_NotificationMessages_DailyReceivableReminder");
+        builder.ToTable("NotificationMessages", table => table.HasCheckConstraint("CK_NotificationMessages_DailyReceivableReminder",
+            "(\"ReceivableTitleId\" IS NULL AND \"ReminderDate\" IS NULL) OR (\"ReceivableTitleId\" IS NOT NULL AND \"ReminderDate\" IS NOT NULL AND \"Audience\" = 'Customer')"));
+        builder.HasOne<Agendamento.Api.Domain.Financial.ReceivableTitle>().WithMany()
+            .HasForeignKey(n => new { n.TenantId, n.ReceivableTitleId })
+            .HasPrincipalKey(r => new { r.TenantId, r.Id }).OnDelete(DeleteBehavior.Restrict);
 
         builder.HasKey(n => n.Id);
 

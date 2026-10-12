@@ -22,12 +22,12 @@ public static class CurrentUserEndpoints
 
             var userEntity = await db.Users.FindAsync(new object[] { userId }, cancellationToken);
             if (userEntity is null) return Results.NotFound();
-            if (userEntity.Status != Agendamento.Domain.Identity.UserStatus.Active) return Results.Forbid();
+            if (userEntity.Status != Agendamento.Domain.Identity.UserStatus.Active) return Results.Problem(statusCode: 403, title: "Acesso negado.");
 
             var membership = await Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.FirstOrDefaultAsync(
                 db.TenantMemberships, m => m.UserId == userId, cancellationToken);
             
-            if (membership is null || !membership.IsActive) return Results.Forbid();
+            if (membership is null || !membership.IsActive) return Results.Problem(statusCode: 403, title: "Acesso negado.");
 
             var response = new Agendamento.Api.Application.Identity.GetUserProfile.UserProfileResponse(
                 userEntity.Id,
@@ -42,8 +42,8 @@ public static class CurrentUserEndpoints
             return Results.Ok(response);
         }).WithName("GetCurrentUser")
         .Produces<Agendamento.Api.Application.Identity.GetUserProfile.UserProfileResponse>(StatusCodes.Status200OK)
-        .ProducesProblem(StatusCodes.Status401Unauthorized)
+        .Produces(StatusCodes.Status401Unauthorized)
         .ProducesProblem(StatusCodes.Status403Forbidden)
-        .ProducesProblem(StatusCodes.Status404NotFound);
+        .Produces(StatusCodes.Status404NotFound);
     }
 }

@@ -40,7 +40,8 @@ public class GetCustomerByIdHandler
             c.Address?.City,
             c.Address?.State,
             c.Address?.ZipCode,
-            c.IsActive
+            c.IsActive,
+            c.AutomaticRemindersEnabled
         );
     }
 }

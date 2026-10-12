@@ -170,14 +170,14 @@ public sealed class PostgreSqlRlsTests
         public Dictionary<(string, Guid), (string Sql, Dictionary<string, object?> Values)> Rows { get; } = new();
         private bool _created, _roleCreated, _systemRoleCreated;
 
-        public static async Task<Database> Create(bool seed = true)
+        public static async Task<Database> Create(bool seed = true, string? migrationTarget = null)
         {
             var fixture = new Database();
-            try { await fixture.Initialize(seed); return fixture; }
+            try { await fixture.Initialize(seed, migrationTarget); return fixture; }
             catch { await fixture.DisposeAsync(); throw; }
         }
 
-        private async Task Initialize(bool seed)
+        private async Task Initialize(bool seed, string? migrationTarget)
         {
             var config = new ConfigurationBuilder().AddUserSecrets<Program>(optional: true).AddEnvironmentVariables().Build();
             var builder = new NpgsqlConnectionStringBuilder(config.GetConnectionString("PostgreSqlMigration") ?? config.GetConnectionString("PostgreSql")
@@ -193,8 +193,8 @@ public sealed class PostgreSqlRlsTests
             {
                 await db.GetService<IMigrator>().MigrateAsync("20261012002349_AddActiveTeamMembership");
                 if (seed) { await Seed(A, "a"); await Seed(B, "b"); }
-                await db.Database.MigrateAsync();
-                Assert.Empty(await db.Database.GetPendingMigrationsAsync());
+                await db.GetService<IMigrator>().MigrateAsync(migrationTarget);
+                if (migrationTarget == null) Assert.Empty(await db.Database.GetPendingMigrationsAsync());
             }
             foreach (var table in seed ? Tables : [])
             foreach (var id in new[] { A, B })

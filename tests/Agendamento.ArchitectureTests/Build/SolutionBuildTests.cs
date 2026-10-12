@@ -30,6 +30,9 @@ public sealed class SolutionBuildTests
         startInfo.ArgumentList.Add("--no-restore");
         startInfo.ArgumentList.Add("--nologo");
         startInfo.ArgumentList.Add("--disable-build-servers");
+        // Projects share this disposable OutDir. Concurrent copies of common testhost
+        // resources can collide on Windows and produce MSB3026 despite a valid build.
+        startInfo.ArgumentList.Add("-maxcpucount:1");
         startInfo.ArgumentList.Add($"-p:OutDir={artifactsDirectory}{Path.DirectorySeparatorChar}");
 
         try

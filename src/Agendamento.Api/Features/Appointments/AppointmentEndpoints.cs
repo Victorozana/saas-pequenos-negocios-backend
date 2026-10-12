@@ -25,9 +25,13 @@ public static class AppointmentEndpoints
                 var id = await handler.HandleAsync(command, cancellationToken);
                 return Results.Created($"/api/v1/appointments/{id}", new CreatedIdResponse(id));
             }
-            catch (ArgumentException ex)
+            catch (ArgumentException)
             {
-                return Results.Problem(statusCode: StatusCodes.Status400BadRequest, title: ex.Message);
+                return Results.Problem(statusCode: StatusCodes.Status400BadRequest, title: "Dados do agendamento inválidos.");
+            }
+            catch (InvalidOperationException ex) when (ex.Message.StartsWith("Scheduling conflict:", StringComparison.Ordinal))
+            {
+                return Results.Problem(statusCode: 400, title: "O profissional já possui agendamento neste período.");
             }
         })
         .WithName("CreateAppointment")
@@ -54,6 +58,7 @@ public static class AppointmentEndpoints
             return Results.Ok(result);
         })
         .WithName("GetAppointments")
+        .Produces<List<AppointmentResponse>>()
         .RequirePermission("appointments.read");
 
         group.MapPut("/{id:guid}", async (
@@ -70,10 +75,28 @@ public static class AppointmentEndpoints
                 AssignedToUserId = request.AssignedToUserId
             };
             
-            await handler.HandleAsync(command, cancellationToken);
-            return Results.NoContent();
+            try
+            {
+                await handler.HandleAsync(command, cancellationToken);
+                return Results.NoContent();
+            }
+            catch (ArgumentException)
+            {
+                return Results.Problem(statusCode: 400, title: "O horário final deve ser posterior ao inicial.");
+            }
+            catch (InvalidOperationException ex) when (ex.Message == "Appointment not found.")
+            {
+                return Results.NotFound();
+            }
+            catch (InvalidOperationException ex) when (ex.Message.StartsWith("Scheduling conflict:", StringComparison.Ordinal))
+            {
+                return Results.Problem(statusCode: 400, title: "O profissional já possui agendamento neste período.");
+            }
         })
         .WithName("UpdateAppointment")
+        .Produces(StatusCodes.Status204NoContent)
+        .Produces(StatusCodes.Status404NotFound)
+        .ProducesProblem(StatusCodes.Status400BadRequest)
         .RequirePermission("appointments.write");
     }
 }

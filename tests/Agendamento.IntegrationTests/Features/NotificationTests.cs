@@ -1,3 +1,5 @@
+using Agendamento.Api.Infrastructure.Notifications;
+using Microsoft.Extensions.Logging.Abstractions;
 using System;
 using System.Linq;
 using System.Threading;
@@ -40,7 +42,7 @@ public class NotificationTests
         }
 
         await using var db = GetDbContext(tenantId, dbName);
-        var handler = new CreateAppointmentHandler(db, new DummyTenantContext(tenantId), new UnitOfWork(db));
+        var handler = new CreateAppointmentHandler(db, new DummyTenantContext(tenantId), new UnitOfWork(db), new NotificationService(db, new DummyTenantContext(tenantId), new MockCommunicationGateway(NullLogger<MockCommunicationGateway>.Instance), NullLogger<NotificationService>.Instance));
         var command = new CreateAppointmentCommand
         {
             WorkOrderId = workOrderId,
@@ -62,7 +64,7 @@ public class NotificationTests
     {
         var tenantId = Guid.NewGuid();
         await using var db = GetDbContext(tenantId, Guid.NewGuid().ToString());
-        var handler = new CreateAppointmentHandler(db, new DummyTenantContext(tenantId), new UnitOfWork(db));
+        var handler = new CreateAppointmentHandler(db, new DummyTenantContext(tenantId), new UnitOfWork(db), new NotificationService(db, new DummyTenantContext(tenantId), new MockCommunicationGateway(NullLogger<MockCommunicationGateway>.Instance), NullLogger<NotificationService>.Instance));
         var id = await handler.HandleAsync(new CreateAppointmentCommand
         {
             Type = AppointmentType.Installation,
@@ -119,7 +121,7 @@ public class NotificationTests
 
         var db2 = GetDbContext(tenantId, dbName);
         var unitOfWork = new UnitOfWork(db2);
-        var handler = new CreateAppointmentHandler(db2, tenantContext, unitOfWork);
+        var handler = new CreateAppointmentHandler(db2, tenantContext, unitOfWork, new NotificationService(db2, tenantContext, new MockCommunicationGateway(NullLogger<MockCommunicationGateway>.Instance), NullLogger<NotificationService>.Instance));
         
         var command = new CreateAppointmentCommand
         {
@@ -140,5 +142,7 @@ public class NotificationTests
         Assert.Equal("5511999999999", notification.Recipient);
         Assert.Contains("Test Address", notification.Content);
         Assert.Equal(tenantId, notification.TenantId);
+        Assert.Equal(customer.Id, notification.CustomerId);
+        Assert.Equal(Agendamento.Api.Domain.Notifications.NotificationAudience.Customer, notification.Audience);
     }
 }

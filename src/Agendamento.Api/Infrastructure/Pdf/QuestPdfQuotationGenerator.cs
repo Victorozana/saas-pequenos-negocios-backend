@@ -9,12 +9,15 @@ namespace Agendamento.Api.Infrastructure.Pdf;
 
 public class QuestPdfQuotationGenerator : IQuotationPdfGenerator
 {
+    // The installed native renderer corrupts ToUnicode maps when rendering concurrently.
+    // Share this gate across all request-scoped generator instances.
+    private static readonly SemaphoreSlim RenderingGate = new(1, 1);
     static QuestPdfQuotationGenerator()
     {
         QuestPDF.Settings.License = LicenseType.Community;
     }
 
-    public Task<byte[]> GeneratePdfAsync(QuotationDetailDto quotation, CancellationToken cancellationToken = default)
+    public async Task<byte[]> GeneratePdfAsync(QuotationDetailDto quotation, CancellationToken cancellationToken = default)
     {
         var document = Document.Create(container =>
         {
@@ -31,8 +34,16 @@ public class QuestPdfQuotationGenerator : IQuotationPdfGenerator
             });
         });
 
-        var pdfBytes = document.GeneratePdf();
-        return Task.FromResult(pdfBytes);
+        await RenderingGate.WaitAsync(cancellationToken);
+        try
+        {
+            cancellationToken.ThrowIfCancellationRequested();
+            return document.GeneratePdf();
+        }
+        finally
+        {
+            RenderingGate.Release();
+        }
     }
 
     private void ComposeHeader(IContainer container, QuotationDetailDto quotation)

@@ -14,4 +14,5 @@ public record UpdateCustomerCommand(
     string? City,
     string? State,
     string? ZipCode,
-    bool PreserveDocument = false);
+    bool PreserveDocument = false,
+    bool? AutomaticRemindersEnabled = null);

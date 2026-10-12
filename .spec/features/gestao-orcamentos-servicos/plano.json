@@ -1,12 +1,12 @@
 {
-  "runId": "saas-pequenos-negocios-backend-gestao-orcamentos-servicos-mv4pyuoj",
+  "runId": "saas-pequenos-negocios-backend-gestao-orcamentos-servicos-mv5jsmmr",
   "feature": "gestao-orcamentos-servicos",
   "agent": "codex",
   "modo": "sequencial",
   "paralelizar": null,
   "modeloForcado": null,
   "esforcoForcado": null,
-  "geradoEm": "2026-10-12 03:55",
+  "geradoEm": "2026-10-12 17:50",
   "branchTrabalho": "spec/gestao-orcamentos-servicos",
   "baseDir": ".spec/features/gestao-orcamentos-servicos",
   "specDir": ".spec",
@@ -230,23 +230,10 @@
         "AC-048",
         "AC-049"
       ]
-    },
-    {
-      "id": "T-103",
-      "titulo": "Implementar e provar edição de orçamento pendente",
-      "modelo": "gpt-5.6-terra",
-      "esforco": "medium",
-      "arquivos": [
-        "src/Agendamento.Api/Features/Quotations/QuotationEndpoints.cs",
-        "src/Agendamento.Api/Domain/Quotations/Quotation.cs",
-        "tests/Agendamento.IntegrationTests/Features/QuotationTests.cs"
-      ],
-      "refs": [
-        "US-045",
-        "AC-206"
-      ]
     }
   ],
-  "concluidas": [],
+  "concluidas": [
+    "T-103"
+  ],
   "avisos": []
 }

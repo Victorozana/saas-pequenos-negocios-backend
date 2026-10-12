@@ -1,11 +1,11 @@
 # Plano de execução — notificacoes-lembretes-whatsapp
 
-> gerado por `onp-spec plano` em 2026-10-12 03:55 — NÃO edite à mão;
+> gerado por `onp-spec plano` em 2026-10-12 19:39 — NÃO edite à mão;
 > mudou tasks.md ou a config? Regenere: `onp-spec plano notificacoes-lembretes-whatsapp --sequencial`
 
 ## Resumo — o que vai acontecer
 
-- **modo SEQUENCIAL (escolha do usuário)**: 10 tarefa(s) pendente(s), UMA APÓS A OUTRA, na árvore principal (1 já concluída(s): T-099)
+- **modo SEQUENCIAL (escolha do usuário)**: 6 tarefa(s) pendente(s), UMA APÓS A OUTRA, na árvore principal (6 já concluída(s): T-097, T-098, T-099, T-100, T-104, T-105)
 - sem worktrees e sem paralelismo — cada tarefa roda numa janela de contexto limpa, na ordem do tasks.md
 - tudo acontece na branch de trabalho `spec/notificacoes-lembretes-whatsapp`; levar para a main é decisão sua
 
@@ -13,16 +13,12 @@
 
 | tarefa | título | modelo | esforço |
 |---|---|---|---|
-| T-097 | Serviço Abstrato e Entidades de Notificação | `gpt-5.6-terra` | medium |
-| T-098 | Mapeamento EF Core de Notificações | `gpt-5.6-terra` | medium |
-| T-100 | Testes de Integração de Notificação | `gpt-5.6-terra` | medium |
 | T-052 | Modelar Entidades de Notificação e Outbox (NotificationMessage, OutboxMessage) | `gpt-5.6-terra` | medium |
 | T-053 | Mapear Persistência EF Core e Outbox Pattern | `gpt-5.6-terra` | medium |
 | T-054 | Implementar Provedor de Envio de Mensagens e Dispatcher Background | `gpt-5.6-terra` | medium |
 | T-055 | Casos de Uso: Agendamento de Lembretes e Notificação de Orçamento | `gpt-5.6-terra` | medium |
 | T-056 | Expor Endpoints Minimal API de Notificações e Histórico | `gpt-5.6-terra` | medium |
 | T-057 | Testes de Integração do Outbox Processor e Formatação de Mensagens | `gpt-5.6-terra` | medium |
-| T-104 | Implementar preferência de lembretes por cliente | `gpt-5.6-terra` | medium |
 
 ## Gestão de branches e commits
 

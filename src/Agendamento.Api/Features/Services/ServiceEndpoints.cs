@@ -20,14 +20,21 @@ public static class ServiceEndpoints
             [FromServices] CreateServiceHandler handler,
             CancellationToken ct) =>
         {
-            var id = await handler.HandleAsync(command, ct);
-            return Results.Created($"/api/v1/services/{id}", new CreatedIdResponse(id));
+            try
+            {
+                var id = await handler.HandleAsync(command, ct);
+                return Results.Created($"/api/v1/services/{id}", new CreatedIdResponse(id));
+            }
+            catch (ArgumentException)
+            {
+                return Results.Problem(statusCode: 400, title: "Informe nome, unidade e preço não negativo para o serviço.");
+            }
         })
         .WithName("CreateService")
         .RequirePermission("services.write")
         .Produces<CreatedIdResponse>(StatusCodes.Status201Created)
         .ProducesProblem(StatusCodes.Status400BadRequest)
-        .ProducesProblem(StatusCodes.Status401Unauthorized);
+        .Produces(StatusCodes.Status401Unauthorized);
 
         group.MapGet("/", async (
             [AsParameters] GetServicesQuery query,
@@ -40,7 +47,7 @@ public static class ServiceEndpoints
         .WithName("GetServices")
         .RequirePermission("services.read")
         .Produces<PagedResult<ServiceItemDto>>(StatusCodes.Status200OK)
-        .ProducesProblem(StatusCodes.Status401Unauthorized);
+        .Produces(StatusCodes.Status401Unauthorized);
 
         group.MapGet("/{id:guid}", async (
             Guid id,
@@ -53,8 +60,8 @@ public static class ServiceEndpoints
         .WithName("GetServiceById")
         .RequirePermission("services.read")
         .Produces<ServiceItemDto>(StatusCodes.Status200OK)
-        .ProducesProblem(StatusCodes.Status404NotFound)
-        .ProducesProblem(StatusCodes.Status401Unauthorized);
+        .Produces(StatusCodes.Status404NotFound)
+        .Produces(StatusCodes.Status401Unauthorized);
 
         group.MapPut("/{id:guid}", async (
             Guid id,
@@ -62,13 +69,21 @@ public static class ServiceEndpoints
             [FromServices] UpdateServiceHandler handler,
             CancellationToken ct) =>
         {
-            var success = await handler.HandleAsync(id, command, ct);
-            return success ? Results.NoContent() : Results.NotFound();
+            try
+            {
+                var success = await handler.HandleAsync(id, command, ct);
+                return success ? Results.NoContent() : Results.NotFound();
+            }
+            catch (ArgumentException)
+            {
+                return Results.Problem(statusCode: 400, title: "Informe nome, unidade e preço não negativo para o serviço.");
+            }
         })
         .WithName("UpdateService")
         .RequirePermission("services.write")
         .Produces(StatusCodes.Status204NoContent)
-        .ProducesProblem(StatusCodes.Status404NotFound)
-        .ProducesProblem(StatusCodes.Status401Unauthorized);
+        .Produces(StatusCodes.Status404NotFound)
+        .ProducesProblem(StatusCodes.Status400BadRequest)
+        .Produces(StatusCodes.Status401Unauthorized);
     }
 }

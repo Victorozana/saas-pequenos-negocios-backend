@@ -1,11 +1,11 @@
 {
   "feature": "gestao-financeira-contas",
-  "timestamp": "2026-10-12T15:32:51.117Z",
-  "gitRev": "fb5836d",
+  "timestamp": "2026-10-12T21:21:51.770Z",
+  "gitRev": "96875bb",
   "command": "powershell -ExecutionPolicy Bypass -File scripts/verify-spec.ps1",
   "reporter": "jest-json",
   "exitCode": 0,
-  "testsParsed": 198,
+  "testsParsed": 250,
   "results": {
     "AC-094": {
       "status": "pass",
@@ -14,7 +14,7 @@
     },
     "AC-096": {
       "status": "pass",
-      "testName": "Permissões HTTP e revogação imediata @spec:AC-071 @spec:AC-096 Permissões HTTP e revogação imediata @spec:AC-071 @spec:AC-096",
+      "testName": "Conta manual e pagamentos parciais persistidos @spec:AC-095 @spec:AC-096 Conta manual e pagamentos parciais persistidos @spec:AC-095 @spec:AC-096",
       "method": "jest-json"
     },
     "AC-095": {
@@ -29,7 +29,7 @@
     },
     "AC-057": {
       "status": "pass",
-      "testName": "Pagamento maior que o saldo lança exceção @spec:AC-057 Pagamento maior que o saldo lança exceção @spec:AC-057",
+      "testName": "Pagamento integral atualiza status para Paid e zera o saldo @spec:AC-057 Pagamento integral atualiza status para Paid e zera o saldo @spec:AC-057",
       "method": "jest-json"
     },
     "AC-055": {
@@ -55,7 +55,7 @@
     },
     "P-003": {
       "status": "pass",
-      "testName": "Tenant externo no body não muda a empresa do cliente criado @spec:AC-029 @principle:P-003 Tenant externo no body não muda a empresa do cliente criado @spec:AC-029 @principle:P-003"
+      "testName": "Tenant externo em header ou query não substitui a sessão @spec:AC-029 @principle:P-003(useQuery: True) Tenant externo em header ou query não substitui a sessão @spec:AC-029 @principle:P-003(useQuery: True)"
     },
     "P-004": {
       "status": "pass",

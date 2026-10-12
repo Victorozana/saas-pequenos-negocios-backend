@@ -1,40 +1,40 @@
 {
   "feature": "isolamento-multitenancy",
-  "timestamp": "2026-10-12T15:34:42.013Z",
-  "gitRev": "fb5836d",
+  "timestamp": "2026-10-12T21:28:12.508Z",
+  "gitRev": "96875bb",
   "command": "powershell -ExecutionPolicy Bypass -File scripts/verify-spec.ps1",
   "reporter": "jest-json",
   "exitCode": 0,
-  "testsParsed": 198,
+  "testsParsed": 250,
   "results": {
     "AC-028": {
       "status": "pass",
-      "testName": "Requisição sem sessão não acessa perfil privado @spec:AC-028 Requisição sem sessão não acessa perfil privado @spec:AC-028",
+      "testName": "PostgreSQL isola HTTP e EF e mantém cadastro e autenticação públicos explícitos @spec:AC-028 @spec:AC-029 @spec:AC-030 @spec:AC-031 @spec:AC-032 PostgreSQL isola HTTP e EF e mantém cadastro e autenticação públicos explícitos @spec:AC-028 @spec:AC-029 @spec:AC-030 @spec:AC-031 @spec:AC-032",
       "method": "jest-json"
     },
     "AC-029": {
       "status": "pass",
-      "testName": "Tenant externo em header ou query não substitui a sessão @spec:AC-029 @principle:P-003(useQuery: False) Tenant externo em header ou query não substitui a sessão @spec:AC-029 @principle:P-003(useQuery: False)",
+      "testName": "PostgreSQL isola HTTP e EF e mantém cadastro e autenticação públicos explícitos @spec:AC-028 @spec:AC-029 @spec:AC-030 @spec:AC-031 @spec:AC-032 PostgreSQL isola HTTP e EF e mantém cadastro e autenticação públicos explícitos @spec:AC-028 @spec:AC-029 @spec:AC-030 @spec:AC-031 @spec:AC-032",
       "method": "jest-json"
     },
     "AC-030": {
       "status": "pass",
-      "testName": "Consultas retornam somente registros da empresa autenticada @spec:AC-030 Consultas retornam somente registros da empresa autenticada @spec:AC-030",
+      "testName": "PostgreSQL isola HTTP e EF e mantém cadastro e autenticação públicos explícitos @spec:AC-028 @spec:AC-029 @spec:AC-030 @spec:AC-031 @spec:AC-032 PostgreSQL isola HTTP e EF e mantém cadastro e autenticação públicos explícitos @spec:AC-028 @spec:AC-029 @spec:AC-030 @spec:AC-031 @spec:AC-032",
       "method": "jest-json"
     },
     "AC-031": {
       "status": "pass",
-      "testName": "Alteração e exclusão de registro de outra empresa são rejeitadas @spec:AC-031 @spec:AC-032(delete: True, rewriteTenant: True) Alteração e exclusão de registro de outra empresa são rejeitadas @spec:AC-031 @spec:AC-032(delete: True, rewriteTenant: True)",
+      "testName": "PostgreSQL isola HTTP e EF e mantém cadastro e autenticação públicos explícitos @spec:AC-028 @spec:AC-029 @spec:AC-030 @spec:AC-031 @spec:AC-032 PostgreSQL isola HTTP e EF e mantém cadastro e autenticação públicos explícitos @spec:AC-028 @spec:AC-029 @spec:AC-030 @spec:AC-031 @spec:AC-032",
       "method": "jest-json"
     },
     "AC-032": {
       "status": "pass",
-      "testName": "Alteração e exclusão de registro de outra empresa são rejeitadas @spec:AC-031 @spec:AC-032(delete: True, rewriteTenant: True) Alteração e exclusão de registro de outra empresa são rejeitadas @spec:AC-031 @spec:AC-032(delete: True, rewriteTenant: True)",
+      "testName": "PostgreSQL isola HTTP e EF e mantém cadastro e autenticação públicos explícitos @spec:AC-028 @spec:AC-029 @spec:AC-030 @spec:AC-031 @spec:AC-032 PostgreSQL isola HTTP e EF e mantém cadastro e autenticação públicos explícitos @spec:AC-028 @spec:AC-029 @spec:AC-030 @spec:AC-031 @spec:AC-032",
       "method": "jest-json"
     },
     "AC-033": {
       "status": "pass",
-      "testName": "Papel restrito impede SQL direto entre tenants em todas as tabelas @spec:AC-033 @principle:P-004 Papel restrito impede SQL direto entre tenants em todas as tabelas @spec:AC-033 @principle:P-004",
+      "testName": "API rejeita credencial proprietária e bypass antes de consultar dados @spec:AC-033 API rejeita credencial proprietária e bypass antes de consultar dados @spec:AC-033",
       "method": "jest-json"
     },
     "AC-034": {
@@ -55,7 +55,7 @@
     },
     "P-003": {
       "status": "pass",
-      "testName": "Tenant externo em header ou query não substitui a sessão @spec:AC-029 @principle:P-003(useQuery: False) Tenant externo em header ou query não substitui a sessão @spec:AC-029 @principle:P-003(useQuery: False)"
+      "testName": "Tenant externo no body não muda a empresa do cliente criado @spec:AC-029 @principle:P-003 Tenant externo no body não muda a empresa do cliente criado @spec:AC-029 @principle:P-003"
     },
     "P-004": {
       "status": "pass",

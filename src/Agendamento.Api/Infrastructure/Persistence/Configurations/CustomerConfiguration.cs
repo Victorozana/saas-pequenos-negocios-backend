@@ -19,6 +19,7 @@ public class CustomerConfiguration : IEntityTypeConfiguration<Customer>
         builder.Property(c => c.Name).HasMaxLength(250).IsRequired();
         builder.Property(c => c.Phone).HasMaxLength(20).IsRequired();
         builder.Property(c => c.Email).HasMaxLength(150);
+        builder.Property(c => c.AutomaticRemindersEnabled).IsRequired();
 
         builder.OwnsOne(c => c.Document, doc =>
         {

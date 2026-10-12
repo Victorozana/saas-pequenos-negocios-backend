@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# executar-tarefas.sh — gerado por `onp-spec plano gestao-orcamentos-servicos` em 2026-10-12 03:55
+# executar-tarefas.sh — gerado por `onp-spec plano gestao-orcamentos-servicos` em 2026-10-12 17:50
 # NÃO edite à mão: mudou tasks.md ou a config, regenere o plano.
 #
 # uso:
@@ -14,7 +14,7 @@
 set -u
 set -o pipefail
 
-RUN_ID='saas-pequenos-negocios-backend-gestao-orcamentos-servicos-mv4pyuoj'
+RUN_ID='saas-pequenos-negocios-backend-gestao-orcamentos-servicos-mv5jsmmr'
 FEATURE='gestao-orcamentos-servicos'
 BASE_BRANCH='spec/gestao-orcamentos-servicos'
 ENGINE='.agents/skills/onp-spec-driven/scripts/onp-spec.mjs'
@@ -552,38 +552,6 @@ Regras inegociáveis:
   return 1
 }
 
-# ── sequencial T-103 (ordem do tasks.md) ──
-executar_seq_T_103() {
-  info 'sequencial T-103 — Implementar e provar edição de orçamento pendente'
-  if rodar_tarefa seq 'T-103' 'Você executa UMA tarefa da feature "gestao-orcamentos-servicos" (fluxo onp-spec, spec-anchored).
-Leia primeiro: .spec/features/gestao-orcamentos-servicos/spec.md, .spec/features/gestao-orcamentos-servicos/tasks.md e .spec/constituicao.md.
-
-Sua tarefa (somente ela):
-T-103 — "Implementar e provar edição de orçamento pendente"
-  critérios/refs: AC-206 (Edição permitida somente enquanto pendente)
-  arquivos permitidos (e seus testes): src/Agendamento.Api/Features/Quotations/QuotationEndpoints.cs, src/Agendamento.Api/Domain/Quotations/Quotation.cs, tests/Agendamento.IntegrationTests/Features/QuotationTests.cs
-  mensagem de commit: "T-103 gestao-orcamentos-servicos: Implementar e provar edição de orçamento pendente"
-
-Regras inegociáveis:
-- Todo critério de aceite referenciado vira teste com @spec:AC-xxx no título.
-- NUNCA enfraqueça, pule (skip/todo) ou apague um teste para passar — teste pulado não é prova e o audit acusa.
-- Rode os testes localmente com `powershell -ExecutionPolicy Bypass -File scripts/verify-spec.ps1` até passarem.
-- NÃO edite tasks.md, NÃO rode onp-spec verify/audit e NÃO toque em outras tarefas — o orquestrador cuida disso.
-- Ao final de CADA tarefa: `git add` só no que você tocou e um commit próprio.' 'gpt-5.6-terra' medium >> "$LOG_DIR/seq.log" 2>&1; then
-    # commit de segurança se o agente esqueceu (rastreabilidade > perfeição)
-    if [ -n "$(git status --porcelain)" ]; then
-      git add -A && git commit -q -m 'T-103 gestao-orcamentos-servicos: Implementar e provar edição de orçamento pendente (auto-commit do plano)'
-    fi
-    marcar_concluidas T-103
-    verde "✔ T-103 concluída"
-    return 0
-  fi
-  vermelho "✘ T-103 falhou (log: $LOG_DIR/seq.log)"
-  amarelo "  reexecute só ela: bash .spec/features/gestao-orcamentos-servicos/executar-tarefas.sh --seq T-103"
-  FALHAS="$FALHAS T-103"
-  return 1
-}
-
 # ── gate: quem decide é a máquina ────────────────────────────────────
 rodar_gate() {
   echo
@@ -649,7 +617,6 @@ executar_tudo() {
   executar_seq_T_035 || true
   executar_seq_T_036 || true
   executar_seq_T_037 || true
-  executar_seq_T_103 || true
   encerrar tudo
 }
 
@@ -667,7 +634,6 @@ listar() {
   echo "  seq       T-035 (sequencial)"
   echo "  seq       T-036 (sequencial)"
   echo "  seq       T-037 (sequencial)"
-  echo "  seq       T-103 (sequencial)"
   echo
   echo "reexecutar uma faixa:    --faixa <id>"
   echo "reexecutar sequencial:   --seq <T-xxx>"
@@ -714,7 +680,6 @@ case "$MODO" in
       T-035) evento --tipo inicio --escopo "seq:T-035"; iniciar_resumos; executar_seq_T_035 || true; encerrar "seq:T-035" ;;
       T-036) evento --tipo inicio --escopo "seq:T-036"; iniciar_resumos; executar_seq_T_036 || true; encerrar "seq:T-036" ;;
       T-037) evento --tipo inicio --escopo "seq:T-037"; iniciar_resumos; executar_seq_T_037 || true; encerrar "seq:T-037" ;;
-      T-103) evento --tipo inicio --escopo "seq:T-103"; iniciar_resumos; executar_seq_T_103 || true; encerrar "seq:T-103" ;;
       *) falhar "tarefa sequencial desconhecida: '$ALVO' — veja as disponíveis com --listar" ;;
     esac ;;
 esac

@@ -58,6 +58,9 @@ public class UpdateCustomerHandler
             document,
             address);
 
+        if (command.AutomaticRemindersEnabled.HasValue)
+            customer.SetAutomaticRemindersEnabled(command.AutomaticRemindersEnabled.Value);
+
         await _dbContext.SaveChangesAsync(cancellationToken);
 
         return true;

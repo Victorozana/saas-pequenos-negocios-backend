@@ -18,7 +18,8 @@ public record CustomerResponse(
     string? City,
     string? State,
     string? ZipCode,
-    bool IsActive)
+    bool IsActive,
+    bool AutomaticRemindersEnabled = true)
 {
     public const string DocumentDisplayPattern = @"^(?:\*{3}\.\*{3}\.\*{3}-[0-9]{2}|[0-9]{14})$";
 
@@ -85,7 +86,8 @@ public class GetCustomersHandler
             c.Address?.City,
             c.Address?.State,
             c.Address?.ZipCode,
-            c.IsActive
+            c.IsActive,
+            c.AutomaticRemindersEnabled
         )).ToList();
 
         return new PaginatedResult<CustomerResponse>(items, totalCount, page, pageSize);

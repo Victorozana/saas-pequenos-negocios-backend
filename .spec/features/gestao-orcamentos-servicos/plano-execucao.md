@@ -1,11 +1,11 @@
 # Plano de execução — gestao-orcamentos-servicos
 
-> gerado por `onp-spec plano` em 2026-10-12 03:55 — NÃO edite à mão;
+> gerado por `onp-spec plano` em 2026-10-12 17:50 — NÃO edite à mão;
 > mudou tasks.md ou a config? Regenere: `onp-spec plano gestao-orcamentos-servicos --sequencial`
 
 ## Resumo — o que vai acontecer
 
-- **modo SEQUENCIAL (escolha do usuário)**: 13 tarefa(s) pendente(s), UMA APÓS A OUTRA, na árvore principal
+- **modo SEQUENCIAL (escolha do usuário)**: 12 tarefa(s) pendente(s), UMA APÓS A OUTRA, na árvore principal (1 já concluída(s): T-103)
 - sem worktrees e sem paralelismo — cada tarefa roda numa janela de contexto limpa, na ordem do tasks.md
 - tudo acontece na branch de trabalho `spec/gestao-orcamentos-servicos`; levar para a main é decisão sua
 
@@ -25,7 +25,6 @@
 | T-035 | Implementar Gerador de Exportação de Orçamento em PDF | `gpt-5.6-terra` | medium |
 | T-036 | Expor Endpoints Minimal API de Serviços e Orçamentos | `gpt-5.6-terra` | medium |
 | T-037 | Testes de Integração, Isolamento Multi-Tenant e Exportação PDF | `gpt-5.6-terra` | medium |
-| T-103 | Implementar e provar edição de orçamento pendente | `gpt-5.6-terra` | medium |
 
 ## Gestão de branches e commits
 

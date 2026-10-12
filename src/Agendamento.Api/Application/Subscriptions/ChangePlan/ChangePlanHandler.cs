@@ -27,13 +27,13 @@ public class ChangePlanHandler
             .FirstOrDefaultAsync(p => p.Id == request.NewPlanId, cancellationToken);
 
         if (plan == null)
-            throw new Exception("Plano não encontrado.");
+            throw new SubscriptionNotFoundException("Plano não encontrado.");
 
         var subscription = await _dbContext.TenantSubscriptions
             .FirstOrDefaultAsync(s => s.TenantId == _tenantContext.TenantId, cancellationToken);
 
         if (subscription == null)
-            throw new Exception("Tenant não possui assinatura ativa.");
+            throw new SubscriptionNotFoundException("Tenant não possui assinatura ativa.");
 
         // Aqui chamaria API do Gateway de pagamento para atualizar a assinatura externa (ex: Stripe, Pagar.me)
         // Para simplificar, estamos apenas atualizando nosso domínio.

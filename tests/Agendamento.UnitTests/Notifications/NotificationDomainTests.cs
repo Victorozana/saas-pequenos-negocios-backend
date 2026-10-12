@@ -38,6 +38,23 @@ public class NotificationDomainTests
         Assert.Equal(0, notification.RetryCount);
     }
 
+    [Fact(DisplayName = "Classificação exige cliente e impede vínculo fictício para avulsas, sistema e legado @spec:AC-098")]
+    public void CustomerAudienceRequiresRealLinkShape()
+    {
+        var tenant = Guid.NewGuid(); var customer = Guid.NewGuid();
+        var linked = NotificationMessage.Create(tenant, "123", NotificationChannel.Email, "Teste", customer, NotificationAudience.Customer);
+        Assert.Equal(customer, linked.CustomerId); Assert.Equal(NotificationAudience.Customer, linked.Audience);
+        Assert.Throws<ArgumentException>(() => NotificationMessage.Create(tenant, "123", NotificationChannel.Email, "Teste", null, NotificationAudience.Customer));
+        Assert.Throws<ArgumentException>(() => NotificationMessage.Create(tenant, "123", NotificationChannel.Email, "Teste", Guid.Empty, NotificationAudience.Customer));
+        foreach (var audience in new[] { NotificationAudience.Standalone, NotificationAudience.System })
+        {
+            var unlinked = NotificationMessage.Create(tenant, "123", NotificationChannel.Email, "Teste", null, audience);
+            Assert.Null(unlinked.CustomerId); Assert.Equal(audience, unlinked.Audience);
+            Assert.Throws<ArgumentException>(() => NotificationMessage.Create(tenant, "123", NotificationChannel.Email, "Teste", customer, audience));
+        }
+        Assert.Throws<ArgumentException>(() => NotificationMessage.Create(tenant, "123", NotificationChannel.Email, "Teste", null, NotificationAudience.LegacyUnlinked));
+    }
+
     [Fact(DisplayName = "NotificationMessage em falha deve incrementar retry e agendar backoff @spec:AC-063")]
     public void NotificationMessage_MarkAsFailed_Should_Increase_RetryCount_And_Fail_After_3()
     {

@@ -1,4 +1,5 @@
 using Agendamento.Api.Application.Subscriptions.ChangePlan;
+using Agendamento.Api.Application.Subscriptions;
 using Agendamento.Api.Application.Subscriptions.GetTenantSubscription;
 using Agendamento.Api.Application.Subscriptions.ProcessSubscriptionWebhook;
 using Agendamento.Api.Infrastructure.Persistence;
@@ -17,9 +18,13 @@ public static class SubscriptionEndpoints
 
         group.MapGet("/current", async ([FromServices] GetTenantSubscriptionHandler handler, CancellationToken cancellationToken) =>
         {
-            var result = await handler.HandleAsync(new GetTenantSubscriptionQuery(), cancellationToken);
-            return Results.Ok(result);
-        }).WithName("GetCurrentSubscription").Produces<TenantSubscriptionDto>();
+            try
+            {
+                var result = await handler.HandleAsync(new GetTenantSubscriptionQuery(), cancellationToken);
+                return Results.Ok(result);
+            }
+            catch (SubscriptionNotFoundException) { return MissingSubscription(); }
+        }).WithName("GetCurrentSubscription").Produces<TenantSubscriptionDto>().ProducesProblem(404);
 
         group.MapGet("/plans", async (AgendamentoDbContext dbContext) =>
         {
@@ -31,9 +36,13 @@ public static class SubscriptionEndpoints
 
         group.MapPost("/change-plan", async ([FromBody] ChangePlanCommand command, [FromServices] ChangePlanHandler handler, CancellationToken cancellationToken) =>
         {
-            await handler.HandleAsync(command, cancellationToken);
-            return Results.NoContent();
-        }).WithName("ChangeSubscriptionPlan").Produces(StatusCodes.Status204NoContent);
+            try
+            {
+                await handler.HandleAsync(command, cancellationToken);
+                return Results.NoContent();
+            }
+            catch (SubscriptionNotFoundException) { return MissingSubscription(); }
+        }).WithName("ChangeSubscriptionPlan").Produces(StatusCodes.Status204NoContent).ProducesProblem(404);
 
         var webhooksGroup = app.MapGroup("/api/v1/webhooks")
             .WithTags("Webhooks")
@@ -41,6 +50,10 @@ public static class SubscriptionEndpoints
 
         webhooksGroup.MapPost("/billing", async ([FromBody] WebhookPayload payload, [FromServices] ProcessSubscriptionWebhookHandler handler, CancellationToken cancellationToken) =>
         {
+            if (string.IsNullOrWhiteSpace(payload.Id) || string.IsNullOrWhiteSpace(payload.Type) ||
+                payload.Data?.Object == null || string.IsNullOrWhiteSpace(payload.Data.Object.Id))
+                return Results.Problem(statusCode: 400, title: "Evento de cobrança inválido.",
+                    detail: "Informe identificadores do evento e da assinatura, tipo e dados do evento.");
             var command = new ProcessSubscriptionWebhookCommand
             {
                 EventId = payload.Id,
@@ -52,8 +65,11 @@ public static class SubscriptionEndpoints
 
             await handler.HandleAsync(command, cancellationToken);
             return Results.Ok();
-        }).WithName("ProcessBillingWebhook");
+        }).WithName("ProcessBillingWebhook").Produces(200).ProducesProblem(400);
     }
+
+    private static IResult MissingSubscription() => Results.Problem(statusCode: 404,
+        title: "Assinatura ou plano não encontrado.");
 }
 
 public class WebhookPayload

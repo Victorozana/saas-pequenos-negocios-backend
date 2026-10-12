@@ -29,23 +29,21 @@ public static class CompanyRegistryEndpoints
                 var result = await handler.HandleAsync(query, cancellationToken);
                 return Results.Ok(result);
             }
-            catch (ArgumentException ex)
+            catch (ArgumentException)
             {
-                return Results.BadRequest(ProblemDetailsExtensions.Create("CNPJ inválido.", ex.Message));
+                return Results.Problem(statusCode: 400, title: "CNPJ inválido.");
             }
-            catch (CompanyRegistryNotFoundException ex)
+            catch (CompanyRegistryNotFoundException)
             {
-                return Results.NotFound(ProblemDetailsExtensions.Create(ex.Message, ex.Message));
+                return Results.Problem(statusCode: 404, title: "Empresa não encontrada.");
             }
-            catch (CompanyRegistryInactiveException ex)
+            catch (CompanyRegistryInactiveException)
             {
-                return Results.UnprocessableEntity(ProblemDetailsExtensions.Create(ex.Message, ex.Message));
+                return Results.Problem(statusCode: 422, title: "Empresa inativa.");
             }
-            catch (CompanyRegistryUnavailableException ex)
+            catch (CompanyRegistryUnavailableException)
             {
-                return Results.Json(
-                    ProblemDetailsExtensions.Create(ex.Message, ex.Message),
-                    statusCode: StatusCodes.Status503ServiceUnavailable);
+                return Results.Problem(statusCode: 503, title: "Consulta cadastral indisponível. Tente novamente mais tarde.");
             }
         })
         .WithName("LookupCompanyRegistry")

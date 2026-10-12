@@ -1,11 +1,11 @@
 {
   "feature": "gestao-agendamentos-ordens-servico",
-  "timestamp": "2026-10-12T15:30:22.373Z",
-  "gitRev": "fb5836d",
+  "timestamp": "2026-10-12T21:13:10.282Z",
+  "gitRev": "96875bb",
   "command": "powershell -ExecutionPolicy Bypass -File scripts/verify-spec.ps1",
   "reporter": "jest-json",
   "exitCode": 0,
-  "testsParsed": 198,
+  "testsParsed": 250,
   "results": {
     "AC-051": {
       "status": "pass",
@@ -36,7 +36,7 @@
   "principles": {
     "P-005": {
       "status": "pass",
-      "testName": "Token de e-mail é armazenado somente como digest e expira em 24 horas @spec:AC-009 @principle:P-005 Token de e-mail é armazenado somente como digest e expira em 24 horas @spec:AC-009 @principle:P-005"
+      "testName": "Senhas nunca são recuperáveis @spec:AC-008 @principle:P-005 Senhas nunca são recuperáveis @spec:AC-008 @principle:P-005"
     },
     "P-003": {
       "status": "pass",

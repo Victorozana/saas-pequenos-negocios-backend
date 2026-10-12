@@ -28,7 +28,15 @@ public static class SessionEndpoints
             return TypedResults.Problem(statusCode: StatusCodes.Status400BadRequest, title: "Dados de acesso inválidos.");
         }
 
-        var outcome = await handler.HandleAsync(new CreateSessionCommand(request.Email, request.Password), cancellationToken);
+        CreateSessionOutcome outcome;
+        try
+        {
+            outcome = await handler.HandleAsync(new CreateSessionCommand(request.Email, request.Password), cancellationToken);
+        }
+        catch (Exception error) when (error is System.Data.Common.DbException or TimeoutException && !cancellationToken.IsCancellationRequested)
+        {
+            return TypedResults.Problem(statusCode: StatusCodes.Status503ServiceUnavailable, title: "Não foi possível iniciar a sessão agora. Tente novamente mais tarde.");
+        }
         if (outcome.Error == "email_verification_required")
         {
             return TypedResults.Problem(statusCode: StatusCodes.Status403Forbidden, title: "Confirme seu e-mail antes de entrar.");

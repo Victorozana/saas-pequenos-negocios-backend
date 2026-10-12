@@ -1,26 +1,26 @@
 {
   "feature": "onboarding-token-desenvolvimento",
-  "timestamp": "2026-10-12T15:27:56.068Z",
-  "gitRev": "fb5836d",
+  "timestamp": "2026-10-12T21:32:12.176Z",
+  "gitRev": "96875bb",
   "command": "powershell -ExecutionPolicy Bypass -File scripts/verify-spec.ps1",
   "reporter": "jest-json",
   "exitCode": 0,
-  "testsParsed": 198,
+  "testsParsed": 250,
   "results": {
     "AC-100": {
       "status": "pass",
-      "testName": "Onboarding completo sem token na resposta em qualquer ambiente @spec:AC-021 @spec:AC-038 @spec:AC-100 @principle:P-005(environment: \"Development\") Onboarding completo sem token na resposta em qualquer ambiente @spec:AC-021 @spec:AC-038 @spec:AC-100 @principle:P-005(environment: \"Development\")",
+      "testName": "Onboarding completo sem token na resposta em qualquer ambiente @spec:AC-021 @spec:AC-038 @spec:AC-100 @principle:P-005(environment: \"Test\") Onboarding completo sem token na resposta em qualquer ambiente @spec:AC-021 @spec:AC-038 @spec:AC-100 @principle:P-005(environment: \"Test\")",
       "method": "jest-json"
     }
   },
   "principles": {
     "P-005": {
       "status": "pass",
-      "testName": "Senhas nunca são recuperáveis @spec:AC-008 @principle:P-005 Senhas nunca são recuperáveis @spec:AC-008 @principle:P-005"
+      "testName": "Token de e-mail é armazenado somente como digest e expira em 24 horas @spec:AC-009 @principle:P-005 Token de e-mail é armazenado somente como digest e expira em 24 horas @spec:AC-009 @principle:P-005"
     },
     "P-003": {
       "status": "pass",
-      "testName": "Tenant externo no body não muda a empresa do cliente criado @spec:AC-029 @principle:P-003 Tenant externo no body não muda a empresa do cliente criado @spec:AC-029 @principle:P-003"
+      "testName": "Tenant externo em header ou query não substitui a sessão @spec:AC-029 @principle:P-003(useQuery: False) Tenant externo em header ou query não substitui a sessão @spec:AC-029 @principle:P-003(useQuery: False)"
     },
     "P-004": {
       "status": "pass",

@@ -75,6 +75,9 @@ namespace Agendamento.Api.Infrastructure.Persistence.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
+                    b.Property<bool>("AutomaticRemindersEnabled")
+                        .HasColumnType("boolean");
+
                     b.Property<string>("Email")
                         .HasMaxLength(150)
                         .HasColumnType("character varying(150)");
@@ -196,6 +199,11 @@ namespace Agendamento.Api.Infrastructure.Persistence.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
+                    b.Property<string>("Audience")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
+
                     b.Property<string>("Channel")
                         .IsRequired()
                         .HasMaxLength(50)
@@ -208,6 +216,9 @@ namespace Agendamento.Api.Infrastructure.Persistence.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
 
+                    b.Property<Guid?>("CustomerId")
+                        .HasColumnType("uuid");
+
                     b.Property<string>("LastError")
                         .HasMaxLength(2000)
                         .HasColumnType("character varying(2000)");
@@ -215,10 +226,16 @@ namespace Agendamento.Api.Infrastructure.Persistence.Migrations
                     b.Property<DateTime?>("NextRetryAt")
                         .HasColumnType("timestamp with time zone");
 
+                    b.Property<Guid?>("ReceivableTitleId")
+                        .HasColumnType("uuid");
+
                     b.Property<string>("Recipient")
                         .IsRequired()
                         .HasMaxLength(255)
                         .HasColumnType("character varying(255)");
+
+                    b.Property<DateOnly?>("ReminderDate")
+                        .HasColumnType("date");
 
                     b.Property<int>("RetryCount")
                         .HasColumnType("integer");
@@ -243,7 +260,18 @@ namespace Agendamento.Api.Infrastructure.Persistence.Migrations
 
                     b.HasIndex("Status", "NextRetryAt", "CreatedAt");
 
-                    b.ToTable("NotificationMessages", (string)null);
+                    b.HasIndex("TenantId", "CustomerId", "CreatedAt");
+
+                    b.HasIndex("TenantId", "ReceivableTitleId", "ReminderDate")
+                        .IsUnique()
+                        .HasDatabaseName("UX_NotificationMessages_DailyReceivableReminder");
+
+                    b.ToTable("NotificationMessages", null, t =>
+                        {
+                            t.HasCheckConstraint("CK_NotificationMessages_AudienceCustomer", "(\"Audience\" = 'Customer' AND \"CustomerId\" IS NOT NULL) OR (\"Audience\" IN ('Standalone', 'System', 'LegacyUnlinked') AND \"CustomerId\" IS NULL)");
+
+                            t.HasCheckConstraint("CK_NotificationMessages_DailyReceivableReminder", "(\"ReceivableTitleId\" IS NULL AND \"ReminderDate\" IS NULL) OR (\"ReceivableTitleId\" IS NOT NULL AND \"ReminderDate\" IS NOT NULL AND \"Audience\" = 'Customer')");
+                        });
                 });
 
             modelBuilder.Entity("Agendamento.Api.Domain.Quotations.Quotation", b =>
@@ -1088,6 +1116,18 @@ namespace Agendamento.Api.Infrastructure.Persistence.Migrations
                         .HasForeignKey("TenantId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
+
+                    b.HasOne("Agendamento.Api.Domain.Customers.Customer", null)
+                        .WithMany()
+                        .HasForeignKey("TenantId", "CustomerId")
+                        .HasPrincipalKey("TenantId", "Id")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("Agendamento.Api.Domain.Financial.ReceivableTitle", null)
+                        .WithMany()
+                        .HasForeignKey("TenantId", "ReceivableTitleId")
+                        .HasPrincipalKey("TenantId", "Id")
+                        .OnDelete(DeleteBehavior.Restrict);
                 });
 
             modelBuilder.Entity("Agendamento.Api.Domain.Quotations.Quotation", b =>

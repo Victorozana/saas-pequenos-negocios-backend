@@ -16,21 +16,47 @@ public class ProblemDetailsOperationTransformer : IOpenApiOperationTransformer
                 new() { [new OpenApiSecuritySchemeReference("Bearer", context.Document)] = new List<string>() }
             };
         }
-        // Add ProblemDetails to 4xx and 5xx responses if not already documented
+        // Authentication challenges have no body. Metadata must describe the HTTP
+        // response; a document transformer never writes a runtime ProblemDetails.
         operation.Responses ??= new OpenApiResponses();
-        foreach (var response in operation.Responses)
+        AddInputProblem("500", "Falha inesperada: resposta ProblemDetails segura, sem detalhes internos.");
+        if (operation.RequestBody != null || operation.Parameters?.Any(p => p.In is ParameterLocation.Query or ParameterLocation.Header) == true)
         {
-            if (response.Key.StartsWith("4") || response.Key.StartsWith("5"))
+            AddInputProblem("400", "Dados da requisição inválidos.");
+        }
+        if (operation.RequestBody != null)
+        {
+            AddInputProblem("415", "Tipo de conteúdo não suportado.");
+        }
+        void AddInputProblem(string status, string description)
+        {
+            if (operation.Responses.ContainsKey(status)) return;
+            operation.Responses[status] = new OpenApiResponse
             {
-                var rsp = response.Value;
-                if (rsp != null && rsp.Content != null && !rsp.Content.ContainsKey("application/problem+json"))
+                Description = description,
+                Content = new Dictionary<string, OpenApiMediaType>
                 {
-                    rsp.Content.Add("application/problem+json", new OpenApiMediaType
+                    ["application/problem+json"] = new()
                     {
                         Schema = new OpenApiSchemaReference("ProblemDetails", context.Document)
-                    });
+                    }
                 }
-            }
+            };
+        }
+        if (metadata.OfType<IAuthorizeData>().Any() && !metadata.OfType<IAllowAnonymous>().Any())
+        {
+            operation.Responses["401"] = new OpenApiResponse
+            {
+                Description = "Sessão ausente, inválida ou revogada. Resposta sem corpo.",
+                Headers = new Dictionary<string, IOpenApiHeader>
+                {
+                    ["WWW-Authenticate"] = new OpenApiHeader
+                    {
+                        Description = "Desafio de autenticação Bearer.",
+                        Schema = new OpenApiSchema { Type = JsonSchemaType.String }
+                    }
+                }
+            };
         }
         
         return Task.CompletedTask;

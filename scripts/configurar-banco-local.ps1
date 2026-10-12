@@ -17,17 +17,17 @@ try {
     $connection = 'Host=localhost;Port=' + $Port + ';Database=' + (Quote-ConnectionValue $Database) + ';Username=' + (Quote-ConnectionValue $Username) + ';Password=' + (Quote-ConnectionValue $password)
     $settings = @{
         'Database:RequirePostgreSql' = 'true'
-        'ConnectionStrings:PostgreSql' = $connection
+        'ConnectionStrings:PostgreSqlMigration' = $connection
     } | ConvertTo-Json -Compress
     # Send secrets through stdin, keeping the password out of command arguments.
     $settings | & dotnet user-secrets set --project $project | Out-Null
     if ($LASTEXITCODE -ne 0) { throw 'Nao foi possivel guardar os segredos locais.' }
-    Write-Host 'Conexao salva nos segredos locais do .NET. Aplicando migrations...'
+    Write-Host 'Credencial de migration salva nos segredos locais do .NET. As credenciais de runtime foram preservadas. Aplicando migrations...'
     & dotnet ef database update --project $project *> $null
     if ($LASTEXITCODE -ne 0) {
         throw 'Falha nas migrations. Confira servidor, porta, usuario, senha e nome do banco. A configuracao foi salva; nao inicie a API ate concluir as migrations.'
     }
-    Write-Host 'Tabelas atualizadas. Inicie a API com o perfil http (Development).'
+    Write-Host 'Tabelas atualizadas. A API exige PostgreSql e PostgreSqlAdministrative com logins restritos separados; siga docs/POSTGRESQL_RLS.md antes de iniciar o perfil http.'
 }
 finally {
     [Runtime.InteropServices.Marshal]::ZeroFreeBSTR($passwordPointer)

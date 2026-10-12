@@ -127,4 +127,4 @@ Para ter controle do pipeline de vendas e negociações da empresa.
 
 ## Decisão de edição — 12/10/2026
 
-O usuário permite edição enquanto o orçamento está pendente e bloqueia após aprovação, rejeição ou conversão. A implementação e cobertura deste fluxo ainda precisam ser verificadas.
+O usuário permite edição enquanto o orçamento está pendente e bloqueia após aprovação, rejeição ou conversão. A edição é exposta por PUT `/api/v1/quotations/{id}`, substitui o conteúdo e recalcula itens, total e entrada, preservando identidade e status. A aprovação e a edição compartilham bloqueio de linha no PostgreSQL; ao aguardar uma aprovação concorrente, a edição lê o estado final e é rejeitada. Testes HTTP e PostgreSQL exclusivos cobrem persistência, orçamento enviado, isolamento e imutabilidade após decisões; o gate mecânico permanece responsável pela prova da feature.

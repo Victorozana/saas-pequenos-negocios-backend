@@ -25,13 +25,14 @@ public static class CustomerEndpoints
                 var id = await handler.HandleAsync(command, cancellationToken);
                 return Results.Created($"/api/v1/customers/{id}", new CreatedIdResponse(id));
             }
-            catch (ArgumentException ex)
+            catch (ArgumentException)
             {
-                return Results.BadRequest(new { Title = ex.Message });
+                return Results.Problem(statusCode: 400, title: "Dados do cliente inválidos.");
             }
         })
         .WithName("CreateCustomer")
         .Produces<CreatedIdResponse>(StatusCodes.Status201Created)
+        .ProducesProblem(StatusCodes.Status400BadRequest)
         .WithSummary("Creates a new customer for the current tenant")
         .RequirePermission("customers.write");
 
@@ -42,7 +43,7 @@ public static class CustomerEndpoints
             CancellationToken cancellationToken) =>
         {
             if (id != command.CustomerId)
-                return Results.BadRequest("ID mismatch");
+                return Results.Problem(statusCode: 400, title: "O identificador do cliente difere da rota.");
 
             try
             {
@@ -52,12 +53,15 @@ public static class CustomerEndpoints
 
                 return Results.NoContent();
             }
-            catch (ArgumentException ex)
+            catch (ArgumentException)
             {
-                return Results.BadRequest(new { Title = ex.Message });
+                return Results.Problem(statusCode: 400, title: "Dados do cliente inválidos.");
             }
         })
         .WithName("UpdateCustomer")
+        .Produces(StatusCodes.Status204NoContent)
+        .Produces(StatusCodes.Status404NotFound)
+        .ProducesProblem(StatusCodes.Status400BadRequest)
         .WithSummary("Updates an existing customer")
         .RequirePermission("customers.write");
 
@@ -86,6 +90,7 @@ public static class CustomerEndpoints
         })
         .WithName("GetCustomerById")
         .Produces<CustomerResponse>()
+        .Produces(StatusCodes.Status404NotFound)
         .WithSummary("Gets a specific customer by ID")
         .RequirePermission("customers.read");
     }

@@ -9,7 +9,9 @@ public static class EmailVerificationEndpoints
     {
         endpoints.MapPost("/api/v1/auth/email-verifications", ConfirmAsync)
                  .WithName("VerifyEmail")
-                 .WithTags("Identity");
+                 .WithTags("Identity")
+                 .Produces(StatusCodes.Status204NoContent)
+                 .ProducesProblem(StatusCodes.Status400BadRequest);
         return endpoints;
     }
 

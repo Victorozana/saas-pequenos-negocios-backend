@@ -31,3 +31,71 @@ O backfill deriva o tenant dos agregados sem remover registros. Órfãos, refer�
 Os seis testes antigos pulados continuam pulados e não contam como prova. O webhook billing anônimo não recebeu porta administrativa; integração de gateway continua fora desta etapa. A auditoria global permanece independente do sucesso destas provas.
 
 O pool de uma conexão é exclusivo da prova de reutilização. As outras provas usam pool maior. No teste financeiro, uma transação de preparação segura a linha do orçamento até que pg_stat_activity mostre duas consultas FOR UPDATE bloqueadas simultaneamente. Só então a preparação libera a linha; ambas as aprovações devem retornar sucesso e os recebíveis devem continuar sendo exatamente entrada e saldo. Essa asserção falha se as requisições forem serializadas pelo pool.
+
+## Histórico de notificações — migration adicional
+
+A migration 20261012154514_AddNotificationCustomerHistory adiciona CustomerId e Audience à
+outbox existente, com FK composta para Customers(tenant_id, Id), CHECK de classificação e
+Restrict na exclusão. As policies/grants RLS existentes continuam protegendo NotificationMessages.
+As linhas antigas recebem LegacyUnlinked sem alteração dos campos históricos e sem dedução
+por telefone/e-mail. Não são apresentadas como histórico comprovado de cliente.
+
+NotificationHistoryPostgreSqlTests valida upgrade a partir da migration RLS em duas bases
+exclusivas, preservação integral do histórico, vínculo externo rejeitado e despacho/histórico
+com credenciais restritas separadas. Nenhuma dessas migrations foi aplicada a agendamento_local
+nesta etapa. A operação local continua exigindo o provisionamento documentado acima.
+
+## Provisionamento local concluído — 12/10/2026
+
+Depois dos testes temporários descritos acima, o usuário pediu corrigir a falha de inicialização
+do perfil http. A compilação Debug/Release e o build frontend passavam; o crash era no
+DbSeeder ao abrir a porta administrativa, sem ConnectionStrings:PostgreSqlAdministrative.
+
+Foi gerado backup custom de agendamento_local em .local-verification/runtime-repair/
+agendamento_local-before-rls.dump e restaurado em cópia exclusiva. As duas migrations pendentes
+(EnforceTenantRowLevelSecurity e AddNotificationCustomerHistory) foram validadas na cópia,
+comparando contagens/hashes de todos os valores originais das 21 tabelas, antes/depois do upgrade.
+Só então foram aplicadas a agendamento_local. A mesma comparação passou no banco local.
+
+Foram provisionados dois logins restritos distintos, sem propriedade de tabelas, superuser,
+BYPASSRLS, CREATEDB ou CREATEROLE, com membership exclusivo no papel app ou system. As conexões
+foram gravadas nos segredos .NET por stdin; a credencial anterior foi preservada em
+PostgreSqlMigration. Nenhuma senha/conexão foi exposta nem gravada em arquivo rastreado.
+
+O comando dotnet run --project .\src\Agendamento.Api --launch-profile http voltou a iniciar;
+/health e /openapi/v1.json retornaram 200. A consulta EF usando login normal restrito e contexto
+de tenant também passou. Os cadastros permaneceram intactos. O worker processou as mensagens
+pendentes pelo mock existente, atualizando a outbox conforme o fluxo normal; não houve envio
+real. A cópia temporária foi removida; o backup foi mantido.
+
+A execução oculta de validação é encerrada ao concluir para liberar 5050 para o terminal do
+usuário. Os avisos existentes de ValueComparer não foram a causa deste crash. A intermitência
+histórica do teste de build segue sendo problema separado, sem causa definitiva identificada.
+
+scripts/configurar-banco-local.ps1 agora grava somente PostgreSqlMigration e preserva as duas
+credenciais de runtime. O script não deve voltar a substituir o login normal pela credencial
+de provisionamento nem anunciar que uma única conexão é suficiente para iniciar a API.
+
+## Preferência de lembretes — 12/10/2026
+
+A migration `20261012174238_AddCustomerAutomaticReminderPreference` acrescenta boolean
+obrigatório em Customers, habilitando os clientes existentes sem alterar seus campos anteriores.
+Foi validada somente em base temporária exclusiva, comparando os valores antigos e exercitando
+persistência sob login restrito/RLS. Não foi aplicada a agendamento_local nesta retomada.
+A API nova exige essa coluna; a instância preexistente PID 27004/porta 5050 foi preservada.
+O provisionamento RLS/histórico concluído acima continua válido; esta migration é adicional.
+
+## Aviso diário de contas vencidas — 12/10/2026
+
+`20261012191900_AddDailyReceivableReminderDeduplication` acrescenta ReceivableTitleId e
+ReminderDate nullable à outbox, índice único por tenant/conta/dia, CHECK do par de campos
+e FK composta tenant/conta com Restrict. O histórico anterior permanece com ambos null.
+O worker usa a porta administrativa restrita existente. A migration concede SELECT apenas
+nos recebíveis/pagamentos e UPDATE(Id) para permitir FOR UPDATE, com policy que rejeita
+gravações financeiras (WITH CHECK false). Policies novas são exclusivas do papel de sistema;
+as policies/grants e a guarda restritiva do login normal permanecem.
+
+Esta migration e AddCustomerAutomaticReminderPreference são necessárias antes de iniciar
+a versão nova contra agendamento_local. Nenhuma delas foi aplicada ao banco de trabalho
+nesta tarefa. A API preexistente PID 27004/porta 5050 é preservada; não reiniciar essa API
+com a versão nova enquanto o rollout dessas migrations estiver pendente.

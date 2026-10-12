@@ -1,4 +1,5 @@
 using Agendamento.Api.Infrastructure.Authorization;
+using Agendamento.Api.OpenApi;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
@@ -46,7 +47,8 @@ public static class DashboardEndpoints
         })
         .WithName("ExportPerformanceReport")
         .RequirePermission("sales.read")
-        .Produces(StatusCodes.Status200OK, contentType: "text/csv");
+        .Produces(StatusCodes.Status200OK, contentType: "text/csv")
+        .DocumentDownload("text/csv", false);
     }
 }
 

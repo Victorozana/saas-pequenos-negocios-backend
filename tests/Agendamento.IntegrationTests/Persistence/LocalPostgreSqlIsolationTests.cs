@@ -54,9 +54,12 @@ public sealed class LocalPostgreSqlIsolationTests
         }
         finally
         {
-            NpgsqlConnection.ClearAllPools();
             foreach (var database in created)
             {
+                // Limpar somente o pool desta base temporária; outros testes provam reutilização de conexão.
+                builder.Database = database;
+                await using var pool = new NpgsqlConnection(builder.ConnectionString);
+                NpgsqlConnection.ClearPool(pool);
                 // Somente bases exclusivas criadas por esta execução são removidas.
                 await using var drop = new NpgsqlCommand($"DROP DATABASE \"{database}\" WITH (FORCE)", admin);
                 await drop.ExecuteNonQueryAsync();

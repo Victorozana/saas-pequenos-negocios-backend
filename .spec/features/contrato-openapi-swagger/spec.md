@@ -23,7 +23,7 @@ Como pessoa desenvolvedora de frontend ou integração, quero um documento OpenA
 
 - **Dado** uma operação pública ou autenticada documentada
 - **Quando** seu contrato é inspecionado
-- **Então** ele informa autenticação, headers, parâmetros, request, respostas de sucesso e erros `application/problem+json` aplicáveis
+- **Então** ele informa autenticação, headers, parâmetros, request, schemas de sucesso e erros `application/problem+json` aplicáveis, correspondendo ao status, Content-Type e corpo comprovados por HTTP; 401 de challenge e respostas intencionalmente vazias (inclusive 204 e 404) não declaram content, e exports PDF/CSV declaram mídia, representação e headers de download coerentes com bytes e nome reais
 
 #### AC-038 — Schemas não expõem dados secretos
 

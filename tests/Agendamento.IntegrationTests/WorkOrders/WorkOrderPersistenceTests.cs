@@ -1,3 +1,5 @@
+using Agendamento.Api.Infrastructure.Notifications;
+using Microsoft.Extensions.Logging.Abstractions;
 using Agendamento.Api.Application.Tenancy;
 using Agendamento.Api.Application.WorkOrders.ConvertQuotationToWorkOrder;
 using Agendamento.Api.Application.Appointments.CreateAppointment;
@@ -45,7 +47,7 @@ public class WorkOrderPersistenceTests
         Assert.Equal(QuotationStatus.Converted, (await verification.Quotations.SingleAsync()).Status);
         var repeat = new ConvertQuotationToWorkOrderHandler(verification, tenant, new UnitOfWork(verification));
         Assert.Equal(orderId, await repeat.HandleAsync(new() { QuotationId = quotationId }));
-        var scheduling = new CreateAppointmentHandler(verification, tenant, new UnitOfWork(verification));
+        var scheduling = new CreateAppointmentHandler(verification, tenant, new UnitOfWork(verification), new NotificationService(verification, tenant, new MockCommunicationGateway(NullLogger<MockCommunicationGateway>.Instance), NullLogger<NotificationService>.Instance));
         await scheduling.HandleAsync(new CreateAppointmentCommand {
             WorkOrderId = orderId, Type = AppointmentType.Installation,
             StartTime = DateTime.UtcNow.AddDays(1), EndTime = DateTime.UtcNow.AddDays(1).AddHours(1)

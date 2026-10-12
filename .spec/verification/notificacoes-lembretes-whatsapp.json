@@ -1,15 +1,35 @@
 {
   "feature": "notificacoes-lembretes-whatsapp",
-  "timestamp": "2026-10-12T15:35:19.760Z",
-  "gitRev": "fb5836d",
+  "timestamp": "2026-10-12T21:30:12.289Z",
+  "gitRev": "96875bb",
   "command": "powershell -ExecutionPolicy Bypass -File scripts/verify-spec.ps1",
   "reporter": "jest-json",
   "exitCode": 0,
-  "testsParsed": 198,
+  "testsParsed": 250,
   "results": {
+    "AC-097": {
+      "status": "pass",
+      "testName": "Lembrete e orçamento usam serviço central mantendo templates e cliente @spec:AC-097 @spec:AC-098 @spec:AC-062 Lembrete e orçamento usam serviço central mantendo templates e cliente @spec:AC-097 @spec:AC-098 @spec:AC-062",
+      "method": "jest-json"
+    },
+    "AC-098": {
+      "status": "pass",
+      "testName": "Classificação exige cliente e impede vínculo fictício para avulsas, sistema e legado @spec:AC-098 Classificação exige cliente e impede vínculo fictício para avulsas, sistema e legado @spec:AC-098",
+      "method": "jest-json"
+    },
     "AC-099": {
       "status": "pass",
       "testName": "Despacha notificação ao agendar quando OS tem cliente @spec:AC-099 Despacha notificação ao agendar quando OS tem cliente @spec:AC-099",
+      "method": "jest-json"
+    },
+    "AC-207": {
+      "status": "pass",
+      "testName": "Migration exclusiva preserva clientes, habilita padrão e persiste preferência isolada por RLS @spec:AC-207 Migration exclusiva preserva clientes, habilita padrão e persiste preferência isolada por RLS @spec:AC-207",
+      "method": "jest-json"
+    },
+    "AC-208": {
+      "status": "pass",
+      "testName": "Aviso diário persistido filtra saldo, vencimento, preferência e vínculo; reinício e dia seguinte preservam isolamento @spec:AC-208 Aviso diário persistido filtra saldo, vencimento, preferência e vínculo; reinício e dia seguinte preservam isolamento @spec:AC-208",
       "method": "jest-json"
     },
     "AC-062": {
@@ -43,13 +63,13 @@
       "status": "pass",
       "testName": "Senhas nunca são recuperáveis @spec:AC-008 @principle:P-005 Senhas nunca são recuperáveis @spec:AC-008 @principle:P-005"
     },
-    "P-004": {
-      "status": "pass",
-      "testName": "Papel restrito impede SQL direto entre tenants em todas as tabelas @spec:AC-033 @principle:P-004 Papel restrito impede SQL direto entre tenants em todas as tabelas @spec:AC-033 @principle:P-004"
-    },
     "P-003": {
       "status": "pass",
       "testName": "@spec:AC-013 @principle:P-003 @principle:P-005 valid login emits only user_tenant_and_role @spec:AC-013 @principle:P-003 @principle:P-005 valid login emits only user_tenant_and_role"
+    },
+    "P-004": {
+      "status": "pass",
+      "testName": "Papel restrito impede SQL direto entre tenants em todas as tabelas @spec:AC-033 @principle:P-004 Papel restrito impede SQL direto entre tenants em todas as tabelas @spec:AC-033 @principle:P-004"
     }
   }
 }

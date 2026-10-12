@@ -1,0 +1,41 @@
+{
+  "ok": false,
+  "stats": {
+    "features": 15,
+    "stories": 57,
+    "acs": 94,
+    "acsWithTest": 92,
+    "acsProven": 92,
+    "assumptionsOpen": 1,
+    "questionsOpen": 0,
+    "principles": 5,
+    "errors": 3,
+    "warnings": 0
+  },
+  "findings": [
+    {
+      "code": "AC_SEM_TESTE",
+      "severity": "erro",
+      "message": "AC-206 (Edição permitida somente enquanto pendente) não tem nenhum teste anotado com @spec:AC-206",
+      "feature": "gestao-orcamentos-servicos",
+      "file": ".spec\\features\\gestao-orcamentos-servicos\\spec.md",
+      "line": 28
+    },
+    {
+      "code": "US_SEM_AC",
+      "severity": "erro",
+      "message": "US-052 (Aviso de Fatura Vencida) sem critério de aceite",
+      "feature": "notificacoes-lembretes-whatsapp",
+      "file": ".spec\\features\\notificacoes-lembretes-whatsapp\\spec.md",
+      "line": 40
+    },
+    {
+      "code": "AC_SEM_TESTE",
+      "severity": "erro",
+      "message": "AC-207 (Lembretes podem ser desativados por cliente) não tem nenhum teste anotado com @spec:AC-207",
+      "feature": "notificacoes-lembretes-whatsapp",
+      "file": ".spec\\features\\notificacoes-lembretes-whatsapp\\spec.md",
+      "line": 34
+    }
+  ]
+}

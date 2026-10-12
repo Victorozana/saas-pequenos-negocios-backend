@@ -21,6 +21,9 @@ public class CreateQuotationHandler
         if (!_tenantContext.HasTenant)
             throw new InvalidOperationException("Unauthenticated tenant context.");
 
+        if (command.Items == null || command.Items.Count == 0 || command.Items.Any(item => item == null))
+            throw new ArgumentException("Quotation must contain valid items.", nameof(command.Items));
+
         // Check if customer exists in tenant
         var customerExists = await _dbContext.Customers
             .AnyAsync(c => c.Id == command.CustomerId, cancellationToken);

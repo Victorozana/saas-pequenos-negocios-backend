@@ -35,7 +35,7 @@ public static class TeamMemberEndpoints
             .WithName("UpdateTeamMemberStatus").RequirePermission(Permissions.TeamWrite).Produces(204).Produces(404).ProducesProblem(409);
 
         group.MapPost("/invitations", async ([FromBody] SendInvitationRequest request,
-            AgendamentoDbContext db, ITenantContext tenant, CancellationToken ct) =>
+            AgendamentoDbContext db, ITenantContext tenant, Agendamento.Api.Application.Notifications.INotificationService notifications, CancellationToken ct) =>
         {
             if (!ValidRole(request.Role) || !ValidPermissions(request.Permissions)) return InvalidRequest();
             string email;
@@ -45,8 +45,8 @@ public static class TeamMemberEndpoints
             if (alreadyMember) return Results.Problem(statusCode:409,title:"Este usuário já pertence à equipe.");
             var invitation = TeamInvitation.Create(tenant.TenantId, email, request.Role, request.Permissions ?? [], 7);
             db.TeamInvitations.Add(invitation);
-            db.NotificationMessages.Add(NotificationMessage.Create(tenant.TenantId, invitation.Email, NotificationChannel.Email,
-                $"Você foi convidado para a equipe. Use o token para aceitar: {invitation.Token}"));
+            notifications.QueueSystem(invitation.Email, NotificationChannel.Email,
+                $"Você foi convidado para a equipe. Use o token para aceitar: {invitation.Token}");
             await db.SaveChangesAsync(ct);
             return Results.Created($"/api/v1/team-members/invitations/{invitation.Id}",
                 new TeamInvitationResponse(invitation.Id, invitation.Email, invitation.Role, invitation.ExpiresAtUtc, invitation.Status.ToString()));
@@ -73,7 +73,9 @@ public static class TeamMemberEndpoints
                 user.ConfirmEmail(DateTimeOffset.UtcNow);
                 db.Users.Add(user);
             }
-            invitation.Accept();
+            try { invitation.Accept(); }
+            catch (InvalidOperationException)
+            { return Results.Problem(statusCode:400,title:"Convite inválido, expirado ou já utilizado."); }
             db.TenantMemberships.Add(TenantMembership.Create(invitation.TenantId, user.Id, invitation.Role, false, invitation.Permissions));
             try { await db.SaveChangesAsync(ct); }
             catch (DbUpdateConcurrencyException) { return Results.Problem(statusCode:409,title:"O convite já foi utilizado."); }

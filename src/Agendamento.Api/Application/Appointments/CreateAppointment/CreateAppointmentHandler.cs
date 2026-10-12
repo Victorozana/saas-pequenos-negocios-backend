@@ -11,15 +11,18 @@ public class CreateAppointmentHandler
     private readonly AgendamentoDbContext _dbContext;
     private readonly ITenantContext _tenantContext;
     private readonly IUnitOfWork _unitOfWork;
+    private readonly Agendamento.Api.Application.Notifications.INotificationService _notifications;
 
     public CreateAppointmentHandler(
         AgendamentoDbContext dbContext,
         ITenantContext tenantContext,
-        IUnitOfWork unitOfWork)
+        IUnitOfWork unitOfWork,
+        Agendamento.Api.Application.Notifications.INotificationService notifications)
     {
         _dbContext = dbContext;
         _tenantContext = tenantContext;
         _unitOfWork = unitOfWork;
+        _notifications = notifications;
     }
 
     public async Task<Guid> HandleAsync(CreateAppointmentCommand command, CancellationToken cancellationToken = default)
@@ -75,13 +78,12 @@ public class CreateAppointmentHandler
 
             if (!string.IsNullOrWhiteSpace(customerPhone))
             {
-                var notification = Agendamento.Api.Domain.Notifications.NotificationMessage.Create(
-                    _tenantContext.TenantId,
+                await _notifications.QueueAutomaticReminderAsync(
+                    customerId.Value,
                     customerPhone,
                     Agendamento.Api.Domain.Notifications.NotificationChannel.WhatsApp,
-                    $"Seu agendamento foi confirmado para {appointment.StartTime.ToLocalTime():dd/MM/yyyy HH:mm}. O endereço é {appointment.Address}."
+                    $"Seu agendamento foi confirmado para {appointment.StartTime.ToLocalTime():dd/MM/yyyy HH:mm}. O endereço é {appointment.Address}.", cancellationToken
                 );
-                _dbContext.NotificationMessages.Add(notification);
             }
         }
 

@@ -15,6 +15,9 @@ public class Customer : ITenantOwned
     public CustomerAddress? Address { get; private set; }
     
     public bool IsActive { get; private set; } = true;
+    public bool AutomaticRemindersEnabled { get; private set; } = true;
+
+    public void SetAutomaticRemindersEnabled(bool enabled) => AutomaticRemindersEnabled = enabled;
 
     private Customer() { } // EF Core
 

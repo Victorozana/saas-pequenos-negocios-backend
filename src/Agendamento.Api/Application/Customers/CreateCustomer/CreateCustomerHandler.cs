@@ -52,6 +52,7 @@ public class CreateCustomerHandler
             document,
             address);
 
+        customer.SetAutomaticRemindersEnabled(command.AutomaticRemindersEnabled);
         _dbContext.Customers.Add(customer);
         await _dbContext.SaveChangesAsync(cancellationToken);
 

@@ -4415,10 +4415,10 @@
       "codigo": "US_SEM_AC",
       "feature": "notificacoes-lembretes-whatsapp",
       "ref": "US-052",
-      "ocorrencias": 6,
+      "ocorrencias": 9,
       "primeiraVez": "2026-10-12T03:46:03.371Z",
-      "ultimaVez": "2026-10-12T15:36:43.083Z",
-      "gitRev": "fb5836d"
+      "ultimaVez": "2026-10-12T17:19:21.946Z",
+      "gitRev": "96875bb"
     },
     "Q_ABERTA::notificacoes-lembretes-whatsapp::Q-012": {
       "codigo": "Q_ABERTA",
@@ -4541,19 +4541,19 @@
       "codigo": "AC_SEM_TESTE",
       "feature": "gestao-orcamentos-servicos",
       "ref": "AC-206",
-      "ocorrencias": 5,
+      "ocorrencias": 8,
       "primeiraVez": "2026-10-12T04:06:52.600Z",
-      "ultimaVez": "2026-10-12T15:36:43.082Z",
-      "gitRev": "fb5836d"
+      "ultimaVez": "2026-10-12T17:19:21.945Z",
+      "gitRev": "96875bb"
     },
     "AC_SEM_TESTE::notificacoes-lembretes-whatsapp::AC-207": {
       "codigo": "AC_SEM_TESTE",
       "feature": "notificacoes-lembretes-whatsapp",
       "ref": "AC-207",
-      "ocorrencias": 5,
+      "ocorrencias": 8,
       "primeiraVez": "2026-10-12T04:06:52.600Z",
-      "ultimaVez": "2026-10-12T15:36:43.083Z",
-      "gitRev": "fb5836d"
+      "ultimaVez": "2026-10-12T17:19:21.946Z",
+      "gitRev": "96875bb"
     },
     "VERIFY_OBSOLETO::contrato-openapi-swagger::—": {
       "codigo": "VERIFY_OBSOLETO",
@@ -4581,6 +4581,15 @@
       "primeiraVez": "2026-10-12T15:23:53.557Z",
       "ultimaVez": "2026-10-12T15:23:53.557Z",
       "gitRev": "fb5836d"
+    },
+    "AC_SEM_TESTE::notificacoes-lembretes-whatsapp::AC-208": {
+      "codigo": "AC_SEM_TESTE",
+      "feature": "notificacoes-lembretes-whatsapp",
+      "ref": "AC-208",
+      "ocorrencias": 1,
+      "primeiraVez": "2026-10-12T18:09:22.429Z",
+      "ultimaVez": "2026-10-12T18:09:22.430Z",
+      "gitRev": "96875bb"
     }
   }
 }

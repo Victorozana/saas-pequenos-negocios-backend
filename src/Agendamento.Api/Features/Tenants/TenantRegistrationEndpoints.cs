@@ -24,7 +24,7 @@ public static class TenantRegistrationEndpoints
         {
             if (string.IsNullOrWhiteSpace(idempotencyKey))
             {
-                return Results.BadRequest(ProblemDetailsExtensions.Create("Header Missing", "O header Idempotency-Key é obrigatório."));
+                return Results.Problem(statusCode: 400, title: "Header obrigatório.", detail: "O header Idempotency-Key é obrigatório.");
             }
 
             var command = new RegisterTenantCommand(
@@ -42,7 +42,7 @@ public static class TenantRegistrationEndpoints
             }
             catch (Exception)
             {
-                return Results.UnprocessableEntity(ProblemDetailsExtensions.Create("Erro no cadastro", "Não foi possível concluir o cadastro. Confira os dados e tente novamente."));
+                return Results.Problem(statusCode: 422, title: "Erro no cadastro", detail: "Não foi possível concluir o cadastro. Confira os dados e tente novamente.");
             }
         })
         .WithName("RegisterTenant")

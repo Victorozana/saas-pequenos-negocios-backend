@@ -1,6 +1,4 @@
-using Agendamento.Api.Domain.Notifications;
-using Agendamento.Api.Infrastructure.Persistence;
-using Microsoft.EntityFrameworkCore;
+using Agendamento.Api.Application.Notifications;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
@@ -45,45 +43,7 @@ public class NotificationOutboxProcessor : BackgroundService
         // Use a new scope because DbContext is Scoped
         using var scope = _serviceProvider.CreateScope();
         
-        var dbContext = scope.ServiceProvider.GetRequiredService<AgendamentoDbContext>();
-        using var administrative = dbContext.Administrative.Enter();
-        var gateway = scope.ServiceProvider.GetRequiredService<ICommunicationGateway>();
-
-        // Disable query filters here since we want to process outbox for all tenants at once in the background
-        var pendingMessages = await dbContext.NotificationMessages
-            .IgnoreQueryFilters()
-            .Where(m => m.Status == NotificationStatus.Pending && (m.NextRetryAt == null || m.NextRetryAt <= DateTime.UtcNow))
-            .OrderBy(m => m.CreatedAt)
-            .Take(50) // Process in batches
-            .ToListAsync(stoppingToken);
-
-        if (!pendingMessages.Any())
-            return;
-
-        _logger.LogInformation($"Found {pendingMessages.Count} pending notification(s) to process.");
-
-        foreach (var message in pendingMessages)
-        {
-            try
-            {
-                var success = await gateway.SendAsync(message, stoppingToken);
-
-                if (success)
-                {
-                    message.MarkAsSent();
-                }
-                else
-                {
-                    message.MarkAsFailed("Gateway returned false (simulated error).");
-                }
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, $"Failed to send message {message.Id}.");
-                message.MarkAsFailed(ex.Message);
-            }
-        }
-
-        await dbContext.SaveChangesAsync(stoppingToken);
+        var notifications = scope.ServiceProvider.GetRequiredService<INotificationService>();
+        await notifications.ProcessPendingAsync(stoppingToken);
     }
 }

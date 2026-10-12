@@ -56,6 +56,33 @@ public class Quotation : ITenantOwned
         };
     }
 
+    public void UpdatePendingContent(string code, Guid customerId, DateTime issueDate, DateTime? validUntil,
+        string? notes, string? paymentTerms, IEnumerable<QuotationItem> items,
+        DepositType? depositType, decimal depositValue, string? depositPaymentNotes)
+    {
+        if (Status != QuotationStatus.Pending)
+            throw new InvalidOperationException("Can only edit pending quotations.");
+
+        // Validate all replacement content before changing the persisted aggregate.
+        var replacement = Create(TenantId, code, customerId, issueDate, validUntil, notes, paymentTerms);
+        foreach (var item in items) replacement.AddItem(item);
+        if (depositType.HasValue) replacement.SetDeposit(depositType.Value, depositValue, depositPaymentNotes);
+        replacement.MarkAsPending();
+
+        Code = replacement.Code;
+        CustomerId = replacement.CustomerId;
+        IssueDate = replacement.IssueDate;
+        ValidUntil = replacement.ValidUntil;
+        Notes = replacement.Notes;
+        PaymentTerms = replacement.PaymentTerms;
+        _items.Clear();
+        _items.AddRange(replacement.Items);
+        SubtotalAmount = replacement.SubtotalAmount;
+        DiscountAmount = replacement.DiscountAmount;
+        TotalAmount = replacement.TotalAmount;
+        DepositInfo = replacement.DepositInfo;
+    }
+
     public void AddItem(QuotationItem item)
     {
         if (Status != QuotationStatus.Draft)

@@ -29,7 +29,11 @@ public static class DependencyInjection
         services.AddScoped<Agendamento.Api.Application.Tenancy.ITenantContext>(provider => provider.GetRequiredService<Agendamento.Api.Infrastructure.Tenancy.HttpTenantContext>());
 
         services.AddScoped<Agendamento.Api.Infrastructure.Notifications.ICommunicationGateway, Agendamento.Api.Infrastructure.Notifications.MockCommunicationGateway>();
+        services.AddScoped<Agendamento.Api.Application.Notifications.INotificationService, Agendamento.Api.Infrastructure.Notifications.NotificationService>();
         services.AddHostedService<Agendamento.Api.Infrastructure.Notifications.NotificationOutboxProcessor>();
+        Microsoft.Extensions.DependencyInjection.Extensions.ServiceCollectionDescriptorExtensions.TryAddSingleton<TimeProvider>(services, TimeProvider.System);
+        services.AddScoped<Agendamento.Api.Infrastructure.Notifications.OverdueReceivableReminderProcessor>();
+        services.AddHostedService<Agendamento.Api.Infrastructure.Notifications.OverdueReceivableReminderWorker>();
 
         services.AddScoped<Agendamento.Api.Application.Subscriptions.Services.IPlanLimitsChecker, Agendamento.Api.Infrastructure.Subscriptions.PlanLimitsChecker>();
 
@@ -53,6 +57,7 @@ public static class DependencyInjection
         services.AddAuthentication(Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerDefaults.AuthenticationScheme)
             .AddJwtBearer(options =>
             {
+                options.IncludeErrorDetails = false;
                 options.Events = new Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerEvents
                 {
                     OnTokenValidated = async context =>
