@@ -1,12 +1,12 @@
 {
-  "runId": "saas-pequenos-negocios-backend-contrato-openapi-swagger-mv4pytaw",
+  "runId": "saas-pequenos-negocios-backend-contrato-openapi-swagger-mv5evhb8",
   "feature": "contrato-openapi-swagger",
   "agent": "codex",
   "modo": "sequencial",
   "paralelizar": null,
   "modeloForcado": null,
   "esforcoForcado": null,
-  "geradoEm": "2026-10-12 03:55",
+  "geradoEm": "2026-10-12 15:32",
   "branchTrabalho": "spec/contrato-openapi-swagger",
   "baseDir": ".spec/features/contrato-openapi-swagger",
   "specDir": ".spec",
@@ -33,7 +33,18 @@
         "src/Agendamento.Api/Features/Tenants/TenantRegistrationEndpoints.cs",
         "src/Agendamento.Api/OpenApi/ProblemDetailsOperationTransformer.cs",
         "src/Agendamento.Api/OpenApi/BearerSecuritySchemeTransformer.cs",
-        "tests/Agendamento.ArchitectureTests/OpenApi/EndpointMetadataTests.cs"
+        "tests/Agendamento.ArchitectureTests/OpenApi/EndpointMetadataTests.cs",
+        "src/Agendamento.Api/Features/Common/ContractResponses.cs",
+        "src/Agendamento.Api/Features/Customers/CustomerEndpoints.cs",
+        "src/Agendamento.Api/Application/Customers/GetCustomers/GetCustomersHandler.cs",
+        "src/Agendamento.Api/Application/Customers/GetCustomers/GetCustomerByIdHandler.cs",
+        "src/Agendamento.Api/Application/Customers/UpdateCustomer/UpdateCustomerCommand.cs",
+        "src/Agendamento.Api/Application/Customers/UpdateCustomer/UpdateCustomerHandler.cs",
+        "src/Agendamento.Api/Features/Appointments/AppointmentEndpoints.cs",
+        "src/Agendamento.Api/Features/Services/ServiceEndpoints.cs",
+        "src/Agendamento.Api/Features/Quotations/QuotationEndpoints.cs",
+        "src/Agendamento.Api/Features/Notifications/NotificationEndpoints.cs",
+        "src/Agendamento.Api/Features/Subscriptions/SubscriptionEndpoints.cs"
       ],
       "refs": [
         "US-015",
@@ -41,29 +52,12 @@
         "AC-037",
         "AC-038"
       ]
-    },
-    {
-      "id": "T-025",
-      "titulo": "Validar completude e minimização dos schemas",
-      "modelo": "gpt-5.6-terra",
-      "esforco": "medium",
-      "arquivos": [
-        "tests/Agendamento.ArchitectureTests/OpenApi/OpenApiCompletenessTests.cs",
-        "tests/Agendamento.ArchitectureTests/OpenApi/OpenApiSensitiveDataTests.cs"
-      ],
-      "refs": [
-        "US-015",
-        "US-016",
-        "AC-036",
-        "AC-037",
-        "AC-038",
-        "AC-039"
-      ]
     }
   ],
   "concluidas": [
     "T-022",
-    "T-024"
+    "T-024",
+    "T-025"
   ],
   "avisos": []
 }

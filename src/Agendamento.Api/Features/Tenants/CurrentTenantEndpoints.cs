@@ -14,7 +14,8 @@ public static class CurrentTenantEndpoints
 
         group.MapGet("/me", ([Microsoft.AspNetCore.Mvc.FromServices] Agendamento.Api.Application.Tenancy.ITenantContext tenantContext) =>
         {
-            return Results.Ok(new { message = "Tenant Profile", tenantId = tenantContext.TenantId });
-        }).WithName("GetCurrentTenant");
+            return Results.Ok(new CurrentTenantResponse("Tenant Profile", tenantContext.TenantId));
+        }).WithName("GetCurrentTenant").Produces<CurrentTenantResponse>();
     }
 }
+public record CurrentTenantResponse(string Message, Guid TenantId);

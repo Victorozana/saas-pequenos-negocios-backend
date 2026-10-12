@@ -30,7 +30,9 @@ public class UpdateCustomerHandler
         if (customer == null)
             return false;
 
-        CustomerDocument? document = null;
+        if (command.PreserveDocument && (command.DocumentType != null || command.DocumentValue != null))
+            throw new ArgumentException("Para preservar o documento, não envie um documento substituto.");
+        CustomerDocument? document = command.PreserveDocument ? customer.Document : null;
         if (!string.IsNullOrWhiteSpace(command.DocumentValue) && !string.IsNullOrWhiteSpace(command.DocumentType))
         {
             document = CustomerDocument.Create(command.DocumentType, command.DocumentValue);

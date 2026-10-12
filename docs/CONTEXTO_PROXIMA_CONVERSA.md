@@ -112,3 +112,31 @@ A auditoria global desta retomada fica em .spec/audit-rls.json; o relatório aud
 - Pendências do gate: AC-038 (minimização OpenAPI), AC-206 (edição pendente), US-052 (critério para fatura vencida), AC-097 (serviço centralizado), AC-098 (vínculo com cliente) e AC-207 (preferência de lembretes).
 - Relatório final desta retomada: .spec/audit-rls.json. Relatório intermediário: .spec/audit-rls-intermediaria.json. Os relatórios anteriores e o histórico de sinais foram preservados.
 - Sem aplicação em agendamento_local, sem alteração de cadastros ou segredos locais, sem commit/push. Frontend limpo. Antes de iniciar a API com esta versão, provisionar a migration e as duas credenciais restritas conforme docs/POSTGRESQL_RLS.md.
+
+## Retomada OpenAPI/minimização — 12/10/2026
+
+Executada manualmente e sequencialmente, mantendo modelo/esforço, sem agentes ou execução headless. Backend permanece no HEAD fb5836d, frontend em 37cd243; alterações desta retomada permanecem locais, sem commit/push/deploy. Os dois repositórios estavam limpos ao iniciar; obj e histórico de sinais foram preservados.
+
+AC-038/P-005 receberam provas estruturais e HTTP: percurso de respostas/headers e exemplos resolve referências, arrays, allOf/oneOf/anyOf e additionalProperties, protege ciclos e rejeita referências inválidas/exemplos externos. Casos negativos provam o detector. Entradas de senha, CPF e token continuam legítimas; token de sessão é saída somente do login. Não atribuir essa prova somente à antiga busca de palavras.
+
+Removidos token bruto e X-Development-Verification-Token da resposta de cadastro em todos os ambientes, inclusive Development. Removida a ocultação por transformer; DTO/runtime agora coincidem. AC-100/ASM-013 foram explicitamente revisados conforme a nova instrução. O handler não devolve token e a falha de cadastro não expõe ex.Message. Onboarding HTTP continua comprovando geração de token, confirmação, login e perfil com token controlado apenas na fixture; não certifica entrega real de e-mail.
+
+CPF integral também saía sob documentValue. Lista e detalhe de clientes agora devolvem máscara com apenas dois dígitos finais, com pattern correspondente no schema; CNPJ continua disponível. PreserveDocument permite editar outros campos sem reenviar CPF. O frontend mantém a máscara e usa essa flag, sem enviá-la como documento substituto.
+
+Respostas JSON de perfil do tenant, clientes, IDs de criação/conversão, notificações, planos e assinatura atual foram tipadas; Bearer é declarado por operação respeitando AllowAnonymous. docs/openapi/v1.json e schema.d.ts do frontend regenerados. BFF do cadastro retorna só message; confirmação usa código informado separadamente. E-mail real permanece pendente.
+
+T-025 e T-101 concluídas após verify exit 0. T-023 permanece pendente pelas divergências reais de erros ProblemDetails, respostas sem corpo e exports binários. Plano do contrato regenerado sequencialmente; executor não iniciado e suas sugestões históricas de modelo não foram adotadas.
+
+As 15 features foram revalidadas com a versão final de código/testes: 198 resultados por execução, 192 aprovados, zero falhas, seis skips antigos preservados. Frontend: typecheck, ESLint dos arquivos editados e 38 testes relevantes passaram após a última mudança; execução integral de 207 testes ocorreu antes da correção de CPF. Não apresentar esse total antigo como suíte integral da versão final.
+
+Falhas intermediárias e diagnóstico estão em .spec/revisao-openapi.md. O teste de build Release sem avisos falhou intermitentemente em duas execuções; agora registra saída completa mantendo todas as asserções. A causa do aviso ainda não foi isolada. Todas as últimas revalidações passaram. Uma fixture Development tentou acessar a conexão local e foi recusada; corrigida para InMemory, sem cadastro/migration no banco de trabalho.
+
+Auditoria intermediária: .spec/audit-openapi-intermediaria.json, exit 1, 18 erros/zero avisos (cinco requisitos restantes e 13 provas obsoletas). As 13 provas foram renovadas. Veredito final: .spec/audit-openapi.json; não declarar aprovação global. Permanecem AC-206, US-052 sem critério, AC-097, AC-098 e AC-207. Financeiro/equipe frontend e e-mail real seguem após resolver requisitos e gate.
+
+A migration RLS segue NÃO aplicada a agendamento_local. Não foram alterados cadastros nem segredos locais; ler POSTGRESQL_RLS.md antes de iniciar API. Quatro saídas build-openapi-diagnostic desta tarefa ficaram ignoradas pelo Git porque a limpeza foi bloqueada por política; não tocar em obj ou trabalho preexistente para removê-las.
+
+## Versionamento e próxima prioridade — 12/10/2026
+
+O usuário autorizou explicitamente commit e push das alterações desta retomada nos dois repositórios. Obter os hashes finais por git log -1 em cada repositório; os hashes fb5836d/37cd243 acima são a base anterior às alterações OpenAPI.
+
+Auditoria final .spec/audit-openapi.json: exit 1, cinco erros, zero avisos, 90/94 critérios com prova granular. Próxima prioridade recomendada: implementar o serviço centralizado de notificações (AC-097) e o vínculo do histórico ao cliente (AC-098), com isolamento por tenant e preservação das provas de outbox/retries. Depois, implementar a preferência por cliente (AC-207), definir com o usuário o disparo executável de fatura vencida (US-052) e resolver edição de orçamento pendente (AC-206/T-103). T-023 permanece pendente pelas divergências reais documentadas. Não considerar a auditoria aprovada nem iniciar telas de financeiro/equipe ou e-mail real antes da base auditada.

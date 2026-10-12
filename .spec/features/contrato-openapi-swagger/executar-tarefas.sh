@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# executar-tarefas.sh — gerado por `onp-spec plano contrato-openapi-swagger` em 2026-10-12 03:55
+# executar-tarefas.sh — gerado por `onp-spec plano contrato-openapi-swagger` em 2026-10-12 15:32
 # NÃO edite à mão: mudou tasks.md ou a config, regenere o plano.
 #
 # uso:
@@ -14,7 +14,7 @@
 set -u
 set -o pipefail
 
-RUN_ID='saas-pequenos-negocios-backend-contrato-openapi-swagger-mv4pytaw'
+RUN_ID='saas-pequenos-negocios-backend-contrato-openapi-swagger-mv5evhb8'
 FEATURE='contrato-openapi-swagger'
 BASE_BRANCH='spec/contrato-openapi-swagger'
 ENGINE='.agents/skills/onp-spec-driven/scripts/onp-spec.mjs'
@@ -177,7 +177,7 @@ Leia primeiro: .spec/features/contrato-openapi-swagger/spec.md, .spec/features/c
 Sua tarefa (somente ela):
 T-023 — "Documentar endpoints, segurança e erros"
   critérios/refs: AC-036 (Todas as rotas implementadas aparecem no contrato), AC-037 (Operações descrevem sucesso e falhas), AC-038 (Schemas não expõem dados secretos)
-  arquivos permitidos (e seus testes): src/Agendamento.Api/Program.cs, src/Agendamento.Api/Features/Identity/CurrentUserEndpoints.cs, src/Agendamento.Api/Features/Identity/EmailVerificationEndpoints.cs, src/Agendamento.Api/Features/Identity/SessionEndpoints.cs, src/Agendamento.Api/Features/Identity/VerifyEmailRequest.cs, src/Agendamento.Api/Features/Tenants/CompanyRegistryEndpoints.cs, src/Agendamento.Api/Features/Tenants/CurrentTenantEndpoints.cs, src/Agendamento.Api/Features/Tenants/RegisterTenantRequest.cs, src/Agendamento.Api/Features/Tenants/RegisterTenantResponse.cs, src/Agendamento.Api/Features/Tenants/TenantRegistrationEndpoints.cs, src/Agendamento.Api/OpenApi/ProblemDetailsOperationTransformer.cs, src/Agendamento.Api/OpenApi/BearerSecuritySchemeTransformer.cs, tests/Agendamento.ArchitectureTests/OpenApi/EndpointMetadataTests.cs
+  arquivos permitidos (e seus testes): src/Agendamento.Api/Program.cs, src/Agendamento.Api/Features/Identity/CurrentUserEndpoints.cs, src/Agendamento.Api/Features/Identity/EmailVerificationEndpoints.cs, src/Agendamento.Api/Features/Identity/SessionEndpoints.cs, src/Agendamento.Api/Features/Identity/VerifyEmailRequest.cs, src/Agendamento.Api/Features/Tenants/CompanyRegistryEndpoints.cs, src/Agendamento.Api/Features/Tenants/CurrentTenantEndpoints.cs, src/Agendamento.Api/Features/Tenants/RegisterTenantRequest.cs, src/Agendamento.Api/Features/Tenants/RegisterTenantResponse.cs, src/Agendamento.Api/Features/Tenants/TenantRegistrationEndpoints.cs, src/Agendamento.Api/OpenApi/ProblemDetailsOperationTransformer.cs, src/Agendamento.Api/OpenApi/BearerSecuritySchemeTransformer.cs, tests/Agendamento.ArchitectureTests/OpenApi/EndpointMetadataTests.cs, src/Agendamento.Api/Features/Common/ContractResponses.cs, src/Agendamento.Api/Features/Customers/CustomerEndpoints.cs, src/Agendamento.Api/Application/Customers/GetCustomers/GetCustomersHandler.cs, src/Agendamento.Api/Application/Customers/GetCustomers/GetCustomerByIdHandler.cs, src/Agendamento.Api/Application/Customers/UpdateCustomer/UpdateCustomerCommand.cs, src/Agendamento.Api/Application/Customers/UpdateCustomer/UpdateCustomerHandler.cs, src/Agendamento.Api/Features/Appointments/AppointmentEndpoints.cs, src/Agendamento.Api/Features/Services/ServiceEndpoints.cs, src/Agendamento.Api/Features/Quotations/QuotationEndpoints.cs, src/Agendamento.Api/Features/Notifications/NotificationEndpoints.cs, src/Agendamento.Api/Features/Subscriptions/SubscriptionEndpoints.cs
   mensagem de commit: "T-023 contrato-openapi-swagger: Documentar endpoints, segurança e erros"
 
 Regras inegociáveis:
@@ -197,38 +197,6 @@ Regras inegociáveis:
   vermelho "✘ T-023 falhou (log: $LOG_DIR/seq.log)"
   amarelo "  reexecute só ela: bash .spec/features/contrato-openapi-swagger/executar-tarefas.sh --seq T-023"
   FALHAS="$FALHAS T-023"
-  return 1
-}
-
-# ── sequencial T-025 (ordem do tasks.md) ──
-executar_seq_T_025() {
-  info 'sequencial T-025 — Validar completude e minimização dos schemas'
-  if rodar_tarefa seq 'T-025' 'Você executa UMA tarefa da feature "contrato-openapi-swagger" (fluxo onp-spec, spec-anchored).
-Leia primeiro: .spec/features/contrato-openapi-swagger/spec.md, .spec/features/contrato-openapi-swagger/tasks.md e .spec/constituicao.md.
-
-Sua tarefa (somente ela):
-T-025 — "Validar completude e minimização dos schemas"
-  critérios/refs: AC-036 (Todas as rotas implementadas aparecem no contrato), AC-037 (Operações descrevem sucesso e falhas), AC-038 (Schemas não expõem dados secretos), AC-039 (Documento versionado coincide com a aplicação)
-  arquivos permitidos (e seus testes): tests/Agendamento.ArchitectureTests/OpenApi/OpenApiCompletenessTests.cs, tests/Agendamento.ArchitectureTests/OpenApi/OpenApiSensitiveDataTests.cs
-  mensagem de commit: "T-025 contrato-openapi-swagger: Validar completude e minimização dos schemas"
-
-Regras inegociáveis:
-- Todo critério de aceite referenciado vira teste com @spec:AC-xxx no título.
-- NUNCA enfraqueça, pule (skip/todo) ou apague um teste para passar — teste pulado não é prova e o audit acusa.
-- Rode os testes localmente com `powershell -ExecutionPolicy Bypass -File scripts/verify-spec.ps1` até passarem.
-- NÃO edite tasks.md, NÃO rode onp-spec verify/audit e NÃO toque em outras tarefas — o orquestrador cuida disso.
-- Ao final de CADA tarefa: `git add` só no que você tocou e um commit próprio.' 'gpt-5.6-terra' medium >> "$LOG_DIR/seq.log" 2>&1; then
-    # commit de segurança se o agente esqueceu (rastreabilidade > perfeição)
-    if [ -n "$(git status --porcelain)" ]; then
-      git add -A && git commit -q -m 'T-025 contrato-openapi-swagger: Validar completude e minimização dos schemas (auto-commit do plano)'
-    fi
-    marcar_concluidas T-025
-    verde "✔ T-025 concluída"
-    return 0
-  fi
-  vermelho "✘ T-025 falhou (log: $LOG_DIR/seq.log)"
-  amarelo "  reexecute só ela: bash .spec/features/contrato-openapi-swagger/executar-tarefas.sh --seq T-025"
-  FALHAS="$FALHAS T-025"
   return 1
 }
 
@@ -286,14 +254,12 @@ executar_tudo() {
   info "logs em: $LOG_DIR"
   info "resumo geral de andamento: a cada 1 min aqui no terminal (e via: onp-spec resumo)"
   executar_seq_T_023 || true
-  executar_seq_T_025 || true
   encerrar tudo
 }
 
 listar() {
   echo "execução: $RUN_ID (feature $FEATURE, branch $BASE_BRANCH)"
   echo "  seq       T-023 (sequencial)"
-  echo "  seq       T-025 (sequencial)"
   echo
   echo "reexecutar uma faixa:    --faixa <id>"
   echo "reexecutar sequencial:   --seq <T-xxx>"
@@ -329,7 +295,6 @@ case "$MODO" in
   seq)
     case "$ALVO" in
       T-023) evento --tipo inicio --escopo "seq:T-023"; iniciar_resumos; executar_seq_T_023 || true; encerrar "seq:T-023" ;;
-      T-025) evento --tipo inicio --escopo "seq:T-025"; iniciar_resumos; executar_seq_T_025 || true; encerrar "seq:T-025" ;;
       *) falhar "tarefa sequencial desconhecida: '$ALVO' — veja as disponíveis com --listar" ;;
     esac ;;
 esac

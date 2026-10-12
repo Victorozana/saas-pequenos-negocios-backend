@@ -22,7 +22,7 @@ public class OpenApiCompletenessTests : IClassFixture<WebApplicationFactory<Prog
         });
     }
 
-    [Fact(DisplayName = "Todos os endpoints da aplicação devem estar documentados no OpenAPI")]
+    [Fact(DisplayName = "Todos os endpoints da aplicação devem estar documentados no OpenAPI @spec:AC-036")]
     public async Task All_Endpoints_Should_Be_Documented()
     {
         var client = _factory.CreateClient();
@@ -72,6 +72,30 @@ public class OpenApiCompletenessTests : IClassFixture<WebApplicationFactory<Prog
                     Assert.True(pathItem.TryGetProperty(openApiMethod, out _), $"Method '{method}' for '{openApiPath}' not found in OpenAPI doc");
                 }
             }
+        }
+    }
+
+    [Fact(DisplayName = "Saídas JSON antes não tipadas possuem schemas verificáveis @spec:AC-038 @principle:P-005")]
+    public async Task Json_outputs_have_inspectable_schemas()
+    {
+        using var client = _factory.CreateClient();
+        using var document = JsonDocument.Parse(await client.GetStringAsync("/openapi/v1.json"));
+        var paths = document.RootElement.GetProperty("paths");
+        foreach (var (path, method, status) in new[]
+        {
+            ("/api/v1/tenants/me", "get", "200"), ("/api/v1/services", "post", "201"),
+            ("/api/v1/quotations", "post", "201"), ("/api/v1/quotations/{id}/convert", "post", "200"),
+            ("/api/v1/appointments", "post", "201"), ("/api/v1/notifications", "get", "200"),
+            ("/api/v1/customers", "post", "201"), ("/api/v1/customers", "get", "200"),
+            ("/api/v1/customers/{id}", "get", "200"),
+            ("/api/v1/notifications/send-manual", "post", "200"),
+            ("/api/v1/notifications/schedule-reminder", "post", "200"),
+            ("/api/v1/notifications/send-quotation-notification", "post", "200"),
+            ("/api/v1/subscriptions/current", "get", "200"), ("/api/v1/subscriptions/plans", "get", "200")
+        })
+        {
+            Assert.True(paths.GetProperty(path).GetProperty(method).GetProperty("responses").GetProperty(status)
+                .GetProperty("content").GetProperty("application/json").TryGetProperty("schema", out _), $"Missing output schema: {method} {path}");
         }
     }
 }

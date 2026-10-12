@@ -1,11 +1,11 @@
 {
   "feature": "contrato-openapi-swagger",
-  "timestamp": "2026-10-12T05:07:33.461Z",
-  "gitRev": "d79b630",
+  "timestamp": "2026-10-12T15:27:18.387Z",
+  "gitRev": "fb5836d",
   "command": "powershell -ExecutionPolicy Bypass -File scripts/verify-spec.ps1",
   "reporter": "jest-json",
   "exitCode": 0,
-  "testsParsed": 175,
+  "testsParsed": 198,
   "results": {
     "AC-036": {
       "status": "pass",
@@ -15,6 +15,11 @@
     "AC-037": {
       "status": "pass",
       "testName": "Toda operação possui identificador estável, tags adequadas @spec:AC-037 Toda operação possui identificador estável, tags adequadas @spec:AC-037",
+      "method": "jest-json"
+    },
+    "AC-038": {
+      "status": "pass",
+      "testName": "Onboarding completo sem token na resposta em qualquer ambiente @spec:AC-021 @spec:AC-038 @spec:AC-100 @principle:P-005(environment: \"Production\") Onboarding completo sem token na resposta em qualquer ambiente @spec:AC-021 @spec:AC-038 @spec:AC-100 @principle:P-005(environment: \"Production\")",
       "method": "jest-json"
     },
     "AC-039": {
@@ -33,13 +38,13 @@
       "status": "pass",
       "testName": "Token de e-mail é armazenado somente como digest e expira em 24 horas @spec:AC-009 @principle:P-005 Token de e-mail é armazenado somente como digest e expira em 24 horas @spec:AC-009 @principle:P-005"
     },
-    "P-003": {
-      "status": "pass",
-      "testName": "Tenant externo no body não muda a empresa do cliente criado @spec:AC-029 @principle:P-003 Tenant externo no body não muda a empresa do cliente criado @spec:AC-029 @principle:P-003"
-    },
     "P-004": {
       "status": "pass",
       "testName": "Papel restrito impede SQL direto entre tenants em todas as tabelas @spec:AC-033 @principle:P-004 Papel restrito impede SQL direto entre tenants em todas as tabelas @spec:AC-033 @principle:P-004"
+    },
+    "P-003": {
+      "status": "pass",
+      "testName": "@spec:AC-013 @principle:P-003 @principle:P-005 valid login emits only user_tenant_and_role @spec:AC-013 @principle:P-003 @principle:P-005 valid login emits only user_tenant_and_role"
     }
   }
 }

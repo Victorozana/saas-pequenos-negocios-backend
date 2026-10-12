@@ -1,11 +1,11 @@
 {
   "feature": "identidade-acesso-inicial",
-  "timestamp": "2026-10-12T14:25:01.990Z",
-  "gitRev": "d79b630",
+  "timestamp": "2026-10-12T15:34:05.313Z",
+  "gitRev": "fb5836d",
   "command": "powershell -ExecutionPolicy Bypass -File scripts/verify-spec.ps1",
   "reporter": "jest-json",
   "exitCode": 0,
-  "testsParsed": 175,
+  "testsParsed": 198,
   "results": {
     "AC-007": {
       "status": "pass",
@@ -50,7 +50,7 @@
     },
     "P-003": {
       "status": "pass",
-      "testName": "Tenant externo em header ou query não substitui a sessão @spec:AC-029 @principle:P-003(useQuery: False) Tenant externo em header ou query não substitui a sessão @spec:AC-029 @principle:P-003(useQuery: False)"
+      "testName": "Tenant externo em header ou query não substitui a sessão @spec:AC-029 @principle:P-003(useQuery: True) Tenant externo em header ou query não substitui a sessão @spec:AC-029 @principle:P-003(useQuery: True)"
     },
     "P-004": {
       "status": "pass",

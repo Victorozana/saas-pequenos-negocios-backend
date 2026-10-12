@@ -1,24 +1,8 @@
-# Tasks: Onboarding token desenvolvimento
+# Tasks: Onboarding sem exposição de token
 
 > feature: onboarding-token-desenvolvimento
 
-<!--
-  Como ler este arquivo (o formato é verificado por `onp-spec audit`):
-  - T-xxx = tarefa (código de rastreio, único no projeto inteiro).
-  - Toda tarefa referencia em `Refs:` pelo menos uma história de usuário
-    (US-xxx) ou critério de aceite (AC-xxx).
-  - Toda tarefa lista os arquivos que cria/altera em `Arquivos:` — capriche:
-    é o que decide o que `onp-spec plano` roda em PARALELO (arquivos
-    disjuntos) e o que roda em sequência.
-  - Campos opcionais por tarefa, usados pelo plano de execução:
-    `- Modelo: claude-sonnet-5` e `- Esforço: alto` (baixo|medio|alto|xalto|max).
-  - Uma tarefa só pode virar [concluida] quando os critérios de aceite dela
-    tiverem prova PASS registrada por `onp-spec verify`.
-  Status: pendente | em-andamento | concluida
-    (atalho: `onp-spec tarefa <feature> <T-xxx> <status>`)
--->
-
-## T-101 — Documentar o header de verificação de desenvolvimento [concluida]
+## T-101 — Remover exposição de token do cadastro e contrato [concluida]
 - Refs: US-053, AC-100
-- Arquivos: src/Agendamento.Api/OpenApi/OpenApiExtensions.cs, tests/Agendamento.ArchitectureTests/OpenApi/EndpointMetadataTests.cs
-- Notas: O schema público de resposta não pode incluir token bruto; somente o header é documentado em Development/Test.
+- Arquivos: src/Agendamento.Api/OpenApi/OpenApiExtensions.cs, src/Agendamento.Api/Application/Tenants/RegisterTenant/RegisterTenantHandler.cs, src/Agendamento.Api/Features/Tenants/RegisterTenantResponse.cs, src/Agendamento.Api/Features/Tenants/TenantRegistrationEndpoints.cs, tests/Agendamento.ArchitectureTests/OpenApi/EndpointMetadataTests.cs, tests/Agendamento.IntegrationTests/Tenants/TenantOnboardingFlowTests.cs
+- Notas: Regra histórica revisada por instrução explícita de 12/10/2026. Não ocultar propriedade por transformer: removê-la do runtime. Frontend do workspace recebe só mensagem e aceita código informado separadamente; entrega real de e-mail permanece pendente.

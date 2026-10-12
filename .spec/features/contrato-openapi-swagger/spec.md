@@ -28,8 +28,8 @@ Como pessoa desenvolvedora de frontend ou integração, quero um documento OpenA
 #### AC-038 — Schemas não expõem dados secretos
 
 - **Dado** os schemas de resposta e os exemplos do OpenAPI
-- **Quando** o documento é inspecionado
-- **Então** não existem senha, hash, token bruto de verificação, CPF integral, string de conexão ou credencial fiscal/bancária em respostas ou exemplos
+- **Quando** os usos em respostas, headers e exemplos são inspecionados resolvendo referências locais, arrays e composições allOf/oneOf/anyOf
+- **Então** não existem senha, hash, token bruto de verificação, CPF integral, string de conexão ou credencial fiscal/bancária em respostas ou exemplos, inclusive em Development; senha/CPF/token são entradas legítimas sem exemplos secretos, e somente o token de acesso de sessão é saída legítima do login
 
 ### US-016 — Detectar divergência entre código e documentação
 

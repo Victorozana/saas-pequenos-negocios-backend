@@ -32,7 +32,7 @@ public class GetCustomerByIdHandler
             c.Phone,
             c.Email,
             c.Document?.Type,
-            c.Document?.Value,
+            CustomerResponse.DisplayDocument(c.Document),
             c.Address?.Street,
             c.Address?.Number,
             c.Address?.Complement,

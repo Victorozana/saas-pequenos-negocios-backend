@@ -35,7 +35,7 @@ public class RegisterTenantHandler
         _emailSender = emailSender;
     }
 
-    public async Task<string> HandleAsync(RegisterTenantCommand command, CancellationToken cancellationToken = default)
+    public async Task HandleAsync(RegisterTenantCommand command, CancellationToken cancellationToken = default)
     {
         using var administrative = _db.Administrative.Enter();
         if (string.IsNullOrWhiteSpace(command.IdempotencyKey))
@@ -48,7 +48,7 @@ public class RegisterTenantHandler
             
         if (idempotency != null)
         {
-            return string.Empty;
+            return;
         }
 
         await _uow.BeginTransactionAsync(cancellationToken);
@@ -112,7 +112,6 @@ public class RegisterTenantHandler
             await _db.SaveChangesAsync(cancellationToken);
             await _uow.CommitAsync(cancellationToken);
 
-            return rawToken;
         }
         catch
         {

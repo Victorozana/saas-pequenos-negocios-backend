@@ -1,11 +1,16 @@
 using System.Diagnostics;
 using System.Text.RegularExpressions;
 using Xunit;
+using Xunit.Abstractions;
 
 namespace Agendamento.ArchitectureTests.Build;
 
 public sealed class SolutionBuildTests
 {
+    private readonly ITestOutputHelper _output;
+
+    public SolutionBuildTests(ITestOutputHelper output) => _output = output;
+
     [Fact(DisplayName = "@spec:AC-001 A solução compila em Release sem avisos")]
     public async Task Solution_compiles_in_release_without_warnings()
     {
@@ -36,6 +41,7 @@ public sealed class SolutionBuildTests
             await process.WaitForExitAsync();
 
             var output = (await standardOutput) + (await standardError);
+            _output.WriteLine(output);
             Assert.True(process.ExitCode == 0, output);
             Assert.Matches(@"(?im)^\s*0 Warning\(s\)\s*$", output);
             Assert.DoesNotMatch(@"(?im):\s*warning\s+\w+", output);

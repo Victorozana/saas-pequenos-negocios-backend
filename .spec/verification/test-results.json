@@ -3,308 +3,8 @@
                         {
                             "assertionResults":  [
                                                      {
-                                                         "title":  "Agendamento.UnitTests.Tenants.FoodCnaePolicyTests.IsEligible_ShouldReturnTrue_WhenCnaeIsFoodRelated(cnae: \"5621900\")",
-                                                         "fullName":  "Agendamento.UnitTests.Tenants.FoodCnaePolicyTests.IsEligible_ShouldReturnTrue_WhenCnaeIsFoodRelated(cnae: \"5621900\")",
-                                                         "status":  "passed"
-                                                     },
-                                                     {
-                                                         "title":  "Calcula entrada exigida em porcentagem e saldo restante @spec:AC-046",
-                                                         "fullName":  "Calcula entrada exigida em porcentagem e saldo restante @spec:AC-046",
-                                                         "status":  "passed"
-                                                     },
-                                                     {
-                                                         "title":  "Entidades financeiras devem pertencer a um Tenant @spec:AC-055",
-                                                         "fullName":  "Entidades financeiras devem pertencer a um Tenant @spec:AC-055",
-                                                         "status":  "passed"
-                                                     },
-                                                     {
-                                                         "title":  "Repetição idempotente não duplica o cadastro @spec:AC-023",
-                                                         "fullName":  "Repetição idempotente não duplica o cadastro @spec:AC-023",
-                                                         "status":  "passed"
-                                                     },
-                                                     {
-                                                         "title":  "Deve validar formato de CPF/CNPJ @spec:AC-042",
-                                                         "fullName":  "Deve validar formato de CPF/CNPJ @spec:AC-042",
-                                                         "status":  "passed"
-                                                     },
-                                                     {
-                                                         "title":  "Token inválido, adulterado ou vencido não verifica o e-mail @spec:AC-011(submittedToken: \"missing-token\")",
-                                                         "fullName":  "Token inválido, adulterado ou vencido não verifica o e-mail @spec:AC-011(submittedToken: \"missing-token\")",
-                                                         "status":  "passed"
-                                                     },
-                                                     {
-                                                         "title":  "CreateFromQuotation lança exceção quando o orçamento não está aprovado @spec:AC-051",
-                                                         "fullName":  "CreateFromQuotation lança exceção quando o orçamento não está aprovado @spec:AC-051",
-                                                         "status":  "passed"
-                                                     },
-                                                     {
-                                                         "title":  "Agendamento.UnitTests.Tenants.FoodCnaePolicyTests.IsEligible_ShouldReturnTrue_WhenCnaeIsFoodRelated(cnae: \"56.11-2-01\")",
-                                                         "fullName":  "Agendamento.UnitTests.Tenants.FoodCnaePolicyTests.IsEligible_ShouldReturnTrue_WhenCnaeIsFoodRelated(cnae: \"56.11-2-01\")",
-                                                         "status":  "passed"
-                                                     },
-                                                     {
-                                                         "title":  "CNPJ alfanumérico válido é aceito(input: \"12.ABC.345/01DE-35\", expected: \"12ABC34501DE35\")",
-                                                         "fullName":  "CNPJ alfanumérico válido é aceito(input: \"12.ABC.345/01DE-35\", expected: \"12ABC34501DE35\")",
-                                                         "status":  "passed"
-                                                     },
-                                                     {
-                                                         "title":  "Agendamento.UnitTests.Tenants.FoodCnaePolicyTests.IsEligible_ShouldReturnTrue_WhenCnaeIsFoodRelated(cnae: \"4711302\")",
-                                                         "fullName":  "Agendamento.UnitTests.Tenants.FoodCnaePolicyTests.IsEligible_ShouldReturnTrue_WhenCnaeIsFoodRelated(cnae: \"4711302\")",
-                                                         "status":  "passed"
-                                                     },
-                                                     {
-                                                         "title":  "Busca deve permitir filtro parcial e paginacao @spec:AC-043",
-                                                         "fullName":  "Busca deve permitir filtro parcial e paginacao @spec:AC-043",
-                                                         "status":  "passed"
-                                                     },
-                                                     {
-                                                         "title":  "CNPJ inválido é rejeitado localmente @spec:AC-014(invalidCnpj: \"12.345.678/ABCD-00\")",
-                                                         "fullName":  "CNPJ inválido é rejeitado localmente @spec:AC-014(invalidCnpj: \"12.345.678/ABCD-00\")",
-                                                         "status":  "passed"
-                                                     },
-                                                     {
-                                                         "title":  "CNPJ inválido é rejeitado localmente @spec:AC-014(invalidCnpj: \"00.000.000/0000-00\")",
-                                                         "fullName":  "CNPJ inválido é rejeitado localmente @spec:AC-014(invalidCnpj: \"00.000.000/0000-00\")",
-                                                         "status":  "passed"
-                                                     },
-                                                     {
-                                                         "title":  "CreateFromQuotation copia os dados do orçamento quando está aprovado @spec:AC-051 @spec:AC-052",
-                                                         "fullName":  "CreateFromQuotation copia os dados do orçamento quando está aprovado @spec:AC-051 @spec:AC-052",
-                                                         "status":  "passed"
-                                                     },
-                                                     {
-                                                         "title":  "Trial expira após 14 dias @spec:AC-205",
-                                                         "fullName":  "Trial expira após 14 dias @spec:AC-205",
-                                                         "status":  "passed"
-                                                     },
-                                                     {
-                                                         "title":  "Token vencido não pode ser consumido @spec:AC-011",
-                                                         "fullName":  "Token vencido não pode ser consumido @spec:AC-011",
-                                                         "status":  "passed"
-                                                     },
-                                                     {
-                                                         "title":  "CNPJ é único globalmente @spec:AC-022",
-                                                         "fullName":  "CNPJ é único globalmente @spec:AC-022",
-                                                         "status":  "passed"
-                                                     },
-                                                     {
-                                                         "title":  "Token válido é consumido somente uma vez @spec:AC-010",
-                                                         "fullName":  "Token válido é consumido somente uma vez @spec:AC-010",
-                                                         "status":  "passed"
-                                                     },
-                                                     {
-                                                         "title":  "Calcula subtotais, descontos e total geral do orçamento @spec:AC-046",
-                                                         "fullName":  "Calcula subtotais, descontos e total geral do orçamento @spec:AC-046",
-                                                         "status":  "passed"
-                                                     },
-                                                     {
-                                                         "title":  "Relatório CSV gerado corretamente e permite filtros @spec:AC-069",
-                                                         "fullName":  "Relatório CSV gerado corretamente e permite filtros @spec:AC-069",
-                                                         "status":  "passed"
-                                                     },
-                                                     {
-                                                         "title":  "Cadastro composto cria todos os vínculos @spec:AC-021",
-                                                         "fullName":  "Cadastro composto cria todos os vínculos @spec:AC-021",
-                                                         "status":  "passed"
-                                                     },
-                                                     {
-                                                         "title":  "Validação de limites (PlanLimitsChecker) @spec:AC-202",
-                                                         "fullName":  "Validação de limites (PlanLimitsChecker) @spec:AC-202",
-                                                         "status":  "passed"
-                                                     },
-                                                     {
-                                                         "title":  "Marcação de pendente em orçamento sem itens lança exceção @spec:AC-048",
-                                                         "fullName":  "Marcação de pendente em orçamento sem itens lança exceção @spec:AC-048",
-                                                         "status":  "passed"
-                                                     },
-                                                     {
-                                                         "title":  "ServiceItem e Quotation implementam ITenantOwned com TenantId @spec:AC-045",
-                                                         "fullName":  "ServiceItem e Quotation implementam ITenantOwned com TenantId @spec:AC-045",
-                                                         "status":  "passed"
-                                                     },
-                                                     {
-                                                         "title":  "NotificationTemplate deve substituir variáveis no formato {Var} e {{Var}} @spec:AC-062",
-                                                         "fullName":  "NotificationTemplate deve substituir variáveis no formato {Var} e {{Var}} @spec:AC-062",
-                                                         "status":  "passed"
-                                                     },
-                                                     {
-                                                         "title":  "Deve criar cliente se dados validos",
-                                                         "fullName":  "Deve criar cliente se dados validos",
-                                                         "status":  "passed"
-                                                     },
-                                                     {
-                                                         "title":  "Agendamento.UnitTests.Tenants.FoodCnaePolicyTests.IsEligible_ShouldReturnTrue_WhenCnaeIsFoodRelated(cnae: \"1113502\")",
-                                                         "fullName":  "Agendamento.UnitTests.Tenants.FoodCnaePolicyTests.IsEligible_ShouldReturnTrue_WhenCnaeIsFoodRelated(cnae: \"1113502\")",
-                                                         "status":  "passed"
-                                                     },
-                                                     {
-                                                         "title":  "Agendamento.UnitTests.Tenants.FoodCnaePolicyTests.IsEligible_ShouldReturnFalse_WhenCnaesListIsEmpty",
-                                                         "fullName":  "Agendamento.UnitTests.Tenants.FoodCnaePolicyTests.IsEligible_ShouldReturnFalse_WhenCnaesListIsEmpty",
-                                                         "status":  "passed"
-                                                     },
-                                                     {
-                                                         "title":  "Confirmação válida verifica o e-mail uma única vez @spec:AC-010",
-                                                         "fullName":  "Confirmação válida verifica o e-mail uma única vez @spec:AC-010",
-                                                         "status":  "passed"
-                                                     },
-                                                     {
-                                                         "title":  "Acesso de escrita bloqueado se PastDue e expirou carência @spec:AC-204",
-                                                         "fullName":  "Acesso de escrita bloqueado se PastDue e expirou carência @spec:AC-204",
-                                                         "status":  "passed"
-                                                     },
-                                                     {
-                                                         "title":  "Cálculo da taxa de conversão considera apenas orçamentos finalizados @spec:AC-068",
-                                                         "fullName":  "Cálculo da taxa de conversão considera apenas orçamentos finalizados @spec:AC-068",
-                                                         "status":  "passed"
-                                                     },
-                                                     {
-                                                         "title":  "Agendamento.UnitTests.Tenants.FoodCnaePolicyTests.IsEligible_ShouldReturnFalse_WhenCnaesListIsNull",
-                                                         "fullName":  "Agendamento.UnitTests.Tenants.FoodCnaePolicyTests.IsEligible_ShouldReturnFalse_WhenCnaesListIsNull",
-                                                         "status":  "passed"
-                                                     },
-                                                     {
-                                                         "title":  "Token inválido, adulterado ou vencido não verifica o e-mail @spec:AC-011(submittedToken: \"tampered-token\")",
-                                                         "fullName":  "Token inválido, adulterado ou vencido não verifica o e-mail @spec:AC-011(submittedToken: \"tampered-token\")",
-                                                         "status":  "passed"
-                                                     },
-                                                     {
-                                                         "title":  "Cadastro inicial não coleta dados financeiros ou documentos @spec:AC-020",
-                                                         "fullName":  "Cadastro inicial não coleta dados financeiros ou documentos @spec:AC-020",
-                                                         "status":  "passed"
-                                                     },
-                                                     {
-                                                         "title":  "Consultas agregadas respondem em tempo aceitável @spec:AC-067",
-                                                         "fullName":  "Consultas agregadas respondem em tempo aceitável @spec:AC-067",
-                                                         "status":  "passed"
-                                                     },
-                                                     {
-                                                         "title":  "Token de e-mail é armazenado somente como digest e expira em 24 horas @spec:AC-009 @principle:P-005",
-                                                         "fullName":  "Token de e-mail é armazenado somente como digest e expira em 24 horas @spec:AC-009 @principle:P-005",
-                                                         "status":  "passed"
-                                                     },
-                                                     {
-                                                         "title":  "NotificationMessage em falha deve incrementar retry e agendar backoff @spec:AC-063",
-                                                         "fullName":  "NotificationMessage em falha deve incrementar retry e agendar backoff @spec:AC-063",
-                                                         "status":  "passed"
-                                                     },
-                                                     {
-                                                         "title":  "Verificação de atraso marca título como Overdue se vencido @spec:AC-058",
-                                                         "fullName":  "Verificação de atraso marca título como Overdue se vencido @spec:AC-058",
-                                                         "status":  "passed"
-                                                     },
-                                                     {
-                                                         "title":  "CNPJ numérico válido é aceito(input: \"19.131.243/0001-97\", expected: \"19131243000197\")",
-                                                         "fullName":  "CNPJ numérico válido é aceito(input: \"19.131.243/0001-97\", expected: \"19131243000197\")",
-                                                         "status":  "passed"
-                                                     },
-                                                     {
-                                                         "title":  "Faturamento considera apenas títulos baixados/pagos @spec:AC-066",
-                                                         "fullName":  "Faturamento considera apenas títulos baixados/pagos @spec:AC-066",
-                                                         "status":  "passed"
-                                                     },
-                                                     {
-                                                         "title":  "Acesso de escrita não bloqueado se PastDue dentro da carência @spec:AC-204",
-                                                         "fullName":  "Acesso de escrita não bloqueado se PastDue dentro da carência @spec:AC-204",
-                                                         "status":  "passed"
-                                                     },
-                                                     {
                                                          "title":  "Perfil fiscal pertence exclusivamente ao tenant @spec:AC-019",
                                                          "fullName":  "Perfil fiscal pertence exclusivamente ao tenant @spec:AC-019",
-                                                         "status":  "passed"
-                                                     },
-                                                     {
-                                                         "title":  "Senhas nunca são recuperáveis @spec:AC-008 @principle:P-005",
-                                                         "fullName":  "Senhas nunca são recuperáveis @spec:AC-008 @principle:P-005",
-                                                         "status":  "passed"
-                                                     },
-                                                     {
-                                                         "title":  "Agendamento.UnitTests.Tenants.FoodCnaePolicyTests.IsEligible_ShouldReturnTrue_WhenCnaeIsFoodRelated(cnae: \"4729699\")",
-                                                         "fullName":  "Agendamento.UnitTests.Tenants.FoodCnaePolicyTests.IsEligible_ShouldReturnTrue_WhenCnaeIsFoodRelated(cnae: \"4729699\")",
-                                                         "status":  "passed"
-                                                     },
-                                                     {
-                                                         "title":  "Assinatura isolada por tenant @spec:AC-201",
-                                                         "fullName":  "Assinatura isolada por tenant @spec:AC-201",
-                                                         "status":  "passed"
-                                                     },
-                                                     {
-                                                         "title":  "Agendamento.UnitTests.Tenants.FoodCnaePolicyTests.IsEligible_ShouldReturnFalse_WhenNoFoodCnaeIsPresent",
-                                                         "fullName":  "Agendamento.UnitTests.Tenants.FoodCnaePolicyTests.IsEligible_ShouldReturnFalse_WhenNoFoodCnaeIsPresent",
-                                                         "status":  "passed"
-                                                     },
-                                                     {
-                                                         "title":  "CNPJ inválido é rejeitado localmente @spec:AC-014(invalidCnpj: \"AB.CDE.FGH/0001-90\")",
-                                                         "fullName":  "CNPJ inválido é rejeitado localmente @spec:AC-014(invalidCnpj: \"AB.CDE.FGH/0001-90\")",
-                                                         "status":  "passed"
-                                                     },
-                                                     {
-                                                         "title":  "Pagamento parcial atualiza status para PartiallyPaid e abate o saldo @spec:AC-057",
-                                                         "fullName":  "Pagamento parcial atualiza status para PartiallyPaid e abate o saldo @spec:AC-057",
-                                                         "status":  "passed"
-                                                     },
-                                                     {
-                                                         "title":  "Agendamento.UnitTests.Tenants.FoodCnaePolicyTests.IsEligible_ShouldReturnTrue_WhenCnaeIsFoodRelated(cnae: \"1091102\")",
-                                                         "fullName":  "Agendamento.UnitTests.Tenants.FoodCnaePolicyTests.IsEligible_ShouldReturnTrue_WhenCnaeIsFoodRelated(cnae: \"1091102\")",
-                                                         "status":  "passed"
-                                                     },
-                                                     {
-                                                         "title":  "NotificationMessage ao ser criada deve pertencer ao Tenant e iniciar como Pending @spec:AC-060 @spec:AC-061",
-                                                         "fullName":  "NotificationMessage ao ser criada deve pertencer ao Tenant e iniciar como Pending @spec:AC-060 @spec:AC-061",
-                                                         "status":  "passed"
-                                                     },
-                                                     {
-                                                         "title":  "CPF e e-mail normalizados identificam uma única pessoa @spec:AC-007",
-                                                         "fullName":  "CPF e e-mail normalizados identificam uma única pessoa @spec:AC-007",
-                                                         "status":  "passed"
-                                                     },
-                                                     {
-                                                         "title":  "CNPJ inválido é rejeitado localmente @spec:AC-014(invalidCnpj: \"12.345.678/0001-90\")",
-                                                         "fullName":  "CNPJ inválido é rejeitado localmente @spec:AC-014(invalidCnpj: \"12.345.678/0001-90\")",
-                                                         "status":  "passed"
-                                                     },
-                                                     {
-                                                         "title":  "Tenant é criado com sucesso quando todos os dados são válidos",
-                                                         "fullName":  "Tenant é criado com sucesso quando todos os dados são válidos",
-                                                         "status":  "passed"
-                                                     },
-                                                     {
-                                                         "title":  "Aprovação de orçamento expirado lança exceção @spec:AC-048",
-                                                         "fullName":  "Aprovação de orçamento expirado lança exceção @spec:AC-048",
-                                                         "status":  "passed"
-                                                     },
-                                                     {
-                                                         "title":  "Calcula entrada exigida em valor fixo e saldo restante @spec:AC-046",
-                                                         "fullName":  "Calcula entrada exigida em valor fixo e saldo restante @spec:AC-046",
-                                                         "status":  "passed"
-                                                     },
-                                                     {
-                                                         "title":  "Perfil fiscal pertence exclusivamente ao tenant @spec:AC-019",
-                                                         "fullName":  "Perfil fiscal pertence exclusivamente ao tenant @spec:AC-019",
-                                                         "status":  "passed"
-                                                     },
-                                                     {
-                                                         "title":  "Pagamento integral atualiza status para Paid e zera o saldo @spec:AC-057",
-                                                         "fullName":  "Pagamento integral atualiza status para Paid e zera o saldo @spec:AC-057",
-                                                         "status":  "passed"
-                                                     },
-                                                     {
-                                                         "title":  "Pagamento maior que o saldo lança exceção @spec:AC-057",
-                                                         "fullName":  "Pagamento maior que o saldo lança exceção @spec:AC-057",
-                                                         "status":  "passed"
-                                                     },
-                                                     {
-                                                         "title":  "Dados obrigatórios são validados na criação do Tenant @spec:AC-018",
-                                                         "fullName":  "Dados obrigatórios são validados na criação do Tenant @spec:AC-018",
-                                                         "status":  "passed"
-                                                     },
-                                                     {
-                                                         "title":  "CNPJ é único globalmente (normalização consistente) @spec:AC-022",
-                                                         "fullName":  "CNPJ é único globalmente (normalização consistente) @spec:AC-022",
-                                                         "status":  "passed"
-                                                     },
-                                                     {
-                                                         "title":  "CNPJ inválido é rejeitado localmente @spec:AC-014(invalidCnpj: \"11.111.111/1111-11\")",
-                                                         "fullName":  "CNPJ inválido é rejeitado localmente @spec:AC-014(invalidCnpj: \"11.111.111/1111-11\")",
                                                          "status":  "passed"
                                                      },
                                                      {
@@ -313,8 +13,178 @@
                                                          "status":  "passed"
                                                      },
                                                      {
+                                                         "title":  "NotificationMessage em falha deve incrementar retry e agendar backoff @spec:AC-063",
+                                                         "fullName":  "NotificationMessage em falha deve incrementar retry e agendar backoff @spec:AC-063",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "Deve validar formato de CPF/CNPJ @spec:AC-042",
+                                                         "fullName":  "Deve validar formato de CPF/CNPJ @spec:AC-042",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "CNPJ alfanumérico válido é aceito(input: \"12.ABC.345/01DE-35\", expected: \"12ABC34501DE35\")",
+                                                         "fullName":  "CNPJ alfanumérico válido é aceito(input: \"12.ABC.345/01DE-35\", expected: \"12ABC34501DE35\")",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "CNPJ é único globalmente @spec:AC-022",
+                                                         "fullName":  "CNPJ é único globalmente @spec:AC-022",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "Pagamento integral atualiza status para Paid e zera o saldo @spec:AC-057",
+                                                         "fullName":  "Pagamento integral atualiza status para Paid e zera o saldo @spec:AC-057",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "Senhas nunca são recuperáveis @spec:AC-008 @principle:P-005",
+                                                         "fullName":  "Senhas nunca são recuperáveis @spec:AC-008 @principle:P-005",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "Repetição idempotente não duplica o cadastro @spec:AC-023",
+                                                         "fullName":  "Repetição idempotente não duplica o cadastro @spec:AC-023",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "Agendamento.UnitTests.Tenants.FoodCnaePolicyTests.IsEligible_ShouldReturnTrue_WhenCnaeIsFoodRelated(cnae: \"4711302\")",
+                                                         "fullName":  "Agendamento.UnitTests.Tenants.FoodCnaePolicyTests.IsEligible_ShouldReturnTrue_WhenCnaeIsFoodRelated(cnae: \"4711302\")",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "Token vencido não pode ser consumido @spec:AC-011",
+                                                         "fullName":  "Token vencido não pode ser consumido @spec:AC-011",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "Tenant é criado com sucesso quando todos os dados são válidos",
+                                                         "fullName":  "Tenant é criado com sucesso quando todos os dados são válidos",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "Cálculo da taxa de conversão considera apenas orçamentos finalizados @spec:AC-068",
+                                                         "fullName":  "Cálculo da taxa de conversão considera apenas orçamentos finalizados @spec:AC-068",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "Trial expira após 14 dias @spec:AC-205",
+                                                         "fullName":  "Trial expira após 14 dias @spec:AC-205",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "Confirmação válida verifica o e-mail uma única vez @spec:AC-010",
+                                                         "fullName":  "Confirmação válida verifica o e-mail uma única vez @spec:AC-010",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "Deve criar cliente se dados validos",
+                                                         "fullName":  "Deve criar cliente se dados validos",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "Token inválido, adulterado ou vencido não verifica o e-mail @spec:AC-011(submittedToken: \"tampered-token\")",
+                                                         "fullName":  "Token inválido, adulterado ou vencido não verifica o e-mail @spec:AC-011(submittedToken: \"tampered-token\")",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "Pagamento maior que o saldo lança exceção @spec:AC-057",
+                                                         "fullName":  "Pagamento maior que o saldo lança exceção @spec:AC-057",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "Token válido é consumido somente uma vez @spec:AC-010",
+                                                         "fullName":  "Token válido é consumido somente uma vez @spec:AC-010",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "Acesso de escrita não bloqueado se PastDue dentro da carência @spec:AC-204",
+                                                         "fullName":  "Acesso de escrita não bloqueado se PastDue dentro da carência @spec:AC-204",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "ServiceItem e Quotation implementam ITenantOwned com TenantId @spec:AC-045",
+                                                         "fullName":  "ServiceItem e Quotation implementam ITenantOwned com TenantId @spec:AC-045",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "Dados obrigatórios são validados na criação do Tenant @spec:AC-018",
+                                                         "fullName":  "Dados obrigatórios são validados na criação do Tenant @spec:AC-018",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "Calcula entrada exigida em valor fixo e saldo restante @spec:AC-046",
+                                                         "fullName":  "Calcula entrada exigida em valor fixo e saldo restante @spec:AC-046",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "Token inválido, adulterado ou vencido não verifica o e-mail @spec:AC-011(submittedToken: \"missing-token\")",
+                                                         "fullName":  "Token inválido, adulterado ou vencido não verifica o e-mail @spec:AC-011(submittedToken: \"missing-token\")",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "CNPJ inválido é rejeitado localmente @spec:AC-014(invalidCnpj: \"AB.CDE.FGH/0001-90\")",
+                                                         "fullName":  "CNPJ inválido é rejeitado localmente @spec:AC-014(invalidCnpj: \"AB.CDE.FGH/0001-90\")",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
                                                          "title":  "CNPJ inválido é rejeitado localmente @spec:AC-014(invalidCnpj: \"123\")",
                                                          "fullName":  "CNPJ inválido é rejeitado localmente @spec:AC-014(invalidCnpj: \"123\")",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "Acesso de escrita bloqueado se PastDue e expirou carência @spec:AC-204",
+                                                         "fullName":  "Acesso de escrita bloqueado se PastDue e expirou carência @spec:AC-204",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "CNPJ inválido é rejeitado localmente @spec:AC-014(invalidCnpj: \"12.345.678/ABCD-00\")",
+                                                         "fullName":  "CNPJ inválido é rejeitado localmente @spec:AC-014(invalidCnpj: \"12.345.678/ABCD-00\")",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "Cadastro composto cria todos os vínculos @spec:AC-021",
+                                                         "fullName":  "Cadastro composto cria todos os vínculos @spec:AC-021",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "CNPJ inválido é rejeitado localmente @spec:AC-014(invalidCnpj: \"11.111.111/1111-11\")",
+                                                         "fullName":  "CNPJ inválido é rejeitado localmente @spec:AC-014(invalidCnpj: \"11.111.111/1111-11\")",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "Agendamento.UnitTests.Tenants.FoodCnaePolicyTests.IsEligible_ShouldReturnFalse_WhenNoFoodCnaeIsPresent",
+                                                         "fullName":  "Agendamento.UnitTests.Tenants.FoodCnaePolicyTests.IsEligible_ShouldReturnFalse_WhenNoFoodCnaeIsPresent",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "Agendamento.UnitTests.Tenants.FoodCnaePolicyTests.IsEligible_ShouldReturnTrue_WhenCnaeIsFoodRelated(cnae: \"5621900\")",
+                                                         "fullName":  "Agendamento.UnitTests.Tenants.FoodCnaePolicyTests.IsEligible_ShouldReturnTrue_WhenCnaeIsFoodRelated(cnae: \"5621900\")",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "Entidades financeiras devem pertencer a um Tenant @spec:AC-055",
+                                                         "fullName":  "Entidades financeiras devem pertencer a um Tenant @spec:AC-055",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "Aprovação de orçamento expirado lança exceção @spec:AC-048",
+                                                         "fullName":  "Aprovação de orçamento expirado lança exceção @spec:AC-048",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "Calcula subtotais, descontos e total geral do orçamento @spec:AC-046",
+                                                         "fullName":  "Calcula subtotais, descontos e total geral do orçamento @spec:AC-046",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "Faturamento considera apenas títulos baixados/pagos @spec:AC-066",
+                                                         "fullName":  "Faturamento considera apenas títulos baixados/pagos @spec:AC-066",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "CreateFromQuotation copia os dados do orçamento quando está aprovado @spec:AC-051 @spec:AC-052",
+                                                         "fullName":  "CreateFromQuotation copia os dados do orçamento quando está aprovado @spec:AC-051 @spec:AC-052",
                                                          "status":  "passed"
                                                      },
                                                      {
@@ -323,8 +193,83 @@
                                                          "status":  "passed"
                                                      },
                                                      {
-                                                         "title":  "Agendamento.UnitTests.Subscriptions.SubscriptionDomainTests.MarkAsActive_Should_UpdateStatusAndPeriod",
-                                                         "fullName":  "Agendamento.UnitTests.Subscriptions.SubscriptionDomainTests.MarkAsActive_Should_UpdateStatusAndPeriod",
+                                                         "title":  "CNPJ inválido é rejeitado localmente @spec:AC-014(invalidCnpj: \"12.345.678/0001-90\")",
+                                                         "fullName":  "CNPJ inválido é rejeitado localmente @spec:AC-014(invalidCnpj: \"12.345.678/0001-90\")",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "CNPJ inválido é rejeitado localmente @spec:AC-014(invalidCnpj: \"00.000.000/0000-00\")",
+                                                         "fullName":  "CNPJ inválido é rejeitado localmente @spec:AC-014(invalidCnpj: \"00.000.000/0000-00\")",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "Verificação de atraso marca título como Overdue se vencido @spec:AC-058",
+                                                         "fullName":  "Verificação de atraso marca título como Overdue se vencido @spec:AC-058",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "Agendamento.UnitTests.Tenants.FoodCnaePolicyTests.IsEligible_ShouldReturnFalse_WhenCnaesListIsNull",
+                                                         "fullName":  "Agendamento.UnitTests.Tenants.FoodCnaePolicyTests.IsEligible_ShouldReturnFalse_WhenCnaesListIsNull",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "Calcula entrada exigida em porcentagem e saldo restante @spec:AC-046",
+                                                         "fullName":  "Calcula entrada exigida em porcentagem e saldo restante @spec:AC-046",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "NotificationMessage ao ser criada deve pertencer ao Tenant e iniciar como Pending @spec:AC-060 @spec:AC-061",
+                                                         "fullName":  "NotificationMessage ao ser criada deve pertencer ao Tenant e iniciar como Pending @spec:AC-060 @spec:AC-061",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "Agendamento.UnitTests.Tenants.FoodCnaePolicyTests.IsEligible_ShouldReturnFalse_WhenCnaesListIsEmpty",
+                                                         "fullName":  "Agendamento.UnitTests.Tenants.FoodCnaePolicyTests.IsEligible_ShouldReturnFalse_WhenCnaesListIsEmpty",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "CreateFromQuotation lança exceção quando o orçamento não está aprovado @spec:AC-051",
+                                                         "fullName":  "CreateFromQuotation lança exceção quando o orçamento não está aprovado @spec:AC-051",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "Token de e-mail é armazenado somente como digest e expira em 24 horas @spec:AC-009 @principle:P-005",
+                                                         "fullName":  "Token de e-mail é armazenado somente como digest e expira em 24 horas @spec:AC-009 @principle:P-005",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "Agendamento.UnitTests.Tenants.FoodCnaePolicyTests.IsEligible_ShouldReturnTrue_WhenCnaeIsFoodRelated(cnae: \"1113502\")",
+                                                         "fullName":  "Agendamento.UnitTests.Tenants.FoodCnaePolicyTests.IsEligible_ShouldReturnTrue_WhenCnaeIsFoodRelated(cnae: \"1113502\")",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "Busca deve permitir filtro parcial e paginacao @spec:AC-043",
+                                                         "fullName":  "Busca deve permitir filtro parcial e paginacao @spec:AC-043",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "Consultas agregadas respondem em tempo aceitável @spec:AC-067",
+                                                         "fullName":  "Consultas agregadas respondem em tempo aceitável @spec:AC-067",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "Assinatura isolada por tenant @spec:AC-201",
+                                                         "fullName":  "Assinatura isolada por tenant @spec:AC-201",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "CNPJ é único globalmente (normalização consistente) @spec:AC-022",
+                                                         "fullName":  "CNPJ é único globalmente (normalização consistente) @spec:AC-022",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "Agendamento.UnitTests.Tenants.FoodCnaePolicyTests.IsEligible_ShouldReturnTrue_WhenCnaeIsFoodRelated(cnae: \"4729699\")",
+                                                         "fullName":  "Agendamento.UnitTests.Tenants.FoodCnaePolicyTests.IsEligible_ShouldReturnTrue_WhenCnaeIsFoodRelated(cnae: \"4729699\")",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "Marcação de pendente em orçamento sem itens lança exceção @spec:AC-048",
+                                                         "fullName":  "Marcação de pendente em orçamento sem itens lança exceção @spec:AC-048",
                                                          "status":  "passed"
                                                      },
                                                      {
@@ -333,38 +278,83 @@
                                                          "status":  "passed"
                                                      },
                                                      {
+                                                         "title":  "Cadastro inicial não coleta dados financeiros ou documentos @spec:AC-020",
+                                                         "fullName":  "Cadastro inicial não coleta dados financeiros ou documentos @spec:AC-020",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "NotificationTemplate deve substituir variáveis no formato {Var} e {{Var}} @spec:AC-062",
+                                                         "fullName":  "NotificationTemplate deve substituir variáveis no formato {Var} e {{Var}} @spec:AC-062",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "CNPJ numérico válido é aceito(input: \"19.131.243/0001-97\", expected: \"19131243000197\")",
+                                                         "fullName":  "CNPJ numérico válido é aceito(input: \"19.131.243/0001-97\", expected: \"19131243000197\")",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "Relatório CSV gerado corretamente e permite filtros @spec:AC-069",
+                                                         "fullName":  "Relatório CSV gerado corretamente e permite filtros @spec:AC-069",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "Validação de limites (PlanLimitsChecker) @spec:AC-202",
+                                                         "fullName":  "Validação de limites (PlanLimitsChecker) @spec:AC-202",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
                                                          "title":  "CNPJ numérico válido é aceito(input: \"11.222.333/0001-81\", expected: \"11222333000181\")",
                                                          "fullName":  "CNPJ numérico válido é aceito(input: \"11.222.333/0001-81\", expected: \"11222333000181\")",
                                                          "status":  "passed"
                                                      },
                                                      {
-                                                         "title":  "GET /health responde que a aplicação está saudável @spec:AC-002",
-                                                         "fullName":  "GET /health responde que a aplicação está saudável @spec:AC-002",
+                                                         "title":  "Pagamento parcial atualiza status para PartiallyPaid e abate o saldo @spec:AC-057",
+                                                         "fullName":  "Pagamento parcial atualiza status para PartiallyPaid e abate o saldo @spec:AC-057",
                                                          "status":  "passed"
                                                      },
                                                      {
-                                                         "title":  "Criação de orçamento calcula subtotais, descontos, total e sinal @spec:AC-046",
-                                                         "fullName":  "Criação de orçamento calcula subtotais, descontos, total e sinal @spec:AC-046",
+                                                         "title":  "Agendamento.UnitTests.Tenants.FoodCnaePolicyTests.IsEligible_ShouldReturnTrue_WhenCnaeIsFoodRelated(cnae: \"56.11-2-01\")",
+                                                         "fullName":  "Agendamento.UnitTests.Tenants.FoodCnaePolicyTests.IsEligible_ShouldReturnTrue_WhenCnaeIsFoodRelated(cnae: \"56.11-2-01\")",
                                                          "status":  "passed"
                                                      },
                                                      {
-                                                         "title":  "Tentativa de buscar ou alterar cliente de outro tenant retorna null/vazio @spec:AC-044",
-                                                         "fullName":  "Tentativa de buscar ou alterar cliente de outro tenant retorna null/vazio @spec:AC-044",
+                                                         "title":  "Agendamento.UnitTests.Tenants.FoodCnaePolicyTests.IsEligible_ShouldReturnTrue_WhenCnaeIsFoodRelated(cnae: \"1091102\")",
+                                                         "fullName":  "Agendamento.UnitTests.Tenants.FoodCnaePolicyTests.IsEligible_ShouldReturnTrue_WhenCnaeIsFoodRelated(cnae: \"1091102\")",
                                                          "status":  "passed"
                                                      },
                                                      {
-                                                         "title":  "Tenant externo no body não muda a empresa do cliente criado @spec:AC-029 @principle:P-003",
-                                                         "fullName":  "Tenant externo no body não muda a empresa do cliente criado @spec:AC-029 @principle:P-003",
+                                                         "title":  "Agendamento.UnitTests.Subscriptions.SubscriptionDomainTests.MarkAsActive_Should_UpdateStatusAndPeriod",
+                                                         "fullName":  "Agendamento.UnitTests.Subscriptions.SubscriptionDomainTests.MarkAsActive_Should_UpdateStatusAndPeriod",
                                                          "status":  "passed"
                                                      },
                                                      {
-                                                         "title":  "Alteração e exclusão de registro de outra empresa são rejeitadas @spec:AC-031 @spec:AC-032(delete: False, rewriteTenant: True)",
-                                                         "fullName":  "Alteração e exclusão de registro de outra empresa são rejeitadas @spec:AC-031 @spec:AC-032(delete: False, rewriteTenant: True)",
+                                                         "title":  "CPF e e-mail normalizados identificam uma única pessoa @spec:AC-007",
+                                                         "fullName":  "CPF e e-mail normalizados identificam uma única pessoa @spec:AC-007",
                                                          "status":  "passed"
                                                      },
                                                      {
-                                                         "title":  "Gravações divergentes falham antes do commit @spec:AC-032(asynchronous: True)",
-                                                         "fullName":  "Gravações divergentes falham antes do commit @spec:AC-032(asynchronous: True)",
+                                                         "title":  "Perfil fiscal pertence exclusivamente ao tenant @spec:AC-019",
+                                                         "fullName":  "Perfil fiscal pertence exclusivamente ao tenant @spec:AC-019",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "Aprovação gera entrada e saldo uma única vez @spec:AC-094",
+                                                         "fullName":  "Aprovação gera entrada e saldo uma única vez @spec:AC-094",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "Pool reutiliza conexão sem conservar tenant após commit e rollback @spec:AC-034",
+                                                         "fullName":  "Pool reutiliza conexão sem conservar tenant após commit e rollback @spec:AC-034",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "Agendamento.IntegrationTests.Dashboard.DashboardApiTests.GetUpcomingSchedule_WithoutAuth_ShouldReturnUnauthorized",
+                                                         "fullName":  "Agendamento.IntegrationTests.Dashboard.DashboardApiTests.GetUpcomingSchedule_WithoutAuth_ShouldReturnUnauthorized",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "Geração de convite único e expirável em 7 dias @spec:AC-074",
+                                                         "fullName":  "Geração de convite único e expirável em 7 dias @spec:AC-074",
                                                          "status":  "passed"
                                                      },
                                                      {
@@ -373,73 +363,18 @@
                                                          "status":  "passed"
                                                      },
                                                      {
-                                                         "title":  "Handler returns company data when eligible @spec:AC-017",
-                                                         "fullName":  "Handler returns company data when eligible @spec:AC-017",
+                                                         "title":  "PostgreSQL real aplica migrations em bases exclusivas sem compartilhar dados @spec:AC-004",
+                                                         "fullName":  "PostgreSQL real aplica migrations em bases exclusivas sem compartilhar dados @spec:AC-004",
                                                          "status":  "passed"
                                                      },
                                                      {
-                                                         "title":  "Perfil completo do usuário com permissões explícitas @spec:AC-070",
-                                                         "fullName":  "Perfil completo do usuário com permissões explícitas @spec:AC-070",
+                                                         "title":  "@spec:AC-010 endpoint confirms a valid email-verification token once",
+                                                         "fullName":  "@spec:AC-010 endpoint confirms a valid email-verification token once",
                                                          "status":  "passed"
                                                      },
                                                      {
-                                                         "title":  "Isolamento RLS: Contas a Receber e Pagar são restritas ao Tenant autenticado @spec:AC-055",
-                                                         "fullName":  "Isolamento RLS: Contas a Receber e Pagar são restritas ao Tenant autenticado @spec:AC-055",
-                                                         "status":  "passed"
-                                                     },
-                                                     {
-                                                         "title":  "Processor de outbox não deve expor dados sensíveis na API ou no banco @spec:AC-064",
-                                                         "fullName":  "Processor de outbox não deve expor dados sensíveis na API ou no banco @spec:AC-064",
-                                                         "status":  "passed"
-                                                     },
-                                                     {
-                                                         "title":  "Despacha notificação ao agendar quando OS tem cliente @spec:AC-099",
-                                                         "fullName":  "Despacha notificação ao agendar quando OS tem cliente @spec:AC-099",
-                                                         "status":  "passed"
-                                                     },
-                                                     {
-                                                         "title":  "Agendamento.IntegrationTests.Dashboard.DashboardApiTests.GetReport_WithoutAuth_ShouldReturnUnauthorized",
-                                                         "fullName":  "Agendamento.IntegrationTests.Dashboard.DashboardApiTests.GetReport_WithoutAuth_ShouldReturnUnauthorized",
-                                                         "status":  "passed"
-                                                     },
-                                                     {
-                                                         "title":  "@spec:AC-013 @principle:P-003 @principle:P-005 valid login emits only user_tenant_and_role",
-                                                         "fullName":  "@spec:AC-013 @principle:P-003 @principle:P-005 valid login emits only user_tenant_and_role",
-                                                         "status":  "passed"
-                                                     },
-                                                     {
-                                                         "title":  "Permite criar Contas a Pagar e Registrar Pagamento @spec:AC-057",
-                                                         "fullName":  "Permite criar Contas a Pagar e Registrar Pagamento @spec:AC-057",
-                                                         "status":  "passed"
-                                                     },
-                                                     {
-                                                         "title":  "Swagger UI permite explorar a versão vigente em ambiente Test @spec:AC-040",
-                                                         "fullName":  "Swagger UI permite explorar a versão vigente em ambiente Test @spec:AC-040",
-                                                         "status":  "passed"
-                                                     },
-                                                     {
-                                                         "title":  "Conta manual e pagamentos parciais persistidos @spec:AC-095 @spec:AC-096",
-                                                         "fullName":  "Conta manual e pagamentos parciais persistidos @spec:AC-095 @spec:AC-096",
-                                                         "status":  "passed"
-                                                     },
-                                                     {
-                                                         "title":  "Agendamento.IntegrationTests.Features.NotificationTests.CreateAppointment_WithoutWorkOrder_ShouldSucceed",
-                                                         "fullName":  "Agendamento.IntegrationTests.Features.NotificationTests.CreateAppointment_WithoutWorkOrder_ShouldSucceed",
-                                                         "status":  "passed"
-                                                     },
-                                                     {
-                                                         "title":  "Contrato OpenAPI deve ser exportado e canônico @spec:AC-039",
-                                                         "fullName":  "Contrato OpenAPI deve ser exportado e canônico @spec:AC-039",
-                                                         "status":  "passed"
-                                                     },
-                                                     {
-                                                         "title":  "Isolamento RLS: WorkOrders e Appointments são restritos ao Tenant autenticado @spec:AC-050",
-                                                         "fullName":  "Isolamento RLS: WorkOrders e Appointments são restritos ao Tenant autenticado @spec:AC-050",
-                                                         "status":  "passed"
-                                                     },
-                                                     {
-                                                         "title":  "Papel restrito impede SQL direto entre tenants em todas as tabelas @spec:AC-033 @principle:P-004",
-                                                         "fullName":  "Papel restrito impede SQL direto entre tenants em todas as tabelas @spec:AC-033 @principle:P-004",
+                                                         "title":  "Falha parcial desfaz toda a criação @spec:AC-024",
+                                                         "fullName":  "Falha parcial desfaz toda a criação @spec:AC-024",
                                                          "status":  "passed"
                                                      },
                                                      {
@@ -448,28 +383,28 @@
                                                          "status":  "passed"
                                                      },
                                                      {
-                                                         "title":  "Gravações divergentes falham antes do commit @spec:AC-032(asynchronous: False)",
-                                                         "fullName":  "Gravações divergentes falham antes do commit @spec:AC-032(asynchronous: False)",
-                                                         "status":  "passed"
-                                                     },
-                                                     {
-                                                         "title":  "Exportação de orçamento em PDF gera bytes válidos em stream application/pdf @spec:AC-047",
-                                                         "fullName":  "Exportação de orçamento em PDF gera bytes válidos em stream application/pdf @spec:AC-047",
-                                                         "status":  "passed"
-                                                     },
-                                                     {
-                                                         "title":  "Nenhuma tabela ITenantOwned deve existir sem RLS habilitado na migration",
-                                                         "fullName":  "Nenhuma tabela ITenantOwned deve existir sem RLS habilitado na migration",
+                                                         "title":  "Agendamento.IntegrationTests.Persistence.PostgreSqlFixtureTests.PersistenceRunsDoNotShareData",
+                                                         "fullName":  "Agendamento.IntegrationTests.Persistence.PostgreSqlFixtureTests.PersistenceRunsDoNotShareData",
                                                          "status":  "skipped"
                                                      },
                                                      {
-                                                         "title":  "CNPJ inválido não consulta o provedor @spec:AC-014",
-                                                         "fullName":  "CNPJ inválido não consulta o provedor @spec:AC-014",
+                                                         "title":  "Alteração e exclusão de registro de outra empresa são rejeitadas @spec:AC-031 @spec:AC-032(delete: False, rewriteTenant: False)",
+                                                         "fullName":  "Alteração e exclusão de registro de outra empresa são rejeitadas @spec:AC-031 @spec:AC-032(delete: False, rewriteTenant: False)",
                                                          "status":  "passed"
                                                      },
                                                      {
-                                                         "title":  "Gateway converte timeout em indisponibilidade segura @spec:AC-017",
-                                                         "fullName":  "Gateway converte timeout em indisponibilidade segura @spec:AC-017",
+                                                         "title":  "Processar Webhooks de Pagamento de Assinatura do SaaS de forma idempotente @spec:AC-203",
+                                                         "fullName":  "Processar Webhooks de Pagamento de Assinatura do SaaS de forma idempotente @spec:AC-203",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "Alteração e exclusão de registro de outra empresa são rejeitadas @spec:AC-031 @spec:AC-032(delete: False, rewriteTenant: True)",
+                                                         "fullName":  "Alteração e exclusão de registro de outra empresa são rejeitadas @spec:AC-031 @spec:AC-032(delete: False, rewriteTenant: True)",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "Gravações divergentes falham antes do commit @spec:AC-032(asynchronous: False)",
+                                                         "fullName":  "Gravações divergentes falham antes do commit @spec:AC-032(asynchronous: False)",
                                                          "status":  "passed"
                                                      },
                                                      {
@@ -483,323 +418,8 @@
                                                          "status":  "passed"
                                                      },
                                                      {
-                                                         "title":  "Alteração e exclusão de registro de outra empresa são rejeitadas @spec:AC-031 @spec:AC-032(delete: False, rewriteTenant: False)",
-                                                         "fullName":  "Alteração e exclusão de registro de outra empresa são rejeitadas @spec:AC-031 @spec:AC-032(delete: False, rewriteTenant: False)",
-                                                         "status":  "passed"
-                                                     },
-                                                     {
-                                                         "title":  "Convite HTTP seguro e aceite público persistido @spec:AC-074 @spec:AC-075",
-                                                         "fullName":  "Convite HTTP seguro e aceite público persistido @spec:AC-074 @spec:AC-075",
-                                                         "status":  "passed"
-                                                     },
-                                                     {
-                                                         "title":  "Agendamento.IntegrationTests.Tenancy.EfTenantIsolationTests.SaveChangesInterceptor_PopulatesTenantId_WhenAdded",
-                                                         "fullName":  "Agendamento.IntegrationTests.Tenancy.EfTenantIsolationTests.SaveChangesInterceptor_PopulatesTenantId_WhenAdded",
-                                                         "status":  "passed"
-                                                     },
-                                                     {
-                                                         "title":  "Agendamento.IntegrationTests.Identity.UserPersistenceTests.PersistingUsers_WithDuplicateNormalizedCpfOrEmail_ConflictsWithoutCreatingAnotherIdentity",
-                                                         "fullName":  "Agendamento.IntegrationTests.Identity.UserPersistenceTests.PersistingUsers_WithDuplicateNormalizedCpfOrEmail_ConflictsWithoutCreatingAnotherIdentity",
-                                                         "status":  "skipped"
-                                                     },
-                                                     {
-                                                         "title":  "Isolamento estrito de dados por tenant no dashboard @spec:AC-065",
-                                                         "fullName":  "Isolamento estrito de dados por tenant no dashboard @spec:AC-065",
-                                                         "status":  "passed"
-                                                     },
-                                                     {
-                                                         "title":  "Perfil HTTP não expõe credenciais @spec:AC-070",
-                                                         "fullName":  "Perfil HTTP não expõe credenciais @spec:AC-070",
-                                                         "status":  "passed"
-                                                     },
-                                                     {
-                                                         "title":  "Sequência completa de onboarding: Registro -\u003e Confirmação de E-mail -\u003e Login @spec:AC-021",
-                                                         "fullName":  "Sequência completa de onboarding: Registro -\u003e Confirmação de E-mail -\u003e Login @spec:AC-021",
-                                                         "status":  "passed"
-                                                     },
-                                                     {
-                                                         "title":  "Transições de status da OS devem ser permitidas e registrar histórico @spec:AC-054",
-                                                         "fullName":  "Transições de status da OS devem ser permitidas e registrar histórico @spec:AC-054",
-                                                         "status":  "passed"
-                                                     },
-                                                     {
-                                                         "title":  "API rejeita credencial proprietária e bypass antes de consultar dados @spec:AC-033",
-                                                         "fullName":  "API rejeita credencial proprietária e bypass antes de consultar dados @spec:AC-033",
-                                                         "status":  "passed"
-                                                     },
-                                                     {
-                                                         "title":  "O comando oficial descobre a prova HTTP de integração @spec:AC-003",
-                                                         "fullName":  "O comando oficial descobre a prova HTTP de integração @spec:AC-003",
-                                                         "status":  "passed"
-                                                     },
-                                                     {
-                                                         "title":  "Endpoint GET /tenants/me retorna perfil do tenant logado sem parametro na rota @spec:AC-026",
-                                                         "fullName":  "Endpoint GET /tenants/me retorna perfil do tenant logado sem parametro na rota @spec:AC-026",
-                                                         "status":  "passed"
-                                                     },
-                                                     {
-                                                         "title":  "Empresa ausente é distinguida de CNPJ inválido @spec:AC-017",
-                                                         "fullName":  "Empresa ausente é distinguida de CNPJ inválido @spec:AC-017",
-                                                         "status":  "passed"
-                                                     },
-                                                     {
-                                                         "title":  "Gateway rejeita payload externo inválido com falha segura @spec:AC-017",
-                                                         "fullName":  "Gateway rejeita payload externo inválido com falha segura @spec:AC-017",
-                                                         "status":  "passed"
-                                                     },
-                                                     {
-                                                         "title":  "Orçamento aprovado com sinal gera títulos a receber correspondentes @spec:AC-056",
-                                                         "fullName":  "Orçamento aprovado com sinal gera títulos a receber correspondentes @spec:AC-056",
-                                                         "status":  "passed"
-                                                     },
-                                                     {
-                                                         "title":  "Agendamento.IntegrationTests.Features.NotificationTests.CreateAppointment_WithForeignOrMissingWorkOrder_ShouldRejectWithoutWrites(seedForeignOrder: True)",
-                                                         "fullName":  "Agendamento.IntegrationTests.Features.NotificationTests.CreateAppointment_WithForeignOrMissingWorkOrder_ShouldRejectWithoutWrites(seedForeignOrder: True)",
-                                                         "status":  "passed"
-                                                     },
-                                                     {
-                                                         "title":  "Isolamento multi-tenant impede que um tenant acesse orçamento ou serviço de outro tenant @spec:AC-049",
-                                                         "fullName":  "Isolamento multi-tenant impede que um tenant acesse orçamento ou serviço de outro tenant @spec:AC-049",
-                                                         "status":  "passed"
-                                                     },
-                                                     {
-                                                         "title":  "Endpoint /api/v1/notifications retorna histórico isolado por TenantId @spec:AC-060",
-                                                         "fullName":  "Endpoint /api/v1/notifications retorna histórico isolado por TenantId @spec:AC-060",
-                                                         "status":  "passed"
-                                                     },
-                                                     {
-                                                         "title":  "Migration preserva registros e protege cada tabela do modelo @spec:AC-035",
-                                                         "fullName":  "Migration preserva registros e protege cada tabela do modelo @spec:AC-035",
-                                                         "status":  "passed"
-                                                     },
-                                                     {
-                                                         "title":  "Empresa ativa com CNAE não alimentício é aceita @spec:AC-016",
-                                                         "fullName":  "Empresa ativa com CNAE não alimentício é aceita @spec:AC-016",
-                                                         "status":  "passed"
-                                                     },
-                                                     {
-                                                         "title":  "PostgreSQL real aplica migrations em bases exclusivas sem compartilhar dados @spec:AC-004",
-                                                         "fullName":  "PostgreSQL real aplica migrations em bases exclusivas sem compartilhar dados @spec:AC-004",
-                                                         "status":  "passed"
-                                                     },
-                                                     {
-                                                         "title":  "Endpoint POST /tenants valida Idempotency-Key @spec:AC-023",
-                                                         "fullName":  "Endpoint POST /tenants valida Idempotency-Key @spec:AC-023",
-                                                         "status":  "passed"
-                                                     },
-                                                     {
-                                                         "title":  "PostgreSQL persiste aprovação, pagamentos e aceite público @spec:AC-094 @spec:AC-074 @spec:AC-075 @spec:AC-095",
-                                                         "fullName":  "PostgreSQL persiste aprovação, pagamentos e aceite público @spec:AC-094 @spec:AC-074 @spec:AC-075 @spec:AC-095",
-                                                         "status":  "passed"
-                                                     },
-                                                     {
-                                                         "title":  "Falha do provedor é indisponibilidade segura @spec:AC-017",
-                                                         "fullName":  "Falha do provedor é indisponibilidade segura @spec:AC-017",
-                                                         "status":  "passed"
-                                                     },
-                                                     {
-                                                         "title":  "@spec:AC-011 endpoint rejects invalid email-verification token without personal data",
-                                                         "fullName":  "@spec:AC-011 endpoint rejects invalid email-verification token without personal data",
-                                                         "status":  "passed"
-                                                     },
-                                                     {
-                                                         "title":  "Agendamento.IntegrationTests.Persistence.PostgreSqlFixtureTests.RealPostgreSqlAppliesTheFixtureMigration",
-                                                         "fullName":  "Agendamento.IntegrationTests.Persistence.PostgreSqlFixtureTests.RealPostgreSqlAppliesTheFixtureMigration",
-                                                         "status":  "skipped"
-                                                     },
-                                                     {
-                                                         "title":  "Tenant externo em header ou query não substitui a sessão @spec:AC-029 @principle:P-003(useQuery: False)",
-                                                         "fullName":  "Tenant externo em header ou query não substitui a sessão @spec:AC-029 @principle:P-003(useQuery: False)",
-                                                         "status":  "passed"
-                                                     },
-                                                     {
-                                                         "title":  "Criar orçamento com status Pendente e valor total calculado @spec:AC-090",
-                                                         "fullName":  "Criar orçamento com status Pendente e valor total calculado @spec:AC-090",
-                                                         "status":  "passed"
-                                                     },
-                                                     {
-                                                         "title":  "Endpoint POST /work-orders/from-quotation/{id} cria OS a partir de orçamento aprovado copiando itens @spec:AC-051 @spec:AC-052",
-                                                         "fullName":  "Endpoint POST /work-orders/from-quotation/{id} cria OS a partir de orçamento aprovado copiando itens @spec:AC-051 @spec:AC-052",
-                                                         "status":  "skipped"
-                                                     },
-                                                     {
-                                                         "title":  "Agendamento.IntegrationTests.Persistence.PostgreSqlFixtureTests.PersistenceRunsDoNotShareData",
-                                                         "fullName":  "Agendamento.IntegrationTests.Persistence.PostgreSqlFixtureTests.PersistenceRunsDoNotShareData",
-                                                         "status":  "skipped"
-                                                     },
-                                                     {
-                                                         "title":  "Alteração e exclusão de registro de outra empresa são rejeitadas @spec:AC-031 @spec:AC-032(delete: True, rewriteTenant: True)",
-                                                         "fullName":  "Alteração e exclusão de registro de outra empresa são rejeitadas @spec:AC-031 @spec:AC-032(delete: True, rewriteTenant: True)",
-                                                         "status":  "passed"
-                                                     },
-                                                     {
-                                                         "title":  "Endpoint POST /appointments valida conflito de agenda do técnico @spec:AC-053",
-                                                         "fullName":  "Endpoint POST /appointments valida conflito de agenda do técnico @spec:AC-053",
-                                                         "status":  "passed"
-                                                     },
-                                                     {
-                                                         "title":  "Equipe isolada e último owner_admin protegido @spec:AC-072 @spec:AC-073",
-                                                         "fullName":  "Equipe isolada e último owner_admin protegido @spec:AC-072 @spec:AC-073",
-                                                         "status":  "passed"
-                                                     },
-                                                     {
-                                                         "title":  "Gateway consulta URL exata e mapeia todos os dados públicos @spec:AC-017",
-                                                         "fullName":  "Gateway consulta URL exata e mapeia todos os dados públicos @spec:AC-017",
-                                                         "status":  "passed"
-                                                     },
-                                                     {
-                                                         "title":  "Gateway converte status externo em indisponibilidade segura @spec:AC-017(status: TooManyRequests)",
-                                                         "fullName":  "Gateway converte status externo em indisponibilidade segura @spec:AC-017(status: TooManyRequests)",
-                                                         "status":  "passed"
-                                                     },
-                                                     {
-                                                         "title":  "Consulta de extrato retorna somatórios corretos do período @spec:AC-059",
-                                                         "fullName":  "Consulta de extrato retorna somatórios corretos do período @spec:AC-059",
-                                                         "status":  "passed"
-                                                     },
-                                                     {
-                                                         "title":  "Orçamentos não podem ser acessados por outro tenant @spec:AC-092",
-                                                         "fullName":  "Orçamentos não podem ser acessados por outro tenant @spec:AC-092",
-                                                         "status":  "passed"
-                                                     },
-                                                     {
-                                                         "title":  "Agendamento.IntegrationTests.Features.NotificationTests.CreateAppointment_WithForeignOrMissingWorkOrder_ShouldRejectWithoutWrites(seedForeignOrder: False)",
-                                                         "fullName":  "Agendamento.IntegrationTests.Features.NotificationTests.CreateAppointment_WithForeignOrMissingWorkOrder_ShouldRejectWithoutWrites(seedForeignOrder: False)",
-                                                         "status":  "passed"
-                                                     },
-                                                     {
-                                                         "title":  "Geração de convite único e expirável em 7 dias @spec:AC-074",
-                                                         "fullName":  "Geração de convite único e expirável em 7 dias @spec:AC-074",
-                                                         "status":  "passed"
-                                                     },
-                                                     {
-                                                         "title":  "Falha parcial desfaz toda a criação @spec:AC-024",
-                                                         "fullName":  "Falha parcial desfaz toda a criação @spec:AC-024",
-                                                         "status":  "passed"
-                                                     },
-                                                     {
-                                                         "title":  "Endpoint GET /users/me retorna perfil do usuario logado @spec:AC-025",
-                                                         "fullName":  "Endpoint GET /users/me retorna perfil do usuario logado @spec:AC-025",
-                                                         "status":  "passed"
-                                                     },
-                                                     {
-                                                         "title":  "Gateway converte status externo em indisponibilidade segura @spec:AC-017(status: InternalServerError)",
-                                                         "fullName":  "Gateway converte status externo em indisponibilidade segura @spec:AC-017(status: InternalServerError)",
-                                                         "status":  "passed"
-                                                     },
-                                                     {
-                                                         "title":  "Documento canônico em /openapi/v1.json é exposto @spec:AC-036",
-                                                         "fullName":  "Documento canônico em /openapi/v1.json é exposto @spec:AC-036",
-                                                         "status":  "passed"
-                                                     },
-                                                     {
-                                                         "title":  "Mensagens disparadas pelo sistema devem ser processadas via padrão Outbox @spec:AC-061",
-                                                         "fullName":  "Mensagens disparadas pelo sistema devem ser processadas via padrão Outbox @spec:AC-061",
-                                                         "status":  "passed"
-                                                     },
-                                                     {
-                                                         "title":  "Cadastro registra solicitação de verificação na caixa de saída sem token bruto @spec:AC-009 @principle:P-005",
-                                                         "fullName":  "Cadastro registra solicitação de verificação na caixa de saída sem token bruto @spec:AC-009 @principle:P-005",
-                                                         "status":  "passed"
-                                                     },
-                                                     {
-                                                         "title":  "Handler throws when company is inactive @spec:AC-015",
-                                                         "fullName":  "Handler throws when company is inactive @spec:AC-015",
-                                                         "status":  "passed"
-                                                     },
-                                                     {
-                                                         "title":  "Tenant externo em header ou query não substitui a sessão @spec:AC-029 @principle:P-003(useQuery: True)",
-                                                         "fullName":  "Tenant externo em header ou query não substitui a sessão @spec:AC-029 @principle:P-003(useQuery: True)",
-                                                         "status":  "passed"
-                                                     },
-                                                     {
-                                                         "title":  "Endpoint GET /company-registry aplica limite de requisições @spec:AC-027",
-                                                         "fullName":  "Endpoint GET /company-registry aplica limite de requisições @spec:AC-027",
-                                                         "status":  "passed"
-                                                     },
-                                                     {
-                                                         "title":  "PostgreSQL obrigatório falha sem expor credenciais @spec:AC-006",
-                                                         "fullName":  "PostgreSQL obrigatório falha sem expor credenciais @spec:AC-006",
-                                                         "status":  "passed"
-                                                     },
-                                                     {
-                                                         "title":  "PostgreSQL isola HTTP e EF e mantém cadastro e autenticação públicos explícitos @spec:AC-028 @spec:AC-029 @spec:AC-030 @spec:AC-031 @spec:AC-032",
-                                                         "fullName":  "PostgreSQL isola HTTP e EF e mantém cadastro e autenticação públicos explícitos @spec:AC-028 @spec:AC-029 @spec:AC-030 @spec:AC-031 @spec:AC-032",
-                                                         "status":  "passed"
-                                                     },
-                                                     {
-                                                         "title":  "Isolamento multi-tenant na gestão de membros @spec:AC-072",
-                                                         "fullName":  "Isolamento multi-tenant na gestão de membros @spec:AC-072",
-                                                         "status":  "passed"
-                                                     },
-                                                     {
-                                                         "title":  "Validação de transições de status do orçamento @spec:AC-048",
-                                                         "fullName":  "Validação de transições de status do orçamento @spec:AC-048",
-                                                         "status":  "passed"
-                                                     },
-                                                     {
-                                                         "title":  "Gateway traduz 404 para empresa ausente @spec:AC-017",
-                                                         "fullName":  "Gateway traduz 404 para empresa ausente @spec:AC-017",
-                                                         "status":  "passed"
-                                                     },
-                                                     {
-                                                         "title":  "Pool reutiliza conexão sem conservar tenant após commit e rollback @spec:AC-034",
-                                                         "fullName":  "Pool reutiliza conexão sem conservar tenant após commit e rollback @spec:AC-034",
-                                                         "status":  "passed"
-                                                     },
-                                                     {
-                                                         "title":  "@spec:AC-010 endpoint confirms a valid email-verification token once",
-                                                         "fullName":  "@spec:AC-010 endpoint confirms a valid email-verification token once",
-                                                         "status":  "passed"
-                                                     },
-                                                     {
-                                                         "title":  "Consultas e Comandos de Clientes respeitam isolamento @spec:AC-041",
-                                                         "fullName":  "Consultas e Comandos de Clientes respeitam isolamento @spec:AC-041",
-                                                         "status":  "passed"
-                                                     },
-                                                     {
-                                                         "title":  "Alteração e exclusão de registro de outra empresa são rejeitadas @spec:AC-031 @spec:AC-032(delete: True, rewriteTenant: False)",
-                                                         "fullName":  "Alteração e exclusão de registro de outra empresa são rejeitadas @spec:AC-031 @spec:AC-032(delete: True, rewriteTenant: False)",
-                                                         "status":  "passed"
-                                                     },
-                                                     {
-                                                         "title":  "Agendamento.IntegrationTests.Tenancy.RowLevelSecurityTests.Rls_EnforcesCompleteIsolation_BetweenTenants",
-                                                         "fullName":  "Agendamento.IntegrationTests.Tenancy.RowLevelSecurityTests.Rls_EnforcesCompleteIsolation_BetweenTenants",
-                                                         "status":  "skipped"
-                                                     },
-                                                     {
-                                                         "title":  "Permissões HTTP e revogação imediata @spec:AC-071 @spec:AC-096",
-                                                         "fullName":  "Permissões HTTP e revogação imediata @spec:AC-071 @spec:AC-096",
-                                                         "status":  "passed"
-                                                     },
-                                                     {
-                                                         "title":  "Somente orçamentos aprovados podem ser convertidos em OS @spec:AC-091",
-                                                         "fullName":  "Somente orçamentos aprovados podem ser convertidos em OS @spec:AC-091",
-                                                         "status":  "passed"
-                                                     },
-                                                     {
-                                                         "title":  "Aprovação gera entrada e saldo uma única vez @spec:AC-094",
-                                                         "fullName":  "Aprovação gera entrada e saldo uma única vez @spec:AC-094",
-                                                         "status":  "passed"
-                                                     },
-                                                     {
-                                                         "title":  "Impedir a desativação do último administrador @spec:AC-073",
-                                                         "fullName":  "Impedir a desativação do último administrador @spec:AC-073",
-                                                         "status":  "passed"
-                                                     },
-                                                     {
-                                                         "title":  "Não é possível aprovar/rejeitar orçamento já convertido @spec:AC-093",
-                                                         "fullName":  "Não é possível aprovar/rejeitar orçamento já convertido @spec:AC-093",
-                                                         "status":  "passed"
-                                                     },
-                                                     {
-                                                         "title":  "Aceite de convite e definição de senha @spec:AC-075",
-                                                         "fullName":  "Aceite de convite e definição de senha @spec:AC-075",
-                                                         "status":  "passed"
-                                                     },
-                                                     {
-                                                         "title":  "Itens do catálogo de serviços e orçamentos pertencem obrigatoriamente ao TenantId @spec:AC-045",
-                                                         "fullName":  "Itens do catálogo de serviços e orçamentos pertencem obrigatoriamente ao TenantId @spec:AC-045",
+                                                         "title":  "Gateway converte timeout em indisponibilidade segura @spec:AC-017",
+                                                         "fullName":  "Gateway converte timeout em indisponibilidade segura @spec:AC-017",
                                                          "status":  "passed"
                                                      },
                                                      {
@@ -813,13 +433,308 @@
                                                          "status":  "passed"
                                                      },
                                                      {
-                                                         "title":  "Agendamento.IntegrationTests.Dashboard.DashboardApiTests.GetUpcomingSchedule_WithoutAuth_ShouldReturnUnauthorized",
-                                                         "fullName":  "Agendamento.IntegrationTests.Dashboard.DashboardApiTests.GetUpcomingSchedule_WithoutAuth_ShouldReturnUnauthorized",
+                                                         "title":  "Papel restrito impede SQL direto entre tenants em todas as tabelas @spec:AC-033 @principle:P-004",
+                                                         "fullName":  "Papel restrito impede SQL direto entre tenants em todas as tabelas @spec:AC-033 @principle:P-004",
                                                          "status":  "passed"
                                                      },
                                                      {
-                                                         "title":  "Processar Webhooks de Pagamento de Assinatura do SaaS de forma idempotente @spec:AC-203",
-                                                         "fullName":  "Processar Webhooks de Pagamento de Assinatura do SaaS de forma idempotente @spec:AC-203",
+                                                         "title":  "Onboarding completo sem token na resposta em qualquer ambiente @spec:AC-021 @spec:AC-038 @spec:AC-100 @principle:P-005(environment: \"Development\")",
+                                                         "fullName":  "Onboarding completo sem token na resposta em qualquer ambiente @spec:AC-021 @spec:AC-038 @spec:AC-100 @principle:P-005(environment: \"Development\")",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "Aceite de convite e definição de senha @spec:AC-075",
+                                                         "fullName":  "Aceite de convite e definição de senha @spec:AC-075",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "Agendamento.IntegrationTests.Features.NotificationTests.CreateAppointment_WithoutWorkOrder_ShouldSucceed",
+                                                         "fullName":  "Agendamento.IntegrationTests.Features.NotificationTests.CreateAppointment_WithoutWorkOrder_ShouldSucceed",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "Processor de outbox não deve expor dados sensíveis na API ou no banco @spec:AC-064",
+                                                         "fullName":  "Processor de outbox não deve expor dados sensíveis na API ou no banco @spec:AC-064",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "Gateway rejeita payload externo inválido com falha segura @spec:AC-017",
+                                                         "fullName":  "Gateway rejeita payload externo inválido com falha segura @spec:AC-017",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "PostgreSQL isola HTTP e EF e mantém cadastro e autenticação públicos explícitos @spec:AC-028 @spec:AC-029 @spec:AC-030 @spec:AC-031 @spec:AC-032",
+                                                         "fullName":  "PostgreSQL isola HTTP e EF e mantém cadastro e autenticação públicos explícitos @spec:AC-028 @spec:AC-029 @spec:AC-030 @spec:AC-031 @spec:AC-032",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "Swagger UI permite explorar a versão vigente em ambiente Test @spec:AC-040",
+                                                         "fullName":  "Swagger UI permite explorar a versão vigente em ambiente Test @spec:AC-040",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "Gateway consulta URL exata e mapeia todos os dados públicos @spec:AC-017",
+                                                         "fullName":  "Gateway consulta URL exata e mapeia todos os dados públicos @spec:AC-017",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "@spec:AC-013 @principle:P-003 @principle:P-005 valid login emits only user_tenant_and_role",
+                                                         "fullName":  "@spec:AC-013 @principle:P-003 @principle:P-005 valid login emits only user_tenant_and_role",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "O comando oficial descobre a prova HTTP de integração @spec:AC-003",
+                                                         "fullName":  "O comando oficial descobre a prova HTTP de integração @spec:AC-003",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "Onboarding completo sem token na resposta em qualquer ambiente @spec:AC-021 @spec:AC-038 @spec:AC-100 @principle:P-005(environment: \"Test\")",
+                                                         "fullName":  "Onboarding completo sem token na resposta em qualquer ambiente @spec:AC-021 @spec:AC-038 @spec:AC-100 @principle:P-005(environment: \"Test\")",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "Migration preserva registros e protege cada tabela do modelo @spec:AC-035",
+                                                         "fullName":  "Migration preserva registros e protege cada tabela do modelo @spec:AC-035",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "Impedir a desativação do último administrador @spec:AC-073",
+                                                         "fullName":  "Impedir a desativação do último administrador @spec:AC-073",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "Endpoint /api/v1/notifications retorna histórico isolado por TenantId @spec:AC-060",
+                                                         "fullName":  "Endpoint /api/v1/notifications retorna histórico isolado por TenantId @spec:AC-060",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "Agendamento.IntegrationTests.Persistence.PostgreSqlFixtureTests.RealPostgreSqlAppliesTheFixtureMigration",
+                                                         "fullName":  "Agendamento.IntegrationTests.Persistence.PostgreSqlFixtureTests.RealPostgreSqlAppliesTheFixtureMigration",
+                                                         "status":  "skipped"
+                                                     },
+                                                     {
+                                                         "title":  "Perfil HTTP não expõe credenciais @spec:AC-070",
+                                                         "fullName":  "Perfil HTTP não expõe credenciais @spec:AC-070",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "Agendamento.IntegrationTests.Identity.UserPersistenceTests.PersistingUsers_WithDuplicateNormalizedCpfOrEmail_ConflictsWithoutCreatingAnotherIdentity",
+                                                         "fullName":  "Agendamento.IntegrationTests.Identity.UserPersistenceTests.PersistingUsers_WithDuplicateNormalizedCpfOrEmail_ConflictsWithoutCreatingAnotherIdentity",
+                                                         "status":  "skipped"
+                                                     },
+                                                     {
+                                                         "title":  "Tenant externo em header ou query não substitui a sessão @spec:AC-029 @principle:P-003(useQuery: False)",
+                                                         "fullName":  "Tenant externo em header ou query não substitui a sessão @spec:AC-029 @principle:P-003(useQuery: False)",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "Contrato OpenAPI deve ser exportado e canônico @spec:AC-039",
+                                                         "fullName":  "Contrato OpenAPI deve ser exportado e canônico @spec:AC-039",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "API rejeita credencial proprietária e bypass antes de consultar dados @spec:AC-033",
+                                                         "fullName":  "API rejeita credencial proprietária e bypass antes de consultar dados @spec:AC-033",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "Handler returns company data when eligible @spec:AC-017",
+                                                         "fullName":  "Handler returns company data when eligible @spec:AC-017",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "Conta manual e pagamentos parciais persistidos @spec:AC-095 @spec:AC-096",
+                                                         "fullName":  "Conta manual e pagamentos parciais persistidos @spec:AC-095 @spec:AC-096",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "Endpoint POST /appointments valida conflito de agenda do técnico @spec:AC-053",
+                                                         "fullName":  "Endpoint POST /appointments valida conflito de agenda do técnico @spec:AC-053",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "Orçamento aprovado com sinal gera títulos a receber correspondentes @spec:AC-056",
+                                                         "fullName":  "Orçamento aprovado com sinal gera títulos a receber correspondentes @spec:AC-056",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "Endpoint POST /tenants valida Idempotency-Key @spec:AC-023",
+                                                         "fullName":  "Endpoint POST /tenants valida Idempotency-Key @spec:AC-023",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "Isolamento RLS: Contas a Receber e Pagar são restritas ao Tenant autenticado @spec:AC-055",
+                                                         "fullName":  "Isolamento RLS: Contas a Receber e Pagar são restritas ao Tenant autenticado @spec:AC-055",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "Endpoint POST /work-orders/from-quotation/{id} cria OS a partir de orçamento aprovado copiando itens @spec:AC-051 @spec:AC-052",
+                                                         "fullName":  "Endpoint POST /work-orders/from-quotation/{id} cria OS a partir de orçamento aprovado copiando itens @spec:AC-051 @spec:AC-052",
+                                                         "status":  "skipped"
+                                                     },
+                                                     {
+                                                         "title":  "Itens do catálogo de serviços e orçamentos pertencem obrigatoriamente ao TenantId @spec:AC-045",
+                                                         "fullName":  "Itens do catálogo de serviços e orçamentos pertencem obrigatoriamente ao TenantId @spec:AC-045",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "Não é possível aprovar/rejeitar orçamento já convertido @spec:AC-093",
+                                                         "fullName":  "Não é possível aprovar/rejeitar orçamento já convertido @spec:AC-093",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "Alteração e exclusão de registro de outra empresa são rejeitadas @spec:AC-031 @spec:AC-032(delete: True, rewriteTenant: True)",
+                                                         "fullName":  "Alteração e exclusão de registro de outra empresa são rejeitadas @spec:AC-031 @spec:AC-032(delete: True, rewriteTenant: True)",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "Orçamentos não podem ser acessados por outro tenant @spec:AC-092",
+                                                         "fullName":  "Orçamentos não podem ser acessados por outro tenant @spec:AC-092",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "Nenhuma tabela ITenantOwned deve existir sem RLS habilitado na migration",
+                                                         "fullName":  "Nenhuma tabela ITenantOwned deve existir sem RLS habilitado na migration",
+                                                         "status":  "skipped"
+                                                     },
+                                                     {
+                                                         "title":  "Agendamento.IntegrationTests.Tenancy.RowLevelSecurityTests.Rls_EnforcesCompleteIsolation_BetweenTenants",
+                                                         "fullName":  "Agendamento.IntegrationTests.Tenancy.RowLevelSecurityTests.Rls_EnforcesCompleteIsolation_BetweenTenants",
+                                                         "status":  "skipped"
+                                                     },
+                                                     {
+                                                         "title":  "Agendamento.IntegrationTests.Tenancy.EfTenantIsolationTests.SaveChangesInterceptor_PopulatesTenantId_WhenAdded",
+                                                         "fullName":  "Agendamento.IntegrationTests.Tenancy.EfTenantIsolationTests.SaveChangesInterceptor_PopulatesTenantId_WhenAdded",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "Isolamento multi-tenant na gestão de membros @spec:AC-072",
+                                                         "fullName":  "Isolamento multi-tenant na gestão de membros @spec:AC-072",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "Agendamento.IntegrationTests.Features.NotificationTests.CreateAppointment_WithForeignOrMissingWorkOrder_ShouldRejectWithoutWrites(seedForeignOrder: True)",
+                                                         "fullName":  "Agendamento.IntegrationTests.Features.NotificationTests.CreateAppointment_WithForeignOrMissingWorkOrder_ShouldRejectWithoutWrites(seedForeignOrder: True)",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "Perfil completo do usuário com permissões explícitas @spec:AC-070",
+                                                         "fullName":  "Perfil completo do usuário com permissões explícitas @spec:AC-070",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "Mensagens disparadas pelo sistema devem ser processadas via padrão Outbox @spec:AC-061",
+                                                         "fullName":  "Mensagens disparadas pelo sistema devem ser processadas via padrão Outbox @spec:AC-061",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "Falha do provedor é indisponibilidade segura @spec:AC-017",
+                                                         "fullName":  "Falha do provedor é indisponibilidade segura @spec:AC-017",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "Isolamento multi-tenant impede que um tenant acesse orçamento ou serviço de outro tenant @spec:AC-049",
+                                                         "fullName":  "Isolamento multi-tenant impede que um tenant acesse orçamento ou serviço de outro tenant @spec:AC-049",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "Agendamento.IntegrationTests.Dashboard.DashboardApiTests.GetReport_WithoutAuth_ShouldReturnUnauthorized",
+                                                         "fullName":  "Agendamento.IntegrationTests.Dashboard.DashboardApiTests.GetReport_WithoutAuth_ShouldReturnUnauthorized",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "PostgreSQL obrigatório falha sem expor credenciais @spec:AC-006",
+                                                         "fullName":  "PostgreSQL obrigatório falha sem expor credenciais @spec:AC-006",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "Endpoint GET /users/me retorna perfil do usuario logado @spec:AC-025",
+                                                         "fullName":  "Endpoint GET /users/me retorna perfil do usuario logado @spec:AC-025",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "Alteração e exclusão de registro de outra empresa são rejeitadas @spec:AC-031 @spec:AC-032(delete: True, rewriteTenant: False)",
+                                                         "fullName":  "Alteração e exclusão de registro de outra empresa são rejeitadas @spec:AC-031 @spec:AC-032(delete: True, rewriteTenant: False)",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "Endpoint GET /tenants/me retorna perfil do tenant logado sem parametro na rota @spec:AC-026",
+                                                         "fullName":  "Endpoint GET /tenants/me retorna perfil do tenant logado sem parametro na rota @spec:AC-026",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "Empresa ativa com CNAE não alimentício é aceita @spec:AC-016",
+                                                         "fullName":  "Empresa ativa com CNAE não alimentício é aceita @spec:AC-016",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "Permissões HTTP e revogação imediata @spec:AC-071 @spec:AC-096",
+                                                         "fullName":  "Permissões HTTP e revogação imediata @spec:AC-071 @spec:AC-096",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "PostgreSQL persiste aprovação, pagamentos e aceite público @spec:AC-094 @spec:AC-074 @spec:AC-075 @spec:AC-095",
+                                                         "fullName":  "PostgreSQL persiste aprovação, pagamentos e aceite público @spec:AC-094 @spec:AC-074 @spec:AC-075 @spec:AC-095",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "Gateway converte status externo em indisponibilidade segura @spec:AC-017(status: InternalServerError)",
+                                                         "fullName":  "Gateway converte status externo em indisponibilidade segura @spec:AC-017(status: InternalServerError)",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "Cadastro registra solicitação de verificação na caixa de saída sem token bruto @spec:AC-009 @principle:P-005",
+                                                         "fullName":  "Cadastro registra solicitação de verificação na caixa de saída sem token bruto @spec:AC-009 @principle:P-005",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "Consultas e Comandos de Clientes respeitam isolamento @spec:AC-041",
+                                                         "fullName":  "Consultas e Comandos de Clientes respeitam isolamento @spec:AC-041",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "Lista e detalhe HTTP mascaram CPF, preservam CNPJ e permitem editar sem reenviar documento @spec:AC-038 @principle:P-005",
+                                                         "fullName":  "Lista e detalhe HTTP mascaram CPF, preservam CNPJ e permitem editar sem reenviar documento @spec:AC-038 @principle:P-005",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "Isolamento RLS: WorkOrders e Appointments são restritos ao Tenant autenticado @spec:AC-050",
+                                                         "fullName":  "Isolamento RLS: WorkOrders e Appointments são restritos ao Tenant autenticado @spec:AC-050",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "Tenant externo no body não muda a empresa do cliente criado @spec:AC-029 @principle:P-003",
+                                                         "fullName":  "Tenant externo no body não muda a empresa do cliente criado @spec:AC-029 @principle:P-003",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "Agendamento.IntegrationTests.Features.NotificationTests.CreateAppointment_WithForeignOrMissingWorkOrder_ShouldRejectWithoutWrites(seedForeignOrder: False)",
+                                                         "fullName":  "Agendamento.IntegrationTests.Features.NotificationTests.CreateAppointment_WithForeignOrMissingWorkOrder_ShouldRejectWithoutWrites(seedForeignOrder: False)",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "Isolamento estrito de dados por tenant no dashboard @spec:AC-065",
+                                                         "fullName":  "Isolamento estrito de dados por tenant no dashboard @spec:AC-065",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "Transições de status da OS devem ser permitidas e registrar histórico @spec:AC-054",
+                                                         "fullName":  "Transições de status da OS devem ser permitidas e registrar histórico @spec:AC-054",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "Gateway converte status externo em indisponibilidade segura @spec:AC-017(status: TooManyRequests)",
+                                                         "fullName":  "Gateway converte status externo em indisponibilidade segura @spec:AC-017(status: TooManyRequests)",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "Convite HTTP seguro e aceite público persistido @spec:AC-074 @spec:AC-075",
+                                                         "fullName":  "Convite HTTP seguro e aceite público persistido @spec:AC-074 @spec:AC-075",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "Onboarding completo sem token na resposta em qualquer ambiente @spec:AC-021 @spec:AC-038 @spec:AC-100 @principle:P-005(environment: \"Production\")",
+                                                         "fullName":  "Onboarding completo sem token na resposta em qualquer ambiente @spec:AC-021 @spec:AC-038 @spec:AC-100 @principle:P-005(environment: \"Production\")",
                                                          "status":  "passed"
                                                      },
                                                      {
@@ -828,33 +743,108 @@
                                                          "status":  "passed"
                                                      },
                                                      {
-                                                         "title":  "README apresenta o backend SaaS e sua execução local @spec:AC-102",
-                                                         "fullName":  "README apresenta o backend SaaS e sua execução local @spec:AC-102",
+                                                         "title":  "Criação de orçamento calcula subtotais, descontos, total e sinal @spec:AC-046",
+                                                         "fullName":  "Criação de orçamento calcula subtotais, descontos, total e sinal @spec:AC-046",
                                                          "status":  "passed"
                                                      },
                                                      {
-                                                         "title":  "Configurações versionadas não contêm segredos reais @spec:AC-005",
-                                                         "fullName":  "Configurações versionadas não contêm segredos reais @spec:AC-005",
+                                                         "title":  "@spec:AC-011 endpoint rejects invalid email-verification token without personal data",
+                                                         "fullName":  "@spec:AC-011 endpoint rejects invalid email-verification token without personal data",
                                                          "status":  "passed"
                                                      },
                                                      {
-                                                         "title":  "Contrato cadastral tipa sucesso e falhas seguras @spec:AC-017",
-                                                         "fullName":  "Contrato cadastral tipa sucesso e falhas seguras @spec:AC-017",
+                                                         "title":  "Somente orçamentos aprovados podem ser convertidos em OS @spec:AC-091",
+                                                         "fullName":  "Somente orçamentos aprovados podem ser convertidos em OS @spec:AC-091",
                                                          "status":  "passed"
                                                      },
                                                      {
-                                                         "title":  "Toda operação possui identificador estável, tags adequadas @spec:AC-037",
-                                                         "fullName":  "Toda operação possui identificador estável, tags adequadas @spec:AC-037",
+                                                         "title":  "Consulta de extrato retorna somatórios corretos do período @spec:AC-059",
+                                                         "fullName":  "Consulta de extrato retorna somatórios corretos do período @spec:AC-059",
                                                          "status":  "passed"
                                                      },
                                                      {
-                                                         "title":  "Todos os endpoints da aplicação devem estar documentados no OpenAPI",
-                                                         "fullName":  "Todos os endpoints da aplicação devem estar documentados no OpenAPI",
+                                                         "title":  "Tenant externo em header ou query não substitui a sessão @spec:AC-029 @principle:P-003(useQuery: True)",
+                                                         "fullName":  "Tenant externo em header ou query não substitui a sessão @spec:AC-029 @principle:P-003(useQuery: True)",
                                                          "status":  "passed"
                                                      },
                                                      {
-                                                         "title":  "@spec:AC-100 contrato documenta o header de verificação somente para desenvolvimento",
-                                                         "fullName":  "@spec:AC-100 contrato documenta o header de verificação somente para desenvolvimento",
+                                                         "title":  "CNPJ inválido não consulta o provedor @spec:AC-014",
+                                                         "fullName":  "CNPJ inválido não consulta o provedor @spec:AC-014",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "Exportação de orçamento em PDF gera bytes válidos em stream application/pdf @spec:AC-047",
+                                                         "fullName":  "Exportação de orçamento em PDF gera bytes válidos em stream application/pdf @spec:AC-047",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "Endpoint GET /company-registry aplica limite de requisições @spec:AC-027",
+                                                         "fullName":  "Endpoint GET /company-registry aplica limite de requisições @spec:AC-027",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "Permite criar Contas a Pagar e Registrar Pagamento @spec:AC-057",
+                                                         "fullName":  "Permite criar Contas a Pagar e Registrar Pagamento @spec:AC-057",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "Equipe isolada e último owner_admin protegido @spec:AC-072 @spec:AC-073",
+                                                         "fullName":  "Equipe isolada e último owner_admin protegido @spec:AC-072 @spec:AC-073",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "Empresa ausente é distinguida de CNPJ inválido @spec:AC-017",
+                                                         "fullName":  "Empresa ausente é distinguida de CNPJ inválido @spec:AC-017",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "Gateway traduz 404 para empresa ausente @spec:AC-017",
+                                                         "fullName":  "Gateway traduz 404 para empresa ausente @spec:AC-017",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "Gravações divergentes falham antes do commit @spec:AC-032(asynchronous: True)",
+                                                         "fullName":  "Gravações divergentes falham antes do commit @spec:AC-032(asynchronous: True)",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "Criar orçamento com status Pendente e valor total calculado @spec:AC-090",
+                                                         "fullName":  "Criar orçamento com status Pendente e valor total calculado @spec:AC-090",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "Validação de transições de status do orçamento @spec:AC-048",
+                                                         "fullName":  "Validação de transições de status do orçamento @spec:AC-048",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "Documento canônico em /openapi/v1.json é exposto @spec:AC-036",
+                                                         "fullName":  "Documento canônico em /openapi/v1.json é exposto @spec:AC-036",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "Handler throws when company is inactive @spec:AC-015",
+                                                         "fullName":  "Handler throws when company is inactive @spec:AC-015",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "Tentativa de buscar ou alterar cliente de outro tenant retorna null/vazio @spec:AC-044",
+                                                         "fullName":  "Tentativa de buscar ou alterar cliente de outro tenant retorna null/vazio @spec:AC-044",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "Despacha notificação ao agendar quando OS tem cliente @spec:AC-099",
+                                                         "fullName":  "Despacha notificação ao agendar quando OS tem cliente @spec:AC-099",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "GET /health responde que a aplicação está saudável @spec:AC-002",
+                                                         "fullName":  "GET /health responde que a aplicação está saudável @spec:AC-002",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "Todos os endpoints da aplicação devem estar documentados no OpenAPI @spec:AC-036",
+                                                         "fullName":  "Todos os endpoints da aplicação devem estar documentados no OpenAPI @spec:AC-036",
                                                          "status":  "passed"
                                                      },
                                                      {
@@ -863,8 +853,38 @@
                                                          "status":  "passed"
                                                      },
                                                      {
-                                                         "title":  "Nenhum schema deve expor propriedades sensíveis inadvertidamente",
-                                                         "fullName":  "Nenhum schema deve expor propriedades sensíveis inadvertidamente",
+                                                         "title":  "O verificador rejeita headers, exemplos referenciados e valores pessoais ou de conexão(response: \"{\\\"content\\\":{\\\"application/json\\\":{\\\"example\\\":{\\\"···)",
+                                                         "fullName":  "O verificador rejeita headers, exemplos referenciados e valores pessoais ou de conexão(response: \"{\\\"content\\\":{\\\"application/json\\\":{\\\"example\\\":{\\\"···)",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "O verificador rejeita headers, exemplos referenciados e valores pessoais ou de conexão(response: \"{\\\"content\\\":{\\\"application/json\\\":{\\\"examples\\\":{\"···)",
+                                                         "fullName":  "O verificador rejeita headers, exemplos referenciados e valores pessoais ou de conexão(response: \"{\\\"content\\\":{\\\"application/json\\\":{\\\"examples\\\":{\"···)",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "O verificador rejeita headers, exemplos referenciados e valores pessoais ou de conexão(response: \"{\\\"content\\\":{\\\"application/json\\\":{\\\"example\\\":{\\\"···)",
+                                                         "fullName":  "O verificador rejeita headers, exemplos referenciados e valores pessoais ou de conexão(response: \"{\\\"content\\\":{\\\"application/json\\\":{\\\"example\\\":{\\\"···)",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "O verificador rejeita headers, exemplos referenciados e valores pessoais ou de conexão(response: \"{\\\"content\\\":{\\\"application/json\\\":{\\\"example\\\":{\\\"···)",
+                                                         "fullName":  "O verificador rejeita headers, exemplos referenciados e valores pessoais ou de conexão(response: \"{\\\"content\\\":{\\\"application/json\\\":{\\\"example\\\":{\\\"···)",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "Contrato cadastral tipa sucesso e falhas seguras @spec:AC-017",
+                                                         "fullName":  "Contrato cadastral tipa sucesso e falhas seguras @spec:AC-017",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "O verificador rejeita vazamentos transitivos e exemplos sem depender do nome do schema(wrapper: \"properties\", field: \"documentValue\")",
+                                                         "fullName":  "O verificador rejeita vazamentos transitivos e exemplos sem depender do nome do schema(wrapper: \"properties\", field: \"documentValue\")",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "O verificador rejeita vazamentos transitivos e exemplos sem depender do nome do schema(wrapper: \"oneOf\", field: \"cpf\")",
+                                                         "fullName":  "O verificador rejeita vazamentos transitivos e exemplos sem depender do nome do schema(wrapper: \"oneOf\", field: \"cpf\")",
                                                          "status":  "passed"
                                                      },
                                                      {
@@ -873,8 +893,103 @@
                                                          "status":  "passed"
                                                      },
                                                      {
+                                                         "title":  "Contrato informa Bearer por operação respeitando AllowAnonymous @spec:AC-037",
+                                                         "fullName":  "Contrato informa Bearer por operação respeitando AllowAnonymous @spec:AC-037",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "Toda operação possui identificador estável, tags adequadas @spec:AC-037",
+                                                         "fullName":  "Toda operação possui identificador estável, tags adequadas @spec:AC-037",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "O verificador rejeita vazamentos transitivos e exemplos sem depender do nome do schema(wrapper: \"anyOf\", field: \"connectionString\")",
+                                                         "fullName":  "O verificador rejeita vazamentos transitivos e exemplos sem depender do nome do schema(wrapper: \"anyOf\", field: \"connectionString\")",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "O verificador rejeita headers, exemplos referenciados e valores pessoais ou de conexão(response: \"{\\\"content\\\":{\\\"application/json\\\":{\\\"example\\\":\\\"\"···)",
+                                                         "fullName":  "O verificador rejeita headers, exemplos referenciados e valores pessoais ou de conexão(response: \"{\\\"content\\\":{\\\"application/json\\\":{\\\"example\\\":\\\"\"···)",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "O verificador rejeita headers, exemplos referenciados e valores pessoais ou de conexão(response: \"{\\\"headers\\\":{\\\"X-Development-Verification-Token\\\"\"···)",
+                                                         "fullName":  "O verificador rejeita headers, exemplos referenciados e valores pessoais ou de conexão(response: \"{\\\"headers\\\":{\\\"X-Development-Verification-Token\\\"\"···)",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "Respostas e exemplos resolvidos minimizam dados em todos os ambientes @spec:AC-038 @principle:P-005(environment: \"Production\")",
+                                                         "fullName":  "Respostas e exemplos resolvidos minimizam dados em todos os ambientes @spec:AC-038 @principle:P-005(environment: \"Production\")",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "Respostas e exemplos resolvidos minimizam dados em todos os ambientes @spec:AC-038 @principle:P-005(environment: \"Test\")",
+                                                         "fullName":  "Respostas e exemplos resolvidos minimizam dados em todos os ambientes @spec:AC-038 @principle:P-005(environment: \"Test\")",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
                                                          "title":  "Contrato de autenticação documenta falhas seguras e perfil protegido @spec:AC-013",
                                                          "fullName":  "Contrato de autenticação documenta falhas seguras e perfil protegido @spec:AC-013",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "Exemplos de entradas sensíveis e referências não resolvidas não passam silenciosamente",
+                                                         "fullName":  "Exemplos de entradas sensíveis e referências não resolvidas não passam silenciosamente",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "Saídas JSON antes não tipadas possuem schemas verificáveis @spec:AC-038 @principle:P-005",
+                                                         "fullName":  "Saídas JSON antes não tipadas possuem schemas verificáveis @spec:AC-038 @principle:P-005",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "README apresenta o backend SaaS e sua execução local @spec:AC-102",
+                                                         "fullName":  "README apresenta o backend SaaS e sua execução local @spec:AC-102",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "Respostas e exemplos resolvidos minimizam dados em todos os ambientes @spec:AC-038 @principle:P-005(environment: \"Development\")",
+                                                         "fullName":  "Respostas e exemplos resolvidos minimizam dados em todos os ambientes @spec:AC-038 @principle:P-005(environment: \"Development\")",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "Entradas sensíveis, referências cíclicas e token de sessão legítimo são distinguidos da saída",
+                                                         "fullName":  "Entradas sensíveis, referências cíclicas e token de sessão legítimo são distinguidos da saída",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "@spec:AC-100 contrato não expõe token de verificação nem em desenvolvimento",
+                                                         "fullName":  "@spec:AC-100 contrato não expõe token de verificação nem em desenvolvimento",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "O verificador rejeita vazamentos transitivos e exemplos sem depender do nome do schema(wrapper: \"properties\", field: \"password\")",
+                                                         "fullName":  "O verificador rejeita vazamentos transitivos e exemplos sem depender do nome do schema(wrapper: \"properties\", field: \"password\")",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "Configurações versionadas não contêm segredos reais @spec:AC-005",
+                                                         "fullName":  "Configurações versionadas não contêm segredos reais @spec:AC-005",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "O verificador rejeita vazamentos transitivos e exemplos sem depender do nome do schema(wrapper: \"additionalProperties\", field: \"fiscalCredential\")",
+                                                         "fullName":  "O verificador rejeita vazamentos transitivos e exemplos sem depender do nome do schema(wrapper: \"additionalProperties\", field: \"fiscalCredential\")",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "Nenhum schema deve expor propriedades sensíveis inadvertidamente",
+                                                         "fullName":  "Nenhum schema deve expor propriedades sensíveis inadvertidamente",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "O verificador rejeita vazamentos transitivos e exemplos sem depender do nome do schema(wrapper: \"items\", field: \"passwordHash\")",
+                                                         "fullName":  "O verificador rejeita vazamentos transitivos e exemplos sem depender do nome do schema(wrapper: \"items\", field: \"passwordHash\")",
+                                                         "status":  "passed"
+                                                     },
+                                                     {
+                                                         "title":  "O verificador rejeita vazamentos transitivos e exemplos sem depender do nome do schema(wrapper: \"allOf\", field: \"verificationToken\")",
+                                                         "fullName":  "O verificador rejeita vazamentos transitivos e exemplos sem depender do nome do schema(wrapper: \"allOf\", field: \"verificationToken\")",
                                                          "status":  "passed"
                                                      }
                                                  ]

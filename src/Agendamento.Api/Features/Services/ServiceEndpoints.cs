@@ -1,3 +1,4 @@
+using Agendamento.Api.Features.Common;
 using Agendamento.Api.Infrastructure.Authorization;
 using Agendamento.Api.Application.Services.CreateService;
 using Agendamento.Api.Application.Services.GetServices;
@@ -20,11 +21,11 @@ public static class ServiceEndpoints
             CancellationToken ct) =>
         {
             var id = await handler.HandleAsync(command, ct);
-            return Results.Created($"/api/v1/services/{id}", new { id });
+            return Results.Created($"/api/v1/services/{id}", new CreatedIdResponse(id));
         })
         .WithName("CreateService")
         .RequirePermission("services.write")
-        .Produces(StatusCodes.Status201Created)
+        .Produces<CreatedIdResponse>(StatusCodes.Status201Created)
         .ProducesProblem(StatusCodes.Status400BadRequest)
         .ProducesProblem(StatusCodes.Status401Unauthorized);
 

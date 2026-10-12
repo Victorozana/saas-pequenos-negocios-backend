@@ -1,11 +1,11 @@
 {
   "feature": "gestao-clientes",
-  "timestamp": "2026-10-12T14:20:08.991Z",
-  "gitRev": "d79b630",
+  "timestamp": "2026-10-12T15:31:36.860Z",
+  "gitRev": "fb5836d",
   "command": "powershell -ExecutionPolicy Bypass -File scripts/verify-spec.ps1",
   "reporter": "jest-json",
   "exitCode": 0,
-  "testsParsed": 175,
+  "testsParsed": 198,
   "results": {
     "AC-041": {
       "status": "pass",

@@ -18,46 +18,18 @@ public static class OpenApiExtensions
                 return System.Threading.Tasks.Task.CompletedTask;
             });
             options.AddDocumentTransformer<BearerSecuritySchemeTransformer>();
-            options.AddDocumentTransformer((document, context, cancellationToken) =>
-            {
-                var environment = context.ApplicationServices.GetRequiredService<IHostEnvironment>();
-                if (!environment.IsDevelopment() && !environment.IsEnvironment("Test"))
-                {
-                    return System.Threading.Tasks.Task.CompletedTask;
-                }
-
-                if (!document.Paths.TryGetValue("/api/v1/tenants", out var tenantPath) ||
-                    tenantPath is null ||
-                    tenantPath.Operations is null ||
-                    !tenantPath.Operations.TryGetValue(HttpMethod.Post, out var tenantRegistration) ||
-                    tenantRegistration is null ||
-                    tenantRegistration.Responses is null ||
-                    !tenantRegistration.Responses.TryGetValue("201", out var createdResponse) ||
-                    createdResponse is not OpenApiResponse createdResponseDocument)
-                {
-                    return System.Threading.Tasks.Task.CompletedTask;
-                }
-
-                createdResponseDocument.Headers ??= new Dictionary<string, IOpenApiHeader>();
-                createdResponseDocument.Headers["X-Development-Verification-Token"] = new OpenApiHeader
-                {
-                    Description = "Development/Test only. Token used to confirm the administrator email after registration.",
-                    Schema = new OpenApiSchema { Type = JsonSchemaType.String },
-                };
-
-                return System.Threading.Tasks.Task.CompletedTask;
-            });
             options.AddOperationTransformer<ProblemDetailsOperationTransformer>();
-            
-            // Prevent exposing verificationToken in the public RegisterTenantResponse schema (AC-038)
             options.AddSchemaTransformer((schema, context, cancellationToken) =>
             {
-                if (context.JsonTypeInfo?.Type == typeof(Agendamento.Api.Features.Tenants.RegisterTenantResponse))
+                if (context.JsonTypeInfo.Type == typeof(Agendamento.Api.Application.Customers.GetCustomers.CustomerResponse) &&
+                    schema.Properties?.TryGetValue("documentValue", out var property) == true && property is OpenApiSchema documentValue)
                 {
-                    schema.Properties?.Remove("verificationToken");
+                    documentValue.Pattern = Agendamento.Api.Application.Customers.GetCustomers.CustomerResponse.DocumentDisplayPattern;
+                    documentValue.Description = "CPF mascarado (somente dois dígitos finais), CNPJ ou null. CPF integral nunca é retornado.";
                 }
                 return System.Threading.Tasks.Task.CompletedTask;
             });
+
         });
 
         return services;

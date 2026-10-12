@@ -1,11 +1,11 @@
 {
   "feature": "gestao-orcamentos-servicos",
-  "timestamp": "2026-10-12T14:23:28.954Z",
-  "gitRev": "d79b630",
+  "timestamp": "2026-10-12T15:33:28.061Z",
+  "gitRev": "fb5836d",
   "command": "powershell -ExecutionPolicy Bypass -File scripts/verify-spec.ps1",
   "reporter": "jest-json",
   "exitCode": 0,
-  "testsParsed": 175,
+  "testsParsed": 198,
   "results": {
     "AC-090": {
       "status": "pass",
@@ -39,7 +39,7 @@
     },
     "AC-046": {
       "status": "pass",
-      "testName": "Calcula entrada exigida em valor fixo e saldo restante @spec:AC-046 Calcula entrada exigida em valor fixo e saldo restante @spec:AC-046",
+      "testName": "Calcula subtotais, descontos e total geral do orçamento @spec:AC-046 Calcula subtotais, descontos e total geral do orçamento @spec:AC-046",
       "method": "jest-json"
     },
     "AC-047": {
@@ -49,7 +49,7 @@
     },
     "AC-048": {
       "status": "pass",
-      "testName": "Aprovação de orçamento expirado lança exceção @spec:AC-048 Aprovação de orçamento expirado lança exceção @spec:AC-048",
+      "testName": "Transições de status do orçamento seguem validações de negócio @spec:AC-048 Transições de status do orçamento seguem validações de negócio @spec:AC-048",
       "method": "jest-json"
     }
   },
@@ -60,7 +60,7 @@
     },
     "P-003": {
       "status": "pass",
-      "testName": "Tenant externo no body não muda a empresa do cliente criado @spec:AC-029 @principle:P-003 Tenant externo no body não muda a empresa do cliente criado @spec:AC-029 @principle:P-003"
+      "testName": "@spec:AC-013 @principle:P-003 @principle:P-005 valid login emits only user_tenant_and_role @spec:AC-013 @principle:P-003 @principle:P-005 valid login emits only user_tenant_and_role"
     },
     "P-004": {
       "status": "pass",

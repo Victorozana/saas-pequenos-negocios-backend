@@ -19,7 +19,7 @@ public static class SubscriptionEndpoints
         {
             var result = await handler.HandleAsync(new GetTenantSubscriptionQuery(), cancellationToken);
             return Results.Ok(result);
-        }).WithName("GetCurrentSubscription");
+        }).WithName("GetCurrentSubscription").Produces<TenantSubscriptionDto>();
 
         group.MapGet("/plans", async (AgendamentoDbContext dbContext) =>
         {
@@ -27,13 +27,13 @@ public static class SubscriptionEndpoints
             return Results.Ok(plans);
         })
         .AllowAnonymous()
-        .WithName("GetSubscriptionPlans"); // Permite consultar planos sem estar logado, ideal para página de preços
+        .WithName("GetSubscriptionPlans").Produces<List<Agendamento.Domain.Subscriptions.SaasPlan>>();
 
         group.MapPost("/change-plan", async ([FromBody] ChangePlanCommand command, [FromServices] ChangePlanHandler handler, CancellationToken cancellationToken) =>
         {
             await handler.HandleAsync(command, cancellationToken);
             return Results.NoContent();
-        }).WithName("ChangeSubscriptionPlan");
+        }).WithName("ChangeSubscriptionPlan").Produces(StatusCodes.Status204NoContent);
 
         var webhooksGroup = app.MapGroup("/api/v1/webhooks")
             .WithTags("Webhooks")

@@ -1,11 +1,11 @@
 # Plano de execução — contrato-openapi-swagger
 
-> gerado por `onp-spec plano` em 2026-10-12 03:55 — NÃO edite à mão;
+> gerado por `onp-spec plano` em 2026-10-12 15:32 — NÃO edite à mão;
 > mudou tasks.md ou a config? Regenere: `onp-spec plano contrato-openapi-swagger --sequencial`
 
 ## Resumo — o que vai acontecer
 
-- **modo SEQUENCIAL (escolha do usuário)**: 2 tarefa(s) pendente(s), UMA APÓS A OUTRA, na árvore principal (2 já concluída(s): T-022, T-024)
+- **modo SEQUENCIAL (escolha do usuário)**: 1 tarefa(s) pendente(s), UMA APÓS A OUTRA, na árvore principal (3 já concluída(s): T-022, T-024, T-025)
 - sem worktrees e sem paralelismo — cada tarefa roda numa janela de contexto limpa, na ordem do tasks.md
 - tudo acontece na branch de trabalho `spec/contrato-openapi-swagger`; levar para a main é decisão sua
 
@@ -14,7 +14,6 @@
 | tarefa | título | modelo | esforço |
 |---|---|---|---|
 | T-023 | Documentar endpoints, segurança e erros | `gpt-5.6-terra` | medium |
-| T-025 | Validar completude e minimização dos schemas | `gpt-5.6-terra` | medium |
 
 ## Gestão de branches e commits
 

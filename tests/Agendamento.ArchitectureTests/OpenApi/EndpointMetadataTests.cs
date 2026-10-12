@@ -49,8 +49,31 @@ public class EndpointMetadataTests : IClassFixture<WebApplicationFactory<Program
         }
     }
 
-    [Fact(DisplayName = "@spec:AC-100 contrato documenta o header de verificação somente para desenvolvimento")]
-    public async Task Tenant_registration_contract_documents_development_verification_header()
+    [Fact(DisplayName = "Contrato informa Bearer por operação respeitando AllowAnonymous @spec:AC-037")]
+    public async Task Security_matches_endpoint_authorization_metadata()
+    {
+        using var client = _factory.CreateClient();
+        using var document = JsonDocument.Parse(await client.GetStringAsync("/openapi/v1.json"));
+        var paths = document.RootElement.GetProperty("paths");
+        foreach (var endpoint in _factory.Services.GetRequiredService<EndpointDataSource>().Endpoints.OfType<RouteEndpoint>())
+        {
+            var route = endpoint.RoutePattern.RawText;
+            if (route == null || route.StartsWith("/swagger") || route.StartsWith("/openapi")) continue;
+            if (endpoint.Metadata.GetMetadata<IExcludeFromDescriptionMetadata>()?.ExcludeFromDescription == true) continue;
+            route = System.Text.RegularExpressions.Regex.Replace("/" + route.Trim('/'), @"\{([^:}]+):[^}]+\}", "{$1}");
+            var secured = endpoint.Metadata.GetOrderedMetadata<IAuthorizeData>().Count > 0 && endpoint.Metadata.GetMetadata<IAllowAnonymous>() == null;
+            foreach (var method in endpoint.Metadata.GetMetadata<HttpMethodMetadata>()!.HttpMethods)
+            {
+                var operation = paths.GetProperty(route).GetProperty(method.ToLowerInvariant());
+                var hasBearer = operation.TryGetProperty("security", out var security) &&
+                    security.EnumerateArray().Any(s => s.TryGetProperty("Bearer", out _));
+                Assert.Equal(secured, hasBearer);
+            }
+        }
+    }
+
+    [Fact(DisplayName = "@spec:AC-100 contrato não expõe token de verificação nem em desenvolvimento")]
+    public async Task Tenant_registration_contract_omits_verification_token()
     {
         var client = _factory.CreateClient();
         var response = await client.GetAsync("/openapi/v1.json");
@@ -64,12 +87,8 @@ public class EndpointMetadataTests : IClassFixture<WebApplicationFactory<Program
             .GetProperty("responses")
             .GetProperty("201");
 
-        var header = tenantRegistration
-            .GetProperty("headers")
-            .GetProperty("X-Development-Verification-Token");
-
-        Assert.Equal("string", header.GetProperty("schema").GetProperty("type").GetString());
-        Assert.Contains("Development", header.GetProperty("description").GetString());
+        Assert.False(tenantRegistration.TryGetProperty("headers", out var headers) &&
+            headers.TryGetProperty("X-Development-Verification-Token", out _));
 
         var responseProperties = document.RootElement
             .GetProperty("components")

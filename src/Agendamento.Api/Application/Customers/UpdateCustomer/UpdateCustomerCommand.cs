@@ -13,4 +13,5 @@ public record UpdateCustomerCommand(
     string? Neighborhood,
     string? City,
     string? State,
-    string? ZipCode);
+    string? ZipCode,
+    bool PreserveDocument = false);

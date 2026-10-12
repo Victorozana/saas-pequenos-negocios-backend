@@ -1,3 +1,4 @@
+using Agendamento.Api.Features.Common;
 using Agendamento.Api.Infrastructure.Authorization;
 using Agendamento.Api.Application.Appointments.CreateAppointment;
 using Agendamento.Api.Application.Appointments.GetAppointments;
@@ -22,7 +23,7 @@ public static class AppointmentEndpoints
             try
             {
                 var id = await handler.HandleAsync(command, cancellationToken);
-                return Results.Created($"/api/v1/appointments/{id}", new { Id = id });
+                return Results.Created($"/api/v1/appointments/{id}", new CreatedIdResponse(id));
             }
             catch (ArgumentException ex)
             {
@@ -31,7 +32,7 @@ public static class AppointmentEndpoints
         })
         .WithName("CreateAppointment")
         .RequirePermission("appointments.write")
-        .Produces(StatusCodes.Status201Created)
+        .Produces<CreatedIdResponse>(StatusCodes.Status201Created)
         .ProducesProblem(StatusCodes.Status400BadRequest);
 
         group.MapGet("/", async (

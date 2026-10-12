@@ -20,8 +20,6 @@ public static class TenantRegistrationEndpoints
             [FromBody] RegisterTenantRequest request,
             [FromHeader(Name = "Idempotency-Key")] string idempotencyKey,
             [FromServices] RegisterTenantHandler handler,
-            [FromServices] Microsoft.AspNetCore.Hosting.IWebHostEnvironment environment,
-            HttpContext httpContext,
             CancellationToken cancellationToken) =>
         {
             if (string.IsNullOrWhiteSpace(idempotencyKey))
@@ -39,20 +37,12 @@ public static class TenantRegistrationEndpoints
 
             try
             {
-                var rawToken = await handler.HandleAsync(command, cancellationToken);
-                
-                string? verificationToken = null;
-                if (environment.IsDevelopment())
-                {
-                    verificationToken = rawToken;
-                    httpContext.Response.Headers["X-Development-Verification-Token"] = rawToken;
-                }
-
-                return Results.Created($"/api/v1/tenants/me", new RegisterTenantResponse("Cadastro realizado com sucesso.", verificationToken));
+                await handler.HandleAsync(command, cancellationToken);
+                return Results.Created($"/api/v1/tenants/me", new RegisterTenantResponse("Cadastro realizado com sucesso."));
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                return Results.UnprocessableEntity(ProblemDetailsExtensions.Create("Erro no cadastro", ex.Message));
+                return Results.UnprocessableEntity(ProblemDetailsExtensions.Create("Erro no cadastro", "Não foi possível concluir o cadastro. Confira os dados e tente novamente."));
             }
         })
         .WithName("RegisterTenant")

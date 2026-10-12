@@ -3,6 +3,7 @@ using Agendamento.Api.Application.Customers.GetCustomers;
 using Agendamento.Api.Application.Customers.UpdateCustomer;
 using Agendamento.Api.Infrastructure.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Agendamento.Api.Features.Common;
 
 namespace Agendamento.Api.Features.Customers;
 
@@ -22,7 +23,7 @@ public static class CustomerEndpoints
             try
             {
                 var id = await handler.HandleAsync(command, cancellationToken);
-                return Results.Created($"/api/v1/customers/{id}", new { Id = id });
+                return Results.Created($"/api/v1/customers/{id}", new CreatedIdResponse(id));
             }
             catch (ArgumentException ex)
             {
@@ -30,6 +31,7 @@ public static class CustomerEndpoints
             }
         })
         .WithName("CreateCustomer")
+        .Produces<CreatedIdResponse>(StatusCodes.Status201Created)
         .WithSummary("Creates a new customer for the current tenant")
         .RequirePermission("customers.write");
 
@@ -70,6 +72,7 @@ public static class CustomerEndpoints
             return Results.Ok(results);
         })
         .WithName("GetCustomers")
+        .Produces<PaginatedResult<CustomerResponse>>()
         .WithSummary("Lists all active customers for the current tenant")
         .RequirePermission("customers.read");
 
@@ -82,6 +85,7 @@ public static class CustomerEndpoints
             return customer != null ? Results.Ok(customer) : Results.NotFound();
         })
         .WithName("GetCustomerById")
+        .Produces<CustomerResponse>()
         .WithSummary("Gets a specific customer by ID")
         .RequirePermission("customers.read");
     }

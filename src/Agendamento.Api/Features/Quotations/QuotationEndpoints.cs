@@ -1,3 +1,4 @@
+using Agendamento.Api.Features.Common;
 using Agendamento.Api.Infrastructure.Authorization;
 using Agendamento.Api.Application.Quotations.CreateQuotation;
 using Agendamento.Api.Application.Quotations.ExportPdf;
@@ -22,11 +23,11 @@ public static class QuotationEndpoints
             CancellationToken ct) =>
         {
             var id = await handler.HandleAsync(command, ct);
-            return Results.Created($"/api/v1/quotations/{id}", new { id });
+            return Results.Created($"/api/v1/quotations/{id}", new CreatedIdResponse(id));
         })
         .WithName("CreateQuotation")
         .RequirePermission("sales.write")
-        .Produces(StatusCodes.Status201Created)
+        .Produces<CreatedIdResponse>(StatusCodes.Status201Created)
         .ProducesProblem(StatusCodes.Status400BadRequest)
         .ProducesProblem(StatusCodes.Status401Unauthorized);
 
@@ -81,7 +82,7 @@ public static class QuotationEndpoints
             try
             {
                 var workOrderId = await handler.HandleAsync(new ConvertQuotationToWorkOrderCommand { QuotationId = id }, ct);
-                return Results.Ok(new { WorkOrderId = workOrderId });
+                return Results.Ok(new WorkOrderConversionResponse(workOrderId));
             }
             catch (InvalidOperationException ex)
             {
@@ -90,7 +91,7 @@ public static class QuotationEndpoints
         })
         .WithName("ConvertQuotationToWorkOrderInQuotation")
         .RequirePermission("sales.write")
-        .Produces(StatusCodes.Status200OK)
+        .Produces<WorkOrderConversionResponse>(StatusCodes.Status200OK)
         .ProducesProblem(StatusCodes.Status400BadRequest)
         .ProducesProblem(StatusCodes.Status401Unauthorized);
 
@@ -116,3 +117,5 @@ public static class QuotationEndpoints
         .ProducesProblem(StatusCodes.Status401Unauthorized);
     }
 }
+
+public record WorkOrderConversionResponse(Guid WorkOrderId);

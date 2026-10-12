@@ -1,11 +1,11 @@
 {
   "feature": "documentacao-readme-backend",
-  "timestamp": "2026-10-12T05:10:06.358Z",
-  "gitRev": "d79b630",
+  "timestamp": "2026-10-12T15:29:46.169Z",
+  "gitRev": "fb5836d",
   "command": "powershell -ExecutionPolicy Bypass -File scripts/verify-spec.ps1",
   "reporter": "jest-json",
   "exitCode": 0,
-  "testsParsed": 175,
+  "testsParsed": 198,
   "results": {
     "AC-102": {
       "status": "pass",
@@ -20,7 +20,7 @@
     },
     "P-003": {
       "status": "pass",
-      "testName": "@spec:AC-013 @principle:P-003 @principle:P-005 valid login emits only user_tenant_and_role @spec:AC-013 @principle:P-003 @principle:P-005 valid login emits only user_tenant_and_role"
+      "testName": "Tenant externo em header ou query não substitui a sessão @spec:AC-029 @principle:P-003(useQuery: True) Tenant externo em header ou query não substitui a sessão @spec:AC-029 @principle:P-003(useQuery: True)"
     },
     "P-004": {
       "status": "pass",

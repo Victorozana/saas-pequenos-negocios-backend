@@ -18,8 +18,11 @@ namespace Agendamento.IntegrationTests.Tenants;
 
 public sealed class TenantOnboardingFlowTests
 {
-    [Fact(DisplayName = "Sequência completa de onboarding: Registro -> Confirmação de E-mail -> Login @spec:AC-021")]
-    public async Task Full_Onboarding_Flow_Should_Succeed()
+    [Theory(DisplayName = "Onboarding completo sem token na resposta em qualquer ambiente @spec:AC-021 @spec:AC-038 @spec:AC-100 @principle:P-005")]
+    [InlineData("Development")]
+    [InlineData("Test")]
+    [InlineData("Production")]
+    public async Task Full_Onboarding_Flow_Should_Succeed(string environment)
     {
         var dbName = $"OnboardingFlow_{Guid.NewGuid():N}";
         using var factory = new AgendamentoApiFactory().WithWebHostBuilder(builder =>
@@ -31,7 +34,7 @@ public sealed class TenantOnboardingFlowTests
                     options.UseInMemoryDatabase(dbName);
                 });
             });
-            builder.UseSetting("Environment", "Development");
+            builder.UseEnvironment(environment);
         });
 
         var client = factory.CreateClient();
@@ -84,13 +87,31 @@ public sealed class TenantOnboardingFlowTests
 
         var responseBody = await registerResponse.Content.ReadFromJsonAsync<RegisterTenantResponse>();
         Assert.NotNull(responseBody);
-        Assert.NotNull(responseBody.VerificationToken);
-        var rawToken = responseBody.VerificationToken;
+        Assert.Equal("Cadastro realizado com sucesso.", responseBody.Message);
+        using var responseJson = System.Text.Json.JsonDocument.Parse(await registerResponse.Content.ReadAsStringAsync());
+        Assert.Equal(new[] { "message" }, responseJson.RootElement.EnumerateObject().Select(p => p.Name));
+        Assert.False(registerResponse.Headers.Contains("X-Development-Verification-Token"));
 
-        Assert.True(registerResponse.Headers.Contains("X-Development-Verification-Token"));
-        var headerToken = registerResponse.Headers.GetValues("X-Development-Verification-Token").GetEnumerator();
-        headerToken.MoveNext();
-        Assert.Equal(rawToken, headerToken.Current);
+        using var invalidRequest = new HttpRequestMessage(HttpMethod.Post, "/api/v1/tenants")
+        {
+            Content = JsonContent.Create(request with { TaxRegime = "Host=invalid;Password=placeholder" })
+        };
+        invalidRequest.Headers.Add("Idempotency-Key", Guid.NewGuid().ToString());
+        var invalidResponse = await client.SendAsync(invalidRequest);
+        Assert.Equal(HttpStatusCode.UnprocessableEntity, invalidResponse.StatusCode);
+        using var problem = System.Text.Json.JsonDocument.Parse(await invalidResponse.Content.ReadAsStringAsync());
+        Assert.Equal("Não foi possível concluir o cadastro. Confira os dados e tente novamente.", problem.RootElement.GetProperty("detail").GetString());
+
+        // Controlled test delivery only; never recover a raw token from HTTP or persisted digest.
+        var rawToken = Convert.ToHexString(System.Security.Cryptography.RandomNumberGenerator.GetBytes(32));
+        using (var scope = factory.Services.CreateScope())
+        {
+            var db = scope.ServiceProvider.GetRequiredService<Agendamento.Api.Infrastructure.Persistence.AgendamentoDbContext>();
+            var user = await db.Users.SingleAsync(u => u.Email == email);
+            Assert.Single(await db.EmailVerificationTokens.Where(t => t.UserId == user.Id).ToListAsync());
+            db.EmailVerificationTokens.Add(EmailVerificationToken.Create(user.Id, rawToken, DateTimeOffset.UtcNow));
+            await db.SaveChangesAsync();
+        }
 
         var confirmResponse = await client.PostAsJsonAsync("/api/v1/auth/email-verifications", new { token = rawToken });
         Assert.Equal(HttpStatusCode.NoContent, confirmResponse.StatusCode);

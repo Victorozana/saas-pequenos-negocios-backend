@@ -1,0 +1,135 @@
+{
+  "ok": false,
+  "stats": {
+    "features": 15,
+    "stories": 57,
+    "acs": 94,
+    "acsWithTest": 90,
+    "acsProven": 90,
+    "assumptionsOpen": 1,
+    "questionsOpen": 0,
+    "principles": 5,
+    "errors": 18,
+    "warnings": 0
+  },
+  "findings": [
+    {
+      "code": "VERIFY_OBSOLETO",
+      "severity": "erro",
+      "message": "código/testes mudaram depois do último verify de cadastro-tenants — rode `onp-spec verify cadastro-tenants` de novo",
+      "feature": "cadastro-tenants"
+    },
+    {
+      "code": "VERIFY_OBSOLETO",
+      "severity": "erro",
+      "message": "código/testes mudaram depois do último verify de dashboard-relatorios-metricas — rode `onp-spec verify dashboard-relatorios-metricas` de novo",
+      "feature": "dashboard-relatorios-metricas"
+    },
+    {
+      "code": "VERIFY_OBSOLETO",
+      "severity": "erro",
+      "message": "código/testes mudaram depois do último verify de documentacao-readme-backend — rode `onp-spec verify documentacao-readme-backend` de novo",
+      "feature": "documentacao-readme-backend"
+    },
+    {
+      "code": "VERIFY_OBSOLETO",
+      "severity": "erro",
+      "message": "código/testes mudaram depois do último verify de fundacao-api-testes — rode `onp-spec verify fundacao-api-testes` de novo",
+      "feature": "fundacao-api-testes"
+    },
+    {
+      "code": "VERIFY_OBSOLETO",
+      "severity": "erro",
+      "message": "código/testes mudaram depois do último verify de gestao-agendamentos-ordens-servico — rode `onp-spec verify gestao-agendamentos-ordens-servico` de novo",
+      "feature": "gestao-agendamentos-ordens-servico"
+    },
+    {
+      "code": "VERIFY_OBSOLETO",
+      "severity": "erro",
+      "message": "código/testes mudaram depois do último verify de gestao-assinaturas-saas — rode `onp-spec verify gestao-assinaturas-saas` de novo",
+      "feature": "gestao-assinaturas-saas"
+    },
+    {
+      "code": "VERIFY_OBSOLETO",
+      "severity": "erro",
+      "message": "código/testes mudaram depois do último verify de gestao-clientes — rode `onp-spec verify gestao-clientes` de novo",
+      "feature": "gestao-clientes"
+    },
+    {
+      "code": "VERIFY_OBSOLETO",
+      "severity": "erro",
+      "message": "código/testes mudaram depois do último verify de gestao-equipe-permissoes — rode `onp-spec verify gestao-equipe-permissoes` de novo",
+      "feature": "gestao-equipe-permissoes"
+    },
+    {
+      "code": "VERIFY_OBSOLETO",
+      "severity": "erro",
+      "message": "código/testes mudaram depois do último verify de gestao-financeira-contas — rode `onp-spec verify gestao-financeira-contas` de novo",
+      "feature": "gestao-financeira-contas"
+    },
+    {
+      "code": "AC_SEM_TESTE",
+      "severity": "erro",
+      "message": "AC-206 (Edição permitida somente enquanto pendente) não tem nenhum teste anotado com @spec:AC-206",
+      "feature": "gestao-orcamentos-servicos",
+      "file": ".spec\\features\\gestao-orcamentos-servicos\\spec.md",
+      "line": 28
+    },
+    {
+      "code": "VERIFY_OBSOLETO",
+      "severity": "erro",
+      "message": "código/testes mudaram depois do último verify de gestao-orcamentos-servicos — rode `onp-spec verify gestao-orcamentos-servicos` de novo",
+      "feature": "gestao-orcamentos-servicos"
+    },
+    {
+      "code": "VERIFY_OBSOLETO",
+      "severity": "erro",
+      "message": "código/testes mudaram depois do último verify de identidade-acesso-inicial — rode `onp-spec verify identidade-acesso-inicial` de novo",
+      "feature": "identidade-acesso-inicial"
+    },
+    {
+      "code": "VERIFY_OBSOLETO",
+      "severity": "erro",
+      "message": "código/testes mudaram depois do último verify de isolamento-multitenancy — rode `onp-spec verify isolamento-multitenancy` de novo",
+      "feature": "isolamento-multitenancy"
+    },
+    {
+      "code": "US_SEM_AC",
+      "severity": "erro",
+      "message": "US-052 (Aviso de Fatura Vencida) sem critério de aceite",
+      "feature": "notificacoes-lembretes-whatsapp",
+      "file": ".spec\\features\\notificacoes-lembretes-whatsapp\\spec.md",
+      "line": 40
+    },
+    {
+      "code": "AC_SEM_TESTE",
+      "severity": "erro",
+      "message": "AC-097 (Serviço centralizado abstrai o provedor) não tem nenhum teste anotado com @spec:AC-097",
+      "feature": "notificacoes-lembretes-whatsapp",
+      "file": ".spec\\features\\notificacoes-lembretes-whatsapp\\spec.md",
+      "line": 16
+    },
+    {
+      "code": "AC_SEM_TESTE",
+      "severity": "erro",
+      "message": "AC-098 (Histórico vinculado ao tenant e cliente) não tem nenhum teste anotado com @spec:AC-098",
+      "feature": "notificacoes-lembretes-whatsapp",
+      "file": ".spec\\features\\notificacoes-lembretes-whatsapp\\spec.md",
+      "line": 22
+    },
+    {
+      "code": "AC_SEM_TESTE",
+      "severity": "erro",
+      "message": "AC-207 (Lembretes podem ser desativados por cliente) não tem nenhum teste anotado com @spec:AC-207",
+      "feature": "notificacoes-lembretes-whatsapp",
+      "file": ".spec\\features\\notificacoes-lembretes-whatsapp\\spec.md",
+      "line": 34
+    },
+    {
+      "code": "VERIFY_OBSOLETO",
+      "severity": "erro",
+      "message": "código/testes mudaram depois do último verify de notificacoes-lembretes-whatsapp — rode `onp-spec verify notificacoes-lembretes-whatsapp` de novo",
+      "feature": "notificacoes-lembretes-whatsapp"
+    }
+  ]
+}

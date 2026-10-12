@@ -1,35 +1,35 @@
 {
   "feature": "isolamento-multitenancy",
-  "timestamp": "2026-10-12T14:26:22.286Z",
-  "gitRev": "d79b630",
+  "timestamp": "2026-10-12T15:34:42.013Z",
+  "gitRev": "fb5836d",
   "command": "powershell -ExecutionPolicy Bypass -File scripts/verify-spec.ps1",
   "reporter": "jest-json",
   "exitCode": 0,
-  "testsParsed": 175,
+  "testsParsed": 198,
   "results": {
     "AC-028": {
       "status": "pass",
-      "testName": "PostgreSQL isola HTTP e EF e mantém cadastro e autenticação públicos explícitos @spec:AC-028 @spec:AC-029 @spec:AC-030 @spec:AC-031 @spec:AC-032 PostgreSQL isola HTTP e EF e mantém cadastro e autenticação públicos explícitos @spec:AC-028 @spec:AC-029 @spec:AC-030 @spec:AC-031 @spec:AC-032",
+      "testName": "Requisição sem sessão não acessa perfil privado @spec:AC-028 Requisição sem sessão não acessa perfil privado @spec:AC-028",
       "method": "jest-json"
     },
     "AC-029": {
       "status": "pass",
-      "testName": "PostgreSQL isola HTTP e EF e mantém cadastro e autenticação públicos explícitos @spec:AC-028 @spec:AC-029 @spec:AC-030 @spec:AC-031 @spec:AC-032 PostgreSQL isola HTTP e EF e mantém cadastro e autenticação públicos explícitos @spec:AC-028 @spec:AC-029 @spec:AC-030 @spec:AC-031 @spec:AC-032",
+      "testName": "Tenant externo em header ou query não substitui a sessão @spec:AC-029 @principle:P-003(useQuery: False) Tenant externo em header ou query não substitui a sessão @spec:AC-029 @principle:P-003(useQuery: False)",
       "method": "jest-json"
     },
     "AC-030": {
       "status": "pass",
-      "testName": "PostgreSQL isola HTTP e EF e mantém cadastro e autenticação públicos explícitos @spec:AC-028 @spec:AC-029 @spec:AC-030 @spec:AC-031 @spec:AC-032 PostgreSQL isola HTTP e EF e mantém cadastro e autenticação públicos explícitos @spec:AC-028 @spec:AC-029 @spec:AC-030 @spec:AC-031 @spec:AC-032",
+      "testName": "Consultas retornam somente registros da empresa autenticada @spec:AC-030 Consultas retornam somente registros da empresa autenticada @spec:AC-030",
       "method": "jest-json"
     },
     "AC-031": {
       "status": "pass",
-      "testName": "Alteração e exclusão de registro de outra empresa são rejeitadas @spec:AC-031 @spec:AC-032(delete: False, rewriteTenant: True) Alteração e exclusão de registro de outra empresa são rejeitadas @spec:AC-031 @spec:AC-032(delete: False, rewriteTenant: True)",
+      "testName": "Alteração e exclusão de registro de outra empresa são rejeitadas @spec:AC-031 @spec:AC-032(delete: True, rewriteTenant: True) Alteração e exclusão de registro de outra empresa são rejeitadas @spec:AC-031 @spec:AC-032(delete: True, rewriteTenant: True)",
       "method": "jest-json"
     },
     "AC-032": {
       "status": "pass",
-      "testName": "Alteração e exclusão de registro de outra empresa são rejeitadas @spec:AC-031 @spec:AC-032(delete: False, rewriteTenant: True) Alteração e exclusão de registro de outra empresa são rejeitadas @spec:AC-031 @spec:AC-032(delete: False, rewriteTenant: True)",
+      "testName": "Alteração e exclusão de registro de outra empresa são rejeitadas @spec:AC-031 @spec:AC-032(delete: True, rewriteTenant: True) Alteração e exclusão de registro de outra empresa são rejeitadas @spec:AC-031 @spec:AC-032(delete: True, rewriteTenant: True)",
       "method": "jest-json"
     },
     "AC-033": {
@@ -51,15 +51,15 @@
   "principles": {
     "P-005": {
       "status": "pass",
-      "testName": "Token de e-mail é armazenado somente como digest e expira em 24 horas @spec:AC-009 @principle:P-005 Token de e-mail é armazenado somente como digest e expira em 24 horas @spec:AC-009 @principle:P-005"
+      "testName": "Senhas nunca são recuperáveis @spec:AC-008 @principle:P-005 Senhas nunca são recuperáveis @spec:AC-008 @principle:P-005"
+    },
+    "P-003": {
+      "status": "pass",
+      "testName": "Tenant externo em header ou query não substitui a sessão @spec:AC-029 @principle:P-003(useQuery: False) Tenant externo em header ou query não substitui a sessão @spec:AC-029 @principle:P-003(useQuery: False)"
     },
     "P-004": {
       "status": "pass",
       "testName": "Papel restrito impede SQL direto entre tenants em todas as tabelas @spec:AC-033 @principle:P-004 Papel restrito impede SQL direto entre tenants em todas as tabelas @spec:AC-033 @principle:P-004"
-    },
-    "P-003": {
-      "status": "pass",
-      "testName": "@spec:AC-013 @principle:P-003 @principle:P-005 valid login emits only user_tenant_and_role @spec:AC-013 @principle:P-003 @principle:P-005 valid login emits only user_tenant_and_role"
     }
   }
 }
