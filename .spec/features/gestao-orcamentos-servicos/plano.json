@@ -1,12 +1,12 @@
 {
-  "runId": "saas-pequenos-negocios-backend-gestao-orcamentos-servicos-mv61ijdf",
+  "runId": "saas-pequenos-negocios-backend-gestao-orcamentos-servicos-mv6zk547",
   "feature": "gestao-orcamentos-servicos",
   "agent": "codex",
   "modo": "sequencial",
   "paralelizar": null,
   "modeloForcado": null,
   "esforcoForcado": null,
-  "geradoEm": "2026-10-13 02:06",
+  "geradoEm": "2026-10-13 17:59",
   "branchTrabalho": "spec/gestao-orcamentos-servicos",
   "baseDir": ".spec/features/gestao-orcamentos-servicos",
   "specDir": ".spec",
@@ -15,20 +15,6 @@
   "ondas": [],
   "faixas": [],
   "sequenciais": [
-    {
-      "id": "T-089",
-      "titulo": "Mapeamento EF Core para Orçamentos",
-      "modelo": "gpt-5.6-terra",
-      "esforco": "medium",
-      "arquivos": [
-        "src/Agendamento.Api/Infrastructure/Persistence/Configurations/QuotationConfiguration.cs",
-        "src/Agendamento.Api/Infrastructure/Persistence/AgendamentoDbContext.cs"
-      ],
-      "refs": [
-        "US-045",
-        "AC-092"
-      ]
-    },
     {
       "id": "T-090",
       "titulo": "Endpoints de Gestão de Orçamentos",
@@ -194,6 +180,7 @@
   ],
   "concluidas": [
     "T-088",
+    "T-089",
     "T-031",
     "T-103"
   ],

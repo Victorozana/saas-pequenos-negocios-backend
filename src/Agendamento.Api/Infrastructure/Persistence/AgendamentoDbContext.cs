@@ -40,6 +40,16 @@ public class AgendamentoDbContext : DbContext
         modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
 
         modelBuilder.Entity<Agendamento.Api.Domain.Quotations.QuotationItem>().Property<Guid>("TenantId").IsRequired();
+        // Manual items retain a null reference; catalogue links must belong to
+        // the item's tenant, including writes made outside application handlers.
+        modelBuilder.Entity<Agendamento.Api.Domain.Quotations.QuotationItem>()
+            .HasOne<Agendamento.Api.Domain.Services.ServiceItem>().WithMany()
+            .HasForeignKey("TenantId", "ServiceItemId")
+            .HasPrincipalKey("TenantId", "Id")
+            .OnDelete(DeleteBehavior.Restrict);
+        modelBuilder.Entity<Agendamento.Api.Domain.Quotations.QuotationItem>()
+            .HasQueryFilter(item => _tenantContext.HasTenant
+                && EF.Property<Guid>(item, "TenantId") == _tenantContext.TenantId);
         foreach (var entityType in modelBuilder.Model.GetEntityTypes())
         {
             if (typeof(Agendamento.Domain.Common.ITenantOwned).IsAssignableFrom(entityType.ClrType))

@@ -1,25 +1,25 @@
 {
   "feature": "contrato-openapi-swagger",
-  "timestamp": "2026-10-13T01:50:26.507Z",
-  "gitRev": "977d415",
+  "timestamp": "2026-10-13T17:42:01.756Z",
+  "gitRev": "dff01ae",
   "command": "powershell -ExecutionPolicy Bypass -File scripts/verify-spec.ps1",
   "reporter": "jest-json",
   "exitCode": 0,
-  "testsParsed": 321,
+  "testsParsed": 360,
   "results": {
     "AC-036": {
       "status": "pass",
-      "testName": "Health público declara texto real de sucesso e indisponibilidade sem detalhes internos @spec:AC-036 @spec:AC-037 Health público declara texto real de sucesso e indisponibilidade sem detalhes internos @spec:AC-036 @spec:AC-037",
+      "testName": "Documento canônico em /openapi/v1.json é exposto @spec:AC-036 Documento canônico em /openapi/v1.json é exposto @spec:AC-036",
       "method": "jest-json"
     },
     "AC-037": {
       "status": "pass",
-      "testName": "CNPJ HTTP distingue sucesso e falhas, com mídia e schema correspondentes @spec:AC-037(cnpj: \"00000000000191\", status: 503, outcome: \"unavailable\") CNPJ HTTP distingue sucesso e falhas, com mídia e schema correspondentes @spec:AC-037(cnpj: \"00000000000191\", status: 503, outcome: \"unavailable\")",
+      "testName": "PDF e CSV provam mídia, bytes, download, contrato e isolamento @spec:AC-037 PDF e CSV provam mídia, bytes, download, contrato e isolamento @spec:AC-037",
       "method": "jest-json"
     },
     "AC-038": {
       "status": "pass",
-      "testName": "Onboarding completo sem token na resposta em qualquer ambiente @spec:AC-021 @spec:AC-038 @spec:AC-100 @principle:P-005(environment: \"Development\") Onboarding completo sem token na resposta em qualquer ambiente @spec:AC-021 @spec:AC-038 @spec:AC-100 @principle:P-005(environment: \"Development\")",
+      "testName": "Lista e detalhe HTTP mascaram CPF, preservam CNPJ e permitem editar sem reenviar documento @spec:AC-038 @principle:P-005 Lista e detalhe HTTP mascaram CPF, preservam CNPJ e permitem editar sem reenviar documento @spec:AC-038 @principle:P-005",
       "method": "jest-json"
     },
     "AC-039": {
@@ -36,11 +36,11 @@
   "principles": {
     "P-005": {
       "status": "pass",
-      "testName": "Token de e-mail é armazenado somente como digest e expira em 24 horas @spec:AC-009 @principle:P-005 Token de e-mail é armazenado somente como digest e expira em 24 horas @spec:AC-009 @principle:P-005"
+      "testName": "Senhas nunca são recuperáveis @spec:AC-008 @principle:P-005 Senhas nunca são recuperáveis @spec:AC-008 @principle:P-005"
     },
     "P-003": {
       "status": "pass",
-      "testName": "Tenant externo em header ou query não substitui a sessão @spec:AC-029 @principle:P-003(useQuery: False) Tenant externo em header ou query não substitui a sessão @spec:AC-029 @principle:P-003(useQuery: False)"
+      "testName": "Tenant externo no body não muda a empresa do cliente criado @spec:AC-029 @principle:P-003 Tenant externo no body não muda a empresa do cliente criado @spec:AC-029 @principle:P-003"
     },
     "P-004": {
       "status": "pass",

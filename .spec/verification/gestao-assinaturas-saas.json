@@ -1,11 +1,11 @@
 {
   "feature": "gestao-assinaturas-saas",
-  "timestamp": "2026-10-13T01:55:48.546Z",
-  "gitRev": "977d415",
+  "timestamp": "2026-10-13T17:48:45.936Z",
+  "gitRev": "dff01ae",
   "command": "powershell -ExecutionPolicy Bypass -File scripts/verify-spec.ps1",
   "reporter": "jest-json",
   "exitCode": 0,
-  "testsParsed": 321,
+  "testsParsed": 360,
   "results": {
     "AC-201": {
       "status": "pass",
@@ -14,7 +14,7 @@
     },
     "AC-204": {
       "status": "pass",
-      "testName": "Acesso de escrita não bloqueado se PastDue dentro da carência @spec:AC-204 Acesso de escrita não bloqueado se PastDue dentro da carência @spec:AC-204",
+      "testName": "Acesso de escrita bloqueado se PastDue e expirou carência @spec:AC-204 Acesso de escrita bloqueado se PastDue e expirou carência @spec:AC-204",
       "method": "jest-json"
     },
     "AC-205": {
@@ -38,13 +38,13 @@
       "status": "pass",
       "testName": "Senhas nunca são recuperáveis @spec:AC-008 @principle:P-005 Senhas nunca são recuperáveis @spec:AC-008 @principle:P-005"
     },
-    "P-003": {
-      "status": "pass",
-      "testName": "Tenant externo em header ou query não substitui a sessão @spec:AC-029 @principle:P-003(useQuery: True) Tenant externo em header ou query não substitui a sessão @spec:AC-029 @principle:P-003(useQuery: True)"
-    },
     "P-004": {
       "status": "pass",
       "testName": "Papel restrito impede SQL direto entre tenants em todas as tabelas @spec:AC-033 @principle:P-004 Papel restrito impede SQL direto entre tenants em todas as tabelas @spec:AC-033 @principle:P-004"
+    },
+    "P-003": {
+      "status": "pass",
+      "testName": "Tenant externo no body não muda a empresa do cliente criado @spec:AC-029 @principle:P-003 Tenant externo no body não muda a empresa do cliente criado @spec:AC-029 @principle:P-003"
     }
   }
 }

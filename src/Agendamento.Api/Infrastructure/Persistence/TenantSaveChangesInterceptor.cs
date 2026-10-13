@@ -37,6 +37,35 @@ public sealed class TenantSaveChangesInterceptor : SaveChangesInterceptor
         var allowedTenantId = newTenantEntry?.Entity.Id 
             ?? (_tenantContext.HasTenant ? _tenantContext.TenantId : Guid.Empty);
 
+        // Table-split deposit updates may leave the quotation itself Unchanged.
+        // Validate its tracked owner rather than treating that as an unguarded write.
+        foreach (var entry in context.ChangeTracker.Entries<Agendamento.Api.Domain.Quotations.DepositInfo>()
+            .Where(e => e.State is EntityState.Added or EntityState.Modified or EntityState.Deleted))
+        {
+            var ownership = entry.Metadata.FindOwnership()!;
+            var quotationId = (Guid)entry.Property(ownership.Properties.Single().Name).CurrentValue!;
+            var owner = context.ChangeTracker.Entries<Agendamento.Api.Domain.Quotations.Quotation>()
+                .SingleOrDefault(e => e.Entity.Id == quotationId);
+            if ((!_tenantContext.HasTenant && !isRegisteringNewTenant) || owner == null
+                || owner.Entity.TenantId != allowedTenantId
+                || (owner.State != EntityState.Added
+                    && owner.Property(e => e.TenantId).OriginalValue != allowedTenantId))
+                throw new InvalidOperationException("Divergência de TenantId do sinal de orçamento detectada durante o salvamento.");
+        }
+
+        // Quotation items can be tracked independently of their aggregate. Their
+        // shadow tenant must receive the same write barrier as the owner.
+        foreach (var entry in context.ChangeTracker.Entries<Agendamento.Api.Domain.Quotations.QuotationItem>()
+            .Where(e => e.State is EntityState.Added or EntityState.Modified or EntityState.Deleted))
+        {
+            var tenant = entry.Property<Guid>("TenantId");
+            if ((!_tenantContext.HasTenant && !isRegisteringNewTenant)
+                || (entry.State != EntityState.Added && tenant.OriginalValue != allowedTenantId)
+                || (tenant.CurrentValue != Guid.Empty && tenant.CurrentValue != allowedTenantId)
+                || (entry.State != EntityState.Added && tenant.CurrentValue != allowedTenantId))
+                throw new InvalidOperationException("Divergência de TenantId do item de orçamento detectada durante o salvamento.");
+        }
+
         foreach (var entry in context.ChangeTracker.Entries().Where(e =>
             e.Metadata.FindProperty("TenantId")?.IsShadowProperty() == true && e.State == EntityState.Added))
             entry.Property("TenantId").CurrentValue = allowedTenantId;

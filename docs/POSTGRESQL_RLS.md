@@ -99,3 +99,22 @@ Esta migration e AddCustomerAutomaticReminderPreference são necessárias antes 
 a versão nova contra agendamento_local. Nenhuma delas foi aplicada ao banco de trabalho
 nesta tarefa. A API preexistente PID 27004/porta 5050 é preservada; não reiniciar essa API
 com a versão nova enquanto o rollout dessas migrations estiver pendente.
+
+## Integridade do catálogo nos itens de orçamento — T-089 — 13/10/2026
+
+A migration `20261013173339_EnforceQuotationCatalogTenantReference` acrescenta chave alternativa
+ServiceItems(tenant_id, Id), índice QuotationItem(tenant_id, ServiceItemId) e FK composta com
+Restrict. ServiceItemId nullable continua permitindo itens avulsos; referências externas ou
+inexistentes são recusadas. Catálogo referenciado não pode ser excluído; desativação permanece
+permitida. Não muda policies/grants RLS nem suas FKs compostas históricas de cliente/agregado.
+
+Upgrade de dados válidos foi provado em base temporária exclusiva, comparando todos os campos
+de orçamentos/itens antes/depois. Legado externo ou órfão causa falha transacional sem alterar
+linhas nem histórico de migrations; não há correção ou limpeza automática de dados antigos.
+Filtros EF de itens e guarda de gravação de itens/sinal owned complementam RLS real; owned
+usa a mesma linha do orçamento. Provas próprias em QuotationMappingTests/QuotationPersistenceTests.
+
+Esta migration NÃO foi aplicada a agendamento_local nesta tarefa. Permanecem também não
+aplicadas AddCustomerAutomaticReminderPreference e AddDailyReceivableReminderDeduplication.
+Não iniciar a versão nova nesse banco nem aplicar migrations sem pedido explícito de rollout.
+Banco, cadastros e credenciais de trabalho, processos do usuário e backup runtime-repair preservados.

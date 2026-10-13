@@ -373,3 +373,47 @@ Novos testes focados: 53 PASS unitários e duas provas HTTP/InMemory/PostgreSQL 
 Q-022 pergunta necessária: AC-093 exige recusar aprovação/rejeição repetidas, mas handler aceita aprovação idempotente de Approved/Converted sem duplicar recebíveis. Domínio continua estrito. Usuário respondeu Q-022: documentar exceção idempotente para aprovação pública repetida, mantendo rejeições repetidas bloqueadas. AC-093 atualizado, idempotência preservada. As 15 features renovadas tiveram motor=0/record.exitCode=0, 321 resultados (315 PASS, zero falhas, seis skips históricos). T-088 concluída após revisão/provas/audit --ci exit0 (95/95, zero erros/avisos), com relatório final .spec/audit-t088.json; tarefas T-089 a T-092 e T-032 a T-037 permanecem pendentes.
 
 Sem commit/push/deploy, executor headless, alterações no banco/segredos/cadastros de trabalho, nova migration ou processo na porta5050. Backup runtime-repair preservado. AddCustomerAutomaticReminderPreference e AddDailyReceivableReminderDeduplication continuam NÃO aplicadas a agendamento_local; não iniciar versão nova nesse banco. Sem entrega real WhatsApp/e-mail nem telas financeiro/equipe.
+
+## Mapeamento EF Core de orçamentos — T-089 — 13/10/2026
+
+Retomada manual no backend main/dff01ae e frontend master/3d8b597; modelo/esforço atuais,
+auxiliares herdados autorizados. AGENTS/skill/contexto/RLS/revisões T-031/T-088/spec/design/tasks
+lidos. Alterações locais, cinco obj, frontend .codex-checks/schema, sinais/relatórios/evidências
+anteriores e backup runtime-repair preservados. Sem commit/push/deploy, executor headless,
+processo na porta5050 ou alterações de banco/cadastros/credenciais de trabalho.
+
+T-089 concluída após revisão própria do modelo efetivo e roundtrip integral. Corrigidos filtro
+EF de QuotationItem shadow tenant, guarda sync/async de itens Added/Modified/Deleted e guarda
+owned DepositInfo mesmo com Quotation Unchanged (valida owner/tenant original/current).
+Coleção usa explicitamente backing field. Domínio/estados/regras monetárias/RequiredAmount,
+permissões/CPF, concorrência financeira/notificações/PDF serial e contrato HTTP preservados.
+
+Lacuna física real: catálogo só era validado pelos handlers, sem FK. Nova migration
+20261013173339_EnforceQuotationCatalogTenantReference acrescenta AK ServiceItems(tenant_id,Id),
+índice e FK composta de item/catalogo Restrict; ServiceItemId null continua avulso. Upgrade
+válido preserva todos os campos; externo/órfão causa rollback de dados/history, sem limpeza.
+Status enum e itens numeric sem typmod continuam históricos; domínio valida dinheiro/quantidade.
+Snapshot consistente, HasPendingModelChanges=false; FKs compostas cliente/agregado históricas
+instaladas por SQL examinadas separadamente do modelo. Ver .spec/revisao-t089.md e design.md.
+
+32 provas metadata/EF/guardas e sete PostgreSQL reais novas PASS/exit0, zero skips/falhas.
+Bases e logins restritos exclusivos; roundtrip inclui todos estados/campos, sinal null/zero/pago,
+teto monetário, coleção após materialização, EF/RLS/IgnoreQueryFilters/SQL, vínculos externos,
+NOTNULL sem RLS mascarar prova, unicidade, cascade/restrict e migrations válidas/inválidas.
+Primeira regressão motor0/record1 foi recusada (10 falhas de fixtures InMemory sem guarda).
+Somente preparação das fixtures foi corrigida; TODAS asserções/filtros preservados. Falhas e
+logs/TRX/JSON completos mantidos em .local-verification/t089/failed-global-01 e rodadas focadas.
+
+Renovação final das 15 features: motor0/record.exitCode0 em todas, 360 resultados por execução,
+354 PASS, zero falhas e seis skips antigos; provas em .local-verification/t089/certified.
+Audit --ci exit0, 95/95 critérios provados, zero erros/avisos (.spec/audit-t089.json).
+T-090 a T-092 e T-032 a T-037 permanecem PENDENTES; T-031/T-088/T-103 continuam concluídas.
+T-032 tem sobreposição, mas sua revisão própria catálogo/migrations/AC-045 não está encerrada.
+Concorrência integral da conversão permanece sem certificação por T-089. Plano sequencial para
+nove tarefas regenerado somente como artefato; executor não iniciado/modelos históricos ignorados.
+
+AddCustomerAutomaticReminderPreference, AddDailyReceivableReminderDeduplication e a nova
+EnforceQuotationCatalogTenantReference NÃO foram aplicadas a agendamento_local. Não iniciar
+esta versão nem aplicar migrations nesse banco sem rollout autorizado/revisão do legado.
+Frontend e schema intactos; HTTP/OpenAPI não mudou, sem regeneração necessária. Nenhuma entrega
+real WhatsApp/e-mail ou tela financeiro/equipe. Próxima tarefa deve receber revisão própria.

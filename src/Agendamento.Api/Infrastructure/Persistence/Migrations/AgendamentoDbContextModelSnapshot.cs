@@ -379,6 +379,8 @@ namespace Agendamento.Api.Infrastructure.Persistence.Migrations
 
                     b.HasIndex("TenantId");
 
+                    b.HasIndex("TenantId", "ServiceItemId");
+
                     b.ToTable("QuotationItem");
                 });
 
@@ -1203,6 +1205,12 @@ namespace Agendamento.Api.Infrastructure.Persistence.Migrations
                         .HasForeignKey("TenantId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
+
+                    b.HasOne("Agendamento.Api.Domain.Services.ServiceItem", null)
+                        .WithMany()
+                        .HasForeignKey("TenantId", "ServiceItemId")
+                        .HasPrincipalKey("TenantId", "Id")
+                        .OnDelete(DeleteBehavior.Restrict);
                 });
 
             modelBuilder.Entity("Agendamento.Api.Domain.Services.ServiceItem", b =>

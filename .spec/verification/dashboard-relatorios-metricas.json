@@ -1,11 +1,11 @@
 {
   "feature": "dashboard-relatorios-metricas",
-  "timestamp": "2026-10-13T01:51:30.339Z",
-  "gitRev": "977d415",
+  "timestamp": "2026-10-13T17:43:21.500Z",
+  "gitRev": "dff01ae",
   "command": "powershell -ExecutionPolicy Bypass -File scripts/verify-spec.ps1",
   "reporter": "jest-json",
   "exitCode": 0,
-  "testsParsed": 321,
+  "testsParsed": 360,
   "results": {
     "AC-065": {
       "status": "pass",
@@ -36,15 +36,15 @@
   "principles": {
     "P-005": {
       "status": "pass",
-      "testName": "Senhas nunca são recuperáveis @spec:AC-008 @principle:P-005 Senhas nunca são recuperáveis @spec:AC-008 @principle:P-005"
-    },
-    "P-003": {
-      "status": "pass",
-      "testName": "Tenant externo no body não muda a empresa do cliente criado @spec:AC-029 @principle:P-003 Tenant externo no body não muda a empresa do cliente criado @spec:AC-029 @principle:P-003"
+      "testName": "Token de e-mail é armazenado somente como digest e expira em 24 horas @spec:AC-009 @principle:P-005 Token de e-mail é armazenado somente como digest e expira em 24 horas @spec:AC-009 @principle:P-005"
     },
     "P-004": {
       "status": "pass",
       "testName": "Papel restrito impede SQL direto entre tenants em todas as tabelas @spec:AC-033 @principle:P-004 Papel restrito impede SQL direto entre tenants em todas as tabelas @spec:AC-033 @principle:P-004"
+    },
+    "P-003": {
+      "status": "pass",
+      "testName": "Tenant externo em header ou query não substitui a sessão @spec:AC-029 @principle:P-003(useQuery: True) Tenant externo em header ou query não substitui a sessão @spec:AC-029 @principle:P-003(useQuery: True)"
     }
   }
 }

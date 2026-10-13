@@ -6,10 +6,10 @@
 - Notas: Revisão própria Draft/Pending, associação obrigatória, coleção, todas as transições e recusas sem mutação. Q-022 respondida: AC-093 documenta exceção idempotente de aprovação pública repetida, preservando fluxo financeiro e bloqueando rejeições repetidas. Provas e fechamento em .spec/revisao-t088.md; T-089 a T-092 e T-032 a T-037 não certificadas automaticamente.
 - Regra: Criar entidade de domínio `Quotation` associada ao `CustomerId` e `TenantId` com lista de itens (`QuotationItem`). Adicionar `QuotationStatus` (`Pendente`, `Aprovado`, `Rejeitado`).
 
-## T-089 — Mapeamento EF Core para Orçamentos [pendente]
-
+## T-089 — Mapeamento EF Core para Orçamentos [concluida]
 - Refs: US-045, AC-092
-- Arquivos: src/Agendamento.Api/Infrastructure/Persistence/Configurations/QuotationConfiguration.cs, src/Agendamento.Api/Infrastructure/Persistence/AgendamentoDbContext.cs
+- Arquivos: src/Agendamento.Api/Infrastructure/Persistence/Configurations/QuotationConfiguration.cs, src/Agendamento.Api/Infrastructure/Persistence/AgendamentoDbContext.cs, src/Agendamento.Api/Infrastructure/Persistence/TenantSaveChangesInterceptor.cs, src/Agendamento.Api/Infrastructure/Persistence/Migrations/20261013173339_EnforceQuotationCatalogTenantReference.cs, src/Agendamento.Api/Infrastructure/Persistence/Migrations/20261013173339_EnforceQuotationCatalogTenantReference.Designer.cs, src/Agendamento.Api/Infrastructure/Persistence/Migrations/AgendamentoDbContextModelSnapshot.cs, tests/Agendamento.IntegrationTests/Quotations/QuotationMappingTests.cs, tests/Agendamento.IntegrationTests/Quotations/QuotationPersistenceTests.cs, tests/Agendamento.IntegrationTests/Features/TeamFinancialHttpTests.cs, tests/Agendamento.UnitTests/Quotations/QuotationStatusAtomicityTests.cs
+- Notas: Revisão própria do modelo efetivo, roundtrip integral, filtros e guardas de itens/sinal, integridade e RLS em PostgreSQL exclusivo. FK composta do catálogo corrige lacuna real; migration não aplicada ao banco de trabalho. T-032 inclui catálogo/migrations como escopo próprio e permanece pendente, assim como T-090 a T-092 e T-033 a T-037.
 - Regra: Mapear as entidades e configurar o `IsTenantOwned`.
 
 ## T-090 — Endpoints de Gestão de Orçamentos [pendente]

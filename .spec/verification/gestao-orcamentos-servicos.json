@@ -1,11 +1,11 @@
 {
   "feature": "gestao-orcamentos-servicos",
-  "timestamp": "2026-10-13T02:00:09.046Z",
-  "gitRev": "977d415",
+  "timestamp": "2026-10-13T17:54:03.680Z",
+  "gitRev": "dff01ae",
   "command": "powershell -ExecutionPolicy Bypass -File scripts/verify-spec.ps1",
   "reporter": "jest-json",
   "exitCode": 0,
-  "testsParsed": 321,
+  "testsParsed": 360,
   "results": {
     "AC-090": {
       "status": "pass",
@@ -14,7 +14,7 @@
     },
     "AC-092": {
       "status": "pass",
-      "testName": "Agregado publicado Pending exige cliente, itens e tenant e preserva recusas HTTP @spec:AC-090 @spec:AC-092 Agregado publicado Pending exige cliente, itens e tenant e preserva recusas HTTP @spec:AC-090 @spec:AC-092",
+      "testName": "Guarda de itens bloqueia atualização/exclusão foreign e adulteração antes de qualquer gravação @spec:AC-092(asynchronous: True, delete: False, rewriteTenant: True) Guarda de itens bloqueia atualização/exclusão foreign e adulteração antes de qualquer gravação @spec:AC-092(asynchronous: True, delete: False, rewriteTenant: True)",
       "method": "jest-json"
     },
     "AC-206": {
@@ -34,7 +34,7 @@
     },
     "AC-045": {
       "status": "pass",
-      "testName": "Tenant obrigatório e atualização inválida do catálogo preserva conteúdo @spec:AC-045 Tenant obrigatório e atualização inválida do catálogo preserva conteúdo @spec:AC-045",
+      "testName": "ServiceItem e Quotation implementam ITenantOwned com TenantId @spec:AC-045 ServiceItem e Quotation implementam ITenantOwned com TenantId @spec:AC-045",
       "method": "jest-json"
     },
     "AC-049": {
@@ -54,7 +54,7 @@
     },
     "AC-048": {
       "status": "pass",
-      "testName": "Matriz de transições conserva agregado em cada recusa e conteúdo nas transições válidas @spec:AC-048(source: Approved, operation: \"pending\") Matriz de transições conserva agregado em cada recusa e conteúdo nas transições válidas @spec:AC-048(source: Approved, operation: \"pending\")",
+      "testName": "Matriz de transições conserva agregado em cada recusa e conteúdo nas transições válidas @spec:AC-048(source: Pending, operation: \"convert\") Matriz de transições conserva agregado em cada recusa e conteúdo nas transições válidas @spec:AC-048(source: Pending, operation: \"convert\")",
       "method": "jest-json"
     }
   },
@@ -65,7 +65,7 @@
     },
     "P-003": {
       "status": "pass",
-      "testName": "Tenant externo em header ou query não substitui a sessão @spec:AC-029 @principle:P-003(useQuery: False) Tenant externo em header ou query não substitui a sessão @spec:AC-029 @principle:P-003(useQuery: False)"
+      "testName": "@spec:AC-013 @principle:P-003 @principle:P-005 valid login emits only user_tenant_and_role @spec:AC-013 @principle:P-003 @principle:P-005 valid login emits only user_tenant_and_role"
     },
     "P-004": {
       "status": "pass",

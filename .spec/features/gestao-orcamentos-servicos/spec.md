@@ -25,6 +25,8 @@ Para enviar uma estimativa de custos formalizada.
 - **Quando** um usuário tenta acessá-lo ou alterá-lo
 - **Então** o acesso e a alteração são negados.
 
+O isolamento inclui consultas diretas de QuotationItem, alterações/exclusões de itens e alterações apenas no sinal owned. Filtros EF e guarda de gravação complementam RLS; remover filtros EF não remove a proteção PostgreSQL. Cliente é obrigatório e catálogo é opcional para itens avulsos; referências existentes devem pertencer ao mesmo tenant, incluindo integridade referencial física.
+
 #### AC-206 — Edição permitida somente enquanto pendente
 
 - **Dado** um orçamento já enviado ao cliente
@@ -151,3 +153,7 @@ Quotation.Create monta um Draft interno com TenantId/CustomerId não vazios e co
 O domínio permite Draft → Pending com itens; Pending válido → Approved; Pending → Rejected; Approved → Converted. CheckExpiration somente altera Pending vencido para Expired, usando a data UTC e limite estrito anterior a hoje. Cancel mantém a política histórica: Draft/Pending/Expired → Canceled e repetição Canceled sem mudança; Approved/Rejected/Converted recusam cancelamento. Edição completa somente Pending permanece em T-103; montagem item/sinal somente Draft.
 
 O handler bloqueia decisões em Pending vencido antes de mutar o agregado rastreado; cancelamento continua permitido. A divergência entre AC-093 e a aprovação repetida idempotente em Approved/Converted foi resolvida pelo usuário em Q-022: a exceção pública é permitida, sem alteração ou duplicação financeira/OS. Provas antigas da rejeição de Converted não certificam todas as decisões repetidas; os novos testes HTTP/PostgreSQL exercitam a exceção e as recusas. T-089 a T-092 e T-032 a T-037 permanecem pendentes de revisão própria.
+
+## Fechamento T-089 — 13/10/2026
+
+Mapeamento revisado e provado por 32 testes EF/metadata/guardas e sete PostgreSQL exclusivos, incluindo upgrade válido preservado e inválido transacional. Correções de filtros/guardas de dependentes e FK composta catálogo em design.md/.spec/revisao-t089.md. T-089 concluída; T-090 a T-092 e T-032 a T-037 permanecem pendentes. Renovação das 15 features: motor0/record.exitCode0, 354 PASS/zero falhas/seis skips antigos por execução (360 resultados). Gate final em .spec/audit-t089.json. Migração nova não aplicada ao banco de trabalho; contrato HTTP/schema frontend preservados.

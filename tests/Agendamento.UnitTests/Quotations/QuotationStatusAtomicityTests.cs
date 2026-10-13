@@ -53,9 +53,13 @@ public class QuotationStatusAtomicityTests
         Assert.Empty(await db.ReceivableTitles.ToListAsync());
     }
 
-    private static AgendamentoDbContext CreateContext() => new(
-        new DbContextOptionsBuilder<AgendamentoDbContext>().UseInMemoryDatabase(Guid.NewGuid().ToString()).Options,
-        new TenantContext());
+    private static AgendamentoDbContext CreateContext()
+    {
+        var tenant = new TenantContext();
+        return new(new DbContextOptionsBuilder<AgendamentoDbContext>()
+            .UseInMemoryDatabase(Guid.NewGuid().ToString())
+            .AddInterceptors(new TenantSaveChangesInterceptor(tenant)).Options, tenant);
+    }
 
     private static Quotation ExpiredPending(AgendamentoDbContext db)
     {

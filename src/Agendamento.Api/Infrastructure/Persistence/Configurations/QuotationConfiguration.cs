@@ -50,6 +50,8 @@ public class QuotationConfiguration : IEntityTypeConfiguration<Quotation>
             .HasForeignKey(i => i.QuotationId)
             .OnDelete(DeleteBehavior.Cascade);
 
+        builder.Navigation(q => q.Items).UsePropertyAccessMode(PropertyAccessMode.Field);
+
         // Isolamento Multi-Tenancy (Row Level Security / EF Query Filter configurado em AgendamentoDbContext)
 
         // Índices

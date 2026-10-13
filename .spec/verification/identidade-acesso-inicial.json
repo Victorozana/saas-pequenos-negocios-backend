@@ -1,11 +1,11 @@
 {
   "feature": "identidade-acesso-inicial",
-  "timestamp": "2026-10-13T02:01:14.309Z",
-  "gitRev": "977d415",
+  "timestamp": "2026-10-13T17:55:19.911Z",
+  "gitRev": "dff01ae",
   "command": "powershell -ExecutionPolicy Bypass -File scripts/verify-spec.ps1",
   "reporter": "jest-json",
   "exitCode": 0,
-  "testsParsed": 321,
+  "testsParsed": 360,
   "results": {
     "AC-007": {
       "status": "pass",
@@ -29,7 +29,7 @@
     },
     "AC-011": {
       "status": "pass",
-      "testName": "Token vencido não pode ser consumido @spec:AC-011 Token vencido não pode ser consumido @spec:AC-011",
+      "testName": "Token inválido, adulterado ou vencido não verifica o e-mail @spec:AC-011(submittedToken: \"missing-token\") Token inválido, adulterado ou vencido não verifica o e-mail @spec:AC-011(submittedToken: \"missing-token\")",
       "method": "jest-json"
     },
     "AC-012": {
@@ -50,7 +50,7 @@
     },
     "P-003": {
       "status": "pass",
-      "testName": "Tenant externo em header ou query não substitui a sessão @spec:AC-029 @principle:P-003(useQuery: False) Tenant externo em header ou query não substitui a sessão @spec:AC-029 @principle:P-003(useQuery: False)"
+      "testName": "Tenant externo em header ou query não substitui a sessão @spec:AC-029 @principle:P-003(useQuery: True) Tenant externo em header ou query não substitui a sessão @spec:AC-029 @principle:P-003(useQuery: True)"
     },
     "P-004": {
       "status": "pass",

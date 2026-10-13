@@ -1,11 +1,11 @@
 {
   "feature": "fundacao-api-testes",
-  "timestamp": "2026-10-13T01:53:40.652Z",
-  "gitRev": "977d415",
+  "timestamp": "2026-10-13T17:46:01.440Z",
+  "gitRev": "dff01ae",
   "command": "powershell -ExecutionPolicy Bypass -File scripts/verify-spec.ps1",
   "reporter": "jest-json",
   "exitCode": 0,
-  "testsParsed": 321,
+  "testsParsed": 360,
   "results": {
     "AC-001": {
       "status": "pass",
@@ -41,7 +41,7 @@
   "principles": {
     "P-005": {
       "status": "pass",
-      "testName": "Token de e-mail é armazenado somente como digest e expira em 24 horas @spec:AC-009 @principle:P-005 Token de e-mail é armazenado somente como digest e expira em 24 horas @spec:AC-009 @principle:P-005"
+      "testName": "Senhas nunca são recuperáveis @spec:AC-008 @principle:P-005 Senhas nunca são recuperáveis @spec:AC-008 @principle:P-005"
     },
     "P-003": {
       "status": "pass",

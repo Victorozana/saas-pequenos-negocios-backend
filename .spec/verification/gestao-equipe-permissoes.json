@@ -1,15 +1,15 @@
 {
   "feature": "gestao-equipe-permissoes",
-  "timestamp": "2026-10-13T01:57:57.817Z",
-  "gitRev": "977d415",
+  "timestamp": "2026-10-13T17:51:27.604Z",
+  "gitRev": "dff01ae",
   "command": "powershell -ExecutionPolicy Bypass -File scripts/verify-spec.ps1",
   "reporter": "jest-json",
   "exitCode": 0,
-  "testsParsed": 321,
+  "testsParsed": 360,
   "results": {
     "AC-070": {
       "status": "pass",
-      "testName": "Perfil completo do usuário com permissões explícitas @spec:AC-070 Perfil completo do usuário com permissões explícitas @spec:AC-070",
+      "testName": "Perfil HTTP não expõe credenciais @spec:AC-070 Perfil HTTP não expõe credenciais @spec:AC-070",
       "method": "jest-json"
     },
     "AC-071": {
@@ -19,7 +19,7 @@
     },
     "AC-072": {
       "status": "pass",
-      "testName": "Equipe isolada e último owner_admin protegido @spec:AC-072 @spec:AC-073 Equipe isolada e último owner_admin protegido @spec:AC-072 @spec:AC-073",
+      "testName": "Isolamento multi-tenant na gestão de membros @spec:AC-072 Isolamento multi-tenant na gestão de membros @spec:AC-072",
       "method": "jest-json"
     },
     "AC-073": {
@@ -29,12 +29,12 @@
     },
     "AC-074": {
       "status": "pass",
-      "testName": "PostgreSQL persiste aprovação, pagamentos e aceite público @spec:AC-094 @spec:AC-074 @spec:AC-075 @spec:AC-095 PostgreSQL persiste aprovação, pagamentos e aceite público @spec:AC-094 @spec:AC-074 @spec:AC-075 @spec:AC-095",
+      "testName": "Geração de convite único e expirável em 7 dias @spec:AC-074 Geração de convite único e expirável em 7 dias @spec:AC-074",
       "method": "jest-json"
     },
     "AC-075": {
       "status": "pass",
-      "testName": "PostgreSQL persiste aprovação, pagamentos e aceite público @spec:AC-094 @spec:AC-074 @spec:AC-075 @spec:AC-095 PostgreSQL persiste aprovação, pagamentos e aceite público @spec:AC-094 @spec:AC-074 @spec:AC-075 @spec:AC-095",
+      "testName": "Aceite de convite e definição de senha @spec:AC-075 Aceite de convite e definição de senha @spec:AC-075",
       "method": "jest-json"
     }
   },
@@ -45,7 +45,7 @@
     },
     "P-003": {
       "status": "pass",
-      "testName": "Tenant externo em header ou query não substitui a sessão @spec:AC-029 @principle:P-003(useQuery: True) Tenant externo em header ou query não substitui a sessão @spec:AC-029 @principle:P-003(useQuery: True)"
+      "testName": "@spec:AC-013 @principle:P-003 @principle:P-005 valid login emits only user_tenant_and_role @spec:AC-013 @principle:P-003 @principle:P-005 valid login emits only user_tenant_and_role"
     },
     "P-004": {
       "status": "pass",

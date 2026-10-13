@@ -1,11 +1,11 @@
 {
   "feature": "notificacoes-lembretes-whatsapp",
-  "timestamp": "2026-10-13T02:03:25.219Z",
-  "gitRev": "977d415",
+  "timestamp": "2026-10-13T17:58:04.376Z",
+  "gitRev": "dff01ae",
   "command": "powershell -ExecutionPolicy Bypass -File scripts/verify-spec.ps1",
   "reporter": "jest-json",
   "exitCode": 0,
-  "testsParsed": 321,
+  "testsParsed": 360,
   "results": {
     "AC-097": {
       "status": "pass",
@@ -24,7 +24,7 @@
     },
     "AC-207": {
       "status": "pass",
-      "testName": "Migration exclusiva preserva clientes, habilita padrão e persiste preferência isolada por RLS @spec:AC-207 Migration exclusiva preserva clientes, habilita padrão e persiste preferência isolada por RLS @spec:AC-207",
+      "testName": "Preferência de lembretes não bloqueia mensagem manual, orçamento ou convite System @spec:AC-207 Preferência de lembretes não bloqueia mensagem manual, orçamento ou convite System @spec:AC-207",
       "method": "jest-json"
     },
     "AC-208": {
@@ -61,11 +61,11 @@
   "principles": {
     "P-005": {
       "status": "pass",
-      "testName": "Senhas nunca são recuperáveis @spec:AC-008 @principle:P-005 Senhas nunca são recuperáveis @spec:AC-008 @principle:P-005"
+      "testName": "Token de e-mail é armazenado somente como digest e expira em 24 horas @spec:AC-009 @principle:P-005 Token de e-mail é armazenado somente como digest e expira em 24 horas @spec:AC-009 @principle:P-005"
     },
     "P-003": {
       "status": "pass",
-      "testName": "@spec:AC-013 @principle:P-003 @principle:P-005 valid login emits only user_tenant_and_role @spec:AC-013 @principle:P-003 @principle:P-005 valid login emits only user_tenant_and_role"
+      "testName": "Tenant externo em header ou query não substitui a sessão @spec:AC-029 @principle:P-003(useQuery: False) Tenant externo em header ou query não substitui a sessão @spec:AC-029 @principle:P-003(useQuery: False)"
     },
     "P-004": {
       "status": "pass",

@@ -177,13 +177,14 @@ public sealed class TeamFinancialTestFactory : WebApplicationFactory<Program>
     public AgendamentoDbContext Db(Guid tenant)
     {
         var options = new DbContextOptionsBuilder<AgendamentoDbContext>();
+        var context = new Tenant(tenant);
+        options.AddInterceptors(new TenantSaveChangesInterceptor(context));
         if (_connection == null) options.UseInMemoryDatabase(_database,_root);
         else {
             options.UseNpgsql(_connection);
-            var context = new Tenant(tenant);
-            options.AddInterceptors(new TenantTransactionInterceptor(context, new AdministrativeDatabaseScope()), new TenantSaveChangesInterceptor(context));
+            options.AddInterceptors(new TenantTransactionInterceptor(context, new AdministrativeDatabaseScope()));
         }
-        return new(options.Options,new Tenant(tenant));
+        return new(options.Options,context);
     }
     public async Task<(HttpClient Client,Guid User,Guid Tenant)> Member(string role,List<string> permissions,Guid? tenantId=null)
     {
