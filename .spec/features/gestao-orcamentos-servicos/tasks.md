@@ -12,10 +12,10 @@
 - Notas: Revisão própria do modelo efetivo, roundtrip integral, filtros e guardas de itens/sinal, integridade e RLS em PostgreSQL exclusivo. FK composta do catálogo corrige lacuna real; migration não aplicada ao banco de trabalho. T-032 inclui catálogo/migrations como escopo próprio e permanece pendente, assim como T-090 a T-092 e T-033 a T-037.
 - Regra: Mapear as entidades e configurar o `IsTenantOwned`.
 
-## T-090 — Endpoints de Gestão de Orçamentos [pendente]
-
+## T-090 — Endpoints de Gestão de Orçamentos [concluida]
 - Refs: US-045, US-046, AC-090, AC-092, AC-093
-- Arquivos: src/Agendamento.Api/Features/Quotations/QuotationEndpoints.cs, src/Agendamento.Api/Program.cs, src/Agendamento.Api/Application/Quotations/GetQuotations/GetQuotationByIdHandler.cs, src/Agendamento.Api/Application/Quotations/GetQuotations/GetQuotationsHandler.cs, src/Agendamento.Api/Application/Quotations/GetQuotations/GetQuotationsQuery.cs, src/Agendamento.Api/Application/Quotations/UpdateQuotationStatus/UpdateQuotationStatusHandler.cs
+- Arquivos: src/Agendamento.Api/Features/Quotations/QuotationEndpoints.cs, src/Agendamento.Api/Program.cs, src/Agendamento.Api/Application/DependencyInjection.cs, src/Agendamento.Api/Application/Quotations/QuotationInputValidation.cs, src/Agendamento.Api/Application/Quotations/CreateQuotation/CreateQuotationHandler.cs, src/Agendamento.Api/Application/Quotations/UpdateQuotation/UpdateQuotationHandler.cs, src/Agendamento.Api/Application/Quotations/GetQuotations/GetQuotationByIdHandler.cs, src/Agendamento.Api/Application/Quotations/GetQuotations/GetQuotationsHandler.cs, src/Agendamento.Api/Application/Quotations/GetQuotations/GetQuotationsQuery.cs, src/Agendamento.Api/Application/Quotations/UpdateQuotationStatus/UpdateQuotationStatusHandler.cs, tests/Agendamento.IntegrationTests/Quotations/QuotationEndpointsHttpTests.cs, tests/Agendamento.IntegrationTests/Quotations/QuotationEndpointAtomicityTests.cs
+- Notas: Revisão própria HTTP/autorização/binding/listagem/detalhe/status e integração PUT/T-103. Limites/paginação, desempate, unicidade e validação antes de mutação; provas PostgreSQL restrito, corrida de criação e contratos. Não certifica T-034/T-036/T-091/T-092 nem concorrência integral de conversão. A nota de órfãos abaixo é histórica e não descreve diagnóstico atual.
 - Regra: Criar endpoints CRUD (Create, UpdateStatus, GetById, GetAll) usando Minimal APIs e a autorização `RequirePermission`. Reutilizar os Handlers existentes ou ajustá-los. *Nota: Os arquivos órfãos de Quotations identificados no audit serão integrados aqui.*
 
 ## T-091 — Caso de Uso: Transformar Orçamento em O.S. [pendente]

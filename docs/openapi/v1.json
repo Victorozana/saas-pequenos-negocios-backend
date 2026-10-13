@@ -1228,6 +1228,7 @@
         "tags": [
           "Quotations"
         ],
+        "description": "Cria or\u00E7amento Pending no tenant autenticado. C\u00F3digo \u00FAnico por empresa (at\u00E9 50 caracteres); notas e termos at\u00E9 2000, notas do sinal at\u00E9 1000. Datas devem usar UTC (sufixo Z). Entradas inv\u00E1lidas ou c\u00F3digo repetido retornam 400 sem persist\u00EAncia parcial.",
         "operationId": "CreateQuotation",
         "requestBody": {
           "content": {
@@ -1263,6 +1264,14 @@
           },
           "201": {
             "description": "Created",
+            "headers": {
+              "Location": {
+                "description": "Caminho relativo do or\u00E7amento criado, acess\u00EDvel com sales.read.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
             "content": {
               "application/json": {
                 "schema": {
@@ -1312,6 +1321,7 @@
         "tags": [
           "Quotations"
         ],
+        "description": "Lista apenas or\u00E7amentos do tenant autenticado. Busca por c\u00F3digo ou nome do cliente, sem distinguir mai\u00FAsculas/min\u00FAsculas; status deve ser um valor definido. P\u00E1gina \u003E= 1, tamanho de 1 a 100 (padr\u00F5es 1/20); deslocamento m\u00E1ximo int32. Total considera os filtros. Ordena\u00E7\u00E3o por IssueDate decrescente e Id crescente para desempate.",
         "operationId": "GetQuotations",
         "parameters": [
           {
@@ -1379,8 +1389,8 @@
               }
             }
           },
-          "500": {
-            "description": "Falha inesperada: resposta ProblemDetails segura, sem detalhes internos.",
+          "400": {
+            "description": "Bad Request",
             "content": {
               "application/problem\u002Bjson": {
                 "schema": {
@@ -1389,8 +1399,8 @@
               }
             }
           },
-          "400": {
-            "description": "Dados da requisi\u00E7\u00E3o inv\u00E1lidos.",
+          "500": {
+            "description": "Falha inesperada: resposta ProblemDetails segura, sem detalhes internos.",
             "content": {
               "application/problem\u002Bjson": {
                 "schema": {
@@ -1480,6 +1490,7 @@
         "tags": [
           "Quotations"
         ],
+        "description": "Substitui conte\u00FAdo somente em Pending. C\u00F3digo \u00FAnico por empresa (at\u00E9 50 caracteres); notas e termos at\u00E9 2000, notas do sinal at\u00E9 1000. Datas devem usar UTC (sufixo Z). Valida\u00E7\u00E3o antecede altera\u00E7\u00F5es; estados finais e edi\u00E7\u00E3o externa s\u00E3o bloqueados.",
         "operationId": "UpdateQuotation",
         "parameters": [
           {

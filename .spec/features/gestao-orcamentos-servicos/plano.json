@@ -1,12 +1,12 @@
 {
-  "runId": "saas-pequenos-negocios-backend-gestao-orcamentos-servicos-mv6zk547",
+  "runId": "saas-pequenos-negocios-backend-gestao-orcamentos-servicos-mv711leq",
   "feature": "gestao-orcamentos-servicos",
   "agent": "codex",
   "modo": "sequencial",
   "paralelizar": null,
   "modeloForcado": null,
   "esforcoForcado": null,
-  "geradoEm": "2026-10-13 17:59",
+  "geradoEm": "2026-10-13 18:41",
   "branchTrabalho": "spec/gestao-orcamentos-servicos",
   "baseDir": ".spec/features/gestao-orcamentos-servicos",
   "specDir": ".spec",
@@ -15,27 +15,6 @@
   "ondas": [],
   "faixas": [],
   "sequenciais": [
-    {
-      "id": "T-090",
-      "titulo": "Endpoints de Gestão de Orçamentos",
-      "modelo": "gpt-5.6-terra",
-      "esforco": "medium",
-      "arquivos": [
-        "src/Agendamento.Api/Features/Quotations/QuotationEndpoints.cs",
-        "src/Agendamento.Api/Program.cs",
-        "src/Agendamento.Api/Application/Quotations/GetQuotations/GetQuotationByIdHandler.cs",
-        "src/Agendamento.Api/Application/Quotations/GetQuotations/GetQuotationsHandler.cs",
-        "src/Agendamento.Api/Application/Quotations/GetQuotations/GetQuotationsQuery.cs",
-        "src/Agendamento.Api/Application/Quotations/UpdateQuotationStatus/UpdateQuotationStatusHandler.cs"
-      ],
-      "refs": [
-        "US-045",
-        "US-046",
-        "AC-090",
-        "AC-092",
-        "AC-093"
-      ]
-    },
     {
       "id": "T-091",
       "titulo": "Caso de Uso: Transformar Orçamento em O.S.",
@@ -181,6 +160,7 @@
   "concluidas": [
     "T-088",
     "T-089",
+    "T-090",
     "T-031",
     "T-103"
   ],

@@ -1,25 +1,25 @@
 {
   "feature": "gestao-equipe-permissoes",
-  "timestamp": "2026-10-13T17:51:27.604Z",
-  "gitRev": "dff01ae",
+  "timestamp": "2026-10-13T18:24:59.020Z",
+  "gitRev": "15831f8",
   "command": "powershell -ExecutionPolicy Bypass -File scripts/verify-spec.ps1",
   "reporter": "jest-json",
   "exitCode": 0,
-  "testsParsed": 360,
+  "testsParsed": 367,
   "results": {
     "AC-070": {
       "status": "pass",
-      "testName": "Perfil HTTP não expõe credenciais @spec:AC-070 Perfil HTTP não expõe credenciais @spec:AC-070",
+      "testName": "Perfil completo do usuário com permissões explícitas @spec:AC-070 Perfil completo do usuário com permissões explícitas @spec:AC-070",
       "method": "jest-json"
     },
     "AC-071": {
       "status": "pass",
-      "testName": "Permissões HTTP e revogação imediata @spec:AC-071 @spec:AC-096 Permissões HTTP e revogação imediata @spec:AC-071 @spec:AC-096",
+      "testName": "Bloqueio de acesso por falta de permissão @spec:AC-071 Bloqueio de acesso por falta de permissão @spec:AC-071",
       "method": "jest-json"
     },
     "AC-072": {
       "status": "pass",
-      "testName": "Isolamento multi-tenant na gestão de membros @spec:AC-072 Isolamento multi-tenant na gestão de membros @spec:AC-072",
+      "testName": "Equipe isolada e último owner_admin protegido @spec:AC-072 @spec:AC-073 Equipe isolada e último owner_admin protegido @spec:AC-072 @spec:AC-073",
       "method": "jest-json"
     },
     "AC-073": {
@@ -29,23 +29,23 @@
     },
     "AC-074": {
       "status": "pass",
-      "testName": "Geração de convite único e expirável em 7 dias @spec:AC-074 Geração de convite único e expirável em 7 dias @spec:AC-074",
+      "testName": "PostgreSQL persiste aprovação, pagamentos e aceite público @spec:AC-094 @spec:AC-074 @spec:AC-075 @spec:AC-095 PostgreSQL persiste aprovação, pagamentos e aceite público @spec:AC-094 @spec:AC-074 @spec:AC-075 @spec:AC-095",
       "method": "jest-json"
     },
     "AC-075": {
       "status": "pass",
-      "testName": "Aceite de convite e definição de senha @spec:AC-075 Aceite de convite e definição de senha @spec:AC-075",
+      "testName": "PostgreSQL persiste aprovação, pagamentos e aceite público @spec:AC-094 @spec:AC-074 @spec:AC-075 @spec:AC-095 PostgreSQL persiste aprovação, pagamentos e aceite público @spec:AC-094 @spec:AC-074 @spec:AC-075 @spec:AC-095",
       "method": "jest-json"
     }
   },
   "principles": {
     "P-005": {
       "status": "pass",
-      "testName": "Token de e-mail é armazenado somente como digest e expira em 24 horas @spec:AC-009 @principle:P-005 Token de e-mail é armazenado somente como digest e expira em 24 horas @spec:AC-009 @principle:P-005"
+      "testName": "Senhas nunca são recuperáveis @spec:AC-008 @principle:P-005 Senhas nunca são recuperáveis @spec:AC-008 @principle:P-005"
     },
     "P-003": {
       "status": "pass",
-      "testName": "@spec:AC-013 @principle:P-003 @principle:P-005 valid login emits only user_tenant_and_role @spec:AC-013 @principle:P-003 @principle:P-005 valid login emits only user_tenant_and_role"
+      "testName": "Tenant externo em header ou query não substitui a sessão @spec:AC-029 @principle:P-003(useQuery: True) Tenant externo em header ou query não substitui a sessão @spec:AC-029 @principle:P-003(useQuery: True)"
     },
     "P-004": {
       "status": "pass",

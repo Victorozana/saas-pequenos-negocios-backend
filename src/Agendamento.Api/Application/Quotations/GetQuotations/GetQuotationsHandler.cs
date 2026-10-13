@@ -14,6 +14,11 @@ public class GetQuotationsHandler
 
     public async Task<PagedResult<QuotationListDto>> HandleAsync(GetQuotationsQuery query, CancellationToken cancellationToken = default)
     {
+        if (query.Page < 1 || query.PageSize is < 1 or > 100 ||
+            ((long)query.Page - 1) * query.PageSize > int.MaxValue ||
+            (query.Status.HasValue && !Enum.IsDefined(query.Status.Value)))
+            throw new ArgumentException("Invalid quotation pagination or status.", nameof(query));
+
         var queryable = _dbContext.Quotations
             .Include(q => q.Customer)
             .AsNoTracking();
@@ -35,6 +40,7 @@ public class GetQuotationsHandler
 
         var items = await queryable
             .OrderByDescending(q => q.IssueDate)
+            .ThenBy(q => q.Id)
             .Skip((query.Page - 1) * query.PageSize)
             .Take(query.PageSize)
             .Select(q => new QuotationListDto(

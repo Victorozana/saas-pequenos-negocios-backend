@@ -1,11 +1,11 @@
 {
   "feature": "gestao-financeira-contas",
-  "timestamp": "2026-10-13T17:52:47.261Z",
-  "gitRev": "dff01ae",
+  "timestamp": "2026-10-13T18:26:33.787Z",
+  "gitRev": "15831f8",
   "command": "powershell -ExecutionPolicy Bypass -File scripts/verify-spec.ps1",
   "reporter": "jest-json",
   "exitCode": 0,
-  "testsParsed": 360,
+  "testsParsed": 367,
   "results": {
     "AC-094": {
       "status": "pass",
@@ -39,7 +39,7 @@
     },
     "AC-058": {
       "status": "pass",
-      "testName": "Verificação de atraso marca título como Overdue se vencido @spec:AC-058 Verificação de atraso marca título como Overdue se vencido @spec:AC-058",
+      "testName": "Verificação de atraso não altera status se estiver no prazo @spec:AC-058 Verificação de atraso não altera status se estiver no prazo @spec:AC-058",
       "method": "jest-json"
     },
     "AC-059": {
@@ -51,15 +51,15 @@
   "principles": {
     "P-005": {
       "status": "pass",
-      "testName": "Senhas nunca são recuperáveis @spec:AC-008 @principle:P-005 Senhas nunca são recuperáveis @spec:AC-008 @principle:P-005"
-    },
-    "P-004": {
-      "status": "pass",
-      "testName": "Papel restrito impede SQL direto entre tenants em todas as tabelas @spec:AC-033 @principle:P-004 Papel restrito impede SQL direto entre tenants em todas as tabelas @spec:AC-033 @principle:P-004"
+      "testName": "Token de e-mail é armazenado somente como digest e expira em 24 horas @spec:AC-009 @principle:P-005 Token de e-mail é armazenado somente como digest e expira em 24 horas @spec:AC-009 @principle:P-005"
     },
     "P-003": {
       "status": "pass",
       "testName": "Tenant externo no body não muda a empresa do cliente criado @spec:AC-029 @principle:P-003 Tenant externo no body não muda a empresa do cliente criado @spec:AC-029 @principle:P-003"
+    },
+    "P-004": {
+      "status": "pass",
+      "testName": "Papel restrito impede SQL direto entre tenants em todas as tabelas @spec:AC-033 @principle:P-004 Papel restrito impede SQL direto entre tenants em todas as tabelas @spec:AC-033 @principle:P-004"
     }
   }
 }

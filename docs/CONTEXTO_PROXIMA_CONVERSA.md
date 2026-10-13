@@ -417,3 +417,65 @@ EnforceQuotationCatalogTenantReference NÃO foram aplicadas a agendamento_local.
 esta versão nem aplicar migrations nesse banco sem rollout autorizado/revisão do legado.
 Frontend e schema intactos; HTTP/OpenAPI não mudou, sem regeneração necessária. Nenhuma entrega
 real WhatsApp/e-mail ou tela financeiro/equipe. Próxima tarefa deve receber revisão própria.
+
+## Endpoints de Gestão de Orçamentos — T-090 — 13/10/2026
+
+Execução manual em backend main/15831f8 e frontend master/3d8b597; modelo/esforço atuais,
+dois auxiliares herdados autorizados. AGENTS/skill/contexto/RLS, revisões/audits T-023/T-031/
+T-088/T-089 e spec/design/tasks lidos. Cinco obj preservados por cópia/hash e restaurados
+exatamente após builds; sinais/verificações anteriores, schema anterior, .codex-checks,
+relatórios/TRX/logs, provas T-089 certified e backup runtime-repair preservados.
+
+T-090 concluída após revisão HTTP própria de POST, GET listagem/detalhe, PATCH status,
+Program/DI e integração PUT/T-103. sales.read/write por operação e tenant exclusivamente da
+identidade, isolamento, Pending público, detalhes completos, binding/null/coleções/enums/IDs,
+respostas 201/200/204/400/401/403/404/415 e ProblemDetails seguros provados em HTTP e PostgreSQL
+temporário exclusivo com logins restritos. PDF/conversão revistos nas interações de
+autorização/isolamento/contrato; não fechar T-091 nem tarefas PDF por isso.
+
+Corrigidos paginação/status inválidos, overflow e tamanho ilimitado da listagem: Page>=1,
+PageSize entre 1 e 100, padrões 1/20, offset<=int.MaxValue, ordem IssueDate DESC/Id ASC,
+total filtrado. Corrigidos textos excedidos (Code50/Notes2000/Terms2000/DepositNotes1000),
+datas sem UTC e código repetido no tenant antes da mutação; corrida 23505 da constraint
+de código retorna 400 seguro, sem linhas parciais. Mesmo código externo é permitido.
+Location201 documentado; OpenAPI exportado pelo host InMemory e schema frontend regenerado
+pelo arquivo local. Documentação instalada Next.js16.2.11 consultada; typecheck e 232/232
+testes frontend PASS. Nenhum componente/BFF alterado.
+
+Sete provas novas PASS (HTTP2 + atomicidade/contrato/corridas5). Corridas reais POST/PUT têm
+barreiras com duas chegadas após precheck, 201/400 e 204/400, conteúdo vencedor íntegro e
+perdedor preservado no banco. Rastreamento intacto/SaveChanges0 cobre validações antecipadas;
+falha relacional faz rollback e scope HTTP é descartado, sem restaurar ChangeTracker.
+Q-020/Q-021/RequiredAmount, estados/idempotência Q-022, filtros/guardas/RLS, CPF/PreserveDocument,
+concorrência financeira/edição, notificações/opt-out/aviso diário e PDF serial preservados.
+
+Renovação final das 15 features: motor=0 e record.exitCode=0 em todas, 367 resultados por
+execução (361 PASS, zero falhas, seis skips antigos). Primeiras três renovadas após o último
+teste; provas iniciais e novas preservadas em .local-verification/t090/certified e recertified,
+índice em final-certified-summary.json. Falhas intermediárias de preparação de fixtures e
+coletor PowerShell5 registradas na revisão, sem enfraquecer/remover assertions/filtros.
+Audit --ci exit0, 95/95 critérios provados, zero erros/avisos (.spec/audit-t090.json).
+Revisão .spec/revisao-t090.md; spec/design/tasks atualizados. Plano sequencial para oito
+tarefas restantes regenerado somente como artefato; executor não iniciado/modelos ignorados.
+
+T-091/T-092 e T-032 a T-037 permanecem PENDENTES; T-031/T-088/T-089/T-103 continuam concluídas.
+Concorrência integral da conversão continua sem certificação própria. Nenhuma lição nova;
+uma suposição global aberta preexistente permanece, nenhuma pergunta aberta.
+HEADs/branches preservados, diff --check dos dois repos exit0, 486 entradas de hashes mais
+backup preservadas, nenhum listener5050. Sem commit/push/deploy, serviço novo ou alteração
+de banco/cadastros/credenciais de trabalho; sem entrega real WhatsApp/e-mail ou telas
+financeiro/equipe.
+
+AddCustomerAutomaticReminderPreference, AddDailyReceivableReminderDeduplication e
+EnforceQuotationCatalogTenantReference continuam NÃO aplicadas a agendamento_local.
+Não iniciar esta versão nesse banco nem aplicar migrations sem rollout explícito.
+
+## Versionamento da T-090 e próxima prioridade — 13/10/2026
+
+Após o fechamento, o usuário autorizou commit e push das alterações T-090 nos dois
+repositórios. Consultar git log -1 e status/upstream na retomada para obter as bases finais.
+Os cinco obj preexistentes, .codex-checks e evidências locais permanecem fora dos commits.
+Próxima prioridade: T-091 (Transformar Orçamento em O.S.), com revisão própria de conversão,
+atomicidade e concorrência PostgreSQL, ainda sem certificação integral. Revisar ambas as
+rotas de conversão e sua integração com estados/recebíveis, preservando início manual da OS,
+idempotência, isolamento e contrato T-023. T-092 e T-032 a T-037 permanecem pendentes.

@@ -1,15 +1,15 @@
 {
   "feature": "gestao-orcamentos-servicos",
-  "timestamp": "2026-10-13T17:54:03.680Z",
-  "gitRev": "dff01ae",
+  "timestamp": "2026-10-13T18:27:54.438Z",
+  "gitRev": "15831f8",
   "command": "powershell -ExecutionPolicy Bypass -File scripts/verify-spec.ps1",
   "reporter": "jest-json",
   "exitCode": 0,
-  "testsParsed": 360,
+  "testsParsed": 367,
   "results": {
     "AC-090": {
       "status": "pass",
-      "testName": "Identidades e intervalo de validade obrigatórios recusam montagem inválida @spec:AC-090 Identidades e intervalo de validade obrigatórios recusam montagem inválida @spec:AC-090",
+      "testName": "Montagem interna Draft mantém identidade, coleção protegida e publica Pending com conteúdo completo @spec:AC-090 Montagem interna Draft mantém identidade, coleção protegida e publica Pending com conteúdo completo @spec:AC-090",
       "method": "jest-json"
     },
     "AC-092": {
@@ -19,12 +19,12 @@
     },
     "AC-206": {
       "status": "pass",
-      "testName": "Fora do Draft montagem direta é recusada sem mutação de conteúdo, sinal ou estado @spec:AC-206(status: Approved) Fora do Draft montagem direta é recusada sem mutação de conteúdo, sinal ou estado @spec:AC-206(status: Approved)",
+      "testName": "Fora do Draft montagem direta é recusada sem mutação de conteúdo, sinal ou estado @spec:AC-206(status: Rejected) Fora do Draft montagem direta é recusada sem mutação de conteúdo, sinal ou estado @spec:AC-206(status: Rejected)",
       "method": "jest-json"
     },
     "AC-093": {
       "status": "pass",
-      "testName": "Não é possível aprovar/rejeitar orçamento já convertido @spec:AC-093 Não é possível aprovar/rejeitar orçamento já convertido @spec:AC-093",
+      "testName": "Contrato HTTP de orçamento persiste sem vazamento ou registros parciais em PostgreSQL restrito @spec:AC-090 @spec:AC-092 @spec:AC-093 Contrato HTTP de orçamento persiste sem vazamento ou registros parciais em PostgreSQL restrito @spec:AC-090 @spec:AC-092 @spec:AC-093",
       "method": "jest-json"
     },
     "AC-091": {
@@ -49,27 +49,27 @@
     },
     "AC-047": {
       "status": "pass",
-      "testName": "Exportação de orçamento em PDF gera bytes válidos em stream application/pdf @spec:AC-047 Exportação de orçamento em PDF gera bytes válidos em stream application/pdf @spec:AC-047",
+      "testName": "Downloads PDF concorrentes preservam texto de cada orçamento e cliente @spec:AC-037 @spec:AC-047 Downloads PDF concorrentes preservam texto de cada orçamento e cliente @spec:AC-037 @spec:AC-047",
       "method": "jest-json"
     },
     "AC-048": {
       "status": "pass",
-      "testName": "Matriz de transições conserva agregado em cada recusa e conteúdo nas transições válidas @spec:AC-048(source: Pending, operation: \"convert\") Matriz de transições conserva agregado em cada recusa e conteúdo nas transições válidas @spec:AC-048(source: Pending, operation: \"convert\")",
+      "testName": "Matriz de transições conserva agregado em cada recusa e conteúdo nas transições válidas @spec:AC-048(source: Converted, operation: \"pending\") Matriz de transições conserva agregado em cada recusa e conteúdo nas transições válidas @spec:AC-048(source: Converted, operation: \"pending\")",
       "method": "jest-json"
     }
   },
   "principles": {
     "P-005": {
       "status": "pass",
-      "testName": "Token de e-mail é armazenado somente como digest e expira em 24 horas @spec:AC-009 @principle:P-005 Token de e-mail é armazenado somente como digest e expira em 24 horas @spec:AC-009 @principle:P-005"
-    },
-    "P-003": {
-      "status": "pass",
-      "testName": "@spec:AC-013 @principle:P-003 @principle:P-005 valid login emits only user_tenant_and_role @spec:AC-013 @principle:P-003 @principle:P-005 valid login emits only user_tenant_and_role"
+      "testName": "Senhas nunca são recuperáveis @spec:AC-008 @principle:P-005 Senhas nunca são recuperáveis @spec:AC-008 @principle:P-005"
     },
     "P-004": {
       "status": "pass",
       "testName": "Papel restrito impede SQL direto entre tenants em todas as tabelas @spec:AC-033 @principle:P-004 Papel restrito impede SQL direto entre tenants em todas as tabelas @spec:AC-033 @principle:P-004"
+    },
+    "P-003": {
+      "status": "pass",
+      "testName": "Tenant externo em header ou query não substitui a sessão @spec:AC-029 @principle:P-003(useQuery: True) Tenant externo em header ou query não substitui a sessão @spec:AC-029 @principle:P-003(useQuery: True)"
     }
   }
 }

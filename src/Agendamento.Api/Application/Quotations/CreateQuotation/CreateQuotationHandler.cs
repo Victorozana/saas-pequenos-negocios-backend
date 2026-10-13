@@ -21,6 +21,11 @@ public class CreateQuotationHandler
         if (!_tenantContext.HasTenant)
             throw new InvalidOperationException("Unauthenticated tenant context.");
 
+        QuotationInputValidation.Validate(command.Code, command.IssueDate, command.ValidUntil,
+            command.Notes, command.PaymentTerms, command.Deposit?.PaymentNotes);
+        if (await _dbContext.Quotations.AnyAsync(q => q.Code == command.Code, cancellationToken))
+            throw new ArgumentException("Quotation code already exists.", nameof(command.Code));
+
         if (command.Items == null || command.Items.Count == 0 || command.Items.Any(item => item == null))
             throw new ArgumentException("Quotation must contain valid items.", nameof(command.Items));
 

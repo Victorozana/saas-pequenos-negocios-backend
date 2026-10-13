@@ -8,6 +8,8 @@ using Agendamento.Api.Application.Quotations.UpdateQuotation;
 using Agendamento.Api.Application.WorkOrders.ConvertQuotationToWorkOrder;
 using Microsoft.AspNetCore.Mvc;
 using Agendamento.Api.OpenApi;
+using Microsoft.EntityFrameworkCore;
+using Npgsql;
 
 namespace Agendamento.Api.Features.Quotations;
 
@@ -33,10 +35,28 @@ public static class QuotationEndpoints
             {
                 return Results.Problem(statusCode: 400, title: "Não foi possível criar o orçamento. Verifique os dados informados.");
             }
+            catch (DbUpdateException ex) when (IsDuplicateCode(ex))
+            {
+                return Results.Problem(statusCode: 400, title: "Não foi possível criar o orçamento. Verifique os dados informados.");
+            }
         })
         .WithName("CreateQuotation")
+        .WithDescription("Cria orçamento Pending no tenant autenticado. Código único por empresa (até 50 caracteres); notas e termos até 2000, notas do sinal até 1000. Datas devem usar UTC (sufixo Z). Entradas inválidas ou código repetido retornam 400 sem persistência parcial.")
         .RequirePermission("sales.write")
         .Produces<CreatedIdResponse>(StatusCodes.Status201Created)
+        .AddOpenApiOperationTransformer((operation, context, ct) =>
+        {
+            if (operation.Responses?["201"] is Microsoft.OpenApi.OpenApiResponse response)
+            {
+                response.Headers ??= new Dictionary<string, Microsoft.OpenApi.IOpenApiHeader>();
+                response.Headers["Location"] = new Microsoft.OpenApi.OpenApiHeader
+                {
+                    Description = "Caminho relativo do orçamento criado, acessível com sales.read.",
+                    Schema = new Microsoft.OpenApi.OpenApiSchema { Type = Microsoft.OpenApi.JsonSchemaType.String }
+                };
+            }
+            return Task.CompletedTask;
+        })
         .ProducesProblem(StatusCodes.Status400BadRequest)
         .Produces(StatusCodes.Status401Unauthorized);
 
@@ -45,12 +65,21 @@ public static class QuotationEndpoints
             [FromServices] GetQuotationsHandler handler,
             CancellationToken ct) =>
         {
-            var result = await handler.HandleAsync(query, ct);
-            return Results.Ok(result);
+            try
+            {
+                var result = await handler.HandleAsync(query, ct);
+                return Results.Ok(result);
+            }
+            catch (ArgumentException)
+            {
+                return Results.Problem(statusCode: 400, title: "Paginação ou filtro de orçamento inválido.");
+            }
         })
         .WithName("GetQuotations")
+        .WithDescription("Lista apenas orçamentos do tenant autenticado. Busca por código ou nome do cliente, sem distinguir maiúsculas/minúsculas; status deve ser um valor definido. Página >= 1, tamanho de 1 a 100 (padrões 1/20); deslocamento máximo int32. Total considera os filtros. Ordenação por IssueDate decrescente e Id crescente para desempate.")
         .RequirePermission("sales.read")
         .Produces<PagedResult<QuotationListDto>>(StatusCodes.Status200OK)
+        .ProducesProblem(StatusCodes.Status400BadRequest)
         .Produces(StatusCodes.Status401Unauthorized);
 
         group.MapGet("/{id:guid}", async (
@@ -82,8 +111,13 @@ public static class QuotationEndpoints
             {
                 return Results.Problem(statusCode: StatusCodes.Status400BadRequest, title: "Não foi possível editar o orçamento. Verifique os dados e o estado atual.");
             }
+            catch (DbUpdateException ex) when (IsDuplicateCode(ex))
+            {
+                return Results.Problem(statusCode: 400, title: "Não foi possível editar o orçamento. Verifique os dados e o estado atual.");
+            }
         })
         .WithName("UpdateQuotation")
+        .WithDescription("Substitui conteúdo somente em Pending. Código único por empresa (até 50 caracteres); notas e termos até 2000, notas do sinal até 1000. Datas devem usar UTC (sufixo Z). Validação antecede alterações; estados finais e edição externa são bloqueados.")
         .RequirePermission("sales.write")
         .Produces(StatusCodes.Status204NoContent)
         .Produces(StatusCodes.Status404NotFound)
@@ -156,6 +190,13 @@ public static class QuotationEndpoints
         .Produces(StatusCodes.Status404NotFound)
         .Produces(StatusCodes.Status401Unauthorized);
     }
+
+    private static bool IsDuplicateCode(DbUpdateException exception) =>
+        exception.InnerException is PostgresException
+        {
+            SqlState: PostgresErrorCodes.UniqueViolation,
+            ConstraintName: "IX_Quotations_tenant_id_Code"
+        };
 }
 
 public record WorkOrderConversionResponse(Guid WorkOrderId);

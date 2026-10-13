@@ -17,6 +17,10 @@ public sealed class UpdateQuotationHandler(AgendamentoDbContext db, ITenantConte
         if (quotation == null) return false;
         if (quotation.Status != QuotationStatus.Pending)
             throw new InvalidOperationException("Can only edit pending quotations.");
+        QuotationInputValidation.Validate(command.Code, command.IssueDate, command.ValidUntil,
+            command.Notes, command.PaymentTerms, command.Deposit?.PaymentNotes);
+        if (await db.Quotations.AnyAsync(q => q.Id != id && q.Code == command.Code, ct))
+            throw new ArgumentException("Quotation code already exists.", nameof(command.Code));
         if (!await db.Customers.AnyAsync(c => c.Id == command.CustomerId, ct))
             throw new ArgumentException("Customer not found.", nameof(command.CustomerId));
         if (command.Items == null || command.Items.Count == 0 || command.Items.Any(item => item == null))

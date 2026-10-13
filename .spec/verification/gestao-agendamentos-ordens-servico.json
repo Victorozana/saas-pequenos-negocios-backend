@@ -1,15 +1,15 @@
 {
   "feature": "gestao-agendamentos-ordens-servico",
-  "timestamp": "2026-10-13T17:47:22.740Z",
-  "gitRev": "dff01ae",
+  "timestamp": "2026-10-13T18:20:42.278Z",
+  "gitRev": "15831f8",
   "command": "powershell -ExecutionPolicy Bypass -File scripts/verify-spec.ps1",
   "reporter": "jest-json",
   "exitCode": 0,
-  "testsParsed": 360,
+  "testsParsed": 367,
   "results": {
     "AC-051": {
       "status": "pass",
-      "testName": "CreateFromQuotation copia os dados do orçamento quando está aprovado @spec:AC-051 @spec:AC-052 CreateFromQuotation copia os dados do orçamento quando está aprovado @spec:AC-051 @spec:AC-052",
+      "testName": "CreateFromQuotation lança exceção quando o orçamento não está aprovado @spec:AC-051 CreateFromQuotation lança exceção quando o orçamento não está aprovado @spec:AC-051",
       "method": "jest-json"
     },
     "AC-052": {
@@ -40,7 +40,7 @@
     },
     "P-003": {
       "status": "pass",
-      "testName": "Tenant externo no body não muda a empresa do cliente criado @spec:AC-029 @principle:P-003 Tenant externo no body não muda a empresa do cliente criado @spec:AC-029 @principle:P-003"
+      "testName": "Tenant externo em header ou query não substitui a sessão @spec:AC-029 @principle:P-003(useQuery: True) Tenant externo em header ou query não substitui a sessão @spec:AC-029 @principle:P-003(useQuery: True)"
     },
     "P-004": {
       "status": "pass",
