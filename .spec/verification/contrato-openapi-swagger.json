@@ -1,25 +1,25 @@
 {
   "feature": "contrato-openapi-swagger",
-  "timestamp": "2026-10-13T00:50:21.422Z",
-  "gitRev": "be79d2c",
+  "timestamp": "2026-10-13T01:50:26.507Z",
+  "gitRev": "977d415",
   "command": "powershell -ExecutionPolicy Bypass -File scripts/verify-spec.ps1",
   "reporter": "jest-json",
   "exitCode": 0,
-  "testsParsed": 266,
+  "testsParsed": 321,
   "results": {
     "AC-036": {
       "status": "pass",
-      "testName": "Documento canônico em /openapi/v1.json é exposto @spec:AC-036 Documento canônico em /openapi/v1.json é exposto @spec:AC-036",
+      "testName": "Health público declara texto real de sucesso e indisponibilidade sem detalhes internos @spec:AC-036 @spec:AC-037 Health público declara texto real de sucesso e indisponibilidade sem detalhes internos @spec:AC-036 @spec:AC-037",
       "method": "jest-json"
     },
     "AC-037": {
       "status": "pass",
-      "testName": "CNPJ HTTP distingue sucesso e falhas, com mídia e schema correspondentes @spec:AC-037(cnpj: \"invalid\", status: 400, outcome: \"active\") CNPJ HTTP distingue sucesso e falhas, com mídia e schema correspondentes @spec:AC-037(cnpj: \"invalid\", status: 400, outcome: \"active\")",
+      "testName": "CNPJ HTTP distingue sucesso e falhas, com mídia e schema correspondentes @spec:AC-037(cnpj: \"00000000000191\", status: 503, outcome: \"unavailable\") CNPJ HTTP distingue sucesso e falhas, com mídia e schema correspondentes @spec:AC-037(cnpj: \"00000000000191\", status: 503, outcome: \"unavailable\")",
       "method": "jest-json"
     },
     "AC-038": {
       "status": "pass",
-      "testName": "Onboarding completo sem token na resposta em qualquer ambiente @spec:AC-021 @spec:AC-038 @spec:AC-100 @principle:P-005(environment: \"Production\") Onboarding completo sem token na resposta em qualquer ambiente @spec:AC-021 @spec:AC-038 @spec:AC-100 @principle:P-005(environment: \"Production\")",
+      "testName": "Onboarding completo sem token na resposta em qualquer ambiente @spec:AC-021 @spec:AC-038 @spec:AC-100 @principle:P-005(environment: \"Development\") Onboarding completo sem token na resposta em qualquer ambiente @spec:AC-021 @spec:AC-038 @spec:AC-100 @principle:P-005(environment: \"Development\")",
       "method": "jest-json"
     },
     "AC-039": {

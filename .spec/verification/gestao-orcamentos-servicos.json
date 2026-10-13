@@ -1,25 +1,25 @@
 {
   "feature": "gestao-orcamentos-servicos",
-  "timestamp": "2026-10-13T01:02:15.242Z",
-  "gitRev": "be79d2c",
+  "timestamp": "2026-10-13T02:00:09.046Z",
+  "gitRev": "977d415",
   "command": "powershell -ExecutionPolicy Bypass -File scripts/verify-spec.ps1",
   "reporter": "jest-json",
   "exitCode": 0,
-  "testsParsed": 266,
+  "testsParsed": 321,
   "results": {
     "AC-090": {
       "status": "pass",
-      "testName": "Criar orçamento com status Pendente e valor total calculado @spec:AC-090 Criar orçamento com status Pendente e valor total calculado @spec:AC-090",
+      "testName": "Identidades e intervalo de validade obrigatórios recusam montagem inválida @spec:AC-090 Identidades e intervalo de validade obrigatórios recusam montagem inválida @spec:AC-090",
       "method": "jest-json"
     },
     "AC-092": {
       "status": "pass",
-      "testName": "Orçamento enviado permanece editável pendente, recalcula conteúdo e isola empresas @spec:AC-206 @spec:AC-092 Orçamento enviado permanece editável pendente, recalcula conteúdo e isola empresas @spec:AC-206 @spec:AC-092",
+      "testName": "Agregado publicado Pending exige cliente, itens e tenant e preserva recusas HTTP @spec:AC-090 @spec:AC-092 Agregado publicado Pending exige cliente, itens e tenant e preserva recusas HTTP @spec:AC-090 @spec:AC-092",
       "method": "jest-json"
     },
     "AC-206": {
       "status": "pass",
-      "testName": "Orçamento enviado permanece editável pendente, recalcula conteúdo e isola empresas @spec:AC-206 @spec:AC-092 Orçamento enviado permanece editável pendente, recalcula conteúdo e isola empresas @spec:AC-206 @spec:AC-092",
+      "testName": "Fora do Draft montagem direta é recusada sem mutação de conteúdo, sinal ou estado @spec:AC-206(status: Approved) Fora do Draft montagem direta é recusada sem mutação de conteúdo, sinal ou estado @spec:AC-206(status: Approved)",
       "method": "jest-json"
     },
     "AC-093": {
@@ -34,7 +34,7 @@
     },
     "AC-045": {
       "status": "pass",
-      "testName": "ServiceItem e Quotation implementam ITenantOwned com TenantId @spec:AC-045 ServiceItem e Quotation implementam ITenantOwned com TenantId @spec:AC-045",
+      "testName": "Tenant obrigatório e atualização inválida do catálogo preserva conteúdo @spec:AC-045 Tenant obrigatório e atualização inválida do catálogo preserva conteúdo @spec:AC-045",
       "method": "jest-json"
     },
     "AC-049": {
@@ -44,7 +44,7 @@
     },
     "AC-046": {
       "status": "pass",
-      "testName": "Calcula entrada exigida em valor fixo e saldo restante @spec:AC-046 Calcula entrada exigida em valor fixo e saldo restante @spec:AC-046",
+      "testName": "Conteúdo decidido ou encerrado permanece imutável @spec:AC-046(status: Approved) Conteúdo decidido ou encerrado permanece imutável @spec:AC-046(status: Approved)",
       "method": "jest-json"
     },
     "AC-047": {
@@ -54,18 +54,18 @@
     },
     "AC-048": {
       "status": "pass",
-      "testName": "Aprovação de orçamento expirado lança exceção @spec:AC-048 Aprovação de orçamento expirado lança exceção @spec:AC-048",
+      "testName": "Matriz de transições conserva agregado em cada recusa e conteúdo nas transições válidas @spec:AC-048(source: Approved, operation: \"pending\") Matriz de transições conserva agregado em cada recusa e conteúdo nas transições válidas @spec:AC-048(source: Approved, operation: \"pending\")",
       "method": "jest-json"
     }
   },
   "principles": {
     "P-005": {
       "status": "pass",
-      "testName": "Senhas nunca são recuperáveis @spec:AC-008 @principle:P-005 Senhas nunca são recuperáveis @spec:AC-008 @principle:P-005"
+      "testName": "Token de e-mail é armazenado somente como digest e expira em 24 horas @spec:AC-009 @principle:P-005 Token de e-mail é armazenado somente como digest e expira em 24 horas @spec:AC-009 @principle:P-005"
     },
     "P-003": {
       "status": "pass",
-      "testName": "Tenant externo em header ou query não substitui a sessão @spec:AC-029 @principle:P-003(useQuery: True) Tenant externo em header ou query não substitui a sessão @spec:AC-029 @principle:P-003(useQuery: True)"
+      "testName": "Tenant externo em header ou query não substitui a sessão @spec:AC-029 @principle:P-003(useQuery: False) Tenant externo em header ou query não substitui a sessão @spec:AC-029 @principle:P-003(useQuery: False)"
     },
     "P-004": {
       "status": "pass",

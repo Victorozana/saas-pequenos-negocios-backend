@@ -36,11 +36,11 @@ Como prestador de serviços,
 Quero poder alterar o status de um orçamento para Aprovado ou Rejeitado,
 Para ter o histórico do funil de vendas.
 
-#### AC-093 — Estados finais bloqueiam nova aprovação ou rejeição
+#### AC-093 — Estados finais bloqueiam novas decisões com exceção da aprovação idempotente
 
 - **Dado** um orçamento convertido em OS ou já aprovado/rejeitado
 - **Quando** o prestador tenta aprová-lo ou rejeitá-lo novamente
-- **Então** a operação é rejeitada.
+- **Então** novas decisões são rejeitadas, exceto a aprovação pública repetida de orçamento `Aprovado` ou `Convertido`, que retorna sucesso idempotente sem alterar o orçamento nem duplicar recebíveis ou OS. Rejeições repetidas permanecem bloqueadas; no domínio as decisões repetidas continuam recusadas.
 
 ### US-047 — Transformar Orçamento Aprovado em Ordem de Serviço
 Como prestador de serviços,
@@ -66,6 +66,7 @@ Para iniciar a execução dos serviços sem retrabalho de digitação.
 | Q-016 | O orçamento pode ser editado depois de enviado para o cliente? | respondida | Usuário permite edição enquanto pendente; bloqueia após aprovação, rejeição ou conversão (12/10/2026). |
 | Q-020 | Qual precisão, arredondamento e teto monetário devem ser usados? | respondida | Em 12/10/2026, usuário confirmou entradas até duas casas, subtotal por item e entrada percentual arredondados com meio para longe de zero, teto 9.999.999.999.999.999,99. |
 | Q-021 | Como preservar quantidade na conversão para OS com numeric(18,2)? | respondida | Em 12/10/2026, usuário confirmou quantidade positiva com até duas casas e teto 9.999.999.999.999.999,99, rejeitada antes de criação/edição, sem migration. |
+| Q-022 | AC-093 deve admitir aprovação repetida idempotente de Approved/Converted no fluxo público? | respondida | Em 12/10/2026, usuário confirmou documentar a exceção idempotente para aprovação pública repetida, mantendo rejeições repetidas bloqueadas. Domínio estrito e fluxo financeiro existente preservados. |
 
 ## Requisitos recuperados do histórico
 
@@ -142,3 +143,11 @@ Decisões dadas pelo usuário nesta revisão, antes da implementação:
 - Operação recusada preserva itens, conteúdo, totais, sinal e estado anteriores. Catálogo e cliente referenciados devem existir no tenant autenticado.
 
 Ambiguidades de precisão/teto foram resolvidas explicitamente nesta sessão. Design e provas estão em design.md e na revisão T-031; não substituir o gate por existência de arquivos ou provas antigas.
+
+## Revisão de estados — T-088 — 12/10/2026
+
+Quotation.Create monta um Draft interno com TenantId/CustomerId não vazios e coleção somente de leitura. A criação pública valida cliente e catálogo no tenant autenticado, monta itens e sinal e chama MarkAsPending antes de persistir. O estado inicial observado por POST/GET é Pending (AC-090), sem expor uma criação pública Draft.
+
+O domínio permite Draft → Pending com itens; Pending válido → Approved; Pending → Rejected; Approved → Converted. CheckExpiration somente altera Pending vencido para Expired, usando a data UTC e limite estrito anterior a hoje. Cancel mantém a política histórica: Draft/Pending/Expired → Canceled e repetição Canceled sem mudança; Approved/Rejected/Converted recusam cancelamento. Edição completa somente Pending permanece em T-103; montagem item/sinal somente Draft.
+
+O handler bloqueia decisões em Pending vencido antes de mutar o agregado rastreado; cancelamento continua permitido. A divergência entre AC-093 e a aprovação repetida idempotente em Approved/Converted foi resolvida pelo usuário em Q-022: a exceção pública é permitida, sem alteração ou duplicação financeira/OS. Provas antigas da rejeição de Converted não certificam todas as decisões repetidas; os novos testes HTTP/PostgreSQL exercitam a exceção e as recusas. T-089 a T-092 e T-032 a T-037 permanecem pendentes de revisão própria.

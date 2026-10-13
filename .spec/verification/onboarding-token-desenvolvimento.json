@@ -1,15 +1,15 @@
 {
   "feature": "onboarding-token-desenvolvimento",
-  "timestamp": "2026-10-13T01:06:27.683Z",
-  "gitRev": "be79d2c",
+  "timestamp": "2026-10-13T02:04:29.848Z",
+  "gitRev": "977d415",
   "command": "powershell -ExecutionPolicy Bypass -File scripts/verify-spec.ps1",
   "reporter": "jest-json",
   "exitCode": 0,
-  "testsParsed": 266,
+  "testsParsed": 321,
   "results": {
     "AC-100": {
       "status": "pass",
-      "testName": "Onboarding completo sem token na resposta em qualquer ambiente @spec:AC-021 @spec:AC-038 @spec:AC-100 @principle:P-005(environment: \"Test\") Onboarding completo sem token na resposta em qualquer ambiente @spec:AC-021 @spec:AC-038 @spec:AC-100 @principle:P-005(environment: \"Test\")",
+      "testName": "Onboarding completo sem token na resposta em qualquer ambiente @spec:AC-021 @spec:AC-038 @spec:AC-100 @principle:P-005(environment: \"Production\") Onboarding completo sem token na resposta em qualquer ambiente @spec:AC-021 @spec:AC-038 @spec:AC-100 @principle:P-005(environment: \"Production\")",
       "method": "jest-json"
     }
   },

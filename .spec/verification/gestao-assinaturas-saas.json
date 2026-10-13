@@ -1,11 +1,11 @@
 {
   "feature": "gestao-assinaturas-saas",
-  "timestamp": "2026-10-13T00:58:01.811Z",
-  "gitRev": "be79d2c",
+  "timestamp": "2026-10-13T01:55:48.546Z",
+  "gitRev": "977d415",
   "command": "powershell -ExecutionPolicy Bypass -File scripts/verify-spec.ps1",
   "reporter": "jest-json",
   "exitCode": 0,
-  "testsParsed": 266,
+  "testsParsed": 321,
   "results": {
     "AC-201": {
       "status": "pass",
@@ -40,7 +40,7 @@
     },
     "P-003": {
       "status": "pass",
-      "testName": "@spec:AC-013 @principle:P-003 @principle:P-005 valid login emits only user_tenant_and_role @spec:AC-013 @principle:P-003 @principle:P-005 valid login emits only user_tenant_and_role"
+      "testName": "Tenant externo em header ou query não substitui a sessão @spec:AC-029 @principle:P-003(useQuery: True) Tenant externo em header ou query não substitui a sessão @spec:AC-029 @principle:P-003(useQuery: True)"
     },
     "P-004": {
       "status": "pass",

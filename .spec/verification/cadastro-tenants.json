@@ -1,11 +1,11 @@
 {
   "feature": "cadastro-tenants",
-  "timestamp": "2026-10-13T00:51:48.260Z",
-  "gitRev": "be79d2c",
+  "timestamp": "2026-10-13T01:49:21.701Z",
+  "gitRev": "977d415",
   "command": "powershell -ExecutionPolicy Bypass -File scripts/verify-spec.ps1",
   "reporter": "jest-json",
   "exitCode": 0,
-  "testsParsed": 266,
+  "testsParsed": 321,
   "results": {
     "AC-014": {
       "status": "pass",
@@ -24,7 +24,7 @@
     },
     "AC-017": {
       "status": "pass",
-      "testName": "Gateway rejeita payload externo inválido com falha segura @spec:AC-017 Gateway rejeita payload externo inválido com falha segura @spec:AC-017",
+      "testName": "Handler returns company data when eligible @spec:AC-017 Handler returns company data when eligible @spec:AC-017",
       "method": "jest-json"
     },
     "AC-018": {
@@ -49,7 +49,7 @@
     },
     "AC-022": {
       "status": "pass",
-      "testName": "CNPJ é único globalmente (normalização consistente) @spec:AC-022 CNPJ é único globalmente (normalização consistente) @spec:AC-022",
+      "testName": "CNPJ é único globalmente @spec:AC-022 CNPJ é único globalmente @spec:AC-022",
       "method": "jest-json"
     },
     "AC-023": {
@@ -81,7 +81,7 @@
   "principles": {
     "P-005": {
       "status": "pass",
-      "testName": "Senhas nunca são recuperáveis @spec:AC-008 @principle:P-005 Senhas nunca são recuperáveis @spec:AC-008 @principle:P-005"
+      "testName": "Token de e-mail é armazenado somente como digest e expira em 24 horas @spec:AC-009 @principle:P-005 Token de e-mail é armazenado somente como digest e expira em 24 horas @spec:AC-009 @principle:P-005"
     },
     "P-003": {
       "status": "pass",

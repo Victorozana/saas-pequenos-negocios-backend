@@ -1,0 +1,16 @@
+{
+  "ok": true,
+  "stats": {
+    "features": 15,
+    "stories": 57,
+    "acs": 95,
+    "acsWithTest": 95,
+    "acsProven": 95,
+    "assumptionsOpen": 1,
+    "questionsOpen": 0,
+    "principles": 5,
+    "errors": 0,
+    "warnings": 0
+  },
+  "findings": []
+}

@@ -1,12 +1,12 @@
 {
-  "runId": "saas-pequenos-negocios-backend-gestao-orcamentos-servicos-mv5ze9ty",
+  "runId": "saas-pequenos-negocios-backend-gestao-orcamentos-servicos-mv61ijdf",
   "feature": "gestao-orcamentos-servicos",
   "agent": "codex",
   "modo": "sequencial",
   "paralelizar": null,
   "modeloForcado": null,
   "esforcoForcado": null,
-  "geradoEm": "2026-10-13 01:07",
+  "geradoEm": "2026-10-13 02:06",
   "branchTrabalho": "spec/gestao-orcamentos-servicos",
   "baseDir": ".spec/features/gestao-orcamentos-servicos",
   "specDir": ".spec",
@@ -15,25 +15,6 @@
   "ondas": [],
   "faixas": [],
   "sequenciais": [
-    {
-      "id": "T-088",
-      "titulo": "Entidades de Domínio para Orçamentos e Serviços",
-      "modelo": "gpt-5.6-terra",
-      "esforco": "medium",
-      "arquivos": [
-        "src/Agendamento.Api/Domain/Quotations/Quotation.cs",
-        "src/Agendamento.Api/Domain/Quotations/QuotationStatus.cs",
-        "src/Agendamento.Api/Domain/Quotations/QuotationItem.cs",
-        "src/Agendamento.Api/Domain/Quotations/DepositInfo.cs",
-        "src/Agendamento.Api/Domain/Quotations/DepositType.cs"
-      ],
-      "refs": [
-        "US-045",
-        "US-046",
-        "AC-090",
-        "AC-092"
-      ]
-    },
     {
       "id": "T-089",
       "titulo": "Mapeamento EF Core para Orçamentos",
@@ -212,6 +193,7 @@
     }
   ],
   "concluidas": [
+    "T-088",
     "T-031",
     "T-103"
   ],

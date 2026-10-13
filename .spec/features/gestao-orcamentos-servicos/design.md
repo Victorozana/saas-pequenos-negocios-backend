@@ -23,3 +23,13 @@ T-088 compartilha Quotation, itens, entrada e enums, mas abrange estados e crit�
 QuotationModelValidationTests: limites, arredondamento, entradas inválidas, tenant e ausência de mutação nos métodos de domínio.
 QuotationModelHttpTests: recusa HTTP sem persistência/mutação, catálogo externo/inexistente, roundtrip e recebíveis sob PostgreSQL temporário exclusivo com logins restritos/RLS.
 Regressões existentes: edição/concorrência, permissões, CPF/PreserveDocument, isolamento, financeira/notificações e PDF semântico concorrente. Logs/TRX/JSON por execução em .local-verification/t031; confirmar motor e record.exitCode separadamente.
+
+## Revisão T-088 — ciclo de vida
+
+O agregado monta Draft, mas a API publica apenas Pending após validar referências e conteúdo. Itens são expostos por coleção somente de leitura. TenantId permanece setter público por ITenantOwned/EF; a guarda de gravação compara tenant original e atual, filtros EF e RLS protegem leitura/persistência. A factory sozinha não certifica isolamento.
+
+Transições de domínio e operações de montagem serão provadas por matriz de estados e snapshots completos. Expiração usa DateTime.UtcNow.Date, considera validade de hoje ainda válida e só muda Pending. Cancel de Expired para Canceled e repetição Canceled permanecem históricos. Estados Approved/Rejected/Converted bloqueiam alterações de conteúdo e decisões no domínio.
+
+Uma recusa no handler de status não deve executar CheckExpiration antecipadamente: isso modificava o objeto rastreado embora não salvasse no banco. Validação de vencimento agora precede a decisão, sem mutação; cancelamento de vencido continua permitido. Não há mudança de DTO/rota/status HTTP/OpenAPI ou migration.
+
+Aprovação pública repetida é uma exceção idempotente implementada no handler para Approved/Converted. O domínio continua estrito. O usuário resolveu Q-022 em 12/10/2026: AC-093 admite aprovação pública repetida idempotente de Approved/Converted sem mutação/duplicação e mantém rejeições repetidas bloqueadas. Conversão e suas proteções permanecem existentes, sem certificação integral de T-091 por esta revisão de domínio.

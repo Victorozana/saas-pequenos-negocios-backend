@@ -37,7 +37,12 @@ public class UpdateQuotationStatusHandler
             (quotation.Status == QuotationStatus.Approved || quotation.Status == QuotationStatus.Converted))
             return true;
 
-        quotation.CheckExpiration();
+        // Refused commands must not change even the tracked aggregate. Cancellation
+        // remains allowed for expired quotations; other decisions require validity.
+        if (quotation.Status == QuotationStatus.Pending &&
+            quotation.ValidUntil.HasValue && quotation.ValidUntil.Value < DateTime.UtcNow.Date &&
+            command.NewStatus != QuotationStatus.Canceled)
+            throw new InvalidOperationException("Cannot transition an expired quotation.");
 
         switch (command.NewStatus)
         {

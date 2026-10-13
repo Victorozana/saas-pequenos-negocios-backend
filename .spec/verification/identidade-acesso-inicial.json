@@ -1,11 +1,11 @@
 {
   "feature": "identidade-acesso-inicial",
-  "timestamp": "2026-10-13T01:03:17.428Z",
-  "gitRev": "be79d2c",
+  "timestamp": "2026-10-13T02:01:14.309Z",
+  "gitRev": "977d415",
   "command": "powershell -ExecutionPolicy Bypass -File scripts/verify-spec.ps1",
   "reporter": "jest-json",
   "exitCode": 0,
-  "testsParsed": 266,
+  "testsParsed": 321,
   "results": {
     "AC-007": {
       "status": "pass",
@@ -24,12 +24,12 @@
     },
     "AC-010": {
       "status": "pass",
-      "testName": "Confirmação válida verifica o e-mail uma única vez @spec:AC-010 Confirmação válida verifica o e-mail uma única vez @spec:AC-010",
+      "testName": "Token válido é consumido somente uma vez @spec:AC-010 Token válido é consumido somente uma vez @spec:AC-010",
       "method": "jest-json"
     },
     "AC-011": {
       "status": "pass",
-      "testName": "Token inválido, adulterado ou vencido não verifica o e-mail @spec:AC-011(submittedToken: \"tampered-token\") Token inválido, adulterado ou vencido não verifica o e-mail @spec:AC-011(submittedToken: \"tampered-token\")",
+      "testName": "Token vencido não pode ser consumido @spec:AC-011 Token vencido não pode ser consumido @spec:AC-011",
       "method": "jest-json"
     },
     "AC-012": {
@@ -46,11 +46,11 @@
   "principles": {
     "P-005": {
       "status": "pass",
-      "testName": "Senhas nunca são recuperáveis @spec:AC-008 @principle:P-005 Senhas nunca são recuperáveis @spec:AC-008 @principle:P-005"
+      "testName": "Token de e-mail é armazenado somente como digest e expira em 24 horas @spec:AC-009 @principle:P-005 Token de e-mail é armazenado somente como digest e expira em 24 horas @spec:AC-009 @principle:P-005"
     },
     "P-003": {
       "status": "pass",
-      "testName": "@spec:AC-013 @principle:P-003 @principle:P-005 valid login emits only user_tenant_and_role @spec:AC-013 @principle:P-003 @principle:P-005 valid login emits only user_tenant_and_role"
+      "testName": "Tenant externo em header ou query não substitui a sessão @spec:AC-029 @principle:P-003(useQuery: False) Tenant externo em header ou query não substitui a sessão @spec:AC-029 @principle:P-003(useQuery: False)"
     },
     "P-004": {
       "status": "pass",

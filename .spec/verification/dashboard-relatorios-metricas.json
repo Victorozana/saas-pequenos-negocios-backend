@@ -1,11 +1,11 @@
 {
   "feature": "dashboard-relatorios-metricas",
-  "timestamp": "2026-10-13T00:53:12.134Z",
-  "gitRev": "be79d2c",
+  "timestamp": "2026-10-13T01:51:30.339Z",
+  "gitRev": "977d415",
   "command": "powershell -ExecutionPolicy Bypass -File scripts/verify-spec.ps1",
   "reporter": "jest-json",
   "exitCode": 0,
-  "testsParsed": 266,
+  "testsParsed": 321,
   "results": {
     "AC-065": {
       "status": "pass",
@@ -40,7 +40,7 @@
     },
     "P-003": {
       "status": "pass",
-      "testName": "Tenant externo em header ou query não substitui a sessão @spec:AC-029 @principle:P-003(useQuery: False) Tenant externo em header ou query não substitui a sessão @spec:AC-029 @principle:P-003(useQuery: False)"
+      "testName": "Tenant externo no body não muda a empresa do cliente criado @spec:AC-029 @principle:P-003 Tenant externo no body não muda a empresa do cliente criado @spec:AC-029 @principle:P-003"
     },
     "P-004": {
       "status": "pass",

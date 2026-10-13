@@ -1,9 +1,9 @@
 # Tarefas: Gestão de Orçamentos e Serviços
 
-## T-088 — Entidades de Domínio para Orçamentos e Serviços [pendente]
-
+## T-088 — Entidades de Domínio para Orçamentos e Serviços [concluida]
 - Refs: US-045, US-046, AC-090, AC-092
-- Arquivos: src/Agendamento.Api/Domain/Quotations/Quotation.cs, src/Agendamento.Api/Domain/Quotations/QuotationStatus.cs, src/Agendamento.Api/Domain/Quotations/QuotationItem.cs, src/Agendamento.Api/Domain/Quotations/DepositInfo.cs, src/Agendamento.Api/Domain/Quotations/DepositType.cs
+- Arquivos: src/Agendamento.Api/Domain/Quotations/Quotation.cs, src/Agendamento.Api/Domain/Quotations/QuotationStatus.cs, src/Agendamento.Api/Domain/Quotations/QuotationItem.cs, src/Agendamento.Api/Domain/Quotations/DepositInfo.cs, src/Agendamento.Api/Domain/Quotations/DepositType.cs, src/Agendamento.Api/Application/Quotations/UpdateQuotationStatus/UpdateQuotationStatusHandler.cs, tests/Agendamento.UnitTests/Quotations/QuotationLifecycleTests.cs, tests/Agendamento.UnitTests/Quotations/QuotationStatusAtomicityTests.cs, tests/Agendamento.IntegrationTests/Quotations/QuotationLifecycleHttpTests.cs
+- Notas: Revisão própria Draft/Pending, associação obrigatória, coleção, todas as transições e recusas sem mutação. Q-022 respondida: AC-093 documenta exceção idempotente de aprovação pública repetida, preservando fluxo financeiro e bloqueando rejeições repetidas. Provas e fechamento em .spec/revisao-t088.md; T-089 a T-092 e T-032 a T-037 não certificadas automaticamente.
 - Regra: Criar entidade de domínio `Quotation` associada ao `CustomerId` e `TenantId` com lista de itens (`QuotationItem`). Adicionar `QuotationStatus` (`Pendente`, `Aprovado`, `Rejeitado`).
 
 ## T-089 — Mapeamento EF Core para Orçamentos [pendente]
