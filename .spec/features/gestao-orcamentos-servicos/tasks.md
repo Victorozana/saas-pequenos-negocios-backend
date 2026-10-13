@@ -30,10 +30,10 @@
 - Arquivos: tests/Agendamento.IntegrationTests/Features/QuotationTests.cs, tests/Agendamento.UnitTests/Quotations/QuotationDomainTests.cs
 - Regra: Testar validações de tenant, soma de itens, e transições de status válidas.
 
-## T-031 — Modelar Entidades do Catálogo de Serviços e Orçamentos [pendente]
-
+## T-031 — Modelar Entidades do Catálogo de Serviços e Orçamentos [concluida]
 - Refs: US-020, US-021, US-022, AC-045, AC-046
-- Arquivos: src/Agendamento.Api/Domain/Services/ServiceItem.cs, src/Agendamento.Api/Domain/Quotations/Quotation.cs, src/Agendamento.Api/Domain/Quotations/QuotationItem.cs, src/Agendamento.Api/Domain/Quotations/QuotationStatus.cs, src/Agendamento.Api/Domain/Quotations/DepositInfo.cs, src/Agendamento.Api/Domain/Quotations/DepositType.cs
+- Arquivos: src/Agendamento.Api/Domain/Services/ServiceItem.cs, src/Agendamento.Api/Domain/Quotations/Quotation.cs, src/Agendamento.Api/Domain/Quotations/QuotationItem.cs, src/Agendamento.Api/Domain/Quotations/QuotationStatus.cs, src/Agendamento.Api/Domain/Quotations/DepositInfo.cs, src/Agendamento.Api/Domain/Quotations/DepositType.cs, src/Agendamento.Api/Domain/Quotations/QuotationMoney.cs, src/Agendamento.Api/Application/Quotations/CreateQuotation/CreateQuotationHandler.cs, src/Agendamento.Api/Application/Financial/GenerateReceivablesFromQuotation/GenerateReceivablesFromQuotationHandler.cs, src/Agendamento.Api/Application/WorkOrders/GetWorkOrderById/WorkOrderResponse.cs, tests/Agendamento.UnitTests/Quotations/QuotationModelValidationTests.cs, tests/Agendamento.IntegrationTests/Quotations/QuotationModelHttpTests.cs
+- Notas: Revisão T-031 com cálculos, limites e atomicidade; design.md registra decisões confirmadas. T-088 e outras tarefas históricas permanecem pendentes.
 - Regra: Implementar `ITenantOwned` em `ServiceItem` e `Quotation`. Criar regras de cálculo de totais e sinal/entrada (porcentagem ou valor fixo, saldo restante).
 
 ## T-032 — Mapear Persistência EF Core e Migrations [pendente]
@@ -84,3 +84,7 @@
 - QuotationItem não possui arquivo de configuração separado; o mapeamento existente está em QuotationConfiguration/AgendamentoDbContext.
 - T-088 a T-092 permanecem pendentes até revisão de abrangência: o teste AC-093 cobre orçamento convertido, mas não todas as combinações de aprovado/rejeitado; a aprovação repetida também é idempotente no fluxo financeiro.
 - Edição de orçamento pendente está em T-103, com testes HTTP e PostgreSQL anotados para AC-206; confirmação do usuário não substitui a prova gerada pelo verify.
+
+## Fechamento da revisão T-031 — 12/10/2026
+
+T-031 concluída após revisão das seis entidades, decisões financeiras confirmadas e provas de cálculos, validações, ausência de mutação, HTTP, PostgreSQL temporário/RLS e consumidores. Ver .spec/revisao-t031.md e design.md. As 15 features renovadas têm motor=0/record.exitCode=0, 266 resultados (260 PASS, seis skips antigos, zero falhas) por execução. T-088 e demais tarefas históricas continuam pendentes; não são certificadas por este fechamento.

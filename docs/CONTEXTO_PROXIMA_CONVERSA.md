@@ -343,3 +343,21 @@ AddCustomerAutomaticReminderPreference
 e 20261012191900_AddDailyReceivableReminderDeduplication NÃO foram aplicadas a agendamento_local;
 ambas são necessárias antes de iniciar versão nova nesse banco. Sem entrega real de e-mail/
 WhatsApp e sem início de telas financeiro/equipe. Tarefas históricas restantes continuam pendentes.
+
+## Modelo de serviços e orçamentos — T-031 — 12/10/2026
+
+Execução manual, modelo/esforço atuais e dois agentes auxiliares herdando configuração. HEADs conferidos be79d2c/main (backend) e cf00e8c/master (frontend), posteriores às bases informadas 96875bb/ca1d485; sem commit/push/deploy. Alterações preexistentes, obj, schema, sinais, relatórios/TRX, PDF serial/semântico e backup do banco preservados.
+
+T-031 concluída após revisão de ServiceItem, Quotation, QuotationItem, QuotationStatus, DepositInfo e DepositType. Tenant obrigatório nas factories; catálogo validado no tenant também na criação. Enum de sinal desconhecido recusado. AddItem/RemoveItem validam candidatos/totais/entrada antes de mutar, preservando agregado em falhas. Edição pendente e estados finais mantidos.
+
+Q-020/Q-021 respondidas pelo usuário: entradas monetárias, percentual e quantidade até duas casas; teto 9.999.999.999.999.999,99; quantidade positiva; subtotal arredondado por item e sinal percentual arredondado com meio para longe de zero; saldo deriva da entrada já arredondada. Sem migration. Financeiro usa RequiredAmount do orçamento; resposta OS e prévia frontend usam subtotal arredondado. Frontend calcula centavos em bigint. Contrato number mantém limitação preexistente de exatidão em extremos JavaScript, documentada no design/revisão. Catálogo UI mantém restrição histórica de preço positivo enquanto domínio aceita zero; não certificar UI de catálogo por esta tarefa de modelo.
+
+Novas provas: 14 casos unitários e dois HTTP/PostgreSQL temporário/RLS, incluindo limites, frações, recusas sem mutação/persistência, catálogo externo e recebíveis conciliados. Focados finais: domínio 23 PASS, HTTP dois PASS/exit0. Frontend 232 testes/49 arquivos, typecheck, lint relevante e build exit0. OpenAPI reexportado por host InMemory e schema regenerado pelo arquivo, com conteúdo final inalterado.
+
+As 15 features tiveram motor=0 e record.exitCode=0: 266 resultados, 260 PASS, zero falhas, seis skips antigos por execução. TRX/JSON/log preservados por feature em .local-verification/t031/certified; contadores em trx-summary.json e códigos em summary.json. Revisão .spec/revisao-t031.md; novo design.md na feature; gate final em .spec/audit-t031.json.
+
+T-088 compartilha entidades mas permanece pendente; T-032 a T-037 e T-089 a T-092 também não concluídas automaticamente. Plano sequencial regenerado para 11 tarefas restantes, apenas artefato informativo: executor não iniciado e modelos históricos não adotados. Próxima retomada deve escolher tarefa específica e revisar provas próprias.
+
+Banco/cadastros/credenciais locais intactos. Porta 5050 sem listener nas conferências; nenhum processo do usuário iniciado/encerrado. AddCustomerAutomaticReminderPreference e 20261012191900_AddDailyReceivableReminderDeduplication continuam NÃO aplicadas a agendamento_local; não iniciar versão nova nesse banco antes de rollout autorizado. Sem entrega real WhatsApp/e-mail ou telas financeiro/equipe.
+
+Gate T-031: audit --ci --json exit 0, ok=true, zero erros/avisos, 95/95 critérios provados (.spec/audit-t031.json). Uma suposição aberta global preexistente permanece; nenhuma pergunta em aberto. Diff check dos dois repos exit0. Conferidor adicional teve incompatibilidade de array JSON no Windows PowerShell5 e contador notExecuted do VSTest; corrigido para ler a coleção e os resultados reais, sem alterar provas/asserts/motor. As 15 execuções de testes propriamente ditas não falharam.

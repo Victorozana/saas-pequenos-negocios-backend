@@ -1,11 +1,11 @@
 {
   "feature": "gestao-assinaturas-saas",
-  "timestamp": "2026-10-12T21:15:30.228Z",
-  "gitRev": "96875bb",
+  "timestamp": "2026-10-13T00:58:01.811Z",
+  "gitRev": "be79d2c",
   "command": "powershell -ExecutionPolicy Bypass -File scripts/verify-spec.ps1",
   "reporter": "jest-json",
   "exitCode": 0,
-  "testsParsed": 250,
+  "testsParsed": 266,
   "results": {
     "AC-201": {
       "status": "pass",
@@ -14,7 +14,7 @@
     },
     "AC-204": {
       "status": "pass",
-      "testName": "Acesso de escrita bloqueado se PastDue e expirou carência @spec:AC-204 Acesso de escrita bloqueado se PastDue e expirou carência @spec:AC-204",
+      "testName": "Acesso de escrita não bloqueado se PastDue dentro da carência @spec:AC-204 Acesso de escrita não bloqueado se PastDue dentro da carência @spec:AC-204",
       "method": "jest-json"
     },
     "AC-205": {
@@ -40,7 +40,7 @@
     },
     "P-003": {
       "status": "pass",
-      "testName": "Tenant externo em header ou query não substitui a sessão @spec:AC-029 @principle:P-003(useQuery: False) Tenant externo em header ou query não substitui a sessão @spec:AC-029 @principle:P-003(useQuery: False)"
+      "testName": "@spec:AC-013 @principle:P-003 @principle:P-005 valid login emits only user_tenant_and_role @spec:AC-013 @principle:P-003 @principle:P-005 valid login emits only user_tenant_and_role"
     },
     "P-004": {
       "status": "pass",

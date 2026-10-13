@@ -1,11 +1,11 @@
 {
   "feature": "identidade-acesso-inicial",
-  "timestamp": "2026-10-12T21:26:11.477Z",
-  "gitRev": "96875bb",
+  "timestamp": "2026-10-13T01:03:17.428Z",
+  "gitRev": "be79d2c",
   "command": "powershell -ExecutionPolicy Bypass -File scripts/verify-spec.ps1",
   "reporter": "jest-json",
   "exitCode": 0,
-  "testsParsed": 250,
+  "testsParsed": 266,
   "results": {
     "AC-007": {
       "status": "pass",
@@ -29,7 +29,7 @@
     },
     "AC-011": {
       "status": "pass",
-      "testName": "Token vencido não pode ser consumido @spec:AC-011 Token vencido não pode ser consumido @spec:AC-011",
+      "testName": "Token inválido, adulterado ou vencido não verifica o e-mail @spec:AC-011(submittedToken: \"tampered-token\") Token inválido, adulterado ou vencido não verifica o e-mail @spec:AC-011(submittedToken: \"tampered-token\")",
       "method": "jest-json"
     },
     "AC-012": {

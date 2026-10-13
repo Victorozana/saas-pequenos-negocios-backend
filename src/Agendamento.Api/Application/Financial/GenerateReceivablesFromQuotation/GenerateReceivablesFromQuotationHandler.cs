@@ -22,14 +22,7 @@ public class GenerateReceivablesFromQuotationHandler
         decimal depositAmount = 0;
         if (quotation.DepositInfo != null && quotation.DepositInfo.Value > 0)
         {
-            if (quotation.DepositInfo.Type == DepositType.FixedAmount)
-            {
-                depositAmount = quotation.DepositInfo.Value;
-            }
-            else if (quotation.DepositInfo.Type == DepositType.Percentage)
-            {
-                depositAmount = quotation.TotalAmount * (quotation.DepositInfo.Value / 100m);
-            }
+            depositAmount = quotation.DepositInfo.RequiredAmount;
 
             if (depositAmount > quotation.TotalAmount)
                 throw new ArgumentException("A entrada não pode superar o valor do orçamento.");

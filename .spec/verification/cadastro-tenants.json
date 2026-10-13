@@ -1,15 +1,15 @@
 {
   "feature": "cadastro-tenants",
-  "timestamp": "2026-10-12T21:05:00.372Z",
-  "gitRev": "96875bb",
+  "timestamp": "2026-10-13T00:51:48.260Z",
+  "gitRev": "be79d2c",
   "command": "powershell -ExecutionPolicy Bypass -File scripts/verify-spec.ps1",
   "reporter": "jest-json",
   "exitCode": 0,
-  "testsParsed": 250,
+  "testsParsed": 266,
   "results": {
     "AC-014": {
       "status": "pass",
-      "testName": "CNPJ inválido é rejeitado localmente @spec:AC-014(invalidCnpj: \"11.111.111/1111-11\") CNPJ inválido é rejeitado localmente @spec:AC-014(invalidCnpj: \"11.111.111/1111-11\")",
+      "testName": "CNPJ inválido é rejeitado localmente @spec:AC-014(invalidCnpj: \"12.345.678/0001-90\") CNPJ inválido é rejeitado localmente @spec:AC-014(invalidCnpj: \"12.345.678/0001-90\")",
       "method": "jest-json"
     },
     "AC-015": {
@@ -24,7 +24,7 @@
     },
     "AC-017": {
       "status": "pass",
-      "testName": "Gateway consulta URL exata e mapeia todos os dados públicos @spec:AC-017 Gateway consulta URL exata e mapeia todos os dados públicos @spec:AC-017",
+      "testName": "Gateway rejeita payload externo inválido com falha segura @spec:AC-017 Gateway rejeita payload externo inválido com falha segura @spec:AC-017",
       "method": "jest-json"
     },
     "AC-018": {
@@ -81,11 +81,11 @@
   "principles": {
     "P-005": {
       "status": "pass",
-      "testName": "Token de e-mail é armazenado somente como digest e expira em 24 horas @spec:AC-009 @principle:P-005 Token de e-mail é armazenado somente como digest e expira em 24 horas @spec:AC-009 @principle:P-005"
+      "testName": "Senhas nunca são recuperáveis @spec:AC-008 @principle:P-005 Senhas nunca são recuperáveis @spec:AC-008 @principle:P-005"
     },
     "P-003": {
       "status": "pass",
-      "testName": "Tenant externo em header ou query não substitui a sessão @spec:AC-029 @principle:P-003(useQuery: False) Tenant externo em header ou query não substitui a sessão @spec:AC-029 @principle:P-003(useQuery: False)"
+      "testName": "Tenant externo em header ou query não substitui a sessão @spec:AC-029 @principle:P-003(useQuery: True) Tenant externo em header ou query não substitui a sessão @spec:AC-029 @principle:P-003(useQuery: True)"
     },
     "P-004": {
       "status": "pass",

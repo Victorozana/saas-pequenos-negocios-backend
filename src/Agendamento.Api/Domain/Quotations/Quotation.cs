@@ -33,6 +33,10 @@ public class Quotation : ITenantOwned
 
     public static Quotation Create(Guid tenantId, string code, Guid customerId, DateTime issueDate, DateTime? validUntil, string? notes, string? paymentTerms)
     {
+        if (tenantId == Guid.Empty)
+            throw new ArgumentException("Tenant is required.", nameof(tenantId));
+        if (customerId == Guid.Empty)
+            throw new ArgumentException("Customer is required.", nameof(customerId));
         if (string.IsNullOrWhiteSpace(code))
             throw new ArgumentException("Code cannot be empty.", nameof(code));
 
@@ -64,6 +68,7 @@ public class Quotation : ITenantOwned
             throw new InvalidOperationException("Can only edit pending quotations.");
 
         // Validate all replacement content before changing the persisted aggregate.
+        ArgumentNullException.ThrowIfNull(items);
         var replacement = Create(TenantId, code, customerId, issueDate, validUntil, notes, paymentTerms);
         foreach (var item in items) replacement.AddItem(item);
         if (depositType.HasValue) replacement.SetDeposit(depositType.Value, depositValue, depositPaymentNotes);
@@ -88,8 +93,8 @@ public class Quotation : ITenantOwned
         if (Status != QuotationStatus.Draft)
             throw new InvalidOperationException("Can only add items to draft quotations.");
 
-        _items.Add(item);
-        RecalculateTotals();
+        ArgumentNullException.ThrowIfNull(item);
+        ReplaceItems(_items.Append(item).ToList());
     }
 
     public void RemoveItem(Guid itemId)
@@ -100,21 +105,32 @@ public class Quotation : ITenantOwned
         var item = _items.FirstOrDefault(i => i.Id == itemId);
         if (item != null)
         {
-            _items.Remove(item);
-            RecalculateTotals();
+            ReplaceItems(_items.Where(i => i.Id != itemId).ToList());
         }
     }
 
-    private void RecalculateTotals()
+    private void ReplaceItems(List<QuotationItem> items)
     {
-        SubtotalAmount = _items.Sum(i => i.UnitPrice * i.Quantity);
-        DiscountAmount = _items.Sum(i => i.DiscountAmount);
-        TotalAmount = SubtotalAmount - DiscountAmount;
-        
-        if (DepositInfo != null)
+        decimal subtotal, discount;
+        try
         {
-            SetDeposit(DepositInfo.Type, DepositInfo.Value, DepositInfo.PaymentNotes);
+            subtotal = items.Sum(i => QuotationMoney.Subtotal(i.UnitPrice, i.Quantity));
+            discount = items.Sum(i => i.DiscountAmount);
         }
+        catch (OverflowException) { throw new ArgumentException("Quotation totals exceed the monetary limit.", nameof(items)); }
+        QuotationMoney.Validate(subtotal, nameof(items));
+        QuotationMoney.Validate(discount, nameof(items));
+        var total = subtotal - discount;
+        QuotationMoney.Validate(total, nameof(items));
+        var deposit = DepositInfo == null ? null : DepositInfo.Create(DepositInfo.Type, DepositInfo.Value, total, DepositInfo.PaymentNotes);
+
+        // Commit only after every calculation and the existing deposit have been validated.
+        _items.Clear();
+        _items.AddRange(items);
+        SubtotalAmount = subtotal;
+        DiscountAmount = discount;
+        TotalAmount = total;
+        DepositInfo = deposit;
     }
 
     public void SetDeposit(DepositType type, decimal value, string? paymentNotes)

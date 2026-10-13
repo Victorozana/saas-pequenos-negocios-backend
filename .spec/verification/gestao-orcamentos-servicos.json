@@ -1,11 +1,11 @@
 {
   "feature": "gestao-orcamentos-servicos",
-  "timestamp": "2026-10-12T21:24:03.744Z",
-  "gitRev": "96875bb",
+  "timestamp": "2026-10-13T01:02:15.242Z",
+  "gitRev": "be79d2c",
   "command": "powershell -ExecutionPolicy Bypass -File scripts/verify-spec.ps1",
   "reporter": "jest-json",
   "exitCode": 0,
-  "testsParsed": 250,
+  "testsParsed": 266,
   "results": {
     "AC-090": {
       "status": "pass",
@@ -14,12 +14,12 @@
     },
     "AC-092": {
       "status": "pass",
-      "testName": "Orçamentos não podem ser acessados por outro tenant @spec:AC-092 Orçamentos não podem ser acessados por outro tenant @spec:AC-092",
+      "testName": "Orçamento enviado permanece editável pendente, recalcula conteúdo e isola empresas @spec:AC-206 @spec:AC-092 Orçamento enviado permanece editável pendente, recalcula conteúdo e isola empresas @spec:AC-206 @spec:AC-092",
       "method": "jest-json"
     },
     "AC-206": {
       "status": "pass",
-      "testName": "Estados finais bloqueiam edição sem alterar orçamento, itens ou sinal @spec:AC-206(status: Rejected) Estados finais bloqueiam edição sem alterar orçamento, itens ou sinal @spec:AC-206(status: Rejected)",
+      "testName": "Orçamento enviado permanece editável pendente, recalcula conteúdo e isola empresas @spec:AC-206 @spec:AC-092 Orçamento enviado permanece editável pendente, recalcula conteúdo e isola empresas @spec:AC-206 @spec:AC-092",
       "method": "jest-json"
     },
     "AC-093": {
@@ -44,17 +44,17 @@
     },
     "AC-046": {
       "status": "pass",
-      "testName": "Calcula entrada exigida em porcentagem e saldo restante @spec:AC-046 Calcula entrada exigida em porcentagem e saldo restante @spec:AC-046",
+      "testName": "Calcula entrada exigida em valor fixo e saldo restante @spec:AC-046 Calcula entrada exigida em valor fixo e saldo restante @spec:AC-046",
       "method": "jest-json"
     },
     "AC-047": {
       "status": "pass",
-      "testName": "Downloads PDF concorrentes preservam texto de cada orçamento e cliente @spec:AC-037 @spec:AC-047 Downloads PDF concorrentes preservam texto de cada orçamento e cliente @spec:AC-037 @spec:AC-047",
+      "testName": "Exportação de orçamento em PDF gera bytes válidos em stream application/pdf @spec:AC-047 Exportação de orçamento em PDF gera bytes válidos em stream application/pdf @spec:AC-047",
       "method": "jest-json"
     },
     "AC-048": {
       "status": "pass",
-      "testName": "Marcação de pendente em orçamento sem itens lança exceção @spec:AC-048 Marcação de pendente em orçamento sem itens lança exceção @spec:AC-048",
+      "testName": "Aprovação de orçamento expirado lança exceção @spec:AC-048 Aprovação de orçamento expirado lança exceção @spec:AC-048",
       "method": "jest-json"
     }
   },
@@ -63,13 +63,13 @@
       "status": "pass",
       "testName": "Senhas nunca são recuperáveis @spec:AC-008 @principle:P-005 Senhas nunca são recuperáveis @spec:AC-008 @principle:P-005"
     },
+    "P-003": {
+      "status": "pass",
+      "testName": "Tenant externo em header ou query não substitui a sessão @spec:AC-029 @principle:P-003(useQuery: True) Tenant externo em header ou query não substitui a sessão @spec:AC-029 @principle:P-003(useQuery: True)"
+    },
     "P-004": {
       "status": "pass",
       "testName": "Papel restrito impede SQL direto entre tenants em todas as tabelas @spec:AC-033 @principle:P-004 Papel restrito impede SQL direto entre tenants em todas as tabelas @spec:AC-033 @principle:P-004"
-    },
-    "P-003": {
-      "status": "pass",
-      "testName": "@spec:AC-013 @principle:P-003 @principle:P-005 valid login emits only user_tenant_and_role @spec:AC-013 @principle:P-003 @principle:P-005 valid login emits only user_tenant_and_role"
     }
   }
 }

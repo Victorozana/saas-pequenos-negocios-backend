@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# executar-tarefas.sh — gerado por `onp-spec plano gestao-orcamentos-servicos` em 2026-10-12 17:50
+# executar-tarefas.sh — gerado por `onp-spec plano gestao-orcamentos-servicos` em 2026-10-13 01:07
 # NÃO edite à mão: mudou tasks.md ou a config, regenere o plano.
 #
 # uso:
@@ -14,7 +14,7 @@
 set -u
 set -o pipefail
 
-RUN_ID='saas-pequenos-negocios-backend-gestao-orcamentos-servicos-mv5jsmmr'
+RUN_ID='saas-pequenos-negocios-backend-gestao-orcamentos-servicos-mv5ze9ty'
 FEATURE='gestao-orcamentos-servicos'
 BASE_BRANCH='spec/gestao-orcamentos-servicos'
 ENGINE='.agents/skills/onp-spec-driven/scripts/onp-spec.mjs'
@@ -328,38 +328,6 @@ Regras inegociáveis:
   return 1
 }
 
-# ── sequencial T-031 (ordem do tasks.md) ──
-executar_seq_T_031() {
-  info 'sequencial T-031 — Modelar Entidades do Catálogo de Serviços e Orçamentos'
-  if rodar_tarefa seq 'T-031' 'Você executa UMA tarefa da feature "gestao-orcamentos-servicos" (fluxo onp-spec, spec-anchored).
-Leia primeiro: .spec/features/gestao-orcamentos-servicos/spec.md, .spec/features/gestao-orcamentos-servicos/tasks.md e .spec/constituicao.md.
-
-Sua tarefa (somente ela):
-T-031 — "Modelar Entidades do Catálogo de Serviços e Orçamentos"
-  critérios/refs: AC-045 (Catálogo e orçamento pertencem ao tenant), AC-046 (Totais e composição da entrada são calculados)
-  arquivos permitidos (e seus testes): src/Agendamento.Api/Domain/Services/ServiceItem.cs, src/Agendamento.Api/Domain/Quotations/Quotation.cs, src/Agendamento.Api/Domain/Quotations/QuotationItem.cs, src/Agendamento.Api/Domain/Quotations/QuotationStatus.cs, src/Agendamento.Api/Domain/Quotations/DepositInfo.cs, src/Agendamento.Api/Domain/Quotations/DepositType.cs
-  mensagem de commit: "T-031 gestao-orcamentos-servicos: Modelar Entidades do Catálogo de Serviços e Orçamentos"
-
-Regras inegociáveis:
-- Todo critério de aceite referenciado vira teste com @spec:AC-xxx no título.
-- NUNCA enfraqueça, pule (skip/todo) ou apague um teste para passar — teste pulado não é prova e o audit acusa.
-- Rode os testes localmente com `powershell -ExecutionPolicy Bypass -File scripts/verify-spec.ps1` até passarem.
-- NÃO edite tasks.md, NÃO rode onp-spec verify/audit e NÃO toque em outras tarefas — o orquestrador cuida disso.
-- Ao final de CADA tarefa: `git add` só no que você tocou e um commit próprio.' 'gpt-5.6-terra' medium >> "$LOG_DIR/seq.log" 2>&1; then
-    # commit de segurança se o agente esqueceu (rastreabilidade > perfeição)
-    if [ -n "$(git status --porcelain)" ]; then
-      git add -A && git commit -q -m 'T-031 gestao-orcamentos-servicos: Modelar Entidades do Catálogo de Serviços e Orçamentos (auto-commit do plano)'
-    fi
-    marcar_concluidas T-031
-    verde "✔ T-031 concluída"
-    return 0
-  fi
-  vermelho "✘ T-031 falhou (log: $LOG_DIR/seq.log)"
-  amarelo "  reexecute só ela: bash .spec/features/gestao-orcamentos-servicos/executar-tarefas.sh --seq T-031"
-  FALHAS="$FALHAS T-031"
-  return 1
-}
-
 # ── sequencial T-032 (ordem do tasks.md) ──
 executar_seq_T_032() {
   info 'sequencial T-032 — Mapear Persistência EF Core e Migrations'
@@ -610,7 +578,6 @@ executar_tudo() {
   executar_seq_T_090 || true
   executar_seq_T_091 || true
   executar_seq_T_092 || true
-  executar_seq_T_031 || true
   executar_seq_T_032 || true
   executar_seq_T_033 || true
   executar_seq_T_034 || true
@@ -627,7 +594,6 @@ listar() {
   echo "  seq       T-090 (sequencial)"
   echo "  seq       T-091 (sequencial)"
   echo "  seq       T-092 (sequencial)"
-  echo "  seq       T-031 (sequencial)"
   echo "  seq       T-032 (sequencial)"
   echo "  seq       T-033 (sequencial)"
   echo "  seq       T-034 (sequencial)"
@@ -673,7 +639,6 @@ case "$MODO" in
       T-090) evento --tipo inicio --escopo "seq:T-090"; iniciar_resumos; executar_seq_T_090 || true; encerrar "seq:T-090" ;;
       T-091) evento --tipo inicio --escopo "seq:T-091"; iniciar_resumos; executar_seq_T_091 || true; encerrar "seq:T-091" ;;
       T-092) evento --tipo inicio --escopo "seq:T-092"; iniciar_resumos; executar_seq_T_092 || true; encerrar "seq:T-092" ;;
-      T-031) evento --tipo inicio --escopo "seq:T-031"; iniciar_resumos; executar_seq_T_031 || true; encerrar "seq:T-031" ;;
       T-032) evento --tipo inicio --escopo "seq:T-032"; iniciar_resumos; executar_seq_T_032 || true; encerrar "seq:T-032" ;;
       T-033) evento --tipo inicio --escopo "seq:T-033"; iniciar_resumos; executar_seq_T_033 || true; encerrar "seq:T-033" ;;
       T-034) evento --tipo inicio --escopo "seq:T-034"; iniciar_resumos; executar_seq_T_034 || true; encerrar "seq:T-034" ;;

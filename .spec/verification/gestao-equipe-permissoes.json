@@ -1,30 +1,30 @@
 {
   "feature": "gestao-equipe-permissoes",
-  "timestamp": "2026-10-12T21:19:38.235Z",
-  "gitRev": "96875bb",
+  "timestamp": "2026-10-13T01:00:09.603Z",
+  "gitRev": "be79d2c",
   "command": "powershell -ExecutionPolicy Bypass -File scripts/verify-spec.ps1",
   "reporter": "jest-json",
   "exitCode": 0,
-  "testsParsed": 250,
+  "testsParsed": 266,
   "results": {
     "AC-070": {
       "status": "pass",
-      "testName": "Perfil completo do usuário com permissões explícitas @spec:AC-070 Perfil completo do usuário com permissões explícitas @spec:AC-070",
+      "testName": "Perfil HTTP não expõe credenciais @spec:AC-070 Perfil HTTP não expõe credenciais @spec:AC-070",
       "method": "jest-json"
     },
     "AC-071": {
       "status": "pass",
-      "testName": "Bloqueio de acesso por falta de permissão @spec:AC-071 Bloqueio de acesso por falta de permissão @spec:AC-071",
+      "testName": "Permissões HTTP e revogação imediata @spec:AC-071 @spec:AC-096 Permissões HTTP e revogação imediata @spec:AC-071 @spec:AC-096",
       "method": "jest-json"
     },
     "AC-072": {
       "status": "pass",
-      "testName": "Isolamento multi-tenant na gestão de membros @spec:AC-072 Isolamento multi-tenant na gestão de membros @spec:AC-072",
+      "testName": "Equipe isolada e último owner_admin protegido @spec:AC-072 @spec:AC-073 Equipe isolada e último owner_admin protegido @spec:AC-072 @spec:AC-073",
       "method": "jest-json"
     },
     "AC-073": {
       "status": "pass",
-      "testName": "Impedir a desativação do último administrador @spec:AC-073 Impedir a desativação do último administrador @spec:AC-073",
+      "testName": "Equipe isolada e último owner_admin protegido @spec:AC-072 @spec:AC-073 Equipe isolada e último owner_admin protegido @spec:AC-072 @spec:AC-073",
       "method": "jest-json"
     },
     "AC-074": {
@@ -45,7 +45,7 @@
     },
     "P-003": {
       "status": "pass",
-      "testName": "Tenant externo no body não muda a empresa do cliente criado @spec:AC-029 @principle:P-003 Tenant externo no body não muda a empresa do cliente criado @spec:AC-029 @principle:P-003"
+      "testName": "Tenant externo em header ou query não substitui a sessão @spec:AC-029 @principle:P-003(useQuery: True) Tenant externo em header ou query não substitui a sessão @spec:AC-029 @principle:P-003(useQuery: True)"
     },
     "P-004": {
       "status": "pass",

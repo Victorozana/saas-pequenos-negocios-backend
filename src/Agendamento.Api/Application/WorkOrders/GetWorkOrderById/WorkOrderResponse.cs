@@ -1,4 +1,5 @@
 using Agendamento.Api.Domain.WorkOrders;
+using Agendamento.Api.Domain.Quotations;
 
 namespace Agendamento.Api.Application.WorkOrders.GetWorkOrderById;
 
@@ -24,7 +25,7 @@ public class WorkOrderItemResponse
             Quantity = item.Quantity,
             UnitPrice = item.UnitPrice,
             DiscountAmount = item.DiscountAmount,
-            TotalAmount = (item.Quantity * item.UnitPrice) - item.DiscountAmount
+            TotalAmount = QuotationMoney.Subtotal(item.UnitPrice, item.Quantity) - item.DiscountAmount
         };
     }
 }

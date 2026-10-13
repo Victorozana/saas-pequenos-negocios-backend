@@ -31,6 +31,11 @@ public class CreateQuotationHandler
         if (!customerExists)
             throw new ArgumentException("Customer not found.", nameof(command.CustomerId));
 
+        var serviceIds = command.Items.Where(i => i.ServiceItemId.HasValue)
+            .Select(i => i.ServiceItemId!.Value).Distinct().ToList();
+        if (await _dbContext.ServiceItems.CountAsync(s => serviceIds.Contains(s.Id), cancellationToken) != serviceIds.Count)
+            throw new ArgumentException("Service item not found.", nameof(command.Items));
+
         var quotation = Quotation.Create(
             _tenantContext.TenantId,
             command.Code,

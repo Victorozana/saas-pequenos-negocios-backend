@@ -25,16 +25,15 @@ public class QuotationItem
         if (string.IsNullOrWhiteSpace(unit))
             throw new ArgumentException("Unit cannot be empty.", nameof(unit));
 
-        if (unitPrice < 0)
-            throw new ArgumentException("Unit price cannot be negative.", nameof(unitPrice));
+        QuotationMoney.Validate(unitPrice, nameof(unitPrice));
             
         if (quantity <= 0)
             throw new ArgumentException("Quantity must be greater than zero.", nameof(quantity));
+        QuotationMoney.Validate(quantity, nameof(quantity));
 
-        if (discountAmount < 0)
-            throw new ArgumentException("Discount cannot be negative.", nameof(discountAmount));
+        QuotationMoney.Validate(discountAmount, nameof(discountAmount));
 
-        var subtotal = unitPrice * quantity;
+        var subtotal = QuotationMoney.Subtotal(unitPrice, quantity);
         if (discountAmount > subtotal)
             throw new ArgumentException("Discount cannot exceed subtotal.", nameof(discountAmount));
 

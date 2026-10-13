@@ -1,4 +1,5 @@
 using Agendamento.Domain.Common;
+using Agendamento.Api.Domain.Quotations;
 
 namespace Agendamento.Api.Domain.Services;
 
@@ -18,14 +19,15 @@ public class ServiceItem : ITenantOwned
 
     public static ServiceItem Create(Guid tenantId, string name, string? description, string unit, decimal basePrice)
     {
+        if (tenantId == Guid.Empty)
+            throw new ArgumentException("Tenant is required.", nameof(tenantId));
         if (string.IsNullOrWhiteSpace(name))
             throw new ArgumentException("Service name cannot be empty.", nameof(name));
         
         if (string.IsNullOrWhiteSpace(unit))
             throw new ArgumentException("Service unit cannot be empty.", nameof(unit));
 
-        if (basePrice < 0)
-            throw new ArgumentException("Base price cannot be negative.", nameof(basePrice));
+        QuotationMoney.Validate(basePrice, nameof(basePrice));
 
         return new ServiceItem
         {
@@ -47,8 +49,7 @@ public class ServiceItem : ITenantOwned
         if (string.IsNullOrWhiteSpace(unit))
             throw new ArgumentException("Service unit cannot be empty.", nameof(unit));
 
-        if (basePrice < 0)
-            throw new ArgumentException("Base price cannot be negative.", nameof(basePrice));
+        QuotationMoney.Validate(basePrice, nameof(basePrice));
 
         Name = name;
         Description = description;

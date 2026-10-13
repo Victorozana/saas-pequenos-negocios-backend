@@ -23,11 +23,10 @@ public record DepositInfo
 
     public static DepositInfo Create(DepositType type, decimal value, decimal totalAmount, string? paymentNotes)
     {
-        if (value < 0)
-            throw new ArgumentException("Deposit value cannot be negative.", nameof(value));
-
-        if (totalAmount < 0)
-            throw new ArgumentException("Total amount cannot be negative.", nameof(totalAmount));
+        if (!Enum.IsDefined(type))
+            throw new ArgumentException("Invalid deposit type.", nameof(type));
+        QuotationMoney.Validate(value, nameof(value));
+        QuotationMoney.Validate(totalAmount, nameof(totalAmount));
 
         decimal requiredAmount = 0m;
 
@@ -36,7 +35,7 @@ public record DepositInfo
             if (value > 100)
                 throw new ArgumentException("Percentage cannot exceed 100.", nameof(value));
             
-            requiredAmount = (value / 100m) * totalAmount;
+            requiredAmount = decimal.Round((value / 100m) * totalAmount, 2, MidpointRounding.AwayFromZero);
         }
         else if (type == DepositType.FixedAmount)
         {

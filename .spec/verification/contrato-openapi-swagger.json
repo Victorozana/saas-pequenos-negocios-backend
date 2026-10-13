@@ -1,11 +1,11 @@
 {
   "feature": "contrato-openapi-swagger",
-  "timestamp": "2026-10-12T21:02:15.603Z",
-  "gitRev": "96875bb",
+  "timestamp": "2026-10-13T00:50:21.422Z",
+  "gitRev": "be79d2c",
   "command": "powershell -ExecutionPolicy Bypass -File scripts/verify-spec.ps1",
   "reporter": "jest-json",
   "exitCode": 0,
-  "testsParsed": 250,
+  "testsParsed": 266,
   "results": {
     "AC-036": {
       "status": "pass",
@@ -14,12 +14,12 @@
     },
     "AC-037": {
       "status": "pass",
-      "testName": "Criação de orçamento rejeita coleção ou elemento null com ProblemDetails sem persistir @spec:AC-037(nullElement: True) Criação de orçamento rejeita coleção ou elemento null com ProblemDetails sem persistir @spec:AC-037(nullElement: True)",
+      "testName": "CNPJ HTTP distingue sucesso e falhas, com mídia e schema correspondentes @spec:AC-037(cnpj: \"invalid\", status: 400, outcome: \"active\") CNPJ HTTP distingue sucesso e falhas, com mídia e schema correspondentes @spec:AC-037(cnpj: \"invalid\", status: 400, outcome: \"active\")",
       "method": "jest-json"
     },
     "AC-038": {
       "status": "pass",
-      "testName": "Lista e detalhe HTTP mascaram CPF, preservam CNPJ e permitem editar sem reenviar documento @spec:AC-038 @principle:P-005 Lista e detalhe HTTP mascaram CPF, preservam CNPJ e permitem editar sem reenviar documento @spec:AC-038 @principle:P-005",
+      "testName": "Onboarding completo sem token na resposta em qualquer ambiente @spec:AC-021 @spec:AC-038 @spec:AC-100 @principle:P-005(environment: \"Production\") Onboarding completo sem token na resposta em qualquer ambiente @spec:AC-021 @spec:AC-038 @spec:AC-100 @principle:P-005(environment: \"Production\")",
       "method": "jest-json"
     },
     "AC-039": {

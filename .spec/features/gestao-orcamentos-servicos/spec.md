@@ -64,6 +64,8 @@ Para iniciar a execução dos serviços sem retrabalho de digitação.
 | ID | Pergunta | Status | Resposta |
 | --- | --- | --- | --- |
 | Q-016 | O orçamento pode ser editado depois de enviado para o cliente? | respondida | Usuário permite edição enquanto pendente; bloqueia após aprovação, rejeição ou conversão (12/10/2026). |
+| Q-020 | Qual precisão, arredondamento e teto monetário devem ser usados? | respondida | Em 12/10/2026, usuário confirmou entradas até duas casas, subtotal por item e entrada percentual arredondados com meio para longe de zero, teto 9.999.999.999.999.999,99. |
+| Q-021 | Como preservar quantidade na conversão para OS com numeric(18,2)? | respondida | Em 12/10/2026, usuário confirmou quantidade positiva com até duas casas e teto 9.999.999.999.999.999,99, rejeitada antes de criação/edição, sem migration. |
 
 ## Requisitos recuperados do histórico
 
@@ -128,3 +130,15 @@ Para ter controle do pipeline de vendas e negociações da empresa.
 ## Decisão de edição — 12/10/2026
 
 O usuário permite edição enquanto o orçamento está pendente e bloqueia após aprovação, rejeição ou conversão. A edição é exposta por PUT `/api/v1/quotations/{id}`, substitui o conteúdo e recalcula itens, total e entrada, preservando identidade e status. A aprovação e a edição compartilham bloqueio de linha no PostgreSQL; ao aguardar uma aprovação concorrente, a edição lê o estado final e é rejeitada. Testes HTTP e PostgreSQL exclusivos cobrem persistência, orçamento enviado, isolamento e imutabilidade após decisões; o gate mecânico permanece responsável pela prova da feature.
+
+## Regras financeiras confirmadas — T-031 — 12/10/2026
+
+Decisões dadas pelo usuário nesta revisão, antes da implementação:
+- Preços, desconto absoluto, valor do sinal, percentual e quantidade aceitam até duas casas; entradas com precisão excessiva são rejeitadas, sem arredondamento silencioso. Quantidade é positiva; preços e descontos podem ser zero.
+- Valores monetários, subtotais/descontos/totais agregados e quantidade têm máximo 9.999.999.999.999.999,99, compatível com numeric(18,2) existente.
+- Subtotal de cada item = quantidade × preço unitário, arredondado para duas casas, meio para longe de zero. Desconto não ultrapassa esse subtotal arredondado. Total = soma dos subtotais arredondados menos descontos.
+- Sinal percentual entre 0 e 100, calculado sobre o total e arredondado pelo mesmo método; sinal fixo entre zero e total. Saldo restante = total menos sinal já arredondado, conservando o valor total.
+- Quantidade tem as mesmas duas casas/teto para preservar conversão em OS, sem migration. Recebíveis e apresentação da OS devem consumir cálculos consistentes com o orçamento.
+- Operação recusada preserva itens, conteúdo, totais, sinal e estado anteriores. Catálogo e cliente referenciados devem existir no tenant autenticado.
+
+Ambiguidades de precisão/teto foram resolvidas explicitamente nesta sessão. Design e provas estão em design.md e na revisão T-031; não substituir o gate por existência de arquivos ou provas antigas.
