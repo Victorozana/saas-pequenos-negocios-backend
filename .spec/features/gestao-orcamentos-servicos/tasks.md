@@ -24,10 +24,10 @@
 - Notas: Revisão própria em .spec/revisao-t091.md; 39 casos novos, PostgreSQL restrito exclusivo, concorrência de duas/cinco sessões e rollback após writes. 15 features motor0/record0,400PASS/zero falhas/6skips, audit --ci exit0/95 critérios/zero erros e avisos. Contratos200/workOrderId e201/id/Location preservados; nova migration não aplicada ao banco de trabalho. Não conclui T-092 ou T-032 a T-037.
 - Regra: Revisar e provar a conversão AC-091 nas duas rotas existentes, com idempotência, cópia integral, início manual, isolamento, integridade, transação e concorrência reais. A nota histórica de handler órfão não descreve o registro atual.
 
-## T-092 — Testes de Integração para Orçamentos [pendente]
-
+## T-092 — Testes de Integração para Orçamentos [concluida]
 - Refs: AC-090, AC-091, AC-092, AC-093
-- Arquivos: tests/Agendamento.IntegrationTests/Features/QuotationTests.cs, tests/Agendamento.UnitTests/Quotations/QuotationDomainTests.cs
+- Arquivos: tests/Agendamento.IntegrationTests/Features/QuotationTests.cs, tests/Agendamento.UnitTests/Quotations/QuotationDomainTests.cs, tests/Agendamento.IntegrationTests/Quotations/QuotationIntegrationWorkflowTests.cs
+- Notas: Revisão própria da validade das fixtures e cobertura conjunta em .spec/matriz-t092.md e .spec/revisao-t092.md. Fixture usa guarda de itens, banco exclusivo por factory, UoW do mesmo contexto e leitura em contexto novo. Jornada HTTP InMemory/PostgreSQL e decisões finais rastreadas complementam as provas anteriores, sem encerrar T-032 a T-037.
 - Regra: Testar validações de tenant, soma de itens, e transições de status válidas.
 
 ## T-031 — Modelar Entidades do Catálogo de Serviços e Orçamentos [concluida]

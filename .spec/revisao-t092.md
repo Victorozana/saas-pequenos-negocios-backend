@@ -1,0 +1,45 @@
+# Revisão T-092 — Testes de Integração para Orçamentos — 14/10/2026
+
+## Base e execução
+
+Backend main/4a57b5a e frontend master/1733b8c, upstreams conferidos e sincronizados. Execução manual com modelo/esforço atuais e dois auxiliares herdados autorizados pelo prompt (revisão somente leitura/matriz e jornada HTTP). Sem executor headless de modelo, commit/push/deploy, API5050 ou alteração de banco/cadastros/credenciais de trabalho.
+
+AGENTS de ambos, skill local onp-spec-driven, continuidade/PostgreSQL RLS, revisões/audits T-023/T-031/T-088/T-089/T-090/T-091, spec/design/tasks/plano lidos. Caminhos do workspace explícito prevalecem sobre notas históricas. Nenhuma lição confirmada disponível. T-031/T-088/T-089/T-090/T-091/T-103 mantêm conclusão; T-032 a T-037 continuam pendentes de revisão própria.
+
+Cinco obj e verification/sinais copiados antes dos builds em .local-verification/t092/preexisting, com obj-baseline.json. Hashes de backup runtime-repair, schema frontend e índice T-091 em preserved-baseline.json. Hashes de evidências históricas JSON/TRX/log em historical-evidence-baseline.json, sem exclusões de trabalho anterior. Rodadas Release/UseAppHost=false têm outputs/logs/TRX exclusivos. Segredos são lidos somente em memória pelas fixtures existentes; não foram impressos conexões, senhas ou tokens.
+
+## Revisão própria, matriz e correções
+
+A matriz .spec/matriz-t092.md separa domínio puro, handlers diretos, EF InMemory, HTTP e PostgreSQL/RLS reais; relaciona cada cenário AC-090/091/092/093 aos testes/evidências e distingue prova histórica de renovação aceita. T-092 não é encerrada pelos quatro testes antigos nem pelo audit global isoladamente. Cobertura prévia de dinheiro/estados/mapeamento/endpoints/conversão/edição é reutilizada e renovada, sem duplicar suas matrizes completas ou concluir T-032 a T-037.
+
+QuotationTests tinha IntegrationTestDb compartilhado sem guarda de itens e UoW obtido de outro scope. Agora usa TeamFinancialTestFactory.Db tanto no seed quanto nos handlers, com banco exclusivo por factory, raiz InMemory compartilhada e interceptor de tenant. UoW e conversão usam a mesma instância DbContext. Leituras em contexto novo comprovam Pending, tenant/cliente, itens/shadow tenant, OS Scheduled, Converted e replay. Outro tenant não vê itens/agregado e outro host com mesmo tenant não compartilha o banco. Nenhum warning, filtro ou assertion foi suprimido.
+
+O título AC-093 agora descreve rejeição de Converted, conservando a asserção histórica e ampliando com Unchanged/SaveChanges0/persistência. Seis casos novos de decisões Approved/Converted/Rejected carregam grafo/recebíveis/OS em contexto novo, capturam todos valores escalares rastreados, exigem mesma contagem/estado e SaveChanges posterior zero, além de verificar estado e contagens persistidos. Aprovação pública Approved/Converted é idempotente; demais decisões repetidas são recusadas. QuotationDomainTests conserva tags/asserts históricos e acrescenta Draft interno e decisões estritas/imobilidade em recusa.
+
+QuotationIntegrationWorkflowTests acrescenta dois fatos HTTP (InMemory e PostgreSQL temporário/logins app/system restritos distintos). Cria orçamento, edita Pending trocando cliente/código/datas/notas/termos/itens/sinal, aprova/reaprova e converte/reconverte nas duas rotas. Contextos novos comprovam item substituído eliminado, catálogo/manual gratuito, subtotais/precisão/desconto e entrada arredondados: 10,03×1,50=15,045→15,05; desconto0,04 dá total15,01; entrada50%=7,505→7,51 e saldo7,50. OS copia conteúdo revisado integralmente com IDs próprios, vínculos e Scheduled/CompletedAt null. Recebíveis conservam identidades/cliente/valores/datas/estado. Replays, decisões e edição finais recusadas não alteram orçamento/OS/recebíveis; tenant externo não acessa agregado/dependentes nem converte.
+
+## Provas e tentativas
+
+focused-01:10/10 PASS/exit0 (fixture reparada e seis decisões finais). focused-02: buildexit1 por referência incorreta no teste novo a WorkOrderItem.TotalAmount; correção usa WorkOrderItemResponse.FromEntity, mantendo a comparação do total. focused-03:11PASS/1FAIL/exit1 porque o segundo usuário PostgreSQL usava tenant aleatório sem registro na fixture; correção usa database.B, mantendo todas as asserções de isolamento. focused-04:12/12 PASS/exit0/zero skips, com jornada real PostgreSQL. Logs e TRX de tentativas foram mantidos, sem contornar o gate.
+
+A regressão integral renova também provas anteriores de permissões/spoof, UTC/limites/paginação/código único, filtros/guardas original/current/owner, RLS/integridade física, concorrência financeira/conversão/edição e rollback real após write. QuotationConversionConcurrencyTests exige duas ou cinco sessões distintas simultaneamente bloqueadas e limpa snapshot pg_stat; seis falhas por triggers AFTER INSERT OS/item ou AFTER UPDATE orçamento usam sequência não transacional para comprovar write. Observações usam nomes GUID exclusivos em .local-verification/t091/concurrency, preservando observações antigas. T-092 não substitui essa prova por serialização do pool ou InMemory.
+
+Os seis skips antigos foram localizados em Identity/UserPersistenceTests(1), WorkOrders/WorkOrderApiTests(1), Tenancy/RowLevelSecurityTests(1), Tenancy/MigrationSafetyTests(1), Persistence/PostgreSqlFixtureTests(2). Não contam como prova de orçamento/conversão/RLS. Regressão mantém CPF/PreserveDocument, financeiro RequiredAmount/estados finais, notificações/opt-out/aviso diário e PDF serial/semântico/concorrente.
+
+## Limites e operação
+
+HTTP usa contextos/scopes novos por request. Recusa antes de mutar com SaveChanges0 é distinta de rollback relacional, que restaura linhas mas não ChangeTracker. Reuso manual de contexto previamente carregado enquanto outra conexão grava pode manter instâncias stale mesmo após lock; composição com transação externa não é oferecida por UoW.BeginTransactionAsync. Esses usos não são certificados pelo contrato HTTP nem foram ampliados nesta tarefa. Não há promessa de restauração de tracker após erro relacional; descartar scope.
+
+Sem mudança de código de produção/contrato/DTO/rota/OpenAPI/migrations/frontend; nenhuma regeneração de schema necessária. Contratos200/workOrderId e201/id/Location inclusive replay, início manual, Q-020/Q-021/Q-022, locks/unicidade/FKs nullable Restrict mantidos. Sem entrega real WhatsApp/e-mail ou telas financeiro/equipe.
+
+As quatro migrations AddCustomerAutomaticReminderPreference, AddDailyReceivableReminderDeduplication, EnforceQuotationCatalogTenantReference e EnforceWorkOrderConversionIntegrity continuam NÃO aplicadas a agendamento_local. Não iniciar versão nova nesse banco nem aplicar migrations sem rollout explícito. Backup runtime-repair preservado; testes somente em bases temporárias exclusivas removidas pelas fixtures.
+
+## Gate final
+
+Renovação das 15 features concluída e aceita: motor=0 e record.exitCode=0 em todas, 414 resultados por execução (408PASS, zero falhas e seis skips históricos). Logs/TRX/JSON copiados antes da seguinte em .local-verification/t092/certified; índice conferido em final-certified-summary.json. Suítes por execução:143unitáriosPASS,234integraçãoPASS+6skips,31arquiteturaPASS. Oito casos novos (seis decisões rastreadas + dois workflows); asserções dos quatro testes antigos e sete testes QuotationDomainTests foram preservadas/ampliadas.
+
+Conferidor check-final.ps1 exit0:15/15 provas atuais e TRX consistentes,2.080 arquivos de evidência anterior preservados por hash, cinco obj restaurados exatamente, backup/schema preservados, HEADs4a57b5a/1733b8c e branchesmain/master mantidos, nenhum listener5050, diff --check dos dois repos exit0. Registro final-environment.json. collect-observations.ps1 conservou105JSON novos de sessões simultaneamente bloqueadas em postgresql-observations, com index.json/hash/expected/observed/samples.
+
+Audit de revisão --ci --json exit0:ok=true,95/95 critérios provados, zero erros/avisos (.local-verification/t092/audit-review.json). Revisão independente somente leitura não encontrou bloqueadores, remoção/enfraquecimento de asserções, nomes inválidos de provas na matriz ou segredos. Somente T-092 marcada concluída depois das provas/revisão/audit; T-032 a T-037 continuam pendentes. Plano sequencial das seis tarefas regenerado como artefato informativo, executor não iniciado/modelos históricos não adotados. Espaços finais emitidos pelo gerador HTML foram normalizados para passar diff --check; sem alteração de conteúdo do plano.
+
+Gate final de fechamento: .spec/audit-t092.json e .local-verification/t092/audit-final.log, após a atualização dos documentos/tarefa/plano. Sem falha intermediária na renovação global, sem lição nova por caminho mecânico limpo; uma suposição global aberta preexistente permanece e nenhuma pergunta aberta. Sem commit/push/deploy, alteração de banco/credenciais de trabalho ou rollout das quatro migrations pendentes.

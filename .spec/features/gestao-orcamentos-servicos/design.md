@@ -73,3 +73,19 @@ Somente T-091 concluída após revisão própria, 39 casos novos e certificaçã
 Frontend: schema regenerado pelo OpenAPI local após documentar Location201 da rota alternativa; documentação instalada Next.js16.2.11 consultada. Typecheckexit0 e232/232 testes PASS, sem alteração de componentes/BFF. Exportação OpenAPI hostInMemory exit0/1PASS; contrato observado200/workOrderId e201/id/Location preservado, inclusive replay.
 
 T-092 e T-032 a T-037 permanecem pendentes; T-031/T-088/T-089/T-090/T-103 mantêm conclusão. Plano sequencial para sete tarefas regenerado somente como artefato; executor não iniciado e modelos históricos não adotados. Sem commit/push/deploy, serviço5050, entrega real WhatsApp/e-mail ou telas financeiro/equipe. Nova migration não aplicada ao banco de trabalho; quatro migrations continuam exigindo rollout explícito. Ver .spec/revisao-t091.md e docs/POSTGRESQL_RLS.md.
+
+## Integração e validade das fixtures — T-092 — 14/10/2026
+
+QuotationTests deixou de depender de IntegrationTestDb compartilhado e de UoW resolvido de outro scope. TeamFinancialTestFactory mantém raiz InMemory reutilizada para evitar ManyServiceProviders, nome de banco exclusivo por host e TenantSaveChangesInterceptor tanto na preparação quanto no contexto do handler. UnitOfWork é construído com o mesmo DbContext; leitura posterior usa outra instância. Nenhum warning, filtro ou asserção foi suprimido.
+
+A matriz .spec/matriz-t092.md separa domínio puro, handlers diretos, EF InMemory, HTTP e PostgreSQL restrito/RLS físico. Os seis novos casos de decisões finais carregam o grafo em contexto novo, capturam todos valores escalares e exigem identidades/quantidade rastreadas preservadas, EntityState.Unchanged e SaveChanges0. A jornada HTTP composta em ambos provedores completa a revisão própria sem duplicar matrizes extensas anteriores.
+
+O contrato de produção usa DbContext/UoW scoped e handlers transient. Cada request inicia com tracker novo. Um agregado previamente materializado em contexto manual pode continuar stale mesmo após um lock, pois consulta tracking reutiliza instâncias; isso não representa o contrato HTTP certificado. UnitOfWork.BeginTransactionAsync inicia sua própria transação, sem promessa de participação em transação externa existente. Não ampliar esses contratos nesta tarefa de testes; descartar scope após erro relacional e manter esses limites explícitos.
+
+Sem mudança de código de produção, DTO, rota, OpenAPI, frontend ou migrations; não há regeneração de schema necessária. Bases temporárias dos testes continuam exclusivas; banco/cadastros/credenciais de trabalho e quatro migrations ainda pendentes de rollout permanecem preservados. T-032 a T-037 continuam pendentes.
+
+## Fechamento T-092 — 14/10/2026
+
+Somente T-092 concluída após revisão própria das fixtures/cobertura conjunta, matriz requisito/cenário/prova, oito casos novos e ampliação das asserções antigas. As15features renovadas têm motor=0/record.exitCode=0,414 resultados por execução:408PASS, zero falhas e seis skips antigos. Provas completas em .local-verification/t092/certified e final-certified-summary.json; matriz .spec/matriz-t092.md, revisão .spec/revisao-t092.md e gate final .spec/audit-t092.json. Audit de revisão exit0/95 critérios provados/zero erros e avisos.
+
+T-032 a T-037 permanecem pendentes de revisão própria; plano sequencial das seis tarefas regenerado somente como artefato, sem executar headless/modelos históricos. Nenhum contrato/produção/OpenAPI/frontend/migration alterado. Preservados cinco obj,2.080 evidências anteriores por hash, schema frontend e backup; sem commit/push/deploy, API5050 ou rollout no banco de trabalho.

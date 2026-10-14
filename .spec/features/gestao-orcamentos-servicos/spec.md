@@ -185,3 +185,19 @@ Somente T-091 concluída após revisão própria, 39 casos novos e certificaçã
 Frontend: schema regenerado pelo OpenAPI local após documentar Location201 da rota alternativa; documentação instalada Next.js16.2.11 consultada. Typecheckexit0 e232/232 testes PASS, sem alteração de componentes/BFF. Exportação OpenAPI hostInMemory exit0/1PASS; contrato observado200/workOrderId e201/id/Location preservado, inclusive replay.
 
 T-092 e T-032 a T-037 permanecem pendentes; T-031/T-088/T-089/T-090/T-103 mantêm conclusão. Plano sequencial para sete tarefas regenerado somente como artefato; executor não iniciado e modelos históricos não adotados. Sem commit/push/deploy, serviço5050, entrega real WhatsApp/e-mail ou telas financeiro/equipe. Nova migration não aplicada ao banco de trabalho; quatro migrations continuam exigindo rollout explícito. Ver .spec/revisao-t091.md e docs/POSTGRESQL_RLS.md.
+
+## Revisão de integração — T-092 — 14/10/2026
+
+A cobertura conjunta de AC-090/091/092/093 foi revisada por camada, conforme .spec/matriz-t092.md. Domínio não certifica persistência; chamadas diretas a handlers com EF InMemory não certificam HTTP, transações, FKs ou RLS. Essas barreiras são provadas pelos testes HTTP/PostgreSQL restrito em bases temporárias exclusivas, incluindo sessões concorrentes observadas e falhas controladas após gravação.
+
+A fixture QuotationTests agora usa o banco exclusivo de TeamFinancialTestFactory e sua guarda TenantSaveChangesInterceptor, com UoW e handler no mesmo DbContext. Leituras em contexto novo confirmam Pending, vínculos, itens com tenant, OS Scheduled/Converted e replay. O título histórico AC-093 descreve honestamente a rejeição de Converted; sua asserção permanece e foi ampliada com tracker Unchanged/SaveChanges posterior zero. Seis combinações finais comprovam recusa ou aprovação pública idempotente sem modificar o grafo rastreado.
+
+A jornada integrada HTTP cria, edita Pending com troca de cliente/itens, aprova, repete aprovação, converte pelas duas rotas e repete decisões/conversão. Materialização nova comprova conteúdo editado, catálogo/manual gratuito, desconto, subtotal 15.045→15.05, entrada 7.505→7.51 e saldo7.50; recebíveis conservam identidades e valores. Domínio permanece estrito, Draft interno e Pending público. Contratos200/workOrderId e201/id/Location, Q-020/Q-021/Q-022, RLS, financeiro e início manual são preservados.
+
+Reuso manual de contexto previamente carregado enquanto outro contexto grava e composição com transação externa não fazem parte dos scopes novos por request exercitados. Rollback relacional restaura linhas, não o ChangeTracker; não confundir com validação recusada antes de mutar. T-032 a T-037 continuam pendentes de revisão própria. Estado final e códigos de saída estão na revisão T-092, somente após os gates.
+
+## Fechamento T-092 — 14/10/2026
+
+Somente T-092 concluída após revisão própria das fixtures/cobertura conjunta, matriz requisito/cenário/prova, oito casos novos e ampliação das asserções antigas. As15features renovadas têm motor=0/record.exitCode=0,414 resultados por execução:408PASS, zero falhas e seis skips antigos. Provas completas em .local-verification/t092/certified e final-certified-summary.json; matriz .spec/matriz-t092.md, revisão .spec/revisao-t092.md e gate final .spec/audit-t092.json. Audit de revisão exit0/95 critérios provados/zero erros e avisos.
+
+T-032 a T-037 permanecem pendentes de revisão própria; plano sequencial das seis tarefas regenerado somente como artefato, sem executar headless/modelos históricos. Nenhum contrato/produção/OpenAPI/frontend/migration alterado. Preservados cinco obj,2.080 evidências anteriores por hash, schema frontend e backup; sem commit/push/deploy, API5050 ou rollout no banco de trabalho.

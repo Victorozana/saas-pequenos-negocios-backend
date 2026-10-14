@@ -1,11 +1,11 @@
 {
   "feature": "notificacoes-lembretes-whatsapp",
-  "timestamp": "2026-10-14T12:03:56.620Z",
-  "gitRev": "d66266f",
+  "timestamp": "2026-10-14T14:07:33.437Z",
+  "gitRev": "4a57b5a",
   "command": "powershell -ExecutionPolicy Bypass -File scripts/verify-spec.ps1",
   "reporter": "jest-json",
   "exitCode": 0,
-  "testsParsed": 406,
+  "testsParsed": 414,
   "results": {
     "AC-097": {
       "status": "pass",
@@ -24,12 +24,12 @@
     },
     "AC-207": {
       "status": "pass",
-      "testName": "Preferência persiste na edição, detalhe e lista com CPF mascarado e isolamento HTTP @spec:AC-207 @spec:AC-038 Preferência persiste na edição, detalhe e lista com CPF mascarado e isolamento HTTP @spec:AC-207 @spec:AC-038",
+      "testName": "Criação HTTP aceita desativação explícita e mantém padrão habilitado para contratos antigos @spec:AC-207 Criação HTTP aceita desativação explícita e mantém padrão habilitado para contratos antigos @spec:AC-207",
       "method": "jest-json"
     },
     "AC-208": {
       "status": "pass",
-      "testName": "Migration de deduplicação preserva histórico na base temporária exclusiva @spec:AC-208 Migration de deduplicação preserva histórico na base temporária exclusiva @spec:AC-208",
+      "testName": "Aviso diário persistido filtra saldo, vencimento, preferência e vínculo; reinício e dia seguinte preservam isolamento @spec:AC-208 Aviso diário persistido filtra saldo, vencimento, preferência e vínculo; reinício e dia seguinte preservam isolamento @spec:AC-208",
       "method": "jest-json"
     },
     "AC-062": {
@@ -61,11 +61,11 @@
   "principles": {
     "P-005": {
       "status": "pass",
-      "testName": "Senhas nunca são recuperáveis @spec:AC-008 @principle:P-005 Senhas nunca são recuperáveis @spec:AC-008 @principle:P-005"
+      "testName": "Token de e-mail é armazenado somente como digest e expira em 24 horas @spec:AC-009 @principle:P-005 Token de e-mail é armazenado somente como digest e expira em 24 horas @spec:AC-009 @principle:P-005"
     },
     "P-003": {
       "status": "pass",
-      "testName": "@spec:AC-013 @principle:P-003 @principle:P-005 valid login emits only user_tenant_and_role @spec:AC-013 @principle:P-003 @principle:P-005 valid login emits only user_tenant_and_role"
+      "testName": "Tenant externo no body não muda a empresa do cliente criado @spec:AC-029 @principle:P-003 Tenant externo no body não muda a empresa do cliente criado @spec:AC-029 @principle:P-003"
     },
     "P-004": {
       "status": "pass",

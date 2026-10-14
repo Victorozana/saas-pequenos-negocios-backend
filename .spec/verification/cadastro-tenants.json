@@ -1,15 +1,15 @@
 {
   "feature": "cadastro-tenants",
-  "timestamp": "2026-10-14T11:37:09.688Z",
-  "gitRev": "d66266f",
+  "timestamp": "2026-10-14T13:42:37.294Z",
+  "gitRev": "4a57b5a",
   "command": "powershell -ExecutionPolicy Bypass -File scripts/verify-spec.ps1",
   "reporter": "jest-json",
   "exitCode": 0,
-  "testsParsed": 406,
+  "testsParsed": 414,
   "results": {
     "AC-014": {
       "status": "pass",
-      "testName": "CNPJ inválido é rejeitado localmente @spec:AC-014(invalidCnpj: \"12.345.678/ABCD-00\") CNPJ inválido é rejeitado localmente @spec:AC-014(invalidCnpj: \"12.345.678/ABCD-00\")",
+      "testName": "CNPJ inválido é rejeitado localmente @spec:AC-014(invalidCnpj: \"123\") CNPJ inválido é rejeitado localmente @spec:AC-014(invalidCnpj: \"123\")",
       "method": "jest-json"
     },
     "AC-015": {
@@ -24,7 +24,7 @@
     },
     "AC-017": {
       "status": "pass",
-      "testName": "Handler returns company data when eligible @spec:AC-017 Handler returns company data when eligible @spec:AC-017",
+      "testName": "Falha do provedor é indisponibilidade segura @spec:AC-017 Falha do provedor é indisponibilidade segura @spec:AC-017",
       "method": "jest-json"
     },
     "AC-018": {
@@ -49,7 +49,7 @@
     },
     "AC-022": {
       "status": "pass",
-      "testName": "CNPJ é único globalmente @spec:AC-022 CNPJ é único globalmente @spec:AC-022",
+      "testName": "CNPJ é único globalmente (normalização consistente) @spec:AC-022 CNPJ é único globalmente (normalização consistente) @spec:AC-022",
       "method": "jest-json"
     },
     "AC-023": {
@@ -81,11 +81,11 @@
   "principles": {
     "P-005": {
       "status": "pass",
-      "testName": "Token de e-mail é armazenado somente como digest e expira em 24 horas @spec:AC-009 @principle:P-005 Token de e-mail é armazenado somente como digest e expira em 24 horas @spec:AC-009 @principle:P-005"
+      "testName": "Senhas nunca são recuperáveis @spec:AC-008 @principle:P-005 Senhas nunca são recuperáveis @spec:AC-008 @principle:P-005"
     },
     "P-003": {
       "status": "pass",
-      "testName": "@spec:AC-013 @principle:P-003 @principle:P-005 valid login emits only user_tenant_and_role @spec:AC-013 @principle:P-003 @principle:P-005 valid login emits only user_tenant_and_role"
+      "testName": "Tenant externo em header ou query não substitui a sessão @spec:AC-029 @principle:P-003(useQuery: False) Tenant externo em header ou query não substitui a sessão @spec:AC-029 @principle:P-003(useQuery: False)"
     },
     "P-004": {
       "status": "pass",

@@ -15,6 +15,7 @@ public class QuotationDomainTests
 
         Assert.Equal(tenantId, service.TenantId);
         Assert.Equal(tenantId, quotation.TenantId);
+        Assert.Equal(QuotationStatus.Draft, quotation.Status);
         Assert.IsAssignableFrom<Agendamento.Domain.Common.ITenantOwned>(service);
         Assert.IsAssignableFrom<Agendamento.Domain.Common.ITenantOwned>(quotation);
     }
@@ -88,9 +89,15 @@ public class QuotationDomainTests
         // Pending -> Approved
         quotation.Approve();
         Assert.Equal(QuotationStatus.Approved, quotation.Status);
+        Assert.Throws<InvalidOperationException>(() => quotation.Approve());
+        Assert.Throws<InvalidOperationException>(() => quotation.Reject());
+        Assert.Equal(QuotationStatus.Approved, quotation.Status);
 
         // Approved -> Converted
         quotation.MarkAsConverted();
+        Assert.Equal(QuotationStatus.Converted, quotation.Status);
+        Assert.Throws<InvalidOperationException>(() => quotation.Approve());
+        Assert.Throws<InvalidOperationException>(() => quotation.Reject());
         Assert.Equal(QuotationStatus.Converted, quotation.Status);
     }
 
@@ -102,6 +109,7 @@ public class QuotationDomainTests
 
         // Act & Assert
         Assert.Throws<InvalidOperationException>(() => quotation.MarkAsPending());
+        Assert.Equal(QuotationStatus.Draft, quotation.Status);
     }
 
     [Fact(DisplayName = "Aprovação de orçamento expirado lança exceção @spec:AC-048")]
@@ -115,5 +123,6 @@ public class QuotationDomainTests
 
         // Act & Assert
         Assert.Throws<InvalidOperationException>(() => quotation.Approve());
+        Assert.Equal(QuotationStatus.Pending, quotation.Status);
     }
 }

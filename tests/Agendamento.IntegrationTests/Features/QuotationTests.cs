@@ -1,23 +1,20 @@
 using Agendamento.Api.Domain.Quotations;
-using Agendamento.IntegrationTests.Infrastructure;
-using Microsoft.Extensions.DependencyInjection;
 using Xunit;
 using Agendamento.Api.Application.Quotations.CreateQuotation;
 using Agendamento.Api.Application.Quotations.UpdateQuotationStatus;
 using Agendamento.Api.Application.WorkOrders.ConvertQuotationToWorkOrder;
 using Microsoft.EntityFrameworkCore;
-using Agendamento.Api.Application.Common;
 using Agendamento.Api.Infrastructure.Persistence;
 
 namespace Agendamento.IntegrationTests.Features;
 
-public class QuotationTests : IClassFixture<AgendamentoApiFactory>, IAsyncLifetime
+public class QuotationTests : IClassFixture<TeamFinancialTestFactory>, IAsyncLifetime
 {
-    private readonly AgendamentoApiFactory _factory;
+    private readonly TeamFinancialTestFactory _factory;
     private readonly Guid _tenantId = Guid.NewGuid();
     private readonly Guid _customerId = Guid.NewGuid();
 
-    public QuotationTests(AgendamentoApiFactory factory)
+    public QuotationTests(TeamFinancialTestFactory factory)
     {
         _factory = factory;
     }
@@ -36,11 +33,7 @@ public class QuotationTests : IClassFixture<AgendamentoApiFactory>, IAsyncLifeti
 
     public async Task InitializeAsync()
     {
-        var options = new DbContextOptionsBuilder<AgendamentoDbContext>()
-            .UseInMemoryDatabase("IntegrationTestDb")
-            .Options;
-
-        using var db = new AgendamentoDbContext(options, new TestTenantContext(_tenantId));
+        using var db = GetDbContext(_tenantId);
         
         var customer = Agendamento.Api.Domain.Customers.Customer.Create(_tenantId, "Cliente Teste", "11999999999", null, null, null);
         typeof(Agendamento.Api.Domain.Customers.Customer).GetProperty("Id")!.SetValue(customer, _customerId);
@@ -59,10 +52,9 @@ public class QuotationTests : IClassFixture<AgendamentoApiFactory>, IAsyncLifeti
 
     private AgendamentoDbContext GetDbContext(Guid tenantId)
     {
-        var options = new DbContextOptionsBuilder<AgendamentoDbContext>()
-            .UseInMemoryDatabase("IntegrationTestDb")
-            .Options;
-        return new AgendamentoDbContext(options, new TestTenantContext(tenantId));
+        // The factory isolates its database and installs the same tenant write
+        // guard for seeding and handler calls, including shadow item tenants.
+        return _factory.Db(tenantId);
     }
 
     [Fact(DisplayName = "Criar orçamento com status Pendente e valor total calculado @spec:AC-090")]
@@ -88,11 +80,16 @@ public class QuotationTests : IClassFixture<AgendamentoApiFactory>, IAsyncLifeti
 
         var id = await handler.HandleAsync(command);
 
-        var quotation = await db.Quotations.Include(q => q.Items).FirstOrDefaultAsync(q => q.Id == id);
+        using var persisted = GetDbContext(_tenantId);
+        var quotation = await persisted.Quotations.Include(q => q.Items).FirstOrDefaultAsync(q => q.Id == id);
         
         Assert.NotNull(quotation);
         Assert.Equal(QuotationStatus.Pending, quotation.Status);
         Assert.Equal(200, quotation.TotalAmount); // (2*50) + (1*100)
+        Assert.Equal(_tenantId, quotation.TenantId);
+        Assert.Equal(_customerId, quotation.CustomerId);
+        Assert.Equal(2, quotation.Items.Count);
+        Assert.All(quotation.Items, item => Assert.Equal(_tenantId, persisted.Entry(item).Property<Guid>("TenantId").CurrentValue));
     }
 
     [Fact(DisplayName = "Somente orçamentos aprovados podem ser convertidos em OS @spec:AC-091")]
@@ -102,9 +99,8 @@ public class QuotationTests : IClassFixture<AgendamentoApiFactory>, IAsyncLifeti
         var createHandler = new CreateQuotationHandler(db, new TestTenantContext(_tenantId));
         var updateHandler = new UpdateQuotationStatusHandler(db, new Agendamento.Api.Application.Financial.GenerateReceivablesFromQuotation.GenerateReceivablesFromQuotationHandler(db));
         
-        // Mock unit of work
-        var scope = _factory.Services.CreateScope();
-        var uow = scope.ServiceProvider.GetRequiredService<IUnitOfWork>();
+        // Handler and unit of work must share the exact same context.
+        var uow = new UnitOfWork(db);
         var convertHandler = new ConvertQuotationToWorkOrderHandler(db, new TestTenantContext(_tenantId), uow);
 
         var command = new CreateQuotationCommand(
@@ -128,6 +124,15 @@ public class QuotationTests : IClassFixture<AgendamentoApiFactory>, IAsyncLifeti
         // Tenta converter aprovado (deve sucesso)
         var workOrderId = await convertHandler.HandleAsync(new ConvertQuotationToWorkOrderCommand { QuotationId = id });
         Assert.NotEqual(Guid.Empty, workOrderId);
+        Assert.Equal(workOrderId, await convertHandler.HandleAsync(new ConvertQuotationToWorkOrderCommand { QuotationId = id }));
+        using var persisted = GetDbContext(_tenantId);
+        var order = await persisted.WorkOrders.Include(w => w.Items).SingleAsync(w => w.QuotationId == id);
+        Assert.Equal(workOrderId, order.Id);
+        Assert.Equal(_tenantId, order.TenantId);
+        Assert.Equal(_customerId, order.CustomerId);
+        Assert.Equal(Agendamento.Api.Domain.WorkOrders.WorkOrderStatus.Scheduled, order.Status);
+        Assert.Single(order.Items);
+        Assert.Equal(QuotationStatus.Converted, (await persisted.Quotations.SingleAsync(q => q.Id == id)).Status);
     }
 
     [Fact(DisplayName = "Orçamentos não podem ser acessados por outro tenant @spec:AC-092")]
@@ -153,17 +158,23 @@ public class QuotationTests : IClassFixture<AgendamentoApiFactory>, IAsyncLifeti
         var quotation = await db2.Quotations.FirstOrDefaultAsync(q => q.Id == id);
         
         Assert.Null(quotation);
+        Assert.Empty(await db2.Set<QuotationItem>().ToListAsync());
+        using var own = GetDbContext(_tenantId);
+        Assert.Single(await own.Set<QuotationItem>().ToListAsync());
+        using var isolatedFactory = new TeamFinancialTestFactory();
+        using var isolated = isolatedFactory.Db(_tenantId);
+        Assert.False(await isolated.Quotations.AnyAsync(q => q.Id == id));
+        Assert.Empty(await isolated.Set<QuotationItem>().ToListAsync());
     }
 
-    [Fact(DisplayName = "Não é possível aprovar/rejeitar orçamento já convertido @spec:AC-093")]
+    [Fact(DisplayName = "Rejeição de orçamento convertido é recusada sem mutação rastreada @spec:AC-093")]
     public async Task AC093_CannotUpdateStatusOfConvertedQuotation()
     {
         using var db = GetDbContext(_tenantId);
         var createHandler = new CreateQuotationHandler(db, new TestTenantContext(_tenantId));
         var updateHandler = new UpdateQuotationStatusHandler(db, new Agendamento.Api.Application.Financial.GenerateReceivablesFromQuotation.GenerateReceivablesFromQuotationHandler(db));
         
-        var scope = _factory.Services.CreateScope();
-        var uow = scope.ServiceProvider.GetRequiredService<IUnitOfWork>();
+        var uow = new UnitOfWork(db);
         var convertHandler = new ConvertQuotationToWorkOrderHandler(db, new TestTenantContext(_tenantId), uow);
 
         var command = new CreateQuotationCommand(
@@ -184,5 +195,53 @@ public class QuotationTests : IClassFixture<AgendamentoApiFactory>, IAsyncLifeti
 
         // Act - Tenta rejeitar
         await Assert.ThrowsAsync<InvalidOperationException>(() => updateHandler.HandleAsync(id, new UpdateQuotationStatusCommand(QuotationStatus.Rejected)));
+        Assert.All(db.ChangeTracker.Entries(), entry => Assert.Equal(EntityState.Unchanged, entry.State));
+        Assert.Equal(0, await db.SaveChangesAsync());
+        using var persisted = GetDbContext(_tenantId);
+        Assert.Equal(QuotationStatus.Converted, (await persisted.Quotations.SingleAsync(q => q.Id == id)).Status);
+        Assert.Single(await persisted.WorkOrders.Where(w => w.QuotationId == id).ToListAsync());
+    }
+
+    [Theory(DisplayName = "Decisões finais e aprovação idempotente preservam tracker e gravação posterior @spec:AC-093")]
+    [InlineData(QuotationStatus.Approved, QuotationStatus.Approved, true)]
+    [InlineData(QuotationStatus.Converted, QuotationStatus.Approved, true)]
+    [InlineData(QuotationStatus.Approved, QuotationStatus.Rejected, false)]
+    [InlineData(QuotationStatus.Converted, QuotationStatus.Rejected, false)]
+    [InlineData(QuotationStatus.Rejected, QuotationStatus.Approved, false)]
+    [InlineData(QuotationStatus.Rejected, QuotationStatus.Rejected, false)]
+    public async Task FinalDecisionsPreserveTrackedGraph(QuotationStatus initial, QuotationStatus requested, bool succeeds)
+    {
+        Guid id;
+        using (var seed = GetDbContext(_tenantId))
+        {
+            id = await new CreateQuotationHandler(seed, new TestTenantContext(_tenantId)).HandleAsync(new(
+                "Q-FINAL", _customerId, DateTime.UtcNow, null, "Conteúdo original", "Termos originais",
+                [new(null, "Serviço", "un", 0.03m, 1m, 0m)], null));
+            var status = new UpdateQuotationStatusHandler(seed, new Agendamento.Api.Application.Financial.GenerateReceivablesFromQuotation.GenerateReceivablesFromQuotationHandler(seed));
+            await status.HandleAsync(id, new(initial == QuotationStatus.Rejected ? QuotationStatus.Rejected : QuotationStatus.Approved));
+            if (initial == QuotationStatus.Converted)
+                await new ConvertQuotationToWorkOrderHandler(seed, new TestTenantContext(_tenantId), new UnitOfWork(seed)).HandleAsync(new() { QuotationId = id });
+        }
+        using var db = GetDbContext(_tenantId);
+        await db.Quotations.Include(q => q.Items).SingleAsync(q => q.Id == id);
+        await db.ReceivableTitles.Where(r => r.QuotationId == id).LoadAsync();
+        await db.WorkOrders.Include(w => w.Items).Where(w => w.QuotationId == id).LoadAsync();
+        var entries = db.ChangeTracker.Entries().ToArray();
+        var before = entries.Select(e => e.CurrentValues.Clone()).ToArray();
+        var handler = new UpdateQuotationStatusHandler(db, new Agendamento.Api.Application.Financial.GenerateReceivablesFromQuotation.GenerateReceivablesFromQuotationHandler(db));
+        if (succeeds) await handler.HandleAsync(id, new(requested));
+        else await Assert.ThrowsAsync<InvalidOperationException>(() => handler.HandleAsync(id, new(requested)));
+        Assert.Equal(entries.Length, db.ChangeTracker.Entries().Count());
+        for (var index = 0; index < entries.Length; index++)
+        {
+            Assert.Equal(EntityState.Unchanged, entries[index].State);
+            foreach (var property in before[index].Properties)
+                Assert.Equal(before[index][property], entries[index].CurrentValues[property]);
+        }
+        Assert.Equal(0, await db.SaveChangesAsync());
+        using var persisted = GetDbContext(_tenantId);
+        Assert.Equal(initial, (await persisted.Quotations.SingleAsync(q => q.Id == id)).Status);
+        Assert.Equal(initial == QuotationStatus.Converted ? 1 : 0, await persisted.WorkOrders.CountAsync(w => w.QuotationId == id));
+        Assert.Equal(initial == QuotationStatus.Rejected ? 0 : 1, await persisted.ReceivableTitles.CountAsync(r => r.QuotationId == id));
     }
 }

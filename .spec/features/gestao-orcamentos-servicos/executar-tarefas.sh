@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# executar-tarefas.sh — gerado por `onp-spec plano gestao-orcamentos-servicos` em 2026-10-14 12:11
+# executar-tarefas.sh — gerado por `onp-spec plano gestao-orcamentos-servicos` em 2026-10-14 14:10
 # NÃO edite à mão: mudou tasks.md ou a config, regenere o plano.
 #
 # uso:
@@ -14,7 +14,7 @@
 set -u
 set -o pipefail
 
-RUN_ID='saas-pequenos-negocios-backend-gestao-orcamentos-servicos-mv82jhu3'
+RUN_ID='saas-pequenos-negocios-backend-gestao-orcamentos-servicos-mv86sjbi'
 FEATURE='gestao-orcamentos-servicos'
 BASE_BRANCH='spec/gestao-orcamentos-servicos'
 ENGINE='.agents/skills/onp-spec-driven/scripts/onp-spec.mjs'
@@ -166,38 +166,6 @@ iniciar_resumos() {
   RESUMO_PID=$!
   # ao sair: para o loop e grava um último resumo (o estado final, do motor)
   trap 'parar_resumos; node "$ENGINE" resumo "$FEATURE" --gravar >/dev/null 2>&1 || true' EXIT
-}
-
-# ── sequencial T-092 (ordem do tasks.md) ──
-executar_seq_T_092() {
-  info 'sequencial T-092 — Testes de Integração para Orçamentos'
-  if rodar_tarefa seq 'T-092' 'Você executa UMA tarefa da feature "gestao-orcamentos-servicos" (fluxo onp-spec, spec-anchored).
-Leia primeiro: .spec/features/gestao-orcamentos-servicos/spec.md, .spec/features/gestao-orcamentos-servicos/tasks.md e .spec/constituicao.md.
-
-Sua tarefa (somente ela):
-T-092 — "Testes de Integração para Orçamentos"
-  critérios/refs: AC-090 (Status inicial e soma dos serviços), AC-091 (Conversão exige aprovação), AC-092 (Orçamentos são isolados entre empresas), AC-093 (Estados finais bloqueiam novas decisões com exceção da aprovação idempotente)
-  arquivos permitidos (e seus testes): tests/Agendamento.IntegrationTests/Features/QuotationTests.cs, tests/Agendamento.UnitTests/Quotations/QuotationDomainTests.cs
-  mensagem de commit: "T-092 gestao-orcamentos-servicos: Testes de Integração para Orçamentos"
-
-Regras inegociáveis:
-- Todo critério de aceite referenciado vira teste com @spec:AC-xxx no título.
-- NUNCA enfraqueça, pule (skip/todo) ou apague um teste para passar — teste pulado não é prova e o audit acusa.
-- Rode os testes localmente com `powershell -ExecutionPolicy Bypass -File scripts/verify-spec.ps1` até passarem.
-- NÃO edite tasks.md, NÃO rode onp-spec verify/audit e NÃO toque em outras tarefas — o orquestrador cuida disso.
-- Ao final de CADA tarefa: `git add` só no que você tocou e um commit próprio.' 'gpt-5.6-terra' medium >> "$LOG_DIR/seq.log" 2>&1; then
-    # commit de segurança se o agente esqueceu (rastreabilidade > perfeição)
-    if [ -n "$(git status --porcelain)" ]; then
-      git add -A && git commit -q -m 'T-092 gestao-orcamentos-servicos: Testes de Integração para Orçamentos (auto-commit do plano)'
-    fi
-    marcar_concluidas T-092
-    verde "✔ T-092 concluída"
-    return 0
-  fi
-  vermelho "✘ T-092 falhou (log: $LOG_DIR/seq.log)"
-  amarelo "  reexecute só ela: bash .spec/features/gestao-orcamentos-servicos/executar-tarefas.sh --seq T-092"
-  FALHAS="$FALHAS T-092"
-  return 1
 }
 
 # ── sequencial T-032 (ordem do tasks.md) ──
@@ -445,7 +413,6 @@ executar_tudo() {
   iniciar_resumos
   info "logs em: $LOG_DIR"
   info "resumo geral de andamento: a cada 1 min aqui no terminal (e via: onp-spec resumo)"
-  executar_seq_T_092 || true
   executar_seq_T_032 || true
   executar_seq_T_033 || true
   executar_seq_T_034 || true
@@ -457,7 +424,6 @@ executar_tudo() {
 
 listar() {
   echo "execução: $RUN_ID (feature $FEATURE, branch $BASE_BRANCH)"
-  echo "  seq       T-092 (sequencial)"
   echo "  seq       T-032 (sequencial)"
   echo "  seq       T-033 (sequencial)"
   echo "  seq       T-034 (sequencial)"
@@ -498,7 +464,6 @@ case "$MODO" in
     esac ;;
   seq)
     case "$ALVO" in
-      T-092) evento --tipo inicio --escopo "seq:T-092"; iniciar_resumos; executar_seq_T_092 || true; encerrar "seq:T-092" ;;
       T-032) evento --tipo inicio --escopo "seq:T-032"; iniciar_resumos; executar_seq_T_032 || true; encerrar "seq:T-032" ;;
       T-033) evento --tipo inicio --escopo "seq:T-033"; iniciar_resumos; executar_seq_T_033 || true; encerrar "seq:T-033" ;;
       T-034) evento --tipo inicio --escopo "seq:T-034"; iniciar_resumos; executar_seq_T_034 || true; encerrar "seq:T-034" ;;

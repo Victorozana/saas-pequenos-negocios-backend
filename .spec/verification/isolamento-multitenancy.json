@@ -1,11 +1,11 @@
 {
   "feature": "isolamento-multitenancy",
-  "timestamp": "2026-10-14T12:01:57.550Z",
-  "gitRev": "d66266f",
+  "timestamp": "2026-10-14T14:05:41.767Z",
+  "gitRev": "4a57b5a",
   "command": "powershell -ExecutionPolicy Bypass -File scripts/verify-spec.ps1",
   "reporter": "jest-json",
   "exitCode": 0,
-  "testsParsed": 406,
+  "testsParsed": 414,
   "results": {
     "AC-028": {
       "status": "pass",
@@ -19,17 +19,17 @@
     },
     "AC-030": {
       "status": "pass",
-      "testName": "PostgreSQL isola HTTP e EF e mantém cadastro e autenticação públicos explícitos @spec:AC-028 @spec:AC-029 @spec:AC-030 @spec:AC-031 @spec:AC-032 PostgreSQL isola HTTP e EF e mantém cadastro e autenticação públicos explícitos @spec:AC-028 @spec:AC-029 @spec:AC-030 @spec:AC-031 @spec:AC-032",
+      "testName": "Consultas retornam somente registros da empresa autenticada @spec:AC-030 Consultas retornam somente registros da empresa autenticada @spec:AC-030",
       "method": "jest-json"
     },
     "AC-031": {
       "status": "pass",
-      "testName": "Alteração e exclusão de registro de outra empresa são rejeitadas @spec:AC-031 @spec:AC-032(delete: False, rewriteTenant: True) Alteração e exclusão de registro de outra empresa são rejeitadas @spec:AC-031 @spec:AC-032(delete: False, rewriteTenant: True)",
+      "testName": "Alteração e exclusão de registro de outra empresa são rejeitadas @spec:AC-031 @spec:AC-032(delete: False, rewriteTenant: False) Alteração e exclusão de registro de outra empresa são rejeitadas @spec:AC-031 @spec:AC-032(delete: False, rewriteTenant: False)",
       "method": "jest-json"
     },
     "AC-032": {
       "status": "pass",
-      "testName": "Gravações divergentes falham antes do commit @spec:AC-032(asynchronous: True) Gravações divergentes falham antes do commit @spec:AC-032(asynchronous: True)",
+      "testName": "Alteração e exclusão de registro de outra empresa são rejeitadas @spec:AC-031 @spec:AC-032(delete: False, rewriteTenant: False) Alteração e exclusão de registro de outra empresa são rejeitadas @spec:AC-031 @spec:AC-032(delete: False, rewriteTenant: False)",
       "method": "jest-json"
     },
     "AC-033": {
@@ -51,11 +51,11 @@
   "principles": {
     "P-005": {
       "status": "pass",
-      "testName": "Senhas nunca são recuperáveis @spec:AC-008 @principle:P-005 Senhas nunca são recuperáveis @spec:AC-008 @principle:P-005"
+      "testName": "Token de e-mail é armazenado somente como digest e expira em 24 horas @spec:AC-009 @principle:P-005 Token de e-mail é armazenado somente como digest e expira em 24 horas @spec:AC-009 @principle:P-005"
     },
     "P-003": {
       "status": "pass",
-      "testName": "@spec:AC-013 @principle:P-003 @principle:P-005 valid login emits only user_tenant_and_role @spec:AC-013 @principle:P-003 @principle:P-005 valid login emits only user_tenant_and_role"
+      "testName": "Tenant externo em header ou query não substitui a sessão @spec:AC-029 @principle:P-003(useQuery: True) Tenant externo em header ou query não substitui a sessão @spec:AC-029 @principle:P-003(useQuery: True)"
     },
     "P-004": {
       "status": "pass",

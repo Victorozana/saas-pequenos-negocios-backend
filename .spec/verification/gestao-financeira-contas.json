@@ -1,11 +1,11 @@
 {
   "feature": "gestao-financeira-contas",
-  "timestamp": "2026-10-14T11:55:59.293Z",
-  "gitRev": "d66266f",
+  "timestamp": "2026-10-14T14:00:02.827Z",
+  "gitRev": "4a57b5a",
   "command": "powershell -ExecutionPolicy Bypass -File scripts/verify-spec.ps1",
   "reporter": "jest-json",
   "exitCode": 0,
-  "testsParsed": 406,
+  "testsParsed": 414,
   "results": {
     "AC-094": {
       "status": "pass",
@@ -14,12 +14,12 @@
     },
     "AC-096": {
       "status": "pass",
-      "testName": "Permissões HTTP e revogação imediata @spec:AC-071 @spec:AC-096 Permissões HTTP e revogação imediata @spec:AC-071 @spec:AC-096",
+      "testName": "Conta manual e pagamentos parciais persistidos @spec:AC-095 @spec:AC-096 Conta manual e pagamentos parciais persistidos @spec:AC-095 @spec:AC-096",
       "method": "jest-json"
     },
     "AC-095": {
       "status": "pass",
-      "testName": "Conta manual e pagamentos parciais persistidos @spec:AC-095 @spec:AC-096 Conta manual e pagamentos parciais persistidos @spec:AC-095 @spec:AC-096",
+      "testName": "PostgreSQL persiste aprovação, pagamentos e aceite público @spec:AC-094 @spec:AC-074 @spec:AC-075 @spec:AC-095 PostgreSQL persiste aprovação, pagamentos e aceite público @spec:AC-094 @spec:AC-074 @spec:AC-075 @spec:AC-095",
       "method": "jest-json"
     },
     "AC-056": {
@@ -29,7 +29,7 @@
     },
     "AC-057": {
       "status": "pass",
-      "testName": "Pagamento parcial atualiza status para PartiallyPaid e abate o saldo @spec:AC-057 Pagamento parcial atualiza status para PartiallyPaid e abate o saldo @spec:AC-057",
+      "testName": "Pagamento maior que o saldo lança exceção @spec:AC-057 Pagamento maior que o saldo lança exceção @spec:AC-057",
       "method": "jest-json"
     },
     "AC-055": {
@@ -39,7 +39,7 @@
     },
     "AC-058": {
       "status": "pass",
-      "testName": "Verificação de atraso marca título como Overdue se vencido @spec:AC-058 Verificação de atraso marca título como Overdue se vencido @spec:AC-058",
+      "testName": "Verificação de atraso não altera status se estiver no prazo @spec:AC-058 Verificação de atraso não altera status se estiver no prazo @spec:AC-058",
       "method": "jest-json"
     },
     "AC-059": {
