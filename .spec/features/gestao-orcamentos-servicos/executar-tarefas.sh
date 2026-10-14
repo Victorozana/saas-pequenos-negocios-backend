@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# executar-tarefas.sh — gerado por `onp-spec plano gestao-orcamentos-servicos` em 2026-10-14 14:10
+# executar-tarefas.sh — gerado por `onp-spec plano gestao-orcamentos-servicos` em 2026-10-14 19:41
 # NÃO edite à mão: mudou tasks.md ou a config, regenere o plano.
 #
 # uso:
@@ -14,7 +14,7 @@
 set -u
 set -o pipefail
 
-RUN_ID='saas-pequenos-negocios-backend-gestao-orcamentos-servicos-mv86sjbi'
+RUN_ID='saas-pequenos-negocios-backend-gestao-orcamentos-servicos-mv8imxf7'
 FEATURE='gestao-orcamentos-servicos'
 BASE_BRANCH='spec/gestao-orcamentos-servicos'
 ENGINE='.agents/skills/onp-spec-driven/scripts/onp-spec.mjs'
@@ -166,38 +166,6 @@ iniciar_resumos() {
   RESUMO_PID=$!
   # ao sair: para o loop e grava um último resumo (o estado final, do motor)
   trap 'parar_resumos; node "$ENGINE" resumo "$FEATURE" --gravar >/dev/null 2>&1 || true' EXIT
-}
-
-# ── sequencial T-032 (ordem do tasks.md) ──
-executar_seq_T_032() {
-  info 'sequencial T-032 — Mapear Persistência EF Core e Migrations'
-  if rodar_tarefa seq 'T-032' 'Você executa UMA tarefa da feature "gestao-orcamentos-servicos" (fluxo onp-spec, spec-anchored).
-Leia primeiro: .spec/features/gestao-orcamentos-servicos/spec.md, .spec/features/gestao-orcamentos-servicos/tasks.md e .spec/constituicao.md.
-
-Sua tarefa (somente ela):
-T-032 — "Mapear Persistência EF Core e Migrations"
-  critérios/refs: AC-045 (Catálogo e orçamento pertencem ao tenant)
-  arquivos permitidos (e seus testes): src/Agendamento.Api/Infrastructure/Persistence/AgendamentoDbContext.cs, src/Agendamento.Api/Infrastructure/Persistence/Configurations/ServiceItemConfiguration.cs, src/Agendamento.Api/Infrastructure/Persistence/Configurations/QuotationConfiguration.cs
-  mensagem de commit: "T-032 gestao-orcamentos-servicos: Mapear Persistência EF Core e Migrations"
-
-Regras inegociáveis:
-- Todo critério de aceite referenciado vira teste com @spec:AC-xxx no título.
-- NUNCA enfraqueça, pule (skip/todo) ou apague um teste para passar — teste pulado não é prova e o audit acusa.
-- Rode os testes localmente com `powershell -ExecutionPolicy Bypass -File scripts/verify-spec.ps1` até passarem.
-- NÃO edite tasks.md, NÃO rode onp-spec verify/audit e NÃO toque em outras tarefas — o orquestrador cuida disso.
-- Ao final de CADA tarefa: `git add` só no que você tocou e um commit próprio.' 'gpt-5.6-terra' medium >> "$LOG_DIR/seq.log" 2>&1; then
-    # commit de segurança se o agente esqueceu (rastreabilidade > perfeição)
-    if [ -n "$(git status --porcelain)" ]; then
-      git add -A && git commit -q -m 'T-032 gestao-orcamentos-servicos: Mapear Persistência EF Core e Migrations (auto-commit do plano)'
-    fi
-    marcar_concluidas T-032
-    verde "✔ T-032 concluída"
-    return 0
-  fi
-  vermelho "✘ T-032 falhou (log: $LOG_DIR/seq.log)"
-  amarelo "  reexecute só ela: bash .spec/features/gestao-orcamentos-servicos/executar-tarefas.sh --seq T-032"
-  FALHAS="$FALHAS T-032"
-  return 1
 }
 
 # ── sequencial T-033 (ordem do tasks.md) ──
@@ -413,7 +381,6 @@ executar_tudo() {
   iniciar_resumos
   info "logs em: $LOG_DIR"
   info "resumo geral de andamento: a cada 1 min aqui no terminal (e via: onp-spec resumo)"
-  executar_seq_T_032 || true
   executar_seq_T_033 || true
   executar_seq_T_034 || true
   executar_seq_T_035 || true
@@ -424,7 +391,6 @@ executar_tudo() {
 
 listar() {
   echo "execução: $RUN_ID (feature $FEATURE, branch $BASE_BRANCH)"
-  echo "  seq       T-032 (sequencial)"
   echo "  seq       T-033 (sequencial)"
   echo "  seq       T-034 (sequencial)"
   echo "  seq       T-035 (sequencial)"
@@ -464,7 +430,6 @@ case "$MODO" in
     esac ;;
   seq)
     case "$ALVO" in
-      T-032) evento --tipo inicio --escopo "seq:T-032"; iniciar_resumos; executar_seq_T_032 || true; encerrar "seq:T-032" ;;
       T-033) evento --tipo inicio --escopo "seq:T-033"; iniciar_resumos; executar_seq_T_033 || true; encerrar "seq:T-033" ;;
       T-034) evento --tipo inicio --escopo "seq:T-034"; iniciar_resumos; executar_seq_T_034 || true; encerrar "seq:T-034" ;;
       T-035) evento --tipo inicio --escopo "seq:T-035"; iniciar_resumos; executar_seq_T_035 || true; encerrar "seq:T-035" ;;

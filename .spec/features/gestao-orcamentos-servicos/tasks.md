@@ -36,10 +36,10 @@
 - Notas: Revisão T-031 com cálculos, limites e atomicidade; design.md registra decisões confirmadas. T-088 e outras tarefas históricas permanecem pendentes.
 - Regra: Implementar `ITenantOwned` em `ServiceItem` e `Quotation`. Criar regras de cálculo de totais e sinal/entrada (porcentagem ou valor fixo, saldo restante).
 
-## T-032 — Mapear Persistência EF Core e Migrations [pendente]
-
+## T-032 — Mapear Persistência EF Core e Migrations [concluida]
 - Refs: US-020, US-021, AC-045
-- Arquivos: src/Agendamento.Api/Infrastructure/Persistence/AgendamentoDbContext.cs, src/Agendamento.Api/Infrastructure/Persistence/Configurations/ServiceItemConfiguration.cs, src/Agendamento.Api/Infrastructure/Persistence/Configurations/QuotationConfiguration.cs
+- Arquivos: src/Agendamento.Api/Infrastructure/Persistence/AgendamentoDbContext.cs, src/Agendamento.Api/Infrastructure/Persistence/Configurations/ServiceItemConfiguration.cs, src/Agendamento.Api/Infrastructure/Persistence/Configurations/QuotationConfiguration.cs, src/Agendamento.Api/Domain/Services/ServiceItem.cs, tests/Agendamento.UnitTests/Services/ServiceCatalogValidationTests.cs, tests/Agendamento.IntegrationTests/Services/ServiceCatalogValidationTests.cs, tests/Agendamento.IntegrationTests/Services/ServiceCatalogMappingTests.cs, tests/Agendamento.IntegrationTests/Services/ServiceCatalogPersistenceTests.cs, tests/Agendamento.IntegrationTests/Quotations/QuotationAggregateGuardTests.cs
+- Notas: Revisão própria concluída em .spec/revisao-t032.md e matriz .spec/matriz-t032.md:62casos novos, metadata efetiva, catálogo integral/Unicode/limites, guardas root/batch, RLS físico e upgrades. Validação Name200/Description1000/Unit50 antes de mutar; nenhuma migration nova.15features motor0/record0,476resultados/470PASS/zero falhas/6skips; audit de revisão --ci exit0/95critérios/zero erros e avisos. T-033 a T-037 permanecem pendentes de revisão própria.
 - Regra: Adicionar `DbSet<ServiceItem>` e `DbSet<Quotation>`, configurar `HasQueryFilter` por `TenantId`, relacionamentos com `Customer` e tabelas/owned types de itens e sinal.
 
 ## T-033 — Orquestrar Casos de Uso do Catálogo de Serviços/Produtos [pendente]

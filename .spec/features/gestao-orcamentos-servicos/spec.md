@@ -85,6 +85,8 @@ Para que eu possa selecionar rapidamente itens ao montar orçamentos para os cli
 - **Quando** cadastra itens do catálogo ou orçamentos
 - **Então** Todos os itens do catálogo de serviços e orçamentos cadastrados devem pertencer obrigatoriamente ao `TenantId` do prestador autenticado (`ITenantOwned`).
 
+A persistência do catálogo preserva identidade, tenant, nome, descrição opcional, unidade, preço base e estado ativo/inativo em contexto novo. Limites físicos existentes Name200/Description1000/Unit50 são validados antes de mutação/persistência, sem truncamento. Preço zero, duas casas e teto Q-020 continuam válidos. Inativação/atualização do catálogo não alteram valores ou vínculos históricos dos itens de orçamento/OS; exclusão de catálogo referenciado é Restrict. Filtros/guardas EF e RLS físico são barreiras independentes, incluindo ausência de tenant e tenant original/current em gravações. Matriz própria T-032 em .spec/matriz-t032.md; nenhuma conclusão automática das tarefas T-033 a T-037.
+
 ### US-021 — Criar Orçamento de Serviços/Produtos para Cliente Final
 Como prestador de serviço autenticado,
 Quero emitir um orçamento associado a um cliente existente, incluindo data de emissão, validade, itens com quantidade, preço unitário e desconto,
@@ -201,3 +203,13 @@ Reuso manual de contexto previamente carregado enquanto outro contexto grava e c
 Somente T-092 concluída após revisão própria das fixtures/cobertura conjunta, matriz requisito/cenário/prova, oito casos novos e ampliação das asserções antigas. As15features renovadas têm motor=0/record.exitCode=0,414 resultados por execução:408PASS, zero falhas e seis skips antigos. Provas completas em .local-verification/t092/certified e final-certified-summary.json; matriz .spec/matriz-t092.md, revisão .spec/revisao-t092.md e gate final .spec/audit-t092.json. Audit de revisão exit0/95 critérios provados/zero erros e avisos.
 
 T-032 a T-037 permanecem pendentes de revisão própria; plano sequencial das seis tarefas regenerado somente como artefato, sem executar headless/modelos históricos. Nenhum contrato/produção/OpenAPI/frontend/migration alterado. Preservados cinco obj,2.080 evidências anteriores por hash, schema frontend e backup; sem commit/push/deploy, API5050 ou rollout no banco de trabalho.
+
+## Fechamento T-032 — 14/10/2026
+
+Somente T-032 concluída após revisão própria de catálogo/EF/migrations. Corrigidos limites Name200/Description1000/Unit50 antes de mutar, contando caracteres Unicode escalares como varchar PostgreSQL.62casos novos provam metadata efetiva, roundtrip integral em contexto novo, null/zero/centavos/teto/ativo-inativo, guardas root/batch original/current, HTTP seguro e RLS/constraints físicas. Inativação/atualização conserva agregados/itens/vínculos de orçamento e OS; catálogo referenciado é Restrict, avulsos permanecem nullable.
+
+16migrations descobertas em ordem e HasPendingModelChanges=false; nenhuma migration nova. Reuso pertinente T-089/T-091 renovado inclui upgrades válidos e externo/órfão/duplicado recusados com rollback; prova nova preserva catálogo histórico completo. FKs compostas históricas SQL permanecem deliberadamente além do snapshot. Matriz .spec/matriz-t032.md e revisão .spec/revisao-t032.md identificam alcance e limites.
+
+15features motor0/record0,476resultados por execução:470PASS, zero falhas e6skips antigos;149unitPASS,290integraçãoPASS+6skips,31arquiteturaPASS. Evidências .local-verification/t032/certified-complete e final-certified-summary.json. Audit de revisão --ci exit0/95critérios/zero erros e avisos; gate final .spec/audit-t032.json. Preservados cinco obj, schema/frontend/checks, dump, evidências e sinais anteriores (com adição legítima da tentativa recusada). Cleanup comprovado apenas de base/dois logins próprios de tentativa falha; recurso temporário anterior preservado.
+
+T-033 a T-037 continuam pendentes de revisão própria. Nenhuma mudança DTO/rota/OpenAPI/frontend ou rollout no banco de trabalho; quatro migrations continuam não aplicadas. Sem commit/push/deploy, API5050, executor headless/modelos históricos, entrega real de mensagens ou telas financeiro/equipe.

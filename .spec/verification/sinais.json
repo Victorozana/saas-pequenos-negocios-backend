@@ -4590,6 +4590,15 @@
       "primeiraVez": "2026-10-12T18:09:22.429Z",
       "ultimaVez": "2026-10-12T18:09:22.430Z",
       "gitRev": "96875bb"
+    },
+    "VERIFY_FALHOU::cadastro-tenants::P-004": {
+      "codigo": "VERIFY_FALHOU",
+      "feature": "cadastro-tenants",
+      "ref": "P-004",
+      "ocorrencias": 1,
+      "primeiraVez": "2026-10-14T18:31:24.138Z",
+      "ultimaVez": "2026-10-14T18:31:24.138Z",
+      "gitRev": "17eca5b"
     }
   }
 }

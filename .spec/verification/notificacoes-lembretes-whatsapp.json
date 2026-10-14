@@ -1,15 +1,15 @@
 {
   "feature": "notificacoes-lembretes-whatsapp",
-  "timestamp": "2026-10-14T14:07:33.437Z",
-  "gitRev": "4a57b5a",
+  "timestamp": "2026-10-14T19:31:47.959Z",
+  "gitRev": "17eca5b",
   "command": "powershell -ExecutionPolicy Bypass -File scripts/verify-spec.ps1",
   "reporter": "jest-json",
   "exitCode": 0,
-  "testsParsed": 414,
+  "testsParsed": 476,
   "results": {
     "AC-097": {
       "status": "pass",
-      "testName": "Serviço central enfileira antes de enviar e aceita troca do provedor @spec:AC-097 @spec:AC-098(simulated: True) Serviço central enfileira antes de enviar e aceita troca do provedor @spec:AC-097 @spec:AC-098(simulated: True)",
+      "testName": "Worker usa serviço central para tenants distintos, retries, cancelamentos e backoff @spec:AC-097 @spec:AC-063 @spec:AC-061 Worker usa serviço central para tenants distintos, retries, cancelamentos e backoff @spec:AC-097 @spec:AC-063 @spec:AC-061",
       "method": "jest-json"
     },
     "AC-098": {
@@ -24,12 +24,12 @@
     },
     "AC-207": {
       "status": "pass",
-      "testName": "Criação HTTP aceita desativação explícita e mantém padrão habilitado para contratos antigos @spec:AC-207 Criação HTTP aceita desativação explícita e mantém padrão habilitado para contratos antigos @spec:AC-207",
+      "testName": "Lembrete automático rejeita cliente externo, ausente e contexto sem empresa antes de enfileirar @spec:AC-207 Lembrete automático rejeita cliente externo, ausente e contexto sem empresa antes de enfileirar @spec:AC-207",
       "method": "jest-json"
     },
     "AC-208": {
       "status": "pass",
-      "testName": "Aviso diário persistido filtra saldo, vencimento, preferência e vínculo; reinício e dia seguinte preservam isolamento @spec:AC-208 Aviso diário persistido filtra saldo, vencimento, preferência e vínculo; reinício e dia seguinte preservam isolamento @spec:AC-208",
+      "testName": "Migration de deduplicação preserva histórico na base temporária exclusiva @spec:AC-208 Migration de deduplicação preserva histórico na base temporária exclusiva @spec:AC-208",
       "method": "jest-json"
     },
     "AC-062": {

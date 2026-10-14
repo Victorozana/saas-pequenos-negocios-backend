@@ -1,12 +1,12 @@
 {
-  "runId": "saas-pequenos-negocios-backend-gestao-orcamentos-servicos-mv86sjbi",
+  "runId": "saas-pequenos-negocios-backend-gestao-orcamentos-servicos-mv8imxf7",
   "feature": "gestao-orcamentos-servicos",
   "agent": "codex",
   "modo": "sequencial",
   "paralelizar": null,
   "modeloForcado": null,
   "esforcoForcado": null,
-  "geradoEm": "2026-10-14 14:10",
+  "geradoEm": "2026-10-14 19:41",
   "branchTrabalho": "spec/gestao-orcamentos-servicos",
   "baseDir": ".spec/features/gestao-orcamentos-servicos",
   "specDir": ".spec",
@@ -15,22 +15,6 @@
   "ondas": [],
   "faixas": [],
   "sequenciais": [
-    {
-      "id": "T-032",
-      "titulo": "Mapear Persistência EF Core e Migrations",
-      "modelo": "gpt-5.6-terra",
-      "esforco": "medium",
-      "arquivos": [
-        "src/Agendamento.Api/Infrastructure/Persistence/AgendamentoDbContext.cs",
-        "src/Agendamento.Api/Infrastructure/Persistence/Configurations/ServiceItemConfiguration.cs",
-        "src/Agendamento.Api/Infrastructure/Persistence/Configurations/QuotationConfiguration.cs"
-      ],
-      "refs": [
-        "US-020",
-        "US-021",
-        "AC-045"
-      ]
-    },
     {
       "id": "T-033",
       "titulo": "Orquestrar Casos de Uso do Catálogo de Serviços/Produtos",
@@ -132,6 +116,7 @@
     "T-091",
     "T-092",
     "T-031",
+    "T-032",
     "T-103"
   ],
   "avisos": []

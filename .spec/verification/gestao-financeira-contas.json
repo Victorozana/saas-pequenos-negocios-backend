@@ -1,20 +1,20 @@
 {
   "feature": "gestao-financeira-contas",
-  "timestamp": "2026-10-14T14:00:02.827Z",
-  "gitRev": "4a57b5a",
+  "timestamp": "2026-10-14T19:16:46.359Z",
+  "gitRev": "17eca5b",
   "command": "powershell -ExecutionPolicy Bypass -File scripts/verify-spec.ps1",
   "reporter": "jest-json",
   "exitCode": 0,
-  "testsParsed": 414,
+  "testsParsed": 476,
   "results": {
     "AC-094": {
       "status": "pass",
-      "testName": "Aprovação gera entrada e saldo uma única vez @spec:AC-094 Aprovação gera entrada e saldo uma única vez @spec:AC-094",
+      "testName": "PostgreSQL persiste aprovação, pagamentos e aceite público @spec:AC-094 @spec:AC-074 @spec:AC-075 @spec:AC-095 PostgreSQL persiste aprovação, pagamentos e aceite público @spec:AC-094 @spec:AC-074 @spec:AC-075 @spec:AC-095",
       "method": "jest-json"
     },
     "AC-096": {
       "status": "pass",
-      "testName": "Conta manual e pagamentos parciais persistidos @spec:AC-095 @spec:AC-096 Conta manual e pagamentos parciais persistidos @spec:AC-095 @spec:AC-096",
+      "testName": "Permissões HTTP e revogação imediata @spec:AC-071 @spec:AC-096 Permissões HTTP e revogação imediata @spec:AC-071 @spec:AC-096",
       "method": "jest-json"
     },
     "AC-095": {
@@ -51,15 +51,15 @@
   "principles": {
     "P-005": {
       "status": "pass",
-      "testName": "Senhas nunca são recuperáveis @spec:AC-008 @principle:P-005 Senhas nunca são recuperáveis @spec:AC-008 @principle:P-005"
-    },
-    "P-003": {
-      "status": "pass",
-      "testName": "@spec:AC-013 @principle:P-003 @principle:P-005 valid login emits only user_tenant_and_role @spec:AC-013 @principle:P-003 @principle:P-005 valid login emits only user_tenant_and_role"
+      "testName": "Token de e-mail é armazenado somente como digest e expira em 24 horas @spec:AC-009 @principle:P-005 Token de e-mail é armazenado somente como digest e expira em 24 horas @spec:AC-009 @principle:P-005"
     },
     "P-004": {
       "status": "pass",
       "testName": "Papel restrito impede SQL direto entre tenants em todas as tabelas @spec:AC-033 @principle:P-004 Papel restrito impede SQL direto entre tenants em todas as tabelas @spec:AC-033 @principle:P-004"
+    },
+    "P-003": {
+      "status": "pass",
+      "testName": "Tenant externo em header ou query não substitui a sessão @spec:AC-029 @principle:P-003(useQuery: True) Tenant externo em header ou query não substitui a sessão @spec:AC-029 @principle:P-003(useQuery: True)"
     }
   }
 }

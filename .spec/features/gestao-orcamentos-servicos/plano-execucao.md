@@ -1,11 +1,11 @@
 # Plano de execução — gestao-orcamentos-servicos
 
-> gerado por `onp-spec plano` em 2026-10-14 14:10 — NÃO edite à mão;
+> gerado por `onp-spec plano` em 2026-10-14 19:41 — NÃO edite à mão;
 > mudou tasks.md ou a config? Regenere: `onp-spec plano gestao-orcamentos-servicos --sequencial`
 
 ## Resumo — o que vai acontecer
 
-- **modo SEQUENCIAL (escolha do usuário)**: 6 tarefa(s) pendente(s), UMA APÓS A OUTRA, na árvore principal (7 já concluída(s): T-088, T-089, T-090, T-091, T-092, T-031, T-103)
+- **modo SEQUENCIAL (escolha do usuário)**: 5 tarefa(s) pendente(s), UMA APÓS A OUTRA, na árvore principal (8 já concluída(s): T-088, T-089, T-090, T-091, T-092, T-031, T-032, T-103)
 - sem worktrees e sem paralelismo — cada tarefa roda numa janela de contexto limpa, na ordem do tasks.md
 - tudo acontece na branch de trabalho `spec/gestao-orcamentos-servicos`; levar para a main é decisão sua
 
@@ -13,7 +13,6 @@
 
 | tarefa | título | modelo | esforço |
 |---|---|---|---|
-| T-032 | Mapear Persistência EF Core e Migrations | `gpt-5.6-terra` | medium |
 | T-033 | Orquestrar Casos de Uso do Catálogo de Serviços/Produtos | `gpt-5.6-terra` | medium |
 | T-034 | Orquestrar Casos de Uso da Gestão de Orçamentos | `gpt-5.6-terra` | medium |
 | T-035 | Implementar Gerador de Exportação de Orçamento em PDF | `gpt-5.6-terra` | medium |

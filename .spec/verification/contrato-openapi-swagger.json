@@ -1,11 +1,11 @@
 {
   "feature": "contrato-openapi-swagger",
-  "timestamp": "2026-10-14T13:44:47.722Z",
-  "gitRev": "4a57b5a",
+  "timestamp": "2026-10-14T18:42:41.581Z",
+  "gitRev": "17eca5b",
   "command": "powershell -ExecutionPolicy Bypass -File scripts/verify-spec.ps1",
   "reporter": "jest-json",
   "exitCode": 0,
-  "testsParsed": 414,
+  "testsParsed": 476,
   "results": {
     "AC-036": {
       "status": "pass",
@@ -14,12 +14,12 @@
     },
     "AC-037": {
       "status": "pass",
-      "testName": "PDF e CSV provam mídia, bytes, download, contrato e isolamento @spec:AC-037 PDF e CSV provam mídia, bytes, download, contrato e isolamento @spec:AC-037",
+      "testName": "Erro inesperado HTTP é 500 ProblemDetails seguro também em Development @spec:AC-037(environment: \"Testing\") Erro inesperado HTTP é 500 ProblemDetails seguro também em Development @spec:AC-037(environment: \"Testing\")",
       "method": "jest-json"
     },
     "AC-038": {
       "status": "pass",
-      "testName": "Onboarding completo sem token na resposta em qualquer ambiente @spec:AC-021 @spec:AC-038 @spec:AC-100 @principle:P-005(environment: \"Test\") Onboarding completo sem token na resposta em qualquer ambiente @spec:AC-021 @spec:AC-038 @spec:AC-100 @principle:P-005(environment: \"Test\")",
+      "testName": "Onboarding completo sem token na resposta em qualquer ambiente @spec:AC-021 @spec:AC-038 @spec:AC-100 @principle:P-005(environment: \"Production\") Onboarding completo sem token na resposta em qualquer ambiente @spec:AC-021 @spec:AC-038 @spec:AC-100 @principle:P-005(environment: \"Production\")",
       "method": "jest-json"
     },
     "AC-039": {
@@ -36,15 +36,15 @@
   "principles": {
     "P-005": {
       "status": "pass",
-      "testName": "Token de e-mail é armazenado somente como digest e expira em 24 horas @spec:AC-009 @principle:P-005 Token de e-mail é armazenado somente como digest e expira em 24 horas @spec:AC-009 @principle:P-005"
-    },
-    "P-003": {
-      "status": "pass",
-      "testName": "Tenant externo no body não muda a empresa do cliente criado @spec:AC-029 @principle:P-003 Tenant externo no body não muda a empresa do cliente criado @spec:AC-029 @principle:P-003"
+      "testName": "Senhas nunca são recuperáveis @spec:AC-008 @principle:P-005 Senhas nunca são recuperáveis @spec:AC-008 @principle:P-005"
     },
     "P-004": {
       "status": "pass",
       "testName": "Papel restrito impede SQL direto entre tenants em todas as tabelas @spec:AC-033 @principle:P-004 Papel restrito impede SQL direto entre tenants em todas as tabelas @spec:AC-033 @principle:P-004"
+    },
+    "P-003": {
+      "status": "pass",
+      "testName": "Tenant externo em header ou query não substitui a sessão @spec:AC-029 @principle:P-003(useQuery: True) Tenant externo em header ou query não substitui a sessão @spec:AC-029 @principle:P-003(useQuery: True)"
     }
   }
 }

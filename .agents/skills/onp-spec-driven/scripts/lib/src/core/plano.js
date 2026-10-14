@@ -1197,7 +1197,7 @@ export function renderPlanoHtml(plan) {
     }
     <div>branch <code>${esc(plan.branchTrabalho)}</code></div>
   </div>
-  ${avisosHtml}
+${avisosHtml}
   <div class="executor">
     <h2>Como executar — via agente</h2>
     <p>Peça ao agente (${agenteRotulo}) para executar o plano. Ele roda:</p>
@@ -1212,8 +1212,8 @@ export function renderPlanoHtml(plan) {
     (<code>onp-spec resumo ${esc(plan.feature)} --tabela</code>) e o
     <b>resumo geral de andamento</b> (<code>onp-spec resumo ${esc(plan.feature)}</code>).</p>
   </div>
-  ${ondasHtml}
-  ${seqHtml}
+${ondasHtml}
+${seqHtml}
   <section class="onda">
     <h3>Branches e commits</h3>
     <ol>
