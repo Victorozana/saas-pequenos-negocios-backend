@@ -432,8 +432,8 @@ namespace Agendamento.Api.Infrastructure.Persistence.Migrations
 
                     b.Property<string>("Code")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("character varying(50)");
+                        .HasMaxLength(53)
+                        .HasColumnType("character varying(53)");
 
                     b.Property<DateTime?>("CompletedAt")
                         .HasColumnType("timestamp with time zone");
@@ -445,8 +445,8 @@ namespace Agendamento.Api.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<string>("Notes")
-                        .HasMaxLength(1000)
-                        .HasColumnType("character varying(1000)");
+                        .HasMaxLength(2000)
+                        .HasColumnType("character varying(2000)");
 
                     b.Property<Guid>("QuotationId")
                         .HasColumnType("uuid");
@@ -465,6 +465,9 @@ namespace Agendamento.Api.Infrastructure.Persistence.Migrations
                     b.HasIndex("QuotationId");
 
                     b.HasIndex("TenantId");
+
+                    b.HasIndex("TenantId", "QuotationId")
+                        .IsUnique();
 
                     b.ToTable("WorkOrders");
                 });
@@ -1261,8 +1264,7 @@ namespace Agendamento.Api.Infrastructure.Persistence.Migrations
 
                             b1.Property<string>("ServiceName")
                                 .IsRequired()
-                                .HasMaxLength(255)
-                                .HasColumnType("character varying(255)");
+                                .HasColumnType("text");
 
                             b1.Property<Guid>("TenantId")
                                 .HasColumnType("uuid")
@@ -1270,8 +1272,7 @@ namespace Agendamento.Api.Infrastructure.Persistence.Migrations
 
                             b1.Property<string>("Unit")
                                 .IsRequired()
-                                .HasMaxLength(50)
-                                .HasColumnType("character varying(50)");
+                                .HasColumnType("text");
 
                             b1.Property<decimal>("UnitPrice")
                                 .HasPrecision(18, 2)
@@ -1286,6 +1287,8 @@ namespace Agendamento.Api.Infrastructure.Persistence.Migrations
 
                             b1.HasIndex("WorkOrderId");
 
+                            b1.HasIndex("TenantId", "ServiceItemId");
+
                             b1.ToTable("WorkOrderItems", (string)null);
 
                             b1.HasOne("Agendamento.Domain.Tenants.Tenant", null)
@@ -1296,6 +1299,12 @@ namespace Agendamento.Api.Infrastructure.Persistence.Migrations
 
                             b1.WithOwner()
                                 .HasForeignKey("WorkOrderId");
+
+                            b1.HasOne("Agendamento.Api.Domain.Services.ServiceItem", null)
+                                .WithMany()
+                                .HasForeignKey("TenantId", "ServiceItemId")
+                                .HasPrincipalKey("TenantId", "Id")
+                                .OnDelete(DeleteBehavior.Restrict);
                         });
 
                     b.Navigation("Customer");

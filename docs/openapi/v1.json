@@ -1855,6 +1855,14 @@
         "responses": {
           "201": {
             "description": "Created",
+            "headers": {
+              "Location": {
+                "description": "Caminho relativo da OS criada ou j\u00E1 existente, acess\u00EDvel com sales.read.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
             "content": {
               "application/json": {
                 "schema": {

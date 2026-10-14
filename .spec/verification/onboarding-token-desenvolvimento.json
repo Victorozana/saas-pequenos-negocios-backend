@@ -1,22 +1,22 @@
 {
   "feature": "onboarding-token-desenvolvimento",
-  "timestamp": "2026-10-13T18:33:40.394Z",
-  "gitRev": "15831f8",
+  "timestamp": "2026-10-14T12:06:06.825Z",
+  "gitRev": "d66266f",
   "command": "powershell -ExecutionPolicy Bypass -File scripts/verify-spec.ps1",
   "reporter": "jest-json",
   "exitCode": 0,
-  "testsParsed": 367,
+  "testsParsed": 406,
   "results": {
     "AC-100": {
       "status": "pass",
-      "testName": "Onboarding completo sem token na resposta em qualquer ambiente @spec:AC-021 @spec:AC-038 @spec:AC-100 @principle:P-005(environment: \"Test\") Onboarding completo sem token na resposta em qualquer ambiente @spec:AC-021 @spec:AC-038 @spec:AC-100 @principle:P-005(environment: \"Test\")",
+      "testName": "Onboarding completo sem token na resposta em qualquer ambiente @spec:AC-021 @spec:AC-038 @spec:AC-100 @principle:P-005(environment: \"Development\") Onboarding completo sem token na resposta em qualquer ambiente @spec:AC-021 @spec:AC-038 @spec:AC-100 @principle:P-005(environment: \"Development\")",
       "method": "jest-json"
     }
   },
   "principles": {
     "P-005": {
       "status": "pass",
-      "testName": "Senhas nunca são recuperáveis @spec:AC-008 @principle:P-005 Senhas nunca são recuperáveis @spec:AC-008 @principle:P-005"
+      "testName": "Token de e-mail é armazenado somente como digest e expira em 24 horas @spec:AC-009 @principle:P-005 Token de e-mail é armazenado somente como digest e expira em 24 horas @spec:AC-009 @principle:P-005"
     },
     "P-003": {
       "status": "pass",

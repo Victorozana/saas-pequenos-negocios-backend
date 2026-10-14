@@ -1,11 +1,11 @@
 {
   "feature": "contrato-openapi-swagger",
-  "timestamp": "2026-10-13T18:37:29.283Z",
-  "gitRev": "15831f8",
+  "timestamp": "2026-10-14T11:39:39.918Z",
+  "gitRev": "d66266f",
   "command": "powershell -ExecutionPolicy Bypass -File scripts/verify-spec.ps1",
   "reporter": "jest-json",
   "exitCode": 0,
-  "testsParsed": 367,
+  "testsParsed": 406,
   "results": {
     "AC-036": {
       "status": "pass",
@@ -14,12 +14,12 @@
     },
     "AC-037": {
       "status": "pass",
-      "testName": "Contrato assinatura cobre ausência isolada, troca vazia e webhook inválido @spec:AC-037 Contrato assinatura cobre ausência isolada, troca vazia e webhook inválido @spec:AC-037",
+      "testName": "Edição pendente rejeita coleção ou elemento null sem alterar orçamento e itens @spec:AC-037(nullElement: False) Edição pendente rejeita coleção ou elemento null sem alterar orçamento e itens @spec:AC-037(nullElement: False)",
       "method": "jest-json"
     },
     "AC-038": {
       "status": "pass",
-      "testName": "Onboarding completo sem token na resposta em qualquer ambiente @spec:AC-021 @spec:AC-038 @spec:AC-100 @principle:P-005(environment: \"Development\") Onboarding completo sem token na resposta em qualquer ambiente @spec:AC-021 @spec:AC-038 @spec:AC-100 @principle:P-005(environment: \"Development\")",
+      "testName": "Onboarding completo sem token na resposta em qualquer ambiente @spec:AC-021 @spec:AC-038 @spec:AC-100 @principle:P-005(environment: \"Production\") Onboarding completo sem token na resposta em qualquer ambiente @spec:AC-021 @spec:AC-038 @spec:AC-100 @principle:P-005(environment: \"Production\")",
       "method": "jest-json"
     },
     "AC-039": {
@@ -36,11 +36,11 @@
   "principles": {
     "P-005": {
       "status": "pass",
-      "testName": "Token de e-mail é armazenado somente como digest e expira em 24 horas @spec:AC-009 @principle:P-005 Token de e-mail é armazenado somente como digest e expira em 24 horas @spec:AC-009 @principle:P-005"
+      "testName": "Senhas nunca são recuperáveis @spec:AC-008 @principle:P-005 Senhas nunca são recuperáveis @spec:AC-008 @principle:P-005"
     },
     "P-003": {
       "status": "pass",
-      "testName": "Tenant externo em header ou query não substitui a sessão @spec:AC-029 @principle:P-003(useQuery: False) Tenant externo em header ou query não substitui a sessão @spec:AC-029 @principle:P-003(useQuery: False)"
+      "testName": "@spec:AC-013 @principle:P-003 @principle:P-005 valid login emits only user_tenant_and_role @spec:AC-013 @principle:P-003 @principle:P-005 valid login emits only user_tenant_and_role"
     },
     "P-004": {
       "status": "pass",

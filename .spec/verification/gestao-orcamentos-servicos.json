@@ -1,11 +1,11 @@
 {
   "feature": "gestao-orcamentos-servicos",
-  "timestamp": "2026-10-13T18:27:54.438Z",
-  "gitRev": "15831f8",
+  "timestamp": "2026-10-14T11:57:56.188Z",
+  "gitRev": "d66266f",
   "command": "powershell -ExecutionPolicy Bypass -File scripts/verify-spec.ps1",
   "reporter": "jest-json",
   "exitCode": 0,
-  "testsParsed": 367,
+  "testsParsed": 406,
   "results": {
     "AC-090": {
       "status": "pass",
@@ -14,27 +14,27 @@
     },
     "AC-092": {
       "status": "pass",
-      "testName": "Guarda de itens bloqueia atualização/exclusão foreign e adulteração antes de qualquer gravação @spec:AC-092(asynchronous: True, delete: False, rewriteTenant: True) Guarda de itens bloqueia atualização/exclusão foreign e adulteração antes de qualquer gravação @spec:AC-092(asynchronous: True, delete: False, rewriteTenant: True)",
+      "testName": "Conversão sem identidade não acessa nem modifica orçamento @spec:AC-092 Conversão sem identidade não acessa nem modifica orçamento @spec:AC-092",
       "method": "jest-json"
     },
     "AC-206": {
       "status": "pass",
-      "testName": "Fora do Draft montagem direta é recusada sem mutação de conteúdo, sinal ou estado @spec:AC-206(status: Rejected) Fora do Draft montagem direta é recusada sem mutação de conteúdo, sinal ou estado @spec:AC-206(status: Rejected)",
+      "testName": "Fora do Draft montagem direta é recusada sem mutação de conteúdo, sinal ou estado @spec:AC-206(status: Pending) Fora do Draft montagem direta é recusada sem mutação de conteúdo, sinal ou estado @spec:AC-206(status: Pending)",
       "method": "jest-json"
     },
     "AC-093": {
       "status": "pass",
-      "testName": "Contrato HTTP de orçamento persiste sem vazamento ou registros parciais em PostgreSQL restrito @spec:AC-090 @spec:AC-092 @spec:AC-093 Contrato HTTP de orçamento persiste sem vazamento ou registros parciais em PostgreSQL restrito @spec:AC-090 @spec:AC-092 @spec:AC-093",
+      "testName": "Conversão recusada preserva agregado rastreado e gravação posterior @spec:AC-091 @spec:AC-093(status: Converted) Conversão recusada preserva agregado rastreado e gravação posterior @spec:AC-091 @spec:AC-093(status: Converted)",
       "method": "jest-json"
     },
     "AC-091": {
       "status": "pass",
-      "testName": "Somente orçamentos aprovados podem ser convertidos em OS @spec:AC-091 Somente orçamentos aprovados podem ser convertidos em OS @spec:AC-091",
+      "testName": "Conversão recusada preserva agregado rastreado e gravação posterior @spec:AC-091 @spec:AC-093(status: Converted) Conversão recusada preserva agregado rastreado e gravação posterior @spec:AC-091 @spec:AC-093(status: Converted)",
       "method": "jest-json"
     },
     "AC-045": {
       "status": "pass",
-      "testName": "ServiceItem e Quotation implementam ITenantOwned com TenantId @spec:AC-045 ServiceItem e Quotation implementam ITenantOwned com TenantId @spec:AC-045",
+      "testName": "Tenant obrigatório e atualização inválida do catálogo preserva conteúdo @spec:AC-045 Tenant obrigatório e atualização inválida do catálogo preserva conteúdo @spec:AC-045",
       "method": "jest-json"
     },
     "AC-049": {
@@ -44,7 +44,7 @@
     },
     "AC-046": {
       "status": "pass",
-      "testName": "Conteúdo decidido ou encerrado permanece imutável @spec:AC-046(status: Approved) Conteúdo decidido ou encerrado permanece imutável @spec:AC-046(status: Approved)",
+      "testName": "Valores monetários aceitam zero e teto e rejeitam negativos excesso e frações @spec:AC-046 Valores monetários aceitam zero e teto e rejeitam negativos excesso e frações @spec:AC-046",
       "method": "jest-json"
     },
     "AC-047": {
@@ -54,22 +54,22 @@
     },
     "AC-048": {
       "status": "pass",
-      "testName": "Matriz de transições conserva agregado em cada recusa e conteúdo nas transições válidas @spec:AC-048(source: Converted, operation: \"pending\") Matriz de transições conserva agregado em cada recusa e conteúdo nas transições válidas @spec:AC-048(source: Converted, operation: \"pending\")",
+      "testName": "Expiração usa dia UTC estritamente anterior e aprovação recusada não expira nem modifica agregado @spec:AC-048(days: -1) Expiração usa dia UTC estritamente anterior e aprovação recusada não expira nem modifica agregado @spec:AC-048(days: -1)",
       "method": "jest-json"
     }
   },
   "principles": {
     "P-005": {
       "status": "pass",
-      "testName": "Senhas nunca são recuperáveis @spec:AC-008 @principle:P-005 Senhas nunca são recuperáveis @spec:AC-008 @principle:P-005"
+      "testName": "Token de e-mail é armazenado somente como digest e expira em 24 horas @spec:AC-009 @principle:P-005 Token de e-mail é armazenado somente como digest e expira em 24 horas @spec:AC-009 @principle:P-005"
+    },
+    "P-003": {
+      "status": "pass",
+      "testName": "Tenant externo em header ou query não substitui a sessão @spec:AC-029 @principle:P-003(useQuery: False) Tenant externo em header ou query não substitui a sessão @spec:AC-029 @principle:P-003(useQuery: False)"
     },
     "P-004": {
       "status": "pass",
       "testName": "Papel restrito impede SQL direto entre tenants em todas as tabelas @spec:AC-033 @principle:P-004 Papel restrito impede SQL direto entre tenants em todas as tabelas @spec:AC-033 @principle:P-004"
-    },
-    "P-003": {
-      "status": "pass",
-      "testName": "Tenant externo em header ou query não substitui a sessão @spec:AC-029 @principle:P-003(useQuery: True) Tenant externo em header ou query não substitui a sessão @spec:AC-029 @principle:P-003(useQuery: True)"
     }
   }
 }

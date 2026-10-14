@@ -1,15 +1,15 @@
 {
   "feature": "notificacoes-lembretes-whatsapp",
-  "timestamp": "2026-10-13T18:32:05.805Z",
-  "gitRev": "15831f8",
+  "timestamp": "2026-10-14T12:03:56.620Z",
+  "gitRev": "d66266f",
   "command": "powershell -ExecutionPolicy Bypass -File scripts/verify-spec.ps1",
   "reporter": "jest-json",
   "exitCode": 0,
-  "testsParsed": 367,
+  "testsParsed": 406,
   "results": {
     "AC-097": {
       "status": "pass",
-      "testName": "Histórico HTTP vincula cliente e isola empresas e mensagens avulsas @spec:AC-098 @spec:AC-097 Histórico HTTP vincula cliente e isola empresas e mensagens avulsas @spec:AC-098 @spec:AC-097",
+      "testName": "Serviço central enfileira antes de enviar e aceita troca do provedor @spec:AC-097 @spec:AC-098(simulated: True) Serviço central enfileira antes de enviar e aceita troca do provedor @spec:AC-097 @spec:AC-098(simulated: True)",
       "method": "jest-json"
     },
     "AC-098": {
@@ -24,12 +24,12 @@
     },
     "AC-207": {
       "status": "pass",
-      "testName": "Criação HTTP aceita desativação explícita e mantém padrão habilitado para contratos antigos @spec:AC-207 Criação HTTP aceita desativação explícita e mantém padrão habilitado para contratos antigos @spec:AC-207",
+      "testName": "Preferência persiste na edição, detalhe e lista com CPF mascarado e isolamento HTTP @spec:AC-207 @spec:AC-038 Preferência persiste na edição, detalhe e lista com CPF mascarado e isolamento HTTP @spec:AC-207 @spec:AC-038",
       "method": "jest-json"
     },
     "AC-208": {
       "status": "pass",
-      "testName": "Dois workers simultâneos usam deduplicação durável PostgreSQL por conta e dia @spec:AC-208 Dois workers simultâneos usam deduplicação durável PostgreSQL por conta e dia @spec:AC-208",
+      "testName": "Migration de deduplicação preserva histórico na base temporária exclusiva @spec:AC-208 Migration de deduplicação preserva histórico na base temporária exclusiva @spec:AC-208",
       "method": "jest-json"
     },
     "AC-062": {
@@ -61,15 +61,15 @@
   "principles": {
     "P-005": {
       "status": "pass",
-      "testName": "Token de e-mail é armazenado somente como digest e expira em 24 horas @spec:AC-009 @principle:P-005 Token de e-mail é armazenado somente como digest e expira em 24 horas @spec:AC-009 @principle:P-005"
+      "testName": "Senhas nunca são recuperáveis @spec:AC-008 @principle:P-005 Senhas nunca são recuperáveis @spec:AC-008 @principle:P-005"
+    },
+    "P-003": {
+      "status": "pass",
+      "testName": "@spec:AC-013 @principle:P-003 @principle:P-005 valid login emits only user_tenant_and_role @spec:AC-013 @principle:P-003 @principle:P-005 valid login emits only user_tenant_and_role"
     },
     "P-004": {
       "status": "pass",
       "testName": "Papel restrito impede SQL direto entre tenants em todas as tabelas @spec:AC-033 @principle:P-004 Papel restrito impede SQL direto entre tenants em todas as tabelas @spec:AC-033 @principle:P-004"
-    },
-    "P-003": {
-      "status": "pass",
-      "testName": "Tenant externo em header ou query não substitui a sessão @spec:AC-029 @principle:P-003(useQuery: True) Tenant externo em header ou query não substitui a sessão @spec:AC-029 @principle:P-003(useQuery: True)"
     }
   }
 }

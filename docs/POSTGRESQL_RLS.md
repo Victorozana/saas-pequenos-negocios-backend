@@ -118,3 +118,13 @@ Esta migration NÃO foi aplicada a agendamento_local nesta tarefa. Permanecem ta
 aplicadas AddCustomerAutomaticReminderPreference e AddDailyReceivableReminderDeduplication.
 Não iniciar a versão nova nesse banco nem aplicar migrations sem pedido explícito de rollout.
 Banco, cadastros e credenciais de trabalho, processos do usuário e backup runtime-repair preservados.
+
+## Integridade da conversão em OS — T-091 — 14/10/2026
+
+A migration 20261013202849_EnforceWorkOrderConversionIntegrity acrescenta índice único de WorkOrders(tenant_id,QuotationId) e FK composta nullable WorkOrderItems(tenant_id,ServiceItemId) → ServiceItems(tenant_id,Id), com Restrict. Amplia Code da OS para53, Notes para2000 e nomes/unidades dos itens para text, preservando integralmente os campos de orçamentos públicos válidos. Policies/grants RLS e FKs compostas históricas de cliente/orçamento/owner permanecem.
+
+A conversão usa a transação e o lock FOR UPDATE da linha do orçamento antes de consultar o replay, compartilhando a barreira com aprovação/edição. Guarda owned de WorkOrderItem compara tenant original/current e owner rastreado, inclusive owner Unchanged. RLS permanece proteção independente; filtros EF dos owners não podem substituir as policies físicas.
+
+Upgrade foi validado em bases temporárias exclusivas: histórico válido preservado, duplicidade de OS ou catálogo externo/inexistente recusados com rollback de linhas/schema/history, sem limpeza de legado. Concorrência observou duas ou cinco sessões distintas bloqueadas simultaneamente; falhas após INSERT/UPDATE provaram rollback real. Rollback relacional não restaura ChangeTracker: o scope HTTP é descartado após falha.
+
+Esta migration NÃO foi aplicada a agendamento_local. Também continuam pendentes AddCustomerAutomaticReminderPreference, AddDailyReceivableReminderDeduplication e EnforceQuotationCatalogTenantReference. Não iniciar esta versão nem aplicar migrations no banco de trabalho sem rollout explícito. Backup runtime-repair/agendamento_local-before-rls.dump permanece preservado.

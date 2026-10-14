@@ -29,6 +29,7 @@ public class WorkOrder : ITenantOwned
 
     public static WorkOrder CreateFromQuotation(Quotation quotation)
     {
+        ArgumentNullException.ThrowIfNull(quotation);
         if (quotation.Status != QuotationStatus.Approved)
             throw new InvalidOperationException("Can only create a work order from an approved quotation.");
 

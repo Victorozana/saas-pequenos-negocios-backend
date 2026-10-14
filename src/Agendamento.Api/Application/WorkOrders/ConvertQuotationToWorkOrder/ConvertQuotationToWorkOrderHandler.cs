@@ -28,30 +28,50 @@ public class ConvertQuotationToWorkOrderHandler
         if (!_tenantContext.HasTenant)
             throw new InvalidOperationException("Unauthenticated tenant context.");
 
-        var existingOrder = await _dbContext.WorkOrders
-            .FirstOrDefaultAsync(w => w.QuotationId == command.QuotationId && w.TenantId == _tenantContext.TenantId, cancellationToken);
-        if (existingOrder != null)
-            return existingOrder.Id;
+        await _unitOfWork.BeginTransactionAsync(cancellationToken);
+        try
+        {
+            // Use the same row lock as approval and editing. Read the order only
+            // after acquiring it so a concurrent conversion is observed on replay.
+            if (_dbContext.Database.IsRelational())
+                await _dbContext.Database.ExecuteSqlInterpolatedAsync(
+                    $"SELECT 1 FROM \"Quotations\" WHERE \"Id\" = {command.QuotationId} AND tenant_id = {_tenantContext.TenantId} FOR UPDATE", cancellationToken);
 
-        var quotation = await _dbContext.Quotations
-            .Include(q => q.Items)
-            .FirstOrDefaultAsync(q => q.Id == command.QuotationId && q.TenantId == _tenantContext.TenantId, cancellationToken);
+            var existingOrder = await _dbContext.WorkOrders
+                .FirstOrDefaultAsync(w => w.QuotationId == command.QuotationId && w.TenantId == _tenantContext.TenantId, cancellationToken);
+            if (existingOrder != null)
+            {
+                await _unitOfWork.CommitAsync(cancellationToken);
+                return existingOrder.Id;
+            }
 
-        if (quotation == null)
-            throw new InvalidOperationException("Quotation not found.");
+            var quotation = await _dbContext.Quotations
+                .Include(q => q.Items)
+                .FirstOrDefaultAsync(q => q.Id == command.QuotationId && q.TenantId == _tenantContext.TenantId, cancellationToken);
 
-        // Validations for conversion (e.g. status must be Approved)
-        if (quotation.Status != QuotationStatus.Approved)
-            throw new InvalidOperationException("Quotation must be approved before converting to a work order.");
+            if (quotation == null)
+                throw new InvalidOperationException("Quotation not found.");
 
-        // Domain method validates and creates the work order
-        var workOrder = WorkOrder.CreateFromQuotation(quotation);
-        quotation.MarkAsConverted();
+            // Validations for conversion (e.g. status must be Approved)
+            if (quotation.Status != QuotationStatus.Approved)
+                throw new InvalidOperationException("Quotation must be approved before converting to a work order.");
 
-        _dbContext.WorkOrders.Add(workOrder);
-        await _dbContext.SaveChangesAsync(cancellationToken);
-        await _unitOfWork.CommitAsync(cancellationToken);
+            // Domain method validates and creates the work order
+            var workOrder = WorkOrder.CreateFromQuotation(quotation);
+            quotation.MarkAsConverted();
 
-        return workOrder.Id;
+            _dbContext.WorkOrders.Add(workOrder);
+            await _dbContext.SaveChangesAsync(cancellationToken);
+            await _unitOfWork.CommitAsync(cancellationToken);
+
+            return workOrder.Id;
+        }
+        catch
+        {
+            // A failed relational save rolls back all rows. The caller must
+            // discard this scope; rollback does not restore EF tracked values.
+            await _unitOfWork.RollbackAsync(CancellationToken.None);
+            throw;
+        }
     }
 }

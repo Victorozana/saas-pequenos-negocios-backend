@@ -1,15 +1,15 @@
 {
   "feature": "gestao-equipe-permissoes",
-  "timestamp": "2026-10-13T18:24:59.020Z",
-  "gitRev": "15831f8",
+  "timestamp": "2026-10-14T11:54:04.189Z",
+  "gitRev": "d66266f",
   "command": "powershell -ExecutionPolicy Bypass -File scripts/verify-spec.ps1",
   "reporter": "jest-json",
   "exitCode": 0,
-  "testsParsed": 367,
+  "testsParsed": 406,
   "results": {
     "AC-070": {
       "status": "pass",
-      "testName": "Perfil completo do usuário com permissões explícitas @spec:AC-070 Perfil completo do usuário com permissões explícitas @spec:AC-070",
+      "testName": "Perfil HTTP não expõe credenciais @spec:AC-070 Perfil HTTP não expõe credenciais @spec:AC-070",
       "method": "jest-json"
     },
     "AC-071": {
@@ -29,19 +29,19 @@
     },
     "AC-074": {
       "status": "pass",
-      "testName": "PostgreSQL persiste aprovação, pagamentos e aceite público @spec:AC-094 @spec:AC-074 @spec:AC-075 @spec:AC-095 PostgreSQL persiste aprovação, pagamentos e aceite público @spec:AC-094 @spec:AC-074 @spec:AC-075 @spec:AC-095",
+      "testName": "Geração de convite único e expirável em 7 dias @spec:AC-074 Geração de convite único e expirável em 7 dias @spec:AC-074",
       "method": "jest-json"
     },
     "AC-075": {
       "status": "pass",
-      "testName": "PostgreSQL persiste aprovação, pagamentos e aceite público @spec:AC-094 @spec:AC-074 @spec:AC-075 @spec:AC-095 PostgreSQL persiste aprovação, pagamentos e aceite público @spec:AC-094 @spec:AC-074 @spec:AC-075 @spec:AC-095",
+      "testName": "Convite HTTP seguro e aceite público persistido @spec:AC-074 @spec:AC-075 Convite HTTP seguro e aceite público persistido @spec:AC-074 @spec:AC-075",
       "method": "jest-json"
     }
   },
   "principles": {
     "P-005": {
       "status": "pass",
-      "testName": "Senhas nunca são recuperáveis @spec:AC-008 @principle:P-005 Senhas nunca são recuperáveis @spec:AC-008 @principle:P-005"
+      "testName": "Token de e-mail é armazenado somente como digest e expira em 24 horas @spec:AC-009 @principle:P-005 Token de e-mail é armazenado somente como digest e expira em 24 horas @spec:AC-009 @principle:P-005"
     },
     "P-003": {
       "status": "pass",

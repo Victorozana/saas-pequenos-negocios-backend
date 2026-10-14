@@ -1,3 +1,5 @@
+using Agendamento.Api.Domain.Quotations;
+
 namespace Agendamento.Api.Domain.WorkOrders;
 
 public class WorkOrderItem
@@ -24,11 +26,12 @@ public class WorkOrderItem
         if (quantity <= 0)
             throw new ArgumentException("Quantity must be greater than zero.", nameof(quantity));
 
-        if (unitPrice < 0)
-            throw new ArgumentException("Unit price cannot be negative.", nameof(unitPrice));
+        QuotationMoney.Validate(quantity, nameof(quantity));
 
-        if (discountAmount < 0)
-            throw new ArgumentException("Discount amount cannot be negative.", nameof(discountAmount));
+        QuotationMoney.Validate(unitPrice, nameof(unitPrice));
+        QuotationMoney.Validate(discountAmount, nameof(discountAmount));
+        if (discountAmount > QuotationMoney.Subtotal(unitPrice, quantity))
+            throw new ArgumentException("Discount cannot exceed subtotal.", nameof(discountAmount));
 
         return new WorkOrderItem
         {

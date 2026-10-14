@@ -151,7 +151,9 @@ public sealed class TeamFinancialTestFactory : WebApplicationFactory<Program>
     internal TeamFinancialTestFactory(string connection, string? administrativeConnection = null) { _connection = connection; _administrativeConnection = administrativeConnection; }
     private readonly string? _administrativeConnection;
     private readonly string _database=Guid.NewGuid().ToString();
-    private readonly InMemoryDatabaseRoot _root=new();
+    // Reuse EF's internal provider while keeping each factory's database name
+    // unique. Separate roots per factory exhaust the provider cache in full runs.
+    private static readonly InMemoryDatabaseRoot _root=new();
     protected override void ConfigureWebHost(IWebHostBuilder builder)
     {
         builder.UseEnvironment("Testing");

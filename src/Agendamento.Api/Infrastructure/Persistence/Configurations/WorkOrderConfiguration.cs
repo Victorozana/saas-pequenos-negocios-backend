@@ -12,9 +12,10 @@ public class WorkOrderConfiguration : IEntityTypeConfiguration<WorkOrder>
         
         builder.HasQueryFilter(wo => wo.TenantId == Microsoft.EntityFrameworkCore.EF.Property<Guid>(wo, "TenantId"));
         builder.HasIndex(wo => wo.TenantId);
+        builder.HasIndex(wo => new { wo.TenantId, wo.QuotationId }).IsUnique();
 
-        builder.Property(wo => wo.Code).IsRequired().HasMaxLength(50);
-        builder.Property(wo => wo.Notes).HasMaxLength(1000);
+        builder.Property(wo => wo.Code).IsRequired().HasMaxLength(53);
+        builder.Property(wo => wo.Notes).HasMaxLength(2000);
 
         builder.HasOne(wo => wo.Customer)
             .WithMany()
@@ -33,8 +34,12 @@ public class WorkOrderConfiguration : IEntityTypeConfiguration<WorkOrder>
             itemBuilder.Property<Guid>("TenantId").HasColumnName("tenant_id").IsRequired();
             itemBuilder.HasIndex("TenantId");
             itemBuilder.HasOne<Agendamento.Domain.Tenants.Tenant>().WithMany().HasForeignKey("TenantId").OnDelete(DeleteBehavior.Restrict);
-            itemBuilder.Property(i => i.ServiceName).IsRequired().HasMaxLength(255);
-            itemBuilder.Property(i => i.Unit).HasMaxLength(50);
+            itemBuilder.HasOne<Agendamento.Api.Domain.Services.ServiceItem>().WithMany()
+                .HasForeignKey("TenantId", nameof(WorkOrderItem.ServiceItemId))
+                .HasPrincipalKey(nameof(Agendamento.Api.Domain.Services.ServiceItem.TenantId), "Id")
+                .OnDelete(DeleteBehavior.Restrict);
+            itemBuilder.Property(i => i.ServiceName).IsRequired();
+            itemBuilder.Property(i => i.Unit).IsRequired();
             itemBuilder.Property(i => i.Quantity).HasPrecision(18, 2);
             itemBuilder.Property(i => i.UnitPrice).HasPrecision(18, 2);
             itemBuilder.Property(i => i.DiscountAmount).HasPrecision(18, 2);

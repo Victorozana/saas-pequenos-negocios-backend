@@ -38,6 +38,19 @@ public static class WorkOrderEndpoints
         })
         .WithName("ConvertQuotationToWorkOrder")
         .Produces<CreatedIdResponse>(StatusCodes.Status201Created)
+        .AddOpenApiOperationTransformer((operation, context, ct) =>
+        {
+            if (operation.Responses?["201"] is Microsoft.OpenApi.OpenApiResponse response)
+            {
+                response.Headers ??= new Dictionary<string, Microsoft.OpenApi.IOpenApiHeader>();
+                response.Headers["Location"] = new Microsoft.OpenApi.OpenApiHeader
+                {
+                    Description = "Caminho relativo da OS criada ou já existente, acessível com sales.read.",
+                    Schema = new Microsoft.OpenApi.OpenApiSchema { Type = Microsoft.OpenApi.JsonSchemaType.String }
+                };
+            }
+            return Task.CompletedTask;
+        })
         .ProducesProblem(StatusCodes.Status400BadRequest)
         .RequirePermission("sales.write");
 

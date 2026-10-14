@@ -66,6 +66,23 @@ public sealed class TenantSaveChangesInterceptor : SaveChangesInterceptor
                 throw new InvalidOperationException("Divergência de TenantId do item de orçamento detectada durante o salvamento.");
         }
 
+        foreach (var entry in context.ChangeTracker.Entries<Agendamento.Api.Domain.WorkOrders.WorkOrderItem>()
+            .Where(e => e.State is EntityState.Added or EntityState.Modified or EntityState.Deleted))
+        {
+            var ownership = entry.Metadata.FindOwnership()!;
+            var orderId = (Guid)entry.Property(ownership.Properties.Single().Name).CurrentValue!;
+            var owner = context.ChangeTracker.Entries<Agendamento.Api.Domain.WorkOrders.WorkOrder>()
+                .SingleOrDefault(e => e.Entity.Id == orderId);
+            var tenant = entry.Property<Guid>("TenantId");
+            if ((!_tenantContext.HasTenant && !isRegisteringNewTenant) || owner == null
+                || owner.Entity.TenantId != allowedTenantId
+                || (owner.State != EntityState.Added && owner.Property(e => e.TenantId).OriginalValue != allowedTenantId)
+                || (entry.State != EntityState.Added && tenant.OriginalValue != allowedTenantId)
+                || (tenant.CurrentValue != Guid.Empty && tenant.CurrentValue != allowedTenantId)
+                || (entry.State != EntityState.Added && tenant.CurrentValue != allowedTenantId))
+                throw new InvalidOperationException("Divergência de TenantId do item de ordem de serviço detectada durante o salvamento.");
+        }
+
         foreach (var entry in context.ChangeTracker.Entries().Where(e =>
             e.Metadata.FindProperty("TenantId")?.IsShadowProperty() == true && e.State == EntityState.Added))
             entry.Property("TenantId").CurrentValue = allowedTenantId;

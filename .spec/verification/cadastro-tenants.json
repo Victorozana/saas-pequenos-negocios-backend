@@ -1,15 +1,15 @@
 {
   "feature": "cadastro-tenants",
-  "timestamp": "2026-10-13T18:36:00.464Z",
-  "gitRev": "15831f8",
+  "timestamp": "2026-10-14T11:37:09.688Z",
+  "gitRev": "d66266f",
   "command": "powershell -ExecutionPolicy Bypass -File scripts/verify-spec.ps1",
   "reporter": "jest-json",
   "exitCode": 0,
-  "testsParsed": 367,
+  "testsParsed": 406,
   "results": {
     "AC-014": {
       "status": "pass",
-      "testName": "CNPJ inválido é rejeitado localmente @spec:AC-014(invalidCnpj: \"12.345.678/0001-90\") CNPJ inválido é rejeitado localmente @spec:AC-014(invalidCnpj: \"12.345.678/0001-90\")",
+      "testName": "CNPJ inválido é rejeitado localmente @spec:AC-014(invalidCnpj: \"12.345.678/ABCD-00\") CNPJ inválido é rejeitado localmente @spec:AC-014(invalidCnpj: \"12.345.678/ABCD-00\")",
       "method": "jest-json"
     },
     "AC-015": {
@@ -81,7 +81,7 @@
   "principles": {
     "P-005": {
       "status": "pass",
-      "testName": "Senhas nunca são recuperáveis @spec:AC-008 @principle:P-005 Senhas nunca são recuperáveis @spec:AC-008 @principle:P-005"
+      "testName": "Token de e-mail é armazenado somente como digest e expira em 24 horas @spec:AC-009 @principle:P-005 Token de e-mail é armazenado somente como digest e expira em 24 horas @spec:AC-009 @principle:P-005"
     },
     "P-003": {
       "status": "pass",

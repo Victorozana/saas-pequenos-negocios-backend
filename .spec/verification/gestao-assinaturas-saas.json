@@ -1,11 +1,11 @@
 {
   "feature": "gestao-assinaturas-saas",
-  "timestamp": "2026-10-13T18:22:08.170Z",
-  "gitRev": "15831f8",
+  "timestamp": "2026-10-14T11:49:55.112Z",
+  "gitRev": "d66266f",
   "command": "powershell -ExecutionPolicy Bypass -File scripts/verify-spec.ps1",
   "reporter": "jest-json",
   "exitCode": 0,
-  "testsParsed": 367,
+  "testsParsed": 406,
   "results": {
     "AC-201": {
       "status": "pass",
@@ -40,7 +40,7 @@
     },
     "P-003": {
       "status": "pass",
-      "testName": "Tenant externo no body não muda a empresa do cliente criado @spec:AC-029 @principle:P-003 Tenant externo no body não muda a empresa do cliente criado @spec:AC-029 @principle:P-003"
+      "testName": "Tenant externo em header ou query não substitui a sessão @spec:AC-029 @principle:P-003(useQuery: False) Tenant externo em header ou query não substitui a sessão @spec:AC-029 @principle:P-003(useQuery: False)"
     },
     "P-004": {
       "status": "pass",
