@@ -28,7 +28,8 @@ public static class DependencyInjection
         services.AddScoped<Agendamento.Api.Infrastructure.Tenancy.HttpTenantContext>();
         services.AddScoped<Agendamento.Api.Application.Tenancy.ITenantContext>(provider => provider.GetRequiredService<Agendamento.Api.Infrastructure.Tenancy.HttpTenantContext>());
 
-        services.AddScoped<Agendamento.Api.Infrastructure.Notifications.ICommunicationGateway, Agendamento.Api.Infrastructure.Notifications.MockCommunicationGateway>();
+        services.AddScoped<Agendamento.Api.Infrastructure.Notifications.MockCommunicationGateway>();
+        services.AddScoped<Agendamento.Api.Infrastructure.Notifications.ICommunicationGateway, Agendamento.Api.Infrastructure.Notifications.ConfiguredCommunicationGateway>();
         services.AddScoped<Agendamento.Api.Application.Notifications.INotificationService, Agendamento.Api.Infrastructure.Notifications.NotificationService>();
         services.AddHostedService<Agendamento.Api.Infrastructure.Notifications.NotificationOutboxProcessor>();
         Microsoft.Extensions.DependencyInjection.Extensions.ServiceCollectionDescriptorExtensions.TryAddSingleton<TimeProvider>(services, TimeProvider.System);

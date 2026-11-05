@@ -1,5 +1,13 @@
 # Project agent rules
 
+## Encerramento e continuidade (preferência permanente do usuário)
+
+- Nesta máquina, o backend é este repositório e o frontend é o diretório irmão `../saas-pequenos-negocios-frontend`. Os caminhos antigos abaixo são históricos.
+- Ao concluir uma entrega de desenvolvimento neste projeto, executar as verificações pertinentes, revisar o diff e fazer commit e push das alterações da entrega nos repositórios afetados. O usuário autoriza esse fluxo habitual; isso substitui a exigência genérica de nova aprovação de push abaixo. Uma instrução posterior do usuário prevalece.
+- Não incluir segredos, logs locais, caches ou artefatos de build no commit. Preservar alterações alheias à entrega; não usar force push, reset destrutivo ou descarte para limpar o status.
+- Conferir branch, remoto e upstream antes de publicar. Após o push, confirmar que HEAD e upstream coincidem e informar branch, hash, verificações e pendências locais. Se houver falha de autenticação, conflito, teste falhando ou dúvida sobre arquivos, relatar o impedimento e o que ficou salvo; nunca afirmar que houve push sem confirmação.
+- Registrar no repositório o estado funcional e o próximo passo quando houver trabalho incompleto. Não encerrar silenciosamente com trabalho existente apenas nesta máquina.
+
 ## Frontend integration authority
 
 - The canonical frontend repository is `C:\Users\victo\OneDrive\Documentos\projetos\front-agendamento`.

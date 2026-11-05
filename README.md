@@ -76,6 +76,21 @@ A aprovação do orçamento gera títulos a receber de entrada e saldo. Repetir 
 
 A equipe permite listar membros, atualizar papel/permissões e ativar ou desativar o vínculo pelo endpoint `PATCH /api/v1/team-members/{userId}/status`, com `{ "isActive": false }`. Desativar um vínculo revoga o acesso de sessões anteriores somente naquele tenant. O último administrador ativo, inclusive `owner_admin`, é protegido.
 
-Convites expiram em sete dias e são aceitos sem sessão. O token é entregue pela outbox, não pela resposta HTTP; o gateway de comunicação atual é simulado e não envia e-mails reais. Seus logs não exibem destinatário ou conteúdo. Novos usuários definem uma senha com pelo menos 12 caracteres.
+Convites expiram em sete dias e são aceitos sem sessão. O token é entregue pela outbox, não pela resposta HTTP; o gateway padrão é simulado e não envia e-mails reais. Seus logs não exibem destinatário ou conteúdo. Novos usuários definem uma senha com pelo menos 12 caracteres.
+
+Para habilitar entrega real de e-mail da outbox, configure por variáveis de ambiente ou segredos:
+`Notifications__Email__Provider=Smtp`, `Notifications__Email__From`,
+`Notifications__Email__Host`, `Notifications__Email__Port` (padrão 587),
+`Notifications__Email__EnableSsl` (padrão true), `Notifications__Email__Username`
+e `Notifications__Email__Password`. Nenhuma credencial deve ser versionada.
+Sem configuração, o provedor continua `Mock`. WhatsApp e SMS permanecem simulados.
+
+Somente em Development, `Notifications__Email__Provider=Pickup` e
+`Notifications__Email__PickupDirectory` com caminho absoluto permitem conferir
+e-mails localmente sem envio externo. Configure também `Notifications__Email__From`
+com um remetente de teste. Os arquivos `.eml` contêm códigos de convite: mantenha
+o diretório fora do repositório e não o exponha via HTTP. A outbox processa a fila
+a cada 30 segundos. O convidado abre `/convites/aceitar` no frontend e informa o
+código recebido; o código nunca precisa aparecer na URL.
 
 Para provas individuais da spec, execute `node .agents/skills/onp-spec-driven/scripts/onp-spec.mjs verify gestao-financeira-contas` e o equivalente para `gestao-equipe-permissoes`. O script `scripts/verify-spec.ps1` roda as três suítes e converte seus resultados TRX para o formato JSON consumido pelo motor. O teste PostgreSQL utiliza os segredos locais ou a configuração de ambiente, cria um banco temporário exclusivo e o remove ao final; nunca usa o banco de trabalho para os cenários de teste. Testes antigos pulados não são provas de seus requisitos.
