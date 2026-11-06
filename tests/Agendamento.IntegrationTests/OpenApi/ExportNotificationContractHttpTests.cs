@@ -148,19 +148,18 @@ public sealed class ExportNotificationContractHttpTests : IClassFixture<TeamFina
         var bytes = await response.Content.ReadAsByteArrayAsync(); Assert.Equal(bytes.LongLength, response.Content.Headers.ContentLength);
         return bytes;
     }
-    private static string NormalizeWhitespace(string value) => Regex.Replace(value, @"\s+", " ").Trim();
-    private static string RemoveWhitespace(string value) => Regex.Replace(value, @"\s+", "");
+    private static string RemoveWhitespace(string value) => Regex.Replace(value.Normalize(NormalizationForm.FormKC), @"[\s\u00AD]+", "");
     private static void AssertPdfSemantics(byte[] bytes, Quotation quotation, Customer customer, string service)
     {
         using var document = PdfDocument.Open(bytes);
         Assert.True(document.NumberOfPages > 0);
-        var pdfText = NormalizeWhitespace(string.Join("\n", document.GetPages().Select(page => ContentOrderTextExtractor.GetText(page))));
-        // Long identifiers wrap in the PDF; ignore only presentation whitespace.
-        Assert.Contains(RemoveWhitespace(quotation.Code), RemoveWhitespace(pdfText));
-        Assert.Contains(NormalizeWhitespace(customer.Name), pdfText);
-        Assert.Contains(service, pdfText);
-        Assert.Contains("TOTAL GERAL:", pdfText);
-        Assert.Contains(RemoveWhitespace(quotation.TotalAmount.ToString("C", CultureInfo.CurrentCulture)), RemoveWhitespace(pdfText));
+        var pdfText = RemoveWhitespace(string.Join("\n", document.GetPages().Select(page => ContentOrderTextExtractor.GetText(page))));
+        // PDF fonts may encode ligatures and line breaks differently across platforms.
+        Assert.Contains(RemoveWhitespace(quotation.Code), pdfText);
+        Assert.Contains(RemoveWhitespace(customer.Name), pdfText);
+        Assert.Contains(RemoveWhitespace(service), pdfText);
+        Assert.Contains("TOTALGERAL:", pdfText);
+        Assert.Contains(RemoveWhitespace(quotation.TotalAmount.ToString("C", CultureInfo.GetCultureInfo("pt-BR"))), pdfText);
     }
     private static void AssertDownloadContract(JsonNode contract, string path, string media, bool binary)
     {

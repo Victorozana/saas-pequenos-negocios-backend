@@ -12,6 +12,7 @@ public class QuestPdfQuotationGenerator : IQuotationPdfGenerator
     // The installed native renderer corrupts ToUnicode maps when rendering concurrently.
     // Share this gate across all request-scoped generator instances.
     private static readonly SemaphoreSlim RenderingGate = new(1, 1);
+    private static readonly System.Globalization.CultureInfo BrazilianCulture = System.Globalization.CultureInfo.GetCultureInfo("pt-BR");
     static QuestPdfQuotationGenerator()
     {
         QuestPDF.Settings.License = LicenseType.Community;
@@ -26,7 +27,10 @@ public class QuestPdfQuotationGenerator : IQuotationPdfGenerator
                 page.Size(PageSizes.A4);
                 page.Margin(1, Unit.Centimetre);
                 page.PageColor(Colors.White);
-                page.DefaultTextStyle(x => x.FontSize(10).FontFamily("Arial", "Lato"));
+                page.DefaultTextStyle(x => x.FontSize(10).FontFamily("Lato")
+                    .DisableFontFeature(FontFeatures.StandardLigatures)
+                    .DisableFontFeature("clig")
+                    .DisableFontFeature("calt"));
 
                 page.Header().Element(header => ComposeHeader(header, quotation));
                 page.Content().Element(content => ComposeContent(content, quotation));
@@ -48,25 +52,15 @@ public class QuestPdfQuotationGenerator : IQuotationPdfGenerator
 
     private void ComposeHeader(IContainer container, QuotationDetailDto quotation)
     {
-        container.Row(row =>
+        container.Column(column =>
         {
-            row.RelativeItem().Column(column =>
-            {
-                column.Item().Text("ORÇAMENTO COMERCIAL").FontSize(20).SemiBold().FontColor(Colors.Blue.Darken2);
-                column.Item().Text($"Código: {quotation.Code}").FontSize(12).SemiBold();
-                column.Item().Text($"Data de Emissão: {quotation.IssueDate:dd/MM/yyyy}");
-                
-                if (quotation.ValidUntil.HasValue)
-                {
-                    column.Item().Text($"Válido até: {quotation.ValidUntil.Value:dd/MM/yyyy}");
-                }
-            });
-
-            row.RelativeItem().AlignRight().Column(column =>
-            {
-                column.Item().Text("Dados do Cliente").SemiBold();
-                column.Item().Text(quotation.CustomerName);
-            });
+            column.Item().Text("ORÇAMENTO COMERCIAL").FontSize(20).SemiBold().FontColor(Colors.Blue.Darken2);
+            column.Item().Text($"Código: {quotation.Code}").FontSize(12).SemiBold();
+            column.Item().Text($"Data de Emissão: {quotation.IssueDate:dd/MM/yyyy}");
+            if (quotation.ValidUntil.HasValue)
+                column.Item().Text($"Válido até: {quotation.ValidUntil.Value:dd/MM/yyyy}");
+            column.Item().PaddingTop(4).Text("Dados do Cliente").SemiBold();
+            column.Item().Text(quotation.CustomerName);
         });
     }
 
@@ -125,9 +119,9 @@ public class QuestPdfQuotationGenerator : IQuotationPdfGenerator
                 table.Cell().Element(CellStyle).Text(item.ServiceName);
                 table.Cell().Element(CellStyle).AlignRight().Text(item.Unit);
                 table.Cell().Element(CellStyle).AlignRight().Text(item.Quantity.ToString("F2"));
-                table.Cell().Element(CellStyle).AlignRight().Text(item.UnitPrice.ToString("C"));
-                table.Cell().Element(CellStyle).AlignRight().Text(item.DiscountAmount.ToString("C"));
-                table.Cell().Element(CellStyle).AlignRight().Text(item.TotalPrice.ToString("C"));
+                table.Cell().Element(CellStyle).AlignRight().Text(item.UnitPrice.ToString("C", BrazilianCulture));
+                table.Cell().Element(CellStyle).AlignRight().Text(item.DiscountAmount.ToString("C", BrazilianCulture));
+                table.Cell().Element(CellStyle).AlignRight().Text(item.TotalPrice.ToString("C", BrazilianCulture));
 
                 static IContainer CellStyle(IContainer container)
                 {
@@ -147,7 +141,7 @@ public class QuestPdfQuotationGenerator : IQuotationPdfGenerator
                 column.Item().Row(r =>
                 {
                     r.RelativeItem().Text("Subtotal:");
-                    r.RelativeItem().AlignRight().Text(quotation.SubtotalAmount.ToString("C"));
+                    r.RelativeItem().AlignRight().Text(quotation.SubtotalAmount.ToString("C", BrazilianCulture));
                 });
                 
                 if (quotation.DiscountAmount > 0)
@@ -162,7 +156,7 @@ public class QuestPdfQuotationGenerator : IQuotationPdfGenerator
                 column.Item().PaddingTop(5).BorderTop(1).BorderColor(Colors.Black).Row(r =>
                 {
                     r.RelativeItem().Text("TOTAL GERAL:").SemiBold();
-                    r.RelativeItem().AlignRight().Text(quotation.TotalAmount.ToString("C")).SemiBold();
+                    r.RelativeItem().AlignRight().Text(quotation.TotalAmount.ToString("C", BrazilianCulture)).SemiBold();
                 });
             });
         });
@@ -188,7 +182,7 @@ public class QuestPdfQuotationGenerator : IQuotationPdfGenerator
             column.Item().Row(r =>
             {
                 r.RelativeItem().Text("Saldo Restante (Pós-Sinal):").SemiBold();
-                r.RelativeItem().AlignRight().Text(deposit.RemainingBalance.ToString("C")).SemiBold();
+                r.RelativeItem().AlignRight().Text(deposit.RemainingBalance.ToString("C", BrazilianCulture)).SemiBold();
             });
 
             if (!string.IsNullOrWhiteSpace(deposit.PaymentNotes))

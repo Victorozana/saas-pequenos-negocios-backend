@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     services:
       postgres:
-        image: postgres:16
+        image: postgres:18
         env:
           POSTGRES_HOST_AUTH_METHOD: trust
         ports: ["5432:5432"]
@@ -23,5 +23,9 @@ jobs:
         with:
           dotnet-version: 10.0.x
       - run: |
+          psql -h localhost -U postgres -v ON_ERROR_STOP=1 <<'SQL'
+          CREATE ROLE agendamento_app_user NOLOGIN NOSUPERUSER NOBYPASSRLS NOINHERIT;
+          CREATE ROLE agendamento_system_user NOLOGIN NOSUPERUSER NOBYPASSRLS NOINHERIT;
+          SQL
           git rev-parse HEAD
           dotnet test Agendamento.sln --nologo -v minimal
