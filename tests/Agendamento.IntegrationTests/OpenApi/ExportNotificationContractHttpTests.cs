@@ -67,6 +67,11 @@ public sealed class ExportNotificationContractHttpTests : IClassFixture<TeamFina
         Assert.True(bytes.Length > 1000);
         AssertPdfSemantics(bytes, quotation, customer, "Serviço exportado");
         AssertDownloadContract(contract, "/api/v1/quotations/{id}/pdf", "application/pdf", true);
+
+        await AssertEmpty(await factory.CreateClient().GetAsync($"/api/v1/quotations/{quotation.Id}/pdf"), HttpStatusCode.Unauthorized);
+        var (memberWithoutSales, _, _) = await factory.Member("Employee", ["appointments.read"], tenant);
+        Assert.Equal(HttpStatusCode.Forbidden, (await memberWithoutSales.GetAsync($"/api/v1/quotations/{quotation.Id}/pdf")).StatusCode);
+        await AssertEmpty(await client.GetAsync($"/api/v1/quotations/{Guid.NewGuid()}/pdf"), HttpStatusCode.NotFound);
         var forbiddenPdf = await other.GetAsync($"/api/v1/quotations/{quotation.Id}/pdf");
         await AssertEmpty(forbiddenPdf, HttpStatusCode.NotFound);
         var csv = await client.GetAsync("/api/v1/dashboard/report");
@@ -89,7 +94,7 @@ public sealed class ExportNotificationContractHttpTests : IClassFixture<TeamFina
     [Fact(DisplayName = "Notificações e conversão retornam erros seguros alinhados ao contrato @spec:AC-037")]
     public async Task NotificationAndConversionErrorsMatchContract()
     {
-        var (client, _, tenant) = await factory.Member("owner_admin", []);
+        var (client, person, tenant) = await factory.Member("owner_admin", []);
         var (other, _, _) = await factory.Member("owner_admin", []);
         var customer = Customer.Create(tenant, "Cliente notificação fictício", "123", null, null, null);
         var quotation = Quotation.Create(tenant, "CONTRACT-" + Guid.NewGuid().ToString("N"), customer.Id, DateTime.UtcNow.Date, null, null, null);
@@ -114,7 +119,7 @@ public sealed class ExportNotificationContractHttpTests : IClassFixture<TeamFina
         AssertProblemContract(contract, "/api/v1/quotations/{id}/convert");
         await AssertProblem(await client.PatchAsJsonAsync($"/api/v1/quotations/{quotation.Id}/status", new { newStatus = 999 }));
         await AssertEmpty(await client.PatchAsJsonAsync($"/api/v1/quotations/{quotation.Id}/status", new { newStatus = 3 }), HttpStatusCode.NoContent);
-        var converted = await client.PostAsync(conversionPath, null);
+        var converted = await client.PostOrderAsync(conversionPath, quotation.Id, person);
         Assert.Equal(HttpStatusCode.OK, converted.StatusCode);
         var orderId = JsonNode.Parse(await converted.Content.ReadAsStringAsync())!["workOrderId"]!.GetValue<Guid>();
         Assert.NotEqual(Guid.Empty, orderId);

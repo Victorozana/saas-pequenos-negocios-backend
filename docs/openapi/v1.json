@@ -1687,8 +1687,27 @@
               "type": "string",
               "format": "uuid"
             }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
           }
         ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ScheduleWorkOrderRequest"
+              }
+            }
+          },
+          "required": true
+        },
         "responses": {
           "401": {
             "description": "Sess\u00E3o ausente, inv\u00E1lida ou revogada. Resposta sem corpo.",
@@ -1731,8 +1750,31 @@
               }
             }
           },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          },
           "500": {
             "description": "Falha inesperada: resposta ProblemDetails segura, sem detalhes internos.",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "Tipo de conte\u00FAdo n\u00E3o suportado.",
             "content": {
               "application/problem\u002Bjson": {
                 "schema": {
@@ -1850,14 +1892,54 @@
               "type": "string",
               "format": "uuid"
             }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
           }
         ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ScheduleWorkOrderRequest"
+              }
+            }
+          },
+          "required": true
+        },
         "responses": {
+          "401": {
+            "description": "Sess\u00E3o ausente, inv\u00E1lida ou revogada. Resposta sem corpo.",
+            "headers": {
+              "WWW-Authenticate": {
+                "description": "Desafio de autentica\u00E7\u00E3o Bearer.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
           "201": {
             "description": "Created",
             "headers": {
               "Location": {
-                "description": "Caminho relativo da OS criada ou j\u00E1 existente, acess\u00EDvel com sales.read.",
+                "description": "Caminho relativo da OS.",
                 "schema": {
                   "type": "string"
                 }
@@ -1881,6 +1963,127 @@
               }
             }
           },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Falha inesperada: resposta ProblemDetails segura, sem detalhes internos.",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "Tipo de conte\u00FAdo n\u00E3o suportado.",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/work-orders/participants": {
+      "get": {
+        "tags": [
+          "WorkOrders"
+        ],
+        "operationId": "GetWorkOrderParticipants",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ScheduleParticipant"
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "500": {
+            "description": "Falha inesperada: resposta ProblemDetails segura, sem detalhes internos.",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Sess\u00E3o ausente, inv\u00E1lida ou revogada. Resposta sem corpo.",
+            "headers": {
+              "WWW-Authenticate": {
+                "description": "Desafio de autentica\u00E7\u00E3o Bearer.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/work-orders/{id}/schedule": {
+      "put": {
+        "tags": [
+          "WorkOrders"
+        ],
+        "operationId": "UpdateWorkOrderSchedule",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ScheduleWorkOrderRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
           "401": {
             "description": "Sess\u00E3o ausente, inv\u00E1lida ou revogada. Resposta sem corpo.",
             "headers": {
@@ -1902,12 +2105,167 @@
               }
             }
           },
+          "204": {
+            "description": "No Content"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
           "500": {
             "description": "Falha inesperada: resposta ProblemDetails segura, sem detalhes internos.",
             "content": {
               "application/problem\u002Bjson": {
                 "schema": {
                   "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "Tipo de conte\u00FAdo n\u00E3o suportado.",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/work-orders": {
+      "get": {
+        "tags": [
+          "WorkOrders"
+        ],
+        "operationId": "ListWorkOrders",
+        "parameters": [
+          {
+            "name": "quotationId",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "participantId",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "start",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "end",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "schema": {
+              "$ref": "#/components/schemas/WorkOrderStatus"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "pattern": "^-?(?:0|[1-9]\\d*)$",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "schema": {
+              "pattern": "^-?(?:0|[1-9]\\d*)$",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WorkOrderPage"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Falha inesperada: resposta ProblemDetails segura, sem detalhes internos.",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Dados da requisi\u00E7\u00E3o inv\u00E1lidos.",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Sess\u00E3o ausente, inv\u00E1lida ou revogada. Resposta sem corpo.",
+            "headers": {
+              "WWW-Authenticate": {
+                "description": "Desafio de autentica\u00E7\u00E3o Bearer.",
+                "schema": {
+                  "type": "string"
                 }
               }
             }
@@ -1948,8 +2306,21 @@
               }
             }
           },
+          "403": {
+            "description": "Forbidden"
+          },
           "404": {
             "description": "Not Found"
+          },
+          "500": {
+            "description": "Falha inesperada: resposta ProblemDetails segura, sem detalhes internos.",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
           },
           "401": {
             "description": "Sess\u00E3o ausente, inv\u00E1lida ou revogada. Resposta sem corpo.",
@@ -1958,26 +2329,6 @@
                 "description": "Desafio de autentica\u00E7\u00E3o Bearer.",
                 "schema": {
                   "type": "string"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/problem\u002Bjson": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Falha inesperada: resposta ProblemDetails segura, sem detalhes internos.",
-            "content": {
-              "application/problem\u002Bjson": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
                 }
               }
             }
@@ -2026,6 +2377,16 @@
           },
           "400": {
             "description": "Bad Request",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
             "content": {
               "application/problem\u002Bjson": {
                 "schema": {
@@ -2131,6 +2492,16 @@
               }
             }
           },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
           "400": {
             "description": "Bad Request",
             "content": {
@@ -2215,7 +2586,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/AppointmentResponse"
+                    "$ref": "#/components/schemas/AgendaVisit"
                   }
                 }
               }
@@ -2270,6 +2641,65 @@
         ]
       }
     },
+    "/api/v1/appointments/today": {
+      "get": {
+        "tags": [
+          "Appointments"
+        ],
+        "operationId": "GetTodayAppointments",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AgendaVisit"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Sess\u00E3o ausente, inv\u00E1lida ou revogada. Resposta sem corpo.",
+            "headers": {
+              "WWW-Authenticate": {
+                "description": "Desafio de autentica\u00E7\u00E3o Bearer.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Falha inesperada: resposta ProblemDetails segura, sem detalhes internos.",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
+      }
+    },
     "/api/v1/appointments/{id}": {
       "put": {
         "tags": [
@@ -2306,6 +2736,16 @@
           },
           "400": {
             "description": "Bad Request",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
             "content": {
               "application/problem\u002Bjson": {
                 "schema": {
@@ -4005,7 +4445,20 @@
           }
         }
       },
-      "AppointmentResponse": {
+      "AgendaVisit": {
+        "required": [
+          "id",
+          "workOrderId",
+          "type",
+          "startTime",
+          "endTime",
+          "address",
+          "notes",
+          "assignedToUserId",
+          "workOrderCode",
+          "workOrderStatus",
+          "participants"
+        ],
         "type": "object",
         "properties": {
           "id": {
@@ -4040,6 +4493,20 @@
             "type": "string",
             "format": "uuid",
             "nullable": true
+          },
+          "workOrderCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "workOrderStatus": {
+            "type": "string",
+            "nullable": true
+          },
+          "participants": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ScheduleParticipant"
+            }
           }
         }
       },
@@ -5264,6 +5731,148 @@
           }
         }
       },
+      "ScheduledVisit": {
+        "required": [
+          "id",
+          "type",
+          "startTime",
+          "endTime",
+          "address",
+          "notes"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "type": {
+            "$ref": "#/components/schemas/AppointmentType"
+          },
+          "startTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "endTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "address": {
+            "type": "string",
+            "nullable": true
+          },
+          "notes": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "ScheduledWorkOrder": {
+        "required": [
+          "id",
+          "code",
+          "quotationId",
+          "status",
+          "participants",
+          "visit",
+          "needsRegularization"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "code": {
+            "type": "string"
+          },
+          "quotationId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "status": {
+            "type": "string"
+          },
+          "participants": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ScheduleParticipant"
+            }
+          },
+          "visit": {
+            "oneOf": [
+              {
+                "nullable": true
+              },
+              {
+                "$ref": "#/components/schemas/ScheduledVisit"
+              }
+            ]
+          },
+          "needsRegularization": {
+            "type": "boolean"
+          }
+        }
+      },
+      "ScheduleParticipant": {
+        "required": [
+          "id",
+          "name",
+          "isActive"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string"
+          },
+          "isActive": {
+            "type": "boolean"
+          }
+        }
+      },
+      "ScheduleWorkOrderRequest": {
+        "required": [
+          "type",
+          "startTime",
+          "endTime",
+          "participantIds",
+          "address",
+          "notes"
+        ],
+        "type": "object",
+        "properties": {
+          "type": {
+            "$ref": "#/components/schemas/AppointmentType"
+          },
+          "startTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "endTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "participantIds": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          "address": {
+            "type": "string",
+            "nullable": true
+          },
+          "notes": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
       "SendInvitationRequest": {
         "required": [
           "email",
@@ -5557,6 +6166,11 @@
         }
       },
       "UpdateAppointmentRequest": {
+        "required": [
+          "startTime",
+          "endTime",
+          "assignedToUserId"
+        ],
         "type": "object",
         "properties": {
           "startTime": {
@@ -5921,9 +6535,48 @@
           }
         }
       },
+      "WorkOrderPage": {
+        "required": [
+          "items",
+          "page",
+          "pageSize",
+          "total"
+        ],
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ScheduledWorkOrder"
+            }
+          },
+          "page": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "format": "int32"
+          },
+          "pageSize": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "format": "int32"
+          },
+          "total": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "format": "int32"
+          }
+        }
+      },
       "WorkOrderResponse": {
         "type": "object",
         "properties": {
+          "schedule": {
+            "oneOf": [
+              {
+                "nullable": true
+              },
+              {
+                "$ref": "#/components/schemas/ScheduledWorkOrder"
+              }
+            ]
+          },
           "id": {
             "type": "string",
             "format": "uuid"

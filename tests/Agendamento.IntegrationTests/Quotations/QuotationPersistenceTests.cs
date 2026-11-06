@@ -319,7 +319,7 @@ public sealed class QuotationPersistenceTests
         Assert.Equal(PostgresErrorCodes.ForeignKeyViolation, error.SqlState);
         Assert.Equal(before, await AggregateRows(fixture));
         Assert.Equal(history, await Scalar(fixture.Admin, "SELECT json_agg(h ORDER BY \"MigrationId\")::text FROM \"__EFMigrationsHistory\" h"));
-        Assert.Equal(new[] { "20261013173339_EnforceQuotationCatalogTenantReference", "20261013202849_EnforceWorkOrderConversionIntegrity" },
+        Assert.Equal(new[] { "20261013173339_EnforceQuotationCatalogTenantReference", "20261013202849_EnforceWorkOrderConversionIntegrity", "20261106002148_ScheduleWorkOrderTeams" },
             await migrator.Database.GetPendingMigrationsAsync());
         Assert.Null(await Scalar(fixture.Admin,
             "SELECT conname FROM pg_constraint WHERE conname='FK_QuotationItem_ServiceItems_tenant_id_ServiceItemId'"));

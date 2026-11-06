@@ -31,6 +31,7 @@ public static class DependencyInjection
         services.AddScoped<Agendamento.Api.Infrastructure.Notifications.MockCommunicationGateway>();
         services.AddScoped<Agendamento.Api.Infrastructure.Notifications.ICommunicationGateway, Agendamento.Api.Infrastructure.Notifications.ConfiguredCommunicationGateway>();
         services.AddScoped<Agendamento.Api.Application.Notifications.INotificationService, Agendamento.Api.Infrastructure.Notifications.NotificationService>();
+        services.AddScoped<Agendamento.Api.Features.WorkOrders.WorkOrderSchedule>();
         services.AddHostedService<Agendamento.Api.Infrastructure.Notifications.NotificationOutboxProcessor>();
         Microsoft.Extensions.DependencyInjection.Extensions.ServiceCollectionDescriptorExtensions.TryAddSingleton<TimeProvider>(services, TimeProvider.System);
         services.AddScoped<Agendamento.Api.Infrastructure.Notifications.OverdueReceivableReminderProcessor>();

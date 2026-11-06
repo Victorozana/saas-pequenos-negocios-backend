@@ -106,7 +106,7 @@ public sealed class PostgreSqlRlsTests
         await using var db = new AgendamentoDbContext(options, new Tenant(Guid.Empty));
         var modelTables = db.Model.GetEntityTypes().Where(e => e.FindProperty("TenantId") != null)
             .Select(e => e.GetTableName()!).Distinct().Order().ToArray();
-        Assert.Equal(Tables.Order(), modelTables);
+        Assert.Equal(Tables.Append("WorkOrderParticipants").Order(), modelTables);
         foreach (var table in modelTables)
         {
             Assert.True((bool)(await Scalar(fixture.Admin, """
@@ -121,7 +121,8 @@ public sealed class PostgreSqlRlsTests
                   AND EXISTS (SELECT FROM pg_policy p WHERE p.polrelid=c.oid AND p.polname='tenant_guard' AND NOT p.polpermissive)
                 FROM pg_class c WHERE c.oid=quote_ident(@id)::regclass
                 """, table))!);
-            Assert.Equal(2L, await Scalar(fixture.Admin, $"SELECT count(*) FROM \"{table}\" WHERE tenant_id IS NOT NULL"));
+            Assert.Equal(table == "WorkOrderParticipants" ? 0L : 2L,
+                await Scalar(fixture.Admin, $"SELECT count(*) FROM \"{table}\" WHERE tenant_id IS NOT NULL"));
         }
     }
 

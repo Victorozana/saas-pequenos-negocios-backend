@@ -27,6 +27,7 @@ public class AgendamentoDbContext : DbContext
     public DbSet<Agendamento.Api.Domain.Services.ServiceItem> ServiceItems => Set<Agendamento.Api.Domain.Services.ServiceItem>();
     public DbSet<Agendamento.Api.Domain.Quotations.Quotation> Quotations => Set<Agendamento.Api.Domain.Quotations.Quotation>();
     public DbSet<Agendamento.Api.Domain.WorkOrders.WorkOrder> WorkOrders => Set<Agendamento.Api.Domain.WorkOrders.WorkOrder>();
+    public DbSet<Agendamento.Api.Domain.WorkOrders.WorkOrderParticipant> WorkOrderParticipants => Set<Agendamento.Api.Domain.WorkOrders.WorkOrderParticipant>();
     public DbSet<Agendamento.Api.Domain.Appointments.Appointment> Appointments => Set<Agendamento.Api.Domain.Appointments.Appointment>();
     public DbSet<Agendamento.Api.Domain.Financial.ReceivableTitle> ReceivableTitles => Set<Agendamento.Api.Domain.Financial.ReceivableTitle>();
     public DbSet<Agendamento.Api.Domain.Financial.PayableTitle> PayableTitles => Set<Agendamento.Api.Domain.Financial.PayableTitle>();

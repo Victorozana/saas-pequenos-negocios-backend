@@ -12,7 +12,10 @@ public class WorkOrderConfiguration : IEntityTypeConfiguration<WorkOrder>
         
         builder.HasQueryFilter(wo => wo.TenantId == Microsoft.EntityFrameworkCore.EF.Property<Guid>(wo, "TenantId"));
         builder.HasIndex(wo => wo.TenantId);
-        builder.HasIndex(wo => new { wo.TenantId, wo.QuotationId }).IsUnique();
+        builder.HasIndex(wo => new { wo.TenantId, wo.QuotationId });
+        builder.HasIndex(wo => new { wo.TenantId, wo.RequestKey }).IsUnique();
+        builder.HasIndex(wo => new { wo.TenantId, wo.Sequence }).IsUnique();
+        builder.Property(wo => wo.RequestHash).HasMaxLength(64);
 
         builder.Property(wo => wo.Code).IsRequired().HasMaxLength(53);
         builder.Property(wo => wo.Notes).HasMaxLength(2000);

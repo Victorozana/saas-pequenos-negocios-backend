@@ -92,7 +92,7 @@ public sealed class TeamFinancialHttpTests : IClassFixture<TeamFinancialTestFact
     [Fact(DisplayName="Aprovação gera entrada e saldo uma única vez @spec:AC-094")]
     public async Task Approval_GeneratesDepositAndBalance_Once()
     {
-        var (client,_,tenant)=await _factory.Member("owner_admin",[]);
+        var (client,person,tenant)=await _factory.Member("owner_admin",[]);
         Guid customerId;
         using(var db=_factory.Db(tenant)) {
             var customer=Agendamento.Api.Domain.Customers.Customer.Create(tenant,"Cliente de teste","11999999999",null,null,null);
@@ -110,7 +110,7 @@ public sealed class TeamFinancialHttpTests : IClassFixture<TeamFinancialTestFact
             var titles=await db.ReceivableTitles.Where(t=>t.QuotationId==id).ToListAsync();
             Assert.Equal(2,titles.Count);Assert.Equal(200,titles.Sum(t=>t.OriginalAmount));Assert.Contains(titles,t=>t.OriginalAmount==50);Assert.Contains(titles,t=>t.OriginalAmount==150);
         }
-        var converted=await client.PostAsync($"/api/v1/quotations/{id}/convert",null);
+        var converted=await client.PostOrderAsync($"/api/v1/quotations/{id}/convert",id,person);
         Assert.Equal(HttpStatusCode.OK,converted.StatusCode);
         var orderId=(await converted.Content.ReadFromJsonAsync<JsonElement>()).GetProperty("workOrderId").GetGuid();
         Assert.Equal(HttpStatusCode.NoContent,(await client.PatchAsJsonAsync($"/api/v1/work-orders/{orderId}/status",new {status=4})).StatusCode);
@@ -146,6 +146,7 @@ public sealed class TeamFinancialHttpTests : IClassFixture<TeamFinancialTestFact
 
 public sealed class TeamFinancialTestFactory : WebApplicationFactory<Program>
 {
+    internal TimeProvider? Clock { get; init; }
     private readonly string? _connection;
     public TeamFinancialTestFactory() { }
     internal TeamFinancialTestFactory(string connection, string? administrativeConnection = null) { _connection = connection; _administrativeConnection = administrativeConnection; }
@@ -173,6 +174,11 @@ public sealed class TeamFinancialTestFactory : WebApplicationFactory<Program>
                 if (_connection != null) options.AddInterceptors(sp.GetRequiredService<TenantTransactionInterceptor>(), sp.GetRequiredService<TenantConnectionInterceptor>());
             });
             services.RemoveAll<IHostedService>();
+            if (Clock != null)
+            {
+                services.RemoveAll<TimeProvider>();
+                services.AddSingleton(Clock);
+            }
         });
     }
     private sealed class Tenant(Guid id):ITenantContext {public Guid TenantId=>id;public bool HasTenant=>true;}

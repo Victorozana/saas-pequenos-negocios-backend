@@ -26,7 +26,7 @@ public sealed class QuotationConversionConcurrencyTests
     {
         await using var database = await Database.Create();
         using var factory = new TeamFinancialTestFactory(database.RestrictedConnection, database.AdministrativeConnection);
-        var (client, _, tenant) = await factory.Member("owner_admin", [], database.A);
+        var (client, person, tenant) = await factory.Member("owner_admin", [], database.A);
         var (id, _) = await Seed(factory, client, tenant, approve: false);
         using var approvingDb = factory.Db(tenant);
         await using var transaction = await approvingDb.Database.BeginTransactionAsync();
@@ -37,8 +37,8 @@ public sealed class QuotationConversionConcurrencyTests
         await approvingDb.SaveChangesAsync();
         var expected = JsonSerializer.Serialize(await approvingDb.ReceivableTitles.AsNoTracking().Where(r => r.QuotationId == id).OrderBy(r => r.Id)
             .Select(r => new { r.Id, r.TenantId, r.CustomerId, r.QuotationId, r.Description, r.OriginalAmount, r.DueDate, r.Status }).ToListAsync());
-        var first = client.PostAsync(Route(id, false), null);
-        var second = client.PostAsync(Route(id, true), null);
+        var first = client.PostOrderAsync(Route(id, false), id, person);
+        var second = client.PostOrderAsync(Route(id, true), id, person);
         try { await WaitForLocks(database, 2); }
         finally { await transaction.CommitAsync(); }
         var orderId = await Converted(await first, false);
@@ -51,7 +51,7 @@ public sealed class QuotationConversionConcurrencyTests
     {
         await using var database = await Database.Create();
         using var factory = new TeamFinancialTestFactory(database.RestrictedConnection, database.AdministrativeConnection);
-        var (client, _, tenant) = await factory.Member("owner_admin", [], database.A);
+        var (client, person, tenant) = await factory.Member("owner_admin", [], database.A);
         var (id, command) = await Seed(factory, client, tenant, approve: false);
         using var editingDb = factory.Db(tenant);
         await using var transaction = await editingDb.Database.BeginTransactionAsync();
@@ -64,8 +64,8 @@ public sealed class QuotationConversionConcurrencyTests
         editingDb.RemoveRange(previousItems);
         editingDb.AddRange(replacements);
         await editingDb.SaveChangesAsync();
-        var first = client.PostAsync(Route(id, false), null);
-        var second = client.PostAsync(Route(id, true), null);
+        var first = client.PostOrderAsync(Route(id, false), id, person);
+        var second = client.PostOrderAsync(Route(id, true), id, person);
         try { await WaitForLocks(database, 2); }
         finally { await transaction.CommitAsync(); }
         Assert.Equal(HttpStatusCode.BadRequest, (await first).StatusCode);
@@ -89,18 +89,18 @@ public sealed class QuotationConversionConcurrencyTests
         await using var database = await Database.Create();
         Assert.True(new NpgsqlConnectionStringBuilder(database.RestrictedConnection).MaxPoolSize >= 3);
         using var factory = new TeamFinancialTestFactory(database.RestrictedConnection, database.AdministrativeConnection);
-        var (client, _, tenant) = await factory.Member("owner_admin", [], database.A);
+        var (client, person, tenant) = await factory.Member("owner_admin", [], database.A);
         var (id, _) = await Seed(factory, client, tenant);
         var receivables = await Receivables(factory, tenant, id);
         await using var blocker = await database.Admin.BeginTransactionAsync();
         await Execute(database.Admin, "SELECT 1 FROM \"Quotations\" WHERE \"Id\"=@id::uuid FOR UPDATE", id.ToString());
-        var first = client.PostAsync(Route(id, firstAlternative), null);
-        var second = client.PostAsync(Route(id, secondAlternative), null);
+        var first = client.PostOrderAsync(Route(id, firstAlternative), id, person);
+        var second = client.PostOrderAsync(Route(id, secondAlternative), id, person);
         try { await WaitForLocks(database, 2); }
         finally { await blocker.CommitAsync(); }
         var firstId = await Converted(await first, firstAlternative);
         Assert.Equal(firstId, await Converted(await second, secondAlternative));
-        Assert.Equal(firstId, await Converted(await client.PostAsync(Route(id, !firstAlternative), null), !firstAlternative));
+        Assert.Equal(firstId, await Converted(await client.PostOrderAsync(Route(id, !firstAlternative), id, person), !firstAlternative));
         await AssertPersisted(factory, tenant, id, firstId, receivables);
     }
 
@@ -111,12 +111,12 @@ public sealed class QuotationConversionConcurrencyTests
     {
         await using var database = await Database.Create();
         using var factory = new TeamFinancialTestFactory(database.RestrictedConnection, database.AdministrativeConnection);
-        var (client, _, tenant) = await factory.Member("owner_admin", [], database.A);
+        var (client, person, tenant) = await factory.Member("owner_admin", [], database.A);
         var (id, command) = await Seed(factory, client, tenant);
         var receivables = await Receivables(factory, tenant, id);
         await using var blocker = await database.Admin.BeginTransactionAsync();
         await Execute(database.Admin, "SELECT 1 FROM \"Quotations\" WHERE \"Id\"=@id::uuid FOR UPDATE", id.ToString());
-        var conversion = client.PostAsync(Route(id, alternative), null);
+        var conversion = client.PostOrderAsync(Route(id, alternative), id, person);
         var approval = client.PatchAsJsonAsync($"/api/v1/quotations/{id}/status", new UpdateQuotationStatusCommand(QuotationStatus.Approved));
         var rejection = client.PatchAsJsonAsync($"/api/v1/quotations/{id}/status", new UpdateQuotationStatusCommand(QuotationStatus.Rejected));
         var cancellation = client.PatchAsJsonAsync($"/api/v1/quotations/{id}/status", new UpdateQuotationStatusCommand(QuotationStatus.Canceled));
@@ -143,7 +143,7 @@ public sealed class QuotationConversionConcurrencyTests
     {
         await using var database = await Database.Create();
         using var factory = new TeamFinancialTestFactory(database.RestrictedConnection, database.AdministrativeConnection);
-        var (client, _, tenant) = await factory.Member("owner_admin", [], database.A);
+        var (client, person, tenant) = await factory.Member("owner_admin", [], database.A);
         var (id, _) = await Seed(factory, client, tenant);
         var snapshot = await client.GetStringAsync($"/api/v1/quotations/{id}");
         var receivables = await Receivables(factory, tenant, id);
@@ -157,7 +157,7 @@ public sealed class QuotationConversionConcurrencyTests
             END $$;
             """);
         await Execute(database.Admin, $"CREATE TRIGGER t091_refuse AFTER {operation} ON \"{table}\" FOR EACH ROW EXECUTE FUNCTION t091_refuse_write()");
-        var response = await client.PostAsync(Route(id, alternative), null);
+        var response = await client.PostOrderAsync(Route(id, alternative), id, person);
         Assert.Equal(HttpStatusCode.InternalServerError, response.StatusCode);
         Assert.Equal("application/problem+json", response.Content.Headers.ContentType!.MediaType);
         var problem = await response.Content.ReadAsStringAsync();
@@ -169,7 +169,7 @@ public sealed class QuotationConversionConcurrencyTests
         Assert.Equal(0L, await Scalar(database.Admin, "SELECT count(*) FROM \"WorkOrders\" WHERE \"QuotationId\"=@id::uuid", id.ToString()));
         Assert.Equal(0L, await Scalar(database.Admin, "SELECT count(*) FROM \"WorkOrderItems\" i LEFT JOIN \"WorkOrders\" w ON w.\"Id\"=i.\"WorkOrderId\" WHERE w.\"QuotationId\"=@id::uuid OR w.\"Id\" IS NULL", id.ToString()));
         await Execute(database.Admin, $"DROP TRIGGER t091_refuse ON \"{table}\"");
-        var orderId = await Converted(await client.PostAsync(Route(id, alternative), null), alternative);
+        var orderId = await Converted(await client.PostOrderAsync(Route(id, alternative), id, person), alternative);
         await AssertPersisted(factory, tenant, id, orderId, receivables);
     }
 
@@ -184,7 +184,7 @@ public sealed class QuotationConversionConcurrencyTests
                 // PostgreSQL retains its statistics snapshot within the observer's
                 // open transaction. Refresh it before every concurrency observation.
                 await Execute(database.Admin, "SELECT pg_stat_clear_snapshot()");
-                var pids = (string)(await Scalar(database.Admin, "SELECT coalesce(string_agg(DISTINCT pid::text, ','), '') FROM pg_stat_activity WHERE datname=current_database() AND wait_event_type='Lock' AND query LIKE '%Quotations%FOR UPDATE%'"))!;
+                var pids = (string)(await Scalar(database.Admin, "SELECT coalesce(string_agg(DISTINCT pid::text, ','), '') FROM pg_stat_activity WHERE datname=current_database() AND wait_event_type='Lock' AND (query LIKE '%Quotations%FOR UPDATE%' OR query LIKE '%pg_advisory_xact_lock(hashtextextended%')"))!;
                 var distinctSessions = pids.Split(',', StringSplitOptions.RemoveEmptyEntries).Length;
                 samples.Add(new { atUtc = DateTime.UtcNow, expected, distinctSessions, pids });
                 if (distinctSessions >= expected) { observed = true; break; }
@@ -200,7 +200,7 @@ public sealed class QuotationConversionConcurrencyTests
             Directory.CreateDirectory(directory);
             await File.WriteAllTextAsync(Path.Combine(directory, $"locks-{Guid.NewGuid():N}.json"), JsonSerializer.Serialize(new { expected, observed, samples }));
         }
-        Assert.True(observed, $"Expected {expected} distinct PostgreSQL sessions simultaneously waiting for the quotation row; pool serialization is not concurrency evidence.");
+        Assert.True(observed, $"Expected {expected} distinct PostgreSQL sessions simultaneously waiting for the quotation or tenant schedule lock; pool serialization is not concurrency evidence.");
     }
 
     private static async Task<(Guid Id, CreateQuotationCommand Command)> Seed(TeamFinancialTestFactory factory, HttpClient client, Guid tenant, bool approve = true)
@@ -241,7 +241,7 @@ public sealed class QuotationConversionConcurrencyTests
         var order = Assert.Single(await db.WorkOrders.Include(w => w.Items).Where(w => w.QuotationId == quotationId).ToListAsync());
         Assert.Equal(orderId, order.Id); Assert.Equal(tenant, order.TenantId);
         Assert.Equal(quote.CustomerId, order.CustomerId); Assert.Equal(quotationId, order.QuotationId);
-        Assert.Equal("OS-" + quote.Code, order.Code); Assert.Equal(quote.Notes, order.Notes);
+        Assert.Matches("^OS-[0-9]{8}$", order.Code); Assert.Equal(quote.Notes, order.Notes);
         Assert.Equal(QuotationStatus.Converted, quote.Status); Assert.Equal(WorkOrderStatus.Scheduled, order.Status);
         Assert.Null(order.CompletedAt); Assert.Equal(DateTimeKind.Utc, order.CreatedAt.Kind);
         Assert.Equal(quote.Items.Count, order.Items.Count);

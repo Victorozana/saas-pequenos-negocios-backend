@@ -51,7 +51,10 @@ public static class DbSeeder
             defaultEmail);
 
         // 2. Create Default User (victor@gmail.com / Senha@123456)
-        var passwordHash = passwordService.Hash("Senha@123456");
+        var configuration = scope.ServiceProvider.GetRequiredService<IConfiguration>();
+        var environment = scope.ServiceProvider.GetRequiredService<IHostEnvironment>();
+        var developmentPassword = environment.IsDevelopment() ? configuration["DevelopmentSeed:Password"] : null;
+        var passwordHash = passwordService.Hash(developmentPassword ?? "Senha@123456");
         var user = User.Create("Victor Silva", "11144477735", defaultEmail, passwordHash);
         user.ConfirmEmail(DateTimeOffset.UtcNow);
 

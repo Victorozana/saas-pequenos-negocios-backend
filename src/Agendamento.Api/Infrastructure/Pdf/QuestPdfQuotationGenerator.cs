@@ -26,7 +26,7 @@ public class QuestPdfQuotationGenerator : IQuotationPdfGenerator
                 page.Size(PageSizes.A4);
                 page.Margin(1, Unit.Centimetre);
                 page.PageColor(Colors.White);
-                page.DefaultTextStyle(x => x.FontSize(10).FontFamily("Arial"));
+                page.DefaultTextStyle(x => x.FontSize(10).FontFamily("Arial", "Lato"));
 
                 page.Header().Element(header => ComposeHeader(header, quotation));
                 page.Content().Element(content => ComposeContent(content, quotation));

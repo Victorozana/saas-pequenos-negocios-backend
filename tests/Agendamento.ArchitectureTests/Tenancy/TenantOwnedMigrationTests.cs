@@ -25,9 +25,9 @@ public sealed class TenantOwnedMigrationTests
         var entities = model.GetEntityTypes().Where(e => typeof(ITenantOwned).IsAssignableFrom(e.ClrType)
             || e.GetTableName() is "QuotationItem" or "WorkOrderItems" or "ReceivablePayments" or "PayablePayments").ToArray();
         var migrations = db.GetService<IMigrationsAssembly>();
-        var migrationType = migrations.Migrations.Single(p => p.Key.EndsWith("_EnforceTenantRowLevelSecurity")).Value;
-        var migration = migrations.CreateMigration(migrationType, db.Database.ProviderName!);
-        var sql = string.Join('\n', migration.UpOperations.OfType<SqlOperation>().Select(o => o.Sql));
+        var sql = string.Join('\n', migrations.Migrations.Values
+            .SelectMany(m => migrations.CreateMigration(m, db.Database.ProviderName!).UpOperations.OfType<SqlOperation>())
+            .Select(o => o.Sql));
         Assert.NotEmpty(entities);
         foreach (var entity in entities)
         {

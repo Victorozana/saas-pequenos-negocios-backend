@@ -59,6 +59,15 @@ public class Appointment : ITenantOwned
         EndTime = newEndTime;
     }
     
+    public void UpdateWorkOrderVisit(AppointmentType type, DateTime start, DateTime end, string? address, string? notes)
+    {
+        Reschedule(start, end);
+        Type = type;
+        Address = address;
+        Notes = notes;
+        AssignedToUserId = null;
+    }
+
     public void AssignTo(Guid userId)
     {
         AssignedToUserId = userId;

@@ -45,7 +45,8 @@ public sealed class QuotationConversionContractTests
             .GetProperty("Location").GetProperty("schema").GetProperty("type").GetString());
         foreach (var operation in new[] { standard, alternative })
         {
-            Assert.False(operation.TryGetProperty("requestBody", out _));
+            Assert.True(operation.TryGetProperty("requestBody", out _));
+            Assert.True(operation.GetProperty("responses").TryGetProperty("409", out _));
             Assert.True(operation.GetProperty("responses").GetProperty("400").GetProperty("content")
                 .GetProperty("application/problem+json").TryGetProperty("schema", out _));
             Assert.True(operation.GetProperty("responses").TryGetProperty("401", out _));

@@ -32,6 +32,7 @@ public class WorkOrderItemResponse
 
 public class WorkOrderResponse
 {
+    public Agendamento.Api.Features.WorkOrders.ScheduledWorkOrder? Schedule { get; set; }
     public Guid Id { get; set; }
     public string Code { get; set; } = string.Empty;
     public Guid CustomerId { get; set; }

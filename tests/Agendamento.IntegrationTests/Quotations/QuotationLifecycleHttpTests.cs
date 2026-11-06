@@ -32,7 +32,7 @@ public sealed class QuotationLifecycleHttpTests
 
     private static async Task Prove(TeamFinancialTestFactory factory, Guid? tenantA = null, Guid? tenantB = null)
     {
-        var (client, _, tenant) = await factory.Member("owner_admin", [], tenantA);
+        var (client, person, tenant) = await factory.Member("owner_admin", [], tenantA);
         var (foreign, _, otherTenant) = await factory.Member("owner_admin", [], tenantB);
         var customer = Customer.Create(tenant, "Cliente ciclo fictício", "123", null, null, null);
         var foreignCustomer = Customer.Create(otherTenant, "Cliente externo fictício", "123", null, null, null);
@@ -86,17 +86,17 @@ public sealed class QuotationLifecycleHttpTests
             Assert.Equal(HttpStatusCode.BadRequest, (await Decide(id, invalid)).StatusCode);
             Assert.Equal(snapshot, await client.GetStringAsync($"/api/v1/quotations/{id}"));
         }
-        Assert.Equal(HttpStatusCode.BadRequest, (await client.PostAsync($"/api/v1/quotations/{id}/convert", null)).StatusCode);
+        Assert.Equal(HttpStatusCode.BadRequest, (await client.PostOrderAsync($"/api/v1/quotations/{id}/convert", id, person)).StatusCode);
         Assert.Equal(snapshot, await client.GetStringAsync($"/api/v1/quotations/{id}"));
         Assert.Equal(HttpStatusCode.NoContent, (await Decide(id, QuotationStatus.Approved)).StatusCode);
         using (var db = factory.Db(tenant)) Assert.Equal(2, await db.ReceivableTitles.CountAsync(r => r.QuotationId == id));
         snapshot = await client.GetStringAsync($"/api/v1/quotations/{id}");
         Assert.Equal(HttpStatusCode.NoContent, (await Decide(id, QuotationStatus.Approved)).StatusCode);
         Assert.Equal(snapshot, await client.GetStringAsync($"/api/v1/quotations/{id}"));
-        var conversion = await client.PostAsync($"/api/v1/quotations/{id}/convert", null);
+        var conversion = await client.PostOrderAsync($"/api/v1/quotations/{id}/convert", id, person);
         Assert.Equal(HttpStatusCode.OK, conversion.StatusCode);
         var conversionBody = await conversion.Content.ReadAsStringAsync();
-        Assert.Equal(conversionBody, await (await client.PostAsync($"/api/v1/quotations/{id}/convert", null)).Content.ReadAsStringAsync());
+        Assert.Equal(conversionBody, await (await client.PostOrderAsync($"/api/v1/quotations/{id}/convert", id, person)).Content.ReadAsStringAsync());
         snapshot = await client.GetStringAsync($"/api/v1/quotations/{id}");
         Assert.Equal(QuotationStatus.Converted, (await client.GetFromJsonAsync<QuotationDetailDto>($"/api/v1/quotations/{id}"))!.Status);
         Assert.Equal(HttpStatusCode.NoContent, (await Decide(id, QuotationStatus.Approved)).StatusCode);

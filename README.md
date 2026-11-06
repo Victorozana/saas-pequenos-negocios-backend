@@ -94,3 +94,10 @@ a cada 30 segundos. O convidado abre `/convites/aceitar` no frontend e informa o
 código recebido; o código nunca precisa aparecer na URL.
 
 Para provas individuais da spec, execute `node .agents/skills/onp-spec-driven/scripts/onp-spec.mjs verify gestao-financeira-contas` e o equivalente para `gestao-equipe-permissoes`. O script `scripts/verify-spec.ps1` roda as três suítes e converte seus resultados TRX para o formato JSON consumido pelo motor. O teste PostgreSQL utiliza os segredos locais ou a configuração de ambiente, cria um banco temporário exclusivo e o remove ao final; nunca usa o banco de trabalho para os cenários de teste. Testes antigos pulados não são provas de seus requisitos.
+
+
+## Ordens de serviço e agenda
+
+Um orçamento aprovado ou convertido aceita várias OS. Cada criação requer equipe ativa da empresa, atividade e intervalo em ISO 8601 com fuso. Envie um UUID no cabeçalho Idempotency-Key e reutilize-o quando repetir a mesma tentativa. A API grava OS, equipe e agenda na mesma transação, sem duplicar recebíveis. A equipe da OS define quem vê o compromisso. A agenda de hoje usa o dia civil de São Paulo.
+
+Aplique a migration ScheduleWorkOrderTeams antes de ativar a versão em PostgreSQL e atualize o frontend junto. As OS anteriores à migration mantêm o histórico e aparecem para a administração com opção de regularização de equipe e horário. Para validar agenda, isolamento e exportação de orçamento em PDF, rode o comando de regressão documentado no frontend irmão.

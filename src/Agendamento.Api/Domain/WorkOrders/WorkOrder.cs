@@ -25,12 +25,24 @@ public class WorkOrder : ITenantOwned
     private readonly List<WorkOrderItem> _items = new();
     public IReadOnlyCollection<WorkOrderItem> Items => _items.AsReadOnly();
 
+    public Guid? RequestKey { get; private set; }
+    public string? RequestHash { get; private set; }
+    public int? Sequence { get; private set; }
+
+    public void RecordScheduleCreation(Guid key, string hash, int sequence)
+    {
+        RequestKey = key;
+        RequestHash = hash;
+        Sequence = sequence;
+        Code = $"OS-{sequence:D8}";
+    }
+
     private WorkOrder() { } // EF Core
 
     public static WorkOrder CreateFromQuotation(Quotation quotation)
     {
         ArgumentNullException.ThrowIfNull(quotation);
-        if (quotation.Status != QuotationStatus.Approved)
+        if (quotation.Status is not (QuotationStatus.Approved or QuotationStatus.Converted))
             throw new InvalidOperationException("Can only create a work order from an approved quotation.");
 
         var workOrder = new WorkOrder

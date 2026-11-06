@@ -60,11 +60,11 @@ namespace Agendamento.Api.Infrastructure.Persistence.Migrations
 
                     b.HasIndex("TenantId");
 
-                    b.HasIndex("WorkOrderId");
-
                     b.HasIndex("TenantId", "AssignedToUserId");
 
                     b.HasIndex("TenantId", "StartTime");
+
+                    b.HasIndex("TenantId", "WorkOrderId");
 
                     b.ToTable("Appointments");
                 });
@@ -451,6 +451,16 @@ namespace Agendamento.Api.Infrastructure.Persistence.Migrations
                     b.Property<Guid>("QuotationId")
                         .HasColumnType("uuid");
 
+                    b.Property<string>("RequestHash")
+                        .HasMaxLength(64)
+                        .HasColumnType("character varying(64)");
+
+                    b.Property<Guid?>("RequestKey")
+                        .HasColumnType("uuid");
+
+                    b.Property<int?>("Sequence")
+                        .HasColumnType("integer");
+
                     b.Property<int>("Status")
                         .HasColumnType("integer");
 
@@ -466,10 +476,36 @@ namespace Agendamento.Api.Infrastructure.Persistence.Migrations
 
                     b.HasIndex("TenantId");
 
-                    b.HasIndex("TenantId", "QuotationId")
+                    b.HasIndex("TenantId", "QuotationId");
+
+                    b.HasIndex("TenantId", "RequestKey")
+                        .IsUnique();
+
+                    b.HasIndex("TenantId", "Sequence")
                         .IsUnique();
 
                     b.ToTable("WorkOrders");
+                });
+
+            modelBuilder.Entity("Agendamento.Api.Domain.WorkOrders.WorkOrderParticipant", b =>
+                {
+                    b.Property<Guid>("TenantId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("tenant_id");
+
+                    b.Property<Guid>("WorkOrderId")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("TenantId", "WorkOrderId", "UserId");
+
+                    b.HasIndex("TenantId");
+
+                    b.HasIndex("TenantId", "UserId");
+
+                    b.ToTable("WorkOrderParticipants");
                 });
 
             modelBuilder.Entity("Agendamento.Api.Infrastructure.Persistence.IdempotencyRecord", b =>
@@ -888,8 +924,9 @@ namespace Agendamento.Api.Infrastructure.Persistence.Migrations
 
                     b.HasOne("Agendamento.Api.Domain.WorkOrders.WorkOrder", "WorkOrder")
                         .WithMany()
-                        .HasForeignKey("WorkOrderId")
-                        .OnDelete(DeleteBehavior.SetNull);
+                        .HasForeignKey("TenantId", "WorkOrderId")
+                        .HasPrincipalKey("TenantId", "Id")
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.Navigation("WorkOrder");
                 });
@@ -1312,6 +1349,29 @@ namespace Agendamento.Api.Infrastructure.Persistence.Migrations
                     b.Navigation("Items");
 
                     b.Navigation("Quotation");
+                });
+
+            modelBuilder.Entity("Agendamento.Api.Domain.WorkOrders.WorkOrderParticipant", b =>
+                {
+                    b.HasOne("Agendamento.Domain.Tenants.Tenant", null)
+                        .WithMany()
+                        .HasForeignKey("TenantId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Agendamento.Domain.Tenants.TenantMembership", null)
+                        .WithMany()
+                        .HasForeignKey("TenantId", "UserId")
+                        .HasPrincipalKey("TenantId", "UserId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Agendamento.Api.Domain.WorkOrders.WorkOrder", null)
+                        .WithMany()
+                        .HasForeignKey("TenantId", "WorkOrderId")
+                        .HasPrincipalKey("TenantId", "Id")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Agendamento.Domain.Identity.EmailVerificationToken", b =>

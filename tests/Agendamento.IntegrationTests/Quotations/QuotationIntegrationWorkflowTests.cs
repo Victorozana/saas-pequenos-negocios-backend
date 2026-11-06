@@ -36,7 +36,7 @@ public sealed class QuotationIntegrationWorkflowTests
 
     private static async Task ProveEditedJourney(TeamFinancialTestFactory factory, Guid? tenantId = null, Guid? otherTenantId = null)
     {
-        var (client, _, tenant) = await factory.Member("owner_admin", [], tenantId);
+        var (client, person, tenant) = await factory.Member("owner_admin", [], tenantId);
         var originalCustomer = Customer.Create(tenant, "Cliente inicial fictício", "123", null, null, null);
         var revisedCustomer = Customer.Create(tenant, "Cliente revisado fictício", "123", null, null, null);
         var service = ServiceItem.Create(tenant, "Catálogo jornada", null, "hora", 10.03m);
@@ -114,7 +114,7 @@ public sealed class QuotationIntegrationWorkflowTests
         foreach (var alternative in new[] { true, false, true, false })
         {
             var route = alternative ? $"/api/v1/work-orders/from-quotation/{id}" : $"/api/v1/quotations/{id}/convert";
-            var converted = await client.PostAsync(route, null);
+            var converted = await client.PostOrderAsync(route, id, person);
             Assert.Equal(alternative ? HttpStatusCode.Created : HttpStatusCode.OK, converted.StatusCode);
             var returned = (await converted.Content.ReadFromJsonAsync<JsonElement>()).GetProperty(alternative ? "id" : "workOrderId").GetGuid();
             if (orderId == Guid.Empty) orderId = returned;
@@ -127,7 +127,7 @@ public sealed class QuotationIntegrationWorkflowTests
             Assert.Equal(orderId, order.Id);
             Assert.Equal(tenant, order.TenantId);
             Assert.Equal(revisedCustomer.Id, order.CustomerId);
-            Assert.Equal("OS-" + edit.Code, order.Code);
+            Assert.Matches("^OS-[0-9]{8}$", order.Code);
             Assert.Equal(edit.Notes, order.Notes);
             Assert.Equal(WorkOrderStatus.Scheduled, order.Status);
             Assert.Null(order.CompletedAt);

@@ -65,12 +65,13 @@ public sealed class ServiceCatalogMappingTests
             "20260811235746_AddEmailVerificationTokens", "20261012002349_AddActiveTeamMembership",
             "20261012041401_EnforceTenantRowLevelSecurity", "20261012154514_AddNotificationCustomerHistory",
             "20261012174238_AddCustomerAutomaticReminderPreference", "20261012191900_AddDailyReceivableReminderDeduplication",
-            "20261013173339_EnforceQuotationCatalogTenantReference", "20261013202849_EnforceWorkOrderConversionIntegrity"
+            "20261013173339_EnforceQuotationCatalogTenantReference", "20261013202849_EnforceWorkOrderConversionIntegrity",
+            "20261106002148_ScheduleWorkOrderTeams"
         }, migrations);
         Assert.Equal(migrations.OrderBy(m => m, StringComparer.Ordinal), migrations);
         Assert.DoesNotContain(migrations, m => m.EndsWith("_AddRowLevelSecurity"));
         Assert.Contains("20260807231536_AddQuotationsAndServices", migrations);
-        Assert.EndsWith("_EnforceWorkOrderConversionIntegrity", migrations.Last());
+        Assert.EndsWith("_ScheduleWorkOrderTeams", migrations.Last());
         Assert.False(db.Database.HasPendingModelChanges());
     }
 

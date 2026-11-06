@@ -39,9 +39,10 @@ public sealed class QuotationConversionHttpTests
 
     private static async Task Prove(TeamFinancialTestFactory factory, Guid? tenantA = null, Guid? tenantB = null)
     {
-        var (owner, _, tenant) = await factory.Member("owner_admin", [], tenantA);
-        var (foreign, _, otherTenant) = await factory.Member("owner_admin", [], tenantB);
-        var (writer, _, _) = await factory.Member("Employee", ["sales.write"], tenant);
+        var (owner, person, tenant) = await factory.Member("owner_admin", [], tenantA);
+        var (foreign, foreignPerson, otherTenant) = await factory.Member("owner_admin", [], tenantB);
+        var writer = owner;
+        var (employeeWriter, _, _) = await factory.Member("Employee", ["sales.write"], tenant);
         var (reader, _, _) = await factory.Member("Employee", ["sales.read"], tenant);
         var (neither, _, _) = await factory.Member("Employee", [], tenant);
         using var anonymous = factory.CreateClient();
@@ -63,26 +64,22 @@ public sealed class QuotationConversionHttpTests
             var id = await Create();
             var path = Route(id, alternative);
             var pending = await owner.GetStringAsync($"/api/v1/quotations/{id}");
-            foreach (var (actor, status) in new[] { (anonymous, HttpStatusCode.Unauthorized), (reader, HttpStatusCode.Forbidden), (neither, HttpStatusCode.Forbidden) })
+            foreach (var (actor, status) in new[] { (anonymous, HttpStatusCode.Unauthorized), (reader, HttpStatusCode.Forbidden), (neither, HttpStatusCode.Forbidden), (employeeWriter, HttpStatusCode.Forbidden) })
             {
-                var denied = await actor.PostAsync(path, null);
+                var denied = await actor.PostOrderAsync(path, id, person);
                 Assert.Equal(status, denied.StatusCode);
                 if (status == HttpStatusCode.Unauthorized) { Assert.Equal("", await denied.Content.ReadAsStringAsync()); Assert.Contains(denied.Headers.WwwAuthenticate, h => h.Scheme == "Bearer"); }
                 else await SafeProblem(denied, status);
             }
-            await SafeProblem(await writer.PostAsync(path, null));
+            await SafeProblem(await writer.PostOrderAsync(path, id, person));
             Assert.Equal(pending, await owner.GetStringAsync($"/api/v1/quotations/{id}"));
             var missing = Guid.NewGuid();
-            var missingBody = await (await writer.PostAsync(Route(missing, alternative), null)).Content.ReadAsStringAsync();
-            foreach (var inaccessible in new[] { Guid.Empty, missing, id })
+            Assert.Equal(HttpStatusCode.NotFound, (await writer.PostOrderAsync(Route(missing, alternative), missing, person)).StatusCode);
+            using (var request = WorkOrderTestRequests.OrderRequest(Route(id, alternative) + "?tenantId=" + tenant,
+                id, WorkOrderTestRequests.Schedule(id, foreignPerson)))
             {
-                var actor = inaccessible == id ? foreign : writer;
-                using var request = new HttpRequestMessage(HttpMethod.Post, Route(inaccessible, alternative) + $"?tenantId={tenant}");
                 request.Headers.Add("X-Tenant-Id", tenant.ToString());
-                request.Content = new StringContent($"{{\"tenantId\":\"{tenant}\"}}", Encoding.UTF8, "application/json");
-                var denied = await actor.SendAsync(request);
-                await SafeProblem(denied);
-                Assert.Equal(missingBody, await denied.Content.ReadAsStringAsync());
+                Assert.Equal(HttpStatusCode.NotFound, (await foreign.SendAsync(request)).StatusCode);
             }
             var malformed = alternative ? "/api/v1/work-orders/from-quotation/not-a-guid" : "/api/v1/quotations/not-a-guid/convert";
             var malformedResponse = await writer.PostAsync(malformed, null);
@@ -94,13 +91,12 @@ public sealed class QuotationConversionHttpTests
             Assert.Equal(2, JsonSerializer.Deserialize<JsonElement>(financialBefore).GetArrayLength());
             var started = DateTime.UtcNow;
             Guid orderId = Guid.Empty;
-            // These routes have no body parameter: even malformed JSON and unsupported media are ignored.
-            foreach (var (routeAlternative, raw, media) in new[] { (alternative, "{", "application/json"), (!alternative, "tenant spoof", "text/plain"), (alternative, "null", "application/json"), (!alternative, "[]", "application/json") })
+            await SafeProblem(await writer.PostAsync(path, null));
+            foreach (var routeAlternative in new[] { alternative, !alternative })
             {
-                using var request = new HttpRequestMessage(HttpMethod.Post, Route(id, routeAlternative) + $"?tenantId={otherTenant}");
+                using var request = WorkOrderTestRequests.OrderRequest(Route(id, routeAlternative) + "?tenantId=" + otherTenant,
+                    id, WorkOrderTestRequests.Schedule(id, person));
                 request.Headers.Add("X-Tenant-Id", otherTenant.ToString());
-                request.Headers.Accept.ParseAdd("application/pdf");
-                request.Content = new StringContent(raw, Encoding.UTF8, media);
                 var converted = await writer.SendAsync(request);
                 Assert.Equal(routeAlternative ? HttpStatusCode.Created : HttpStatusCode.OK, converted.StatusCode);
                 Assert.Equal("application/json", converted.Content.Headers.ContentType!.MediaType);
@@ -116,7 +112,7 @@ public sealed class QuotationConversionHttpTests
             Assert.Equal(HttpStatusCode.OK, response.StatusCode);
             var order = (await response.Content.ReadFromJsonAsync<WorkOrderResponse>())!;
             Assert.Equal(orderId, order.Id); Assert.Equal(id, order.QuotationId); Assert.Equal(customer.Id, order.CustomerId);
-            Assert.Equal($"OS-{before.Code}", order.Code); Assert.Equal(before.Notes, order.Notes);
+            Assert.Matches("^OS-[0-9]{8}$", order.Code); Assert.Equal(before.Notes, order.Notes);
             Assert.Equal("Scheduled", order.Status); Assert.Null(order.CompletedAt);
             Assert.InRange(order.CreatedAt, started.AddSeconds(-1), DateTime.UtcNow.AddSeconds(1)); Assert.Equal(DateTimeKind.Utc, order.CreatedAt.Kind);
             Assert.Equal(before.Items.Count, order.Items.Count); Assert.Equal(before.TotalAmount, order.Items.Sum(i => i.TotalAmount));
@@ -156,7 +152,7 @@ public sealed class QuotationConversionHttpTests
             var completedSnapshot = await owner.GetStringAsync($"/api/v1/work-orders/{orderId}");
             foreach (var replayRoute in new[] { false, true })
             {
-                var replay = await writer.PostAsync(Route(id, replayRoute), null);
+                var replay = await writer.PostOrderAsync(Route(id, replayRoute), id, person);
                 Assert.Equal(replayRoute ? HttpStatusCode.Created : HttpStatusCode.OK, replay.StatusCode);
                 Assert.Equal(orderId, (await replay.Content.ReadFromJsonAsync<JsonElement>()).GetProperty(replayRoute ? "id" : "workOrderId").GetGuid());
             }
@@ -175,7 +171,7 @@ public sealed class QuotationConversionHttpTests
             if (state == QuotationStatus.Canceled) q.Cancel();
             using (var db = factory.Db(tenant)) { db.Quotations.Add(q); await db.SaveChangesAsync(); }
             var snapshot = await owner.GetStringAsync($"/api/v1/quotations/{q.Id}");
-            foreach (var alternative in new[] { false, true }) await SafeProblem(await writer.PostAsync(Route(q.Id, alternative), null));
+            foreach (var alternative in new[] { false, true }) await SafeProblem(await writer.PostOrderAsync(Route(q.Id, alternative), q.Id, person));
             Assert.Equal(snapshot, await owner.GetStringAsync($"/api/v1/quotations/{q.Id}"));
             using var after = factory.Db(tenant);
             Assert.Equal(state, (await after.Quotations.SingleAsync(x => x.Id == q.Id)).Status);

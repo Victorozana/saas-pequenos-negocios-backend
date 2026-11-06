@@ -18,8 +18,9 @@ public class AppointmentConfiguration : IEntityTypeConfiguration<Appointment>
 
         builder.HasOne(a => a.WorkOrder)
             .WithMany()
-            .HasForeignKey(a => a.WorkOrderId)
-            .OnDelete(DeleteBehavior.SetNull);
+            .HasForeignKey(a => new { a.TenantId, a.WorkOrderId })
+            .HasPrincipalKey(w => new { w.TenantId, w.Id })
+            .OnDelete(DeleteBehavior.Restrict);
             
         // Index on start time for scheduling query performance
         builder.HasIndex(a => new { a.TenantId, a.StartTime });

@@ -92,9 +92,9 @@ public sealed class CoreRoutesHttpContractTests : IClassFixture<TeamFinancialTes
         var created = await client.PostAsJsonAsync("/api/v1/appointments/", valid);
         var id = (await Json(created, HttpStatusCode.Created)).GetProperty("id").GetGuid();
         Assert.EndsWith(id.ToString(), created.Headers.Location!.ToString());
-        await Problem(await client.PostAsJsonAsync("/api/v1/appointments/", valid));
+        Assert.Equal(HttpStatusCode.Conflict, (await client.PostAsJsonAsync("/api/v1/appointments/", valid)).StatusCode);
         var second = await Json(await client.PostAsJsonAsync("/api/v1/appointments/", new { type = 1, startTime = start.AddHours(3), endTime = start.AddHours(4), assignedToUserId = user }), HttpStatusCode.Created);
-        await Problem(await client.PutAsJsonAsync($"/api/v1/appointments/{second.GetProperty("id").GetGuid()}", valid));
+        Assert.Equal(HttpStatusCode.Conflict, (await client.PutAsJsonAsync($"/api/v1/appointments/{second.GetProperty("id").GetGuid()}", valid)).StatusCode);
         var listing = await Json(await client.GetAsync("/api/v1/appointments/"), HttpStatusCode.OK);
         Assert.Contains(listing.EnumerateArray(), row => row.GetProperty("id").GetGuid() == id);
         await Empty(await client.PutAsJsonAsync($"/api/v1/appointments/{id}", valid), HttpStatusCode.NoContent);
@@ -114,20 +114,20 @@ public sealed class CoreRoutesHttpContractTests : IClassFixture<TeamFinancialTes
     [Fact(DisplayName = "Conversão alternativa e OS: 201 tipado, falhas de domínio seguras, 204/404 vazios e isolamento HTTP @spec:AC-037")]
     public async Task WorkOrdersMatchConversionAndStatusContracts()
     {
-        var (client, _, tenant) = await factory.Member("owner_admin", []);
+        var (client, person, tenant) = await factory.Member("owner_admin", []);
         var (other, _, _) = await factory.Member("owner_admin", []);
         var customer = Customer.Create(tenant, "Cliente fictício", "123", null, null, null);
         var quotation = Quotation.Create(tenant, "Contrato", customer.Id, DateTime.UtcNow, null, null, null);
         quotation.AddItem(QuotationItem.Create(null, "Serviço", "un", 1, 10, 0));
         using (var db = factory.Db(tenant)) { db.Customers.Add(customer); db.Quotations.Add(quotation); await db.SaveChangesAsync(); }
         var conversion = $"/api/v1/work-orders/from-quotation/{quotation.Id}";
-        await Problem(await client.PostAsync(conversion, null));
+        await Problem(await client.PostOrderAsync(conversion, quotation.Id, person));
         await Problem(await other.PostAsync(conversion, null));
         using (var db = factory.Db(tenant)) { var saved = await db.Quotations.Include(q => q.Items).SingleAsync(q => q.Id == quotation.Id); saved.MarkAsPending(); saved.Approve(); await db.SaveChangesAsync(); }
-        var created = await client.PostAsync(conversion, null);
+        var created = await client.PostOrderAsync(conversion, quotation.Id, person);
         var id = (await Json(created, HttpStatusCode.Created)).GetProperty("id").GetGuid();
         Assert.EndsWith(id.ToString(), created.Headers.Location!.ToString());
-        Assert.Equal(id, (await Json(await client.PostAsync(conversion, null), HttpStatusCode.Created)).GetProperty("id").GetGuid());
+        Assert.Equal(id, (await Json(await client.PostOrderAsync(conversion, quotation.Id, person), HttpStatusCode.Created)).GetProperty("id").GetGuid());
         var detail = await Json(await client.GetAsync($"/api/v1/work-orders/{id}"), HttpStatusCode.OK);
         Assert.Equal(quotation.Id, detail.GetProperty("quotationId").GetGuid());
         await Empty(await other.GetAsync($"/api/v1/work-orders/{id}"), HttpStatusCode.NotFound);

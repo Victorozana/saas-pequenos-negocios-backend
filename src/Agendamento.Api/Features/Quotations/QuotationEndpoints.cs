@@ -1,3 +1,4 @@
+using Agendamento.Api.Features.WorkOrders;
 using Agendamento.Api.Features.Common;
 using Agendamento.Api.Infrastructure.Authorization;
 using Agendamento.Api.Application.Quotations.CreateQuotation;
@@ -147,33 +148,21 @@ public static class QuotationEndpoints
         .Produces(StatusCodes.Status401Unauthorized)
         .ProducesProblem(StatusCodes.Status400BadRequest);
 
-        group.MapPost("/{id:guid}/convert", async (
-            Guid id,
-            [FromServices] ConvertQuotationToWorkOrderHandler handler,
-            CancellationToken ct) =>
-        {
-            try
-            {
-                var workOrderId = await handler.HandleAsync(new ConvertQuotationToWorkOrderCommand { QuotationId = id }, ct);
-                return Results.Ok(new WorkOrderConversionResponse(workOrderId));
-            }
-            catch (InvalidOperationException)
-            {
-                return Results.Problem(statusCode: 400, title: "Não foi possível converter o orçamento em ordem de serviço.");
-            }
-        })
-        .WithName("ConvertQuotationToWorkOrderInQuotation")
-        .RequirePermission("sales.write")
-        .Produces<WorkOrderConversionResponse>(StatusCodes.Status200OK)
-        .ProducesProblem(StatusCodes.Status400BadRequest)
-        .Produces(StatusCodes.Status401Unauthorized);
+
+        group.MapPost("/{id:guid}/convert", (
+            Guid id, [FromHeader(Name = "Idempotency-Key")] Guid key, ScheduleWorkOrderRequest request,
+            System.Security.Claims.ClaimsPrincipal principal, WorkOrderSchedule schedule, CancellationToken ct) =>
+            schedule.SaveAsync(principal, id, key, request, true, true, ct))
+            .WithName("ConvertQuotationToWorkOrderInQuotation").RequirePermission("sales.write")
+            .Produces<WorkOrderConversionResponse>(200).ProducesProblem(400).ProducesProblem(409).Produces(404);
 
         group.MapGet("/{id:guid}/pdf", async (
             Guid id,
             [FromServices] GetQuotationByIdHandler getHandler,
             [FromServices] IQuotationPdfGenerator pdfGenerator,
-            CancellationToken ct) =>
+            HttpContext context, CancellationToken ct) =>
         {
+            context.Response.Headers["X-Nexo-Pdf-Route"] = "1";
             var quotation = await getHandler.HandleAsync(id, ct);
             
             if (quotation == null)

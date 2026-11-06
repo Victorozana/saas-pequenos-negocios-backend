@@ -112,7 +112,7 @@ public sealed class QuotationMappingTests
         Assert.DoesNotContain(db.Database.GetMigrations(), m => m.EndsWith("_AddRowLevelSecurity"));
         Assert.Contains(db.Database.GetMigrations(), m => m.EndsWith("_EnforceTenantRowLevelSecurity"));
         Assert.Contains(db.Database.GetMigrations(), m => m.EndsWith("_EnforceQuotationCatalogTenantReference"));
-        Assert.EndsWith("_EnforceWorkOrderConversionIntegrity", db.Database.GetMigrations().Last());
+        Assert.EndsWith("_ScheduleWorkOrderTeams", db.Database.GetMigrations().Last());
     }
 
     [Fact(DisplayName = "Filtros EF isolam orçamento e consulta direta de itens inclusive sem tenant @spec:AC-092")]

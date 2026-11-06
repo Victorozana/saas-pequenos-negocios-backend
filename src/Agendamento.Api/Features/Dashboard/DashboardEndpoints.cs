@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using Agendamento.Api.Infrastructure.Authorization;
 using Agendamento.Api.OpenApi;
 using Microsoft.AspNetCore.Builder;
@@ -28,15 +29,31 @@ public static class DashboardEndpoints
         .RequirePermission("sales.read")
         .Produces<DashboardSummaryDto>(StatusCodes.Status200OK);
 
-        group.MapGet("schedule", async ([AsParameters] GetUpcomingScheduleRequest request, [FromServices] GetUpcomingScheduleHandler handler, CancellationToken cancellationToken) =>
+        group.MapGet("schedule", async ([AsParameters] GetUpcomingScheduleRequest request,
+            System.Security.Claims.ClaimsPrincipal principal, Agendamento.Api.Features.WorkOrders.WorkOrderSchedule schedule,
+            TimeProvider clock, CancellationToken ct) =>
         {
-            var query = new GetUpcomingScheduleQuery { DaysAhead = request.DaysAhead ?? 7 };
-            var result = await handler.HandleAsync(query, cancellationToken);
-            return Results.Ok(result);
-        })
-        .WithName("GetUpcomingSchedule")
-        .RequirePermission("appointments.read")
-        .Produces<List<UpcomingScheduleDto>>(StatusCodes.Status200OK);
+            var (start, end) = Agendamento.Api.Features.Appointments.AppointmentEndpoints.DayRange(clock.GetUtcNow(),
+                Math.Clamp(request.DaysAhead ?? 7, 0, 365) + 1);
+
+            var actor = await schedule.ActorAsync(principal, ct);
+            if (actor == null || !actor.Membership.HasPermission("appointments.read")) return Results.Forbid();
+            var visits = await schedule.VisibleAppointments(actor)
+                .Where(a => a.StartTime < end && a.EndTime > start).OrderBy(a => a.StartTime)
+                .Select(a => new UpcomingScheduleDto
+                {
+                    AppointmentId = a.Id,
+                    Type = a.Type,
+                    StartTime = a.StartTime,
+                    EndTime = a.EndTime,
+                    Address = a.Address,
+                    Notes = a.Notes,
+                    WorkOrderCode = a.WorkOrder == null ? null : a.WorkOrder.Code,
+                    CustomerName = a.WorkOrder != null && a.WorkOrder.Customer != null ? a.WorkOrder.Customer.Name : null
+                }).ToListAsync(ct);
+            return Results.Ok(visits);
+        }).WithName("GetUpcomingSchedule").RequirePermission("appointments.read")
+            .Produces<List<UpcomingScheduleDto>>();
 
         group.MapGet("report", async ([AsParameters] ExportPerformanceReportRequest request, [FromServices] ExportPerformanceReportHandler handler, CancellationToken cancellationToken) =>
         {

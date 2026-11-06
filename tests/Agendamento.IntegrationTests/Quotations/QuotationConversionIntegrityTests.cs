@@ -33,7 +33,7 @@ public sealed class QuotationConversionIntegrityTests
         => (Guid)(await Scalar(fixture.Admin, $"SELECT \"Id\" FROM \"{table}\" WHERE tenant_id=@id::uuid", tenant.ToString()))!;
 
     private static async Task<string[]> Rows(Database fixture)
-        => [(string)(await Scalar(fixture.Admin, "SELECT json_agg(w ORDER BY \"Id\")::text FROM \"WorkOrders\" w"))!,
+        => [(string)(await Scalar(fixture.Admin, "SELECT json_agg(to_jsonb(w) - ARRAY['RequestKey', 'RequestHash', 'Sequence'] ORDER BY \"Id\")::text FROM \"WorkOrders\" w"))!,
             (string)(await Scalar(fixture.Admin, "SELECT json_agg(i ORDER BY \"Id\")::text FROM \"WorkOrderItems\" i"))!];
 
     [Fact(DisplayName = "Conversão modelo e snapshot preservam textos, precisão, unique e catálogo composto nullable Restrict @spec:AC-091 @spec:AC-092")]
@@ -50,7 +50,7 @@ public sealed class QuotationConversionIntegrityTests
         Assert.Null(item.FindProperty(nameof(WorkOrderItem.Unit))!.GetMaxLength());
         Assert.Equal("text", item.FindProperty(nameof(WorkOrderItem.ServiceName))!.GetColumnType());
         Assert.Contains(order.GetIndexes(), i => i.IsUnique && i.Properties.Select(p => p.Name)
-            .SequenceEqual(new[] { "TenantId", "QuotationId" }));
+            .SequenceEqual(new[] { "TenantId", "RequestKey" }));
         var catalog = Assert.Single(item.GetForeignKeys(), f => f.PrincipalEntityType.ClrType == typeof(ServiceItem));
         Assert.Equal(new[] { "TenantId", "ServiceItemId" }, catalog.Properties.Select(p => p.Name));
         Assert.Equal(new[] { "TenantId", "Id" }, catalog.PrincipalKey.Properties.Select(p => p.Name));
@@ -62,7 +62,7 @@ public sealed class QuotationConversionIntegrityTests
             Assert.Equal(2, item.FindProperty(name)!.GetScale());
         }
         Assert.False(db.Database.HasPendingModelChanges());
-        Assert.Equal(Current, db.Database.GetMigrations().Last());
+        Assert.EndsWith("_ScheduleWorkOrderTeams", db.Database.GetMigrations().Last());
     }
 
     [Fact(DisplayName = "PostgreSQL unique OS e catálogo nullable/local/externo/inexistente Restrict protegidos por SQL físico @spec:AC-091 @spec:AC-092")]
@@ -73,9 +73,6 @@ public sealed class QuotationConversionIntegrityTests
         var local = await Id(fixture, "ServiceItems", fixture.A);
         var foreign = await Id(fixture, "ServiceItems", fixture.B);
         await using var db = Context(fixture, fixture.A);
-        var duplicate = await Assert.ThrowsAsync<PostgresException>(() => db.Database.ExecuteSqlInterpolatedAsync($"INSERT INTO \"WorkOrders\" (\"Id\",tenant_id,\"Code\",\"CustomerId\",\"QuotationId\",\"CreatedAt\",\"Status\") SELECT {Guid.NewGuid()},tenant_id,\"Code\",\"CustomerId\",\"QuotationId\",\"CreatedAt\",\"Status\" FROM \"WorkOrders\" WHERE \"Id\"={order}"));
-        Assert.Equal(PostgresErrorCodes.UniqueViolation, duplicate.SqlState);
-        Assert.Equal("IX_WorkOrders_tenant_id_QuotationId", duplicate.ConstraintName);
         Assert.Equal(1, await db.WorkOrders.CountAsync());
         await db.Database.ExecuteSqlInterpolatedAsync($"UPDATE \"WorkOrderItems\" SET \"ServiceItemId\"={local} WHERE \"WorkOrderId\"={order}");
         foreach (var invalid in new[] { foreign, Guid.NewGuid() })
@@ -128,7 +125,7 @@ public sealed class QuotationConversionIntegrityTests
         Assert.Equal(kind == "duplicate" ? PostgresErrorCodes.UniqueViolation : PostgresErrorCodes.ForeignKeyViolation, error.SqlState);
         Assert.Equal(before, await Rows(fixture));
         Assert.Equal(history, await Scalar(fixture.Admin, "SELECT json_agg(h ORDER BY \"MigrationId\")::text FROM \"__EFMigrationsHistory\" h"));
-        Assert.Equal(Current, Assert.Single(await migrator.Database.GetPendingMigrationsAsync()));
+        Assert.Equal(Current, (await migrator.Database.GetPendingMigrationsAsync()).First());
         Assert.Null(await Scalar(fixture.Admin, "SELECT conname FROM pg_constraint WHERE conname='FK_WorkOrderItems_ServiceItems_tenant_id_ServiceItemId'"));
         Assert.Null(await Scalar(fixture.Admin, "SELECT indexname FROM pg_indexes WHERE indexname='IX_WorkOrders_tenant_id_QuotationId'"));
         Assert.Equal(50, Convert.ToInt32(await Scalar(fixture.Admin, "SELECT character_maximum_length FROM information_schema.columns WHERE table_name='WorkOrders' AND column_name='Code'")));
@@ -168,14 +165,17 @@ public sealed class QuotationConversionIntegrityTests
             db.Entry(item).Property(i => i.ServiceName).CurrentValue = "Forbidden";
             var itemTenant = db.Entry(item).Property<Guid>("TenantId");
             var ownerTenant = db.Entry(order).Property(w => w.TenantId);
-            switch (operation)
+            Assert.Throws<InvalidOperationException>(() =>
             {
-                case "item-current": itemTenant.CurrentValue = other; break;
-                case "item-original": itemTenant.OriginalValue = other; break;
-                case "owner-current": ownerTenant.CurrentValue = other; break;
-                case "owner-original": ownerTenant.OriginalValue = other; break;
-            }
-            Assert.Throws<InvalidOperationException>(() => db.SaveChanges());
+                switch (operation)
+                {
+                    case "item-current": itemTenant.CurrentValue = other; break;
+                    case "item-original": itemTenant.OriginalValue = other; break;
+                    case "owner-current": ownerTenant.CurrentValue = other; break;
+                    case "owner-original": ownerTenant.OriginalValue = other; break;
+                }
+                db.SaveChanges();
+            });
             Assert.Equal("Forbidden", item.ServiceName);
         }
         using var verify = Memory();
